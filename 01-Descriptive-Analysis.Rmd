@@ -70,7 +70,7 @@ length(bus_subrouteuid_all)==nrow(bus_route)
 由於我們知道一個主路線可能含括多個子路線，若欲統計各主路線擁有的子路線數，可利用`group_by() %>% summarise()`達成此一目的，程式碼撰寫如下。首先根據 RouteUID 分組，再統計相同 RouteUID 的總資料筆數（`n()`）。
 
 ```{r bus-data-ex3, echo=T, eval=T}
-bus_route_sum=group_by(bus_route, RouteUID)%>%
+bus_route_sum=group_by(bus_route, RouteUID, RouteName)%>%
   summarise(NumSubRoute=n())
 
 # 查看前六筆結果
