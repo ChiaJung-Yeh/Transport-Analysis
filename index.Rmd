@@ -39,9 +39,9 @@ access_token=get_token(client_id, client_secret)
 
 本網站簡介運輸資料分析之方法，並透過實務應用瞭解運輸資料的特性、分析原理，以及 R 語言各套件與函式的功能。本網站分為四大章節：基本資料統計、地理分析、進階應用，各章節皆以運輸資料為示範，期能擴充 R 語言使用者對於此一領域的熟悉程度。本網站係零散的個案分析，而非系統性的學習 R 語言與分析套件，提供較全面的實際資料操作。
 
-## 安裝套件 {-}
-
 ---
+
+## 安裝套件 {-}
 
 本網站各分析所需使用的主要套件與其功能彙整如表\@ref(tab:package-download-table)，請先行安裝。
 
@@ -72,9 +72,9 @@ kable(package_table, booktabs=T, caption="本套件函式綜覽")%>%
   row_spec(0, bold=T, color="white", background="#8E8E8E")
 ```
 
-## TDX 套件使用方式 {-}
-
 ---
+
+## TDX 套件使用方式 {-}
 
 TDX 套件整合了各運輸資料與社會經濟資料串接方式，僅須透過一函式指令即可下載指定的資料，以省去資料分析時介接之不便，提升分析效率。使用 TDX 套件的大部分函式皆須一組金鑰（access token），其取得方式如下，請注意程式碼中 CLIENT_ID 與 CLIENT_SECRET 請自 [TDX 平臺](https://tdx.transportdata.tw/register)註冊會員並申請。
 
@@ -88,10 +88,10 @@ access_token=get_token(client_id, client_secret)
 
 其他關於 TDX 註冊、申請方式，以及所有函式功能與使用方法，請參見 [TDX 運輸資料介接指南](https://chiajung-yeh.github.io/TDX_Guide/)。
 
+---
 
 ## 其他參考資料 {-}
 
----
 以下網站陳列較系統性的教材與參考資料：
 
 1. [Spatial Analysis with R](https://chiajung-yeh.github.io/Spatial-Analysis/)  
