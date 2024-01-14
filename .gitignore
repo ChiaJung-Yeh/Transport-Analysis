@@ -37,6 +37,6 @@ rsconnect/
 .Rproj.user
 .Rdata
 key.txt
-
+README
 .DS_Store
 .quarto

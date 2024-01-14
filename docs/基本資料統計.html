@@ -184,7 +184,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <span id="cb1-3"><a href="基本資料統計.html#cb1-3" tabindex="-1"></a></span>
 <span id="cb1-4"><a href="基本資料統計.html#cb1-4" tabindex="-1"></a><span class="co"># 公車站牌</span></span>
 <span id="cb1-5"><a href="基本資料統計.html#cb1-5" tabindex="-1"></a>bus_stop<span class="ot">=</span><span class="fu">Bus_StopOfRoute</span>(access_token, <span class="st">&quot;Hsinchu&quot;</span>)</span></code></pre></div>
-<p>以下針對各議題展示分析架構與程式碼撰寫，針對每一問題先瞭解運輸資料的特性，而後再針對。</p>
+<p>以下針對各議題展示分析架構與程式碼撰寫，針對每一問題先瞭解運輸資料的特性，而後再依據分析邏輯撰寫程式碼。</p>
 <p><span style="font-size:15pt;color:#005AB5"><strong>◎ 統計路線</strong></span><br />
 公車路線的代碼有兩種，其一為 RouteUID，另一為 SubRouteUID。前者是主路線代碼，後者是子路線代碼，亦即將主路線再依據不同行駛路線（如：延駛、繞駛等）或方向（去程、返程）再細部分類不同路線。</p>
 <p><span style="font-size:15pt"><strong>• 統計所有主路線數</strong></span><br />

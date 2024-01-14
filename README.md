@@ -1,5 +1,13 @@
-# bookdown-tutorial
-Mini tutorial for bookdown 
+# 簡介
 
+本網站簡介運輸資料分析之方法，並透過實務應用瞭解運輸資料的特性、分析原理，以及
+R
+語言各套件與函式的功能。本網站分為四大章節：基本資料統計、地理分析、進階應用，各章節皆以運輸資料為示範，期能擴充
+R
+語言使用者對於此一領域的熟悉程度。本網站係零散的個案分析，而非系統性的學習
+R 語言與分析套件，提供較全面的實際資料操作。
 
-afdafadjl
+# 聯繫
+
+葉家榮 (Chia-Jung Yeh) Email:
+<a href="mailto:chia-jung.yeh@sydney.edu.au"><u><chia-jung.yeh@sydney.edu.au></u></a>
