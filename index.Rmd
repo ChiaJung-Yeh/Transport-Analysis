@@ -10,7 +10,7 @@ documentclass: book
 bibliography: [book.bib, packages.bib]
 biblio-style: apalike
 link-citations: yes
-github-repo: ChiaJung-Yeh/TDX_Guide
+github-repo: ChiaJung-Yeh/Transport-Analysis
 description: "運輸資料分析"
 ---
 
@@ -25,6 +25,7 @@ library(knitr)
 library(kableExtra)
 library(TDX)
 library(DT)
+library(rtemps)
 
 windowsFonts(A=windowsFont("微軟正黑體"))
 
@@ -94,6 +95,6 @@ access_token=get_token(client_id, client_secret)
 以下網站陳列較系統性的教材與參考資料：
 
 1. [Spatial Analysis with R](https://chiajung-yeh.github.io/Spatial-Analysis/)  
-2. [R Preliminary](https://chiajung-yeh.github.io/R-Code-Sharing/R_Preliminary/R_Preliminary.html)  
+2. [R Preliminary](https://chiajung-yeh.github.io/R-Code-Sharing/R_Preliminary/R_Preliminary.html)<span style="font-size:10pt;color:#003060;">&nbsp;&nbsp;&nbsp;[**_建議先行參考此網頁，以初步瞭解 `dplyr` 套件各函式！_**]</span>  
 3. [地理資訊系統與空間運算：R軟體應用](https://www.books.com.tw/products/0010979785)
 

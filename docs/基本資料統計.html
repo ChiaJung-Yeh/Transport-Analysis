@@ -12,7 +12,7 @@
   <meta property="og:type" content="book" />
   
   <meta property="og:description" content="運輸資料分析" />
-  <meta name="github-repo" content="ChiaJung-Yeh/TDX_Guide" />
+  <meta name="github-repo" content="ChiaJung-Yeh/Transport-Analysis" />
 
   <meta name="twitter:card" content="summary" />
   <meta name="twitter:title" content="Chapter 1 基本資料統計 | 運輸資料分析初探" />
@@ -23,7 +23,7 @@
 <meta name="author" content="Chia-Jung (Robert) Yeh 葉家榮 PhD: Insitute of Transport and Logistics Studies, USYD M.S.: Department of Transportation and Logistics Management, NYCU" />
 
 
-<meta name="date" content="2024-01-14" />
+<meta name="date" content="2024-01-15" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -184,6 +184,59 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <span id="cb1-3"><a href="基本資料統計.html#cb1-3" tabindex="-1"></a></span>
 <span id="cb1-4"><a href="基本資料統計.html#cb1-4" tabindex="-1"></a><span class="co"># 公車站牌</span></span>
 <span id="cb1-5"><a href="基本資料統計.html#cb1-5" tabindex="-1"></a>bus_stop<span class="ot">=</span><span class="fu">Bus_StopOfRoute</span>(access_token, <span class="st">&quot;Hsinchu&quot;</span>)</span></code></pre></div>
+<p>以下針對各議題展示分析架構與程式碼撰寫，針對每一問題先瞭解運輸資料的特性，而後再針對。</p>
+<p><span style="font-size:15pt;color:#005AB5"><strong>◎ 統計路線</strong></span><br />
+公車路線的代碼有兩種，其一為 RouteUID，另一為 SubRouteUID。前者是主路線代碼，後者是子路線代碼，亦即將主路線再依據不同行駛路線（如：延駛、繞駛等）或方向（去程、返程）再細部分類不同路線。</p>
+<p><span style="font-size:15pt"><strong>• 統計所有主路線數</strong></span><br />
+先初步觀察<code>bus_route</code>資料可以發現，當中有許多重複的主路線，故不可直接透過資料的列數（row）來判斷主路線數，必須先去除重複的代碼。<code>unique()</code>函式可用以去除一向量中重複的元素，故執行後索回傳的向量僅會是唯一值。若欲計算一向量的總個數，可透過<code>length()</code>回傳長度。程式碼撰寫如下。</p>
+<div class="sourceCode" id="cb2"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb2-1"><a href="基本資料統計.html#cb2-1" tabindex="-1"></a>bus_routeuid_all<span class="ot">=</span><span class="fu">unique</span>(bus_route<span class="sc">$</span>RouteUID)</span>
+<span id="cb2-2"><a href="基本資料統計.html#cb2-2" tabindex="-1"></a><span class="fu">length</span>(bus_routeuid_all)</span></code></pre></div>
+<pre><code>## [1] 26</code></pre>
+<p>試著統計此資料的總子路線數，檢查是否與<code>bus_route</code>總資料筆數相同？</p>
+<div class="sourceCode" id="cb4"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb4-1"><a href="基本資料統計.html#cb4-1" tabindex="-1"></a>bus_subrouteuid_all<span class="ot">=</span><span class="fu">unique</span>(bus_route<span class="sc">$</span>SubRouteUID)</span>
+<span id="cb4-2"><a href="基本資料統計.html#cb4-2" tabindex="-1"></a></span>
+<span id="cb4-3"><a href="基本資料統計.html#cb4-3" tabindex="-1"></a><span class="co"># 總子路線數</span></span>
+<span id="cb4-4"><a href="基本資料統計.html#cb4-4" tabindex="-1"></a><span class="fu">length</span>(bus_subrouteuid_all)</span></code></pre></div>
+<pre><code>## [1] 54</code></pre>
+<div class="sourceCode" id="cb6"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb6-1"><a href="基本資料統計.html#cb6-1" tabindex="-1"></a><span class="co"># 檢查是否與資料總筆數相同</span></span>
+<span id="cb6-2"><a href="基本資料統計.html#cb6-2" tabindex="-1"></a><span class="fu">length</span>(bus_subrouteuid_all)<span class="sc">==</span><span class="fu">nrow</span>(bus_route)</span></code></pre></div>
+<pre><code>## [1] TRUE</code></pre>
+<p>由以上結果得知，總子路線數會等於總資料筆數！</p>
+<p><span style="font-size:15pt"><strong>• 統計各主路線擁有的子路線數</strong></span><br />
+由於我們知道一個主路線可能含括多個子路線，若欲統計各主路線擁有的子路線數，可利用<code>group_by() %&gt;% summarise()</code>達成此一目的，程式碼撰寫如下。首先根據 RouteUID 分組，再統計相同 RouteUID 的總資料筆數（<code>n()</code>）。</p>
+<div class="sourceCode" id="cb8"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb8-1"><a href="基本資料統計.html#cb8-1" tabindex="-1"></a>bus_route_sum<span class="ot">=</span><span class="fu">group_by</span>(bus_route, RouteUID)<span class="sc">%&gt;%</span></span>
+<span id="cb8-2"><a href="基本資料統計.html#cb8-2" tabindex="-1"></a>  <span class="fu">summarise</span>(<span class="at">NumSubRoute=</span><span class="fu">n</span>())</span>
+<span id="cb8-3"><a href="基本資料統計.html#cb8-3" tabindex="-1"></a></span>
+<span id="cb8-4"><a href="基本資料統計.html#cb8-4" tabindex="-1"></a><span class="co"># 查看前六筆結果</span></span>
+<span id="cb8-5"><a href="基本資料統計.html#cb8-5" tabindex="-1"></a><span class="fu">head</span>(bus_route_sum)</span></code></pre></div>
+<pre><code>## # A tibble: 6 × 2
+##   RouteUID NumSubRoute
+##   &lt;chr&gt;          &lt;int&gt;
+## 1 HSZ0007            2
+## 2 HSZ0008            4
+## 3 HSZ0010            1
+## 4 HSZ0020            4
+## 5 HSZ0100            2
+## 6 HSZ0110            2</code></pre>
+<p>由統計結果可知，RouteUID 為 HSZ0007（路線名為 <a href="https://internetpedia.fandom.com/zh/wiki/%E6%96%B0%E7%AB%B9%E5%B8%82%E5%85%AC%E8%BB%8A81%E8%B7%AF?variant=zh-hant&amp;file=%E6%96%B0%E7%AB%B9%E5%B8%82%E5%85%AC%E8%BB%8A81%E8%B7%AF%E8%B7%AF%E7%B7%9A%E5%9C%962020.png">81</a>）者，其子路線數為 2 條，查看原始<code>bus_route</code>資料，可發現其含括子路線 HSZ000701 與 HSZ000702；又 HSZ0008（路線名為 <a href="https://internetpedia.fandom.com/zh/wiki/%E6%96%B0%E7%AB%B9%E5%B8%82%E5%85%AC%E8%BB%8A83%E8%B7%AF?file=%E6%96%B0%E7%AB%B9%E5%B8%82%E5%85%AC%E8%BB%8A83%E8%B7%AF%28%E5%90%AB%E5%8D%80%E9%96%93%E8%BB%8A%29%E8%B7%AF%E7%B7%9A%E5%9C%96.png">83</a>）的子路線數共計 4 條，其中包含 HSZ000801、HSZ000802、HSZ0008A1、HSZ0008A2。細部觀察原始資料，可發現 HSZ0007 兩條子路線的 Direction 一個為 0；另一為 1，表示方向不同，子路線即不同。而 HSZ0008 除了因方向不同而有不同子路線外，子路線代碼含括「A1」與「A2」者為延駛或繞駛，亦會使子路線不同。上述皆為 TDX 針對公車路線編碼的標準規範。最後 HSZ0010（路線名為 <a href="https://internetpedia.fandom.com/zh/wiki/%E6%96%B0%E7%AB%B9%E5%B8%82%E5%85%AC%E8%BB%8A1%E8%B7%AF?variant=zh-hant&amp;file=%E6%96%B0%E7%AB%B9%E5%B8%82%E5%85%AC%E8%BB%8A1%E8%B7%AF%E8%B7%AF%E7%B7%9A%E5%9C%96.png">藍線1區</a>）僅一條子路線，乃因該路線為環狀線。（注意藍線1區公車係由火車站至竹中站後立即折返，故屬於環狀線。）</p>
+<p><span style="font-size:15pt"><strong>• 整理各主路線含括的子路線</strong></span><br />
+前一案例藉由<code>group_by() %&gt;% summarise()</code>計算總數，事實上此一函式的功能繁多，可透過改變<code>summarise()</code>函式內的操作，以達成目的。如欲整理各主路線含括的子路線代碼與名稱，應將 RouteUID 與 RouteName 作為分群的變項，並在<code>summarise()</code>函式中將所有同一分群者，將其子路線代碼以<code>paste()</code>函式相連。其中<code>paste()</code>函式內，須設定<code>collapse=</code>參數，以表達使用特定的符號或字元串接。依上述流程，程式碼撰寫如下。</p>
+<div class="sourceCode" id="cb10"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb10-1"><a href="基本資料統計.html#cb10-1" tabindex="-1"></a>bus_route_list<span class="ot">=</span><span class="fu">group_by</span>(bus_route, RouteUID, RouteName)<span class="sc">%&gt;%</span></span>
+<span id="cb10-2"><a href="基本資料統計.html#cb10-2" tabindex="-1"></a>  <span class="fu">summarise</span>(<span class="at">AllSubRoute=</span><span class="fu">paste</span>(SubRouteUID, <span class="at">collapse=</span><span class="st">&quot;, &quot;</span>))</span></code></pre></div>
+<pre><code>## `summarise()` has grouped output by &#39;RouteUID&#39;. You can override using the
+## `.groups` argument.</code></pre>
+<div class="sourceCode" id="cb12"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb12-1"><a href="基本資料統計.html#cb12-1" tabindex="-1"></a><span class="co"># 查看前六筆結果</span></span>
+<span id="cb12-2"><a href="基本資料統計.html#cb12-2" tabindex="-1"></a><span class="fu">head</span>(bus_route_list)</span></code></pre></div>
+<pre><code>## # A tibble: 6 × 3
+## # Groups:   RouteUID [6]
+##   RouteUID RouteName AllSubRoute                               
+##   &lt;chr&gt;    &lt;chr&gt;     &lt;chr&gt;                                     
+## 1 HSZ0007  81        HSZ000701, HSZ000702                      
+## 2 HSZ0008  83        HSZ000801, HSZ000802, HSZ0008A1, HSZ0008A2
+## 3 HSZ0010  藍線1區   HSZ001001                                 
+## 4 HSZ0020  2         HSZ002001, HSZ002002, HSZ0020A1, HSZ0020A2
+## 5 HSZ0100  10        HSZ010001, HSZ010002                      
+## 6 HSZ0110  11        HSZ0110A1, HSZ0110A2</code></pre>
 
 </div>
 </div>

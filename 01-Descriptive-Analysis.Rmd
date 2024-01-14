@@ -39,3 +39,61 @@ bus_route=read.csv("./Data/Bus Route Hsinchu.csv")
 bus_stop=read.csv("./Data/Bus Stop Hsinchu.csv")
 ```
 
+以下針對各議題展示分析架構與程式碼撰寫，針對每一問題先瞭解運輸資料的特性，而後再針對。
+
+<span style="font-size:15pt;color:#005AB5">**◎ 統計路線**</span>   
+公車路線的代碼有兩種，其一為 RouteUID，另一為 SubRouteUID。前者是主路線代碼，後者是子路線代碼，亦即將主路線再依據不同行駛路線（如：延駛、繞駛等）或方向（去程、返程）再細部分類不同路線。
+
+<span style="font-size:15pt">**• 統計所有主路線數**</span>   
+先初步觀察`bus_route`資料可以發現，當中有許多重複的主路線，故不可直接透過資料的列數（row）來判斷主路線數，必須先去除重複的代碼。`unique()`函式可用以去除一向量中重複的元素，故執行後索回傳的向量僅會是唯一值。若欲計算一向量的總個數，可透過`length()`回傳長度。程式碼撰寫如下。
+
+```{r bus-data-ex1, echo=T, eval=T}
+bus_routeuid_all=unique(bus_route$RouteUID)
+length(bus_routeuid_all)
+```
+
+試著統計此資料的總子路線數，檢查是否與`bus_route`總資料筆數相同？
+
+```{r bus-data-ex2, eval=T, echo=T}
+bus_subrouteuid_all=unique(bus_route$SubRouteUID)
+
+# 總子路線數
+length(bus_subrouteuid_all)
+
+# 檢查是否與資料總筆數相同
+length(bus_subrouteuid_all)==nrow(bus_route)
+```
+
+由以上結果得知，總子路線數會等於總資料筆數！
+
+<span style="font-size:15pt">**• 統計各主路線擁有的子路線數**</span>  
+由於我們知道一個主路線可能含括多個子路線，若欲統計各主路線擁有的子路線數，可利用`group_by() %>% summarise()`達成此一目的，程式碼撰寫如下。首先根據 RouteUID 分組，再統計相同 RouteUID 的總資料筆數（`n()`）。
+
+```{r bus-data-ex3, echo=T, eval=T}
+bus_route_sum=group_by(bus_route, RouteUID)%>%
+  summarise(NumSubRoute=n())
+
+# 查看前六筆結果
+head(bus_route_sum)
+```
+
+由統計結果可知，RouteUID 為 HSZ0007（路線名為 [81](https://internetpedia.fandom.com/zh/wiki/%E6%96%B0%E7%AB%B9%E5%B8%82%E5%85%AC%E8%BB%8A81%E8%B7%AF?variant=zh-hant&file=%E6%96%B0%E7%AB%B9%E5%B8%82%E5%85%AC%E8%BB%8A81%E8%B7%AF%E8%B7%AF%E7%B7%9A%E5%9C%962020.png)）者，其子路線數為 2 條，查看原始`bus_route`資料，可發現其含括子路線 HSZ000701 與 HSZ000702；又 HSZ0008（路線名為 [83](https://internetpedia.fandom.com/zh/wiki/%E6%96%B0%E7%AB%B9%E5%B8%82%E5%85%AC%E8%BB%8A83%E8%B7%AF?file=%E6%96%B0%E7%AB%B9%E5%B8%82%E5%85%AC%E8%BB%8A83%E8%B7%AF%28%E5%90%AB%E5%8D%80%E9%96%93%E8%BB%8A%29%E8%B7%AF%E7%B7%9A%E5%9C%96.png)）的子路線數共計 4 條，其中包含 HSZ000801、HSZ000802、HSZ0008A1、HSZ0008A2。細部觀察原始資料，可發現 HSZ0007 兩條子路線的 Direction 一個為 0；另一為 1，表示方向不同，子路線即不同。而 HSZ0008 除了因方向不同而有不同子路線外，子路線代碼含括「A1」與「A2」者為延駛或繞駛，亦會使子路線不同。上述皆為 TDX 針對公車路線編碼的標準規範。最後 HSZ0010（路線名為 [藍線1區](https://internetpedia.fandom.com/zh/wiki/%E6%96%B0%E7%AB%B9%E5%B8%82%E5%85%AC%E8%BB%8A1%E8%B7%AF?variant=zh-hant&file=%E6%96%B0%E7%AB%B9%E5%B8%82%E5%85%AC%E8%BB%8A1%E8%B7%AF%E8%B7%AF%E7%B7%9A%E5%9C%96.png)）僅一條子路線，乃因該路線為環狀線。（注意藍線1區公車係由火車站至竹中站後立即折返，故屬於環狀線。）
+
+
+<span style="font-size:15pt">**• 整理各主路線含括的子路線**</span>  
+前一案例藉由`group_by() %>% summarise()`計算總數，事實上此一函式的功能繁多，可透過改變`summarise()`函式內的操作，以達成目的。如欲整理各主路線含括的子路線代碼與名稱，應將 RouteUID 與 RouteName 作為分群的變項，並在`summarise()`函式中將所有同一分群者，將其子路線代碼以`paste()`函式相連。其中`paste()`函式內，須設定`collapse=`參數，以表達使用特定的符號或字元串接。依上述流程，程式碼撰寫如下。
+
+```{r bus-data-ex4, echo=T, eval=T}
+bus_route_list=group_by(bus_route, RouteUID, RouteName)%>%
+  summarise(AllSubRoute=paste(SubRouteUID, collapse=", "))
+
+# 查看前六筆結果
+head(bus_route_list)
+```
+
+
+
+
+
+
+
