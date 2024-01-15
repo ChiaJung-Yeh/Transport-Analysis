@@ -23,7 +23,7 @@
 <meta name="author" content="Chia-Jung (Robert) Yeh 葉家榮 PhD: Insitute of Transport and Logistics Studies, USYD M.S.: Department of Transportation and Logistics Management, NYCU" />
 
 
-<meta name="date" content="2024-01-15" />
+<meta name="date" content="2024-01-16" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -186,7 +186,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <span id="cb1-5"><a href="基本資料統計.html#cb1-5" tabindex="-1"></a>bus_stop<span class="ot">=</span><span class="fu">Bus_StopOfRoute</span>(access_token, <span class="st">&quot;Hsinchu&quot;</span>)</span></code></pre></div>
 <p>以下針對各議題展示分析架構與程式碼撰寫，針對每一問題先瞭解運輸資料的特性，而後再依據分析邏輯撰寫程式碼。</p>
 <div style="background-color:#6C6C6C;color:white;">
-<p><span style="font-size:17pt"><strong>   § 統計路線</strong></span></p>
+<p><span style="font-size:17pt"><strong>   § 路線統計分析</strong></span></p>
 </div>
 <p>公車路線的代碼有兩種，其一為 RouteUID，另一為 SubRouteUID。前者是主路線代碼，後者是子路線代碼，亦即將主路線再依據不同行駛路線（如：延駛、繞駛等）或方向（去程、返程）再細部分類不同路線。</p>
 <p><span style="font-size:15pt"><strong>• 統計所有主路線數</strong></span><br />
@@ -222,7 +222,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 ## 5 HSZ0100  10                  2
 ## 6 HSZ0110  11                  2</code></pre>
 <p>由統計結果可知，RouteUID 為 HSZ0007（路線名為 <a href="https://internetpedia.fandom.com/zh/wiki/%E6%96%B0%E7%AB%B9%E5%B8%82%E5%85%AC%E8%BB%8A81%E8%B7%AF?variant=zh-hant&amp;file=%E6%96%B0%E7%AB%B9%E5%B8%82%E5%85%AC%E8%BB%8A81%E8%B7%AF%E8%B7%AF%E7%B7%9A%E5%9C%962020.png">81</a>）者，其子路線數為 2 條，查看原始<code>bus_route</code>資料，可發現其含括子路線 HSZ000701 與 HSZ000702；又 HSZ0008（路線名為 <a href="https://internetpedia.fandom.com/zh/wiki/%E6%96%B0%E7%AB%B9%E5%B8%82%E5%85%AC%E8%BB%8A83%E8%B7%AF?file=%E6%96%B0%E7%AB%B9%E5%B8%82%E5%85%AC%E8%BB%8A83%E8%B7%AF%28%E5%90%AB%E5%8D%80%E9%96%93%E8%BB%8A%29%E8%B7%AF%E7%B7%9A%E5%9C%96.png">83</a>）的子路線數共計 4 條，其中包含 HSZ000801、HSZ000802、HSZ0008A1、HSZ0008A2。細部觀察原始資料，可發現 HSZ0007 兩條子路線的 Direction 一個為 0；另一為 1，表示方向不同，子路線即不同。而 HSZ0008 除了因方向不同而有不同子路線外，子路線代碼含括「A1」與「A2」者為延駛或繞駛，亦會使子路線不同。上述皆為 TDX 針對公車路線編碼的標準規範。最後 HSZ0010（路線名為 <a href="https://internetpedia.fandom.com/zh/wiki/%E6%96%B0%E7%AB%B9%E5%B8%82%E5%85%AC%E8%BB%8A1%E8%B7%AF?variant=zh-hant&amp;file=%E6%96%B0%E7%AB%B9%E5%B8%82%E5%85%AC%E8%BB%8A1%E8%B7%AF%E8%B7%AF%E7%B7%9A%E5%9C%96.png">藍線1區</a>）僅一條子路線，乃因該路線為環狀線（注意：藍線1區公車係由火車站至竹中站後立即折返，故屬於環狀線）。</p>
-<p><span style="font-size:15pt"><strong>• 整理各主路線含括的子路線</strong></span><br />
+<p><span style="font-size:15pt"><strong>• 羅列各主路線含括的子路線</strong></span><br />
 前一案例藉由<code>group_by() %&gt;% summarise()</code>計算總數，事實上此一函式的功能繁多，可透過改變<code>summarise()</code>函式內的操作，以達成目的。如欲整理各主路線含括的子路線代碼與名稱，應將 RouteUID 與 RouteName 作為分群的變項，並在<code>summarise()</code>函式中將所有同一分群者，將其子路線代碼以<code>paste()</code>函式相連。其中<code>paste()</code>函式內，須設定<code>collapse=</code>參數，以表達使用特定的符號或字元串接。依上述流程，程式碼撰寫如下。</p>
 <div class="sourceCode" id="cb10"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb10-1"><a href="基本資料統計.html#cb10-1" tabindex="-1"></a>bus_route_list<span class="ot">=</span><span class="fu">group_by</span>(bus_route, RouteUID, RouteName)<span class="sc">%&gt;%</span></span>
 <span id="cb10-2"><a href="基本資料統計.html#cb10-2" tabindex="-1"></a>  <span class="fu">summarise</span>(<span class="at">AllSubRoute=</span><span class="fu">paste</span>(SubRouteUID, <span class="at">collapse=</span><span class="st">&quot;, &quot;</span>))</span>
@@ -257,12 +257,12 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 ## 41        52   HSZ0520A1        52支A</code></pre>
 <div class="sourceCode" id="cb14"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb14-1"><a href="基本資料統計.html#cb14-1" tabindex="-1"></a><span class="co">#---可直接簡化為：---#</span></span>
 <span id="cb14-2"><a href="基本資料統計.html#cb14-2" tabindex="-1"></a><span class="co"># bus_route[grepl(&quot;支&quot;, bus_route$SubRouteName), c(&quot;RouteName&quot;, &quot;SubRouteUID&quot;, &quot;SubRouteName&quot;)]</span></span></code></pre></div>
-<p>以上的中括號內，逗點前表示擷取的橫列（row），逗點後則為擷取的直欄（column），可直接輸入欲回傳的欄列數值或名稱，抑或使用邏輯值（T, F），惟須注意使用邏輯值時，向量長度必須相同！</p>
+<p>以上的中括號（<code>[ , ]</code>）內，逗點前表示擷取的橫列（row），逗點後則為擷取的直欄（column），可直接輸入欲回傳的欄列數值或名稱，抑或使用邏輯值（T, F），惟須注意使用邏輯值時，向量長度必須相同！</p>
 <p>此外亦可透過<code>filter()</code>函式達成相同結果，程式碼撰寫如下。</p>
 <div class="sourceCode" id="cb15"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb15-1"><a href="基本資料統計.html#cb15-1" tabindex="-1"></a><span class="fu">filter</span>(bus_route, <span class="fu">grepl</span>(<span class="st">&quot;支&quot;</span>, SubRouteName))<span class="sc">%&gt;%</span></span>
 <span id="cb15-2"><a href="基本資料統計.html#cb15-2" tabindex="-1"></a>  <span class="fu">select</span>(RouteName, SubRouteUID, SubRouteName)</span></code></pre></div>
 <div style="background-color:#6C6C6C;color:white;">
-<p><span style="font-size:17pt"><strong>   § 統計站牌</strong></span></p>
+<p><span style="font-size:17pt"><strong>   § 站牌統計分析</strong></span></p>
 </div>
 <p>公車站牌資料中係記錄每一子路線（SubRouteUID）的所有站牌資訊，含括路線名稱、方向、站牌代碼、名稱、站序、經緯度等資訊。</p>
 <p><span style="font-size:15pt"><strong>• 統計各子路線總站牌數</strong></span><br />
@@ -284,7 +284,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 ## 6 HSZ0008A2   83支A                1      10</code></pre>
 <p>由以上回傳結果可發現，新竹市 81 公車共有兩條子路線（HSZ000701、HSZ000702），方向分為去程（Direction:0）與返程（Direction:1），而去程站牌數共計 21 個，而返程的站牌數則為 20 個。</p>
 <p><span style="font-size:15pt"><strong>• 整理同一站名的所有路線</strong></span><br />
-分析流程彙整說明如下：</p>
+分析流程彙整如下：</p>
 <ul>
 <li>Step 1: 從站牌中，先挑出站點名稱（StopName）、子路線名稱（SubRouteName）兩資訊。<br />
 </li>
@@ -329,6 +329,77 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 ## 5 文教新村           9 藍線1區, 2, 2支A, 182, 31, 52, 52支A, 世博3號, 藍線      
 ## 6 西門市場           8 10, 11A, 11甲, 20, 20支A, 23支A, 50A, 51A</code></pre>
 <p>其中 Step 4 的<code>arrange()</code>函式內，設定<code>desc(...)</code>以表示依據指定變數降冪排列，否則預設為升冪排列。</p>
+<p><span style="font-size:15pt"><strong>• 尋找公車環狀線</strong></span><br />
+前文中提及，新竹市公車有些屬於環狀路線，亦即公車的起始站與終點站相同。在公車站牌資料中，可以先萃取各子路線的第一個站點（站序為 1 者）與最後一個站點（同一路線站序為最大者），並檢查起訖站點是否相同。分析邏輯彙整如下：</p>
+<ul>
+<li>Step 1: 先利用<code>select()</code>函式萃取需要的欄位名稱。<br />
+</li>
+<li>Step 2: 將公車站牌依據 SubRouteUID 與 SubRouteName 分群，並利用<code>slice()</code>函式分離出最小站序與最大站序者。<br />
+</li>
+<li>Step 3: 經過 Step 2 後所得資料僅剩各路線站序為 1 與最大者，在此我們希望兩者能夠並列，以方便比較（使用<code>dcast()</code>函式可將長資料轉換為寬資料）。</li>
+<li>Step 4: 最後篩選站序為 1 與站序最大之站名為相同者。</li>
+</ul>
+<div class="sourceCode" id="cb20"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb20-1"><a href="基本資料統計.html#cb20-1" tabindex="-1"></a><span class="co"># Step 1</span></span>
+<span id="cb20-2"><a href="基本資料統計.html#cb20-2" tabindex="-1"></a>bus_route_circle<span class="ot">=</span><span class="fu">select</span>(bus_stop, SubRouteUID, SubRouteName, StopSequence, StopName)</span>
+<span id="cb20-3"><a href="基本資料統計.html#cb20-3" tabindex="-1"></a></span>
+<span id="cb20-4"><a href="基本資料統計.html#cb20-4" tabindex="-1"></a><span class="co"># Step 2</span></span>
+<span id="cb20-5"><a href="基本資料統計.html#cb20-5" tabindex="-1"></a>bus_route_circle<span class="ot">=</span><span class="fu">group_by</span>(bus_route_circle, SubRouteUID, SubRouteName)<span class="sc">%&gt;%</span></span>
+<span id="cb20-6"><a href="基本資料統計.html#cb20-6" tabindex="-1"></a>  <span class="fu">slice</span>(<span class="fu">which.min</span>(StopSequence),</span>
+<span id="cb20-7"><a href="基本資料統計.html#cb20-7" tabindex="-1"></a>        <span class="fu">which.max</span>(StopSequence))</span>
+<span id="cb20-8"><a href="基本資料統計.html#cb20-8" tabindex="-1"></a></span>
+<span id="cb20-9"><a href="基本資料統計.html#cb20-9" tabindex="-1"></a><span class="co"># 初步查看前六筆資料</span></span>
+<span id="cb20-10"><a href="基本資料統計.html#cb20-10" tabindex="-1"></a><span class="fu">head</span>(bus_route_circle)</span></code></pre></div>
+<pre><code>## # A tibble: 6 × 4
+## # Groups:   SubRouteUID, SubRouteName [3]
+##   SubRouteUID SubRouteName StopSequence StopName
+##   &lt;chr&gt;       &lt;chr&gt;               &lt;int&gt; &lt;chr&gt;   
+## 1 HSZ000701   81                      1 古奇峰  
+## 2 HSZ000701   81                     21 新莊車站
+## 3 HSZ000702   81                      1 新莊車站
+## 4 HSZ000702   81                     20 古奇峰  
+## 5 HSZ000801   83                      1 成德路  
+## 6 HSZ000801   83                     18 北校門</code></pre>
+<p>截至 Step 2，可以發現資料中僅剩餘第一站序與最後一站序，其餘皆已刪除，然而接下來我們希望能夠將同一子路線不同站序並排，尚能進一步做分析。首先我們必須針對每一筆資料給定起始站或終點站的標籤，由於起始站的站序必然是 1，故在此我們可以利用簡單的<code>ifelse()</code>函式判斷站序為 1 者為起始站，反之則為終點站，如是即可得到起訖（Stop_O、Stop_D）的標籤。<code>ifelse()</code>函式的參數設定如下：</p>
+<div class="sourceCode" id="cb22"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb22-1"><a href="基本資料統計.html#cb22-1" tabindex="-1"></a><span class="fu">ifelse</span>(條件, TRUE時執行程序, FALSE時執行程序)</span></code></pre></div>
+<p>目前為止，資料型態屬於「長資料（long data）」，亦即資料橫列數比較長的情況。然而我們希望的是將同一路線不同站序展開並排，屬「寬資料（wide data）」，亦即欄位數比較多的情況，此時應利用<code>data.table</code>套件中的<code>dcast()</code>函式達成此一目的。<code>dcast()</code>函式的參數設定如下，如圖<a href="基本資料統計.html#fig:bus-stop-dcast-fig">1.1</a>之示意圖所示。</p>
+<div class="sourceCode" id="cb23"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb23-1"><a href="基本資料統計.html#cb23-1" tabindex="-1"></a><span class="fu">dcast</span>(資料, 保留欄位<span class="sc">+</span>保留欄位<span class="sc">+</span>... <span class="sc">~</span> 參照欄位, <span class="at">value.var=</span><span class="st">&quot;展開欄位&quot;</span>)</span></code></pre></div>
+<div class="figure" style="text-align: center"><span style="display:block;" id="fig:bus-stop-dcast-fig"></span>
+<img src="figure/dcast.png" alt="`dcast()`函式用法" width="80%" />
+<p class="caption">
+圖 1.1: <code>dcast()</code>函式用法
+</p>
+</div>
+<p>經過處理成為寬資料後，即可針對起訖相同站名者利用<code>filter()</code>函式予以保留。<code>filter()</code>函式之參數設定如下：</p>
+<div class="sourceCode" id="cb24"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb24-1"><a href="基本資料統計.html#cb24-1" tabindex="-1"></a><span class="fu">filter</span>(資料, 條件1, 條件2, ...)</span></code></pre></div>
+<div class="sourceCode" id="cb25"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb25-1"><a href="基本資料統計.html#cb25-1" tabindex="-1"></a><span class="co"># Step 3</span></span>
+<span id="cb25-2"><a href="基本資料統計.html#cb25-2" tabindex="-1"></a>bus_route_circle<span class="ot">=</span><span class="fu">mutate</span>(bus_route_circle, <span class="at">StopType=</span><span class="fu">ifelse</span>(StopSequence<span class="sc">==</span><span class="dv">1</span>, <span class="st">&quot;Stop_O&quot;</span>, <span class="st">&quot;Stop_D&quot;</span>))</span>
+<span id="cb25-3"><a href="基本資料統計.html#cb25-3" tabindex="-1"></a>bus_route_circle<span class="ot">=</span><span class="fu">dcast</span>(bus_route_circle, SubRouteUID<span class="sc">+</span>SubRouteName <span class="sc">~</span> StopType, <span class="at">value.var=</span><span class="st">&quot;StopName&quot;</span>)</span>
+<span id="cb25-4"><a href="基本資料統計.html#cb25-4" tabindex="-1"></a></span>
+<span id="cb25-5"><a href="基本資料統計.html#cb25-5" tabindex="-1"></a><span class="co"># Step 4</span></span>
+<span id="cb25-6"><a href="基本資料統計.html#cb25-6" tabindex="-1"></a>bus_route_circle<span class="ot">=</span><span class="fu">filter</span>(bus_route_circle, Stop_O<span class="sc">==</span>Stop_D)</span>
+<span id="cb25-7"><a href="基本資料統計.html#cb25-7" tabindex="-1"></a></span>
+<span id="cb25-8"><a href="基本資料統計.html#cb25-8" tabindex="-1"></a><span class="co">#---可直接簡化為：---#</span></span>
+<span id="cb25-9"><a href="基本資料統計.html#cb25-9" tabindex="-1"></a><span class="co"># bus_route_circle=select(bus_stop, SubRouteUID, SubRouteName, StopSequence, StopName)%&gt;%</span></span>
+<span id="cb25-10"><a href="基本資料統計.html#cb25-10" tabindex="-1"></a><span class="co">#   group_by(SubRouteUID, SubRouteName)%&gt;%</span></span>
+<span id="cb25-11"><a href="基本資料統計.html#cb25-11" tabindex="-1"></a><span class="co">#   slice(which.min(StopSequence),</span></span>
+<span id="cb25-12"><a href="基本資料統計.html#cb25-12" tabindex="-1"></a><span class="co">#         which.max(StopSequence))%&gt;%</span></span>
+<span id="cb25-13"><a href="基本資料統計.html#cb25-13" tabindex="-1"></a><span class="co">#   mutate(StopType=ifelse(StopSequence==1, &quot;Stop_O&quot;, &quot;Stop_D&quot;))%&gt;%</span></span>
+<span id="cb25-14"><a href="基本資料統計.html#cb25-14" tabindex="-1"></a><span class="co">#   dcast(SubRouteUID+SubRouteName ~ StopType, value.var=&quot;StopName&quot;)%&gt;%</span></span>
+<span id="cb25-15"><a href="基本資料統計.html#cb25-15" tabindex="-1"></a><span class="co">#   filter(Stop_O==Stop_D)</span></span>
+<span id="cb25-16"><a href="基本資料統計.html#cb25-16" tabindex="-1"></a></span>
+<span id="cb25-17"><a href="基本資料統計.html#cb25-17" tabindex="-1"></a><span class="co"># 查看所有環狀線資料</span></span>
+<span id="cb25-18"><a href="基本資料統計.html#cb25-18" tabindex="-1"></a>bus_route_circle</span></code></pre></div>
+<pre><code>##   SubRouteUID SubRouteName         Stop_D         Stop_O
+## 1   HSZ001001      藍線1區         火車站         火車站
+## 2   HSZ027001           27         火車站         火車站
+## 3   HSZ0500A1          50A     香山區公所     香山區公所
+## 4   HSZ0510A1          51A     香山區公所     香山區公所
+## 5   HSZ052001           52       新莊車站       新莊車站
+## 6   HSZ0520A1        52支A       新莊車站       新莊車站
+## 7   HSZ053001           53       新莊車站       新莊車站
+## 8   HSZ057301      世博3號 後站(公園路口) 後站(公園路口)
+## 9   HSZ0710A1          71A     北新竹後站     北新竹後站</code></pre>
+<p>由以上回傳資料可知，新竹市公車共計 9 條路線屬於環狀路線。</p>
 
 </div>
 </div>

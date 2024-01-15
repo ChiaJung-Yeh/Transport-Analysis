@@ -192,7 +192,7 @@ M.S.: Department of Transportation and Logistics Management, NYCU</em></p>
 <h2>安裝套件<a href="index.html#安裝套件" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <p>本網站各分析所需使用的主要套件與其功能彙整如表<a href="index.html#tab:package-download-table">0.1</a>，請先行安裝。</p>
 <div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1-1"><a href="index.html#cb1-1" tabindex="-1"></a><span class="co"># 安裝dplyr、sf、ggplot2、devtools套件</span></span>
-<span id="cb1-2"><a href="index.html#cb1-2" tabindex="-1"></a><span class="fu">install.packages</span>(<span class="fu">c</span>(<span class="st">&quot;dplyr&quot;</span>, <span class="st">&quot;sf&quot;</span>, <span class="st">&quot;ggplot2&quot;</span>, <span class="st">&quot;devtools&quot;</span>))</span>
+<span id="cb1-2"><a href="index.html#cb1-2" tabindex="-1"></a><span class="fu">install.packages</span>(<span class="fu">c</span>(<span class="st">&quot;dplyr&quot;</span>, <span class="st">&quot;data.table&quot;</span>, <span class="st">&quot;ggplot2&quot;</span>, <span class="st">&quot;sf&quot;</span>, <span class="st">&quot;devtools&quot;</span>))</span>
 <span id="cb1-3"><a href="index.html#cb1-3" tabindex="-1"></a></span>
 <span id="cb1-4"><a href="index.html#cb1-4" tabindex="-1"></a><span class="co"># 另自GitHub下載TDX與TWspdata套件</span></span>
 <span id="cb1-5"><a href="index.html#cb1-5" tabindex="-1"></a>devtools<span class="sc">::</span><span class="fu">install_github</span>(<span class="st">&quot;ChiaJung-Yeh/NYCU_TDX&quot;</span>)</span>
@@ -200,9 +200,11 @@ M.S.: Department of Transportation and Logistics Management, NYCU</em></p>
 <span id="cb1-7"><a href="index.html#cb1-7" tabindex="-1"></a></span>
 <span id="cb1-8"><a href="index.html#cb1-8" tabindex="-1"></a><span class="co"># 載入套件</span></span>
 <span id="cb1-9"><a href="index.html#cb1-9" tabindex="-1"></a><span class="fu">library</span>(dplyr)</span>
-<span id="cb1-10"><a href="index.html#cb1-10" tabindex="-1"></a><span class="fu">library</span>(sf)</span>
-<span id="cb1-11"><a href="index.html#cb1-11" tabindex="-1"></a><span class="fu">library</span>(TDX)</span>
-<span id="cb1-12"><a href="index.html#cb1-12" tabindex="-1"></a><span class="fu">library</span>(TWspdata)</span></code></pre></div>
+<span id="cb1-10"><a href="index.html#cb1-10" tabindex="-1"></a><span class="fu">library</span>(data.table)</span>
+<span id="cb1-11"><a href="index.html#cb1-11" tabindex="-1"></a><span class="fu">library</span>(ggplot2)</span>
+<span id="cb1-12"><a href="index.html#cb1-12" tabindex="-1"></a><span class="fu">library</span>(sf)</span>
+<span id="cb1-13"><a href="index.html#cb1-13" tabindex="-1"></a><span class="fu">library</span>(TDX)</span>
+<span id="cb1-14"><a href="index.html#cb1-14" tabindex="-1"></a><span class="fu">library</span>(TWspdata)</span></code></pre></div>
 <table class="table table-striped table-hover" style="font-size: 14px; margin-left: auto; margin-right: auto;">
 <caption style="font-size: initial !important;">
 <span id="tab:package-download-table">表 0.1: </span>本套件函式綜覽
@@ -224,6 +226,14 @@ M.S.: Department of Transportation and Logistics Management, NYCU</em></p>
 </td>
 <td style="text-align:left;">
 數據分析
+</td>
+</tr>
+<tr>
+<td style="text-align:left;font-weight: bold;">
+<a href="https://rdatatable.gitlab.io/data.table/"><code>data.table</code></a>
+</td>
+<td style="text-align:left;">
+數據分析（尤其更大量的數據）
 </td>
 </tr>
 <tr>
@@ -276,9 +286,9 @@ M.S.: Department of Transportation and Logistics Management, NYCU</em></p>
 <h2>其他參考資料<a href="index.html#其他參考資料" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <p>以下網站陳列較系統性的教材與參考資料：</p>
 <ol style="list-style-type: decimal">
-<li><a href="https://chiajung-yeh.github.io/Spatial-Analysis/">Spatial Analysis with R</a><br />
-</li>
 <li><a href="https://chiajung-yeh.github.io/R-Code-Sharing/R_Preliminary/R_Preliminary.html">R Preliminary</a><span style="font-size:10pt;color:#003060;">   [<strong><em>建議先行參考此網頁，以初步瞭解 <code>dplyr</code> 套件各函式！</em></strong>]</span><br />
+</li>
+<li><a href="https://chiajung-yeh.github.io/Spatial-Analysis/">Spatial Analysis with R</a><br />
 </li>
 <li><a href="https://www.books.com.tw/products/0010979785">地理資訊系統與空間運算：R軟體應用</a></li>
 </ol>

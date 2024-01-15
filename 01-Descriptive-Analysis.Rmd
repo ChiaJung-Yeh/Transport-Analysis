@@ -1,6 +1,7 @@
 ```{r setup1, include=FALSE}
 knitr::opts_chunk$set(echo = TRUE)
 library(dplyr)
+library(data.table)
 library(sf)
 library(ggplot2)
 library(ggsflabel)
@@ -44,7 +45,7 @@ bus_stop=read.csv("./Data/Bus Stop Hsinchu.csv")
 以下針對各議題展示分析架構與程式碼撰寫，針對每一問題先瞭解運輸資料的特性，而後再依據分析邏輯撰寫程式碼。
 
 <div style="background-color:#6C6C6C;color:white;">
-<span style="font-size:17pt">**&nbsp;&nbsp;&nbsp;§ 統計路線**</span>
+<span style="font-size:17pt">**&nbsp;&nbsp;&nbsp;§ 路線統計分析**</span>
 </div>
 
 公車路線的代碼有兩種，其一為 RouteUID，另一為 SubRouteUID。前者是主路線代碼，後者是子路線代碼，亦即將主路線再依據不同行駛路線（如：延駛、繞駛等）或方向（去程、返程）再細部分類不同路線。
@@ -85,7 +86,7 @@ head(bus_route_sum)
 由統計結果可知，RouteUID 為 HSZ0007（路線名為 [81](https://internetpedia.fandom.com/zh/wiki/%E6%96%B0%E7%AB%B9%E5%B8%82%E5%85%AC%E8%BB%8A81%E8%B7%AF?variant=zh-hant&file=%E6%96%B0%E7%AB%B9%E5%B8%82%E5%85%AC%E8%BB%8A81%E8%B7%AF%E8%B7%AF%E7%B7%9A%E5%9C%962020.png)）者，其子路線數為 2 條，查看原始`bus_route`資料，可發現其含括子路線 HSZ000701 與 HSZ000702；又 HSZ0008（路線名為 [83](https://internetpedia.fandom.com/zh/wiki/%E6%96%B0%E7%AB%B9%E5%B8%82%E5%85%AC%E8%BB%8A83%E8%B7%AF?file=%E6%96%B0%E7%AB%B9%E5%B8%82%E5%85%AC%E8%BB%8A83%E8%B7%AF%28%E5%90%AB%E5%8D%80%E9%96%93%E8%BB%8A%29%E8%B7%AF%E7%B7%9A%E5%9C%96.png)）的子路線數共計 4 條，其中包含 HSZ000801、HSZ000802、HSZ0008A1、HSZ0008A2。細部觀察原始資料，可發現 HSZ0007 兩條子路線的 Direction 一個為 0；另一為 1，表示方向不同，子路線即不同。而 HSZ0008 除了因方向不同而有不同子路線外，子路線代碼含括「A1」與「A2」者為延駛或繞駛，亦會使子路線不同。上述皆為 TDX 針對公車路線編碼的標準規範。最後 HSZ0010（路線名為 [藍線1區](https://internetpedia.fandom.com/zh/wiki/%E6%96%B0%E7%AB%B9%E5%B8%82%E5%85%AC%E8%BB%8A1%E8%B7%AF?variant=zh-hant&file=%E6%96%B0%E7%AB%B9%E5%B8%82%E5%85%AC%E8%BB%8A1%E8%B7%AF%E8%B7%AF%E7%B7%9A%E5%9C%96.png)）僅一條子路線，乃因該路線為環狀線（注意：藍線1區公車係由火車站至竹中站後立即折返，故屬於環狀線）。
 
 
-<span style="font-size:15pt">**• 整理各主路線含括的子路線**</span>  
+<span style="font-size:15pt">**• 羅列各主路線含括的子路線**</span>  
 前一案例藉由`group_by() %>% summarise()`計算總數，事實上此一函式的功能繁多，可透過改變`summarise()`函式內的操作，以達成目的。如欲整理各主路線含括的子路線代碼與名稱，應將 RouteUID 與 RouteName 作為分群的變項，並在`summarise()`函式中將所有同一分群者，將其子路線代碼以`paste()`函式相連。其中`paste()`函式內，須設定`collapse=`參數，以表達使用特定的符號或字元串接。依上述流程，程式碼撰寫如下。
 
 ```{r bus-route-ex4, echo=T, eval=T, message=F}
@@ -111,7 +112,7 @@ bus_route[sub_TF, c("RouteName", "SubRouteUID", "SubRouteName")]
 # bus_route[grepl("支", bus_route$SubRouteName), c("RouteName", "SubRouteUID", "SubRouteName")]
 ```
 
-以上的中括號內，逗點前表示擷取的橫列（row），逗點後則為擷取的直欄（column），可直接輸入欲回傳的欄列數值或名稱，抑或使用邏輯值（T, F），惟須注意使用邏輯值時，向量長度必須相同！
+以上的中括號（`[ , ]`）內，逗點前表示擷取的橫列（row），逗點後則為擷取的直欄（column），可直接輸入欲回傳的欄列數值或名稱，抑或使用邏輯值（T, F），惟須注意使用邏輯值時，向量長度必須相同！
 
 此外亦可透過`filter()`函式達成相同結果，程式碼撰寫如下。
 
@@ -122,7 +123,7 @@ filter(bus_route, grepl("支", SubRouteName))%>%
 
 
 <div style="background-color:#6C6C6C;color:white;">
-<span style="font-size:17pt">**&nbsp;&nbsp;&nbsp;§ 統計站牌**</span>
+<span style="font-size:17pt">**&nbsp;&nbsp;&nbsp;§ 站牌統計分析**</span>
 </div>
 
 公車站牌資料中係記錄每一子路線（SubRouteUID）的所有站牌資訊，含括路線名稱、方向、站牌代碼、名稱、站序、經緯度等資訊。
@@ -142,7 +143,7 @@ head(bus_stop_sum)
 
 
 <span style="font-size:15pt">**• 整理同一站名的所有路線**</span>  
-分析流程彙整說明如下：  
+分析流程彙整如下：  
 
 * Step 1: 從站牌中，先挑出站點名稱（StopName）、子路線名稱（SubRouteName）兩資訊。  
 * Step 2: 此時，可能會有重複的資料，乃因同一子路線，不同方向的情況下，會存在相同站名（但在此我們不考慮方向性，只單純考慮子路線的名稱）。故必須先行透過`distinct()`函式將重複的資料予以去除。  
@@ -181,8 +182,71 @@ head(bus_stop_route)
 其中 Step 4 的`arrange()`函式內，設定`desc(...)`以表示依據指定變數降冪排列，否則預設為升冪排列。  
 
 
+<span style="font-size:15pt">**• 尋找公車環狀線**</span>  
+前文中提及，新竹市公車有些屬於環狀路線，亦即公車的起始站與終點站相同。在公車站牌資料中，可以先萃取各子路線的第一個站點（站序為 1 者）與最後一個站點（同一路線站序為最大者），並檢查起訖站點是否相同。分析邏輯彙整如下：
 
+* Step 1: 先利用`select()`函式萃取需要的欄位名稱。  
+* Step 2: 將公車站牌依據 SubRouteUID 與 SubRouteName 分群，並利用`slice()`函式分離出最小站序與最大站序者。  
+* Step 3: 經過 Step 2 後所得資料僅剩各路線站序為 1 與最大者，在此我們希望兩者能夠並列，以方便比較（使用`dcast()`函式可將長資料轉換為寬資料）。
+* Step 4: 最後篩選站序為 1 與站序最大之站名為相同者。  
 
+```{r bus-stop-ex3, echo=T, eval=T, message=F, warning=F}
+# Step 1
+bus_route_circle=select(bus_stop, SubRouteUID, SubRouteName, StopSequence, StopName)
+
+# Step 2
+bus_route_circle=group_by(bus_route_circle, SubRouteUID, SubRouteName)%>%
+  slice(which.min(StopSequence),
+        which.max(StopSequence))
+
+# 初步查看前六筆資料
+head(bus_route_circle)
+```
+
+截至 Step 2，可以發現資料中僅剩餘第一站序與最後一站序，其餘皆已刪除，然而接下來我們希望能夠將同一子路線不同站序並排，尚能進一步做分析。首先我們必須針對每一筆資料給定起始站或終點站的標籤，由於起始站的站序必然是 1，故在此我們可以利用簡單的`ifelse()`函式判斷站序為 1 者為起始站，反之則為終點站，如是即可得到起訖（Stop_O、Stop_D）的標籤。`ifelse()`函式的參數設定如下：
+
+```{r bus-stop-ifelse, echo=T, eval=F}
+ifelse(條件, TRUE時執行程序, FALSE時執行程序)
+```
+
+目前為止，資料型態屬於「長資料（long data）」，亦即資料橫列數比較長的情況。然而我們希望的是將同一路線不同站序展開並排，屬「寬資料（wide data）」，亦即欄位數比較多的情況，此時應利用`data.table`套件中的`dcast()`函式達成此一目的。`dcast()`函式的參數設定如下，如圖\@ref(fig:bus-stop-dcast-fig)之示意圖所示。
+
+```{r bus-stop-dcast, echo=T, eval=F}
+dcast(資料, 保留欄位+保留欄位+... ~ 參照欄位, value.var="展開欄位")
+```
+
+```{r bus-stop-dcast-fig, echo=F, eval=T, out.width="80%", fig.align="center", fig.cap="`dcast()`函式用法"}
+include_graphics("./figure/dcast.png")
+```
+
+經過處理成為寬資料後，即可針對起訖相同站名者利用`filter()`函式予以保留。`filter()`函式之參數設定如下：
+
+```{r bus-stop-filter, echo=T, eval=F}
+filter(資料, 條件1, 條件2, ...)
+```
+
+```{r bus-stop-ex4, echo=T, eval=T, message=F, warning=F}
+# Step 3
+bus_route_circle=mutate(bus_route_circle, StopType=ifelse(StopSequence==1, "Stop_O", "Stop_D"))
+bus_route_circle=dcast(bus_route_circle, SubRouteUID+SubRouteName ~ StopType, value.var="StopName")
+
+# Step 4
+bus_route_circle=filter(bus_route_circle, Stop_O==Stop_D)
+
+#---可直接簡化為：---#
+# bus_route_circle=select(bus_stop, SubRouteUID, SubRouteName, StopSequence, StopName)%>%
+#   group_by(SubRouteUID, SubRouteName)%>%
+#   slice(which.min(StopSequence),
+#         which.max(StopSequence))%>%
+#   mutate(StopType=ifelse(StopSequence==1, "Stop_O", "Stop_D"))%>%
+#   dcast(SubRouteUID+SubRouteName ~ StopType, value.var="StopName")%>%
+#   filter(Stop_O==Stop_D)
+
+# 查看所有環狀線資料
+bus_route_circle
+```
+
+由以上回傳資料可知，新竹市公車共計 9 條路線屬於環狀路線。
 
 
 

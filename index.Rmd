@@ -47,7 +47,7 @@ access_token=get_token(client_id, client_secret)
 
 ```{r package-download, echo=T, eval=F}
 # 安裝dplyr、sf、ggplot2、devtools套件
-install.packages(c("dplyr", "sf", "ggplot2", "devtools"))
+install.packages(c("dplyr", "data.table", "ggplot2", "sf", "devtools"))
 
 # 另自GitHub下載TDX與TWspdata套件
 devtools::install_github("ChiaJung-Yeh/NYCU_TDX")
@@ -55,14 +55,16 @@ devtools::install_github("ChiaJung-Yeh/TWspdata")
 
 # 載入套件
 library(dplyr)
+library(data.table)
+library(ggplot2)
 library(sf)
 library(TDX)
 library(TWspdata)
 ```
 
 ```{r package-download-table, echo=F, eval=T}
-package_table=data.frame(package=c("[`dplyr`](https://dplyr.tidyverse.org/)", "[`ggplot2`](https://ggplot2.tidyverse.org/)", "[`sf`](https://r-spatial.github.io/sf/)", "[`TDX`](https://chiajung-yeh.github.io/TDX_Guide/)", "[`TWspdata`](https://github.com/ChiaJung-Yeh/TWspdata)"),
-                         package_function=c("	數據分析","繪圖","地理分析","介接臺灣運輸資料
+package_table=data.frame(package=c("[`dplyr`](https://dplyr.tidyverse.org/)", "[`data.table`](https://rdatatable.gitlab.io/data.table/)", "[`ggplot2`](https://ggplot2.tidyverse.org/)", "[`sf`](https://r-spatial.github.io/sf/)", "[`TDX`](https://chiajung-yeh.github.io/TDX_Guide/)", "[`TWspdata`](https://github.com/ChiaJung-Yeh/TWspdata)"),
+                         package_function=c("數據分析","數據分析（尤其更大量的數據）","繪圖","地理分析","介接臺灣運輸資料
 ","臺灣相關資料"))
 
 colnames(package_table)=c("套件","功能")
@@ -94,7 +96,7 @@ access_token=get_token(client_id, client_secret)
 
 以下網站陳列較系統性的教材與參考資料：
 
-1. [Spatial Analysis with R](https://chiajung-yeh.github.io/Spatial-Analysis/)  
-2. [R Preliminary](https://chiajung-yeh.github.io/R-Code-Sharing/R_Preliminary/R_Preliminary.html)<span style="font-size:10pt;color:#003060;">&nbsp;&nbsp;&nbsp;[**_建議先行參考此網頁，以初步瞭解 `dplyr` 套件各函式！_**]</span>  
+1. [R Preliminary](https://chiajung-yeh.github.io/R-Code-Sharing/R_Preliminary/R_Preliminary.html)<span style="font-size:10pt;color:#003060;">&nbsp;&nbsp;&nbsp;[**_建議先行參考此網頁，以初步瞭解 `dplyr` 套件各函式！_**]</span>  
+2. [Spatial Analysis with R](https://chiajung-yeh.github.io/Spatial-Analysis/)  
 3. [地理資訊系統與空間運算：R軟體應用](https://www.books.com.tw/products/0010979785)
 
