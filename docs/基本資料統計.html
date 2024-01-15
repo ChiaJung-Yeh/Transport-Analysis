@@ -185,8 +185,10 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <span id="cb1-4"><a href="基本資料統計.html#cb1-4" tabindex="-1"></a><span class="co"># 公車站牌</span></span>
 <span id="cb1-5"><a href="基本資料統計.html#cb1-5" tabindex="-1"></a>bus_stop<span class="ot">=</span><span class="fu">Bus_StopOfRoute</span>(access_token, <span class="st">&quot;Hsinchu&quot;</span>)</span></code></pre></div>
 <p>以下針對各議題展示分析架構與程式碼撰寫，針對每一問題先瞭解運輸資料的特性，而後再依據分析邏輯撰寫程式碼。</p>
-<p><span style="font-size:15pt;color:#005AB5"><strong>◎ 統計路線</strong></span><br />
-公車路線的代碼有兩種，其一為 RouteUID，另一為 SubRouteUID。前者是主路線代碼，後者是子路線代碼，亦即將主路線再依據不同行駛路線（如：延駛、繞駛等）或方向（去程、返程）再細部分類不同路線。</p>
+<div style="background-color:#6C6C6C;color:white;">
+<p><span style="font-size:17pt"><strong>   § 統計路線</strong></span></p>
+</div>
+<p>公車路線的代碼有兩種，其一為 RouteUID，另一為 SubRouteUID。前者是主路線代碼，後者是子路線代碼，亦即將主路線再依據不同行駛路線（如：延駛、繞駛等）或方向（去程、返程）再細部分類不同路線。</p>
 <p><span style="font-size:15pt"><strong>• 統計所有主路線數</strong></span><br />
 先初步觀察<code>bus_route</code>資料可以發現，當中有許多重複的主路線，故不可直接透過資料的列數（row）來判斷主路線數，必須先去除重複的代碼。<code>unique()</code>函式可用以去除一向量中重複的元素，故執行後所回傳的向量僅會是唯一值。若欲計算一向量的總個數，可透過<code>length()</code>回傳長度。程式碼撰寫如下。</p>
 <div class="sourceCode" id="cb2"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb2-1"><a href="基本資料統計.html#cb2-1" tabindex="-1"></a>bus_routeuid_all<span class="ot">=</span><span class="fu">unique</span>(bus_route<span class="sc">$</span>RouteUID)</span>
@@ -259,8 +261,10 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <p>此外亦可透過<code>filter()</code>函式達成相同結果，程式碼撰寫如下。</p>
 <div class="sourceCode" id="cb15"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb15-1"><a href="基本資料統計.html#cb15-1" tabindex="-1"></a><span class="fu">filter</span>(bus_route, <span class="fu">grepl</span>(<span class="st">&quot;支&quot;</span>, SubRouteName))<span class="sc">%&gt;%</span></span>
 <span id="cb15-2"><a href="基本資料統計.html#cb15-2" tabindex="-1"></a>  <span class="fu">select</span>(RouteName, SubRouteUID, SubRouteName)</span></code></pre></div>
-<p><span style="font-size:15pt;color:#005AB5"><strong>◎ 統計站牌</strong></span><br />
-公車站牌資料中係記錄每一子路線（SubRouteUID）的所有站牌資訊，含括路線名稱、方向、站牌代碼、名稱、站序、經緯度等資訊。</p>
+<div style="background-color:#6C6C6C;color:white;">
+<p><span style="font-size:17pt"><strong>   § 統計站牌</strong></span></p>
+</div>
+<p>公車站牌資料中係記錄每一子路線（SubRouteUID）的所有站牌資訊，含括路線名稱、方向、站牌代碼、名稱、站序、經緯度等資訊。</p>
 <p><span style="font-size:15pt"><strong>• 統計各子路線總站牌數</strong></span><br />
 如前述統計各主路線中子路線數量的方法，可利用<code>group_by() %&gt;% summarise()</code>函式達成目的，程式碼撰寫如下。</p>
 <div class="sourceCode" id="cb16"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb16-1"><a href="基本資料統計.html#cb16-1" tabindex="-1"></a>bus_stop_sum<span class="ot">=</span><span class="fu">group_by</span>(bus_stop, SubRouteUID, SubRouteName, Direction)<span class="sc">%&gt;%</span></span>

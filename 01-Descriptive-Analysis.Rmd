@@ -43,7 +43,10 @@ bus_stop=read.csv("./Data/Bus Stop Hsinchu.csv")
 
 以下針對各議題展示分析架構與程式碼撰寫，針對每一問題先瞭解運輸資料的特性，而後再依據分析邏輯撰寫程式碼。
 
-<span style="font-size:15pt;color:#005AB5">**◎ 統計路線**</span>   
+<div style="background-color:#6C6C6C;color:white;">
+<span style="font-size:17pt">**&nbsp;&nbsp;&nbsp;§ 統計路線**</span>
+</div>
+
 公車路線的代碼有兩種，其一為 RouteUID，另一為 SubRouteUID。前者是主路線代碼，後者是子路線代碼，亦即將主路線再依據不同行駛路線（如：延駛、繞駛等）或方向（去程、返程）再細部分類不同路線。
 
 <span style="font-size:15pt">**• 統計所有主路線數**</span>   
@@ -118,7 +121,10 @@ filter(bus_route, grepl("支", SubRouteName))%>%
 ```
 
 
-<span style="font-size:15pt;color:#005AB5">**◎ 統計站牌**</span>   
+<div style="background-color:#6C6C6C;color:white;">
+<span style="font-size:17pt">**&nbsp;&nbsp;&nbsp;§ 統計站牌**</span>
+</div>
+
 公車站牌資料中係記錄每一子路線（SubRouteUID）的所有站牌資訊，含括路線名稱、方向、站牌代碼、名稱、站序、經緯度等資訊。
 
 <span style="font-size:15pt">**• 統計各子路線總站牌數**</span>  
