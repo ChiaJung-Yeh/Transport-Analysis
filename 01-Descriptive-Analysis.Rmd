@@ -33,24 +33,30 @@ bus_route=Bus_Route(access_token, "Hsinchu")
 
 # 公車站牌
 bus_stop=Bus_StopOfRoute(access_token, "Hsinchu")
+
+# 公車站間距離
+bus_distance=Bus_Distance(access_token, "Hsinchu", bus_route$RouteID)
 ```
 
 ```{r bus-data-download-exe, echo=F, eval=T}
 # bus_route=Bus_Route(access_token, "Hsinchu", out="./Data/Bus Route Hsinchu.csv")
 # bus_stop=Bus_StopOfRoute(access_token, "Hsinchu", out="./Data/Bus Stop Hsinchu.csv")
+# bus_distance=Bus_Distance(access_token, "Hsinchu", bus_route$RouteID, out="./Data/Bus Distance Hsinchu.csv")
 bus_route=read.csv("./Data/Bus Route Hsinchu.csv")
 bus_stop=read.csv("./Data/Bus Stop Hsinchu.csv")
+bus_distance=read.csv("./Data/Bus Distance Hsinchu.csv", colClasses=c("RouteID"="character"))
 ```
 
-以下針對各議題展示分析架構與程式碼撰寫，針對每一問題先瞭解運輸資料的特性，而後再依據分析邏輯撰寫程式碼。
+以下依據各議題展示分析架構與程式碼撰寫，針對每一問題先瞭解運輸資料的特性，而後再依據分析邏輯撰寫程式碼。
 
+<br></br>
 <div style="background-color:#6C6C6C;color:white;">
 <span style="font-size:17pt">**&nbsp;&nbsp;&nbsp;§ 路線統計分析**</span>
 </div>
 
-公車路線的代碼有兩種，其一為 RouteUID，另一為 SubRouteUID。前者是主路線代碼，後者是子路線代碼，亦即將主路線再依據不同行駛路線（如：延駛、繞駛等）或方向（去程、返程）再細部分類不同路線。
+公車路線的代碼有兩種，其一為 RouteUID，另一為 SubRouteUID。前者是主路線代碼，後者是子路線代碼，亦即將主路線再依據不同行駛路線（如：延駛、繞駛等）或方向（去程、返程）細部分類不同路線。
 
-<span style="font-size:15pt">**• 統計所有主路線數**</span>   
+<span style="font-size:15pt">**•  <u>統計所有主路線數 </u>**</span>   
 先初步觀察`bus_route`資料可以發現，當中有許多重複的主路線，故不可直接透過資料的列數（row）來判斷主路線數，必須先去除重複的代碼。`unique()`函式可用以去除一向量中重複的元素，故執行後所回傳的向量僅會是唯一值。若欲計算一向量的總個數，可透過`length()`回傳長度。程式碼撰寫如下。
 
 ```{r bus-route-ex1, echo=T, eval=T}
@@ -72,7 +78,7 @@ length(bus_subrouteuid_all)==nrow(bus_route)
 
 由以上結果得知，總子路線數會等於總資料筆數！
 
-<span style="font-size:15pt">**• 統計各主路線擁有的子路線數**</span>  
+<span style="font-size:15pt">**• <u>統計各主路線擁有的子路線數</u>**</span>  
 由於我們知道一個主路線可能含括多個子路線，若欲統計各主路線擁有的子路線數，可利用`group_by() %>% summarise()`達成此一目的，程式碼撰寫如下。首先根據 RouteUID 與 RouteName 分組，再統計相同主路線的總資料筆數（`n()`）。
 
 ```{r bus-route-ex3, echo=T, eval=T, message=F}
@@ -86,7 +92,7 @@ head(bus_route_sum)
 由統計結果可知，RouteUID 為 HSZ0007（路線名為 [81](https://internetpedia.fandom.com/zh/wiki/%E6%96%B0%E7%AB%B9%E5%B8%82%E5%85%AC%E8%BB%8A81%E8%B7%AF?variant=zh-hant&file=%E6%96%B0%E7%AB%B9%E5%B8%82%E5%85%AC%E8%BB%8A81%E8%B7%AF%E8%B7%AF%E7%B7%9A%E5%9C%962020.png)）者，其子路線數為 2 條，查看原始`bus_route`資料，可發現其含括子路線 HSZ000701 與 HSZ000702；又 HSZ0008（路線名為 [83](https://internetpedia.fandom.com/zh/wiki/%E6%96%B0%E7%AB%B9%E5%B8%82%E5%85%AC%E8%BB%8A83%E8%B7%AF?file=%E6%96%B0%E7%AB%B9%E5%B8%82%E5%85%AC%E8%BB%8A83%E8%B7%AF%28%E5%90%AB%E5%8D%80%E9%96%93%E8%BB%8A%29%E8%B7%AF%E7%B7%9A%E5%9C%96.png)）的子路線數共計 4 條，其中包含 HSZ000801、HSZ000802、HSZ0008A1、HSZ0008A2。細部觀察原始資料，可發現 HSZ0007 兩條子路線的 Direction 一個為 0；另一為 1，表示方向不同，子路線即不同。而 HSZ0008 除了因方向不同而有不同子路線外，子路線代碼含括「A1」與「A2」者為延駛或繞駛，亦會使子路線不同。上述皆為 TDX 針對公車路線編碼的標準規範。最後 HSZ0010（路線名為 [藍線1區](https://internetpedia.fandom.com/zh/wiki/%E6%96%B0%E7%AB%B9%E5%B8%82%E5%85%AC%E8%BB%8A1%E8%B7%AF?variant=zh-hant&file=%E6%96%B0%E7%AB%B9%E5%B8%82%E5%85%AC%E8%BB%8A1%E8%B7%AF%E8%B7%AF%E7%B7%9A%E5%9C%96.png)）僅一條子路線，乃因該路線為環狀線（注意：藍線1區公車係由火車站至竹中站後立即折返，故屬於環狀線）。
 
 
-<span style="font-size:15pt">**• 羅列各主路線含括的子路線**</span>  
+<span style="font-size:15pt">**• <u>羅列各主路線含括的子路線</u>**</span>  
 前一案例藉由`group_by() %>% summarise()`計算總數，事實上此一函式的功能繁多，可透過改變`summarise()`函式內的操作，以達成目的。如欲整理各主路線含括的子路線代碼與名稱，應將 RouteUID 與 RouteName 作為分群的變項，並在`summarise()`函式中將所有同一分群者，將其子路線代碼以`paste()`函式相連。其中`paste()`函式內，須設定`collapse=`參數，以表達使用特定的符號或字元串接。依上述流程，程式碼撰寫如下。
 
 ```{r bus-route-ex4, echo=T, eval=T, message=F}
@@ -98,7 +104,7 @@ head(bus_route_list)
 ```
 
 
-<span style="font-size:15pt">**• 尋找公車支線**</span>  
+<span style="font-size:15pt">**• <u>尋找公車支線</u>**</span>  
 在前述的案例中，我們發現有些公車主路線會有多條子路線，除了因為跟方向有關外，其次則是屬於支線之故，形成繞駛或延駛情形。進一步觀察可以發現，新竹市公車的支線中，其名稱會包含「支」一字。若欲擷取所有支線資料，可藉由`grepl()`函式先尋找該字元是否存在 SubRouteName 的欄位中，所回傳的邏輯判斷值可用以進一步篩選原始資料。程式碼撰寫如下。
 
 ```{r bus-route-ex5, echo=T, eval=T}
@@ -122,13 +128,14 @@ filter(bus_route, grepl("支", SubRouteName))%>%
 ```
 
 
+<br></br>
 <div style="background-color:#6C6C6C;color:white;">
 <span style="font-size:17pt">**&nbsp;&nbsp;&nbsp;§ 站牌統計分析**</span>
 </div>
 
 公車站牌資料中係記錄每一子路線（SubRouteUID）的所有站牌資訊，含括路線名稱、方向、站牌代碼、名稱、站序、經緯度等資訊。
 
-<span style="font-size:15pt">**• 統計各子路線總站牌數**</span>  
+<span style="font-size:15pt">**• <u>統計各子路線總站牌數</u>**</span>  
 如前述統計各主路線中子路線數量的方法，可利用`group_by() %>% summarise()`函式達成目的，程式碼撰寫如下。
 
 ```{r bus-stop-ex1, echo=T, eval=T, message=F}
@@ -142,7 +149,7 @@ head(bus_stop_sum)
 由以上回傳結果可發現，新竹市 81 公車共有兩條子路線（HSZ000701、HSZ000702），方向分為去程（Direction:0）與返程（Direction:1），而去程站牌數共計 21 個，而返程的站牌數則為 20 個。
 
 
-<span style="font-size:15pt">**• 整理同一站名的所有路線**</span>  
+<span style="font-size:15pt">**• <u>整理同一站名的所有路線</u>**</span>  
 分析流程彙整如下：  
 
 * Step 1: 從站牌中，先挑出站點名稱（StopName）、子路線名稱（SubRouteName）兩資訊。  
@@ -182,7 +189,7 @@ head(bus_stop_route)
 其中 Step 4 的`arrange()`函式內，設定`desc(...)`以表示依據指定變數降冪排列，否則預設為升冪排列。  
 
 
-<span style="font-size:15pt">**• 尋找公車環狀線**</span>  
+<span style="font-size:15pt">**• <u>尋找公車環狀線</u>**</span>  
 前文中提及，新竹市公車有些屬於環狀路線，亦即公車的起始站與終點站相同。在公車站牌資料中，可以先萃取各子路線的第一個站點（站序為 1 者）與最後一個站點（同一路線站序為最大者），並檢查起訖站點是否相同。分析邏輯彙整如下：
 
 * Step 1: 先利用`select()`函式萃取需要的欄位名稱。  
@@ -247,6 +254,46 @@ bus_route_circle
 ```
 
 由以上回傳資料可知，新竹市公車共計 9 條路線屬於環狀路線。
+
+<br></br>
+<div style="background-color:#6C6C6C;color:white;">
+<span style="font-size:17pt">**&nbsp;&nbsp;&nbsp;§ 站間行駛距離計算**</span>
+</div>
+
+公車站間距離資料中係記錄每一子路線（SubRouteUID）相鄰站點間的路線距離，其中 FromStopID 為起點站代碼，ToStopID 為迄點站代碼，StopSequence 為「迄點站」的站序，Distance 即為兩相鄰站點間距離。
+
+<span style="font-size:15pt">**• <u>計算任意起迄站間距離</u>**</span>  
+公車站間距離資料係記錄兩相鄰站點距離，而非「任意兩站點間」的距離，故必須經過資料處理尚能透過原始資料計算任意起迄站間距離。在給定的一組站點序號，首先必須回傳所有該起迄區間的資料，例如若要尋找新竹市區 81 公車去程（SubRouteUID: HSZ000701）的「陽明交大光復南門」（StopID: 303819）至「科技生活館」（StopID: 303823）站點，我們必須先知道兩站點的序號，並擷取所有介於這兩序號間的公車站點距離資料，最後將 Distance 欄位相加總後即為該區間的行駛距離。
+
+在公車站間距離之原始資料中，請務必注意，StopSequence 為 1 時，路線距離為 0（原始資料記錄為 NA）；StopSequence 為 2 時，路線距離係第 1 站至第 2 站的距離，其他則以此類推。因此若欲計算第 3 站至第 6 站間的距離，必須先行回傳公車站間距離資料中站序為 4 至 6 的資料，如圖\@ref(fig:bus-distance-fig)之示意圖所示。據上述案例，由第 3 站出發，必須由站序為 4 者始擷取資料，故後續得知起點站序後，務必加 1 以在原始資料中擷取正確區間。
+
+```{r bus-distance-fig, echo=F, eval=T, out.width="80%", fig.align="center", fig.cap="公車站間距離資料計算示意圖"}
+include_graphics("./figure/bus_distance.png")
+```
+
+回到尋找新竹市區 81 公車去程的「陽明交大光復南門」至「科技生活館」站點之範例，程式碼撰寫如下：
+
+```{r bus-distance-ex1, echo=T, eval=T, message=F, warning=F}
+# 先依據路線名稱與站名，尋找起迄站點的站序
+sqid_o=filter(bus_stop, SubRouteName=="81", Direction==0, StopName=="陽明交大光復南門")$StopSequence
+sqid_d=filter(bus_stop, SubRouteName=="81", Direction==0, StopName=="科技生活館")$StopSequence
+
+# 查看起迄站序
+print(c(sqid_o, sqid_d))
+```
+
+得知站序後，回傳原始資料中該路線且站序介於 sqid_o+1 與 sqid_d 之間者。
+
+```{r bus-distance-ex2, echo=T, eval=T, message=F, warning=F}
+# 擷取公車站間距離資料中站序間的所有資料
+# 請務必注意sqid_o必須加一！
+temp=filter(bus_distance, SubRouteUID=="HSZ000701", Sequence>=sqid_o+1, Sequence<=sqid_d)
+
+# 將Distance欄位予以加總
+sum(temp$Distance)
+```
+
+由上述分析結果得知，81 公車「陽明交大光復南門」至「科技生活館」的路線距離即為 1346.73 公尺。
 
 
 
