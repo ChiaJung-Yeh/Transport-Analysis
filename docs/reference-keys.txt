@@ -3,3 +3,6 @@ tab:package-download-table
 公車資料統計分析
 fig:bus-stop-dcast-fig
 fig:bus-distance-fig
+路線統計分析
+站牌統計分析
+站間行駛距離計算
