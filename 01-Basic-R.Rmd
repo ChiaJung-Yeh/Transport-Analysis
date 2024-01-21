@@ -32,8 +32,9 @@ access_token=get_token(client_id, client_secret)
 4.  資料框（data frame）  
 5.  陣列（list）  
 
+以下各小節針對各基本要素的構建與運算詳細說明。
 
-### 向量
+### 向量（Vector）
 <p style="color:#003D79;font-size:18px;line-height:2">**⌾ 向量的性質**</p>  
 
 * 一組值  
@@ -110,19 +111,38 @@ seq(from=2, to=20, by=2)
 
 <p style="color:#003D79;font-size:18px;line-height:2">**⌾ 向量運算**</p>  
 
-先行建立一個向量`vec4`。
-```{r vector-exg, echo=T, eval=T}
-vec4=c(1,9,3,15,6,2,8,12)
+<p style="font-size:18px;line-height:1">**<u>統計運算</u>**</p>  
+
+以下建立一個向量`vec4`作為範例，所有運算的程式碼與結果請參照表\@ref(tab:vector-operation-table)。
+```{r vector-exg1, echo=T, eval=T}
+vec4=c(5,9,3,15,6,2,8,12)
 ```
 
-所有運算的程式碼與結果請參照表\@ref(tab:vector-operation-table)。
 
 ```{r vector-operation-table, echo=F, eval=T}
-vector_operation=data.frame(ope_name=c("最大值","最小值","全域","總和","平均","中位數","乘積","變異數","標準差"), operation=c("`max(vec4)`","`min(vec4)`","`range(vec4)`","`sum(vec4)`","`mean(vec4)`","`median(vec4)`","`prod(vec4)`","`var(vec4)`","`sd(vec4)`"),
-                         result=c(paste0("`", max(vec4), "`"), paste0("`", min(vec4), "`"), paste0("`", paste(range(vec4), collapse="  "), "`"), paste0("`", sum(vec4), "`"), paste0("`", mean(vec4), "`"), paste0("`", median(vec4), "`"), paste0("`", prod(vec4), "`"), paste0("`", round(var(vec4), 3), "`"), paste0("`", round(sd(vec4), 3), "`")))
+vector_operation=data.frame(ope_name=c("最大值","最小值","最大值索引","最小值索引","全域","總和","平均","中位數","乘積","變異數","標準差"), operation=c("`max(vec4)`","`min(vec4)`","`which.max(vec4)`","`which.min(vec4)`","`range(vec4)`","`sum(vec4)`","`mean(vec4)`","`median(vec4)`","`prod(vec4)`","`var(vec4)`","`sd(vec4)`"),
+                         result=c(paste0("`", max(vec4), "`"), paste0("`", min(vec4), "`"), paste0("`", which.max(vec4), "`"), paste0("`", which.min(vec4), "`"), paste0("`", paste(range(vec4), collapse="  "), "`"), paste0("`", sum(vec4), "`"), paste0("`", mean(vec4), "`"), paste0("`", median(vec4), "`"), paste0("`", prod(vec4), "`"), paste0("`", round(var(vec4), 3), "`"), paste0("`", round(sd(vec4), 3), "`")))
 
 colnames(vector_operation)=c("運算","程式碼","輸出結果")
 kable(vector_operation, booktabs=T, caption="向量運算")%>%
+  kable_styling(bootstrap_options=c("striped", "hover"), font_size=14)%>%
+  column_spec(1, bold=T)%>%
+  row_spec(0, bold=T, color="white", background="#8E8E8E")
+```
+
+<p style="font-size:18px;line-height:1">**<u>數學運算</u>**</p>  
+
+以下利用`vec4`與新建向量`vec5`作為範例，所有運算的程式碼與結果請參照表\@ref(tab:vector-calculation-table)。。
+```{r vector-exg2, echo=T, eval=T}
+vec5=c(0.57,4.28,-1.23,6.58,-4.67,2.09)
+```
+
+```{r vector-calculation-table, echo=F, eval=T}
+vector_calculation=data.frame(ope_name=c("絕對值","根號","四捨五入","取整函數","下取整函數","對數","指數","標準化","累積加總"), operation=c("`abs(vec5)`","`sqrt(vec4)`","`round(vec5, digits=1)`","`ceiling(vec5)`","`floor(vec5)`","`log(vec4)`","`exp(vec4)`","`scale(vec4)`","`cumsum(vec4)`"),
+                         result=c(paste0("`", paste(abs(vec5), collapse=" "), "`"), paste0("`", paste(round(sqrt(vec4), 3), collapse=" "), "`"), paste0("`", paste(round(vec5, digits=1), collapse="  "), "`"), paste0("`", paste(ceiling(vec5), collapse=" "), "`"), paste0("`", paste(floor(vec5), collapse=" "), "`"), paste0("`", paste(round(log(vec4), 3), collapse=" "), "`"), paste0("`", paste(round(exp(vec4), 1), collapse=" "), "`"), paste0("`", paste(round(scale(vec4), 3), collapse=" "), "`"), paste0("`", paste(cumsum(vec4), collapse=" "), "`")))
+
+colnames(vector_calculation)=c("運算","程式碼","輸出結果")
+kable(vector_calculation, booktabs=T, caption="數學運算")%>%
   kable_styling(bootstrap_options=c("striped", "hover"), font_size=14)%>%
   column_spec(1, bold=T)%>%
   row_spec(0, bold=T, color="white", background="#8E8E8E")
@@ -138,11 +158,19 @@ length(vec4)
 <p style="color:#003D79;font-size:18px;line-height:2">**⌾ 向量排序**</p>  
 
 * `sort()`函式直接將向量予以由小至大之排序  
-* `order()`函式回傳向量由小至大排序所對的應原向量序號  
+* `order()`函式回傳向量由小至大排序所對應的原向量序號  
+* `rank()`函式回傳向量中各元素由小至大之順序  
 
-```{r vector-sort-order, echo=T, eval=T}
+程式碼撰寫如下，請參照圖\@ref(fig:vector-sort-order-rank-fig)之示意圖。
+
+```{r vector-sort-order-rank-fig, echo=F, eval=T, out.width="90%", fig.align="center", fig.cap="排序函式示意圖"}
+include_graphics("./figure/sort_order_rank.png")
+```
+
+```{r vector-sort-order-rank, echo=T, eval=T}
 sort(vec4)
 order(vec4)
+rank(vec4)
 ```
  
 由`sort()`的結果可知，其將`vec4`向量由小至大排序。`order()`則是回傳排序所對應至原向量的序號，例如回傳結果的最後一個值是`4`，表示該向量中最大的數值位於向量的第 4 個元素。根據上述，我們亦可透過如下程式碼達到與`sort()`相同的結果。
@@ -169,10 +197,10 @@ is.na(vec_na)
 
 <p style="color:#003D79;font-size:18px;line-height:2">**⌾ 向量四則運算**</p>  
 
-以下範例使用`vec4`與新建立的向量`vec5`示範向量的運算。
+以下範例使用`vec4`與新建立的`vec6`示範向量的四則運算。
 
 ```{r vector-vec5, echo=T, eval=T}
-vec5=c(2,5,8,11,7,4,10,3)
+vec6=c(2,5,8,11,7,4,10,3)
 ```
 
 
@@ -181,8 +209,8 @@ vec5=c(2,5,8,11,7,4,10,3)
 所有運算結果如表\@ref(tab:vector-arithmetic-table)。
 
 ```{r vector-arithmetic-table, echo=F, eval=T}
-vector_arithmetic=data.frame(ope_name=c("","加法","減法","乘法","除法","取餘數","取除數","內積"), operation=c("", "`vec4+vec5`","`vec4-vec5`","`vec4*vec5`","`vec4/vec5`","`vec4 %% vec5`","`vec4 %/% vec5`","`vec4 %*% vec5`"), result=c("", paste0("`", paste(vec4+vec5, collapse=" "), "`"), paste0("`", paste(vec4-vec5, collapse=" "), "`"), paste0("`", paste(vec4*vec5, collapse=" "), "`"), paste0("`", paste(round(vec4/vec5, 3), collapse=" "), "`"), paste0("`", paste(vec4 %% vec5, collapse=" "), "`"), paste0("`", paste(vec4 %/% vec5, collapse=" "), "`"), paste0("`", paste(vec4 %*% vec5, collapse=" "), "`")))
-vector_arithmetic$result[1]="**`vec4=c(1,9,3,15,6,2,8,12)`\\\n`vec5=c(2,5,8,11,7,4,10,3)`**"
+vector_arithmetic=data.frame(ope_name=c("","加法","減法","乘法","除法","取餘數","取除數","內積"), operation=c("", "`vec4+vec6`","`vec4-vec6`","`vec4*vec6`","`vec4/vec6`","`vec4 %% vec6`","`vec4 %/% vec6`","`vec4 %*% vec6`"), result=c("", paste0("`", paste(vec4+vec6, collapse=" "), "`"), paste0("`", paste(vec4-vec6, collapse=" "), "`"), paste0("`", paste(vec4*vec6, collapse=" "), "`"), paste0("`", paste(round(vec4/vec6, 3), collapse=" "), "`"), paste0("`", paste(vec4 %% vec6, collapse=" "), "`"), paste0("`", paste(vec4 %/% vec6, collapse=" "), "`"), paste0("`", paste(vec4 %*% vec6, collapse=" "), "`")))
+vector_arithmetic$result[1]="**`vec4=c(5,9,3,15,6,2,8,12)`\\\n`vec6=c(2,5,8,11,7,4,10,3)`**"
 
 colnames(vector_arithmetic)=c("運算","程式碼","輸出結果")
 kable(vector_arithmetic, booktabs=T, caption="向量運算")%>%
@@ -193,11 +221,11 @@ kable(vector_arithmetic, booktabs=T, caption="向量運算")%>%
 
 
 <p style="font-size:18px;line-height:1">**<u>向量與元素運算</u>**</p>  
-一組向量與一個元素之間的運算，即是將向量中的每一個元素與該元素運算。  
+一組向量與一個元素之間的運算，即是將向量中的每一個元素分別與該元素運算。  
 
 ```{r vector-addition2, echo=T, eval=T}
-vec5+5
-vec5*5
+vec6+5
+vec6*5
 ```
 
 
@@ -235,11 +263,13 @@ as.character(vec_num)
 
 以實際範例說明之，程式碼撰寫如下：
 ```{r vector-repeat, echo=T, eval=T}
+vec6=c(2,5,8,11,7,4,10,3)
+
 # 設定每一個元素重複的次數
-rep(vec5, each=2)
+rep(vec6, each=2)
 
 # 設定向量整體重複的次數
-rep(vec5, times=2)
+rep(vec6, times=2)
 ```
 
 

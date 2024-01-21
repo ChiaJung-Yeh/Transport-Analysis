@@ -157,7 +157,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <ul>
 <li class="chapter" data-level="1.1" data-path="r-語言基礎語法.html"><a href="r-語言基礎語法.html#物件object"><i class="fa fa-check"></i><b>1.1</b> 物件（Object）</a>
 <ul>
-<li class="chapter" data-level="1.1.1" data-path="r-語言基礎語法.html"><a href="r-語言基礎語法.html#向量"><i class="fa fa-check"></i><b>1.1.1</b> 向量</a></li>
+<li class="chapter" data-level="1.1.1" data-path="r-語言基礎語法.html"><a href="r-語言基礎語法.html#向量vector"><i class="fa fa-check"></i><b>1.1.1</b> 向量（Vector）</a></li>
 </ul></li>
 </ul></li>
 <li class="chapter" data-level="2" data-path="基本資料統計.html"><a href="基本資料統計.html"><i class="fa fa-check"></i><b>2</b> <strong>基本資料統計</strong></a>
@@ -206,8 +206,9 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </li>
 <li>陣列（list）</li>
 </ol>
-<div id="向量" class="section level3 hasAnchor" number="1.1.1">
-<h3><span class="header-section-number">1.1.1</span> 向量<a href="r-語言基礎語法.html#向量" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>以下各小節針對各基本要素的構建與運算詳細說明。</p>
+<div id="向量vector" class="section level3 hasAnchor" number="1.1.1">
+<h3><span class="header-section-number">1.1.1</span> 向量（Vector）<a href="r-語言基礎語法.html#向量vector" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <p style="color:#003D79;font-size:18px;line-height:2">
 <strong>⌾ 向量的性質</strong>
 </p>
@@ -271,9 +272,11 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <p style="color:#003D79;font-size:18px;line-height:2">
 <strong>⌾ 向量運算</strong>
 </p>
-<p>先行建立一個向量<code>vec4</code>。</p>
-<div class="sourceCode" id="cb18"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb18-1"><a href="r-語言基礎語法.html#cb18-1" tabindex="-1"></a>vec4<span class="ot">=</span><span class="fu">c</span>(<span class="dv">1</span>,<span class="dv">9</span>,<span class="dv">3</span>,<span class="dv">15</span>,<span class="dv">6</span>,<span class="dv">2</span>,<span class="dv">8</span>,<span class="dv">12</span>)</span></code></pre></div>
-<p>所有運算的程式碼與結果請參照表<a href="r-語言基礎語法.html#tab:vector-operation-table">1.1</a>。</p>
+<p style="font-size:18px;line-height:1">
+<strong><u>統計運算</u></strong>
+</p>
+<p>以下建立一個向量<code>vec4</code>作為範例，所有運算的程式碼與結果請參照表<a href="r-語言基礎語法.html#tab:vector-operation-table">1.1</a>。</p>
+<div class="sourceCode" id="cb18"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb18-1"><a href="r-語言基礎語法.html#cb18-1" tabindex="-1"></a>vec4<span class="ot">=</span><span class="fu">c</span>(<span class="dv">5</span>,<span class="dv">9</span>,<span class="dv">3</span>,<span class="dv">15</span>,<span class="dv">6</span>,<span class="dv">2</span>,<span class="dv">8</span>,<span class="dv">12</span>)</span></code></pre></div>
 <table class="table table-striped table-hover" style="font-size: 14px; margin-left: auto; margin-right: auto;">
 <caption style="font-size: initial !important;">
 <span id="tab:vector-operation-table">表 1.1: </span>向量運算
@@ -311,7 +314,29 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <code>min(vec4)</code>
 </td>
 <td style="text-align:left;">
-<code>1</code>
+<code>2</code>
+</td>
+</tr>
+<tr>
+<td style="text-align:left;font-weight: bold;">
+最大值索引
+</td>
+<td style="text-align:left;">
+<code>which.max(vec4)</code>
+</td>
+<td style="text-align:left;">
+<code>4</code>
+</td>
+</tr>
+<tr>
+<td style="text-align:left;font-weight: bold;">
+最小值索引
+</td>
+<td style="text-align:left;">
+<code>which.min(vec4)</code>
+</td>
+<td style="text-align:left;">
+<code>6</code>
 </td>
 </tr>
 <tr>
@@ -322,7 +347,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <code>range(vec4)</code>
 </td>
 <td style="text-align:left;">
-<code>1  15</code>
+<code>2  15</code>
 </td>
 </tr>
 <tr>
@@ -333,7 +358,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <code>sum(vec4)</code>
 </td>
 <td style="text-align:left;">
-<code>56</code>
+<code>60</code>
 </td>
 </tr>
 <tr>
@@ -344,7 +369,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <code>mean(vec4)</code>
 </td>
 <td style="text-align:left;">
-<code>7</code>
+<code>7.5</code>
 </td>
 </tr>
 <tr>
@@ -366,7 +391,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <code>prod(vec4)</code>
 </td>
 <td style="text-align:left;">
-<code>466560</code>
+<code>2332800</code>
 </td>
 </tr>
 <tr>
@@ -377,7 +402,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <code>var(vec4)</code>
 </td>
 <td style="text-align:left;">
-<code>24.571</code>
+<code>19.714</code>
 </td>
 </tr>
 <tr>
@@ -388,7 +413,131 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <code>sd(vec4)</code>
 </td>
 <td style="text-align:left;">
-<code>4.957</code>
+<code>4.44</code>
+</td>
+</tr>
+</tbody>
+</table>
+<p style="font-size:18px;line-height:1">
+<strong><u>數學運算</u></strong>
+</p>
+<p>以下利用<code>vec4</code>與新建向量<code>vec5</code>作為範例，所有運算的程式碼與結果請參照表<a href="r-語言基礎語法.html#tab:vector-calculation-table">1.2</a>。。</p>
+<div class="sourceCode" id="cb19"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb19-1"><a href="r-語言基礎語法.html#cb19-1" tabindex="-1"></a>vec5<span class="ot">=</span><span class="fu">c</span>(<span class="fl">0.57</span>,<span class="fl">4.28</span>,<span class="sc">-</span><span class="fl">1.23</span>,<span class="fl">6.58</span>,<span class="sc">-</span><span class="fl">4.67</span>,<span class="fl">2.09</span>)</span></code></pre></div>
+<table class="table table-striped table-hover" style="font-size: 14px; margin-left: auto; margin-right: auto;">
+<caption style="font-size: initial !important;">
+<span id="tab:vector-calculation-table">表 1.2: </span>數學運算
+</caption>
+<thead>
+<tr>
+<th style="text-align:left;font-weight: bold;color: white !important;background-color: #8E8E8E !important;">
+運算
+</th>
+<th style="text-align:left;font-weight: bold;color: white !important;background-color: #8E8E8E !important;">
+程式碼
+</th>
+<th style="text-align:left;font-weight: bold;color: white !important;background-color: #8E8E8E !important;">
+輸出結果
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left;font-weight: bold;">
+絕對值
+</td>
+<td style="text-align:left;">
+<code>abs(vec5)</code>
+</td>
+<td style="text-align:left;">
+<code>0.57 4.28 1.23 6.58 4.67 2.09</code>
+</td>
+</tr>
+<tr>
+<td style="text-align:left;font-weight: bold;">
+根號
+</td>
+<td style="text-align:left;">
+<code>sqrt(vec4)</code>
+</td>
+<td style="text-align:left;">
+<code>2.236 3 1.732 3.873 2.449 1.414 2.828 3.464</code>
+</td>
+</tr>
+<tr>
+<td style="text-align:left;font-weight: bold;">
+四捨五入
+</td>
+<td style="text-align:left;">
+<code>round(vec5, digits=1)</code>
+</td>
+<td style="text-align:left;">
+<code>0.6  4.3  -1.2  6.6  -4.7  2.1</code>
+</td>
+</tr>
+<tr>
+<td style="text-align:left;font-weight: bold;">
+取整函數
+</td>
+<td style="text-align:left;">
+<code>ceiling(vec5)</code>
+</td>
+<td style="text-align:left;">
+<code>1 5 -1 7 -4 3</code>
+</td>
+</tr>
+<tr>
+<td style="text-align:left;font-weight: bold;">
+下取整函數
+</td>
+<td style="text-align:left;">
+<code>floor(vec5)</code>
+</td>
+<td style="text-align:left;">
+<code>0 4 -2 6 -5 2</code>
+</td>
+</tr>
+<tr>
+<td style="text-align:left;font-weight: bold;">
+對數
+</td>
+<td style="text-align:left;">
+<code>log(vec4)</code>
+</td>
+<td style="text-align:left;">
+<code>1.609 2.197 1.099 2.708 1.792 0.693 2.079 2.485</code>
+</td>
+</tr>
+<tr>
+<td style="text-align:left;font-weight: bold;">
+指數
+</td>
+<td style="text-align:left;">
+<code>exp(vec4)</code>
+</td>
+<td style="text-align:left;">
+<code>148.4 8103.1 20.1 3269017.4 403.4 7.4 2981 162754.8</code>
+</td>
+</tr>
+<tr>
+<td style="text-align:left;font-weight: bold;">
+標準化
+</td>
+<td style="text-align:left;">
+<code>scale(vec4)</code>
+</td>
+<td style="text-align:left;">
+<code>-0.563 0.338 -1.013 1.689 -0.338 -1.239 0.113 1.013</code>
+</td>
+</tr>
+<tr>
+<td style="text-align:left;font-weight: bold;">
+累積加總
+</td>
+<td style="text-align:left;">
+<code>cumsum(vec4)</code>
+</td>
+<td style="text-align:left;">
+<code>5 14 17 32 38 40 48 60</code>
 </td>
 </tr>
 </tbody>
@@ -397,7 +546,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <strong>⌾ 向量長度</strong>
 </p>
 <p>計算向量中的元素個數。</p>
-<div class="sourceCode" id="cb19"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb19-1"><a href="r-語言基礎語法.html#cb19-1" tabindex="-1"></a><span class="fu">length</span>(vec4)</span></code></pre></div>
+<div class="sourceCode" id="cb20"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb20-1"><a href="r-語言基礎語法.html#cb20-1" tabindex="-1"></a><span class="fu">length</span>(vec4)</span></code></pre></div>
 <pre><code>## [1] 8</code></pre>
 <p style="color:#003D79;font-size:18px;line-height:2">
 <strong>⌾ 向量排序</strong>
@@ -405,41 +554,52 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <ul>
 <li><code>sort()</code>函式直接將向量予以由小至大之排序<br />
 </li>
-<li><code>order()</code>函式回傳向量由小至大排序所對的應原向量序號</li>
+<li><code>order()</code>函式回傳向量由小至大排序所對應的原向量序號<br />
+</li>
+<li><code>rank()</code>函式回傳向量中各元素由小至大之順序</li>
 </ul>
-<div class="sourceCode" id="cb21"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb21-1"><a href="r-語言基礎語法.html#cb21-1" tabindex="-1"></a><span class="fu">sort</span>(vec4)</span></code></pre></div>
-<pre><code>## [1]  1  2  3  6  8  9 12 15</code></pre>
-<div class="sourceCode" id="cb23"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb23-1"><a href="r-語言基礎語法.html#cb23-1" tabindex="-1"></a><span class="fu">order</span>(vec4)</span></code></pre></div>
-<pre><code>## [1] 1 6 3 5 7 2 8 4</code></pre>
+<p>程式碼撰寫如下，請參照圖<a href="r-語言基礎語法.html#fig:vector-sort-order-rank-fig">1.1</a>之示意圖。</p>
+<div class="figure" style="text-align: center"><span style="display:block;" id="fig:vector-sort-order-rank-fig"></span>
+<img src="figure/sort_order_rank.png" alt="排序函式示意圖" width="90%" />
+<p class="caption">
+圖 1.1: 排序函式示意圖
+</p>
+</div>
+<div class="sourceCode" id="cb22"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb22-1"><a href="r-語言基礎語法.html#cb22-1" tabindex="-1"></a><span class="fu">sort</span>(vec4)</span></code></pre></div>
+<pre><code>## [1]  2  3  5  6  8  9 12 15</code></pre>
+<div class="sourceCode" id="cb24"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb24-1"><a href="r-語言基礎語法.html#cb24-1" tabindex="-1"></a><span class="fu">order</span>(vec4)</span></code></pre></div>
+<pre><code>## [1] 6 3 1 5 7 2 8 4</code></pre>
+<div class="sourceCode" id="cb26"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb26-1"><a href="r-語言基礎語法.html#cb26-1" tabindex="-1"></a><span class="fu">rank</span>(vec4)</span></code></pre></div>
+<pre><code>## [1] 3 6 2 8 4 1 5 7</code></pre>
 <p>由<code>sort()</code>的結果可知，其將<code>vec4</code>向量由小至大排序。<code>order()</code>則是回傳排序所對應至原向量的序號，例如回傳結果的最後一個值是<code>4</code>，表示該向量中最大的數值位於向量的第 4 個元素。根據上述，我們亦可透過如下程式碼達到與<code>sort()</code>相同的結果。</p>
-<div class="sourceCode" id="cb25"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb25-1"><a href="r-語言基礎語法.html#cb25-1" tabindex="-1"></a>vec4[<span class="fu">order</span>(vec4)]</span></code></pre></div>
-<pre><code>## [1]  1  2  3  6  8  9 12 15</code></pre>
+<div class="sourceCode" id="cb28"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb28-1"><a href="r-語言基礎語法.html#cb28-1" tabindex="-1"></a>vec4[<span class="fu">order</span>(vec4)]</span></code></pre></div>
+<pre><code>## [1]  2  3  5  6  8  9 12 15</code></pre>
 <p style="color:#003D79;font-size:18px;line-height:2">
 <strong>⌾ 向量唯一值</strong>
 </p>
 <p>去除重複的值。</p>
-<div class="sourceCode" id="cb27"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb27-1"><a href="r-語言基礎語法.html#cb27-1" tabindex="-1"></a>vec_dup<span class="ot">=</span><span class="fu">c</span>(<span class="dv">1</span>,<span class="dv">9</span>,<span class="dv">5</span>,<span class="dv">2</span>,<span class="dv">6</span>,<span class="dv">1</span>,<span class="dv">8</span>,<span class="dv">5</span>,<span class="dv">2</span>)</span>
-<span id="cb27-2"><a href="r-語言基礎語法.html#cb27-2" tabindex="-1"></a><span class="fu">unique</span>(vec_dup)</span></code></pre></div>
+<div class="sourceCode" id="cb30"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb30-1"><a href="r-語言基礎語法.html#cb30-1" tabindex="-1"></a>vec_dup<span class="ot">=</span><span class="fu">c</span>(<span class="dv">1</span>,<span class="dv">9</span>,<span class="dv">5</span>,<span class="dv">2</span>,<span class="dv">6</span>,<span class="dv">1</span>,<span class="dv">8</span>,<span class="dv">5</span>,<span class="dv">2</span>)</span>
+<span id="cb30-2"><a href="r-語言基礎語法.html#cb30-2" tabindex="-1"></a><span class="fu">unique</span>(vec_dup)</span></code></pre></div>
 <pre><code>## [1] 1 9 5 2 6 8</code></pre>
 <p style="color:#003D79;font-size:18px;line-height:2">
 <strong>⌾ 檢查使否存在 NA</strong>
 </p>
-<div class="sourceCode" id="cb29"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb29-1"><a href="r-語言基礎語法.html#cb29-1" tabindex="-1"></a>vec_na<span class="ot">=</span><span class="fu">c</span>(<span class="dv">1</span>,<span class="dv">9</span>,<span class="dv">5</span>,<span class="cn">NA</span>,<span class="dv">6</span>,<span class="cn">NA</span>)</span>
-<span id="cb29-2"><a href="r-語言基礎語法.html#cb29-2" tabindex="-1"></a><span class="fu">is.na</span>(vec_na)</span></code></pre></div>
+<div class="sourceCode" id="cb32"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb32-1"><a href="r-語言基礎語法.html#cb32-1" tabindex="-1"></a>vec_na<span class="ot">=</span><span class="fu">c</span>(<span class="dv">1</span>,<span class="dv">9</span>,<span class="dv">5</span>,<span class="cn">NA</span>,<span class="dv">6</span>,<span class="cn">NA</span>)</span>
+<span id="cb32-2"><a href="r-語言基礎語法.html#cb32-2" tabindex="-1"></a><span class="fu">is.na</span>(vec_na)</span></code></pre></div>
 <pre><code>## [1] FALSE FALSE FALSE  TRUE FALSE  TRUE</code></pre>
 <p style="color:#003D79;font-size:18px;line-height:2">
 <strong>⌾ 向量四則運算</strong>
 </p>
-<p>以下範例使用<code>vec4</code>與新建立的向量<code>vec5</code>示範向量的運算。</p>
-<div class="sourceCode" id="cb31"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb31-1"><a href="r-語言基礎語法.html#cb31-1" tabindex="-1"></a>vec5<span class="ot">=</span><span class="fu">c</span>(<span class="dv">2</span>,<span class="dv">5</span>,<span class="dv">8</span>,<span class="dv">11</span>,<span class="dv">7</span>,<span class="dv">4</span>,<span class="dv">10</span>,<span class="dv">3</span>)</span></code></pre></div>
+<p>以下範例使用<code>vec4</code>與新建立的<code>vec6</code>示範向量的四則運算。</p>
+<div class="sourceCode" id="cb34"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb34-1"><a href="r-語言基礎語法.html#cb34-1" tabindex="-1"></a>vec6<span class="ot">=</span><span class="fu">c</span>(<span class="dv">2</span>,<span class="dv">5</span>,<span class="dv">8</span>,<span class="dv">11</span>,<span class="dv">7</span>,<span class="dv">4</span>,<span class="dv">10</span>,<span class="dv">3</span>)</span></code></pre></div>
 <p style="font-size:18px;line-height:1">
 <strong><u>兩向量運算</u></strong>
 </p>
 <p>兩向量運算時，兩組向量的長度（<code>length()</code>）務必相同！<br />
-所有運算結果如表<a href="r-語言基礎語法.html#tab:vector-arithmetic-table">1.2</a>。</p>
+所有運算結果如表<a href="r-語言基礎語法.html#tab:vector-arithmetic-table">1.3</a>。</p>
 <table class="table table-striped table-hover" style="font-size: 14px; margin-left: auto; margin-right: auto;">
 <caption style="font-size: initial !important;">
-<span id="tab:vector-arithmetic-table">表 1.2: </span>向量運算
+<span id="tab:vector-arithmetic-table">表 1.3: </span>向量運算
 </caption>
 <thead>
 <tr>
@@ -461,8 +621,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <td style="text-align:left;">
 </td>
 <td style="text-align:left;">
-<strong><code>vec4=c(1,9,3,15,6,2,8,12)</code><br />
-<code>vec5=c(2,5,8,11,7,4,10,3)</code></strong>
+<strong><code>vec4=c(5,9,3,15,6,2,8,12)</code><br />
+<code>vec6=c(2,5,8,11,7,4,10,3)</code></strong>
 </td>
 </tr>
 <tr>
@@ -470,10 +630,10 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 加法
 </td>
 <td style="text-align:left;">
-<code>vec4+vec5</code>
+<code>vec4+vec6</code>
 </td>
 <td style="text-align:left;">
-<code>3 14 11 26 13 6 18 15</code>
+<code>7 14 11 26 13 6 18 15</code>
 </td>
 </tr>
 <tr>
@@ -481,10 +641,10 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 減法
 </td>
 <td style="text-align:left;">
-<code>vec4-vec5</code>
+<code>vec4-vec6</code>
 </td>
 <td style="text-align:left;">
-<code>-1 4 -5 4 -1 -2 -2 9</code>
+<code>3 4 -5 4 -1 -2 -2 9</code>
 </td>
 </tr>
 <tr>
@@ -492,10 +652,10 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 乘法
 </td>
 <td style="text-align:left;">
-<code>vec4*vec5</code>
+<code>vec4*vec6</code>
 </td>
 <td style="text-align:left;">
-<code>2 45 24 165 42 8 80 36</code>
+<code>10 45 24 165 42 8 80 36</code>
 </td>
 </tr>
 <tr>
@@ -503,10 +663,10 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 除法
 </td>
 <td style="text-align:left;">
-<code>vec4/vec5</code>
+<code>vec4/vec6</code>
 </td>
 <td style="text-align:left;">
-<code>0.5 1.8 0.375 1.364 0.857 0.5 0.8 4</code>
+<code>2.5 1.8 0.375 1.364 0.857 0.5 0.8 4</code>
 </td>
 </tr>
 <tr>
@@ -514,7 +674,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 取餘數
 </td>
 <td style="text-align:left;">
-<code>vec4 %% vec5</code>
+<code>vec4 %% vec6</code>
 </td>
 <td style="text-align:left;">
 <code>1 4 3 4 6 2 8 0</code>
@@ -525,10 +685,10 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 取除數
 </td>
 <td style="text-align:left;">
-<code>vec4 %/% vec5</code>
+<code>vec4 %/% vec6</code>
 </td>
 <td style="text-align:left;">
-<code>0 1 0 1 0 0 0 4</code>
+<code>2 1 0 1 0 0 0 4</code>
 </td>
 </tr>
 <tr>
@@ -536,10 +696,10 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 內積
 </td>
 <td style="text-align:left;">
-<code>vec4 %*% vec5</code>
+<code>vec4 %*% vec6</code>
 </td>
 <td style="text-align:left;">
-<code>402</code>
+<code>410</code>
 </td>
 </tr>
 </tbody>
@@ -547,10 +707,10 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <p style="font-size:18px;line-height:1">
 <strong><u>向量與元素運算</u></strong>
 </p>
-<p>一組向量與一個元素之間的運算，即是將向量中的每一個元素與該元素運算。</p>
-<div class="sourceCode" id="cb32"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb32-1"><a href="r-語言基礎語法.html#cb32-1" tabindex="-1"></a>vec5<span class="sc">+</span><span class="dv">5</span></span></code></pre></div>
+<p>一組向量與一個元素之間的運算，即是將向量中的每一個元素分別與該元素運算。</p>
+<div class="sourceCode" id="cb35"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb35-1"><a href="r-語言基礎語法.html#cb35-1" tabindex="-1"></a>vec6<span class="sc">+</span><span class="dv">5</span></span></code></pre></div>
 <pre><code>## [1]  7 10 13 16 12  9 15  8</code></pre>
-<div class="sourceCode" id="cb34"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb34-1"><a href="r-語言基礎語法.html#cb34-1" tabindex="-1"></a>vec5<span class="sc">*</span><span class="dv">5</span></span></code></pre></div>
+<div class="sourceCode" id="cb37"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb37-1"><a href="r-語言基礎語法.html#cb37-1" tabindex="-1"></a>vec6<span class="sc">*</span><span class="dv">5</span></span></code></pre></div>
 <pre><code>## [1] 10 25 40 55 35 20 50 15</code></pre>
 <p style="color:#003D79;font-size:18px;line-height:2">
 <strong>⌾ 轉換資料型態</strong>
@@ -559,16 +719,16 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <strong><u>文字轉換為數值</u></strong>
 </p>
 <p>建立<code>vec_cha</code>文字資料</p>
-<div class="sourceCode" id="cb36"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb36-1"><a href="r-語言基礎語法.html#cb36-1" tabindex="-1"></a>vec_cha<span class="ot">=</span><span class="fu">c</span>(<span class="st">&quot;1&quot;</span>,<span class="st">&quot;2&quot;</span>,<span class="st">&quot;3&quot;</span>,<span class="st">&quot;4&quot;</span>,<span class="st">&quot;5&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb39"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb39-1"><a href="r-語言基礎語法.html#cb39-1" tabindex="-1"></a>vec_cha<span class="ot">=</span><span class="fu">c</span>(<span class="st">&quot;1&quot;</span>,<span class="st">&quot;2&quot;</span>,<span class="st">&quot;3&quot;</span>,<span class="st">&quot;4&quot;</span>,<span class="st">&quot;5&quot;</span>)</span></code></pre></div>
 <p>先利用<code>class()</code>函式檢查<code>vec_cha</code>資料型態</p>
-<div class="sourceCode" id="cb37"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb37-1"><a href="r-語言基礎語法.html#cb37-1" tabindex="-1"></a><span class="fu">class</span>(vec_cha)</span></code></pre></div>
+<div class="sourceCode" id="cb40"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb40-1"><a href="r-語言基礎語法.html#cb40-1" tabindex="-1"></a><span class="fu">class</span>(vec_cha)</span></code></pre></div>
 <pre><code>## [1] &quot;character&quot;</code></pre>
 <p>利用<code>as.numeric()</code>函式轉化為數值資料</p>
-<div class="sourceCode" id="cb39"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb39-1"><a href="r-語言基礎語法.html#cb39-1" tabindex="-1"></a><span class="fu">as.numeric</span>(vec_cha)</span></code></pre></div>
+<div class="sourceCode" id="cb42"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb42-1"><a href="r-語言基礎語法.html#cb42-1" tabindex="-1"></a><span class="fu">as.numeric</span>(vec_cha)</span></code></pre></div>
 <pre><code>## [1] 1 2 3 4 5</code></pre>
 <p>另外，可利用<code>as.character()</code>函式轉化為文字資料</p>
-<div class="sourceCode" id="cb41"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb41-1"><a href="r-語言基礎語法.html#cb41-1" tabindex="-1"></a>vec_num<span class="ot">=</span><span class="fu">c</span>(<span class="dv">1</span>,<span class="dv">2</span>,<span class="dv">3</span>,<span class="dv">4</span>,<span class="dv">5</span>)</span>
-<span id="cb41-2"><a href="r-語言基礎語法.html#cb41-2" tabindex="-1"></a><span class="fu">as.character</span>(vec_num)</span></code></pre></div>
+<div class="sourceCode" id="cb44"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb44-1"><a href="r-語言基礎語法.html#cb44-1" tabindex="-1"></a>vec_num<span class="ot">=</span><span class="fu">c</span>(<span class="dv">1</span>,<span class="dv">2</span>,<span class="dv">3</span>,<span class="dv">4</span>,<span class="dv">5</span>)</span>
+<span id="cb44-2"><a href="r-語言基礎語法.html#cb44-2" tabindex="-1"></a><span class="fu">as.character</span>(vec_num)</span></code></pre></div>
 <pre><code>## [1] &quot;1&quot; &quot;2&quot; &quot;3&quot; &quot;4&quot; &quot;5&quot;</code></pre>
 <p style="color:#003D79;font-size:18px;line-height:2">
 <strong>⌾ 建立重複資料</strong>
@@ -579,11 +739,13 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li><code>times=</code>是設定該向量整體循環的次數</li>
 </ul>
 <p>以實際範例說明之，程式碼撰寫如下：</p>
-<div class="sourceCode" id="cb43"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb43-1"><a href="r-語言基礎語法.html#cb43-1" tabindex="-1"></a><span class="co"># 設定每一個元素重複的次數</span></span>
-<span id="cb43-2"><a href="r-語言基礎語法.html#cb43-2" tabindex="-1"></a><span class="fu">rep</span>(vec5, <span class="at">each=</span><span class="dv">2</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb46"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb46-1"><a href="r-語言基礎語法.html#cb46-1" tabindex="-1"></a>vec6<span class="ot">=</span><span class="fu">c</span>(<span class="dv">2</span>,<span class="dv">5</span>,<span class="dv">8</span>,<span class="dv">11</span>,<span class="dv">7</span>,<span class="dv">4</span>,<span class="dv">10</span>,<span class="dv">3</span>)</span>
+<span id="cb46-2"><a href="r-語言基礎語法.html#cb46-2" tabindex="-1"></a></span>
+<span id="cb46-3"><a href="r-語言基礎語法.html#cb46-3" tabindex="-1"></a><span class="co"># 設定每一個元素重複的次數</span></span>
+<span id="cb46-4"><a href="r-語言基礎語法.html#cb46-4" tabindex="-1"></a><span class="fu">rep</span>(vec6, <span class="at">each=</span><span class="dv">2</span>)</span></code></pre></div>
 <pre><code>##  [1]  2  2  5  5  8  8 11 11  7  7  4  4 10 10  3  3</code></pre>
-<div class="sourceCode" id="cb45"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb45-1"><a href="r-語言基礎語法.html#cb45-1" tabindex="-1"></a><span class="co"># 設定向量整體重複的次數</span></span>
-<span id="cb45-2"><a href="r-語言基礎語法.html#cb45-2" tabindex="-1"></a><span class="fu">rep</span>(vec5, <span class="at">times=</span><span class="dv">2</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb48"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb48-1"><a href="r-語言基礎語法.html#cb48-1" tabindex="-1"></a><span class="co"># 設定向量整體重複的次數</span></span>
+<span id="cb48-2"><a href="r-語言基礎語法.html#cb48-2" tabindex="-1"></a><span class="fu">rep</span>(vec6, <span class="at">times=</span><span class="dv">2</span>)</span></code></pre></div>
 <pre><code>##  [1]  2  5  8 11  7  4 10  3  2  5  8 11  7  4 10  3</code></pre>
 
 </div>
