@@ -34,15 +34,17 @@ access_token=get_token(client_id, client_secret)
 
 
 ### 向量
-<p style="color:#003D79;font-size:18px;line-height:2">**⌾ 向量特徵**</p>  
+<p style="color:#003D79;font-size:18px;line-height:2">**⌾ 向量的性質**</p>  
 
 * 一組值  
 * 一維  
 * 資料型態可為：數值、文字、邏輯值  
 
-<p style="color:#003D79;font-size:18px;line-height:2">**⌾ 利用`c()` 建立向量**</p>  
+<p style="color:#003D79;font-size:18px;line-height:2">**⌾ 建立向量**</p>  
 
-* **數值向量**
+建立向量可利用`c()`函式建構。  
+
+<p style="font-size:18px;line-height:1">**<u>數值向量</u>**</p>  
 ```{r vector1, echo=T, eval=F}
 vec1=c(1,2,3,4,5)
 ```
@@ -52,7 +54,7 @@ vec1=c(1,2,3,4,5)
 vec1
 ```
 
-* **文字向量**
+<p style="font-size:18px;line-height:1">**<u>文字向量</u>**</p>  
 ```{r vector2, echo=T, eval=F}
 vec2=c("A","B","C","D","E")
 ```
@@ -62,7 +64,7 @@ vec2=c("A","B","C","D","E")
 vec2
 ```
 
-* **邏輯向量**
+<p style="font-size:18px;line-height:1">**<u>邏輯向量</u>**</p>  
 ```{r vector3, echo=T, eval=F}
 vec3=c(T,F,T,F,T)
 ```
@@ -72,24 +74,35 @@ vec3=c(T,F,T,F,T)
 vec3
 ```
 
-<p style="color:#003D79;font-size:18px;line-height:2">**⌾ 擷取特定向量中特定元素**</p>  
+<p style="color:#003D79;font-size:18px;line-height:2">**⌾ 擷取向量中特定元素**</p>  
 
-* **在`vec2`中擷取第三個元素**
+<p style="font-size:18px;line-height:1">**<u>擷取單一元素</u>**</p>  
 ```{r vector-retrieve1, echo=T, eval=T}
 vec2[3]
 ```
 
-* **在`vec2`中擷取多個連續元素**
+<p style="font-size:18px;line-height:1">**<u>擷取多個連續元素</u>**</p>  
 ```{r vector-retrieve2, echo=T, eval=T}
 vec2[2:4]
 ```
 
-* **在`vec2`中擷取多個非連續元素**
+<p style="font-size:18px;line-height:1">**<u>擷取多個非連續元素</u>**</p>  
 ```{r vector-retrieve3, echo=T, eval=T}
 vec2[c(1,3,5)]
 ```
 
-<p style="color:#003D79;font-size:18px;line-height:2">**⌾ 建立連續數值資料**</p> 
+<p style="font-size:18px;line-height:1">**<u>以邏輯值擷取元素</u>**</p>  
+請注意輸入的邏輯值向量長度必須與原向量相同！
+```{r vector-retrieve4, echo=T, eval=T}
+vec2[c(T,T,F,F,T)]
+```
+
+
+<p style="color:#003D79;font-size:18px;line-height:2">**⌾ 連續數值資料**</p> 
+利用`seq()`函式建立連續數值，程式碼撰寫如下：
+```{r vector-continuous0, echo=T, eval=F}
+seq(from=開始數值, to=結束數值, by=遞增數值)
+```
 
 ```{r vector-continuous1, echo=T, eval=T}
 seq(from=2, to=20, by=2)
@@ -116,68 +129,120 @@ kable(vector_operation, booktabs=T, caption="向量運算")%>%
 ```
 
 
-* **向量長度**  
+<p style="color:#003D79;font-size:18px;line-height:2">**⌾ 向量長度**</p>  
 計算向量中的元素個數。
 ```{r vector-length, echo=T, eval=T}
 length(vec4)
 ```
 
-* **排序**  
+<p style="color:#003D79;font-size:18px;line-height:2">**⌾ 向量排序**</p>  
 
-  * `sort()`函式直接將向量予以由小至大之排序  
-  * `order()`函式回傳向量由小至大排序後對應原向量的序號  
+* `sort()`函式直接將向量予以由小至大之排序  
+* `order()`函式回傳向量由小至大排序所對的應原向量序號  
 
 ```{r vector-sort-order, echo=T, eval=T}
 sort(vec4)
 order(vec4)
 ```
  
-由`sort()`的結果可知，其將`vec4`向量由小至大排序。`order()`則是回傳排序後每一個元素所對應至原向量的序號，例如回傳結果的最後一個值是`4`，表示該向量中最大的數值位於向量的第 4 個元素。根據上述，我們亦可透過如下程式碼達到與`sort()`相同的結果。
+由`sort()`的結果可知，其將`vec4`向量由小至大排序。`order()`則是回傳排序所對應至原向量的序號，例如回傳結果的最後一個值是`4`，表示該向量中最大的數值位於向量的第 4 個元素。根據上述，我們亦可透過如下程式碼達到與`sort()`相同的結果。
 
 ```{r vector-sort-order-eg, echo=T, eval=T}
 vec4[order(vec4)]
 ```
 
 
-* **唯一值**  
+<p style="color:#003D79;font-size:18px;line-height:2">**⌾ 向量唯一值**</p>  
 去除重複的值。
 ```{r vector-unique, echo=T, eval=T}
 vec_dup=c(1,9,5,2,6,1,8,5,2)
 unique(vec_dup)
 ```
 
-* **檢查使否存在`NA`**  
-check if the element is NA  
+
+<p style="color:#003D79;font-size:18px;line-height:2">**⌾ 檢查使否存在 NA**</p>  
 ```{r vector-na, echo=T, eval=T}
 vec_na=c(1,9,5,NA,6,NA)
 is.na(vec_na)
 ```
 
 
-<p style="color:#003D79;font-size:18px;line-height:2">**⌾ 向量運算**</p>  
+<p style="color:#003D79;font-size:18px;line-height:2">**⌾ 向量四則運算**</p>  
 
-向量運算以下範例使用`vec4`與新建立的向量`vec5`示範向量的運算。
+以下範例使用`vec4`與新建立的向量`vec5`示範向量的運算。
 
 ```{r vector-vec5, echo=T, eval=T}
 vec5=c(2,5,8,11,7,4,10,3)
 ```
 
-* **兩向量運算**    
+
+<p style="font-size:18px;line-height:1">**<u>兩向量運算</u>**</p>  
 兩向量運算時，兩組向量的長度（`length()`）務必相同！  
 所有運算結果如表\@ref(tab:vector-arithmetic-table)。
 
 ```{r vector-arithmetic-table, echo=F, eval=T}
 vector_arithmetic=data.frame(ope_name=c("","加法","減法","乘法","除法","取餘數","取除數","內積"), operation=c("", "`vec4+vec5`","`vec4-vec5`","`vec4*vec5`","`vec4/vec5`","`vec4 %% vec5`","`vec4 %/% vec5`","`vec4 %*% vec5`"), result=c("", paste0("`", paste(vec4+vec5, collapse=" "), "`"), paste0("`", paste(vec4-vec5, collapse=" "), "`"), paste0("`", paste(vec4*vec5, collapse=" "), "`"), paste0("`", paste(round(vec4/vec5, 3), collapse=" "), "`"), paste0("`", paste(vec4 %% vec5, collapse=" "), "`"), paste0("`", paste(vec4 %/% vec5, collapse=" "), "`"), paste0("`", paste(vec4 %*% vec5, collapse=" "), "`")))
-vector_arithmetic$result[1]="`vec4=c(1,9,3,15,6,2,8,12)`\\\n`vec5=c(2,5,8,11,7,4,10,3)`"
-# vector_arithmetic$result[1]="1\\\n2"
+vector_arithmetic$result[1]="**`vec4=c(1,9,3,15,6,2,8,12)`\\\n`vec5=c(2,5,8,11,7,4,10,3)`**"
 
 colnames(vector_arithmetic)=c("運算","程式碼","輸出結果")
 kable(vector_arithmetic, booktabs=T, caption="向量運算")%>%
   kable_styling(bootstrap_options=c("striped", "hover"), font_size=14)%>%
   column_spec(1, bold=T)%>%
   row_spec(0, bold=T, color="white", background="#8E8E8E")
-
-
 ```
+
+
+<p style="font-size:18px;line-height:1">**<u>向量與元素運算</u>**</p>  
+一組向量與一個元素之間的運算，即是將向量中的每一個元素與該元素運算。  
+
+```{r vector-addition2, echo=T, eval=T}
+vec5+5
+vec5*5
+```
+
+
+<p style="color:#003D79;font-size:18px;line-height:2">**⌾ 轉換資料型態**</p>  
+
+<p style="font-size:18px;line-height:1">**<u>文字轉換為數值</u>**</p>  
+建立`vec_cha`文字資料
+
+```{r vector-convert1, echo=T, eval=T}
+vec_cha=c("1","2","3","4","5")
+```
+
+先利用`class()`函式檢查`vec_cha`資料型態
+```{r vector-convert2, echo=T, eval=T}
+class(vec_cha)
+```
+
+利用`as.numeric()`函式轉化為數值資料
+```{r vector-convert3, echo=T, eval=T}
+as.numeric(vec_cha)
+```
+
+另外，可利用`as.character()`函式轉化為文字資料
+```{r vector-convert4, echo=T, eval=T}
+vec_num=c(1,2,3,4,5)
+as.character(vec_num)
+```
+
+
+<p style="color:#003D79;font-size:18px;line-height:2">**⌾ 建立重複資料**</p> 
+利用`rep()`函式建立重複資料，該函式主要有兩大參數可以設定：  
+
+* `each=`是設定每一個元素重複的次數
+* `times=`是設定該向量整體循環的次數
+
+以實際範例說明之，程式碼撰寫如下：
+```{r vector-repeat, echo=T, eval=T}
+# 設定每一個元素重複的次數
+rep(vec5, each=2)
+
+# 設定向量整體重複的次數
+rep(vec5, times=2)
+```
+
+
+
 
 
