@@ -15,3 +15,10 @@ tab:vector-arithmetic-table
 向量vector
 tab:vector-calculation-table
 fig:vector-sort-order-rank-fig
+因子factor
+dplyr資料處理
+matrix
+tab:matrix-operation-table
+fig:apply-fig
+矩陣matrix
+資料框data-frame

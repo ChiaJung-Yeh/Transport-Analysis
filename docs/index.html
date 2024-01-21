@@ -23,7 +23,7 @@
 <meta name="author" content="Chia-Jung (Robert) Yeh 葉家榮 PhD: Insitute of Transport and Logistics Studies, USYD M.S.: Department of Transportation and Logistics Management, NYCU" />
 
 
-<meta name="date" content="2024-01-21" />
+<meta name="date" content="2024-01-22" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -157,8 +157,12 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <ul>
 <li class="chapter" data-level="1.1" data-path="r-語言基礎語法.html"><a href="r-語言基礎語法.html#物件object"><i class="fa fa-check"></i><b>1.1</b> 物件（Object）</a>
 <ul>
-<li class="chapter" data-level="1.1.1" data-path="r-語言基礎語法.html"><a href="r-語言基礎語法.html#向量"><i class="fa fa-check"></i><b>1.1.1</b> 向量</a></li>
+<li class="chapter" data-level="1.1.1" data-path="r-語言基礎語法.html"><a href="r-語言基礎語法.html#向量vector"><i class="fa fa-check"></i><b>1.1.1</b> 向量（Vector）</a></li>
+<li class="chapter" data-level="1.1.2" data-path="r-語言基礎語法.html"><a href="r-語言基礎語法.html#因子factor"><i class="fa fa-check"></i><b>1.1.2</b> 因子（Factor）</a></li>
+<li class="chapter" data-level="1.1.3" data-path="r-語言基礎語法.html"><a href="r-語言基礎語法.html#矩陣matrix"><i class="fa fa-check"></i><b>1.1.3</b> 矩陣（Matrix）</a></li>
+<li class="chapter" data-level="1.1.4" data-path="r-語言基礎語法.html"><a href="r-語言基礎語法.html#資料框data-frame"><i class="fa fa-check"></i><b>1.1.4</b> 資料框（Data Frame）</a></li>
 </ul></li>
+<li class="chapter" data-level="1.2" data-path="r-語言基礎語法.html"><a href="r-語言基礎語法.html#dplyr資料處理"><i class="fa fa-check"></i><b>1.2</b> <code>dplyr</code>資料處理</a></li>
 </ul></li>
 <li class="chapter" data-level="2" data-path="基本資料統計.html"><a href="基本資料統計.html"><i class="fa fa-check"></i><b>2</b> <strong>基本資料統計</strong></a>
 <ul>
@@ -194,11 +198,11 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <p class="author"><em>Chia-Jung (Robert) Yeh 葉家榮<br />
 <a href="https://www.sydney.edu.au/business/about/our-people/research-students/chia-jung-yeh-557.html"><strong>PhD: Insitute of Transport and Logistics Studies, USYD</strong></a><br />
 M.S.: Department of Transportation and Logistics Management, NYCU</em></p>
-<p class="date"><em>2024-01-21</em></p>
+<p class="date"><em>2024-01-22</em></p>
 </div>
 <div id="前言" class="section level1 unnumbered hasAnchor">
 <h1><strong>前言</strong><a href="index.html#前言" class="anchor-section" aria-label="Anchor link to header"></a></h1>
-<p>本網站簡介運輸資料分析之方法，並透過實務應用瞭解運輸資料的特性、分析原理，以及 R 語言各套件與函式的功能。共分為四大章節：基本資料統計、地理分析、進階應用，各章節皆以運輸資料為示範，期能擴充 R 語言使用者對於此一領域的熟悉程度。本網站之目的「非」系統性地學習 R 語言與分析套件，而係藉由零散的個案分析，提供較全面的實際資料操作。</p>
+<p>本網站簡介運輸資料分析之方法，並透過實務應用瞭解運輸資料的特性、分析原理，以及 R 語言各套件與函式的功能。共分為四大章節：R 語言基礎語法、基本資料統計、地理分析、進階應用，各章節皆以運輸資料為示範，期能擴充 R 語言使用者對於此一領域的熟悉程度。本網站主要藉由零散的個案分析，提供較全面的實際資料操作。</p>
 <hr />
 <div id="安裝套件" class="section level2 unnumbered hasAnchor">
 <h2>安裝套件<a href="index.html#安裝套件" class="anchor-section" aria-label="Anchor link to header"></a></h2>
@@ -298,8 +302,7 @@ M.S.: Department of Transportation and Logistics Management, NYCU</em></p>
 <h2>其他參考資料<a href="index.html#其他參考資料" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <p>以下網站陳列較系統性的教材與參考資料：</p>
 <ol style="list-style-type: decimal">
-<li><a href="https://chiajung-yeh.github.io/R-Code-Sharing/R_Preliminary/R_Preliminary.html">R Preliminary</a><span style="font-size:10pt;color:#003060;">   [<strong><em>建議先行參考此網頁，以初步瞭解 <code>dplyr</code> 套件各函式！</em></strong>]</span><br />
-</li>
+<li><a href="https://chiajung-yeh.github.io/R-Code-Sharing/R_Preliminary/R_Preliminary.html">R Preliminary</a></li>
 <li><a href="https://chiajung-yeh.github.io/Spatial-Analysis/">Spatial Analysis with R</a><br />
 </li>
 <li><a href="https://www.books.com.tw/products/0010979785">地理資訊系統與空間運算：R軟體應用</a></li>

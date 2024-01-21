@@ -27,12 +27,12 @@ access_token=get_token(client_id, client_secret)
 物件是 R 語言中構成資料的基本要素，常見者包含五大類：  
 
 1.  向量（vector）  
-2.  層級（factor）  
+2.  因子（factor）  
 3.  矩陣（matrix）   
 4.  資料框（data frame）  
 5.  陣列（list）  
 
-以下各小節針對各基本要素的構建與運算詳細說明。
+以下小節針對各基本要素的構建與運算詳細說明。
 
 ### 向量（Vector）
 <p style="color:#003D79;font-size:18px;line-height:2">**⌾ 向量的性質**</p>  
@@ -68,6 +68,9 @@ vec2
 <p style="font-size:18px;line-height:1">**<u>邏輯向量</u>**</p>  
 ```{r vector3, echo=T, eval=F}
 vec3=c(T,F,T,F,T)
+
+#---或寫完整的邏輯值---#
+# vec3=c(TRUE,FALSE,TRUE,FALSE,TRUE)
 ```
 
 ```{r vector3-show, echo=F, eval=T}
@@ -153,6 +156,13 @@ kable(vector_calculation, booktabs=T, caption="數學運算")%>%
 計算向量中的元素個數。
 ```{r vector-length, echo=T, eval=T}
 length(vec4)
+```
+
+<p style="color:#003D79;font-size:18px;line-height:2">**⌾ 向量統計**</p>  
+統計向量中各元素的個數。
+```{r vector-table, echo=T, eval=T}
+vec_tab=c("A","C","B","D","E","C","E","B","A","E","E","B")
+table(vec_tab)
 ```
 
 <p style="color:#003D79;font-size:18px;line-height:2">**⌾ 向量排序**</p>  
@@ -248,6 +258,7 @@ class(vec_cha)
 as.numeric(vec_cha)
 ```
 
+<p style="font-size:18px;line-height:1">**<u>數值轉換為文字</u>**</p>  
 另外，可利用`as.character()`函式轉化為文字資料
 ```{r vector-convert4, echo=T, eval=T}
 vec_num=c(1,2,3,4,5)
@@ -271,6 +282,232 @@ rep(vec6, each=2)
 # 設定向量整體重複的次數
 rep(vec6, times=2)
 ```
+
+
+<p style="color:#003D79;font-size:18px;line-height:2">**⌾ 回傳向量中 TRUE 索引值**</p>   
+`which()`函式可用以回傳向量中 TRUE 的索引值。
+
+<p style="font-size:18px;line-height:1">**<u>TRUE 索引值</u>**</p>  
+```{r vector-which1, echo=T, eval=T}
+vec3=c(T,F,T,F,T)
+which(vec3)
+```
+
+由上述範例可知，TRUE 位於`vec3`向量的第 1、3、5 個元素。
+
+
+<p style="font-size:18px;line-height:1">**<u>回傳符合條件索引值</u>**</p>  
+除了上述基本案例外，通常我們會藉由運算子（`==`, `>`, `<`, ...）以尋找符合條件的元素，並進一步透過`which()`函式回傳結果為 TRUE 的索引值。範例如下。
+
+```{r vector-which2, echo=T, eval=T}
+vec6=c(2,5,8,11,7,4,10,3)
+
+# vec6大於5的邏輯判斷
+vec6>5
+
+# 回傳vec6大於5的索引值
+which(vec6>5)
+```
+
+
+### 因子（Factor）
+<p style="color:#003D79;font-size:18px;line-height:2">**⌾ 因子的性質**</p>  
+
+* 由文字向量建立  
+* 須設定文字層級  
+* 設立因子的延伸應用：  
+  * 在`ggplot2`套件中調整圖例順序  
+  * 在計量模型中建立啞變量（dummy variables）  
+
+
+<p style="color:#003D79;font-size:18px;line-height:2">**⌾ 建立因子**</p>   
+因子的建立可以使用`factor()`函式，其中必須透過`levels=`參數設定層級，程式碼建構如下：  
+
+```{r factor1, echo=T, eval=F}
+factor(文字向量, levels=期望的層級向量)
+```
+
+以下列簡單範例說明因子的功能，建立`school`之文字向量。
+
+```{r factor2, echo=T, eval=T}
+school=c("大學","幼稚園","國小","高中","國中")
+```
+
+若欲將`school`轉換為具有層級意義的因子，並依據學校層級排序，則程式碼撰寫如下：
+
+```{r factor3, echo=T, eval=T}
+school_fc=factor(school, levels=c("幼稚園","國小","國中","高中","大學"))
+school_fc
+```
+
+由上述可發現，有別於文字向量，因子會另出現「Levels:」的訊息，表示文字具有層級意義。  
+最後可利用`is.factor()`函式判斷一變數是否為因子，抑或利用`class()`函式逕查詢該變數的資料型態。  
+
+```{r factor5, echo=T, eval=T}
+is.factor(school_fc)
+class(school_fc)
+```
+
+上述所建立的因子具有層級意義，故可以排序，可進一步利用`sort()`函式排序，程式碼如下：
+
+```{r factor-sort, echo=T, eval=T}
+sort(school_fc)
+```
+
+<p style="color:#003D79;font-size:18px;line-height:2">**⌾ 建立有序因子**</p>   
+上述所建立的因子具有層級意義，可以排序，然而各元素間不具有大小意義，無法直接比較大小值。以`school_fc`為例，我們所設定的「大學」層級高於「幼稚園」，然而這不意謂著`大學>幼稚園`。因此若直接拿兩元素相比較大小，程式會出現警告（大小關係對因子無意義），且回傳`NA`，試驗如下：
+
+```{r factor-error, echo=T, eval=T}
+school_fc[1]>school_fc[2]
+```
+
+若欲建立具大小關係的因子，則需在`factor()`函式中設定`order=T`參數，以表達具有順序意義。
+
+```{r factor-order1, echo=T, eval=T}
+school_order=factor(school, levels=c("幼稚園","國小","國中","高中","大學"), order=T)
+school_order
+```
+
+由輸出結果可發現，層級中具有「<」符號，用以表達有序之大小關係。
+
+```{r factor-order2, echo=T, eval=T}
+# 比較幼稚園與大學的大小關係
+school_order[1]>school_order[2]
+```
+
+<p style="color:#003D79;font-size:18px;line-height:2">**⌾ 轉換資料型態**</p>   
+可透過`as.character()`將因子轉換為單純的文字向量，亦可藉由`as.numeric()`將因子轉換為數值，而該數值乃依據層級的大小給定，層級越高（後）者，數值愈大。以上述`school_fc`為案例說明。
+
+```{r factor-char-num, echo=T, eval=T}
+# 轉換為文字向量
+as.character(school_fc)
+
+# 轉換為數值向量
+as.numeric(school_fc)
+```
+
+
+### 矩陣（Matrix）
+<p style="color:#003D79;font-size:18px;line-height:2">**⌾ 矩陣的性質**</p>  
+
+* 二維  
+* 含括多個橫列（rows）與直行（columns）  
+* 可以組合相同資料型態的向量 (文字向量、數值向量、邏輯向量)  
+
+<p style="color:#003D79;font-size:18px;line-height:2">**⌾ 建立矩陣**</p>  
+利用`matrix()`函式建立矩陣，其中必須設定兩參數：  
+ 
+* `nrow=` 設定矩陣的橫列數  
+* `ncol=` 設定矩陣的直行數  
+
+```{r matrix-function, echo=T, eval=F}
+matrix(向量, nrow=, ncol=)
+```
+
+範例如下：
+```{r matrix1, echo=T, eval=T}
+mat1=matrix(c(1:15), nrow=3, ncol=5)
+mat1
+```
+
+由回傳結果可發現，該矩陣是先由上至下，再由左至右填入向量。若希望矩陣的填法是先由左至右，再由上至下，則須設定參數`byrow=T`，程式碼撰寫如下。
+
+
+```{r matrix2, echo=T, eval=T}
+mat2=matrix(c(1:15), nrow=3, ncol=5, byrow=T)
+mat2
+```
+
+<p style="color:#003D79;font-size:18px;line-height:2">**⌾ 查看矩陣的維度**</p>  
+矩陣是二維的資料，若要進一步該二維資料中的橫列與直行個數，可利用`nrow()`與`ncol()`函式分別查看，或逕利用`dim()`函式查看之。
+
+```{r matrix3, echo=T, eval=T}
+nrow(mat2)
+ncol(mat2)
+dim(mat2)
+```
+
+<p style="color:#003D79;font-size:18px;line-height:2">**⌾ 回傳矩陣的特定元素**</p>  
+利用中括號`[ , ]`可回傳特定元素的值，其中逗點前必須放置橫列的索引值，而逗點後則是直行的索引值。  
+以第 2 橫列第 4 行為例，程式碼撰寫如下。  
+
+```{r matrix4, echo=T, eval=T}
+mat2[2, 4]
+```
+
+<p style="color:#003D79;font-size:18px;line-height:2">**⌾ 轉置矩陣**</p>  
+藉由`t()`函式將矩陣予以轉置（transpose）。
+
+```{r matrix5, echo=T, eval=T}
+t(mat2)
+```
+
+<p style="color:#003D79;font-size:18px;line-height:2">**⌾ 矩陣運算**</p>  
+矩陣的運算是 R 語言的利器，執行效率相當高，在許多統計模型背後的運算亦是牽涉複雜的矩陣運算。以下簡單介紹重要的運算函式。
+
+<p style="font-size:18px;line-height:1">**<u>橫列與直行運算</u>**</p>  
+橫列與直行的加總與平均值計算彙整如表\@ref(tab:matrix-operation-table)。
+
+```{r matrix-operation-table, echo=F, eval=T}
+matrix_operation=data.frame(TYPE=rep(c("橫列","直行"), each=2), sum=c("`rowSums(mat2)`", paste(rowSums(mat2), collapse=" "), "`colSums(mat2)`", paste(colSums(mat2), collapse=" ")), ave=c("`rowMeans(mat2)`", paste(rowMeans(mat2), collapse=" "), "`colMeans(mat2)`", paste(colMeans(mat2), collapse=" ")))
+
+colnames(matrix_operation)=c("","加總","平均")
+kable(matrix_operation, booktabs=T, caption="矩陣運算")%>%
+  kable_styling(bootstrap_options=c("striped", "hover"), font_size=14)%>%
+  column_spec(1, bold=T)%>%
+  collapse_rows(c(1))%>%
+  row_spec(0, bold=T, color="white", background="#8E8E8E")
+```
+
+
+<p style="font-size:18px;line-height:1">**<u>`apply()`函式應用</u>**</p>  
+試想若沒有\@ref(tab:matrix-operation-table)中的各個函式用以處理矩陣資料，我們可以透過`for()`迴圈逐行或逐列針對矩陣運算，以橫列加總（rowSums）為例，程式碼撰寫如下。
+
+```{r matrix-for-loop, echo=T, eval=T}
+for(i in c(1:nrow(mat2))){
+  cat(sum(mat2[i,]), " ")
+}
+```
+
+然而如是的寫法效率極差，在 R 語言中類似 `for()` 迴圈的程序可以考慮更高效率的`apply()`函式取代之，程式語法如下：
+
+```{r apply-fun, echo=T, eval=F}
+apply(矩陣資料, 方向, 運算函式)
+```
+
+其中`方向`有兩種選擇：`1`表示逐列（row）運算；`2`表示逐行（column）運算。運算函式可為前述向量運算的任一函式。`apply()`函式的運算概念如圖\@ref(fig:apply-fig)之示意圖。
+
+```{r apply-fig, echo=F, eval=T, out.width="80%", fig.align="center", fig.cap="排序函式示意圖"}
+include_graphics("./figure/apply.png")
+```
+
+再次以`mat2`矩陣為範例，程式碼撰寫如下。
+
+```{r matrix-apply-eg, echo=T, eval=T}
+# 逐列加總 (=rowSums)
+apply(mat2, 1, sum)
+
+# 逐行平均 (=colMeans)
+apply(mat2, 2, mean)
+
+# 逐列尋找最大值索引值
+apply(mat2, 1, which.max)
+
+# 逐行計算標準差
+apply(mat2, 1, sd)
+```
+
+
+### 資料框（Data Frame）
+
+
+
+
+## `dplyr`資料處理
+
+
+
+
 
 
 
