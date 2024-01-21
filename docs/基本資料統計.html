@@ -4,18 +4,18 @@
 
   <meta charset="utf-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-  <title>Chapter 1 基本資料統計 | 運輸資料分析初探</title>
+  <title>Chapter 2 基本資料統計 | 運輸資料分析初探</title>
   <meta name="description" content="運輸資料分析" />
   <meta name="generator" content="bookdown 0.35 and GitBook 2.6.7" />
 
-  <meta property="og:title" content="Chapter 1 基本資料統計 | 運輸資料分析初探" />
+  <meta property="og:title" content="Chapter 2 基本資料統計 | 運輸資料分析初探" />
   <meta property="og:type" content="book" />
   
   <meta property="og:description" content="運輸資料分析" />
   <meta name="github-repo" content="ChiaJung-Yeh/Transport-Analysis" />
 
   <meta name="twitter:card" content="summary" />
-  <meta name="twitter:title" content="Chapter 1 基本資料統計 | 運輸資料分析初探" />
+  <meta name="twitter:title" content="Chapter 2 基本資料統計 | 運輸資料分析初探" />
   
   <meta name="twitter:description" content="運輸資料分析" />
   
@@ -30,7 +30,7 @@
   <meta name="apple-mobile-web-app-status-bar-style" content="black" />
   
   
-<link rel="prev" href="index.html"/>
+<link rel="prev" href="r-語言基礎語法.html"/>
 
 <script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.6/dist/fuse.min.js"></script>
@@ -149,13 +149,20 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="" data-path="index.html"><a href="index.html#tdx-套件使用方式"><i class="fa fa-check"></i>TDX 套件使用方式</a></li>
 <li class="chapter" data-level="" data-path="index.html"><a href="index.html#其他參考資料"><i class="fa fa-check"></i>其他參考資料</a></li>
 </ul></li>
-<li class="chapter" data-level="1" data-path="基本資料統計.html"><a href="基本資料統計.html"><i class="fa fa-check"></i><b>1</b> <strong>基本資料統計</strong></a>
+<li class="chapter" data-level="1" data-path="r-語言基礎語法.html"><a href="r-語言基礎語法.html"><i class="fa fa-check"></i><b>1</b> <strong>R 語言基礎語法</strong></a>
 <ul>
-<li class="chapter" data-level="1.1" data-path="基本資料統計.html"><a href="基本資料統計.html#公車資料統計分析"><i class="fa fa-check"></i><b>1.1</b> 公車資料統計分析</a>
+<li class="chapter" data-level="1.1" data-path="r-語言基礎語法.html"><a href="r-語言基礎語法.html#物件object"><i class="fa fa-check"></i><b>1.1</b> 物件（Object）</a>
 <ul>
-<li class="chapter" data-level="1.1.1" data-path="基本資料統計.html"><a href="基本資料統計.html#路線統計分析"><i class="fa fa-check"></i><b>1.1.1</b> 路線統計分析</a></li>
-<li class="chapter" data-level="1.1.2" data-path="基本資料統計.html"><a href="基本資料統計.html#站牌統計分析"><i class="fa fa-check"></i><b>1.1.2</b> 站牌統計分析</a></li>
-<li class="chapter" data-level="1.1.3" data-path="基本資料統計.html"><a href="基本資料統計.html#站間行駛距離計算"><i class="fa fa-check"></i><b>1.1.3</b> 站間行駛距離計算</a></li>
+<li class="chapter" data-level="1.1.1" data-path="r-語言基礎語法.html"><a href="r-語言基礎語法.html#向量"><i class="fa fa-check"></i><b>1.1.1</b> 向量</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="2" data-path="基本資料統計.html"><a href="基本資料統計.html"><i class="fa fa-check"></i><b>2</b> <strong>基本資料統計</strong></a>
+<ul>
+<li class="chapter" data-level="2.1" data-path="基本資料統計.html"><a href="基本資料統計.html#公車資料統計分析"><i class="fa fa-check"></i><b>2.1</b> 公車資料統計分析</a>
+<ul>
+<li class="chapter" data-level="2.1.1" data-path="基本資料統計.html"><a href="基本資料統計.html#路線統計分析"><i class="fa fa-check"></i><b>2.1.1</b> 路線統計分析</a></li>
+<li class="chapter" data-level="2.1.2" data-path="基本資料統計.html"><a href="基本資料統計.html#站牌統計分析"><i class="fa fa-check"></i><b>2.1.2</b> 站牌統計分析</a></li>
+<li class="chapter" data-level="2.1.3" data-path="基本資料統計.html"><a href="基本資料統計.html#站間行駛距離計算"><i class="fa fa-check"></i><b>2.1.3</b> 站間行駛距離計算</a></li>
 </ul></li>
 </ul></li>
 <li class="divider"></li>
@@ -178,11 +185,11 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
           <div class="page-inner">
 
             <section class="normal" id="section-">
-<div id="基本資料統計" class="section level1 hasAnchor" number="1">
-<h1><span class="header-section-number">Chapter 1</span> <strong>基本資料統計</strong><a href="基本資料統計.html#基本資料統計" class="anchor-section" aria-label="Anchor link to header"></a></h1>
+<div id="基本資料統計" class="section level1 hasAnchor" number="2">
+<h1><span class="header-section-number">Chapter 2</span> <strong>基本資料統計</strong><a href="基本資料統計.html#基本資料統計" class="anchor-section" aria-label="Anchor link to header"></a></h1>
 <p>透過<code>dplyr</code>套件統計運輸資料是數據分析的第一步，可瞭解運輸供給與需求的概況，並可將大數據轉換為可理解且有意涵的資訊。</p>
-<div id="公車資料統計分析" class="section level2 hasAnchor" number="1.1">
-<h2><span class="header-section-number">1.1</span> 公車資料統計分析<a href="基本資料統計.html#公車資料統計分析" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<div id="公車資料統計分析" class="section level2 hasAnchor" number="2.1">
+<h2><span class="header-section-number">2.1</span> 公車資料統計分析<a href="基本資料統計.html#公車資料統計分析" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <p>請先利用 TDX 套件介接公車資料（以新竹市為例）：</p>
 <div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1-1"><a href="基本資料統計.html#cb1-1" tabindex="-1"></a><span class="co"># 公車路線</span></span>
 <span id="cb1-2"><a href="基本資料統計.html#cb1-2" tabindex="-1"></a>bus_route<span class="ot">=</span><span class="fu">Bus_Route</span>(access_token, <span class="st">&quot;Hsinchu&quot;</span>)</span>
@@ -193,8 +200,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <span id="cb1-7"><a href="基本資料統計.html#cb1-7" tabindex="-1"></a><span class="co"># 公車站間距離</span></span>
 <span id="cb1-8"><a href="基本資料統計.html#cb1-8" tabindex="-1"></a>bus_distance<span class="ot">=</span><span class="fu">Bus_Distance</span>(access_token, <span class="st">&quot;Hsinchu&quot;</span>, bus_route<span class="sc">$</span>RouteID)</span></code></pre></div>
 <p>以下藉由各議題展示分析架構與程式碼，針對每一問題先瞭解運輸資料的特性，而後再依據分析邏輯撰寫程式碼。</p>
-<div id="路線統計分析" class="section level3 hasAnchor" number="1.1.1">
-<h3><span class="header-section-number">1.1.1</span> 路線統計分析<a href="基本資料統計.html#路線統計分析" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<div id="路線統計分析" class="section level3 hasAnchor" number="2.1.1">
+<h3><span class="header-section-number">2.1.1</span> 路線統計分析<a href="基本資料統計.html#路線統計分析" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <p>公車路線的代碼有兩種，其一為 RouteUID，另一為 SubRouteUID。前者是主路線代碼，後者是子路線代碼，亦即將主路線再依據不同行駛路線（如：延駛、繞駛等）或方向（去程、返程）細部分類不同路線。</p>
 <br></br>
 <div style="background-color:#6C6C6C;color:white;">
@@ -281,8 +288,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <div class="sourceCode" id="cb15"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb15-1"><a href="基本資料統計.html#cb15-1" tabindex="-1"></a><span class="fu">filter</span>(bus_route, <span class="fu">grepl</span>(<span class="st">&quot;支&quot;</span>, SubRouteName))<span class="sc">%&gt;%</span></span>
 <span id="cb15-2"><a href="基本資料統計.html#cb15-2" tabindex="-1"></a>  <span class="fu">select</span>(RouteName, SubRouteUID, SubRouteName)</span></code></pre></div>
 </div>
-<div id="站牌統計分析" class="section level3 hasAnchor" number="1.1.2">
-<h3><span class="header-section-number">1.1.2</span> 站牌統計分析<a href="基本資料統計.html#站牌統計分析" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<div id="站牌統計分析" class="section level3 hasAnchor" number="2.1.2">
+<h3><span class="header-section-number">2.1.2</span> 站牌統計分析<a href="基本資料統計.html#站牌統計分析" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <p>公車站牌資料中係記錄每一子路線（SubRouteUID）的所有站牌資訊，含括路線名稱、方向、站牌代碼、名稱、站序、經緯度等資訊。</p>
 <br></br>
 <div style="background-color:#6C6C6C;color:white;">
@@ -389,12 +396,12 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 ## 6 HSZ000801   83                     18 北校門</code></pre>
 <p>截至 Step 2，可以發現資料中僅剩餘第一站序與最後一站序，其餘皆已刪除，然而接下來我們希望能夠將同一子路線不同站序並排，尚能進一步做分析。首先我們必須針對每一筆資料給定起始站或終點站的標籤，由於起始站的站序必然是 1，故在此我們可以利用簡單的<code>ifelse()</code>函式判斷站序為 1 者為起始站，反之則為終點站，如是即可得到起訖（Stop_O、Stop_D）的標籤。<code>ifelse()</code>函式的參數設定如下：</p>
 <div class="sourceCode" id="cb22"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb22-1"><a href="基本資料統計.html#cb22-1" tabindex="-1"></a><span class="fu">ifelse</span>(條件, TRUE時執行程序, FALSE時執行程序)</span></code></pre></div>
-<p>目前為止，資料型態屬於「長資料（long data）」，亦即資料橫列數比較長的情況。然而我們希望的是將同一路線不同站序展開並排，屬「寬資料（wide data）」，亦即欄位數比較多的情況，此時應利用<code>data.table</code>套件中的<code>dcast()</code>函式達成此一目的。<code>dcast()</code>函式的參數設定如下，如圖<a href="基本資料統計.html#fig:bus-stop-dcast-fig">1.1</a>之示意圖所示。</p>
+<p>目前為止，資料型態屬於「長資料（long data）」，亦即資料橫列數比較長的情況。然而我們希望的是將同一路線不同站序展開並排，屬「寬資料（wide data）」，亦即欄位數比較多的情況，此時應利用<code>data.table</code>套件中的<code>dcast()</code>函式達成此一目的。<code>dcast()</code>函式的參數設定如下，如圖<a href="基本資料統計.html#fig:bus-stop-dcast-fig">2.1</a>之示意圖所示。</p>
 <div class="sourceCode" id="cb23"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb23-1"><a href="基本資料統計.html#cb23-1" tabindex="-1"></a><span class="fu">dcast</span>(資料, 保留欄位<span class="sc">+</span>保留欄位<span class="sc">+</span>... <span class="sc">~</span> 參照欄位, <span class="at">value.var=</span><span class="st">&quot;展開欄位&quot;</span>)</span></code></pre></div>
 <div class="figure" style="text-align: center"><span style="display:block;" id="fig:bus-stop-dcast-fig"></span>
 <img src="figure/dcast.png" alt="`dcast()`函式用法" width="80%" />
 <p class="caption">
-圖 1.1: <code>dcast()</code>函式用法
+圖 2.1: <code>dcast()</code>函式用法
 </p>
 </div>
 <p>經過處理成為寬資料後，即可針對起訖相同站名者利用<code>filter()</code>函式予以保留。<code>filter()</code>函式之參數設定如下：</p>
@@ -429,19 +436,19 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 ## 9   HSZ0710A1          71A     北新竹後站     北新竹後站</code></pre>
 <p>由以上回傳資料可知，新竹市公車共計 9 條路線屬於環狀路線。</p>
 </div>
-<div id="站間行駛距離計算" class="section level3 hasAnchor" number="1.1.3">
-<h3><span class="header-section-number">1.1.3</span> 站間行駛距離計算<a href="基本資料統計.html#站間行駛距離計算" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<div id="站間行駛距離計算" class="section level3 hasAnchor" number="2.1.3">
+<h3><span class="header-section-number">2.1.3</span> 站間行駛距離計算<a href="基本資料統計.html#站間行駛距離計算" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <p>公車站間距離資料中係記錄每一子路線（SubRouteUID）相鄰站點間的路線距離，其中 FromStopID 為起點站代碼，ToStopID 為迄點站代碼，StopSequence 為「迄點站」的站序，Distance 即為兩相鄰站點間距離。</p>
 <br></br>
 <div style="background-color:#6C6C6C;color:white;">
 <p><span style="font-size:17pt"><strong>   § 計算任意起迄站間距離</strong></span></p>
 </div>
 <p>公車站間距離資料係記錄兩相鄰站點距離，而非「任意兩站點間」的距離，故必須經過資料處理尚能透過原始資料計算任意起迄站間距離。在給定的一組站點序號，首先必須回傳所有該起迄區間的資料，例如若要尋找新竹市區 81 公車去程（SubRouteUID: HSZ000701）的「陽明交大光復南門」（StopID: 303819）至「科技生活館」（StopID: 303823）站點，我們必須先知道兩站點的序號，並擷取所有介於這兩序號間的公車站點距離資料，最後將 Distance 欄位相加總後即為該區間的行駛距離。</p>
-<p>在公車站間距離之原始資料中，請務必注意，StopSequence 為 1 時，路線距離為 0（原始資料記錄為 NA）；StopSequence 為 2 時，路線距離係第 1 站至第 2 站的距離，其他則以此類推。因此若欲計算第 3 站至第 6 站間的距離，必須先行回傳公車站間距離資料中站序為 4 至 6 的資料，如圖<a href="基本資料統計.html#fig:bus-distance-fig">1.2</a>之示意圖所示。據上述案例，由第 3 站出發，必須由站序為 4 者始擷取資料，故後續得知起點站序後，務必加 1 以在原始資料中擷取正確區間。</p>
+<p>在公車站間距離之原始資料中，請務必注意，StopSequence 為 1 時，路線距離為 0（原始資料記錄為 NA）；StopSequence 為 2 時，路線距離係第 1 站至第 2 站的距離，其他則以此類推。因此若欲計算第 3 站至第 6 站間的距離，必須先行回傳公車站間距離資料中站序為 4 至 6 的資料，如圖<a href="基本資料統計.html#fig:bus-distance-fig">2.2</a>之示意圖所示。據上述案例，由第 3 站出發，必須由站序為 4 者始擷取資料，故後續得知起點站序後，務必加 1 以在原始資料中擷取正確區間。</p>
 <div class="figure" style="text-align: center"><span style="display:block;" id="fig:bus-distance-fig"></span>
 <img src="figure/bus_distance.png" alt="公車站間距離資料計算示意圖" width="80%" />
 <p class="caption">
-圖 1.2: 公車站間距離資料計算示意圖
+圖 2.2: 公車站間距離資料計算示意圖
 </p>
 </div>
 <p>回到尋找新竹市區 81 公車去程的「陽明交大光復南門」至「科技生活館」站點之範例，程式碼撰寫如下：</p>
@@ -490,7 +497,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
           </div>
         </div>
       </div>
-<a href="index.html" class="navigation navigation-prev navigation-unique" aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="r-語言基礎語法.html" class="navigation navigation-prev navigation-unique" aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
 
     </div>
   </div>
@@ -522,7 +529,7 @@ gitbook.start({
 "size": 2
 },
 "edit": {
-"link": "https://github.com/ChiaJung-Yeh/Transport-Analysis/tree/master/01-Descriptive-Analysis.Rmd",
+"link": "https://github.com/ChiaJung-Yeh/Transport-Analysis/tree/master/02-Descriptive-Analysis.Rmd",
 "text": "Edit"
 },
 "history": {

@@ -6,3 +6,8 @@ fig:bus-distance-fig
 路線統計分析
 站牌統計分析
 站間行駛距離計算
+物件object
+向量
+r-語言基礎與法
+r-語言基礎語法
+tab:vector-operation-table

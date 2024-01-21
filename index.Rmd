@@ -68,7 +68,7 @@ package_table=data.frame(package=c("[`dplyr`](https://dplyr.tidyverse.org/)", "[
 ","臺灣相關資料"))
 
 colnames(package_table)=c("套件","功能")
-kable(package_table, booktabs=T, caption="本套件函式綜覽")%>%
+kable(package_table, booktabs=T, caption="使用套件之功能")%>%
   kable_styling(bootstrap_options=c("striped", "hover"), font_size=14)%>%
   column_spec(1, bold=T)%>%
   row_spec(0, bold=T, color="white", background="#8E8E8E")

@@ -4,18 +4,18 @@
 
   <meta charset="utf-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-  <title>Page not found | 運輸資料分析初探</title>
+  <title>Chapter 1 R 語言基礎語法 | 運輸資料分析初探</title>
   <meta name="description" content="運輸資料分析" />
   <meta name="generator" content="bookdown 0.35 and GitBook 2.6.7" />
 
-  <meta property="og:title" content="Page not found | 運輸資料分析初探" />
+  <meta property="og:title" content="Chapter 1 R 語言基礎語法 | 運輸資料分析初探" />
   <meta property="og:type" content="book" />
   
   <meta property="og:description" content="運輸資料分析" />
   <meta name="github-repo" content="ChiaJung-Yeh/Transport-Analysis" />
 
   <meta name="twitter:card" content="summary" />
-  <meta name="twitter:title" content="Page not found | 運輸資料分析初探" />
+  <meta name="twitter:title" content="Chapter 1 R 語言基礎語法 | 運輸資料分析初探" />
   
   <meta name="twitter:description" content="運輸資料分析" />
   
@@ -30,8 +30,8 @@
   <meta name="apple-mobile-web-app-status-bar-style" content="black" />
   
   
-
-
+<link rel="prev" href="index.html"/>
+<link rel="next" href="基本資料統計.html"/>
 <script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.6/dist/fuse.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
@@ -189,19 +189,211 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
           <div class="page-inner">
 
             <section class="normal" id="section-">
-<div id="page-not-found" class="section level1">
-<h1>Page not found</h1>
-<p>The page you requested cannot be found (perhaps it was moved or renamed).</p>
-<p>You may want to try searching to find the page's new location, or use
-the table of contents to find the page you are looking for.</p>
+<div id="r-語言基礎語法" class="section level1 hasAnchor" number="1">
+<h1><span class="header-section-number">Chapter 1</span> <strong>R 語言基礎語法</strong><a href="r-語言基礎語法.html#r-語言基礎語法" class="anchor-section" aria-label="Anchor link to header"></a></h1>
+<p>本章節系統性介紹 R 語言的重要語法和<code>dplyr</code>套件的功能及用法，請務必熟悉各函式，以便後續程式碼撰寫。</p>
+<div id="物件object" class="section level2 hasAnchor" number="1.1">
+<h2><span class="header-section-number">1.1</span> 物件（Object）<a href="r-語言基礎語法.html#物件object" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>物件是 R 語言中構成資料的基本要素，常見者包含五大類：</p>
+<ol style="list-style-type: decimal">
+<li>向量（vector）<br />
+</li>
+<li>層級（factor）<br />
+</li>
+<li>矩陣（matrix）<br />
+</li>
+<li>資料框（data frame）<br />
+</li>
+<li>陣列（list）</li>
+</ol>
+<div id="向量" class="section level3 hasAnchor" number="1.1.1">
+<h3><span class="header-section-number">1.1.1</span> 向量<a href="r-語言基礎語法.html#向量" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p style="color:#003D79;font-size:18px;line-height:2">
+<strong>⌾ 向量特徵</strong>
+</p>
+<ul>
+<li>一組值<br />
+</li>
+<li>一維<br />
+</li>
+<li>資料型態可為：數值、文字、邏輯值</li>
+</ul>
+<p style="color:#003D79;font-size:18px;line-height:2">
+<strong>⌾ 利用<code>c()</code> 建立向量</strong>
+</p>
+<ul>
+<li><strong>數值向量</strong></li>
+</ul>
+<div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1-1"><a href="r-語言基礎語法.html#cb1-1" tabindex="-1"></a>vec1<span class="ot">=</span><span class="fu">c</span>(<span class="dv">1</span>,<span class="dv">2</span>,<span class="dv">3</span>,<span class="dv">4</span>,<span class="dv">5</span>)</span></code></pre></div>
+<pre><code>## [1] 1 2 3 4 5</code></pre>
+<ul>
+<li><strong>文字向量</strong></li>
+</ul>
+<div class="sourceCode" id="cb3"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb3-1"><a href="r-語言基礎語法.html#cb3-1" tabindex="-1"></a>vec2<span class="ot">=</span><span class="fu">c</span>(<span class="st">&quot;A&quot;</span>,<span class="st">&quot;B&quot;</span>,<span class="st">&quot;C&quot;</span>,<span class="st">&quot;D&quot;</span>,<span class="st">&quot;E&quot;</span>)</span></code></pre></div>
+<pre><code>## [1] &quot;A&quot; &quot;B&quot; &quot;C&quot; &quot;D&quot; &quot;E&quot;</code></pre>
+<ul>
+<li><strong>邏輯向量</strong></li>
+</ul>
+<div class="sourceCode" id="cb5"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb5-1"><a href="r-語言基礎語法.html#cb5-1" tabindex="-1"></a>vec3<span class="ot">=</span><span class="fu">c</span>(T,F,T,F,T)</span></code></pre></div>
+<p style="color:#003D79;font-size:18px;line-height:2">
+<strong>⌾ 擷取特定向量中特定元素</strong>
+</p>
+<ul>
+<li><strong>在<code>vec2</code>中擷取第三個元素</strong></li>
+</ul>
+<div class="sourceCode" id="cb6"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb6-1"><a href="r-語言基礎語法.html#cb6-1" tabindex="-1"></a>vec2[<span class="dv">3</span>]</span></code></pre></div>
+<pre><code>## [1] &quot;C&quot;</code></pre>
+<ul>
+<li><strong>在<code>vec2</code>中擷取多個連續元素</strong></li>
+</ul>
+<div class="sourceCode" id="cb8"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb8-1"><a href="r-語言基礎語法.html#cb8-1" tabindex="-1"></a>vec2[<span class="dv">2</span><span class="sc">:</span><span class="dv">4</span>]</span></code></pre></div>
+<pre><code>## [1] &quot;B&quot; &quot;C&quot; &quot;D&quot;</code></pre>
+<ul>
+<li><strong>在<code>vec2</code>中擷取多個非連續元素</strong></li>
+</ul>
+<div class="sourceCode" id="cb10"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb10-1"><a href="r-語言基礎語法.html#cb10-1" tabindex="-1"></a>vec2[<span class="fu">c</span>(<span class="dv">1</span>,<span class="dv">3</span>,<span class="dv">5</span>)]</span></code></pre></div>
+<pre><code>## [1] &quot;A&quot; &quot;C&quot; &quot;E&quot;</code></pre>
+<p style="color:#003D79;font-size:18px;line-height:2">
+<strong>⌾ 建立連續數值資料</strong>
+</p>
+<div class="sourceCode" id="cb12"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb12-1"><a href="r-語言基礎語法.html#cb12-1" tabindex="-1"></a><span class="fu">seq</span>(<span class="at">from=</span><span class="dv">2</span>, <span class="at">to=</span><span class="dv">20</span>, <span class="at">by=</span><span class="dv">2</span>)</span></code></pre></div>
+<pre><code>##  [1]  2  4  6  8 10 12 14 16 18 20</code></pre>
+<p style="color:#003D79;font-size:18px;line-height:2">
+<strong>⌾ 向量運算</strong>
+</p>
+<p>先行建立一個向量<code>vec4</code>。</p>
+<div class="sourceCode" id="cb14"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb14-1"><a href="r-語言基礎語法.html#cb14-1" tabindex="-1"></a>vec4<span class="ot">=</span><span class="fu">c</span>(<span class="dv">1</span>,<span class="dv">9</span>,<span class="dv">3</span>,<span class="dv">15</span>,<span class="dv">6</span>,<span class="dv">2</span>,<span class="dv">8</span>,<span class="dv">12</span>)</span></code></pre></div>
+<p>所有運算的程式碼與結果請參照表<a href="r-語言基礎語法.html#tab:vector-operation-table">1.1</a>。</p>
+<table class="table table-striped table-hover" style="font-size: 14px; margin-left: auto; margin-right: auto;">
+<caption style="font-size: initial !important;">
+<span id="tab:vector-operation-table">表 1.1: </span>向量運算
+</caption>
+<thead>
+<tr>
+<th style="text-align:left;font-weight: bold;color: white !important;background-color: #8E8E8E !important;">
+運算
+</th>
+<th style="text-align:left;font-weight: bold;color: white !important;background-color: #8E8E8E !important;">
+程式碼
+</th>
+<th style="text-align:left;font-weight: bold;color: white !important;background-color: #8E8E8E !important;">
+輸出結果
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left;font-weight: bold;">
+最大值
+</td>
+<td style="text-align:left;">
+<code>max(vec4)</code>
+</td>
+<td style="text-align:left;">
+<code>15</code>
+</td>
+</tr>
+<tr>
+<td style="text-align:left;font-weight: bold;">
+最小值
+</td>
+<td style="text-align:left;">
+<code>min(vec4)</code>
+</td>
+<td style="text-align:left;">
+<code>1</code>
+</td>
+</tr>
+<tr>
+<td style="text-align:left;font-weight: bold;">
+全域
+</td>
+<td style="text-align:left;">
+<code>range(vec4)</code>
+</td>
+<td style="text-align:left;">
+<code>1  15</code>
+</td>
+</tr>
+<tr>
+<td style="text-align:left;font-weight: bold;">
+總和
+</td>
+<td style="text-align:left;">
+<code>sum(vec4)</code>
+</td>
+<td style="text-align:left;">
+<code>56</code>
+</td>
+</tr>
+<tr>
+<td style="text-align:left;font-weight: bold;">
+平均
+</td>
+<td style="text-align:left;">
+<code>mean(vec4)</code>
+</td>
+<td style="text-align:left;">
+<code>7</code>
+</td>
+</tr>
+<tr>
+<td style="text-align:left;font-weight: bold;">
+中位數
+</td>
+<td style="text-align:left;">
+<code>median(vec4)</code>
+</td>
+<td style="text-align:left;">
+<code>7</code>
+</td>
+</tr>
+<tr>
+<td style="text-align:left;font-weight: bold;">
+乘積
+</td>
+<td style="text-align:left;">
+<code>prod(vec4)</code>
+</td>
+<td style="text-align:left;">
+<code>466560</code>
+</td>
+</tr>
+<tr>
+<td style="text-align:left;font-weight: bold;">
+變異數
+</td>
+<td style="text-align:left;">
+<code>var(vec4)</code>
+</td>
+<td style="text-align:left;">
+<code>24.571</code>
+</td>
+</tr>
+<tr>
+<td style="text-align:left;font-weight: bold;">
+標準差
+</td>
+<td style="text-align:left;">
+<code>sd(vec4)</code>
+</td>
+<td style="text-align:left;">
+<code>4.957</code>
+</td>
+</tr>
+</tbody>
+</table>
+
+</div>
+</div>
 </div>
             </section>
 
           </div>
         </div>
       </div>
-
-
+<a href="index.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="基本資料統計.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
     </div>
   </div>
 <script src="libs/gitbook-2.6.7/js/app.min.js"></script>
@@ -232,7 +424,7 @@ gitbook.start({
 "size": 2
 },
 "edit": {
-"link": "https://github.com/ChiaJung-Yeh/Transport-Analysis/tree/master/%s",
+"link": "https://github.com/ChiaJung-Yeh/Transport-Analysis/tree/master/01-Basic-R.Rmd",
 "text": "Edit"
 },
 "history": {

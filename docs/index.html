@@ -23,7 +23,7 @@
 <meta name="author" content="Chia-Jung (Robert) Yeh 葉家榮 PhD: Insitute of Transport and Logistics Studies, USYD M.S.: Department of Transportation and Logistics Management, NYCU" />
 
 
-<meta name="date" content="2024-01-15" />
+<meta name="date" content="2024-01-21" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -31,7 +31,7 @@
   
   
 
-<link rel="next" href="基本資料統計.html"/>
+<link rel="next" href="r-語言基礎語法.html"/>
 <script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.6/dist/fuse.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
@@ -153,9 +153,21 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="" data-path="index.html"><a href="index.html#tdx-套件使用方式"><i class="fa fa-check"></i>TDX 套件使用方式</a></li>
 <li class="chapter" data-level="" data-path="index.html"><a href="index.html#其他參考資料"><i class="fa fa-check"></i>其他參考資料</a></li>
 </ul></li>
-<li class="chapter" data-level="1" data-path="基本資料統計.html"><a href="基本資料統計.html"><i class="fa fa-check"></i><b>1</b> <strong>基本資料統計</strong></a>
+<li class="chapter" data-level="1" data-path="r-語言基礎語法.html"><a href="r-語言基礎語法.html"><i class="fa fa-check"></i><b>1</b> <strong>R 語言基礎語法</strong></a>
 <ul>
-<li class="chapter" data-level="1.1" data-path="基本資料統計.html"><a href="基本資料統計.html#公車資料統計分析"><i class="fa fa-check"></i><b>1.1</b> 公車資料統計分析</a></li>
+<li class="chapter" data-level="1.1" data-path="r-語言基礎語法.html"><a href="r-語言基礎語法.html#物件object"><i class="fa fa-check"></i><b>1.1</b> 物件（Object）</a>
+<ul>
+<li class="chapter" data-level="1.1.1" data-path="r-語言基礎語法.html"><a href="r-語言基礎語法.html#向量"><i class="fa fa-check"></i><b>1.1.1</b> 向量</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="2" data-path="基本資料統計.html"><a href="基本資料統計.html"><i class="fa fa-check"></i><b>2</b> <strong>基本資料統計</strong></a>
+<ul>
+<li class="chapter" data-level="2.1" data-path="基本資料統計.html"><a href="基本資料統計.html#公車資料統計分析"><i class="fa fa-check"></i><b>2.1</b> 公車資料統計分析</a>
+<ul>
+<li class="chapter" data-level="2.1.1" data-path="基本資料統計.html"><a href="基本資料統計.html#路線統計分析"><i class="fa fa-check"></i><b>2.1.1</b> 路線統計分析</a></li>
+<li class="chapter" data-level="2.1.2" data-path="基本資料統計.html"><a href="基本資料統計.html#站牌統計分析"><i class="fa fa-check"></i><b>2.1.2</b> 站牌統計分析</a></li>
+<li class="chapter" data-level="2.1.3" data-path="基本資料統計.html"><a href="基本資料統計.html#站間行駛距離計算"><i class="fa fa-check"></i><b>2.1.3</b> 站間行駛距離計算</a></li>
+</ul></li>
 </ul></li>
 <li class="divider"></li>
 <li><a href="https://www.sydney.edu.au/business/about/our-people/research-students/chia-jung-yeh-557.html" target="blank">葉家榮 Chia-Jung Yeh</a></li>
@@ -182,7 +194,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <p class="author"><em>Chia-Jung (Robert) Yeh 葉家榮<br />
 <a href="https://www.sydney.edu.au/business/about/our-people/research-students/chia-jung-yeh-557.html"><strong>PhD: Insitute of Transport and Logistics Studies, USYD</strong></a><br />
 M.S.: Department of Transportation and Logistics Management, NYCU</em></p>
-<p class="date"><em>2024-01-15</em></p>
+<p class="date"><em>2024-01-21</em></p>
 </div>
 <div id="前言" class="section level1 unnumbered hasAnchor">
 <h1><strong>前言</strong><a href="index.html#前言" class="anchor-section" aria-label="Anchor link to header"></a></h1>
@@ -207,7 +219,7 @@ M.S.: Department of Transportation and Logistics Management, NYCU</em></p>
 <span id="cb1-14"><a href="index.html#cb1-14" tabindex="-1"></a><span class="fu">library</span>(TWspdata)</span></code></pre></div>
 <table class="table table-striped table-hover" style="font-size: 14px; margin-left: auto; margin-right: auto;">
 <caption style="font-size: initial !important;">
-<span id="tab:package-download-table">表 0.1: </span>本套件函式綜覽
+<span id="tab:package-download-table">表 0.1: </span>使用套件之功能
 </caption>
 <thead>
 <tr>
@@ -301,7 +313,7 @@ M.S.: Department of Transportation and Logistics Management, NYCU</em></p>
         </div>
       </div>
 
-<a href="基本資料統計.html" class="navigation navigation-next navigation-unique" aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+<a href="r-語言基礎語法.html" class="navigation navigation-next navigation-unique" aria-label="Next page"><i class="fa fa-angle-right"></i></a>
     </div>
   </div>
 <script src="libs/gitbook-2.6.7/js/app.min.js"></script>
