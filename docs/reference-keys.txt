@@ -11,3 +11,4 @@ fig:bus-distance-fig
 r-語言基礎與法
 r-語言基礎語法
 tab:vector-operation-table
+tab:vector-arithmetic-table

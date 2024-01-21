@@ -67,6 +67,10 @@ vec2
 vec3=c(T,F,T,F,T)
 ```
 
+```{r vector3-show, echo=F, eval=T}
+vec3=c(T,F,T,F,T)
+vec3
+```
 
 <p style="color:#003D79;font-size:18px;line-height:2">**⌾ 擷取特定向量中特定元素**</p>  
 
@@ -112,5 +116,68 @@ kable(vector_operation, booktabs=T, caption="向量運算")%>%
 ```
 
 
+* **向量長度**  
+計算向量中的元素個數。
+```{r vector-length, echo=T, eval=T}
+length(vec4)
+```
+
+* **排序**  
+
+  * `sort()`函式直接將向量予以由小至大之排序  
+  * `order()`函式回傳向量由小至大排序後對應原向量的序號  
+
+```{r vector-sort-order, echo=T, eval=T}
+sort(vec4)
+order(vec4)
+```
+ 
+由`sort()`的結果可知，其將`vec4`向量由小至大排序。`order()`則是回傳排序後每一個元素所對應至原向量的序號，例如回傳結果的最後一個值是`4`，表示該向量中最大的數值位於向量的第 4 個元素。根據上述，我們亦可透過如下程式碼達到與`sort()`相同的結果。
+
+```{r vector-sort-order-eg, echo=T, eval=T}
+vec4[order(vec4)]
+```
+
+
+* **唯一值**  
+去除重複的值。
+```{r vector-unique, echo=T, eval=T}
+vec_dup=c(1,9,5,2,6,1,8,5,2)
+unique(vec_dup)
+```
+
+* **檢查使否存在`NA`**  
+check if the element is NA  
+```{r vector-na, echo=T, eval=T}
+vec_na=c(1,9,5,NA,6,NA)
+is.na(vec_na)
+```
+
+
+<p style="color:#003D79;font-size:18px;line-height:2">**⌾ 向量運算**</p>  
+
+向量運算以下範例使用`vec4`與新建立的向量`vec5`示範向量的運算。
+
+```{r vector-vec5, echo=T, eval=T}
+vec5=c(2,5,8,11,7,4,10,3)
+```
+
+* **兩向量運算**    
+兩向量運算時，兩組向量的長度（`length()`）務必相同！  
+所有運算結果如表\@ref(tab:vector-arithmetic-table)。
+
+```{r vector-arithmetic-table, echo=F, eval=T}
+vector_arithmetic=data.frame(ope_name=c("","加法","減法","乘法","除法","取餘數","取除數","內積"), operation=c("", "`vec4+vec5`","`vec4-vec5`","`vec4*vec5`","`vec4/vec5`","`vec4 %% vec5`","`vec4 %/% vec5`","`vec4 %*% vec5`"), result=c("", paste0("`", paste(vec4+vec5, collapse=" "), "`"), paste0("`", paste(vec4-vec5, collapse=" "), "`"), paste0("`", paste(vec4*vec5, collapse=" "), "`"), paste0("`", paste(round(vec4/vec5, 3), collapse=" "), "`"), paste0("`", paste(vec4 %% vec5, collapse=" "), "`"), paste0("`", paste(vec4 %/% vec5, collapse=" "), "`"), paste0("`", paste(vec4 %*% vec5, collapse=" "), "`")))
+vector_arithmetic$result[1]="`vec4=c(1,9,3,15,6,2,8,12)`\\\n`vec5=c(2,5,8,11,7,4,10,3)`"
+# vector_arithmetic$result[1]="1\\\n2"
+
+colnames(vector_arithmetic)=c("運算","程式碼","輸出結果")
+kable(vector_arithmetic, booktabs=T, caption="向量運算")%>%
+  kable_styling(bootstrap_options=c("striped", "hover"), font_size=14)%>%
+  column_spec(1, bold=T)%>%
+  row_spec(0, bold=T, color="white", background="#8E8E8E")
+
+
+```
 
 
