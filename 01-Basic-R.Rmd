@@ -449,7 +449,7 @@ t(mat2)
 橫列與直行的加總與平均值計算彙整如表\@ref(tab:matrix-operation-table)。
 
 ```{r matrix-operation-table, echo=F, eval=T}
-matrix_operation=data.frame(TYPE=rep(c("橫列","直行"), each=2), sum=c("`rowSums(mat2)`", paste(rowSums(mat2), collapse=" "), "`colSums(mat2)`", paste(colSums(mat2), collapse=" ")), ave=c("`rowMeans(mat2)`", paste(rowMeans(mat2), collapse=" "), "`colMeans(mat2)`", paste(colMeans(mat2), collapse=" ")))
+matrix_operation=data.frame(TYPE=rep(c("橫列","直行"), each=2), sum=c("`rowSums(mat2)`", paste0("`", paste(rowSums(mat2), collapse=" "), "`"), "`colSums(mat2)`", paste0("`", paste(colSums(mat2), collapse=" "), "`")), ave=c("`rowMeans(mat2)`", paste0("`", paste(rowMeans(mat2), collapse=" "), "`"), "`colMeans(mat2)`", paste0("`", paste(colMeans(mat2), collapse=" "), "`")))
 
 colnames(matrix_operation)=c("","加總","平均")
 kable(matrix_operation, booktabs=T, caption="矩陣運算")%>%
