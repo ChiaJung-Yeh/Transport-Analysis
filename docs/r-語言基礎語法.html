@@ -1226,6 +1226,46 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </div>
 <div id="list" class="section level3 hasAnchor" number="1.1.5">
 <h3><span class="header-section-number">1.1.5</span> <strong>List</strong><a href="r-語言基礎語法.html#list" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p style="color:#003D79;font-size:18px;line-height:2">
+<strong>⌾ 陣列的性質</strong>
+</p>
+<ul>
+<li>物件的集合（可包含向量、矩陣、資料框、陣列…）<br />
+</li>
+<li>最複雜的物件，然其使用彈性相當高</li>
+</ul>
+<p style="color:#003D79;font-size:18px;line-height:2">
+<strong>⌾ 建立陣列</strong>
+</p>
+<p>使用<code>list()</code>函式建立陣列資料。</p>
+<div class="sourceCode" id="cb139"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb139-1"><a href="r-語言基礎語法.html#cb139-1" tabindex="-1"></a>StuScore_list<span class="ot">=</span><span class="fu">list</span>(<span class="at">StudentID=</span><span class="fu">c</span>(<span class="st">&quot;ID1&quot;</span>,<span class="st">&quot;ID2&quot;</span>,<span class="st">&quot;ID3&quot;</span>,<span class="st">&quot;ID4&quot;</span>,<span class="st">&quot;ID5&quot;</span>),</span>
+<span id="cb139-2"><a href="r-語言基礎語法.html#cb139-2" tabindex="-1"></a>                   <span class="at">Name=</span><span class="fu">c</span>(<span class="st">&quot;Bob&quot;</span>,<span class="st">&quot;Mary&quot;</span>,<span class="st">&quot;Robert&quot;</span>,<span class="st">&quot;Jason&quot;</span>,<span class="st">&quot;Jane&quot;</span>),</span>
+<span id="cb139-3"><a href="r-語言基礎語法.html#cb139-3" tabindex="-1"></a>                   <span class="at">Score=</span><span class="fu">c</span>(<span class="dv">60</span>,<span class="dv">80</span>,<span class="dv">40</span>,<span class="dv">50</span>,<span class="dv">100</span>),</span>
+<span id="cb139-4"><a href="r-語言基礎語法.html#cb139-4" tabindex="-1"></a>                   <span class="at">Class=</span><span class="st">&quot;A&quot;</span>)</span></code></pre></div>
+<pre><code>## $StudentID
+## [1] &quot;ID1&quot; &quot;ID2&quot; &quot;ID3&quot; &quot;ID4&quot; &quot;ID5&quot;
+## 
+## $Name
+## [1] &quot;Bob&quot;    &quot;Mary&quot;   &quot;Robert&quot; &quot;Jason&quot;  &quot;Jane&quot;  
+## 
+## $Score
+## [1]  60  80  40  50 100
+## 
+## $Class
+## [1] &quot;A&quot;</code></pre>
+<p style="color:#003D79;font-size:18px;line-height:2">
+<strong>⌾ 回傳陣列屬性</strong>
+</p>
+<p style="font-size:18px;line-height:1">
+<strong><u>使用<code>陣列$屬性</code>回傳</u></strong>
+</p>
+<div class="sourceCode" id="cb141"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb141-1"><a href="r-語言基礎語法.html#cb141-1" tabindex="-1"></a>StuScore_list<span class="sc">$</span>Score</span></code></pre></div>
+<pre><code>## [1]  60  80  40  50 100</code></pre>
+<p style="font-size:18px;line-height:1">
+<strong><u>使用陣列索引回傳</u></strong>
+</p>
+<div class="sourceCode" id="cb143"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb143-1"><a href="r-語言基礎語法.html#cb143-1" tabindex="-1"></a>StuScore_list[[<span class="dv">2</span>]]</span></code></pre></div>
+<pre><code>## [1] &quot;Bob&quot;    &quot;Mary&quot;   &quot;Robert&quot; &quot;Jason&quot;  &quot;Jane&quot;</code></pre>
 </div>
 </div>
 <div id="dplyr資料處理" class="section level2 hasAnchor" number="1.2">

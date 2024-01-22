@@ -686,12 +686,50 @@ which(duplicated(StuScore_dup))
 
 
 ### **List**
+<p style="color:#003D79;font-size:18px;line-height:2">**⌾ 陣列的性質**</p>  
 
+* 物件的集合（可包含向量、矩陣、資料框、陣列...）  
+* 最複雜的物件，然其使用彈性相當高  
+
+<p style="color:#003D79;font-size:18px;line-height:2">**⌾ 建立陣列**</p>  
+使用`list()`函式建立陣列資料。
+
+```{r list1, echo=T, eval=T}
+StuScore_list=list(StudentID=c("ID1","ID2","ID3","ID4","ID5"),
+                   Name=c("Bob","Mary","Robert","Jason","Jane"),
+                   Score=c(60,80,40,50,100),
+                   Class="A")
+```
+
+```{r list1-show, echo=F, eval=T}
+StuScore_list
+```
+
+
+<p style="color:#003D79;font-size:18px;line-height:2">**⌾  回傳陣列屬性**</p>  
+
+<p style="font-size:18px;line-height:1">**<u>使用`陣列$屬性`回傳</u>**</p>  
+
+```{r list2, echo=T, eval=T}
+StuScore_list$Score
+```
+
+<p style="font-size:18px;line-height:1">**<u>使用陣列索引回傳</u>**</p>  
+```{r list3, echo=T, eval=T}
+StuScore_list[[2]]
+```
 
 
 
 
 ## `dplyr`資料處理
+
+
+
+
+
+
+
 
 
 
