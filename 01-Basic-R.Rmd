@@ -267,7 +267,7 @@ as.character(vec_num)
 
 
 <p style="color:#003D79;font-size:18px;line-height:2">**⌾ 建立重複資料**</p> 
-利用`rep()`函式建立重複資料，該函式主要有兩大參數可以設定：  
+利用`rep()`函式建立重複資料，該函式主要有兩大引數可以設定：  
 
 * `each=`是設定每一個元素重複的次數
 * `times=`是設定該向量整體循環的次數
@@ -321,7 +321,7 @@ which(vec6>5)
 
 
 <p style="color:#003D79;font-size:18px;line-height:2">**⌾ 建立因子**</p>   
-因子的建立可以使用`factor()`函式，其中必須透過`levels=`參數設定層級，程式碼建構如下：  
+因子的建立可以使用`factor()`函式，其中必須透過`levels=`引數設定層級，程式碼建構如下：  
 
 ```{r factor1, echo=T, eval=F}
 factor(文字向量, levels=期望的層級向量)
@@ -361,7 +361,7 @@ sort(school_fc)
 school_fc[1]>school_fc[2]
 ```
 
-若欲建立具大小關係的因子，則需在`factor()`函式中設定`order=T`參數，以表達具有順序意義。
+若欲建立具大小關係的因子，則需在`factor()`函式中設定`order=T`引數，以表達具有順序意義。
 
 ```{r factor-order1, echo=T, eval=T}
 school_order=factor(school, levels=c("幼稚園","國小","國中","高中","大學"), order=T)
@@ -395,7 +395,7 @@ as.numeric(school_fc)
 * 可以組合「相同」資料型態的向量 (文字向量、數值向量、邏輯向量)  
 
 <p style="color:#003D79;font-size:18px;line-height:2">**⌾ 建立矩陣**</p>  
-利用`matrix()`函式建立矩陣，其中必須設定兩參數：  
+利用`matrix()`函式建立矩陣，其中必須設定兩引數：  
  
 * `nrow=` 設定矩陣的橫列數  
 * `ncol=` 設定矩陣的直行數  
@@ -410,7 +410,7 @@ mat1=matrix(c(1:15), nrow=3, ncol=5)
 mat1
 ```
 
-由回傳結果可發現，該矩陣是先由上至下，再由左至右填入向量。若希望矩陣的填法是先由左至右，再由上至下，則須設定參數`byrow=T`，程式碼撰寫如下。
+由回傳結果可發現，該矩陣是先由上至下，再由左至右填入向量。若希望矩陣的填法是先由左至右，再由上至下，則須設定引數`byrow=T`，程式碼撰寫如下。
 
 
 ```{r matrix2, echo=T, eval=T}
@@ -721,30 +721,112 @@ StuScore_list[[2]]
 
 
 
+## 文字處理
 
-## `dplyr`資料處理
-`dplyr`套件是 R 語言中最常見的資料處理工具，請先安裝並導入該套件。
 
-```{r install-dplyr, echo=T, eval=F}
-# 安裝套件
-install.packages("dplyr")
 
-# 導入套件
-library(dplyr)
+
+
+## 資料讀取與匯出
+
+<p style="color:#003D79;font-size:18px;line-height:2">**⌾ 讀取資料**</p>  
+
+<p style="font-size:18px;line-height:1">**<u>由本機讀取</u>**</p>  
+於`read.csv()`函式中填入資料的路徑，資料型態可為：.csv 或 .txt 檔案。
+
+```{r read-csv1, echo=T, eval=F}
+read.csv("路徑")
+```
+
+路徑可以透過「斜線」或「雙反斜線」編寫。
+
+```{r read-local, echo=T, eval=F}
+# 斜線
+read.csv("C:/Users/USER/Downloads/world.csv")
+
+# 雙反斜線
+read.csv("C:\\Users\\USER\\Downloads\\world.csv")
 ```
 
 
-`dplyr`套件頻繁使用的函式彙整如表\@ref(tab:function-dplyr)。  
+<p style="font-size:18px;line-height:1">**<u>由網站讀取</u>**</p>  
+於`read.csv()`函式中填入資料的網址（url）。
 
-```{r function-dplyr, echo=F, eval=T}
-fuc=data.frame(Functions=c("`select()`","`filter()`","`mutate()`","`group_by()`","`reframe()`","`slice()`","`left_join()`","`arrange()`","`rename()`","`distinct()`"), Usage=c("選取特定欄位", "根據條件篩選資料", "新增資料屬性（欄位）",  "將資料依據特定欄位分群，後方經常連結`filter()`或`reframe()`", "將分群的資料予以計算", "依據條件擷取特定欄位", "根據指定欄位合併兩資料", "根據指定欄位將資料排序", "更改欄位名稱", "去除重複資料"))
+```{r read-csv2, echo=T, eval=F}
+read.csv("url")
+```
 
-kbl(fuc, booktabs=T, escape=F, caption="`dplyr`套件重要函式")%>%
-  kable_styling(bootstrap_options=c("striped", "hover"), font_size=14)
+```{r read-url, echo=T, eval=T}
+world=read.csv("https://raw.githubusercontent.com/ChiaJung-Yeh/R-Code-Sharing/main/R_Preliminary/world.csv")
+```
+
+`world`資料讀取結果如下
+
+```{r read-data-show, echo=F, eval=T, message=F, warning=F}
+world=read.csv("https://raw.githubusercontent.com/ChiaJung-Yeh/R-Code-Sharing/main/R_Preliminary/world.csv")
+datatable(world, options=list(pageLength=5, scrollX=T, headerCallback = DT::JS(
+    "function(thead) {",
+    "  $(thead).css('font-size', '0.7em');",
+    "}"
+  )))%>%
+  formatStyle(columns=c(1:ncol(world)), fontSize="12px")%>%
+  formatRound(c("area_km2", "lifeExp","gdpPercap"), digits=2)
 ```
 
 
+此外，`read.csv()`函式有諸多引數可供設定，以下簡要說明各引數的功能及設定方式：  
 
+* `header=`設定是否有表頭，若有應設定為`T`，否則預設為`F`。  
+* `sep=`設定分隔符號，例如常見的 .csv 檔即為「逗號」分隔。此引數預設為「,」，若非逗點分隔，需設定此參數。  
+* `colClasses=`設定各欄位的資料型態，如已知 A 欄位為數值型態；B 欄位為文字型態，則應設定：`c("A"="numeric", "B"="character")`。  
+* `nrows=`設定擷取的橫列數。  
+* `skip=`設定跳過前幾筆資料。  
+* `fileEncoding=`設定文字編碼，一般而言英文的編碼無須另外設定，然若是中文字則通常為「Big5」或「UTF-8」。  
+
+
+除了`read.csv()`函式可讀取資料外，亦可使用`read.table()`函式讀取，功能與引數完全相同。此外，`data.table`套件中的`fread()`亦可讀取資料，其所使用引數與`read.csv()`大致相同，亦可讀取本機及網路上的文字資料，惟讀取速度非常快，適合大數據資料的讀取。  
+
+```{r read-fread1, echo=T, eval=F}
+fread("路徑")  # 本機資料
+fread("url")   # 網路資料
+
+# 範例
+world=fread("https://raw.githubusercontent.com/ChiaJung-Yeh/R-Code-Sharing/main/R_Preliminary/world.csv")
+```
+
+
+<p style="color:#003D79;font-size:18px;line-height:2">**⌾ 匯出資料**</p>  
+匯出資料可以使用`write.csv()`函式，程式撰寫如下：
+
+```{r write-csv, echo=T, eval=F}
+write.csv(資料, "路徑")
+
+# 範例
+write.csv(world, "./world.csv")
+```
+
+在`write.csv()`函式中，主要的引數如下：  
+
+* `row.names=`設定是否回傳橫列名稱，預設為`T`，若不希望匯出列名稱，則須設定為`F`。
+* `sep=`設定分隔符號。  
+* `fileEncoding=`設定文字編碼，一般而言英文的編碼無須另外設定，然若是中文字則通常為「Big5」或「UTF-8」。  
+
+同樣地，`write.csv()`函式在匯出資料的效率並不高，可以使用`data.table`套件中的`fwrite()`函式，以減少程式執行的時間，在大數據資料之處理上尤為實用。  
+
+
+
+## 資料清洗與處理
+資料清洗與處理是分析前的第一步，透過此一步驟可初步觀察資料的趨勢，並以圖表呈現敘述統計結果。此外，在經過完善的資料整理後，尚能進一步建構統計模型或數據分析工具以瞭解資料背後所衍伸之意涵。`dplyr`與`data.table`套件是 R 語言中兩大最常見的資料處理工具，請務必安裝並導入該套件。
+
+資料清洗與處理常用之套件與函式彙整如表\@ref(tab:function-data-clean)。  
+
+```{r function-data-clean, echo=F, eval=T}
+fuc=data.frame(Package=c("base", rep("`dplyr`", 10), rep("`data.table`", 2)), Functions=c("`merge()`","`select()`","`filter()`","`mutate()`","`group_by()`","`reframe()`","`slice()`","`left_join()`","`arrange()`","`rename()`","`distinct()`","`dcast()`","`melt()`"), Usage=c("根據指定欄位合併兩資料（同`left_join()`）", "選取特定欄位", "根據條件篩選資料", "新增資料屬性（欄位）",  "將資料依據特定欄位分群，後方經常連結`filter()`或`reframe()`", "將分群的資料予以計算", "依據條件擷取特定欄位", "根據指定欄位合併兩資料", "根據指定欄位將資料排序", "更改欄位名稱", "去除重複資料", "轉換長資料為寬資料", "轉換寬資料為長資料"))
+
+kbl(fuc, booktabs=T, escape=F, caption="資料處理重要函式")%>%
+  kable_styling(bootstrap_options=c("striped", "hover"), font_size=14)%>%
+  collapse_rows(1)
+```
 
 
 

@@ -1,5 +1,5 @@
 --- 
-title: "運輸資料分析初探"
+title: "運輸資料分析角落：初學者園地"
 author: "Chia-Jung (Robert) Yeh  葉家榮\\\n [**PhD: Insitute of Transport and Logistics Studies, USYD**](https://www.sydney.edu.au/business/about/our-people/research-students/chia-jung-yeh-557.html)\\\nM.S.: Department of Transportation and Logistics Management, NYCU"
 date: "`r Sys.Date()`"
 site: bookdown::bookdown_site
@@ -39,7 +39,7 @@ access_token=get_token(client_id, client_secret)
 
 本網站簡介運輸資料分析之方法，並透過實務應用瞭解運輸資料的特性、分析原理，以及 R 語言各套件與函式的功能。共分為四大章節：R 語言基礎語法、基本資料統計、地理分析、進階應用，各章節皆以運輸資料為示範，期能擴充 R 語言使用者對於此一領域的熟悉程度。本網站主要藉由零散的個案分析，提供較全面的實際資料操作。
 
----
+
 
 ## 安裝套件 {-}
 
