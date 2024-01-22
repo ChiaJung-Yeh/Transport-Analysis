@@ -69,8 +69,8 @@ vec2
 ```{r vector3, echo=T, eval=F}
 vec3=c(T,F,T,F,T)
 
-#---或寫完整的邏輯值---#
-# vec3=c(TRUE,FALSE,TRUE,FALSE,TRUE)
+# 或寫完整的邏輯值
+vec3=c(TRUE,FALSE,TRUE,FALSE,TRUE)
 ```
 
 ```{r vector3-show, echo=F, eval=T}
@@ -392,7 +392,7 @@ as.numeric(school_fc)
 
 * 二維  
 * 含括多個橫列（rows）與直行（columns）  
-* 可以組合相同資料型態的向量 (文字向量、數值向量、邏輯向量)  
+* 可以組合「相同」資料型態的向量 (文字向量、數值向量、邏輯向量)  
 
 <p style="color:#003D79;font-size:18px;line-height:2">**⌾ 建立矩陣**</p>  
 利用`matrix()`函式建立矩陣，其中必須設定兩參數：  
@@ -455,7 +455,7 @@ colnames(matrix_operation)=c("","加總","平均")
 kable(matrix_operation, booktabs=T, caption="矩陣運算")%>%
   kable_styling(bootstrap_options=c("striped", "hover"), font_size=14)%>%
   column_spec(1, bold=T)%>%
-  collapse_rows(c(1))%>%
+  collapse_rows(c(1:2))%>%
   row_spec(0, bold=T, color="white", background="#8E8E8E")
 ```
 
@@ -477,7 +477,7 @@ apply(矩陣資料, 方向, 運算函式)
 
 其中`方向`有兩種選擇：`1`表示逐列（row）運算；`2`表示逐行（column）運算。運算函式可為前述向量運算的任一函式。`apply()`函式的運算概念如圖\@ref(fig:apply-fig)之示意圖。
 
-```{r apply-fig, echo=F, eval=T, out.width="80%", fig.align="center", fig.cap="排序函式示意圖"}
+```{r apply-fig, echo=F, eval=T, out.width="60%", fig.align="center", fig.cap="`apply()`函式運算示意圖"}
 include_graphics("./figure/apply.png")
 ```
 
@@ -494,11 +494,181 @@ apply(mat2, 2, mean)
 apply(mat2, 1, which.max)
 
 # 逐行計算標準差
-apply(mat2, 1, sd)
+apply(mat2, 2, sd)
 ```
 
 
 ### 資料框（Data Frame）
+<p style="color:#003D79;font-size:18px;line-height:2">**⌾ 資料框的性質**</p>  
+
+* 類似矩陣（Matrix），但可涵括多種不同的資料型態  
+* 功能類似 Excel 的工作表  
+* 資料分析中最常見的資料型態  
+* 可利用`dplyr`套件處理資料 (參見[`dplyr`資料處理](#dplyr資料處理))
+
+<p style="color:#003D79;font-size:18px;line-height:2">**⌾ 建立資料框**</p>  
+資料框的建立如下程式碼：
+
+```{r dataframe-function, echo=T, eval=F}
+data.frame(VAR1=c(), VAR2=c(), VAR3=c(), ...)
+```
+
+VAR1、VAR2、VAR3 皆表示資料框中的變數名稱，亦即表格中的表頭名。  
+
+以下簡單範例說明資料框的建構。  
+
+```{r dataframe1, echo=T, eval=T}
+StuScore=data.frame(StudentID=c("ID1","ID2","ID3","ID4","ID5"),
+                    Name=c("Bob","Mary","Robert","Jason","Jane"),
+                    Score=c(60,80,40,50,100))
+StuScore
+```
+
+
+<p style="color:#003D79;font-size:18px;line-height:2">**⌾ 回傳資料欄位名稱**</p>  
+```{r dataframe2, echo=T, eval=F}
+colnames(StuScore)
+
+# 或可以直接使用names()函式
+names(StuScore)
+```
+
+```{r dataframe2-show, echo=F, eval=T}
+colnames(StuScore)
+```
+
+<p style="color:#003D79;font-size:18px;line-height:2">**⌾ 回傳特定欄列**</p>  
+
+<p style="font-size:18px;line-height:1">**<u>回傳指定橫列</u>**</p>  
+將列號或邏輯向量置於中括號內的逗號前，惟須注意，使用邏輯向量時，其長度必須與資料列數相同。程式碼撰寫如下。
+
+```{r dataframe3, echo=T, eval=F}
+# 使用列號
+StuScore[c(1,3,5),]
+
+# 使用邏輯向量
+StuScore[c(T,F,T,F,T),]
+```
+
+```{r dataframe3-show, echo=F, eval=T}
+StuScore[c(1,3,5),]
+```
+
+<p style="font-size:18px;line-height:1">**<u>回傳指定直行</u>**</p>  
+有三種方法可回傳指定（多個）直行，包括：  
+
+* 列號向量  
+* 邏輯向量  
+* 欄位名稱向量  
+
+其中使用邏輯向量時，其長度與資料行數必須相同。程式碼撰寫如下。
+
+```{r dataframe4, echo=T, eval=F}
+# 列號向量
+StuScore[, c(1,2)]
+
+# 邏輯向量
+StuScore[, c(T,F,T,F,T)]
+
+# 欄位名稱向量
+StuScore[, c("StudentID","Name")]
+```
+
+```{r dataframe4-show, echo=F, eval=T}
+StuScore[, c("StudentID","Name")]
+```
+
+此外，資料框亦可透過「`$`」回傳特定單一欄位，程式碼撰寫如下。
+
+```{r dataframe-retrieve-col, echo=T, eval=F}
+資料$欄位名稱
+```
+
+```{r dataframe5, echo=T, eval=T}
+StuScore$Name
+```
+
+<p style="color:#003D79;font-size:18px;line-height:2">**⌾ 回傳與編輯指定元素**</p>  
+
+<p style="font-size:18px;line-height:1">**<u>使用行列索引值</u>**</p>  
+
+```{r dataframe-retrieve-element, echo=T, eval=F}
+資料[橫列索引, 直行索引]
+```
+
+```{r dataframe6, echo=T, eval=T}
+StuScore[2,2]
+```
+
+<p style="font-size:18px;line-height:1">**<u>編輯指定元素</u>**</p>  
+```{r dataframe7, echo=T, eval=T}
+StuScore[2,2]="Jessica"
+
+StuScore
+```
+
+
+<p style="color:#003D79;font-size:18px;line-height:2">**⌾ 查看前後六筆資料**</p>  
+在此我們使用 R 語言內建的`iris`資料說明。`iris`資料共計 150 個樣本，並含括三種不同的鳶尾花（setosa、virginica、versicolor），欄位則包含花瓣與花萼的長度與寬度。
+
+<p style="font-size:18px;line-height:1">**<u>回傳前六筆資料</u>**</p>  
+```{r dataframe_head, echo=T, eval=T}
+head(iris)
+```
+
+<p style="font-size:18px;line-height:1">**<u>回傳後六筆資料</u>**</p>  
+```{r dataframe_tail, echo=T, eval=T}
+tail(iris)
+```
+
+
+<p style="color:#003D79;font-size:18px;line-height:2">**⌾ 擴增資料框**</p>  
+
+<p style="font-size:18px;line-height:1">**<u>擴增資料列（新增紀錄）</u>**</p>  
+若欲新增資料，可以透過`rbind()`函式連結。程式碼如下。
+
+```{r dataframe_rbind, echo=T, eval=T}
+# 建立欲新增的資料
+new_student=data.frame(StudentID="ID6", Name="Bob", Score=90)
+
+# 利用rbind()函式相接
+StuScore=rbind(StuScore, new_student)
+
+StuScore
+```
+
+
+<p style="font-size:18px;line-height:1">**<u>擴增資料欄（新增屬性）</u>**</p>  
+若欲針對整份資料新增屬性（如`StuScore`中增加性別欄位...），可以透過`cbind()`函式連結。程式碼如下。
+
+```{r dataframe_cbind, echo=T, eval=T}
+# 建立欲新增之屬性
+Gender=c("M","F","M","M","F","M")
+
+# 利用cbind()函式連結
+StuScore=cbind(StuScore, Gender)
+
+StuScore
+```
+
+或可以直接透過「`$`」新增新欄位內容。程式碼如下：
+```{r dataframe_add_col-fun, echo=T, eval=F}
+資料$新欄位=c(...)
+```
+
+```{r dataframe_add_col, echo=T, eval=T}
+StuScore$Height=c(180,165,170,160,175,180)
+
+StuScore
+```
+
+
+
+
+
+
+
+
 
 
 

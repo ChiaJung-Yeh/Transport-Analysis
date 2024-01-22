@@ -242,8 +242,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </p>
 <div class="sourceCode" id="cb5"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb5-1"><a href="r-語言基礎語法.html#cb5-1" tabindex="-1"></a>vec3<span class="ot">=</span><span class="fu">c</span>(T,F,T,F,T)</span>
 <span id="cb5-2"><a href="r-語言基礎語法.html#cb5-2" tabindex="-1"></a></span>
-<span id="cb5-3"><a href="r-語言基礎語法.html#cb5-3" tabindex="-1"></a><span class="co">#---或寫完整的邏輯值---#</span></span>
-<span id="cb5-4"><a href="r-語言基礎語法.html#cb5-4" tabindex="-1"></a><span class="co"># vec3=c(TRUE,FALSE,TRUE,FALSE,TRUE)</span></span></code></pre></div>
+<span id="cb5-3"><a href="r-語言基礎語法.html#cb5-3" tabindex="-1"></a><span class="co"># 或寫完整的邏輯值</span></span>
+<span id="cb5-4"><a href="r-語言基礎語法.html#cb5-4" tabindex="-1"></a>vec3<span class="ot">=</span><span class="fu">c</span>(<span class="cn">TRUE</span>,<span class="cn">FALSE</span>,<span class="cn">TRUE</span>,<span class="cn">FALSE</span>,<span class="cn">TRUE</span>)</span></code></pre></div>
 <pre><code>## [1]  TRUE FALSE  TRUE FALSE  TRUE</code></pre>
 <p style="color:#003D79;font-size:18px;line-height:2">
 <strong>⌾ 擷取向量中特定元素</strong>
@@ -866,7 +866,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </li>
 <li>含括多個橫列（rows）與直行（columns）<br />
 </li>
-<li>可以組合相同資料型態的向量 (文字向量、數值向量、邏輯向量)</li>
+<li>可以組合「相同」資料型態的向量 (文字向量、數值向量、邏輯向量)</li>
 </ul>
 <p style="color:#003D79;font-size:18px;line-height:2">
 <strong>⌾ 建立矩陣</strong>
@@ -997,9 +997,9 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <div class="sourceCode" id="cb96"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb96-1"><a href="r-語言基礎語法.html#cb96-1" tabindex="-1"></a><span class="fu">apply</span>(矩陣資料, 方向, 運算函式)</span></code></pre></div>
 <p>其中<code>方向</code>有兩種選擇：<code>1</code>表示逐列（row）運算；<code>2</code>表示逐行（column）運算。運算函式可為前述向量運算的任一函式。<code>apply()</code>函式的運算概念如圖<a href="r-語言基礎語法.html#fig:apply-fig">1.2</a>之示意圖。</p>
 <div class="figure" style="text-align: center"><span style="display:block;" id="fig:apply-fig"></span>
-<img src="figure/apply.png" alt="排序函式示意圖" width="80%" />
+<img src="figure/apply.png" alt="`apply()`函式運算示意圖" width="60%" />
 <p class="caption">
-圖 1.2: 排序函式示意圖
+圖 1.2: <code>apply()</code>函式運算示意圖
 </p>
 </div>
 <p>再次以<code>mat2</code>矩陣為範例，程式碼撰寫如下。</p>
@@ -1013,11 +1013,192 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <span id="cb101-2"><a href="r-語言基礎語法.html#cb101-2" tabindex="-1"></a><span class="fu">apply</span>(mat2, <span class="dv">1</span>, which.max)</span></code></pre></div>
 <pre><code>## [1] 5 5 5</code></pre>
 <div class="sourceCode" id="cb103"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb103-1"><a href="r-語言基礎語法.html#cb103-1" tabindex="-1"></a><span class="co"># 逐行計算標準差</span></span>
-<span id="cb103-2"><a href="r-語言基礎語法.html#cb103-2" tabindex="-1"></a><span class="fu">apply</span>(mat2, <span class="dv">1</span>, sd)</span></code></pre></div>
-<pre><code>## [1] 1.581139 1.581139 1.581139</code></pre>
+<span id="cb103-2"><a href="r-語言基礎語法.html#cb103-2" tabindex="-1"></a><span class="fu">apply</span>(mat2, <span class="dv">2</span>, sd)</span></code></pre></div>
+<pre><code>## [1] 5 5 5 5 5</code></pre>
 </div>
 <div id="資料框data-frame" class="section level3 hasAnchor" number="1.1.4">
 <h3><span class="header-section-number">1.1.4</span> 資料框（Data Frame）<a href="r-語言基礎語法.html#資料框data-frame" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p style="color:#003D79;font-size:18px;line-height:2">
+<strong>⌾ 資料框的性質</strong>
+</p>
+<ul>
+<li>類似矩陣（Matrix），但可涵括多種不同的資料型態<br />
+</li>
+<li>功能類似 Excel 的工作表<br />
+</li>
+<li>資料分析中最常見的資料型態<br />
+</li>
+<li>可利用<code>dplyr</code>套件處理資料 (參見<a href="r-語言基礎語法.html#dplyr資料處理"><code>dplyr</code>資料處理</a>)</li>
+</ul>
+<p style="color:#003D79;font-size:18px;line-height:2">
+<strong>⌾ 建立資料框</strong>
+</p>
+<p>資料框的建立如下程式碼：</p>
+<div class="sourceCode" id="cb105"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb105-1"><a href="r-語言基礎語法.html#cb105-1" tabindex="-1"></a><span class="fu">data.frame</span>(<span class="at">VAR1=</span><span class="fu">c</span>(), <span class="at">VAR2=</span><span class="fu">c</span>(), <span class="at">VAR3=</span><span class="fu">c</span>(), ...)</span></code></pre></div>
+<p>VAR1、VAR2、VAR3 皆表示資料框中的變數名稱，亦即表格中的表頭名。</p>
+<p>以下簡單範例說明資料框的建構。</p>
+<div class="sourceCode" id="cb106"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb106-1"><a href="r-語言基礎語法.html#cb106-1" tabindex="-1"></a>StuScore<span class="ot">=</span><span class="fu">data.frame</span>(<span class="at">StudentID=</span><span class="fu">c</span>(<span class="st">&quot;ID1&quot;</span>,<span class="st">&quot;ID2&quot;</span>,<span class="st">&quot;ID3&quot;</span>,<span class="st">&quot;ID4&quot;</span>,<span class="st">&quot;ID5&quot;</span>),</span>
+<span id="cb106-2"><a href="r-語言基礎語法.html#cb106-2" tabindex="-1"></a>                    <span class="at">Name=</span><span class="fu">c</span>(<span class="st">&quot;Bob&quot;</span>,<span class="st">&quot;Mary&quot;</span>,<span class="st">&quot;Robert&quot;</span>,<span class="st">&quot;Jason&quot;</span>,<span class="st">&quot;Jane&quot;</span>),</span>
+<span id="cb106-3"><a href="r-語言基礎語法.html#cb106-3" tabindex="-1"></a>                    <span class="at">Score=</span><span class="fu">c</span>(<span class="dv">60</span>,<span class="dv">80</span>,<span class="dv">40</span>,<span class="dv">50</span>,<span class="dv">100</span>))</span>
+<span id="cb106-4"><a href="r-語言基礎語法.html#cb106-4" tabindex="-1"></a>StuScore</span></code></pre></div>
+<pre><code>##   StudentID   Name Score
+## 1       ID1    Bob    60
+## 2       ID2   Mary    80
+## 3       ID3 Robert    40
+## 4       ID4  Jason    50
+## 5       ID5   Jane   100</code></pre>
+<p style="color:#003D79;font-size:18px;line-height:2">
+<strong>⌾ 回傳資料欄位名稱</strong>
+</p>
+<div class="sourceCode" id="cb108"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb108-1"><a href="r-語言基礎語法.html#cb108-1" tabindex="-1"></a><span class="fu">colnames</span>(StuScore)</span>
+<span id="cb108-2"><a href="r-語言基礎語法.html#cb108-2" tabindex="-1"></a></span>
+<span id="cb108-3"><a href="r-語言基礎語法.html#cb108-3" tabindex="-1"></a><span class="co"># 或可以直接使用names()函式</span></span>
+<span id="cb108-4"><a href="r-語言基礎語法.html#cb108-4" tabindex="-1"></a><span class="fu">names</span>(StuScore)</span></code></pre></div>
+<pre><code>## [1] &quot;StudentID&quot; &quot;Name&quot;      &quot;Score&quot;</code></pre>
+<p style="color:#003D79;font-size:18px;line-height:2">
+<strong>⌾ 回傳特定欄列</strong>
+</p>
+<p style="font-size:18px;line-height:1">
+<strong><u>回傳指定橫列</u></strong>
+</p>
+<p>將列號或邏輯向量置於中括號內的逗號前，惟須注意，使用邏輯向量時，其長度必須與資料列數相同。程式碼撰寫如下。</p>
+<div class="sourceCode" id="cb110"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb110-1"><a href="r-語言基礎語法.html#cb110-1" tabindex="-1"></a><span class="co"># 使用列號</span></span>
+<span id="cb110-2"><a href="r-語言基礎語法.html#cb110-2" tabindex="-1"></a>StuScore[<span class="fu">c</span>(<span class="dv">1</span>,<span class="dv">3</span>,<span class="dv">5</span>),]</span>
+<span id="cb110-3"><a href="r-語言基礎語法.html#cb110-3" tabindex="-1"></a></span>
+<span id="cb110-4"><a href="r-語言基礎語法.html#cb110-4" tabindex="-1"></a><span class="co"># 使用邏輯向量</span></span>
+<span id="cb110-5"><a href="r-語言基礎語法.html#cb110-5" tabindex="-1"></a>StuScore[<span class="fu">c</span>(T,F,T,F,T),]</span></code></pre></div>
+<pre><code>##   StudentID   Name Score
+## 1       ID1    Bob    60
+## 3       ID3 Robert    40
+## 5       ID5   Jane   100</code></pre>
+<p style="font-size:18px;line-height:1">
+<strong><u>回傳指定直行</u></strong>
+</p>
+<p>有三種方法可回傳指定（多個）直行，包括：</p>
+<ul>
+<li>列號向量<br />
+</li>
+<li>邏輯向量<br />
+</li>
+<li>欄位名稱向量</li>
+</ul>
+<p>其中使用邏輯向量時，其長度與資料行數必須相同。程式碼撰寫如下。</p>
+<div class="sourceCode" id="cb112"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb112-1"><a href="r-語言基礎語法.html#cb112-1" tabindex="-1"></a><span class="co"># 列號向量</span></span>
+<span id="cb112-2"><a href="r-語言基礎語法.html#cb112-2" tabindex="-1"></a>StuScore[, <span class="fu">c</span>(<span class="dv">1</span>,<span class="dv">2</span>)]</span>
+<span id="cb112-3"><a href="r-語言基礎語法.html#cb112-3" tabindex="-1"></a></span>
+<span id="cb112-4"><a href="r-語言基礎語法.html#cb112-4" tabindex="-1"></a><span class="co"># 邏輯向量</span></span>
+<span id="cb112-5"><a href="r-語言基礎語法.html#cb112-5" tabindex="-1"></a>StuScore[, <span class="fu">c</span>(T,F,T,F,T)]</span>
+<span id="cb112-6"><a href="r-語言基礎語法.html#cb112-6" tabindex="-1"></a></span>
+<span id="cb112-7"><a href="r-語言基礎語法.html#cb112-7" tabindex="-1"></a><span class="co"># 欄位名稱向量</span></span>
+<span id="cb112-8"><a href="r-語言基礎語法.html#cb112-8" tabindex="-1"></a>StuScore[, <span class="fu">c</span>(<span class="st">&quot;StudentID&quot;</span>,<span class="st">&quot;Name&quot;</span>)]</span></code></pre></div>
+<pre><code>##   StudentID   Name
+## 1       ID1    Bob
+## 2       ID2   Mary
+## 3       ID3 Robert
+## 4       ID4  Jason
+## 5       ID5   Jane</code></pre>
+<p>此外，資料框亦可透過「<code>$</code>」回傳特定單一欄位，程式碼撰寫如下。</p>
+<div class="sourceCode" id="cb114"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb114-1"><a href="r-語言基礎語法.html#cb114-1" tabindex="-1"></a>資料<span class="sc">$</span>欄位名稱</span></code></pre></div>
+<div class="sourceCode" id="cb115"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb115-1"><a href="r-語言基礎語法.html#cb115-1" tabindex="-1"></a>StuScore<span class="sc">$</span>Name</span></code></pre></div>
+<pre><code>## [1] &quot;Bob&quot;    &quot;Mary&quot;   &quot;Robert&quot; &quot;Jason&quot;  &quot;Jane&quot;</code></pre>
+<p style="color:#003D79;font-size:18px;line-height:2">
+<strong>⌾ 回傳與編輯指定元素</strong>
+</p>
+<p style="font-size:18px;line-height:1">
+<strong><u>使用行列索引值</u></strong>
+</p>
+<div class="sourceCode" id="cb117"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb117-1"><a href="r-語言基礎語法.html#cb117-1" tabindex="-1"></a>資料[橫列索引, 直行索引]</span></code></pre></div>
+<div class="sourceCode" id="cb118"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb118-1"><a href="r-語言基礎語法.html#cb118-1" tabindex="-1"></a>StuScore[<span class="dv">2</span>,<span class="dv">2</span>]</span></code></pre></div>
+<pre><code>## [1] &quot;Mary&quot;</code></pre>
+<p style="font-size:18px;line-height:1">
+<strong><u>編輯指定元素</u></strong>
+</p>
+<div class="sourceCode" id="cb120"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb120-1"><a href="r-語言基礎語法.html#cb120-1" tabindex="-1"></a>StuScore[<span class="dv">2</span>,<span class="dv">2</span>]<span class="ot">=</span><span class="st">&quot;Jessica&quot;</span></span>
+<span id="cb120-2"><a href="r-語言基礎語法.html#cb120-2" tabindex="-1"></a></span>
+<span id="cb120-3"><a href="r-語言基礎語法.html#cb120-3" tabindex="-1"></a>StuScore</span></code></pre></div>
+<pre><code>##   StudentID    Name Score
+## 1       ID1     Bob    60
+## 2       ID2 Jessica    80
+## 3       ID3  Robert    40
+## 4       ID4   Jason    50
+## 5       ID5    Jane   100</code></pre>
+<p style="color:#003D79;font-size:18px;line-height:2">
+<strong>⌾ 查看前後六筆資料</strong>
+</p>
+<p>在此我們使用 R 語言內建的<code>iris</code>資料說明。<code>iris</code>資料共計 150 個樣本，並含括三種不同的鳶尾花（setosa、virginica、versicolor），欄位則包含花瓣與花萼的長度與寬度。</p>
+<p style="font-size:18px;line-height:1">
+<strong><u>回傳前六筆資料</u></strong>
+</p>
+<div class="sourceCode" id="cb122"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb122-1"><a href="r-語言基礎語法.html#cb122-1" tabindex="-1"></a><span class="fu">head</span>(iris)</span></code></pre></div>
+<pre><code>##   Sepal.Length Sepal.Width Petal.Length Petal.Width Species
+## 1          5.1         3.5          1.4         0.2  setosa
+## 2          4.9         3.0          1.4         0.2  setosa
+## 3          4.7         3.2          1.3         0.2  setosa
+## 4          4.6         3.1          1.5         0.2  setosa
+## 5          5.0         3.6          1.4         0.2  setosa
+## 6          5.4         3.9          1.7         0.4  setosa</code></pre>
+<p style="font-size:18px;line-height:1">
+<strong><u>回傳後六筆資料</u></strong>
+</p>
+<div class="sourceCode" id="cb124"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb124-1"><a href="r-語言基礎語法.html#cb124-1" tabindex="-1"></a><span class="fu">tail</span>(iris)</span></code></pre></div>
+<pre><code>##     Sepal.Length Sepal.Width Petal.Length Petal.Width   Species
+## 145          6.7         3.3          5.7         2.5 virginica
+## 146          6.7         3.0          5.2         2.3 virginica
+## 147          6.3         2.5          5.0         1.9 virginica
+## 148          6.5         3.0          5.2         2.0 virginica
+## 149          6.2         3.4          5.4         2.3 virginica
+## 150          5.9         3.0          5.1         1.8 virginica</code></pre>
+<p style="color:#003D79;font-size:18px;line-height:2">
+<strong>⌾ 擴增資料框</strong>
+</p>
+<p style="font-size:18px;line-height:1">
+<strong><u>擴增資料列（新增紀錄）</u></strong>
+</p>
+<p>若欲新增資料，可以透過<code>rbind()</code>函式連結。程式碼如下。</p>
+<div class="sourceCode" id="cb126"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb126-1"><a href="r-語言基礎語法.html#cb126-1" tabindex="-1"></a><span class="co"># 建立欲新增的資料</span></span>
+<span id="cb126-2"><a href="r-語言基礎語法.html#cb126-2" tabindex="-1"></a>new_student<span class="ot">=</span><span class="fu">data.frame</span>(<span class="at">StudentID=</span><span class="st">&quot;ID6&quot;</span>, <span class="at">Name=</span><span class="st">&quot;Bob&quot;</span>, <span class="at">Score=</span><span class="dv">90</span>)</span>
+<span id="cb126-3"><a href="r-語言基礎語法.html#cb126-3" tabindex="-1"></a></span>
+<span id="cb126-4"><a href="r-語言基礎語法.html#cb126-4" tabindex="-1"></a><span class="co"># 利用rbind()函式相接</span></span>
+<span id="cb126-5"><a href="r-語言基礎語法.html#cb126-5" tabindex="-1"></a>StuScore<span class="ot">=</span><span class="fu">rbind</span>(StuScore, new_student)</span>
+<span id="cb126-6"><a href="r-語言基礎語法.html#cb126-6" tabindex="-1"></a></span>
+<span id="cb126-7"><a href="r-語言基礎語法.html#cb126-7" tabindex="-1"></a>StuScore</span></code></pre></div>
+<pre><code>##   StudentID    Name Score
+## 1       ID1     Bob    60
+## 2       ID2 Jessica    80
+## 3       ID3  Robert    40
+## 4       ID4   Jason    50
+## 5       ID5    Jane   100
+## 6       ID6     Bob    90</code></pre>
+<p style="font-size:18px;line-height:1">
+<strong><u>擴增資料欄（新增屬性）</u></strong>
+</p>
+<p>若欲針對整份資料新增屬性（如<code>StuScore</code>中增加性別欄位…），可以透過<code>cbind()</code>函式連結。程式碼如下。</p>
+<div class="sourceCode" id="cb128"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb128-1"><a href="r-語言基礎語法.html#cb128-1" tabindex="-1"></a><span class="co"># 建立欲新增之屬性</span></span>
+<span id="cb128-2"><a href="r-語言基礎語法.html#cb128-2" tabindex="-1"></a>Gender<span class="ot">=</span><span class="fu">c</span>(<span class="st">&quot;M&quot;</span>,<span class="st">&quot;F&quot;</span>,<span class="st">&quot;M&quot;</span>,<span class="st">&quot;M&quot;</span>,<span class="st">&quot;F&quot;</span>,<span class="st">&quot;M&quot;</span>)</span>
+<span id="cb128-3"><a href="r-語言基礎語法.html#cb128-3" tabindex="-1"></a></span>
+<span id="cb128-4"><a href="r-語言基礎語法.html#cb128-4" tabindex="-1"></a><span class="co"># 利用cbind()函式連結</span></span>
+<span id="cb128-5"><a href="r-語言基礎語法.html#cb128-5" tabindex="-1"></a>StuScore<span class="ot">=</span><span class="fu">cbind</span>(StuScore, Gender)</span>
+<span id="cb128-6"><a href="r-語言基礎語法.html#cb128-6" tabindex="-1"></a></span>
+<span id="cb128-7"><a href="r-語言基礎語法.html#cb128-7" tabindex="-1"></a>StuScore</span></code></pre></div>
+<pre><code>##   StudentID    Name Score Gender
+## 1       ID1     Bob    60      M
+## 2       ID2 Jessica    80      F
+## 3       ID3  Robert    40      M
+## 4       ID4   Jason    50      M
+## 5       ID5    Jane   100      F
+## 6       ID6     Bob    90      M</code></pre>
+<p>或可以直接透過「<code>$</code>」新增新欄位內容。程式碼如下：</p>
+<div class="sourceCode" id="cb130"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb130-1"><a href="r-語言基礎語法.html#cb130-1" tabindex="-1"></a>資料<span class="sc">$</span>新欄位<span class="ot">=</span><span class="fu">c</span>(...)</span></code></pre></div>
+<div class="sourceCode" id="cb131"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb131-1"><a href="r-語言基礎語法.html#cb131-1" tabindex="-1"></a>StuScore<span class="sc">$</span>Height<span class="ot">=</span><span class="fu">c</span>(<span class="dv">180</span>,<span class="dv">165</span>,<span class="dv">170</span>,<span class="dv">160</span>,<span class="dv">175</span>,<span class="dv">180</span>)</span>
+<span id="cb131-2"><a href="r-語言基礎語法.html#cb131-2" tabindex="-1"></a></span>
+<span id="cb131-3"><a href="r-語言基礎語法.html#cb131-3" tabindex="-1"></a>StuScore</span></code></pre></div>
+<pre><code>##   StudentID    Name Score Gender Height
+## 1       ID1     Bob    60      M    180
+## 2       ID2 Jessica    80      F    165
+## 3       ID3  Robert    40      M    170
+## 4       ID4   Jason    50      M    160
+## 5       ID5    Jane   100      F    175
+## 6       ID6     Bob    90      M    180</code></pre>
 </div>
 </div>
 <div id="dplyr資料處理" class="section level2 hasAnchor" number="1.2">
