@@ -23,3 +23,4 @@ fig:apply-fig
 矩陣matrix
 資料框data-frame
 list
+tab:function-dplyr

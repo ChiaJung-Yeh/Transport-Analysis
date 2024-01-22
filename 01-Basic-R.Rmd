@@ -723,11 +723,25 @@ StuScore_list[[2]]
 
 
 ## `dplyr`資料處理
+`dplyr`套件是 R 語言中最常見的資料處理工具，請先安裝並導入該套件。
+
+```{r install-dplyr, echo=T, eval=F}
+# 安裝套件
+install.packages("dplyr")
+
+# 導入套件
+library(dplyr)
+```
 
 
+`dplyr`套件頻繁使用的函式彙整如表\@ref(tab:function-dplyr)。  
 
+```{r function-dplyr, echo=F, eval=T}
+fuc=data.frame(Functions=c("`select()`","`filter()`","`mutate()`","`group_by()`","`reframe()`","`slice()`","`left_join()`","`arrange()`","`rename()`","`distinct()`"), Usage=c("選取特定欄位", "根據條件篩選資料", "新增資料屬性（欄位）",  "將資料依據特定欄位分群，後方經常連結`filter()`或`reframe()`", "將分群的資料予以計算", "依據條件擷取特定欄位", "根據指定欄位合併兩資料", "根據指定欄位將資料排序", "更改欄位名稱", "去除重複資料"))
 
-
+kbl(fuc, booktabs=T, escape=F, caption="`dplyr`套件重要函式")%>%
+  kable_styling(bootstrap_options=c("striped", "hover"), font_size=14)
+```
 
 
 

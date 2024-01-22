@@ -1270,6 +1270,110 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </div>
 <div id="dplyr資料處理" class="section level2 hasAnchor" number="1.2">
 <h2><span class="header-section-number">1.2</span> <code>dplyr</code>資料處理<a href="r-語言基礎語法.html#dplyr資料處理" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p><code>dplyr</code>套件是 R 語言中最常見的資料處理工具，請先安裝並導入該套件。</p>
+<div class="sourceCode" id="cb145"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb145-1"><a href="r-語言基礎語法.html#cb145-1" tabindex="-1"></a><span class="co"># 安裝套件</span></span>
+<span id="cb145-2"><a href="r-語言基礎語法.html#cb145-2" tabindex="-1"></a><span class="fu">install.packages</span>(<span class="st">&quot;dplyr&quot;</span>)</span>
+<span id="cb145-3"><a href="r-語言基礎語法.html#cb145-3" tabindex="-1"></a></span>
+<span id="cb145-4"><a href="r-語言基礎語法.html#cb145-4" tabindex="-1"></a><span class="co"># 導入套件</span></span>
+<span id="cb145-5"><a href="r-語言基礎語法.html#cb145-5" tabindex="-1"></a><span class="fu">library</span>(dplyr)</span></code></pre></div>
+<p><code>dplyr</code>套件頻繁使用的函式彙整如表<a href="r-語言基礎語法.html#tab:function-dplyr">1.5</a>。</p>
+<table class="table table-striped table-hover" style="font-size: 14px; margin-left: auto; margin-right: auto;">
+<caption style="font-size: initial !important;">
+<span id="tab:function-dplyr">表 1.5: </span><code>dplyr</code>套件重要函式
+</caption>
+<thead>
+<tr>
+<th style="text-align:left;">
+Functions
+</th>
+<th style="text-align:left;">
+Usage
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left;">
+<code>select()</code>
+</td>
+<td style="text-align:left;">
+選取特定欄位
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+<code>filter()</code>
+</td>
+<td style="text-align:left;">
+根據條件篩選資料
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+<code>mutate()</code>
+</td>
+<td style="text-align:left;">
+新增資料屬性（欄位）
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+<code>group_by()</code>
+</td>
+<td style="text-align:left;">
+將資料依據特定欄位分群，後方經常連結<code>filter()</code>或<code>reframe()</code>
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+<code>reframe()</code>
+</td>
+<td style="text-align:left;">
+將分群的資料予以計算
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+<code>slice()</code>
+</td>
+<td style="text-align:left;">
+依據條件擷取特定欄位
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+<code>left_join()</code>
+</td>
+<td style="text-align:left;">
+根據指定欄位合併兩資料
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+<code>arrange()</code>
+</td>
+<td style="text-align:left;">
+根據指定欄位將資料排序
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+<code>rename()</code>
+</td>
+<td style="text-align:left;">
+更改欄位名稱
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+<code>distinct()</code>
+</td>
+<td style="text-align:left;">
+去除重複資料
+</td>
+</tr>
+</tbody>
+</table>
 
 </div>
 </div>
