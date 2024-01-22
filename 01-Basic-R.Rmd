@@ -629,7 +629,7 @@ tail(iris)
 
 ```{r dataframe_rbind, echo=T, eval=T}
 # 建立欲新增的資料
-new_student=data.frame(StudentID="ID6", Name="Bob", Score=90)
+new_student=data.frame(StudentID="ID6", Name="Roy", Score=90)
 
 # 利用rbind()函式相接
 StuScore=rbind(StuScore, new_student)
@@ -663,11 +663,29 @@ StuScore
 ```
 
 
+<p style="color:#003D79;font-size:18px;line-height:2">**⌾ 檢查重複列**</p>  
+為說明範例，在此先行建立一句有重複資料的資料框。
+
+```{r dataframe_duplicated1, echo=T, eval=T}
+StuScore_dup=data.frame(StudentID=c("ID1","ID2","ID4","ID3","ID4","ID5","ID2"),
+                        Name=c("Bob","Mary","Jason","Robert","Jason","Jane","Mary"),
+                        Score=c(60,80,40,100,40,100,80))
+StuScore_dup
+```
+
+由上述結果可知，資料中含有重複的橫列（ID2 & ID4）。我們可以進一步利用`duplicated()`函式檢查之。
+
+```{r dataframe_duplicated2, echo=T, eval=T}
+duplicated(StuScore_dup)
+
+# 使用which()函式尋找重複的資料列索引
+which(duplicated(StuScore_dup))
+```
+
+由執行結果可知，第 5 與第 7 筆資料屬於重複資料。請務必注意，資料框中首次出現的列不會被視為重複者。
 
 
-
-
-
+### **List**
 
 
 
