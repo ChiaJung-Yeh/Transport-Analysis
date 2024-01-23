@@ -27,3 +27,7 @@ tab:function-data-clean
 資料讀取與匯出
 tab:string-fun
 陣列
+陣列list
+連接字串
+轉換大小寫
+擷取與取代字元

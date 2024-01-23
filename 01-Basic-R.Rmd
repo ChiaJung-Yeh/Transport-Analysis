@@ -686,7 +686,7 @@ which(duplicated(StuScore_dup))
 由執行結果可知，第 5 與第 7 筆資料屬於重複資料。請務必注意，資料框中首次出現的列不會被視為重複者。
 
 
-### 陣列
+### 陣列（List）
 <p style="color:#003D79;font-size:18px;line-height:2">**⌾ 陣列的性質**</p>  
 
 * 物件的集合（可包含向量、矩陣、資料框、陣列...）  
@@ -723,7 +723,7 @@ StuScore_list[[2]]
 
 
 ## 文字處理
-在資料分析中，文字處理是相當重要的程序，可從中解析特定的詞彙，如計算詞彙數量、取代特定字詞、查看文字出現位置等等，從中探索資料中的文字內容。文字處理可以透過 R 內建的`base`套件或另安裝`stringr`套件處理之。本節主要即是針對此二套件說明文字處理之應用。
+在資料分析中，文字處理是相當重要的程序，可從中解析特定的詞彙，如計算詞彙數量、取代特定字詞、查看文字出現位置等等，從中探索資料中的文字內容。文字處理可以透過 R 內建的`base`套件或另安裝`stringr`套件處理之，本節主要即是針對此二套件說明文字處理之應用。
 
 ```{r stringr-install, echo=T, eval=F}
 install.packages("stringr")
@@ -733,7 +733,7 @@ library(stringr)
 本節中所論及的函式彙整如表\@ref(tab:string-fun)。  
 
 ```{r string-fun, echo=F, eval=T}
-str_fun=data.frame(Package=c(rep("`base`", 10), rep("`stringr`", 15)), fun=c("`paste()`","`paste0()`","`toupper()`","`tolower()`","`substr()`","`strsplit()`","`gsub()`","`grep()`","`grepl()`","`regexpr()`","`str_to_lower()`","`str_to_upper()`","`str_to_title()`","`str_starts()`","`str_which()`","`str_locate()`","`str_count()`","`str_sub()`","`str_length()`","`str_pad()`","`str_split()`","`str_flatten()`","`str_glue()`","`str_order()`","`str_sort()`"), description=c("連接字串","連接字串（無分隔）","轉換為大寫","轉換為小寫","擷取字元","拆解字串","取代字元","回傳符合條件的索引值","回傳是否含有特定字元","回傳特定字元出現的位置索引","轉換為大寫","轉換為小寫","首字大寫","回傳是否以特定字元開頭","回傳是否含有特定字元","回傳特定字元出現的位置索引","回傳特定字元出現的次數","取代字元","字串長度","統一字串長度的格式","拆解字串","連接字串","連接字串（含變數）","回傳字串排序索引值","回傳字串排序後結果"))
+str_fun=data.frame(Package=c(rep("`base`", 10), rep("`stringr`", 16)), fun=c("[`paste()`](#連接字串)","[`paste0()`](#連接字串)","[`toupper()`](#轉換大小寫)","[`tolower()`](#轉換大小寫)","[`substr()`](#擷取與取代字元)","`strsplit()`","[`gsub()`](#擷取與取代字元)","`grep()`","`grepl()`","`regexpr()`","[`str_to_upper()`](#轉換大小寫)","[`str_to_lower()`](#轉換大小寫)","[`str_to_title()`](#轉換大小寫)","`str_starts()`","`str_which()`","`str_locate()`","`str_count()`","[`str_sub()`](#擷取與取代字元)","[`str_replace()`](#擷取與取代字元)","`str_length()`","`str_pad()`","`str_split()`","[`str_flatten()`](#連接字串)","[`str_glue()`](#連接字串)","`str_order()`","`str_sort()`"), description=c("連接字串","連接字串（無分隔）","轉換為大寫","轉換為小寫","擷取字元","拆解字串","取代字元","回傳符合條件的索引值","回傳是否含有特定字元","回傳特定字元出現的位置索引","轉換為大寫","轉換為小寫","首字大寫","回傳是否以特定字元開頭","回傳是否含有特定字元","回傳特定字元出現的位置索引","回傳特定字元出現的次數","擷取字元（可進一步取代）","取代字元","字串長度","統一字串長度的格式","拆解字串","連接字串","連接字串（含變數）","回傳字串排序索引值","回傳字串排序後結果"))
 
 # str_starts("abc", "abc")
 # str_which("scabcab", "ab")
@@ -758,8 +758,158 @@ kbl(str_fun, booktabs=T, escape=F, caption="文字處理重要函式")%>%
 ```
 
 
+### 連接字串
+
+<p style="color:#003D79;font-size:18px;line-height:2">**⌾  `paste()`：以特定符號連接**</p>  
+```{r paste-string1, echo=T, eval=F}
+paste(文字向量, collapse="分隔符號")
+```
+
+`collapse=`引數須設定欲分隔字串的符號。
+
+<p style="color:#003D79;font-size:18px;line-height:2">**⌾  `paste0()`：直接連接（無分隔）**</p>  
+```{r paste-string2, echo=T, eval=F}
+paste0(文字向量)
+```
+
+<p style="color:#003D79;font-size:18px;line-height:2">**⌾  `str_flatten()`：以特定符號連接**</p>  
+與`paste()`函式功能相同。
+```{r paste-string3, echo=T, eval=F}
+str_flatten(文字向量, collapse="分隔符號")
+```
+
+`collapse=`引數須設定欲分隔字串的符號。
+
+<p style="color:#003D79;font-size:18px;line-height:2">**⌾  `str_glue()`：連結字串與變數**</p>  
+```{r paste-string4, echo=T, eval=F}
+str_glue("文字{變數}")
+```
+
+以下簡單示範連結字串之函式應用案例。
+
+```{r paste-string5, echo=T, eval=T}
+# 原始文字向量
+transport=c("Bus", "MRT", "Car", "Motorcycle", "Bike", "Taxi")
+all_name="Mode"
+
+# paste()函式連結所有transport內的元素
+paste(transport, collapse="|")
+
+# paste()函式連結all_name與transport內各元素
+paste(all_name, ":", transport)
+
+# paste0()函式連結all_name與transport內各元素
+paste0(all_name, ": ", transport)
+
+# str_flatten()函式連結所有transport內的元素
+str_flatten(transport, collapse="|")
+
+# str_glue()函式連結all_name與transport內各元素
+str_glue("{all_name}: {transport}")
+```
 
 
+### 轉換大小寫
+<p style="color:#003D79;font-size:18px;line-height:2">**⌾  `toupper()`：全部轉換為大寫**</p>  
+```{r uplow-string1, echo=T, eval=F}
+toupper(文字向量)
+```
+
+<p style="color:#003D79;font-size:18px;line-height:2">**⌾  `tolower()`：全部轉換為小寫**</p>  
+```{r uplow-string2, echo=T, eval=F}
+tolower(文字向量)
+```
+
+<p style="color:#003D79;font-size:18px;line-height:2">**⌾  `str_to_upper()`：全部轉換為大寫**</p>  
+```{r uplow-string3, echo=T, eval=F}
+str_to_upper(文字向量)
+```
+
+<p style="color:#003D79;font-size:18px;line-height:2">**⌾  `str_to_lower()`：全部轉換為小寫**</p>  
+```{r uplow-string4, echo=T, eval=F}
+str_to_lower(文字向量)
+```
+
+<p style="color:#003D79;font-size:18px;line-height:2">**⌾  `str_to_title()`：首字大寫**</p>  
+```{r uplow-string5, echo=T, eval=F}
+str_to_title(文字向量)
+```
+
+以下簡單示範轉換字元大小寫之應用案例。
+
+```{r uplow-string6, echo=T, eval=T}
+# 原始文字向量
+transport=c("Bus", "MRT", "Car", "Motorcycle", "Bike", "Taxi")
+all_name="Mode"
+
+# toupper()函式轉換大寫
+toupper(transport)
+
+# tolower()函式轉換小寫
+tolower(transport)
+
+# str_to_upper()函式轉換大寫
+str_to_upper(transport)
+
+# str_to_lower()函式轉換小寫
+str_to_lower(transport)
+
+# toupper()函式首字大寫
+str_to_title("national yang ming chiao tung university")
+```
+
+
+### 擷取與取代字元
+<p style="color:#003D79;font-size:18px;line-height:2">**⌾  `substr()`：擷取字元**</p>  
+```{r sub-string1, echo=T, eval=F}
+substr(文字向量, 開始字元索引, 結束字元索引)
+```
+
+<p style="color:#003D79;font-size:18px;line-height:2">**⌾  `gsub()`：取代字元**</p>  
+```{r sub-string2, echo=T, eval=F}
+gsub("被取代字元", "新替換字元", 文字向量)
+```
+
+<p style="color:#003D79;font-size:18px;line-height:2">**⌾  `str_sub()`：擷取並取代字元**</p>  
+```{r sub-string3, echo=T, eval=F}
+# 擷取字元
+str_sub(文字向量, 開始字元索引, 結束字元索引)
+
+# 取代指定位置的字元(此時以下的文字向量務必是變數)
+str_sub(文字向量, 開始字元索引, 結束字元索引)="新替換字元"
+```
+
+<p style="color:#003D79;font-size:18px;line-height:2">**⌾  `str_replace()`：取代字元**</p>  
+```{r sub-string4, echo=T, eval=F}
+str_replace(文字向量, "被取代字元", "新替換字元")
+```
+
+以下簡單示範擷取與取代字元之應用案例。
+
+```{r sub-string5, echo=T, eval=T}
+# 原始文字向量
+transport=c("Bus", "MRT", "Car", "Motorcycle", "Bike", "Taxi")
+all_name="Mode"
+
+# substr()擷取字元
+substr(transport, 1, 3)
+
+# gsub()取代字元
+gsub("a", "?", transport)
+
+# str_sub()擷取字元
+str_sub(transport, 1, 2)
+
+# str_sub()取代特定位置之字元
+transport_new=transport
+str_sub(transport_new, 2, 3)="??"
+transport_new
+
+# str_replace()擷取字元
+str_replace(transport, "[aeiou]", "?")
+```
+
+以上範例中`str_replace()`函式的`"[aeiou]"`係指中括號內所有的字元都可被取代。
 
 
 
@@ -816,7 +966,7 @@ datatable(world, options=list(pageLength=5, scrollX=T, headerCallback = DT::JS(
 此外，`read.csv()`函式有諸多引數可供設定，以下簡要說明各引數的功能及設定方式：  
 
 * `header=`設定是否有表頭，若有應設定為`T`，否則預設為`F`。  
-* `sep=`設定分隔符號，例如常見的 .csv 檔即為「逗號」分隔。此引數預設為「,」，若非逗點分隔，需設定此參數。  
+* `sep=`設定分隔符號，例如常見的 .csv 檔即為「逗號」分隔。此引數預設為「,」，若非逗點分隔，需設定此參數，如「\t」為「tab」分隔。  
 * `colClasses=`設定各欄位的資料型態，如已知 A 欄位為數值型態；B 欄位為文字型態，則應設定：`c("A"="numeric", "B"="character")`。  
 * `nrows=`設定擷取的橫列數。  
 * `skip=`設定跳過前幾筆資料。  
