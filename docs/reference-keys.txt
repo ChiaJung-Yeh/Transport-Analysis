@@ -31,3 +31,9 @@ tab:string-fun
 連接字串
 轉換大小寫
 擷取與取代字元
+文字符號規則
+r-string-regular-expr-echof-evalt-data.framesignc-kblfuc-booktabst-escapef-caption資料處理重要函式-kable_stylingbootstrap_optionscstriped-hover-font_size14-collapse_rows1
+tab:string-regular-expr
+正規表示式
+拆解字串
+fig:list-length-fig

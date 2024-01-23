@@ -462,7 +462,7 @@ kable(matrix_operation, booktabs=T, caption="矩陣運算")%>%
 
 
 <p style="font-size:18px;line-height:1">**<u>`apply()`函式應用</u>**</p>  
-試想若沒有\@ref(tab:matrix-operation-table)中的各個函式用以處理矩陣資料，我們可以透過`for()`迴圈逐行或逐列針對矩陣運算，以橫列加總（rowSums）為例，程式碼撰寫如下。
+試想若沒有\@ref(tab:matrix-operation-table)中的各個函式用以處理矩陣資料，我們可以透過`for()`迴圈逐行或逐列針對矩陣運算，以橫列加總（`rowSums`）為例，程式碼撰寫如下。
 
 ```{r matrix-for-loop, echo=T, eval=T}
 for(i in c(1:nrow(mat2))){
@@ -721,6 +721,31 @@ StuScore_list[[2]]
 ```
 
 
+<p style="color:#003D79;font-size:18px;line-height:2">**⌾  陣列長度**</p>  
+向量的長度可以利用`length()`函式計算，而陣列亦同，程式碼撰寫如下。
+```{r list4, echo=T, eval=T}
+# 建立陣列
+num_list=list(c(1:5), c("A","B","C","D"), c(T,F,T))
+num_list
+
+# 計算陣列長度
+length(num_list)
+```
+
+由此可知，`num_list`的長度為 3。而若欲知該陣列內各別陣列的長度，則必須透過`lengths()`函數達成此一目的。程式碼撰寫如下，陣列長度的計算詳如圖\@ref(fig:list-length-fig)之示意圖所示。
+
+```{r list5, echo=T, eval=T}
+# 計算陣列內各陣列長度
+lengths(num_list)
+```
+
+由此可知，`num_list`陣列內第一個陣列的長度為 5，其次為 3，最後一者為 4。
+
+```{r list-length-fig, echo=F, eval=T, out.width="70%", fig.align="center", fig.cap="陣列長度示意圖"}
+include_graphics("./figure/length_lengths.png")
+```
+
+
 
 ## 文字處理
 在資料分析中，文字處理是相當重要的程序，可從中解析特定的詞彙，如計算詞彙數量、取代特定字詞、查看文字出現位置等等，從中探索資料中的文字內容。文字處理可以透過 R 內建的`base`套件或另安裝`stringr`套件處理之，本節主要即是針對此二套件說明文字處理之應用。
@@ -733,7 +758,7 @@ library(stringr)
 本節中所論及的函式彙整如表\@ref(tab:string-fun)。  
 
 ```{r string-fun, echo=F, eval=T}
-str_fun=data.frame(Package=c(rep("`base`", 10), rep("`stringr`", 16)), fun=c("[`paste()`](#連接字串)","[`paste0()`](#連接字串)","[`toupper()`](#轉換大小寫)","[`tolower()`](#轉換大小寫)","[`substr()`](#擷取與取代字元)","`strsplit()`","[`gsub()`](#擷取與取代字元)","`grep()`","`grepl()`","`regexpr()`","[`str_to_upper()`](#轉換大小寫)","[`str_to_lower()`](#轉換大小寫)","[`str_to_title()`](#轉換大小寫)","`str_starts()`","`str_which()`","`str_locate()`","`str_count()`","[`str_sub()`](#擷取與取代字元)","[`str_replace()`](#擷取與取代字元)","`str_length()`","`str_pad()`","`str_split()`","[`str_flatten()`](#連接字串)","[`str_glue()`](#連接字串)","`str_order()`","`str_sort()`"), description=c("連接字串","連接字串（無分隔）","轉換為大寫","轉換為小寫","擷取字元","拆解字串","取代字元","回傳符合條件的索引值","回傳是否含有特定字元","回傳特定字元出現的位置索引","轉換為大寫","轉換為小寫","首字大寫","回傳是否以特定字元開頭","回傳是否含有特定字元","回傳特定字元出現的位置索引","回傳特定字元出現的次數","擷取字元（可進一步取代）","取代字元","字串長度","統一字串長度的格式","拆解字串","連接字串","連接字串（含變數）","回傳字串排序索引值","回傳字串排序後結果"))
+str_fun=data.frame(Package=c(rep("`base`", 11), rep("`stringr`", 17)), fun=c("[`paste()`](#連接字串)","[`paste0()`](#連接字串)","[`toupper()`](#轉換大小寫)","[`tolower()`](#轉換大小寫)","[`substr()`](#擷取與取代字元)","`strsplit()`","[`gsub()`](#擷取與取代字元)","`nchar()`","`grep()`","`grepl()`","`regexpr()`","[`str_to_upper()`](#轉換大小寫)","[`str_to_lower()`](#轉換大小寫)","[`str_to_title()`](#轉換大小寫)","`str_which()`","`str_detect()`","`str_starts()`","`str_locate()`","`str_count()`","[`str_sub()`](#擷取與取代字元)","[`str_replace()`](#擷取與取代字元)","`str_length()`","`str_pad()`","`str_split()`","[`str_flatten()`](#連接字串)","[`str_glue()`](#連接字串)","`str_order()`","`str_sort()`"), description=c("連接字串","連接字串（無分隔）","轉換為大寫","轉換為小寫","擷取字元","拆解字串","取代字元","字串長度(字元數)","回傳符合條件的索引值","回傳是否含有特定字元","回傳特定字元出現的位置索引","轉換為大寫","轉換為小寫","首字大寫","回傳符合條件的索引值","回傳是否含有特定字元","回傳是否以特定字元開頭","回傳特定字元出現的位置索引","回傳特定字元出現的次數","擷取字元（可進一步取代）","取代字元","字串長度(字元數)","統一字串長度的格式","拆解字串","連接字串","連接字串（含變數）","回傳字串排序索引值","回傳字串排序後結果"))
 
 # str_starts("abc", "abc")
 # str_which("scabcab", "ab")
@@ -751,6 +776,7 @@ str_fun=data.frame(Package=c(rep("`base`", 10), rep("`stringr`", 16)), fun=c("[`
 # str_glue("ff is {temp}")
 # str_order(fruit)
 # str_sort(fruit)
+
 colnames(str_fun)=c("套件","函式","功能")
 kbl(str_fun, booktabs=T, escape=F, caption="文字處理重要函式")%>%
   kable_styling(bootstrap_options=c("striped", "hover"), font_size=14)%>%
@@ -909,9 +935,65 @@ transport_new
 str_replace(transport, "[aeiou]", "?")
 ```
 
-以上範例中`str_replace()`函式的`"[aeiou]"`係指中括號內所有的字元都可被取代。
+以上範例中`str_replace()`函式的`[aeiou]`係指中括號內任一字元皆可被取代。關於此類符號的表達請參考[**正規表示式**](#正規表示式)一節。
 
 
+### 拆解字串
+<p style="color:#003D79;font-size:18px;line-height:2">**⌾  `strsplit()`：拆解字串**</p>  
+```{r split-string1, echo=T, eval=F}
+strsplit(資料, "切割符號")
+```
+
+程式碼中的「切割符號」係指在字串中用以切割字串的符號。
+
+<p style="color:#003D79;font-size:18px;line-height:2">**⌾  `str_split()`：拆解字串**</p>
+`str_split()`函式為`stringr`套件的函式，其與`base`套件中的`strsplit`函式完全相同。
+
+```{r split-string2, echo=T, eval=F}
+str_split(資料, "切割符號")
+```
+
+以下範例說明拆解字串的做法。
+
+```{r split-string3, echo=T, eval=T}
+# 原始文字向量
+transport_comb=c("Bus & MRT & Bike", "Motorcycle & Car", "Taxi")
+
+# strsplit()拆解字串
+strsplit(transport_comb, " & ")
+
+# str_split()拆解字串
+str_split(transport_comb, " & ")
+```
+
+上述拆解完成後的字串，儲存於一陣列中，[[1]] 中即是`transport_comb`向量中第一個元素拆解後的結果，包含三個元素（Bus、MRT、Bike），其他則以此類推。此外我們亦可利用`unlist()`函式將所有拆解的結果從陣列中抽離出來，轉換成向量。程式碼撰寫如下。
+
+```{r split-string-unlist, echo=T, eval=T}
+# 拆解字串
+word_split=strsplit(transport_comb, " & ")
+
+# 去除陣列，轉換為向量
+unlist(word_split)
+```
+
+
+
+
+
+
+### 正規表示式
+正規表示式（Regular Expression）是各程式語言中的標準格式，可藉此做進階的文字處理，擴充上述小節中文字取代、搜尋等功能的彈性，若能掌握此技巧，得以提升文字探勘的能力。正規表示式彙整如表\@ref(tab:string-regular-expr)。
+
+```{r string-regular-expr, echo=F, eval=T, message=F}
+string_sign=data.frame(sign=c("`\\\\`", "`\\\\n`", "`\\\\t`", "`\\\\s`", "`\\\\S`", "`\\\\d`", "`\\\\D`", "`\\\\w`", "`\\\\W`", "`|`", "`*`", "`+`", "`?`", "`{n}`", "`[]`", "`[^]`", "`[-]`", "`^`", "`$`", "`(?=)`", "`(?!)`"),
+                       meaning=c("符號（如：`\\\\.`表示「.」`\\\\\\`表示「\\\\」）", "換行","tab","空白","非空白","數值","非數值","文字","非文字","或者（如：`a|b`即是 a 或者 b）","連接零個或多個未知字元（如：`ab*`表示 ab 後面可接或不接任何字元）","連接一個或多個未知字元（如：`ab+`表示 ab 後面需加一個或多個字元）","連接零個或一個未知字元（如：`ab?`表示 ab 後面可接一個或不接任何字元）","連接前一個字元 n 次（如：`a{5}`表示 a 重複 5 次）","任一字元（如：`[abc]`表示「a、b、c」任一字元）","排除（如：`[^abc]`表示不包含「a、b、c」任一字元）","範圍（如：`[a-c]`表示 a 至 c 所有字元）","以...為起始字元（如`^abc`即是以 abc 為起始字元）","以...為結尾字元（如`abc$`即是以 abc 為結尾字元）","字元後方必須為特定字元者（如：`a(?=b)`表示 a 後面必須接 b 字元者）","字元後方必須非特定字元者（如：`a(?!b)`表示 a 後面非接 b 字元者）"))
+
+tt=ceiling(nrow(string_sign)/2)
+temp=bind_cols(string_sign[1:tt,], bind_rows(string_sign[(tt+1):nrow(string_sign),], data.frame(sign="", meaning="")))
+colnames(temp)=c("符號","意義","符號","意義")
+kbl(temp, booktabs=T, escape=F, caption="文字符號規則")%>%
+  kable_styling(bootstrap_options=c("striped", "hover"), font_size=14)
+```
 
 
 
@@ -966,7 +1048,7 @@ datatable(world, options=list(pageLength=5, scrollX=T, headerCallback = DT::JS(
 此外，`read.csv()`函式有諸多引數可供設定，以下簡要說明各引數的功能及設定方式：  
 
 * `header=`設定是否有表頭，若有應設定為`T`，否則預設為`F`。  
-* `sep=`設定分隔符號，例如常見的 .csv 檔即為「逗號」分隔。此引數預設為「,」，若非逗點分隔，需設定此參數，如「\t」為「tab」分隔。  
+* `sep=`設定分隔符號，例如常見的 .csv 檔即為「逗號」分隔。此引數預設為「,」，若非逗點分隔，需設定此參數，如「\\t」為「tab」分隔。  
 * `colClasses=`設定各欄位的資料型態，如已知 A 欄位為數值型態；B 欄位為文字型態，則應設定：`c("A"="numeric", "B"="character")`。  
 * `nrows=`設定擷取的橫列數。  
 * `skip=`設定跳過前幾筆資料。  
