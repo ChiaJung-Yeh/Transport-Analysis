@@ -758,7 +758,7 @@ library(stringr)
 本節中所論及的函式彙整如表\@ref(tab:string-fun)。  
 
 ```{r string-fun, echo=F, eval=T}
-str_fun=data.frame(Package=c(rep("`base`", 11), rep("`stringr`", 17)), fun=c("[`paste()`](#連接字串)","[`paste0()`](#連接字串)","[`toupper()`](#轉換大小寫)","[`tolower()`](#轉換大小寫)","[`substr()`](#擷取與取代字元)","`strsplit()`","[`gsub()`](#擷取與取代字元)","`nchar()`","`grep()`","`grepl()`","`regexpr()`","[`str_to_upper()`](#轉換大小寫)","[`str_to_lower()`](#轉換大小寫)","[`str_to_title()`](#轉換大小寫)","`str_which()`","`str_detect()`","`str_starts()`","`str_locate()`","`str_count()`","[`str_sub()`](#擷取與取代字元)","[`str_replace()`](#擷取與取代字元)","`str_length()`","`str_pad()`","`str_split()`","[`str_flatten()`](#連接字串)","[`str_glue()`](#連接字串)","`str_order()`","`str_sort()`"), description=c("連接字串","連接字串（無分隔）","轉換為大寫","轉換為小寫","擷取字元","拆解字串","取代字元","字串長度(字元數)","回傳符合條件的索引值","回傳是否含有特定字元","回傳特定字元出現的位置索引","轉換為大寫","轉換為小寫","首字大寫","回傳符合條件的索引值","回傳是否含有特定字元","回傳是否以特定字元開頭","回傳特定字元出現的位置索引","回傳特定字元出現的次數","擷取字元（可進一步取代）","取代字元","字串長度(字元數)","統一字串長度的格式","拆解字串","連接字串","連接字串（含變數）","回傳字串排序索引值","回傳字串排序後結果"))
+str_fun=data.frame(Package=c(rep("`base`", 11), rep("`stringr`", 17)), fun=c("[`paste()`](#連接字串)","[`paste0()`](#連接字串)","[`toupper()`](#轉換大小寫)","[`tolower()`](#轉換大小寫)","[`substr()`](#擷取與取代字元)","[`strsplit()`](#拆解字串)","[`gsub()`](#擷取與取代字元)","`nchar()`","`grep()`","`grepl()`","`regexpr()`","[`str_to_upper()`](#轉換大小寫)","[`str_to_lower()`](#轉換大小寫)","[`str_to_title()`](#轉換大小寫)","`str_which()`","`str_detect()`","`str_starts()`","`str_locate()`","`str_count()`","[`str_sub()`](#擷取與取代字元)","[`str_replace()`](#擷取與取代字元)","`str_length()`","`str_pad()`","[`str_split()`](#拆解字串)","[`str_flatten()`](#連接字串)","[`str_glue()`](#連接字串)","`str_order()`","`str_sort()`"), description=c("連接字串","連接字串（無分隔）","轉換為大寫","轉換為小寫","擷取字元","拆解字串","取代字元","字串長度(字元數)","回傳符合條件的索引值","回傳是否含有特定字元","回傳特定字元出現的位置索引","轉換為大寫","轉換為小寫","首字大寫","回傳符合條件的索引值","回傳是否含有特定字元","回傳是否以特定字元開頭","回傳特定字元出現的位置索引","回傳特定字元出現的次數","擷取字元（可進一步取代）","取代字元","字串長度(字元數)","統一字串長度的格式","拆解字串","連接字串","連接字串（含變數）","回傳字串排序索引值","回傳字串排序後結果"))
 
 # str_starts("abc", "abc")
 # str_which("scabcab", "ab")
@@ -780,7 +780,8 @@ str_fun=data.frame(Package=c(rep("`base`", 11), rep("`stringr`", 17)), fun=c("[`
 colnames(str_fun)=c("套件","函式","功能")
 kbl(str_fun, booktabs=T, escape=F, caption="文字處理重要函式")%>%
   kable_styling(bootstrap_options=c("striped", "hover"), font_size=14)%>%
-  collapse_rows(1)
+  collapse_rows(1)%>%
+  row_spec(0, bold=T, color="white", background="#8E8E8E")
 ```
 
 
@@ -977,8 +978,41 @@ unlist(word_split)
 ```
 
 
+### 計算字元數
+<p style="color:#003D79;font-size:18px;line-height:2">**⌾  `nchar()`：計算字串內所有字元數**</p>  
+```{r count-string1, echo=T, eval=F}
+nchar(資料)
+```
 
+<p style="color:#003D79;font-size:18px;line-height:2">**⌾  `str_length()`：計算字串內所有字元數**</p>  
+抑或可利用`stringr`套件中的`str_length()`函式達成相同目的。
 
+```{r count-string2, echo=T, eval=F}
+str_length(資料)
+```
+
+```{r count-string3, echo=T, eval=T}
+# 建立向量
+transport=c("Bus", "MRT", "Car", "Motorcycle", "Bike", "Taxi")
+
+# nchar()計算長度
+nchar(transport)
+
+# str_length()計算長度
+str_length(transport)
+```
+
+<p style="color:#003D79;font-size:18px;line-height:2">**⌾  `str_count()`：計算符合條件的字元數**</p>  
+
+```{r count-string4, echo=T, eval=F}
+str_count(資料)
+```
+
+```{r count-string5, echo=T, eval=T}
+str_count(transport, "[^aeiou]")
+```
+
+程式碼中的`[^aeiou]`意指「不包含」「aeiou」任一字元者，因此「Bus」去除「u」之後，字元數為 2。此類符號的表達請參考[**正規表示式**](#正規表示式)一節。
 
 
 ### 正規表示式
@@ -992,10 +1026,11 @@ tt=ceiling(nrow(string_sign)/2)
 temp=bind_cols(string_sign[1:tt,], bind_rows(string_sign[(tt+1):nrow(string_sign),], data.frame(sign="", meaning="")))
 colnames(temp)=c("符號","意義","符號","意義")
 kbl(temp, booktabs=T, escape=F, caption="文字符號規則")%>%
-  kable_styling(bootstrap_options=c("striped", "hover"), font_size=14)
+  kable_styling(bootstrap_options=c("striped", "hover"), font_size=14)%>%
+  row_spec(0, bold=T, color="white", background="#8E8E8E")
 ```
 
-
+關於正規表示式的詳細說明請參考[此](https://www.wikiwand.com/zh-tw/%E6%AD%A3%E5%88%99%E8%A1%A8%E8%BE%BE%E5%BC%8F)。
 
 
 ## 資料讀取與匯出
@@ -1096,7 +1131,8 @@ fuc=data.frame(Package=c("base", rep("`dplyr`", 10), rep("`data.table`", 2)), Fu
 
 kbl(fuc, booktabs=T, escape=F, caption="資料處理重要函式")%>%
   kable_styling(bootstrap_options=c("striped", "hover"), font_size=14)%>%
-  collapse_rows(1)
+  collapse_rows(1)%>%
+  row_spec(0, bold=T, color="white", background="#8E8E8E")
 ```
 
 

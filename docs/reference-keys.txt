@@ -37,3 +37,4 @@ tab:string-regular-expr
 正規表示式
 拆解字串
 fig:list-length-fig
+計算字元數
