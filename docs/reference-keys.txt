@@ -25,3 +25,5 @@ fig:bus-distance-fig
 tab:function-data-clean
 文字處理
 資料讀取與匯出
+tab:string-fun
+陣列

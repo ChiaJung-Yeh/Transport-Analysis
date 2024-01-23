@@ -10,6 +10,7 @@ library(knitr)
 library(kableExtra)
 library(TDX)
 library(DT)
+library(stringr)
 
 Sys.setlocale(category = "LC_ALL", locale = "zh_TW.UTF-8")
 
@@ -685,7 +686,7 @@ which(duplicated(StuScore_dup))
 由執行結果可知，第 5 與第 7 筆資料屬於重複資料。請務必注意，資料框中首次出現的列不會被視為重複者。
 
 
-### **List**
+### 陣列
 <p style="color:#003D79;font-size:18px;line-height:2">**⌾ 陣列的性質**</p>  
 
 * 物件的集合（可包含向量、矩陣、資料框、陣列...）  
@@ -722,6 +723,44 @@ StuScore_list[[2]]
 
 
 ## 文字處理
+在資料分析中，文字處理是相當重要的程序，可從中解析特定的詞彙，如計算詞彙數量、取代特定字詞、查看文字出現位置等等，從中探索資料中的文字內容。文字處理可以透過 R 內建的`base`套件或另安裝`stringr`套件處理之。本節主要即是針對此二套件說明文字處理之應用。
+
+```{r stringr-install, echo=T, eval=F}
+install.packages("stringr")
+library(stringr)
+```
+
+本節中所論及的函式彙整如表\@ref(tab:string-fun)。  
+
+```{r string-fun, echo=F, eval=T}
+str_fun=data.frame(Package=c(rep("`base`", 10), rep("`stringr`", 15)), fun=c("`paste()`","`paste0()`","`toupper()`","`tolower()`","`substr()`","`strsplit()`","`gsub()`","`grep()`","`grepl()`","`regexpr()`","`str_to_lower()`","`str_to_upper()`","`str_to_title()`","`str_starts()`","`str_which()`","`str_locate()`","`str_count()`","`str_sub()`","`str_length()`","`str_pad()`","`str_split()`","`str_flatten()`","`str_glue()`","`str_order()`","`str_sort()`"), description=c("連接字串","連接字串（無分隔）","轉換為大寫","轉換為小寫","擷取字元","拆解字串","取代字元","回傳符合條件的索引值","回傳是否含有特定字元","回傳特定字元出現的位置索引","轉換為大寫","轉換為小寫","首字大寫","回傳是否以特定字元開頭","回傳是否含有特定字元","回傳特定字元出現的位置索引","回傳特定字元出現的次數","取代字元","字串長度","統一字串長度的格式","拆解字串","連接字串","連接字串（含變數）","回傳字串排序索引值","回傳字串排序後結果"))
+
+# str_starts("abc", "abc")
+# str_which("scabcab", "ab")
+# str_locate("sdabcab", "ab")
+# str_locate_all("asdaf", "a")
+# str_count("sdabcab", "ab")
+# str_sub("sdabcab", 2, 3)
+# str_length("sfesaascdfafwg")
+# str_pad(1, 2, "left", 0)
+# str_to_lower()
+# str_to_upper()
+# str_to_title()
+# str_flatten(fruit, ", ")
+# paste(fruit, collapse=", ")
+# str_glue("ff is {temp}")
+# str_order(fruit)
+# str_sort(fruit)
+colnames(str_fun)=c("套件","函式","功能")
+kbl(str_fun, booktabs=T, escape=F, caption="文字處理重要函式")%>%
+  kable_styling(bootstrap_options=c("striped", "hover"), font_size=14)%>%
+  collapse_rows(1)
+```
+
+
+
+
+
 
 
 
