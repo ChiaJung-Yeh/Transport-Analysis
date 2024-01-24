@@ -1352,7 +1352,7 @@ library(jsonlite)
 fromJSON(資料)
 ```
 
-函式中的`資料`可為本機資料，亦可為網址 url。以下以[社會經濟資料服務平臺](https://segis.moi.gov.tw/STAT/Web/Portal/STAT_PortalHome.aspx)所提供的[縣市行政人口統計](https://segisws.moi.gov.tw/STATWSSTData/OpenService.asmx/GetAdminSTDataForOpenCode?oCode=88641597DE2A496B3B5AF84EB798086251A1FBEE829C41DBF0767011744D917A2539094FCB65D41BDDE79C332EB9258D)為例，透過所提供的網址讀取 JSON 資料。程式碼撰寫如下。
+函式中的`資料`可為本機資料，亦可為網址 url。以下以[社會經濟資料服務平臺](https://segis.moi.gov.tw/STAT/Web/Portal/STAT_PortalHome.aspx)所提供的[縣市行政人口統計](https://segisws.moi.gov.tw/STATWSSTData/OpenService.asmx/GetAdminSTDataForOpenCode?oCode=88641597DE2A496B3B5AF84EB798086251A1FBEE829C41DBF0767011744D917A2539094FCB65D41BDDE79C332EB9258D)為例，透過所提供的網址讀取 XML 資料。程式碼撰寫如下。
 
 ```{r fromJSON1, echo=T, eval=T}
 population=fromJSON("https://segisws.moi.gov.tw/STATWSSTData/OpenService.asmx/GetAdminSTDataForOpenCode?oCode=88641597DE2A496B3B5AF84EB798086251A1FBEE829C41DBF0767011744D917A2539094FCB65D41BDDE79C332EB9258D")
@@ -1421,7 +1421,7 @@ population
 xml_find_all(population, "//COUNTY")
 ```
 
-由以上結果可知道 INFO_TIME 標籤所有的元素，而若希望萃取出元素的文字，需進一步利用`xml_text()`函式達成之。程式撰寫如下。
+由以上結果可知道 COUNTY 標籤所有的元素，而若希望萃取出元素的文字，需進一步利用`xml_text()`函式達成之。程式撰寫如下。
 
 ```{r xml2-read3, echo=T, eval=T}
 xml_text(xml_find_all(population, "//COUNTY"))
