@@ -38,3 +38,4 @@ tab:string-regular-expr
 拆解字串
 fig:list-length-fig
 計算字元數
+搜尋字元

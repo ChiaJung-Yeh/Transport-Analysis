@@ -745,6 +745,12 @@ lengths(num_list)
 include_graphics("./figure/length_lengths.png")
 ```
 
+若欲將陣列去除，並回傳所有陣列中的元素，則可使用`unlist()`達成之。
+
+```{r unlist, echo=T, eval=T}
+# 去除陣列
+unlist(num_list)
+```
 
 
 ## 文字處理
@@ -758,22 +764,12 @@ library(stringr)
 本節中所論及的函式彙整如表\@ref(tab:string-fun)。  
 
 ```{r string-fun, echo=F, eval=T}
-str_fun=data.frame(Package=c(rep("`base`", 11), rep("`stringr`", 17)), fun=c("[`paste()`](#連接字串)","[`paste0()`](#連接字串)","[`toupper()`](#轉換大小寫)","[`tolower()`](#轉換大小寫)","[`substr()`](#擷取與取代字元)","[`strsplit()`](#拆解字串)","[`gsub()`](#擷取與取代字元)","`nchar()`","`grep()`","`grepl()`","`regexpr()`","[`str_to_upper()`](#轉換大小寫)","[`str_to_lower()`](#轉換大小寫)","[`str_to_title()`](#轉換大小寫)","`str_which()`","`str_detect()`","`str_starts()`","`str_locate()`","`str_count()`","[`str_sub()`](#擷取與取代字元)","[`str_replace()`](#擷取與取代字元)","`str_length()`","`str_pad()`","[`str_split()`](#拆解字串)","[`str_flatten()`](#連接字串)","[`str_glue()`](#連接字串)","`str_order()`","`str_sort()`"), description=c("連接字串","連接字串（無分隔）","轉換為大寫","轉換為小寫","擷取字元","拆解字串","取代字元","字串長度(字元數)","回傳符合條件的索引值","回傳是否含有特定字元","回傳特定字元出現的位置索引","轉換為大寫","轉換為小寫","首字大寫","回傳符合條件的索引值","回傳是否含有特定字元","回傳是否以特定字元開頭","回傳特定字元出現的位置索引","回傳特定字元出現的次數","擷取字元（可進一步取代）","取代字元","字串長度(字元數)","統一字串長度的格式","拆解字串","連接字串","連接字串（含變數）","回傳字串排序索引值","回傳字串排序後結果"))
+str_fun=data.frame(Package=c(rep("`base`", 11), rep("`stringr`", 18)), fun=c("[`paste()`](#連接字串)","[`paste0()`](#連接字串)","[`toupper()`](#轉換大小寫)","[`tolower()`](#轉換大小寫)","[`substr()`](#擷取與取代字元)","[`strsplit()`](#拆解字串)","[`gsub()`](#擷取與取代字元)","[`nchar()`](#計算字元數)","[`grep()`](#搜尋字元)","[`grepl()`](#搜尋字元)","[`regexpr()`](#搜尋字元)","[`str_to_upper()`](#轉換大小寫)","[`str_to_lower()`](#轉換大小寫)","[`str_to_title()`](#轉換大小寫)","[`str_which()`](#搜尋字元)","[`str_detect()`](#搜尋字元)","[`str_starts()`](#搜尋字元)","[`str_locate()`](#搜尋字元)","[`str_locate_all()`](#搜尋字元)","[`str_count()`](#計算字元數)","[`str_sub()`](#擷取與取代字元)","[`str_replace_all()`](#擷取與取代字元)","[`str_length()`](#計算字元數)","`str_pad()`","[`str_split()`](#拆解字串)","[`str_flatten()`](#連接字串)","[`str_glue()`](#連接字串)","`str_order()`","`str_sort()`"), description=c("連接字串","連接字串（無分隔）","轉換為大寫","轉換為小寫","擷取字元","拆解字串","取代字元","字串長度(字元數)","回傳符合條件的索引值","回傳是否含有特定字元","回傳特定字元首次出現的位置索引","轉換為大寫","轉換為小寫","首字大寫","回傳符合條件的索引值","回傳是否含有特定字元","回傳是否以特定字元開頭","回傳特定字元首次出現的位置索引","回傳特定字元所有出現的位置索引","回傳特定字元出現的次數","擷取字元（可進一步取代）","取代字元","字串長度(字元數)","統一字串長度的格式","拆解字串","連接字串","連接字串（含變數）","回傳字串排序索引值","回傳字串排序後結果"))
 
 # str_starts("abc", "abc")
-# str_which("scabcab", "ab")
 # str_locate("sdabcab", "ab")
 # str_locate_all("asdaf", "a")
-# str_count("sdabcab", "ab")
-# str_sub("sdabcab", 2, 3)
-# str_length("sfesaascdfafwg")
 # str_pad(1, 2, "left", 0)
-# str_to_lower()
-# str_to_upper()
-# str_to_title()
-# str_flatten(fruit, ", ")
-# paste(fruit, collapse=", ")
-# str_glue("ff is {temp}")
 # str_order(fruit)
 # str_sort(fruit)
 
@@ -795,6 +791,8 @@ paste(文字向量, collapse="分隔符號")
 `collapse=`引數須設定欲分隔字串的符號。
 
 <p style="color:#003D79;font-size:18px;line-height:2">**⌾  `paste0()`：直接連接（無分隔）**</p>  
+`paste0()`將向量內各元素直接連接，相當於`paste(文字向量, collapse="")`。
+
 ```{r paste-string2, echo=T, eval=F}
 paste0(文字向量)
 ```
@@ -906,9 +904,11 @@ str_sub(文字向量, 開始字元索引, 結束字元索引)
 str_sub(文字向量, 開始字元索引, 結束字元索引)="新替換字元"
 ```
 
-<p style="color:#003D79;font-size:18px;line-height:2">**⌾  `str_replace()`：取代字元**</p>  
+<p style="color:#003D79;font-size:18px;line-height:2">**⌾  `str_replace_all()`：取代字元**</p>  
+`str_replace_all()`可取代所有字元，而`str_replace()`僅能取代第一次出現的字元，應用性較低。
+
 ```{r sub-string4, echo=T, eval=F}
-str_replace(文字向量, "被取代字元", "新替換字元")
+str_replace_all(文字向量, "被取代字元", "新替換字元")
 ```
 
 以下簡單示範擷取與取代字元之應用案例。
@@ -932,8 +932,8 @@ transport_new=transport
 str_sub(transport_new, 2, 3)="??"
 transport_new
 
-# str_replace()擷取字元
-str_replace(transport, "[aeiou]", "?")
+# str_replace_all()擷取字元
+str_replace_all(transport, "[aeiou]", "?")
 ```
 
 以上範例中`str_replace()`函式的`[aeiou]`係指中括號內任一字元皆可被取代。關於此類符號的表達請參考[**正規表示式**](#正規表示式)一節。
@@ -942,7 +942,7 @@ str_replace(transport, "[aeiou]", "?")
 ### 拆解字串
 <p style="color:#003D79;font-size:18px;line-height:2">**⌾  `strsplit()`：拆解字串**</p>  
 ```{r split-string1, echo=T, eval=F}
-strsplit(資料, "切割符號")
+strsplit(文字向量, "切割符號")
 ```
 
 程式碼中的「切割符號」係指在字串中用以切割字串的符號。
@@ -951,7 +951,7 @@ strsplit(資料, "切割符號")
 `str_split()`函式為`stringr`套件的函式，其與`base`套件中的`strsplit`函式完全相同。
 
 ```{r split-string2, echo=T, eval=F}
-str_split(資料, "切割符號")
+str_split(文字向量, "切割符號")
 ```
 
 以下範例說明拆解字串的做法。
@@ -981,14 +981,14 @@ unlist(word_split)
 ### 計算字元數
 <p style="color:#003D79;font-size:18px;line-height:2">**⌾  `nchar()`：計算字串內所有字元數**</p>  
 ```{r count-string1, echo=T, eval=F}
-nchar(資料)
+nchar(文字向量)
 ```
 
 <p style="color:#003D79;font-size:18px;line-height:2">**⌾  `str_length()`：計算字串內所有字元數**</p>  
 抑或可利用`stringr`套件中的`str_length()`函式達成相同目的。
 
 ```{r count-string2, echo=T, eval=F}
-str_length(資料)
+str_length(文字向量)
 ```
 
 ```{r count-string3, echo=T, eval=T}
@@ -1005,7 +1005,7 @@ str_length(transport)
 <p style="color:#003D79;font-size:18px;line-height:2">**⌾  `str_count()`：計算符合條件的字元數**</p>  
 
 ```{r count-string4, echo=T, eval=F}
-str_count(資料)
+str_count(文字向量)
 ```
 
 ```{r count-string5, echo=T, eval=T}
@@ -1015,12 +1015,152 @@ str_count(transport, "[^aeiou]")
 程式碼中的`[^aeiou]`意指「不包含」「aeiou」任一字元者，因此「Bus」去除「u」之後，字元數為 2。此類符號的表達請參考[**正規表示式**](#正規表示式)一節。
 
 
+### 搜尋字元
+透過搜尋字元，可以瞭解特定字元是否存在於一文字向量中，抑或進一步知道特定字元在向量各元素內的出現位置。
+
+<p style="color:#003D79;font-size:18px;line-height:2">**⌾  `grep()`尋找特定字元存在索引**</p>  
+回傳結果為一索引值向量，若完全無符合條件者，會回傳`integer(0)`。  
+
+```{r grep-string, echo=T, eval=F}
+grep("欲尋找字元", 文字向量)
+```
+
+<p style="color:#003D79;font-size:18px;line-height:2">**⌾  `str_which()`尋找特定字元存在索引**</p>  
+回傳結果為一索引值向量，若完全無符合條件者，會回傳`integer(0)`。  
+
+```{r str_which-string, echo=T, eval=F}
+str_which(文字向量, "欲尋找字元")
+```
+
+<p style="color:#003D79;font-size:18px;line-height:2">**⌾  `grepl()`尋找特定字元存在與否**</p>  
+回傳結果為一邏輯向量，該向量長度與輸入的文字向量長度相同。  
+
+```{r grepl-string, echo=T, eval=F}
+grepl("欲尋找字元", 文字向量)
+```
+
+<p style="color:#003D79;font-size:18px;line-height:2">**⌾  `str_detect()`尋找特定字元存在與否**</p>  
+回傳結果為一邏輯向量，該向量長度與輸入的文字向量長度相同。  
+
+```{r str_detect-string, echo=T, eval=F}
+str_detect(文字向量, "欲尋找字元")
+```
+
+
+```{r find-string1, echo=T, eval=F}
+# 建立向量
+transport=c("Bus", "MRT", "Car", "Motorcycle", "Bike", "Taxi")
+
+# grep()尋找字元存在之索引
+grep("a|c", transport)
+
+# str_which()尋找字元存在之邏輯值
+str_which(transport, "a|c")
+
+# grepl()尋找字元存在之邏輯值
+grepl("a|c", transport)
+
+# str_detect()尋找字元存在之邏輯值
+str_detect(transport, "a|c")
+```
+
+程式碼中，`a|c`表示 a 或者 c，相當於`[ac]`，關於此類符號的表達請參考[**正規表示式**](#正規表示式)一節。
+
+
+<p style="color:#003D79;font-size:18px;line-height:2">**⌾  `str_starts()`查看是否以特定字元起始**</p>  
+程式碼中所設定的引數「欲尋找字元」，會尋找文字向量中各元素是否會以該字元為開頭。
+
+```{r str_start-string1, echo=T, eval=F}
+str_starts(文字向量, "欲尋找字元")
+```
+
+再次以`transport`向量為例，程式碼撰寫如下。
+
+```{r str_start-string2, echo=T, eval=T}
+str_starts(transport, "B")
+```
+
+回傳結果顯示第一個元素（Bus）與第五個元素（Bike）符合所設定規則。
+
+
+上述是查看特定字元是否存在於向量中，輸出結果為邏輯向量或索引值向量。然有時我們會希望瞭解該特定字元位於向量各元素中的位置，此時可利用`regexpr()`與`str_locate()`函式達成目的。
+
+
+<p style="color:#003D79;font-size:18px;line-height:2">**⌾  `regexpr()`尋找特定字元「首次」出現位置**</p>  
+回傳結果為一索引值向量，該向量長度與輸入的文字向量長度相同。若元素無該字元，會回傳`-1`。  
+
+```{r regexpr-string, echo=T, eval=F}
+regexpr("欲尋找字元", 文字向量)
+```
+
+<p style="color:#003D79;font-size:18px;line-height:2">**⌾  `str_locate()`尋找特定字元「首次」出現位置**</p>  
+回傳結果為一矩陣（matrix），該矩陣的橫列數（`nrow())`）為輸入的文字向量之長度，而直行有兩個，其一為 start，表示字元開始的索引；另一為 end，表示字元結束的索引。若元素無該字元，會回傳`NA`。
+
+```{r str_locate-string, echo=T, eval=F}
+str_locate(文字向量, "欲尋找字元")
+```
+
+
+```{r location-string1, echo=T, eval=T}
+# 建立向量
+fruit_eg=c("papaya", "grape", "lychee", "apple", "guava", "coconut")
+
+# grepl()尋找字元出現位置
+regexpr("a", fruit_eg)
+```
+
+回傳結果第一列係顯示 a 字元第一次出現於`fruit_eg`向量各元素中的索引位置，如第一個元素「papaya」，其首次出現 a，是位於第二個字元，故回傳結果為「2」。此外，以第三個元素「lychee」為例，由於該元素內並無 a 字元，故回傳結果為「-1」。
+
+```{r location-string2, echo=T, eval=T}
+# str_locate()尋找字元出現位置
+str_locate(fruit_eg, "a")
+```
+
+利用`str_locate()`函式所得結果更為直接，其顯示字元出現的起迄位置，如回傳結果第一列係指第一個元素「papaya」首次出現 a，是位於第二個字元；而第三列的「NA」則表示該字元未出現於第三個元素中。
+
+<p style="color:#003D79;font-size:18px;line-height:2">**⌾  `str_locate_all()`尋找特定字元「所有」出現位置**</p>  
+
+然而由上述範例可知，無論是`regexpr()`或是`str_locate()`函式接僅能回傳首次出現字元的位置，若希望能回傳所有結果，可使用`str_locate_all()`函式，引數設定方式與`str_locate()`相同，回傳結果則包含各元素內所有出現特定字元的起迄位置，並以陣列（list）顯示，有別於`str_locate()`係以矩陣表示。程式碼撰寫如下。
+
+```{r location-string3, echo=T, eval=T}
+# str_locate_all()尋找字元所有出現位置
+str_locate_all(fruit_eg, "a")
+```
+
+回傳結果為一陣列，陣列中共有 6 個子陣列，分別代表`fruit_eg`向量中各元素的執行結果。其中第一個陣列 [[1]] 的矩陣內橫列數（`nrow()`）為 3，表示在「papaya」元素中共找到 3 個符合條件的字元，而其位置分別為第 2、4、6 個字元。若未找到符合條件的字元，則逕顯示表頭（start、end），其橫列數為 0。
+
+
+<p style="color:#003D79;font-size:18px;line-height:2">**⌾  合併使用尋找字元與擷取字元**</p>  
+在實務資料分析時，我們很常在一文字向量中尋找特定字元並依據特定字元擷取段落，此時有賴於尋找及[擷取](#擷取與取代字元)兩種不同功能的函式。範例如下。
+
+以鄉鎮市區的名稱擷取為例，由於全臺灣行政區的名稱長度落於 2 至 4 字之間，無法單純藉由`substr()`直接鎖定位置，故應先尋找出「鄉鎮市區」字元所在的位置，再進一步擷取。得知該位置後，擷取的字元必須自第一個開始，結束於上述「鄉鎮市區」的位置減 1。程式碼傳寫如下。
+
+```{r location-string4, echo=T, eval=T}
+# 建立文字向量
+cha_vec=c("竹北市","東區","那瑪夏區","羅東鎮","太麻里鄉")
+
+# 先利用regexpr()搜尋「鄉鎮市區」的位置
+district_loc=regexpr("[鄉鎮市區]", cha_vec)
+# regexpr("鄉|鎮|市|區", cha_vec) # 或利用「|」
+district_loc
+
+# 接著利用substr()擷取字元 (注意必須減1)
+substr(cha_vec, 1, district_loc-1)
+```
+
+
+
+
+
+
+
+
 ### 正規表示式
-正規表示式（Regular Expression）是各程式語言中的標準格式，可藉此做進階的文字處理，擴充上述小節中文字取代、搜尋等功能的彈性，若能掌握此技巧，得以提升文字探勘的能力。正規表示式彙整如表\@ref(tab:string-regular-expr)。
+正規表示式（Regular Expression）是各程式語言中的標準格式，可藉此做進階的文字處理，擴充上述小節中文字取代、搜尋等功能的彈性，若能掌握此技巧，得以提升文字探勘的能力。常用的正規表示式彙整如表\@ref(tab:string-regular-expr)。
 
 ```{r string-regular-expr, echo=F, eval=T, message=F}
 string_sign=data.frame(sign=c("`\\\\`", "`\\\\n`", "`\\\\t`", "`\\\\s`", "`\\\\S`", "`\\\\d`", "`\\\\D`", "`\\\\w`", "`\\\\W`", "`|`", "`*`", "`+`", "`?`", "`{n}`", "`[]`", "`[^]`", "`[-]`", "`^`", "`$`", "`(?=)`", "`(?!)`"),
-                       meaning=c("符號（如：`\\\\.`表示「.」`\\\\\\`表示「\\\\」）", "換行","tab","空白","非空白","數值","非數值","文字","非文字","或者（如：`a|b`即是 a 或者 b）","連接零個或多個未知字元（如：`ab*`表示 ab 後面可接或不接任何字元）","連接一個或多個未知字元（如：`ab+`表示 ab 後面需加一個或多個字元）","連接零個或一個未知字元（如：`ab?`表示 ab 後面可接一個或不接任何字元）","連接前一個字元 n 次（如：`a{5}`表示 a 重複 5 次）","任一字元（如：`[abc]`表示「a、b、c」任一字元）","排除（如：`[^abc]`表示不包含「a、b、c」任一字元）","範圍（如：`[a-c]`表示 a 至 c 所有字元）","以...為起始字元（如`^abc`即是以 abc 為起始字元）","以...為結尾字元（如`abc$`即是以 abc 為結尾字元）","字元後方必須為特定字元者（如：`a(?=b)`表示 a 後面必須接 b 字元者）","字元後方必須非特定字元者（如：`a(?!b)`表示 a 後面非接 b 字元者）"))
+                       meaning=c("符號（如：`\\\\.`表示「.」`\\\\\\`表示「\\\\」）", "換行","tab","空白","非空白","數值","非數值","文字","非文字","或者（如：`a|b`即是 a 或者 b）","連接零個或多個未知字元（如：`ab*`表示 ab 後面可接或不接任何字元）","連接一個或多個未知字元（如：`ab+`表示 ab 後面需加一個或多個字元）","連接零個或一個未知字元（如：`ab?`表示 ab 後面可接一個或不接任何字元）","連接前一個字元 n 次（如：`a{5}`表示 a 重複 5 次）","任一字元（如：`[abc]`表示「a、b、c」任一字元）","排除..的其他字元（如：`[^abc]`表示不包含「a、b、c」此三者的其他字元）","範圍（如：`[a-c]`表示 a 至 c 所有字元）","以...為起始字元（如`^abc`即是以 abc 為起始字元）","以...為結尾字元（如`abc$`即是以 abc 為結尾字元）","字元後方必須為特定字元者（如：`a(?=b)`表示 a 後面必須接 b 字元者）","字元後方必須非特定字元者（如：`a(?!b)`表示 a 後面非接 b 字元者）"))
 
 tt=ceiling(nrow(string_sign)/2)
 temp=bind_cols(string_sign[1:tt,], bind_rows(string_sign[(tt+1):nrow(string_sign),], data.frame(sign="", meaning="")))
