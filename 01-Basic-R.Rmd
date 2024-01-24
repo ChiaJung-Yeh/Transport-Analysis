@@ -766,13 +766,6 @@ library(stringr)
 ```{r string-fun, echo=F, eval=T}
 str_fun=data.frame(Package=c(rep("`base`", 11), rep("`stringr`", 18)), fun=c("[`paste()`](#連接字串)","[`paste0()`](#連接字串)","[`toupper()`](#轉換大小寫)","[`tolower()`](#轉換大小寫)","[`substr()`](#擷取與取代字元)","[`strsplit()`](#拆解字串)","[`gsub()`](#擷取與取代字元)","[`nchar()`](#計算字元數)","[`grep()`](#搜尋字元)","[`grepl()`](#搜尋字元)","[`regexpr()`](#搜尋字元)","[`str_to_upper()`](#轉換大小寫)","[`str_to_lower()`](#轉換大小寫)","[`str_to_title()`](#轉換大小寫)","[`str_which()`](#搜尋字元)","[`str_detect()`](#搜尋字元)","[`str_starts()`](#搜尋字元)","[`str_locate()`](#搜尋字元)","[`str_locate_all()`](#搜尋字元)","[`str_count()`](#計算字元數)","[`str_sub()`](#擷取與取代字元)","[`str_replace_all()`](#擷取與取代字元)","[`str_length()`](#計算字元數)","`str_pad()`","[`str_split()`](#拆解字串)","[`str_flatten()`](#連接字串)","[`str_glue()`](#連接字串)","`str_order()`","`str_sort()`"), description=c("連接字串","連接字串（無分隔）","轉換為大寫","轉換為小寫","擷取字元","拆解字串","取代字元","字串長度(字元數)","回傳符合條件的索引值","回傳是否含有特定字元","回傳特定字元首次出現的位置索引","轉換為大寫","轉換為小寫","首字大寫","回傳符合條件的索引值","回傳是否含有特定字元","回傳是否以特定字元開頭","回傳特定字元首次出現的位置索引","回傳特定字元所有出現的位置索引","回傳特定字元出現的次數","擷取字元（可進一步取代）","取代字元","字串長度(字元數)","統一字串長度的格式","拆解字串","連接字串","連接字串（含變數）","回傳字串排序索引值","回傳字串排序後結果"))
 
-# str_starts("abc", "abc")
-# str_locate("sdabcab", "ab")
-# str_locate_all("asdaf", "a")
-# str_pad(1, 2, "left", 0)
-# str_order(fruit)
-# str_sort(fruit)
-
 colnames(str_fun)=c("套件","函式","功能")
 kbl(str_fun, booktabs=T, escape=F, caption="文字處理重要函式")%>%
   kable_styling(bootstrap_options=c("striped", "hover"), font_size=14)%>%
@@ -1005,7 +998,7 @@ str_length(transport)
 <p style="color:#003D79;font-size:18px;line-height:2">**⌾  `str_count()`：計算符合條件的字元數**</p>  
 
 ```{r count-string4, echo=T, eval=F}
-str_count(文字向量)
+str_count(文字向量, "欲尋找字元")
 ```
 
 ```{r count-string5, echo=T, eval=T}
@@ -1149,9 +1142,58 @@ substr(cha_vec, 1, district_loc-1)
 ```
 
 
+### 文字填補
+
+文字填補可使向量中所有文字皆為固定長度，使文字格式得以統一，在`stringr`套件中可利用`str_pad()`函式填補字元。
+
+<p style="color:#003D79;font-size:18px;line-height:2">**⌾  `str_pad()`填補字元**</p>  
+
+```{r pad-string, echo=T, eval=F}
+str_pad(文字向量, width=, side=, pad="填補字元")
+```
+
+在上述程式碼中所需設定的引數彙整如下：  
+
+*  `width=`設定文字的寬度，如希望的統一字串格式為「5」個字元，則設定「`width=5`」  
+*  `side=`設定填補的方向，包含`right`與`left`  
+*  `pad=`設定欲填補的字元，如希望統一補上「A」字元，則設定「`pad="A"`」  
+
+實際範例如下。
+
+```{r pad-string1, echo=T, eval=T}
+# 建立向量
+num_pad=seq(2, 20, 2)
+
+# 若希望以0填補於文字最前方，並須為三個字元
+str_pad(num_pad, width=3, side="left", pad="0")
+```
 
 
+### 文字排序
+向量排序是利用`sort()`、`order()`、`rank()`等達成目的，而在文字中可以利用`str_sort()`與`str_order()`達成之。文字的排序係以 UTF-8 編碼順序為原則。程式碼傳如下。
 
+<p style="color:#003D79;font-size:18px;line-height:2">**⌾  `str_sort()`排序**</p>  
+```{r str_sort-string, echo=T, eval=F}
+str_sort(文字向量)
+```
+
+<p style="color:#003D79;font-size:18px;line-height:2">**⌾  `str_order()`取得排序索引**</p>  
+```{r str_order-string, echo=T, eval=F}
+str_order(文字向量)
+```
+
+實際範例如下。
+
+```{r sort-order-string, echo=T, eval=T}
+# 建立向量
+transport=c("Bus", "MRT", "Car", "Motorcycle", "Bike", "Taxi")
+
+# 排序
+str_sort(transport)
+
+# 排序索引
+str_order(transport)
+```
 
 
 
