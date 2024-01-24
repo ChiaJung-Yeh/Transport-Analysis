@@ -1200,11 +1200,12 @@ str_order(transport)
 正規表示式（Regular Expression）是各程式語言中的標準格式，可藉此做進階的文字處理，擴充上述小節中文字取代、搜尋等功能的彈性，若能掌握此技巧，得以提升文字探勘的能力。常用的正規表示式彙整如表\@ref(tab:string-regular-expr)。
 
 ```{r string-regular-expr, echo=F, eval=T, message=F}
-string_sign=data.frame(sign=c("`\\\\`", "`\\\\n`", "`\\\\t`", "`\\\\s`", "`\\\\S`", "`\\\\d`", "`\\\\D`", "`\\\\w`", "`\\\\W`", "`|`", "`*`", "`+`", "`?`", "`{n}`", "`[]`", "`[^]`", "`[-]`", "`^`", "`$`", "`(?=)`", "`(?!)`"),
-                       meaning=c("符號（如：`\\\\.`表示「.」`\\\\\\`表示「\\\\」）", "換行","tab","空白","非空白","數值","非數值","文字","非文字","或者（如：`a|b`即是 a 或者 b）","連接零個或多個未知字元（如：`ab*`表示 ab 後面可接或不接任何字元）","連接一個或多個未知字元（如：`ab+`表示 ab 後面需加一個或多個字元）","連接零個或一個未知字元（如：`ab?`表示 ab 後面可接一個或不接任何字元）","連接前一個字元 n 次（如：`a{5}`表示 a 重複 5 次）","任一字元（如：`[abc]`表示「a、b、c」任一字元）","排除..的其他字元（如：`[^abc]`表示不包含「a、b、c」此三者的其他字元）","範圍（如：`[a-c]`表示 a 至 c 所有字元）","以...為起始字元（如`^abc`即是以 abc 為起始字元）","以...為結尾字元（如`abc$`即是以 abc 為結尾字元）","字元後方必須為特定字元者（如：`a(?=b)`表示 a 後面必須接 b 字元者）","字元後方必須非特定字元者（如：`a(?!b)`表示 a 後面非接 b 字元者）"))
+string_sign=data.frame(sign=c("`\\\\`", "`\\\\n`", "`\\\\t`", "`\\\\s`", "`\\\\S`", "`\\\\d`", "`\\\\D`", "`\\\\w`", "`\\\\W`", "`|`","`.`", "`*`", "`+`", "`?`", "`{n}`", "`[]`", "`[^]`", "`[-]`", "`^`", "`$`", "`(?=)`", "`(?!)`"),
+                       meaning=c("符號（如：`\\\\.`表示「.」`\\\\\\`表示「\\\\」）", "換行","tab","空白","非空白","數值","非數值","文字","非文字","或者（如：`a|b`即是 a 或者 b）","連接一個未知字元（如：`ab.`表示 ab 後面可接或不接任何字元）","連接零個或多個未知字元（如：`ab*`表示 ab 後面必須皆一字元）","連接一個或多個未知字元（如：`ab+`表示 ab 後面需加一個或多個字元）","連接零個或一個未知字元（如：`ab?`表示 ab 後面可接一個或不接任何字元）","連接前一個字元 n 次（如：`a{5}`表示 a 重複 5 次）","任一字元（如：`[abc]`表示「a、b、c」任一字元）","排除..的其他字元（如：`[^abc]`表示不包含「a、b、c」此三者的其他字元）","範圍（如：`[a-c]`表示 a 至 c 所有字元）","以...為起始字元（如`^abc`即是以 abc 為起始字元）","以...為結尾字元（如`abc$`即是以 abc 為結尾字元）","字元後方必須為特定字元者（如：`a(?=b)`表示 a 後面必須接 b 字元者）","字元後方必須非特定字元者（如：`a(?!b)`表示 a 後面非接 b 字元者）"))
 
 tt=ceiling(nrow(string_sign)/2)
-temp=bind_cols(string_sign[1:tt,], bind_rows(string_sign[(tt+1):nrow(string_sign),], data.frame(sign="", meaning="")))
+# temp=bind_cols(string_sign[1:tt,], bind_rows(string_sign[(tt+1):nrow(string_sign),], data.frame(sign="", meaning="")))
+temp=bind_cols(string_sign[1:tt,], bind_rows(string_sign[(tt+1):nrow(string_sign),]))
 colnames(temp)=c("符號","意義","符號","意義")
 kbl(temp, booktabs=T, escape=F, caption="文字符號規則")%>%
   kable_styling(bootstrap_options=c("striped", "hover"), font_size=14)%>%
@@ -1309,6 +1310,8 @@ write.csv(world, "./world.csv")
 
 ```{r function-data-clean, echo=F, eval=T}
 fuc=data.frame(Package=c("base", rep("`dplyr`", 10), rep("`data.table`", 2)), Functions=c("`merge()`","`select()`","`filter()`","`mutate()`","`group_by()`","`reframe()`","`slice()`","`left_join()`","`arrange()`","`rename()`","`distinct()`","`dcast()`","`melt()`"), Usage=c("根據指定欄位合併兩資料（同`left_join()`）", "選取特定欄位", "根據條件篩選資料", "新增資料屬性（欄位）",  "將資料依據特定欄位分群，後方經常連結`filter()`或`reframe()`", "將分群的資料予以計算", "依據條件擷取特定欄位", "根據指定欄位合併兩資料", "根據指定欄位將資料排序", "更改欄位名稱", "去除重複資料", "轉換長資料為寬資料", "轉換寬資料為長資料"))
+
+colnames(fuc)=c("套件","函式","功能")
 
 kbl(fuc, booktabs=T, escape=F, caption="資料處理重要函式")%>%
   kable_styling(bootstrap_options=c("striped", "hover"), font_size=14)%>%
