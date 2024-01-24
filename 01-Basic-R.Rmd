@@ -1223,6 +1223,34 @@ kbl(temp, booktabs=T, escape=F, caption="文字符號規則")%>%
 關於正規表示式的詳細說明請參考[此](https://www.wikiwand.com/zh-tw/%E6%AD%A3%E5%88%99%E8%A1%A8%E8%BE%BE%E5%BC%8F)。
 
 
+## 控制流程
+
+### 迴圈
+迴圈應用於需要重複執行的程式碼，其中最常見的是`for()`迴圈，用以控制執行的次數，其程式撰寫如下：
+
+```{r for-loop1, echo=T, eval=F}
+for(物件 in 向量){
+  執行程式
+}
+```
+
+程式中的`物件`為向量中的元素，當所有元素皆輪流執行程序，則此迴圈即停止。具體來說，以由 1 計數並列印至 5 為例，程式碼撰寫如下。
+
+```{r for-loop2, echo=T, eval=T}
+for(i in c(1:5)){
+  print(i)
+}
+```
+
+此範例中`c(1:10)`即是向量，而向量中的每一元素即作為迴圈中的物件`i`，並用以執行程式（列印`i`）。
+
+### 如果...
+
+
+### 錯誤處理
+
+
+
 ## 資料讀取與匯出
 
 ### CSV 與 TXT 檔
@@ -1469,7 +1497,7 @@ head(population)
 資料清洗與處理常用之套件與函式彙整如表\@ref(tab:function-data-clean)。  
 
 ```{r function-data-clean, echo=F, eval=T}
-fuc=data.frame(Package=c("base", rep("`dplyr`", 10), rep("`data.table`", 2)), Functions=c("`merge()`","`select()`","`filter()`","`mutate()`","`group_by()`","`reframe()`","`slice()`","`left_join()`","`arrange()`","`rename()`","`distinct()`","`dcast()`","`melt()`"), Usage=c("根據指定欄位合併兩資料（同`left_join()`）", "選取特定欄位", "根據條件篩選資料", "新增資料屬性（欄位）",  "將資料依據特定欄位分群，後方經常連結`filter()`或`reframe()`", "將分群的資料予以計算", "依據條件擷取特定欄位", "根據指定欄位合併兩資料", "根據指定欄位將資料排序", "更改欄位名稱", "去除重複資料", "轉換長資料為寬資料", "轉換寬資料為長資料"))
+fuc=data.frame(Package=c("`base`", rep("`dplyr`", 10), rep("`data.table`", 2)), Functions=c("`merge()`","`select()`","`filter()`","`mutate()`","`group_by()`","`reframe()`","`slice()`","`left_join()`","`arrange()`","`rename()`","`distinct()`","`dcast()`","`melt()`"), Usage=c("根據指定欄位合併兩資料（同`left_join()`）", "選取特定欄位", "根據條件篩選資料", "新增資料屬性（欄位）",  "將資料依據特定欄位分群，後方經常連結`filter()`或`reframe()`", "將分群的資料予以計算", "依據條件擷取特定欄位", "根據指定欄位合併兩資料", "根據指定欄位將資料排序", "更改欄位名稱", "去除重複資料", "轉換長資料為寬資料", "轉換寬資料為長資料"))
 
 colnames(fuc)=c("套件","函式","功能")
 
