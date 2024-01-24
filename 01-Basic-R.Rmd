@@ -11,6 +11,7 @@ library(kableExtra)
 library(TDX)
 library(DT)
 library(stringr)
+library(jsonlite)
 
 Sys.setlocale(category = "LC_ALL", locale = "zh_TW.UTF-8")
 
@@ -770,7 +771,7 @@ str_fun$FIGURE=""
 
 colnames(str_fun)=c("套件","函式","功能","圖示")
 
-temp=paste0("./figure/string/", c(1:11,1,2,12,9,10,13,11,14,15,5,7,8,16,6,1,1,17,18), ".png")
+temp=paste0("./figure/string/", c(1:11,3,4,12,9,10,13,11,14,15,5,7,8,16,6,1,1,17,18), ".png")
 
 kbl(str_fun, booktabs=T, escape=F, caption="文字處理重要函式")%>%
   kable_styling(bootstrap_options=c("striped", "hover"), font_size=14)%>%
@@ -1223,6 +1224,9 @@ kbl(temp, booktabs=T, escape=F, caption="文字符號規則")%>%
 
 ## 資料讀取與匯出
 
+### CSV 與 TXT 檔
+CSV 與 TXT 檔皆為純文字資料格式，其中前者為「逗號分隔」，而後者對於分隔的格式不拘（可能是逗號、tab 等）。由於此兩類型檔案易於儲存大量資料，且可直接由如電腦內建的 Notepad 軟體開啟，故應用最為廣泛。  
+
 <p style="color:#003D79;font-size:18px;line-height:2">**⌾ 讀取資料**</p>  
 
 <p style="font-size:18px;line-height:1">**<u>由本機讀取</u>**</p>  
@@ -1306,6 +1310,48 @@ write.csv(world, "./world.csv")
 * `fileEncoding=`設定文字編碼，一般而言英文的編碼無須另外設定，然若是中文字則通常為「Big5」或「UTF-8」。  
 
 同樣地，`write.csv()`函式在匯出資料的效率並不高，可以使用`data.table`套件中的`fwrite()`函式，以減少程式執行的時間，在大數據資料之處理上尤為實用。  
+
+
+### JSON 檔
+JSON (JavaScript Object Notation) 檔案是一種輕量的資料交換格式，其結構化資料有利於分析與傳輸，且易於閱讀與解析，故許多程式語言皆可直接讀取此類型檔案，也常作為應用程式介面（Application Programming Interface, API）傳輸資料之方式。  
+
+在 R 語言中若欲讀取、解析 JSON 檔案，可利用`jsonlite`套件中的函式。
+
+```{r jsonlite-install, echo=T, eval=F}
+install.packages("jsonlite")
+library(jsonlite)
+```
+
+<p style="color:#003D79;font-size:18px;line-height:2">**⌾ 讀取資料**</p>  
+利用`jsonlite`套件中的`fromJSON()`函式讀取資料，函式撰寫如下。
+
+```{r fromJSON-fun, echo=T, eval=F}
+fromJSON(資料)
+```
+
+函式中的`資料`可為本機資料，亦可為網址 url。以下以[社會經濟資料服務平臺](https://segis.moi.gov.tw/STAT/Web/Portal/STAT_PortalHome.aspx)所提供的[縣市行政人口統計](https://segisws.moi.gov.tw/STATWSSTData/OpenService.asmx/GetAdminSTDataForOpenCode?oCode=88641597DE2A496B3B5AF84EB798086251A1FBEE829C41DBF0767011744D917A2539094FCB65D41BDDE79C332EB9258D)為例，透過所提供的網址讀取 JSON 資料。程式碼撰寫如下。
+
+```{r fromJSON1, echo=T, eval=T}
+population=fromJSON("https://segisws.moi.gov.tw/STATWSSTData/OpenService.asmx/GetAdminSTDataForOpenCode?oCode=88641597DE2A496B3B5AF84EB798086251A1FBEE829C41DBF0767011744D917A2539094FCB65D41BDDE79C332EB9258D")
+
+# 檢查讀取資料的格式
+class(population)
+
+# 查看資料含有內容
+names(population)
+```
+
+由上述資料格式可發現，所讀取的 JSON 檔案經過此一函式讀取後，會變為 R 語言中的陣列（list）格式，依此可進一步解析陣列內容，以擷取需要的資訊。以本範例而言，所需內容儲存於 RowDataList 的陣列中：
+
+```{r fromJSON2, echo=T, eval=T}
+population=population$RowDataList
+
+# 查看前六筆資料
+head(population)
+```
+
+
+
 
 
 
