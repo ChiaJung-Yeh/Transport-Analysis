@@ -45,3 +45,4 @@ fig:learning-curve-fig
 fig:data-information-fig
 csv-與-txt-檔
 json-檔
+xml-檔案
