@@ -12,6 +12,7 @@ library(TDX)
 library(DT)
 library(stringr)
 library(jsonlite)
+library(xml2)
 
 Sys.setlocale(category = "LC_ALL", locale = "zh_TW.UTF-8")
 
@@ -879,7 +880,7 @@ str_to_upper(transport)
 # str_to_lower()函式轉換小寫
 str_to_lower(transport)
 
-# toupper()函式首字大寫
+# str_to_title()函式首字大寫
 str_to_title("national yang ming chiao tung university")
 ```
 
@@ -1275,7 +1276,7 @@ datatable(world, options=list(pageLength=5, scrollX=T, headerCallback = DT::JS(
 此外，`read.csv()`函式有諸多引數可供設定，以下簡要說明各引數的功能及設定方式：  
 
 * `header=`設定是否有表頭，若有應設定為`T`，否則預設為`F`。  
-* `sep=`設定分隔符號，例如常見的 .csv 檔即為「逗號」分隔。此引數預設為「,」，若非逗點分隔，需設定此參數，如「\\t」為「tab」分隔。  
+* `sep=`設定分隔符號，例如常見的 .csv 檔即為「逗號」分隔。此引數預設為「,」，若非逗點分隔，需設定此引數，如「\\t」為「tab」分隔。  
 * `colClasses=`設定各欄位的資料型態，如已知 A 欄位為數值型態；B 欄位為文字型態，則應設定：`c("A"="numeric", "B"="character")`。  
 * `nrows=`設定擷取的橫列數。  
 * `skip=`設定跳過前幾筆資料。  
@@ -1373,7 +1374,7 @@ head(population)
 ```
 
 ### XML 檔案
-可擴展標記語言（eXtensible Markup Language, XML）是一種類似 HTML 的標記語言，其結構化的設計可有條理地儲存各項複雜的資訊，並方便傳送與接收資料。與 JSON 格式雷同，XML 亦可作為 API 傳輸之格式，XML 檔案中包含標籤（Tag）、元素（Element）與屬性（Attribute），其中標籤適用以標示結構的名稱，元素是指標籤內部的實際內容，屬性則是提供元素額外的訊息。XML 格式範例如下：
+可擴展標記語言（eXtensible Markup Language, XML）是一種類似 HTML 的標記語言，其結構化的設計可有條理地儲存各項複雜的資訊，並方便傳送與接收資料。與 JSON 格式雷同，XML 亦可作為 API 傳輸之格式。XML 檔案中包含標籤（Tag）、元素（Element）與屬性（Attribute），其中標籤適用以標示結構的名稱，元素是指標籤內部的實際內容，屬性則是提供元素額外的訊息。XML 格式範例如下：
 
 ```{r xml-format, echo=T, eval=F}
 <?xml version="1.0" encoding="UTF-8"?>
@@ -1400,8 +1401,65 @@ install.packages("xml2")
 library(xml2)
 ```
 
+<p style="color:#003D79;font-size:18px;line-height:2">**⌾ 讀取資料**</p>  
+
+再次以[社會經濟資料服務平臺](https://segis.moi.gov.tw/STAT/Web/Portal/STAT_PortalHome.aspx)所提供的[縣市行政人口統計](https://segisws.moi.gov.tw/STATWSSTData/OpenService.asmx/GetAdminSTDataForOpenCode?oCode=88641597DE2A496B3B5AF84EB798086251A1FBEE829C41DBF0767011744D917A965B611E6BA96C61)為例，透過所提供的網址讀取 JSON 資料。程式碼撰寫如下。
+
+```{r xml2-read, echo=T, eval=T}
+population=read_xml("https://segisws.moi.gov.tw/STATWSSTData/OpenService.asmx/GetAdminSTDataForOpenCode?oCode=88641597DE2A496B3B5AF84EB798086251A1FBEE829C41DBF0767011744D917A965B611E6BA96C61")
+
+# 檢查讀取資料的格式
+class(population)
+
+# 查看資料
+population
+```
+
+讀取完成後，`population`的資料格式為「xml_document」與「xml_node」，而資料回傳結果為具有標籤、元素等資訊的複雜結構。接著我們必須拆解 XML 格式的結構，以萃取出需要的資訊。在`xml2`套件中可利用`xml_find_all()`回傳指定節點內容，該函式內須設定引數`xpath=`以指定路徑。由以上的結果我們可以發現，標籤包含 INFO_TIME、COUNTY_ID、COUNTY、H_CNT 等（建議可以將網址貼至瀏覽器開啟觀察，更能瞭解內部結構），該標籤即為路徑。以標籤 COUNTY 為例，程式撰寫如下。
+
+```{r xml2-read2, echo=T, eval=T}
+xml_find_all(population, "//COUNTY")
+```
+
+由以上結果可知道 INFO_TIME 標籤所有的元素，而若希望萃取出元素的文字，需進一步利用`xml_text()`函式達成之。程式撰寫如下。
+
+```{r xml2-read3, echo=T, eval=T}
+xml_text(xml_find_all(population, "//COUNTY"))
+```
+
+執行`xml_text()`函式後，所得結果即為一文字向量。
+
+綜觀上述，若欲擷取完整的資料，並儲存取資料框中，可撰寫程式碼如下。
+
+```{r xml2-read4, echo=T, eval=T}
+population=data.frame(INFO_TIME=xml_text(xml_find_all(population, "//INFO_TIME")),
+                      COUNTY_ID=xml_text(xml_find_all(population, "//COUNTY_ID")),
+                      COUNTY=xml_text(xml_find_all(population, "//COUNTY")),
+                      H_CNT=xml_text(xml_find_all(population, "//H_CNT")),
+                      P_CNT=xml_text(xml_find_all(population, "//P_CNT")),
+                      M_CNT=xml_text(xml_find_all(population, "//M_CNT")),
+                      F_CNT=xml_text(xml_find_all(population, "//F_CNT")))
+
+# 查看前六筆資料
+head(population)
+```
+
+經過本案例可發現，解析（parse）XML 檔案必須先透徹瞭解其標籤，否則難以轉換為一般常見的資料框格式。相較於 XML 而言，JSON 檔案更為簡便，在 R 語言中的執行速度亦較快。
 
 
+### 資料來源
+臺灣有許多免費公開資料平臺，提供相當豐富的資料集，所提供的資料格式不外乎是 CSV、TXT、XML、JSON 等格式，可利用本節說明範例中雷同的方法接取並解析資料。常見平臺羅列如下：
+
+* [政府資料放平臺](https://data.gov.tw/)
+* [社會經濟資料服務平臺](https://segis.moi.gov.tw/STAT/Web/Portal/STAT_PortalHome.aspx)
+* [臺北市資料大平臺](https://data.taipei/)
+* [內政資料開放平臺](http://data.moi.gov.tw/)
+* [高公局交通資料庫](https://tisvcloud.freeway.gov.tw/)
+* [商工行政資料開放平臺](https://data.gcis.nat.gov.tw/main/index)
+* [民生公共物聯網-資料服務平臺](https://ci.taiwan.gov.tw/dsp/)
+* [疾病管制署資料開放平臺](https://data.cdc.gov.tw/)
+
+另請注意，[運輸資料流通服務平臺](https://tdx.transportdata.tw/)亦提供 JSON、XML 等資料介接的 API 格式，然而由於其介接過程需要權杖（access token），無法直接如以上平臺逕利用網址即可連結資料，須利用`httr`套件處理權杖，故程序較為複雜。
 
 
 
