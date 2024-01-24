@@ -41,3 +41,5 @@ fig:list-length-fig
 搜尋字元
 文字填補
 文字排序
+fig:learning-curve-fig
+fig:data-information-fig

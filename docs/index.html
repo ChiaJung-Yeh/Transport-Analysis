@@ -149,6 +149,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="divider"></li>
 <li class="chapter" data-level="" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i><strong>前言</strong></a>
 <ul>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html#資料分析心法"><i class="fa fa-check"></i>資料分析心法</a></li>
 <li class="chapter" data-level="" data-path="index.html"><a href="index.html#安裝套件"><i class="fa fa-check"></i>安裝套件</a></li>
 <li class="chapter" data-level="" data-path="index.html"><a href="index.html#tdx-套件使用方式"><i class="fa fa-check"></i>TDX 套件使用方式</a></li>
 <li class="chapter" data-level="" data-path="index.html"><a href="index.html#其他參考資料"><i class="fa fa-check"></i>其他參考資料</a></li>
@@ -170,7 +171,10 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="1.2.3" data-path="r-語言基礎語法.html"><a href="r-語言基礎語法.html#擷取與取代字元"><i class="fa fa-check"></i><b>1.2.3</b> 擷取與取代字元</a></li>
 <li class="chapter" data-level="1.2.4" data-path="r-語言基礎語法.html"><a href="r-語言基礎語法.html#拆解字串"><i class="fa fa-check"></i><b>1.2.4</b> 拆解字串</a></li>
 <li class="chapter" data-level="1.2.5" data-path="r-語言基礎語法.html"><a href="r-語言基礎語法.html#計算字元數"><i class="fa fa-check"></i><b>1.2.5</b> 計算字元數</a></li>
-<li class="chapter" data-level="1.2.6" data-path="r-語言基礎語法.html"><a href="r-語言基礎語法.html#正規表示式"><i class="fa fa-check"></i><b>1.2.6</b> 正規表示式</a></li>
+<li class="chapter" data-level="1.2.6" data-path="r-語言基礎語法.html"><a href="r-語言基礎語法.html#搜尋字元"><i class="fa fa-check"></i><b>1.2.6</b> 搜尋字元</a></li>
+<li class="chapter" data-level="1.2.7" data-path="r-語言基礎語法.html"><a href="r-語言基礎語法.html#文字填補"><i class="fa fa-check"></i><b>1.2.7</b> 文字填補</a></li>
+<li class="chapter" data-level="1.2.8" data-path="r-語言基礎語法.html"><a href="r-語言基礎語法.html#文字排序"><i class="fa fa-check"></i><b>1.2.8</b> 文字排序</a></li>
+<li class="chapter" data-level="1.2.9" data-path="r-語言基礎語法.html"><a href="r-語言基礎語法.html#正規表示式"><i class="fa fa-check"></i><b>1.2.9</b> 正規表示式</a></li>
 </ul></li>
 <li class="chapter" data-level="1.3" data-path="r-語言基礎語法.html"><a href="r-語言基礎語法.html#資料讀取與匯出"><i class="fa fa-check"></i><b>1.3</b> 資料讀取與匯出</a></li>
 <li class="chapter" data-level="1.4" data-path="r-語言基礎語法.html"><a href="r-語言基礎語法.html#資料清洗與處理"><i class="fa fa-check"></i><b>1.4</b> 資料清洗與處理</a></li>
@@ -213,7 +217,30 @@ M.S.: Department of Transportation and Logistics Management, NYCU</em></p>
 </div>
 <div id="前言" class="section level1 unnumbered hasAnchor">
 <h1><strong>前言</strong><a href="index.html#前言" class="anchor-section" aria-label="Anchor link to header"></a></h1>
+<blockquote>
+<p style="font-size:25px;line-height:2">
+<strong>解決問題是資料分析的原動力…</strong>
+</p>
+</blockquote>
+<div id="資料分析心法" class="section level2 unnumbered hasAnchor">
+<h2>資料分析心法<a href="index.html#資料分析心法" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>數據分析是社會科學中重要的研究方法與課題，運輸領域亦不例外，而拜科技所賜，我們所能蒐集、儲存的數據量愈加龐大，所能剖析的面相愈多元，也更能夠瞭解資料背後的意義。數據資料處理是一門基本功，在深入分析、建構模型之前，必須透徹瞭解資料性質，並依此整理資料、繪製圖表，以觀察數據的整體趨勢，進而推敲可能的現象，並透過資料科學的手段模擬、驗證起初的假設。因此資料處理是最入門的學問，如何<strong>認識資料</strong>、<strong>有效率地處理資料</strong>，並<strong>形塑為預期的格式</strong>，係本書的重點。本書旨在探討資料分析中的<strong>「資料處理」</strong>環節，羅列初學者必須理解的程式撰寫方法與技巧，<strong><u>並非</u></strong>著墨於資料科學的模型及理論！</p>
+<p>大數據的概念如圖<a href="index.html#fig:data-information-fig">0.1</a>所示，最原始的資料（Data）通常是提供個體或雜亂無章的紀錄，必須透過資料處理轉換為有意義的資訊，可能以表或圖呈現之，有利於初步觀察與判斷潛在的趨勢。最後經過模型建構驗證假設，並以自身的專業所學（Domain Knowledge）或經驗剖析結果，最後產出具有政策意涵與引導決策執行的結論。</p>
+<div class="figure" style="text-align: center"><span style="display:block;" id="fig:data-information-fig"></span>
+<img src="figure/data_information.png" alt="大數據概念" width="50%" />
+<p class="caption">
+圖 0.1: 大數據概念
+</p>
+</div>
+<p>在大數據分析的學習過程中，起初往往會四處碰壁而無方向，此時必須保握一個最基本原則：「學習資料分析是為了解決專業所學問題」，而非強調程式撰寫的執行效率、簡潔度。在社會科學領域中更傾向強調資料分析的實用性，以及所推衍的意涵，而非分析的過程。因此在初學階段，建議可以透過大量複製的方式，模仿他人的程式碼，並修改成適用於自身問題的程式碼，如是可快速瞭解各套件與函式的應用。隨後邁入快速提升期，將能享受大幅度的增長，並可將累積的經驗應用於各個自身專業場域，此時亦能更清楚瞭解撰寫程式在社會科學領域中的核心精神。綜觀上述，建議初學者在學習程式時必須以「解決問題」為原動力，而非漫無目的學習程式語言，卻不清楚學習的應用場域，如是尚能更快速應對自身所學、所面臨到的課題。</p>
+<div class="figure" style="text-align: center"><span style="display:block;" id="fig:learning-curve-fig"></span>
+<img src="figure/learning_curve.png" alt="學習曲線" width="50%" />
+<p class="caption">
+圖 0.2: 學習曲線
+</p>
+</div>
 <p>本網站簡介運輸資料分析之方法，並透過實務應用瞭解運輸資料的特性、分析原理，以及 R 語言各套件與函式的功能。共分為四大章節：R 語言基礎語法、基本資料統計、地理分析、進階應用，各章節皆以運輸資料為示範，期能擴充 R 語言使用者對於此一領域的熟悉程度。本網站主要藉由零散的個案分析，提供較全面的實際資料操作。</p>
+</div>
 <div id="安裝套件" class="section level2 unnumbered hasAnchor">
 <h2>安裝套件<a href="index.html#安裝套件" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <p>本網站各分析所需使用的主要套件與其功能彙整如表<a href="index.html#tab:package-download-table">0.1</a>，請先行安裝。</p>
