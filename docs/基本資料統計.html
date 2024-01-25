@@ -23,7 +23,7 @@
 <meta name="author" content="Chia-Jung (Robert) Yeh 葉家榮 PhD: Insitute of Transport and Logistics Studies, USYD M.S.: Department of Transportation and Logistics Management, NYCU" />
 
 
-<meta name="date" content="2024-01-23" />
+<meta name="date" content="2024-01-25" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -145,6 +145,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="divider"></li>
 <li class="chapter" data-level="" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i><strong>前言</strong></a>
 <ul>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html#資料分析心法"><i class="fa fa-check"></i>資料分析心法</a></li>
 <li class="chapter" data-level="" data-path="index.html"><a href="index.html#安裝套件"><i class="fa fa-check"></i>安裝套件</a></li>
 <li class="chapter" data-level="" data-path="index.html"><a href="index.html#tdx-套件使用方式"><i class="fa fa-check"></i>TDX 套件使用方式</a></li>
 <li class="chapter" data-level="" data-path="index.html"><a href="index.html#其他參考資料"><i class="fa fa-check"></i>其他參考資料</a></li>
@@ -157,11 +158,35 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="1.1.2" data-path="r-語言基礎語法.html"><a href="r-語言基礎語法.html#因子factor"><i class="fa fa-check"></i><b>1.1.2</b> 因子（Factor）</a></li>
 <li class="chapter" data-level="1.1.3" data-path="r-語言基礎語法.html"><a href="r-語言基礎語法.html#矩陣matrix"><i class="fa fa-check"></i><b>1.1.3</b> 矩陣（Matrix）</a></li>
 <li class="chapter" data-level="1.1.4" data-path="r-語言基礎語法.html"><a href="r-語言基礎語法.html#資料框data-frame"><i class="fa fa-check"></i><b>1.1.4</b> 資料框（Data Frame）</a></li>
-<li class="chapter" data-level="1.1.5" data-path="r-語言基礎語法.html"><a href="r-語言基礎語法.html#list"><i class="fa fa-check"></i><b>1.1.5</b> <strong>List</strong></a></li>
+<li class="chapter" data-level="1.1.5" data-path="r-語言基礎語法.html"><a href="r-語言基礎語法.html#陣列list"><i class="fa fa-check"></i><b>1.1.5</b> 陣列（List）</a></li>
 </ul></li>
-<li class="chapter" data-level="1.2" data-path="r-語言基礎語法.html"><a href="r-語言基礎語法.html#文字處理"><i class="fa fa-check"></i><b>1.2</b> 文字處理</a></li>
-<li class="chapter" data-level="1.3" data-path="r-語言基礎語法.html"><a href="r-語言基礎語法.html#資料讀取與匯出"><i class="fa fa-check"></i><b>1.3</b> 資料讀取與匯出</a></li>
-<li class="chapter" data-level="1.4" data-path="r-語言基礎語法.html"><a href="r-語言基礎語法.html#資料清洗與處理"><i class="fa fa-check"></i><b>1.4</b> 資料清洗與處理</a></li>
+<li class="chapter" data-level="1.2" data-path="r-語言基礎語法.html"><a href="r-語言基礎語法.html#文字處理"><i class="fa fa-check"></i><b>1.2</b> 文字處理</a>
+<ul>
+<li class="chapter" data-level="1.2.1" data-path="r-語言基礎語法.html"><a href="r-語言基礎語法.html#連接字串"><i class="fa fa-check"></i><b>1.2.1</b> 連接字串</a></li>
+<li class="chapter" data-level="1.2.2" data-path="r-語言基礎語法.html"><a href="r-語言基礎語法.html#轉換大小寫"><i class="fa fa-check"></i><b>1.2.2</b> 轉換大小寫</a></li>
+<li class="chapter" data-level="1.2.3" data-path="r-語言基礎語法.html"><a href="r-語言基礎語法.html#擷取與取代字元"><i class="fa fa-check"></i><b>1.2.3</b> 擷取與取代字元</a></li>
+<li class="chapter" data-level="1.2.4" data-path="r-語言基礎語法.html"><a href="r-語言基礎語法.html#拆解字串"><i class="fa fa-check"></i><b>1.2.4</b> 拆解字串</a></li>
+<li class="chapter" data-level="1.2.5" data-path="r-語言基礎語法.html"><a href="r-語言基礎語法.html#計算字元數"><i class="fa fa-check"></i><b>1.2.5</b> 計算字元數</a></li>
+<li class="chapter" data-level="1.2.6" data-path="r-語言基礎語法.html"><a href="r-語言基礎語法.html#搜尋字元"><i class="fa fa-check"></i><b>1.2.6</b> 搜尋字元</a></li>
+<li class="chapter" data-level="1.2.7" data-path="r-語言基礎語法.html"><a href="r-語言基礎語法.html#文字填補"><i class="fa fa-check"></i><b>1.2.7</b> 文字填補</a></li>
+<li class="chapter" data-level="1.2.8" data-path="r-語言基礎語法.html"><a href="r-語言基礎語法.html#文字排序"><i class="fa fa-check"></i><b>1.2.8</b> 文字排序</a></li>
+<li class="chapter" data-level="1.2.9" data-path="r-語言基礎語法.html"><a href="r-語言基礎語法.html#正規表示式"><i class="fa fa-check"></i><b>1.2.9</b> 正規表示式</a></li>
+</ul></li>
+<li class="chapter" data-level="1.3" data-path="r-語言基礎語法.html"><a href="r-語言基礎語法.html#控制流程"><i class="fa fa-check"></i><b>1.3</b> 控制流程</a>
+<ul>
+<li class="chapter" data-level="1.3.1" data-path="r-語言基礎語法.html"><a href="r-語言基礎語法.html#邏輯判斷"><i class="fa fa-check"></i><b>1.3.1</b> 邏輯判斷</a></li>
+<li class="chapter" data-level="1.3.2" data-path="r-語言基礎語法.html"><a href="r-語言基礎語法.html#for迴圈"><i class="fa fa-check"></i><b>1.3.2</b> <code>for()</code>迴圈</a></li>
+<li class="chapter" data-level="1.3.3" data-path="r-語言基礎語法.html"><a href="r-語言基礎語法.html#while迴圈"><i class="fa fa-check"></i><b>1.3.3</b> <code>while()</code>迴圈</a></li>
+<li class="chapter" data-level="1.3.4" data-path="r-語言基礎語法.html"><a href="r-語言基礎語法.html#錯誤處理"><i class="fa fa-check"></i><b>1.3.4</b> 錯誤處理</a></li>
+</ul></li>
+<li class="chapter" data-level="1.4" data-path="r-語言基礎語法.html"><a href="r-語言基礎語法.html#資料讀取與匯出"><i class="fa fa-check"></i><b>1.4</b> 資料讀取與匯出</a>
+<ul>
+<li class="chapter" data-level="1.4.1" data-path="r-語言基礎語法.html"><a href="r-語言基礎語法.html#csv-與-txt-檔"><i class="fa fa-check"></i><b>1.4.1</b> CSV 與 TXT 檔</a></li>
+<li class="chapter" data-level="1.4.2" data-path="r-語言基礎語法.html"><a href="r-語言基礎語法.html#json-檔"><i class="fa fa-check"></i><b>1.4.2</b> JSON 檔</a></li>
+<li class="chapter" data-level="1.4.3" data-path="r-語言基礎語法.html"><a href="r-語言基礎語法.html#xml-檔案"><i class="fa fa-check"></i><b>1.4.3</b> XML 檔案</a></li>
+<li class="chapter" data-level="1.4.4" data-path="r-語言基礎語法.html"><a href="r-語言基礎語法.html#資料來源"><i class="fa fa-check"></i><b>1.4.4</b> 資料來源</a></li>
+</ul></li>
+<li class="chapter" data-level="1.5" data-path="r-語言基礎語法.html"><a href="r-語言基礎語法.html#資料清洗與處理"><i class="fa fa-check"></i><b>1.5</b> 資料清洗與處理</a></li>
 </ul></li>
 <li class="chapter" data-level="2" data-path="基本資料統計.html"><a href="基本資料統計.html"><i class="fa fa-check"></i><b>2</b> <strong>基本資料統計</strong></a>
 <ul>
