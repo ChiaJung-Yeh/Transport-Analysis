@@ -51,3 +51,5 @@ xml-檔案
 迴圈
 如果
 錯誤處理
+fig:for-loop-fig
+邏輯判斷

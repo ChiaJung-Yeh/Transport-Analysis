@@ -217,7 +217,7 @@ vec6=c(2,5,8,11,7,4,10,3)
 ```
 
 
-<p style="font-size:18px;line-height:1">**<u>兩向量運算</u>**</p>  
+<H2 id="vector-compute"><p style="font-size:18px;line-height:1">**<u>兩向量運算</u>**</p></H2>
 兩向量運算時，兩組向量的長度（`length()`）務必相同！  
 所有運算結果如表\@ref(tab:vector-arithmetic-table)。
 
@@ -239,6 +239,14 @@ kable(vector_arithmetic, booktabs=T, caption="向量運算")%>%
 ```{r vector-addition2, echo=T, eval=T}
 vec6+5
 vec6*5
+```
+
+
+<p style="color:#003D79;font-size:18px;line-height:2">**⌾ 檢查元素是否包含於向量**</p>  
+檢查`vec6`向量內個元素是否包含於`c(1,2,3)`的向量中。
+
+```{r vector-contain, echo=T, eval=T}
+vec6 %in% c(1,2,3)
 ```
 
 
@@ -933,7 +941,7 @@ transport_new=transport
 str_sub(transport_new, 2, 3)="??"
 transport_new
 
-# str_replace_all()擷取字元
+# str_replace_all()取代字元
 str_replace_all(transport, "[aeiou]", "?")
 ```
 
@@ -1225,12 +1233,117 @@ kbl(temp, booktabs=T, escape=F, caption="文字符號規則")%>%
 
 ## 控制流程
 
+### 邏輯判斷
+
+<H2 id="if-else"><p style="color:#003D79;font-size:18px;line-height:2">**⌾ `if()`函式邏輯控制**</p></H2>  
+
+在程式語言中往往需要使用邏輯判斷進一步控制是否往下執行，此時可以利用`if(){}`的函式判斷，程式碼撰寫如下。
+
+```{r if-code, echo=T, eval=F}
+if(條件){
+  條件為「真」的執行程序
+}
+```
+
+若`條件`回傳結果為「真」（`TRUE`），執行下方的程式碼，否則不執行之。
+
+此外，若條件為「偽」（`FALSE`）時亦有其他須執行程序，可利用`else{}`控制之，程式碼撰寫如下。
+
+```{r if-else-code, echo=T, eval=F}
+if(條件){
+  條件為「真」的執行程序
+}else{
+  條件為「偽」的執行程序
+}
+```
+
+若有多重條件判斷，可利用`else if(){}`判斷多種不同的條件，程式碼撰寫如下。
+
+```{r if-elif-else-code, echo=T, eval=F}
+if(條件1){
+  條件1為「真」的執行程序
+}else if(條件2){
+  條件2為「真」的執行程序
+}else{
+  條件為「偽」的執行程序
+}
+```
+
+以上三種不同的邏輯判斷控制，可參照圖\@ref(fig:for-loop-fig)之示意圖。
+```{r for-loop-fig, echo=F, eval=T, out.width="70%", fig.align="center", fig.cap="邏輯判斷示意圖"}
+include_graphics("./figure/if_loop.png")
+```
+
+以下示範多重條件判斷的程式碼，撰寫如下。
+
+```{r if-elif-else-code-eg, echo=T, eval=T}
+score=65
+
+if(score>=90){
+  print("A")
+}else if(score>=70){
+  print("B")
+}else if(score>=60){
+  print("C")
+}else{
+  print("F")
+}
+```
+
+<p style="color:#003D79;font-size:18px;line-height:2">**⌾ `ifelse()`函式**</p>  
+除了上述流程控制以外，若欲直行簡單的邏輯判斷，並將程式碼縮減至一行，可嘗試使用`ifelse()`函式，程式碼撰寫如下。
+
+```{r ifelse-code, echo=T, eval=F}
+ifelse(條件, 條件為「真」的執行程序, 條件為「偽」的執行程序)
+```
+
+```{r ifelse-code-eg1, echo=T, eval=T}
+score=65
+ifelse(score>=90, "Excellent", "Good")
+```
+
+或撰寫複雜的巢式邏輯判斷，如下：
+
+```{r ifelse-code-eg2, echo=T, eval=T}
+score=65
+ifelse(score>=90, "A", ifelse(score>=70, "B", ifelse(score>=60, "C", "F")))
+```
+
+雖然利用`ifelse()`函式可達到相同目的，且程式碼縮減至一行，然而此種寫法在偵錯時不容易檢查，故建議若只是執行簡單（非巢狀）的邏輯判斷時可利用`ifelse()`函式；若為複雜的邏輯判斷，仍須使用<A href="#if-else">向量排序</A>小節`if(){}else if{}else{}`的邏輯控制較為清楚。
+
+
+<p style="color:#003D79;font-size:18px;line-height:2">**⌾ `switch()`函式判斷**</p>  
+`switch()`的功能與`if()`函式邏輯控制相當，在判斷的邏輯較為單純的時候，可應用此函式較為簡潔，程式碼撰寫如下：
+
+```{r switch-code, echo=T, eval=F}
+switch(x,
+       條件1 = 結果1,
+       條件2 = 結果2,
+       條件3 = 結果3,
+)
+```
+
+再次以分數與等第之間的轉換為例，若等第與分數之間屬於一對一的關係，則可單純透過`switch()`函式控制，程式碼撰寫如下。
+
+```{r switch-code-eg, echo=T, eval=T}
+grade="A"
+
+switch(grade,
+       "A"=95,
+       "B"=80,
+       "C"=65,
+       "F"=50
+)
+
+```
+
+
 ### 迴圈
 迴圈應用於需要重複執行的程式碼，其中最常見的是`for()`迴圈，用以控制執行的次數，其程式撰寫如下：
 
 ```{r for-loop1, echo=T, eval=F}
 for(物件 in 向量){
-  執行程式
+  執行程序
 }
 ```
 
@@ -1242,9 +1355,33 @@ for(i in c(1:5)){
 }
 ```
 
-此範例中`c(1:10)`即是向量，而向量中的每一元素即作為迴圈中的物件`i`，並用以執行程式（列印`i`）。
+此範例中`c(1:5)`即是向量，而向量中的每一元素即作為迴圈中的物件`i`，並用以執行程式（列印`i`）。
 
-### 如果...
+<p style="color:#003D79;font-size:18px;line-height:2">**⌾ `break`結束迴圈**</p>  
+有時我們希望在特定條件「結束」整個迴圈，可利用`break`終止之。如以下範例中，若遇到除以 3 的<A href="#vector-compute">餘數（`%%`）</A>為 0 時即停止。程式碼撰寫如下。
+
+```{r for-loop-break, echo=T, eval=T}
+for(i in c(1:10)){
+  if(i %% 3==0){
+    break
+  }
+  print(i)
+}
+```
+
+<p style="color:#003D79;font-size:18px;line-height:2">**⌾ `next`跳過迴圈**</p>  
+有時我們希望在特定條件「跳過」迴圈，可利用`next`執行下一程序。如以下範例中，若遇到除以 3 的<A href="#vector-compute">餘數（`%%`）</A>為 0 時跳過該執行程序，並繼續執行下一個。程式碼撰寫如下。
+
+```{r for-loop-next, echo=T, eval=T}
+for(i in c(1:10)){
+  if(i %% 3==0){
+    next
+  }
+  print(i)
+}
+```
+
+
 
 
 ### 錯誤處理
@@ -1497,7 +1634,7 @@ head(population)
 資料清洗與處理常用之套件與函式彙整如表\@ref(tab:function-data-clean)。  
 
 ```{r function-data-clean, echo=F, eval=T}
-fuc=data.frame(Package=c("`base`", rep("`dplyr`", 10), rep("`data.table`", 2)), Functions=c("`merge()`","`select()`","`filter()`","`mutate()`","`group_by()`","`reframe()`","`slice()`","`left_join()`","`arrange()`","`rename()`","`distinct()`","`dcast()`","`melt()`"), Usage=c("根據指定欄位合併兩資料（同`left_join()`）", "選取特定欄位", "根據條件篩選資料", "新增資料屬性（欄位）",  "將資料依據特定欄位分群，後方經常連結`filter()`或`reframe()`", "將分群的資料予以計算", "依據條件擷取特定欄位", "根據指定欄位合併兩資料", "根據指定欄位將資料排序", "更改欄位名稱", "去除重複資料", "轉換長資料為寬資料", "轉換寬資料為長資料"))
+fuc=data.frame(Package=c("`base`", rep("`dplyr`", 11), rep("`data.table`", 2)), Functions=c("`merge()`","`select()`","`filter()`","`mutate()`","`group_by()`","`reframe()`","`slice()`","`left_join()`","`arrange()`","`rename()`","`distinct()`","`case_when()`","`dcast()`","`melt()`"), Usage=c("根據指定欄位合併兩資料（同`left_join()`）", "選取特定欄位", "根據條件篩選資料", "新增資料屬性（欄位）",  "將資料依據特定欄位分群，後方經常連結`filter()`或`reframe()`", "將分群的資料予以計算", "依據條件擷取特定欄位", "根據指定欄位合併兩資料", "根據指定欄位將資料排序", "更改欄位名稱", "去除重複資料", "條件判斷", "轉換長資料為寬資料", "轉換寬資料為長資料"))
 
 colnames(fuc)=c("套件","函式","功能")
 
