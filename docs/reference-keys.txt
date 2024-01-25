@@ -53,3 +53,5 @@ xml-檔案
 錯誤處理
 fig:for-loop-fig
 邏輯判斷
+for迴圈
+while迴圈

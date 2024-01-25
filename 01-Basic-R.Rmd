@@ -1338,7 +1338,7 @@ switch(grade,
 ```
 
 
-### 迴圈
+### `for()`迴圈
 迴圈應用於需要重複執行的程式碼，其中最常見的是`for()`迴圈，用以控制執行的次數，其程式撰寫如下：
 
 ```{r for-loop1, echo=T, eval=F}
@@ -1382,9 +1382,90 @@ for(i in c(1:10)){
 ```
 
 
+### `while()`迴圈
+`for()`迴圈可以控制執行的次數，所輸入的向量的長度即表示程式需執行的次數，然而有時候我們不知道須執行幾次，或希望程式不斷地執行，直至「不滿足」指定的執行條件時才終止，此時可以利用`while()`迴圈達成此目的。程式碼撰寫如下：
+
+```{r while-loop-next, echo=T, eval=F}
+while(執行條件){
+  執行程序
+}
+```
+
+以由 1 計數至 10 為例，利用`while()`迴圈執行之程式碼撰寫如下。
+
+```{r while-loop-next-eg, echo=T, eval=F}
+i=1
+while(i<=10){
+  print(i)
+  i=i+1
+}
+```
 
 
 ### 錯誤處理
+在迴圈控制中，有時程式會因執行錯誤而停止迴圈，造成執行的困擾。此時可以利用`tryCatch()`函式偵錯，以決定發現錯誤後的下一步驟，可透過「停止（`stop()`）」立即終止迴圈，或透過「警告（`warning()`）」顯示警告訊息，抑或透過「訊息（`message()`）」顯示提示訊息。`tryCatch()`函式的撰寫說明如下。
+
+```{r catch-error-code, echo=T, eval=F}
+tryCatch({
+    執行程式碼
+  }, error=function(e){
+    錯誤回傳訊息（可為stop、warning或message）
+})
+```
+
+<p style="color:#003D79;font-size:18px;line-height:2">**⌾ `stop()`終止迴圈**</p>  
+
+為說明錯誤處理的程序，在此先建立一個錯誤的程式，此程式係將陣列中的各元素乘以 2。
+
+```{r catch-error-eg, echo=T, eval=T, error=T}
+vec_try=list(1, 5, "a", 10, "b", 6, 8)
+
+for(i in vec_try){
+  print(i*2)
+}
+```
+
+由上述執行結果可知，由於`vec_try`陣列中含有部分元素屬於文字，無法做四則運算，故程式執行有誤。
+
+若希望迴圈遇到問題即自動停止，並顯示自定義的錯誤訊息，程式撰寫如下。
+
+```{r catch-error-eg1, echo=T, eval=T, error=T}
+for(i in vec_try){
+  tryCatch({
+    print(i*2)
+  }, error=function(e){
+    stop(paste0(i, " is not numeric!\n"))
+  })
+}
+```
+
+<p style="color:#003D79;font-size:18px;line-height:2">**⌾ `warning()`顯示警告**</p>  
+若希望迴圈遇到錯誤時勿停止，而是顯示自定義的警告訊息，並繼續執行程式碼，則程式撰寫如下。
+
+```{r catch-error-eg2, echo=T, eval=T}
+for(i in vec_try){
+  tryCatch({
+    print(i*2)
+  }, error=function(e){
+    warning(paste0(i, " is not numeric!\n"))
+  })
+}
+```
+
+<p style="color:#003D79;font-size:18px;line-height:2">**⌾ `message()`顯示訊息**</p>  
+若希望迴圈遇到錯誤時勿停止，而是顯示自定義的訊息，並繼續執行程式碼，則程式撰寫如下。
+
+```{r catch-error-eg3, echo=T, eval=T}
+for(i in vec_try){
+  tryCatch({
+    print(i*2)
+  }, error=function(e){
+    message(paste0(i, " is not numeric!"))
+  })
+}
+```
+
+錯誤處理範例可應用於未來執行複雜程式碼時所面臨到的執行錯誤，使程式執行更自動化，以避免受到資料品質等問題的干擾而需人工涉入除錯。
 
 
 
