@@ -1551,7 +1551,7 @@ apply(mat_eg, 1, minmax)
 
 
 <p style="color:#003D79;font-size:18px;line-height:2">**⌾ `lapply()`**</p>  
-
+`lapply()`函式可以
 
 
 
@@ -1739,7 +1739,7 @@ library(xml2)
 
 <p style="color:#003D79;font-size:18px;line-height:2">**⌾ 讀取資料**</p>  
 
-再次以[社會經濟資料服務平臺](https://segis.moi.gov.tw/STAT/Web/Portal/STAT_PortalHome.aspx)所提供的[縣市行政人口統計](https://segisws.moi.gov.tw/STATWSSTData/OpenService.asmx/GetAdminSTDataForOpenCode?oCode=88641597DE2A496B3B5AF84EB798086251A1FBEE829C41DBF0767011744D917A965B611E6BA96C61)為例，透過所提供的網址讀取 JSON 資料。程式碼撰寫如下。
+再次以[社會經濟資料服務平臺](https://segis.moi.gov.tw/STAT/Web/Portal/STAT_PortalHome.aspx)所提供的[縣市行政人口統計](https://segisws.moi.gov.tw/STATWSSTData/OpenService.asmx/GetAdminSTDataForOpenCode?oCode=88641597DE2A496B3B5AF84EB798086251A1FBEE829C41DBF0767011744D917A965B611E6BA96C61)為例，透過所提供的網址讀取 XML 資料。程式碼撰寫如下。
 
 ```{r xml2-read, echo=T, eval=T}
 population=read_xml("https://segisws.moi.gov.tw/STATWSSTData/OpenService.asmx/GetAdminSTDataForOpenCode?oCode=88641597DE2A496B3B5AF84EB798086251A1FBEE829C41DBF0767011744D917A965B611E6BA96C61")
