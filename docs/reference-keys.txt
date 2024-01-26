@@ -55,3 +55,5 @@ fig:for-loop-fig
 邏輯判斷
 for迴圈
 while迴圈
+fig:obkect-fig
+fig:object-fig

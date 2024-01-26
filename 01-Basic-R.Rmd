@@ -35,6 +35,13 @@ access_token=get_token(client_id, client_secret)
 4.  資料框（data frame）  
 5.  陣列（list）  
 
+物件的圖示如圖\@ref(fig:object-fig)。
+
+```{r object-fig, echo=F, eval=T, out.width="80%", fig.align="center", fig.cap="R 物件示意圖"}
+include_graphics("./figure/object.png")
+```
+
+
 以下小節針對各基本要素的構建與運算詳細說明。
 
 ### 向量（Vector）
