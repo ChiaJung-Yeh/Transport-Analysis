@@ -1575,11 +1575,38 @@ dir_files=dir("路徑")
 df=lapply(dir_files, read.csv)
 ```
 
-[`dir()`](#資料來源)函式係讀取指定資料夾內所有檔案名稱；[`read.csv(csv-與-txt-檔)`](#)函式用以讀取文字檔案。
+[`dir()`](#資料來源)函式係讀取指定資料夾內所有檔案名稱；[`read.csv()`](#csv-與-txt-檔)函式用以讀取文字檔案。
 
 
 <p style="color:#003D79;font-size:18px;line-height:2">**⌾ `sapply()`**</p>  
+`sapply()`函式與`lapply()`函式相當，惟其輸出結果更為簡潔，為一向量，而非陣列。程式碼建構如下：
 
+```{r sapply-code, echo=T, eval=F}
+sapply(陣列或向量, 執行函式)
+```
+
+再次以`list_eg`資料計算陣列中各向量之總和為例，程式碼撰寫如下。
+
+```{r sapply-eg1, echo=T, eval=T}
+sapply(list_eg, sum)
+```
+
+由輸出結果可知，計算成果與`lapply()`相同，最大差別在於其為一向量，結果更為簡單明瞭。
+
+<p style="color:#003D79;font-size:18px;line-height:2">**⌾ `mapply()`**</p>  
+`mapply()`函式是所有`apply`家族中應用彈性最高者，亦可解決許多使用`for()`迴圈運算速度過慢的問題，其函式撰寫架構如下：
+
+```{r mapply-code, echo=T, eval=F}
+mapply(function(引數) 執行程式, 引數範圍)
+```
+
+上式中`function(引數) 執行程式`即[自定義函式](#建立自定義函式)，在給定的`引數範圍`條件下，依序執行程式。
+
+具體而言，再次以前文中的
+
+```{r mapply-eg1, echo=T, eval=F}
+mapply(function(x) sum(list_eg[[x]]), c(1:length(list_eg)))
+```
 
 
 
