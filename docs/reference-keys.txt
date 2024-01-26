@@ -57,3 +57,5 @@ for迴圈
 while迴圈
 fig:obkect-fig
 fig:object-fig
+apply函式家族
+建立自定義函式

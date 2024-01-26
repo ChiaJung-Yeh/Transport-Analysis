@@ -214,8 +214,7 @@ vec_na=c(1,9,5,NA,6,NA)
 is.na(vec_na)
 ```
 
-
-<p style="color:#003D79;font-size:18px;line-height:2">**⌾ 向量四則運算**</p>  
+<H2 id="vector-computation"><p style="color:#003D79;font-size:18px;line-height:2">**⌾ 向量四則運算**</p></H2>
 
 以下範例使用`vec4`與新建立的`vec6`示範向量的四則運算。
 
@@ -478,42 +477,21 @@ kable(matrix_operation, booktabs=T, caption="矩陣運算")%>%
 ```
 
 
-<p style="font-size:18px;line-height:1">**<u>`apply()`函式應用</u>**</p>  
-試想若沒有\@ref(tab:matrix-operation-table)中的各個函式用以處理矩陣資料，我們可以透過`for()`迴圈逐行或逐列針對矩陣運算，以橫列加總（`rowSums`）為例，程式碼撰寫如下。
+<p style="font-size:18px;line-height:1">**<u>四則運算</u>**</p>  
+矩陣的四則運算大致操作方法與<A href="#vector-computation">向量的運算</A>雷同，惟須注意的是大部分的四則運算皆須確保兩矩陣的維度（`dim()`）相同。以矩陣的加法為例，程式碼如下。
 
-```{r matrix-for-loop, echo=T, eval=T}
-for(i in c(1:nrow(mat2))){
-  cat(sum(mat2[i,]), " ")
-}
+```{r matrix-addition, echo=T, eval=T}
+mat1+mat2
 ```
 
-然而如是的寫法效率極差，在 R 語言中類似 `for()` 迴圈的程序可以考慮更高效率的`apply()`函式取代之，程式語法如下：
+矩陣運算中「內積」是相當常見的，應用於諸多模型的係數校估過程中，可利用`%*%`達成目的。在內積運算時另須確保第一個運算之矩陣的直行數（`ncol`）必須與第二個運算矩陣之橫列數（`nrow`）相同。以`mat1`與`mat2_trans`（`mat2`的轉置矩陣）為例，程式範例如下。
 
-```{r apply-fun, echo=T, eval=F}
-apply(矩陣資料, 方向, 運算函式)
+```{r matrix-product, echo=T, eval=T}
+mat2_trans=t(mat2)
+mat1 %*% mat2_trans
 ```
 
-其中`方向`有兩種選擇：`1`表示逐列（row）運算；`2`表示逐行（column）運算。運算函式可為前述向量運算的任一函式。`apply()`函式的運算概念如圖\@ref(fig:apply-fig)之示意圖。
-
-```{r apply-fig, echo=F, eval=T, out.width="60%", fig.align="center", fig.cap="`apply()`函式運算示意圖"}
-include_graphics("./figure/apply.png")
-```
-
-再次以`mat2`矩陣為範例，程式碼撰寫如下。
-
-```{r matrix-apply-eg, echo=T, eval=T}
-# 逐列加總 (=rowSums)
-apply(mat2, 1, sum)
-
-# 逐行平均 (=colMeans)
-apply(mat2, 2, mean)
-
-# 逐列尋找最大值索引值
-apply(mat2, 1, which.max)
-
-# 逐行計算標準差
-apply(mat2, 2, sd)
-```
+請注意，`mat1`的維度為 3 橫列 5 直行；`mat2_trans`的維度為 5 橫列 3 直行，其中第一個矩陣的直行數與第二個運算矩陣之橫列數務必相同，最終所得結果為 `3*3` 的矩陣。
 
 
 ### 資料框（Data Frame）
@@ -1409,6 +1387,34 @@ while(i<=10){
 ```
 
 
+### 建立自定義函式
+在程式撰寫中，通常我們會使用套件中的函式來做運算，然而有時候現成的函式無法滿足自身需求，此時就必須自行建立函式，可透過`function()`函式建立之。`function()`函式的撰寫架構如下：
+
+```{r function-code, echo=T, eval=F}
+函式名稱=function(變數1, 變數2, ...){
+  執行程式
+  return(結果)
+}
+```
+
+其中，`執行程式`為利用所輸入的`變數`進行程式運算，而最終`結果`即為欲輸出的資訊，可為任何一種物件（object），並利用`return()`函式明確說明欲輸出的資訊。
+
+以下以簡單的範例說明`function()`函式之應用，以向量的最小值與最大值之加總為例。
+
+```{r function-minmax, echo=T, eval=T}
+# 建立函式
+minmax=function(x){
+  temp=min(x)+max(x)
+  return(temp)
+}
+
+# 測試函式
+minmax(c(1,2,3,4,5))
+```
+
+透過自定義函式，可提升程式撰寫的效率，並簡化程式碼的複雜度，對於後續偵錯與檢驗有極高助益。此外在 R 語言中自定義函式亦可打包為套件，未來執行相關程式時，僅需讀取套件後，即可應用自定義的函式，進而提升程式編撰效率。
+
+
 ### 錯誤處理
 在迴圈控制中，有時程式會因執行錯誤而停止迴圈，造成執行的困擾。此時可以利用`tryCatch()`函式偵錯，以決定發現錯誤後的下一步驟，可透過「停止（`stop()`）」立即終止迴圈，或透過「警告（`warning()`）」顯示警告訊息，抑或透過「訊息（`message()`）」顯示提示訊息。`tryCatch()`函式的撰寫說明如下。
 
@@ -1473,6 +1479,83 @@ for(i in vec_try){
 ```
 
 錯誤處理範例可應用於未來執行複雜程式碼時所面臨到的執行錯誤，使程式執行更自動化，以避免受到資料品質等問題的干擾而需人工涉入除錯。
+
+
+
+### `apply`函式家族
+
+<p style="color:#003D79;font-size:18px;line-height:2">**⌾ `apply()`**</p>  
+
+在[矩陣（Matrix）](#矩陣matrix)小節中，我們提過可以利用`rowSums`等函式達成橫列與直行運算（請參照表\@ref(tab:matrix-operation-table)），然試想若沒有該函式用以處理矩陣資料，我們可直接透過`for()`迴圈逐行或逐列針對矩陣運算，以橫列加總（`rowSums`）為例，程式碼撰寫如下。
+
+```{r matrix-for-loop, echo=T, eval=T}
+# 建立mat_eg矩陣
+mat_eg=matrix(c(10,1,4,8,6,
+                8,7,8,6,10,
+                2,5,9,7,5,
+                7,3,2,4,9,
+                4,5,5,3,8), nrow=5)
+
+for(i in c(1:nrow(mat_eg))){
+  cat(sum(mat_eg[i,]), " ")
+}
+```
+
+然而如是的寫法效率極差，在 R 語言中類似 `for()` 迴圈的程序可以考慮更高效率的`apply()`函式取代之，程式語法如下：
+
+```{r apply-fun, echo=T, eval=F}
+apply(矩陣資料, 方向, 運算函式)
+```
+
+其中`方向`有兩種選擇：`1`表示逐列（row）運算；`2`表示逐行（column）運算。而`運算函式`可以是 R 語言中固有的運算式（如：`sum`、`mean`）等，亦可利用自定義的函式。`apply()`函式的運算概念如圖\@ref(fig:apply-fig)之示意圖。
+
+```{r apply-fig, echo=F, eval=T, out.width="60%", fig.align="center", fig.cap="`apply()`函式運算示意圖"}
+include_graphics("./figure/apply.png")
+```
+
+以`mat_eg`矩陣為範例，程式碼撰寫如下。
+
+```{r matrix-apply-eg1, echo=T, eval=T}
+# 逐列加總 (=rowSums)
+apply(mat_eg, 1, sum)
+
+# 逐行平均 (=colMeans)
+apply(mat_eg, 2, mean)
+
+# 逐列尋找最小值
+apply(mat_eg, 1, min)
+
+# 逐行尋找最小值索引
+apply(mat_eg, 2, which.min)
+
+# 逐行計算標準差
+apply(mat_eg, 2, sd)
+```
+
+此外，`運算函式`亦可自行定義，請參考[建立自定義函式](#建立自定義函式)小節，程式碼範例如下。
+
+```{r matrix-apply-eg2, echo=T, eval=T}
+# 建立自定義函式
+minmax=function(x){
+  return(min(x)+max(x))
+}
+```
+
+先行建立一個自定義函式，其功能係將向量中的最小值與最大值予以相加。
+
+```{r matrix-apply-eg3, echo=T, eval=T}
+# 逐列計算最小值與最大值之加總
+apply(mat_eg, 1, minmax)
+```
+
+
+
+<p style="color:#003D79;font-size:18px;line-height:2">**⌾ `lapply()`**</p>  
+
+
+
+
+
 
 
 
