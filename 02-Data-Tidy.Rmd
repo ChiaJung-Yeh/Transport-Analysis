@@ -1,0 +1,48 @@
+```{r setup1, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+library(dplyr)
+library(data.table)
+library(sf)
+library(ggplot2)
+library(ggsflabel)
+library(ggspatial)
+library(knitr)
+library(kableExtra)
+library(TDX)
+library(DT)
+library(stringr)
+library(jsonlite)
+library(xml2)
+
+Sys.setlocale(category = "LC_ALL", locale = "zh_TW.UTF-8")
+
+windowsFonts(A=windowsFont("微軟正黑體"))
+
+client_id=read.csv("./key.txt", header=F)[1,2]
+client_secret=read.csv("./key.txt", header=F)[2,2]
+access_token=get_token(client_id, client_secret)
+```
+
+# **資料清洗與處理**
+資料清洗與處理是分析前的第一步，透過此一步驟可初步觀察資料的趨勢，並以圖表呈現敘述統計結果。此外，在經過完善的資料整理後，尚能進一步建構統計模型或數據分析工具以瞭解資料背後所衍伸之意涵。`dplyr`與`data.table`套件是 R 語言中兩大最常見的資料處理工具，請務必安裝並導入該套件。
+
+資料清洗與處理常用之套件與函式彙整如表\@ref(tab:function-data-clean)。  
+
+```{r function-data-clean, echo=F, eval=T}
+fuc=data.frame(Package=c("`base`", rep("`dplyr`", 11), rep("`data.table`", 2)), Functions=c("`merge()`","`select()`","`filter()`","`mutate()`","`group_by()`","`reframe()`","`slice()`","`left_join()`","`arrange()`","`rename()`","`distinct()`","`case_when()`","`dcast()`","`melt()`"), Usage=c("根據指定欄位合併兩資料（同`left_join()`）", "選取特定欄位", "根據條件篩選資料", "新增資料屬性（欄位）",  "將資料依據特定欄位分群，後方經常連結`filter()`或`reframe()`", "將分群的資料予以計算", "依據條件擷取特定欄位", "根據指定欄位合併兩資料", "根據指定欄位將資料排序", "更改欄位名稱", "去除重複資料", "條件判斷", "轉換長資料為寬資料", "轉換寬資料為長資料"))
+
+colnames(fuc)=c("套件","函式","功能")
+
+kbl(fuc, booktabs=T, escape=F, caption="資料處理重要函式")%>%
+  kable_styling(bootstrap_options=c("striped", "hover"), font_size=14)%>%
+  collapse_rows(1)%>%
+  row_spec(0, bold=T, color="white", background="#8E8E8E")
+```
+
+
+
+
+
+
+
+

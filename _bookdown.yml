@@ -8,7 +8,9 @@ language:
 rmd_files: [
   "index.Rmd",
   "01-Basic-R.Rmd",
-  "02-Descriptive-Analysis.Rmd"]
+  "02-Data-Tidy.Rmd",
+  "03-Data-Visualization.Rmd",
+  "04-Descriptive-Analysis.Rmd"]
 delete_merged_file: true 
 output_dir: "docs"
   

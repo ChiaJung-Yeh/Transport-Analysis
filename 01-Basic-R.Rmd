@@ -1566,7 +1566,7 @@ list_eg=list(c(10,5,7), c(1,2,8,5,9), c(4,9,8,6))
 lapply(list_eg, sum)
 ```
 
-此外，`lapply()`的常見應用係取代`for()`迴圈批次讀取大量的檔案，此一範例中係讀取向量內各元素的檔案。程式碼撰寫如下。
+此外，`lapply()`的常見應用係取代`for()`迴圈批次讀取大量的檔案，以下範例中係讀取向量內各元素的檔案。程式碼撰寫如下。
 
 ```{r lapply-eg2, echo=T, eval=F}
 # 利用dir()讀取指定資料夾檔案
@@ -1593,6 +1593,7 @@ sapply(list_eg, sum)
 
 由輸出結果可知，計算成果與`lapply()`相同，最大差別在於其為一向量，結果更為簡單明瞭。
 
+
 <p style="color:#003D79;font-size:18px;line-height:2">**⌾ `mapply()`**</p>  
 `mapply()`函式是所有`apply`家族中應用彈性最高者，亦可解決許多使用`for()`迴圈運算速度過慢的問題，其函式撰寫架構如下：
 
@@ -1602,12 +1603,11 @@ mapply(function(引數) 執行程式, 引數範圍)
 
 上式中`function(引數) 執行程式`即[自定義函式](#建立自定義函式)，在給定的`引數範圍`條件下，依序執行程式。
 
-具體而言，再次以前文中的
+具體而言，再次以前文中的陣列內各向量加總為例，程式碼撰寫如下。
 
 ```{r mapply-eg1, echo=T, eval=F}
 mapply(function(x) sum(list_eg[[x]]), c(1:length(list_eg)))
 ```
-
 
 
 
@@ -1864,29 +1864,5 @@ dir("資料夾路徑", pattern=, full.names=, recursive=)
 * [疾病管制署資料開放平臺](https://data.cdc.gov.tw/)
 
 另請注意，[運輸資料流通服務平臺](https://tdx.transportdata.tw/)亦提供 JSON、XML 等資料介接的 API 格式，然而由於其介接過程需要權杖（access token），無法直接如以上平臺逕利用網址即可連結資料，須利用`httr`套件處理權杖，故程序較為複雜。
-
-
-
-## 資料清洗與處理
-資料清洗與處理是分析前的第一步，透過此一步驟可初步觀察資料的趨勢，並以圖表呈現敘述統計結果。此外，在經過完善的資料整理後，尚能進一步建構統計模型或數據分析工具以瞭解資料背後所衍伸之意涵。`dplyr`與`data.table`套件是 R 語言中兩大最常見的資料處理工具，請務必安裝並導入該套件。
-
-資料清洗與處理常用之套件與函式彙整如表\@ref(tab:function-data-clean)。  
-
-```{r function-data-clean, echo=F, eval=T}
-fuc=data.frame(Package=c("`base`", rep("`dplyr`", 11), rep("`data.table`", 2)), Functions=c("`merge()`","`select()`","`filter()`","`mutate()`","`group_by()`","`reframe()`","`slice()`","`left_join()`","`arrange()`","`rename()`","`distinct()`","`case_when()`","`dcast()`","`melt()`"), Usage=c("根據指定欄位合併兩資料（同`left_join()`）", "選取特定欄位", "根據條件篩選資料", "新增資料屬性（欄位）",  "將資料依據特定欄位分群，後方經常連結`filter()`或`reframe()`", "將分群的資料予以計算", "依據條件擷取特定欄位", "根據指定欄位合併兩資料", "根據指定欄位將資料排序", "更改欄位名稱", "去除重複資料", "條件判斷", "轉換長資料為寬資料", "轉換寬資料為長資料"))
-
-colnames(fuc)=c("套件","函式","功能")
-
-kbl(fuc, booktabs=T, escape=F, caption="資料處理重要函式")%>%
-  kable_styling(bootstrap_options=c("striped", "hover"), font_size=14)%>%
-  collapse_rows(1)%>%
-  row_spec(0, bold=T, color="white", background="#8E8E8E")
-```
-
-
-
-
-
-
 
 

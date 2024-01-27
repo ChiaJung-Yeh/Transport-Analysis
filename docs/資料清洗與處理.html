@@ -1,0 +1,372 @@
+<!DOCTYPE html>
+<html lang="" xml:lang="">
+<head>
+
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <title>Chapter 2 資料清洗與處理 | 運輸資料分析角落：初學者園地</title>
+  <meta name="description" content="運輸資料分析" />
+  <meta name="generator" content="bookdown 0.35 and GitBook 2.6.7" />
+
+  <meta property="og:title" content="Chapter 2 資料清洗與處理 | 運輸資料分析角落：初學者園地" />
+  <meta property="og:type" content="book" />
+  
+  <meta property="og:description" content="運輸資料分析" />
+  <meta name="github-repo" content="ChiaJung-Yeh/Transport-Analysis" />
+
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="Chapter 2 資料清洗與處理 | 運輸資料分析角落：初學者園地" />
+  
+  <meta name="twitter:description" content="運輸資料分析" />
+  
+
+<meta name="author" content="Chia-Jung (Robert) Yeh 葉家榮 PhD: Insitute of Transport and Logistics Studies, USYD M.S.: Department of Transportation and Logistics Management, NYCU" />
+
+
+<meta name="date" content="2024-01-27" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+  
+  
+<link rel="prev" href="r-語言基礎語法.html"/>
+<link rel="next" href="資料清洗與處理-1.html"/>
+<script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.6/dist/fuse.min.js"></script>
+<link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-highlight.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-fontsettings.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-clipboard.css" rel="stylesheet" />
+
+
+
+
+
+
+
+
+<link href="libs/anchor-sections-1.1.0/anchor-sections.css" rel="stylesheet" />
+<link href="libs/anchor-sections-1.1.0/anchor-sections-hash.css" rel="stylesheet" />
+<script src="libs/anchor-sections-1.1.0/anchor-sections.js"></script>
+<script src="libs/kePrint-0.0.1/kePrint.js"></script>
+<link href="libs/lightable-0.0.1/lightable.css" rel="stylesheet" />
+<link href="libs/bsTable-3.3.7/bootstrapTable.min.css" rel="stylesheet" />
+<script src="libs/bsTable-3.3.7/bootstrapTable.js"></script>
+
+
+
+<style type="text/css">
+  
+  div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+</style>
+
+<link rel="stylesheet" href="lib/css/bootstrap.min.css" type="text/css" />
+<link rel="stylesheet" href="lib/css/style.css" type="text/css" />
+<link rel="stylesheet" href="lib/css/lesson.css" type="text/css" />
+<link rel="stylesheet" href="stylebox.css" type="text/css" />
+</head>
+
+<body>
+
+
+
+  <div class="book without-animation with-summary font-size-2 font-family-1" data-basepath=".">
+
+    <div class="book-summary">
+      <nav role="navigation">
+
+<ul class="summary">
+<li><a href="./">運輸資料分析角落：初學者園地</a></li>
+
+<li class="divider"></li>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i><strong>前言</strong></a>
+<ul>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html#資料分析心法"><i class="fa fa-check"></i>資料分析心法</a></li>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html#安裝套件"><i class="fa fa-check"></i>安裝套件</a></li>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html#tdx-套件使用方式"><i class="fa fa-check"></i>TDX 套件使用方式</a></li>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html#其他參考資料"><i class="fa fa-check"></i>其他參考資料</a></li>
+</ul></li>
+<li class="chapter" data-level="1" data-path="r-語言基礎語法.html"><a href="r-語言基礎語法.html"><i class="fa fa-check"></i><b>1</b> <strong>R 語言基礎語法</strong></a>
+<ul>
+<li class="chapter" data-level="1.1" data-path="r-語言基礎語法.html"><a href="r-語言基礎語法.html#物件object"><i class="fa fa-check"></i><b>1.1</b> 物件（Object）</a>
+<ul>
+<li class="chapter" data-level="1.1.1" data-path="r-語言基礎語法.html"><a href="r-語言基礎語法.html#向量vector"><i class="fa fa-check"></i><b>1.1.1</b> 向量（Vector）</a></li>
+<li class="chapter" data-level="1.1.2" data-path="r-語言基礎語法.html"><a href="r-語言基礎語法.html#因子factor"><i class="fa fa-check"></i><b>1.1.2</b> 因子（Factor）</a></li>
+<li class="chapter" data-level="1.1.3" data-path="r-語言基礎語法.html"><a href="r-語言基礎語法.html#矩陣matrix"><i class="fa fa-check"></i><b>1.1.3</b> 矩陣（Matrix）</a></li>
+<li class="chapter" data-level="1.1.4" data-path="r-語言基礎語法.html"><a href="r-語言基礎語法.html#資料框data-frame"><i class="fa fa-check"></i><b>1.1.4</b> 資料框（Data Frame）</a></li>
+<li class="chapter" data-level="1.1.5" data-path="r-語言基礎語法.html"><a href="r-語言基礎語法.html#陣列list"><i class="fa fa-check"></i><b>1.1.5</b> 陣列（List）</a></li>
+</ul></li>
+<li class="chapter" data-level="1.2" data-path="r-語言基礎語法.html"><a href="r-語言基礎語法.html#文字處理"><i class="fa fa-check"></i><b>1.2</b> 文字處理</a>
+<ul>
+<li class="chapter" data-level="1.2.1" data-path="r-語言基礎語法.html"><a href="r-語言基礎語法.html#連接字串"><i class="fa fa-check"></i><b>1.2.1</b> 連接字串</a></li>
+<li class="chapter" data-level="1.2.2" data-path="r-語言基礎語法.html"><a href="r-語言基礎語法.html#轉換大小寫"><i class="fa fa-check"></i><b>1.2.2</b> 轉換大小寫</a></li>
+<li class="chapter" data-level="1.2.3" data-path="r-語言基礎語法.html"><a href="r-語言基礎語法.html#擷取與取代字元"><i class="fa fa-check"></i><b>1.2.3</b> 擷取與取代字元</a></li>
+<li class="chapter" data-level="1.2.4" data-path="r-語言基礎語法.html"><a href="r-語言基礎語法.html#拆解字串"><i class="fa fa-check"></i><b>1.2.4</b> 拆解字串</a></li>
+<li class="chapter" data-level="1.2.5" data-path="r-語言基礎語法.html"><a href="r-語言基礎語法.html#計算字元數"><i class="fa fa-check"></i><b>1.2.5</b> 計算字元數</a></li>
+<li class="chapter" data-level="1.2.6" data-path="r-語言基礎語法.html"><a href="r-語言基礎語法.html#搜尋字元"><i class="fa fa-check"></i><b>1.2.6</b> 搜尋字元</a></li>
+<li class="chapter" data-level="1.2.7" data-path="r-語言基礎語法.html"><a href="r-語言基礎語法.html#文字填補"><i class="fa fa-check"></i><b>1.2.7</b> 文字填補</a></li>
+<li class="chapter" data-level="1.2.8" data-path="r-語言基礎語法.html"><a href="r-語言基礎語法.html#文字排序"><i class="fa fa-check"></i><b>1.2.8</b> 文字排序</a></li>
+<li class="chapter" data-level="1.2.9" data-path="r-語言基礎語法.html"><a href="r-語言基礎語法.html#正規表示式"><i class="fa fa-check"></i><b>1.2.9</b> 正規表示式</a></li>
+</ul></li>
+<li class="chapter" data-level="1.3" data-path="r-語言基礎語法.html"><a href="r-語言基礎語法.html#控制流程"><i class="fa fa-check"></i><b>1.3</b> 控制流程</a>
+<ul>
+<li class="chapter" data-level="1.3.1" data-path="r-語言基礎語法.html"><a href="r-語言基礎語法.html#邏輯判斷"><i class="fa fa-check"></i><b>1.3.1</b> 邏輯判斷</a></li>
+<li class="chapter" data-level="1.3.2" data-path="r-語言基礎語法.html"><a href="r-語言基礎語法.html#for迴圈"><i class="fa fa-check"></i><b>1.3.2</b> <code>for()</code>迴圈</a></li>
+<li class="chapter" data-level="1.3.3" data-path="r-語言基礎語法.html"><a href="r-語言基礎語法.html#while迴圈"><i class="fa fa-check"></i><b>1.3.3</b> <code>while()</code>迴圈</a></li>
+<li class="chapter" data-level="1.3.4" data-path="r-語言基礎語法.html"><a href="r-語言基礎語法.html#建立自定義函式"><i class="fa fa-check"></i><b>1.3.4</b> 建立自定義函式</a></li>
+<li class="chapter" data-level="1.3.5" data-path="r-語言基礎語法.html"><a href="r-語言基礎語法.html#錯誤處理"><i class="fa fa-check"></i><b>1.3.5</b> 錯誤處理</a></li>
+<li class="chapter" data-level="1.3.6" data-path="r-語言基礎語法.html"><a href="r-語言基礎語法.html#apply函式家族"><i class="fa fa-check"></i><b>1.3.6</b> <code>apply</code>函式家族</a></li>
+</ul></li>
+<li class="chapter" data-level="1.4" data-path="r-語言基礎語法.html"><a href="r-語言基礎語法.html#資料讀取與匯出"><i class="fa fa-check"></i><b>1.4</b> 資料讀取與匯出</a>
+<ul>
+<li class="chapter" data-level="1.4.1" data-path="r-語言基礎語法.html"><a href="r-語言基礎語法.html#csv-與-txt-檔"><i class="fa fa-check"></i><b>1.4.1</b> CSV 與 TXT 檔</a></li>
+<li class="chapter" data-level="1.4.2" data-path="r-語言基礎語法.html"><a href="r-語言基礎語法.html#json-檔"><i class="fa fa-check"></i><b>1.4.2</b> JSON 檔</a></li>
+<li class="chapter" data-level="1.4.3" data-path="r-語言基礎語法.html"><a href="r-語言基礎語法.html#xml-檔案"><i class="fa fa-check"></i><b>1.4.3</b> XML 檔案</a></li>
+<li class="chapter" data-level="1.4.4" data-path="r-語言基礎語法.html"><a href="r-語言基礎語法.html#資料來源"><i class="fa fa-check"></i><b>1.4.4</b> 資料來源</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="2" data-path="資料清洗與處理.html"><a href="資料清洗與處理.html"><i class="fa fa-check"></i><b>2</b> <strong>資料清洗與處理</strong></a></li>
+<li class="chapter" data-level="3" data-path="資料清洗與處理-1.html"><a href="資料清洗與處理-1.html"><i class="fa fa-check"></i><b>3</b> <strong>資料清洗與處理</strong></a></li>
+<li class="chapter" data-level="4" data-path="基本資料統計.html"><a href="基本資料統計.html"><i class="fa fa-check"></i><b>4</b> <strong>基本資料統計</strong></a>
+<ul>
+<li class="chapter" data-level="4.1" data-path="基本資料統計.html"><a href="基本資料統計.html#公車資料統計分析"><i class="fa fa-check"></i><b>4.1</b> 公車資料統計分析</a>
+<ul>
+<li class="chapter" data-level="4.1.1" data-path="基本資料統計.html"><a href="基本資料統計.html#路線統計分析"><i class="fa fa-check"></i><b>4.1.1</b> 路線統計分析</a></li>
+<li class="chapter" data-level="4.1.2" data-path="基本資料統計.html"><a href="基本資料統計.html#站牌統計分析"><i class="fa fa-check"></i><b>4.1.2</b> 站牌統計分析</a></li>
+<li class="chapter" data-level="4.1.3" data-path="基本資料統計.html"><a href="基本資料統計.html#站間行駛距離計算"><i class="fa fa-check"></i><b>4.1.3</b> 站間行駛距離計算</a></li>
+</ul></li>
+</ul></li>
+<li class="divider"></li>
+<li><a href="https://www.sydney.edu.au/business/about/our-people/research-students/chia-jung-yeh-557.html" target="blank">葉家榮 Chia-Jung Yeh</a></li>
+
+</ul>
+
+      </nav>
+    </div>
+
+    <div class="book-body">
+      <div class="body-inner">
+        <div class="book-header" role="navigation">
+          <h1>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">運輸資料分析角落：初學者園地</a>
+          </h1>
+        </div>
+
+        <div class="page-wrapper" tabindex="-1" role="main">
+          <div class="page-inner">
+
+            <section class="normal" id="section-">
+<div id="資料清洗與處理" class="section level1 hasAnchor" number="2">
+<h1><span class="header-section-number">Chapter 2</span> <strong>資料清洗與處理</strong><a href="資料清洗與處理.html#資料清洗與處理" class="anchor-section" aria-label="Anchor link to header"></a></h1>
+<p>資料清洗與處理是分析前的第一步，透過此一步驟可初步觀察資料的趨勢，並以圖表呈現敘述統計結果。此外，在經過完善的資料整理後，尚能進一步建構統計模型或數據分析工具以瞭解資料背後所衍伸之意涵。<code>dplyr</code>與<code>data.table</code>套件是 R 語言中兩大最常見的資料處理工具，請務必安裝並導入該套件。</p>
+<p>資料清洗與處理常用之套件與函式彙整如表<a href="資料清洗與處理.html#tab:function-data-clean">2.1</a>。</p>
+<table class="table table-striped table-hover" style="font-size: 14px; margin-left: auto; margin-right: auto;">
+<caption style="font-size: initial !important;">
+<span id="tab:function-data-clean">表 2.1: </span>資料處理重要函式
+</caption>
+<thead>
+<tr>
+<th style="text-align:left;font-weight: bold;color: white !important;background-color: #8E8E8E !important;">
+套件
+</th>
+<th style="text-align:left;font-weight: bold;color: white !important;background-color: #8E8E8E !important;">
+函式
+</th>
+<th style="text-align:left;font-weight: bold;color: white !important;background-color: #8E8E8E !important;">
+功能
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left;">
+<code>base</code>
+</td>
+<td style="text-align:left;">
+<code>merge()</code>
+</td>
+<td style="text-align:left;">
+根據指定欄位合併兩資料（同<code>left_join()</code>）
+</td>
+</tr>
+<tr>
+<td style="text-align:left;vertical-align: middle !important;" rowspan="11">
+<code>dplyr</code>
+</td>
+<td style="text-align:left;">
+<code>select()</code>
+</td>
+<td style="text-align:left;">
+選取特定欄位
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+<code>filter()</code>
+</td>
+<td style="text-align:left;">
+根據條件篩選資料
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+<code>mutate()</code>
+</td>
+<td style="text-align:left;">
+新增資料屬性（欄位）
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+<code>group_by()</code>
+</td>
+<td style="text-align:left;">
+將資料依據特定欄位分群，後方經常連結<code>filter()</code>或<code>reframe()</code>
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+<code>reframe()</code>
+</td>
+<td style="text-align:left;">
+將分群的資料予以計算
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+<code>slice()</code>
+</td>
+<td style="text-align:left;">
+依據條件擷取特定欄位
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+<code>left_join()</code>
+</td>
+<td style="text-align:left;">
+根據指定欄位合併兩資料
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+<code>arrange()</code>
+</td>
+<td style="text-align:left;">
+根據指定欄位將資料排序
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+<code>rename()</code>
+</td>
+<td style="text-align:left;">
+更改欄位名稱
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+<code>distinct()</code>
+</td>
+<td style="text-align:left;">
+去除重複資料
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+<code>case_when()</code>
+</td>
+<td style="text-align:left;">
+條件判斷
+</td>
+</tr>
+<tr>
+<td style="text-align:left;vertical-align: middle !important;" rowspan="2">
+<code>data.table</code>
+</td>
+<td style="text-align:left;">
+<code>dcast()</code>
+</td>
+<td style="text-align:left;">
+轉換長資料為寬資料
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+<code>melt()</code>
+</td>
+<td style="text-align:left;">
+轉換寬資料為長資料
+</td>
+</tr>
+</tbody>
+</table>
+
+</div>
+            </section>
+
+          </div>
+        </div>
+      </div>
+<a href="r-語言基礎語法.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="資料清洗與處理-1.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+    </div>
+  </div>
+<script src="libs/gitbook-2.6.7/js/app.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/clipboard.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-fontsettings.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-bookdown.js"></script>
+<script src="libs/gitbook-2.6.7/js/jquery.highlight.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-clipboard.js"></script>
+<script>
+gitbook.require(["gitbook"], function(gitbook) {
+gitbook.start({
+"sharing": {
+"github": false,
+"facebook": true,
+"twitter": true,
+"linkedin": false,
+"weibo": false,
+"instapaper": false,
+"vk": false,
+"whatsapp": false,
+"all": ["facebook", "twitter", "linkedin", "weibo", "instapaper"]
+},
+"fontsettings": {
+"theme": "white",
+"family": "serif",
+"size": 2
+},
+"edit": {
+"link": "https://github.com/ChiaJung-Yeh/Transport-Analysis/tree/master/02-Data-Tidy.Rmd",
+"text": "Edit"
+},
+"history": {
+"link": null,
+"text": null
+},
+"view": {
+"link": null,
+"text": null
+},
+"download": ["series.pdf"],
+"search": {
+"engine": "fuse",
+"options": null
+},
+"toc": {
+"collapse": "subsection"
+}
+});
+});
+</script>
+
+</body>
+
+</html>

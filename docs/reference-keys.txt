@@ -59,3 +59,6 @@ fig:obkect-fig
 fig:object-fig
 apply函式家族
 建立自定義函式
+資料清洗與處理-1
+資料清洗與處理-2
+資料視覺化

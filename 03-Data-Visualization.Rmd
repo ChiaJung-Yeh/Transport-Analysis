@@ -1,0 +1,33 @@
+```{r setup1, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+library(dplyr)
+library(data.table)
+library(sf)
+library(ggplot2)
+library(ggsflabel)
+library(ggspatial)
+library(knitr)
+library(kableExtra)
+library(TDX)
+library(DT)
+library(stringr)
+library(jsonlite)
+library(xml2)
+
+Sys.setlocale(category = "LC_ALL", locale = "zh_TW.UTF-8")
+
+windowsFonts(A=windowsFont("微軟正黑體"))
+
+client_id=read.csv("./key.txt", header=F)[1,2]
+client_secret=read.csv("./key.txt", header=F)[2,2]
+access_token=get_token(client_id, client_secret)
+```
+
+# **資料視覺化**
+
+
+
+
+
+
+
