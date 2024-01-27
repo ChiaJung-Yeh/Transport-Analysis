@@ -29,7 +29,7 @@ access_token=get_token(client_id, client_secret)
 資料清洗與處理常用之套件與函式彙整如表\@ref(tab:function-data-clean)。  
 
 ```{r function-data-clean, echo=F, eval=T}
-fuc=data.frame(Package=c("`base`", rep("`dplyr`", 22), rep("`data.table`", 4)), Functions=c("`merge()`","[`bind_rows()`](#合併資料)","[`bind_cols()`](#合併資料)","`select()`","`filter()`","`mutate()`","`group_by()`","`summarise()`","`reframe()`","`slice()`","`left_join()`","`inner_join()`","`full_join()`","`arrange()`","`rename()`","`distinct()`","`intersect()`","`union()`","`union_all()`","`setdiff()`","`symdiff()`","`setequal()`","`case_when()`","`setDT()`","`setkey()`","`dcast()`","`melt()`"), Usage=c("根據指定欄位連接兩資料", "合併橫列", "合併直行", "選取特定欄位", "根據條件篩選資料", "新增資料屬性（直行）",  "將資料依據特定欄位分群`", "將分群的資料予以計算", "將分群的資料予以計算", "依據分群擷取特定資料", "根據指定欄位連接兩資料（僅保留左側資料）", "根據指定欄位連接兩資料（擁有的資料皆須保留）", "根據指定欄位連接兩資料（僅保留共同擁有的資料）", "根據指定欄位將資料排序", "更改欄位名稱", "去除重複資料", "尋找兩資料中共同擁有的資料列（交集）", "保留所有擁有的資料列（聯集，去除重複者）", "保留所有擁有的資料列（聯集，保留重複者）", "尋找唯獨左側資料擁有的資料列（差集）", "尋找唯獨其中一份資料擁有的資料列（互斥）", "檢查兩資料是否完全相同（無論排序）", "條件判斷", "將資料轉換為`data.table`形式", "設定`data.table`資料的主鍵", "轉換長資料為寬資料", "轉換寬資料為長資料"))
+fuc=data.frame(Package=c("`base`", rep("`dplyr`", 22), rep("`data.table`", 4)), Functions=c("`merge()`","[`bind_rows()`](#合併資料)","[`bind_cols()`](#合併資料)","[`select()`](#選取資料欄位)","[`filter()`](#依條件篩選資料)","`mutate()`","`group_by()`","`summarise()`","`reframe()`","`slice()`","`left_join()`","`inner_join()`","`full_join()`","`arrange()`","`rename()`","`distinct()`","`intersect()`","`union()`","`union_all()`","`setdiff()`","`symdiff()`","`setequal()`","`case_when()`","[`setDT()`](#data.frame-與-data.table)","[`setkey()`](#data.frame-與-data.table)","`dcast()`","`melt()`"), Usage=c("根據指定欄位連接兩資料", "合併橫列", "合併直行", "選取特定欄位", "根據條件篩選資料", "新增資料屬性（直行）",  "將資料依據特定欄位分群`", "將分群的資料予以計算", "將分群的資料予以計算", "依據分群擷取特定資料", "根據指定欄位連接兩資料（僅保留左側資料）", "根據指定欄位連接兩資料（擁有的資料皆須保留）", "根據指定欄位連接兩資料（僅保留共同擁有的資料）", "根據指定欄位將資料排序", "更改欄位名稱", "去除重複資料", "尋找兩資料中共同擁有的資料列（交集）", "保留所有擁有的資料列（聯集，去除重複者）", "保留所有擁有的資料列（聯集，保留重複者）", "尋找唯獨左側資料擁有的資料列（差集）", "尋找唯獨其中一份資料擁有的資料列（互斥）", "檢查兩資料是否完全相同（無論排序）", "條件判斷", "將資料轉換為`data.table`形式", "設定`data.table`資料的主鍵", "轉換長資料為寬資料", "轉換寬資料為長資料"))
 
 colnames(fuc)=c("套件","函式","功能")
 
@@ -39,7 +39,78 @@ kbl(fuc, booktabs=T, escape=F, caption="資料處理重要函式")%>%
   row_spec(0, bold=T, color="white", background="#8E8E8E")
 ```
 
-為展示「資料清洗與處理」過程，以下範例中我們會使用的資料如下，請先讀取之。
+
+為展示「資料清洗與處理」過程，後續範例中我們會使用的資料如下，請先讀取之。
+
+```{r read-data-world, echo=T, eval=T}
+# 世界國家資料
+world=read.csv("https://raw.githubusercontent.com/ChiaJung-Yeh/Transport-Analysis/master/Data/world.csv")
+```
+
+```{r read-data-world-show, echo=F, eval=T, message=F, warning=F}
+datatable(world, options=list(pageLength=5, scrollX=T, headerCallback = DT::JS(
+    "function(thead) {",
+    "  $(thead).css('font-size', '0.7em');",
+    "}"
+  )))%>%
+  formatStyle(columns=c(1:ncol(world)), fontSize='12px')%>%
+  formatRound(c("area_km2", "lifeExp","gdpPercap"), digits=2)
+```
+
+```{r read-data-coffee, echo=T, eval=T}
+# 咖啡產量資料
+coffee=read.csv("https://raw.githubusercontent.com/ChiaJung-Yeh/Transport-Analysis/master/Data/coffee.csv")
+```
+
+```{r read-data-coffee-show, echo=F, eval=T, message=F, warning=F}
+datatable(coffee, options=list(pageLength=5, scrollX=T, headerCallback = DT::JS(
+    "function(thead) {",
+    "  $(thead).css('font-size', '0.7em');",
+    "}"
+  )))%>%
+  formatStyle(columns=c(1:ncol(coffee)), fontSize='12px')
+```
+
+世界國家資料（`world`）中詳記各國資訊，包括人口數（pop）、面積（area_km2）、lifeExp（壽命）、gdpPerCap（人均 GDP）等；咖啡（`coffee`）資料中詳記世界各國 2016 與 2017 年的咖啡產量。
+
+## data.frame 與 data.table
+`dplyr`與`data.table`套件所提供的各函式大多功能皆相同，惟使用`data.table`套件的函式時，必須將資料型別新增 data.table 之格式，尚能正確分析。此外，`data.table`套件的執行效率通常較高，在大數據處理上極具優勢（依據實務經驗而論，若處理的資料筆數上達千萬筆，建議使用`data.table`套件），而若數據量較小時兩者的速度不相上下。關於兩資料分析套件的速度比較請參考以下文章：
+
+* [Comparing Efficiency and Speed of `data.table`](https://tysonbarrett.com/jekyll/update/2019/10/06/datatable_memory/)  
+* [data.table speed with dplyr syntax](https://towardsdatascience.com/data-table-speed-with-dplyr-syntax-yes-we-can-51ef9aaed585)  
+
+
+<p style="color:#003D79;font-size:18px;line-height:2">**⌾ 新增 data.table 資料格式**</p>  
+
+若欲針對原 data.frame 新增 data.table 之資料格式，可利用`setDT()`函式新增之，以`world`資料為例，程式碼撰寫如下。
+
+```{r read-data-world-dt, echo=T, eval=T}
+# 使用read.csv()讀取資料 -> data.frame()
+world_DT=read.csv("https://raw.githubusercontent.com/ChiaJung-Yeh/Transport-Analysis/master/Data/world.csv")
+
+# 查看資料型態
+class(world_DT)
+
+# setDT()函式新增data.table格式
+setDT(world_DT)
+
+# 再次查看資料型態
+class(world_DT)
+```
+
+
+由最後輸出結果可知，`world_DT`資料經過`setDT()`函式設定後即新增 data.table 格式，同時亦會保留 data.frame 格式。
+
+<p style="color:#003D79;font-size:18px;line-height:2">**⌾ 新增主鍵**</p>  
+
+主鍵是資料中用以標示「關鍵的」屬性欄位，「關鍵」意謂該欄位具有唯一性，可以用其檢索整份資料，不會重複匹配至多比不同的資料。舉例而言，在考生成績的資料中，我們會利用學生的學號、姓名等作為主鍵，因為其具有代表性，可以表示特定資料；然而，我們不會利用學生的分數作為主鍵，因為分數值很可能是重複的，無法表示特定一筆資料。
+
+根據上述，在 data.table 的資料格式中，主鍵是相當關鍵的要素，亦為使`data.table`套件效率甚高的其一原因。以`world_DT`資料為例，將「name_long」（國家名稱）設定為主鍵，函式撰寫如下。
+
+```{r data-world-dt-key, echo=T, eval=T}
+# 建立主鍵
+setDT(world_DT, name_long)
+```
 
 
 ## 合併資料
@@ -67,37 +138,183 @@ bind_rows(score_data1, score_data2)
 
 
 ## 選取資料欄位
-在第一章節中，我們曾提及資料框選取欄位的方法，而`dplyr`套建亦提供相同功能的`select()`函式，函式撰寫方法如下。
+在第一章節中，我們曾提及資料框選取欄位的方法，而`dplyr`套建亦提供相同功能的`select()`函式，函式撰寫如下。
 
 ```{r select-code, echo=T, eval=F}
 select(資料, 欄位名稱1, 欄位名稱2, ...)
 ```
 
 
-以選取`score_data1`資料中的「Student」和「Score」兩欄位為例，程式碼撰寫如下。
+<p style="color:#003D79;font-size:18px;line-height:2">**⌾ 選取欄位**</p>  
+以選取`world`資料中的「name_long」和「area_km2」兩欄位為例，程式碼撰寫如下。
 
 ```{r select-eg1, echo=T, eval=T}
-select(score_data1, Student, Score)
+# 選取name_long與area_km2兩欄位
+world_sel1=select(world, name_long, area_km2)
+
+# 查看前六筆資料
+head(world_sel1)
 ```
 
-其他寫法包括：（請回顧[選取欄位](#資料框data-frame)章節）：
+<p style="color:#750000;">使用`data.table`套件選取欄位，程式碼撰寫如下。</p>  
+
+```{r select-eg1-dt, echo=T, eval=F}
+world[, .(name_long, area_km2)]
+```
+
+
+其他寫法包括（請回顧[選取欄位](#資料框data-frame)章節）：
 
 ```{r select-eg2, echo=T, eval=F}
 # 給定欄位索引
-score_data1[, c(1,3)]
+world[, c(1,7)]
 
 # 給定欄位名稱
-score_data1[, c("Student", "Class")]
+world[, c("name_long", "area_km2")]
 
 # 回傳單一欄位
-score_data1$Student
-score_data1$Score
+world$name_long
+world$area_km2
+```
+
+此外，亦可將欲返回的欄位儲存於一文字向量中，並透過`all_of()`函式回傳之，程式碼撰寫如下。
+
+```{r select-eg3, echo=T, eval=T}
+# 選取name_long與area_km2兩欄位
+sel_col_name=c("name_long", "continent", "subregion")
+
+# 使用all_of()函式
+world_sel2=select(world, all_of(sel_col_name))
+
+# 查看前六筆資料
+head(world_sel2)
+```
+
+<p style="color:#750000;">使用`data.table`套件選取欄位，程式碼撰寫如下。</p>  
+
+```{r select-eg3-dt, echo=T, eval=F}
+world[, ..sel_col_name]
 ```
 
 
-## 依條件篩選資料
-條件篩選資料可以利用邏輯向量擷取
+<p style="color:#003D79;font-size:18px;line-height:2">**⌾ 刪除欄位**</p>  
 
+若欲刪除特定欄位，可利用`-`在欄位名稱前即可刪除之。
+
+```{r select-eg4, echo=T, eval=T}
+# 刪除continent、region_un、subregion、type欄位
+world_sel3=select(world, -continent, -region_un, -subregion, -type)
+
+# 查看前六筆資料
+head(world_sel3)
+```
+
+<p style="color:#750000;">使用`data.table`套件刪除欄位，程式碼撰寫如下。</p>  
+
+```{r select-eg4-dt, echo=T, eval=F}
+del_col_name=c("continent","region_un","subregion","type")
+world[, !..del_col_name]
+```
+
+
+
+## 依條件篩選資料
+條件篩選資料可以利用`filter()`函式達成之，函式撰寫如下。
+
+```{r filter-code, echo=T, eval=F}
+filter(資料, 條件1, 條件2, ...)
+```
+
+以上`條件1`與`條件2`是用以篩選資料中符合條件者，最終所回傳的資料必然符合函式內**所有**的條件。
+
+<p style="color:#003D79;font-size:18px;line-height:2">**⌾ 數值向量篩選**</p>  
+
+以篩選`world`資料中，人口數（`pop`）超過 1 億人者。
+
+```{r filter-eg1, echo=T, eval=T}
+# 篩選人口數超過1億的資料
+world_fil1=filter(world, pop>100000000)
+
+# 查看前六筆資料
+head(world_fil1)
+
+# 查看查看符合條件的總資料筆數（亦即國家數）
+nrow(world_fil1)
+```
+
+<p style="color:#750000;">使用`data.table`套件篩選資料，程式碼撰寫如下。</p>  
+
+```{r filter-eg1-dt, echo=T, eval=F}
+world_DT[pop>100000000]
+```
+
+
+<p style="color:#003D79;font-size:18px;line-height:2">**⌾ 文字向量篩選**</p>  
+通常文字篩選時會利用`%in%`以查看一向量各元素是否存在於另一向量中，請參照[向量 Vector](#向量vector)小節中「⌾ 檢查元素是否包含於向量」。
+  
+以篩選`world`資料中，所在洲隸屬於亞洲（Asia）以及歐洲（Europe）者。
+
+```{r filter-eg2, echo=T, eval=T}
+# filter data by population
+world_fil2=filter(world, continent %in% c("Asia", "Europe"))
+
+# check out the first 6 rows
+head(world_fil2)
+```
+
+<p style="color:#750000;">使用`data.table`套件篩選資料，程式碼撰寫如下。</p>  
+
+```{r filter-eg2-dt, echo=T, eval=F}
+world_DT[continent %in% c("Asia", "Europe")]
+```
+
+
+<p style="color:#003D79;font-size:18px;line-height:2">**⌾ 多重條件篩選（AND）**</p>  
+
+在`filter()`函式中所設定的諸多條件皆須滿足尚會進一步保留資料。以`world`資料為例，篩選洲隸屬於亞洲以及歐洲，且人口數超過 1 億者。程式碼撰寫如下。
+
+```{r filter-eg3, echo=T, eval=T}
+# 依條件篩選資料
+world_fil3=filter(world, continent %in% c("Asia", "Europe"), pop>100000000)
+
+# 查看前六筆資料
+head(world_fil3)
+
+# 查看查看符合條件的總資料筆數（亦即國家數）
+nrow(world_fil3)
+```
+
+除可以直接以「逗號」分隔各項條件外，亦可利用「`&`」串接所有條件，程式碼撰寫如下。
+
+```{r filter-eg4, echo=T, eval=F}
+# 利用&串接所有條件
+world_fil4=filter(world, continent %in% c("Asia", "Europe") & pop>100000000)
+```
+
+<p style="color:#750000;">使用`data.table`套件篩選資料，程式碼撰寫如下。</p>  
+
+```{r filter-eg4-dt, echo=T, eval=F}
+world_DT[continent %in% c("Asia", "Europe") & pop>100000000]
+```
+
+
+<p style="color:#003D79;font-size:18px;line-height:2">**⌾ 多重條件（OR）**</p>  
+
+`filter()`函式係需要所有條件皆滿足尚會回傳資料，然而有時我們希望其一條件成立即可，此時可以將各項條件以「`|`」分開，程式碼撰寫如下。
+
+```{r filter-eg5, echo=T, eval=T}
+# 滿足其一條建篩選資料
+world_fil5=filter(world, continent %in% c("Asia", "Europe") | pop>100000000)
+
+# 查看查看符合條件的總資料筆數（亦即國家數）
+nrow(world_fil5)
+```
+
+<p style="color:#750000;">使用`data.table`套件篩選資料，程式碼撰寫如下。</p>  
+
+```{r filter-eg5-dt, echo=T, eval=F}
+world_DT[continent %in% c("Asia", "Europe") | pop>100000000]
+```
 
 
 ## 新增資料屬性

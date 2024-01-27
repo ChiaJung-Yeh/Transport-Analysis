@@ -1671,7 +1671,7 @@ datatable(world, options=list(pageLength=5, scrollX=T, headerCallback = DT::JS(
 * `fileEncoding=`設定文字編碼，一般而言英文的編碼無須另外設定，然若是中文字則通常為「Big5」或「UTF-8」。  
 
 
-除了`read.csv()`函式可讀取資料外，亦可使用`read.table()`函式讀取，功能與引數完全相同。此外，`data.table`套件中的`fread()`亦可讀取資料，其所使用引數與`read.csv()`大致相同，亦可讀取本機及網路上的文字資料，惟讀取速度非常快，適合大數據資料的讀取。  
+除了`read.csv()`函式可讀取資料外，亦可使用`read.table()`函式讀取，功能與引數完全相同。此外，`data.table`套件中的`fread()`亦可讀取資料，其所使用引數與`read.csv()`大致相同，亦可讀取本機及網路上的文字資料，惟讀取速度非常快，適合大數據資料的讀取。另請注意，`fread()`函式讀取的資料除了是 data.frame 的格式外，同時亦是 data.table 的格式，關於此二資料的說明，請參考第二章[data.frame 與 data.table](#data.frame-與-data.table)小節。
 
 ```{r read-fread1, echo=T, eval=F}
 fread("路徑")  # 本機資料
