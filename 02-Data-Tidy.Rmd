@@ -29,7 +29,7 @@ access_token=get_token(client_id, client_secret)
 資料清洗與處理常用之套件與函式彙整如表\@ref(tab:function-data-clean)。  
 
 ```{r function-data-clean, echo=F, eval=T}
-fuc=data.frame(Package=c("`base`", rep("`dplyr`", 22), rep("`data.table`", 2)), Functions=c("`merge()`","`bind_rows()`","`bind_cols()`","`select()`","`filter()`","`mutate()`","`group_by()`","`summarise()`","`reframe()`","`slice()`","`left_join()`","`inner_join()","`full_join()","`arrange()`","`rename()`","`distinct()`","`intersect()`","`union()`","`union_all()`","`setdiff()`","`symdiff()`","`setequal()`","`case_when()`","`dcast()`","`melt()`"), Usage=c("根據指定欄位連接兩資料", "合併橫列", "合併直行", "選取特定欄位", "根據條件篩選資料", "新增資料屬性（直行）",  "將資料依據特定欄位分群`", "將分群的資料予以計算", "將分群的資料予以計算", "依據分群擷取特定資料", "根據指定欄位連接兩資料（僅保留左側資料）", "根據指定欄位連接兩資料（擁有的資料皆須保留）", "根據指定欄位連接兩資料（僅保留共同擁有的資料）", "根據指定欄位將資料排序", "更改欄位名稱", "去除重複資料", "尋找兩資料中共同擁有的資料列（交集）", "保留所有擁有的資料列（聯集，去除重複者）", "保留所有擁有的資料列（聯集，保留重複者）", "尋找唯獨左側資料擁有的資料列（差集）", "尋找唯獨其中一份資料擁有的資料列（互斥）", "檢查兩資料是否完全相同（無論排序）", "條件判斷", "轉換長資料為寬資料", "轉換寬資料為長資料"))
+fuc=data.frame(Package=c("`base`", rep("`dplyr`", 22), rep("`data.table`", 4)), Functions=c("`merge()`","[`bind_rows()`](#合併資料)","[`bind_cols()`](#合併資料)","`select()`","`filter()`","`mutate()`","`group_by()`","`summarise()`","`reframe()`","`slice()`","`left_join()`","`inner_join()`","`full_join()`","`arrange()`","`rename()`","`distinct()`","`intersect()`","`union()`","`union_all()`","`setdiff()`","`symdiff()`","`setequal()`","`case_when()`","`setDT()`","`setkey()`","`dcast()`","`melt()`"), Usage=c("根據指定欄位連接兩資料", "合併橫列", "合併直行", "選取特定欄位", "根據條件篩選資料", "新增資料屬性（直行）",  "將資料依據特定欄位分群`", "將分群的資料予以計算", "將分群的資料予以計算", "依據分群擷取特定資料", "根據指定欄位連接兩資料（僅保留左側資料）", "根據指定欄位連接兩資料（擁有的資料皆須保留）", "根據指定欄位連接兩資料（僅保留共同擁有的資料）", "根據指定欄位將資料排序", "更改欄位名稱", "去除重複資料", "尋找兩資料中共同擁有的資料列（交集）", "保留所有擁有的資料列（聯集，去除重複者）", "保留所有擁有的資料列（聯集，保留重複者）", "尋找唯獨左側資料擁有的資料列（差集）", "尋找唯獨其中一份資料擁有的資料列（互斥）", "檢查兩資料是否完全相同（無論排序）", "條件判斷", "將資料轉換為`data.table`形式", "設定`data.table`資料的主鍵", "轉換長資料為寬資料", "轉換寬資料為長資料"))
 
 colnames(fuc)=c("套件","函式","功能")
 
@@ -57,7 +57,7 @@ rbind(score_data1, score_data2)
 
 由以上`rbind()`函式之範例可知，由於`score_data1`含有「Class」欄位，而`score_data2`並不包含，故無法成功合併兩資料。此時可嘗試利用`bind_rows()`函式，程式碼撰寫如下。
 
-```{r rbind-bindrow2, echo=T, eval=T, error=T}
+```{r rbind-bindrow2, echo=T, eval=T}
 bind_rows(score_data1, score_data2)
 ```
 
@@ -65,11 +65,36 @@ bind_rows(score_data1, score_data2)
 
 
 ## 選取資料欄位
+在第一章節中，我們曾提及資料框選取欄位的方法，而`dplyr`套建亦提供相同功能的`select()`函式，函式撰寫方法如下。
+
+```{r select-code, echo=T, eval=F}
+select(資料, 欄位名稱1, 欄位名稱2, ...)
+```
 
 
+以選取`score_data1`資料中的「Student」和「Score」兩欄位為例，程式碼撰寫如下。
+
+```{r select-eg1, echo=T, eval=T}
+select(score_data1, Student, Score)
+```
+
+其他寫法包括`（請回顧[選取欄位](#資料框data-frame)章節）：
+
+```{r select-eg2, echo=T, eval=F}
+# 給定欄位索引
+score_data1[, c(1,3)]
+
+# 給定欄位名稱
+score_data1[, c("Student", "Class")]
+
+# 回傳單一欄位
+score_data1$Student
+score_data1$Score
+```
 
 
 ## 依條件篩選資料
+條件篩選資料可以利用邏輯向量擷取
 
 
 

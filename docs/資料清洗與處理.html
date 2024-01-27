@@ -275,7 +275,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <code>dplyr</code>
 </td>
 <td style="text-align:left;">
-<code>bind_rows()</code>
+<a href="資料清洗與處理.html#合併資料"><code>bind_rows()</code></a>
 </td>
 <td style="text-align:left;">
 合併橫列
@@ -283,7 +283,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </tr>
 <tr>
 <td style="text-align:left;">
-<code>bind_cols()</code>
+<a href="資料清洗與處理.html#合併資料"><code>bind_cols()</code></a>
 </td>
 <td style="text-align:left;">
 合併直行
@@ -355,7 +355,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </tr>
 <tr>
 <td style="text-align:left;">
-`inner_join()
+<code>inner_join()</code>
 </td>
 <td style="text-align:left;">
 根據指定欄位連接兩資料（擁有的資料皆須保留）
@@ -363,7 +363,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </tr>
 <tr>
 <td style="text-align:left;">
-`full_join()
+<code>full_join()</code>
 </td>
 <td style="text-align:left;">
 根據指定欄位連接兩資料（僅保留共同擁有的資料）
@@ -450,9 +450,25 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </td>
 </tr>
 <tr>
-<td style="text-align:left;vertical-align: middle !important;" rowspan="2">
+<td style="text-align:left;vertical-align: middle !important;" rowspan="4">
 <code>data.table</code>
 </td>
+<td style="text-align:left;">
+<code>setDT()</code>
+</td>
+<td style="text-align:left;">
+將資料轉換為<code>data.table</code>形式
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+<code>setkey()</code>
+</td>
+<td style="text-align:left;">
+設定<code>data.table</code>資料的主鍵
+</td>
+</tr>
+<tr>
 <td style="text-align:left;">
 <code>dcast()</code>
 </td>
@@ -497,9 +513,29 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </div>
 <div id="選取資料欄位" class="section level2 hasAnchor" number="2.2">
 <h2><span class="header-section-number">2.2</span> 選取資料欄位<a href="資料清洗與處理.html#選取資料欄位" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>在第一章節中，我們曾提及資料框選取欄位的方法，而<code>dplyr</code>套建亦提供相同功能的<code>select()</code>函式，函式撰寫方法如下。</p>
+<div class="sourceCode" id="cb5"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb5-1"><a href="資料清洗與處理.html#cb5-1" tabindex="-1"></a><span class="fu">select</span>(資料, 欄位名稱1, 欄位名稱2, ...)</span></code></pre></div>
+<p>以選取<code>score_data1</code>資料中的「Student」和「Score」兩欄位為例，程式碼撰寫如下。</p>
+<div class="sourceCode" id="cb6"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb6-1"><a href="資料清洗與處理.html#cb6-1" tabindex="-1"></a><span class="fu">select</span>(score_data1, Student, Score)</span></code></pre></div>
+<pre><code>##   Student Score
+## 1  Robert    80
+## 2  Jessie    95
+## 3    Rose    70
+## 4    John    65</code></pre>
+<p>其他寫法包括`（請回顧<a href="r-語言基礎語法.html#資料框data-frame">選取欄位</a>章節）：</p>
+<div class="sourceCode" id="cb8"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb8-1"><a href="資料清洗與處理.html#cb8-1" tabindex="-1"></a><span class="co"># 給定欄位索引</span></span>
+<span id="cb8-2"><a href="資料清洗與處理.html#cb8-2" tabindex="-1"></a>score_data1[, <span class="fu">c</span>(<span class="dv">1</span>,<span class="dv">3</span>)]</span>
+<span id="cb8-3"><a href="資料清洗與處理.html#cb8-3" tabindex="-1"></a></span>
+<span id="cb8-4"><a href="資料清洗與處理.html#cb8-4" tabindex="-1"></a><span class="co"># 給定欄位名稱</span></span>
+<span id="cb8-5"><a href="資料清洗與處理.html#cb8-5" tabindex="-1"></a>score_data1[, <span class="fu">c</span>(<span class="st">&quot;Student&quot;</span>, <span class="st">&quot;Class&quot;</span>)]</span>
+<span id="cb8-6"><a href="資料清洗與處理.html#cb8-6" tabindex="-1"></a></span>
+<span id="cb8-7"><a href="資料清洗與處理.html#cb8-7" tabindex="-1"></a><span class="co"># 回傳單一欄位</span></span>
+<span id="cb8-8"><a href="資料清洗與處理.html#cb8-8" tabindex="-1"></a>score_data1<span class="sc">$</span>Student</span>
+<span id="cb8-9"><a href="資料清洗與處理.html#cb8-9" tabindex="-1"></a>score_data1<span class="sc">$</span>Score</span></code></pre></div>
 </div>
 <div id="依條件篩選資料" class="section level2 hasAnchor" number="2.3">
 <h2><span class="header-section-number">2.3</span> 依條件篩選資料<a href="資料清洗與處理.html#依條件篩選資料" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>條件篩選資料可以利用邏輯向量擷取</p>
 </div>
 <div id="新增資料屬性" class="section level2 hasAnchor" number="2.4">
 <h2><span class="header-section-number">2.4</span> 新增資料屬性<a href="資料清洗與處理.html#新增資料屬性" class="anchor-section" aria-label="Anchor link to header"></a></h2>
