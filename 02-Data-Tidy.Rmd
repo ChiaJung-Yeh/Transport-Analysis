@@ -39,6 +39,8 @@ kbl(fuc, booktabs=T, escape=F, caption="資料處理重要函式")%>%
   row_spec(0, bold=T, color="white", background="#8E8E8E")
 ```
 
+為展示「資料清洗與處理」過程，以下範例中我們會使用的資料如下，請先讀取之。
+
 
 ## 合併資料
 在第一章節中，我們曾提及資料框的[行列合併](#資料框data-frame)，包含`rbind()`與`cbind()`兩函式，而`dplyr`套件所提供的`bind_rows()`與`bind_cols()`其目的相同，前者用以合併橫列；後者用以合併直行。其中`bind_cols()`與`cbind()`兩者功能完全相同。惟`rbind()`函式的使用前提是，輸入的兩資料必須擁有完全相同的欄位，一旦其中一個欄位不符合即無法合併資料。`bind_rows()`函式則可較彈性合併資料，針對共同擁有的欄位予以合併，其他則忽略之。具體範例如下。
@@ -78,7 +80,7 @@ select(資料, 欄位名稱1, 欄位名稱2, ...)
 select(score_data1, Student, Score)
 ```
 
-其他寫法包括`（請回顧[選取欄位](#資料框data-frame)章節）：
+其他寫法包括：（請回顧[選取欄位](#資料框data-frame)章節）：
 
 ```{r select-eg2, echo=T, eval=F}
 # 給定欄位索引
