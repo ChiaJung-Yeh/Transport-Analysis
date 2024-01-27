@@ -39,9 +39,29 @@ kbl(fuc, booktabs=T, escape=F, caption="資料處理重要函式")%>%
   row_spec(0, bold=T, color="white", background="#8E8E8E")
 ```
 
+
 ## 合併資料
+在第一章節中，我們曾提及資料框的[行列合併](#資料框data-frame)，包含`rbind()`與`cbind()`兩函式，而`dplyr`套件所提供的`bind_rows()`與`bind_cols()`其目的相同，前者用以合併橫列；後者用以合併直行。其中`bind_cols()`與`cbind()`兩者功能完全相同。惟`rbind()`函式的使用前提是，輸入的兩資料必須擁有完全相同的欄位，一旦其中一個欄位不符合即無法合併資料。`bind_rows()`函式則可較彈性合併資料，針對共同擁有的欄位予以合併，其他則忽略之。具體範例如下。
 
+```{r rbind-bindrow1, echo=T, eval=T, error=T}
+# 建立兩資料
+score_data1=data.frame(Student=c("Robert", "Jessie", "Rose", "John"),
+                       Class=c("A", "B", "D", "C"),
+                       Score=c("80", "95", "70", "65"))
 
+score_data2=data.frame(Student=c("Penny", "Ruby", "Tom"),
+                       Score=c("90", "70", "50"))
+
+rbind(score_data1, score_data2)
+```
+
+由以上`rbind()`函式之範例可知，由於`score_data1`含有「Class」欄位，而`score_data2`並不包含，故無法成功合併兩資料。此時可嘗試利用`bind_rows()`函式，程式碼撰寫如下。
+
+```{r rbind-bindrow2, echo=T, eval=T, error=T}
+bind_rows(score_data1, score_data2)
+```
+
+輸出結果中，`score_data2`雖並無「Class」欄位，仍可將兩資料予以合併，並在缺失的資料中填補`NA`。
 
 
 ## 選取資料欄位

@@ -618,7 +618,7 @@ tail(iris)
 ```
 
 
-<p style="color:#003D79;font-size:18px;line-height:2">**⌾ 擴增資料框**</p>  
+<p style="color:#003D79;font-size:18px;line-height:2">**⌾ 擴增資料框**</p>
 
 <p style="font-size:18px;line-height:1">**<u>擴增資料列（新增紀錄）</u>**</p>  
 若欲新增資料，可以透過`rbind()`函式連結。程式碼如下。
