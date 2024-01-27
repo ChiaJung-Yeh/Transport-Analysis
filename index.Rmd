@@ -39,11 +39,35 @@ access_token=get_token(client_id, client_secret)
 
 ><p style="font-size:25px;line-height:2">**解決問題是學習資料分析的原動力...**</p>  
 
+
+## 簡介與目錄 {-}
+
+本書簡介運輸資料分析之方法，並透過實務應用瞭解運輸資料的特性、分析原理，以及 R 語言各套件與函式的功能。共分為六大章節。前三章節為 R 語言的資料探勘基礎，系統性地介紹資料分析的常用套件與函式，分節說明：R 語言基礎語法、資料清洗與處理、資料視覺化。後三章節以運輸資料為主軸，應用前三章節所介紹的函式分析資料，分節包含：基本資料統計、地理分析、進階應用。全書先系統性地介紹資料分析必學基礎，後藉由零散的個案分析，提供較全面的實際資料操作，期能擴充 R 語言使用者對於此一領域的熟悉程度。
+
+```{r outline-table, echo=F, eval=T}
+outline_table=data.frame(topic=c(rep("資料分析基礎", 3), rep("運輸資料分析", 3)),
+                         chapter=c("[**Chapter 1** R 語言基礎語法](#r-語言基礎語法)",
+                                   "[**Chapter 2** 資料清洗與處理](#資料清洗與處理)",
+                                   "[**Chapter 3** 資料視覺化](#資料視覺化)",
+                                   "[**Chapter 4** 基本資料統計](#基本資料統計)",
+                                   "[**Chapter 5** 地理分析](#地理分析)",
+                                   "[**Chapter 6** 進階應用](#進階應用)"))
+
+colnames(outline_table)=c("主題","章節")
+kable(outline_table, booktabs=T, caption="本書目錄")%>%
+  kable_styling(bootstrap_options=c("striped", "hover"), font_size=14)%>%
+  column_spec(1, bold=T)%>%
+  row_spec(0, bold=T, color="white", background="#8E8E8E")%>%
+  collapse_rows(1)
+```
+
+
+
 ## 資料分析心法 {-}
 
 數據分析是社會科學中重要的研究方法與課題，運輸領域亦不例外，而拜科技所賜，我們所能蒐集、儲存的數據量愈加龐大，所能剖析的面相愈多元，也更能夠瞭解資料背後的意義。數據資料處理是一門基本功，在深入分析、建構模型之前，必須透徹瞭解資料性質，並依此整理資料、繪製圖表，以觀察數據的整體趨勢，進而推敲可能的現象，並透過資料科學的手段模擬、驗證起初的假設。因此資料處理是最入門的學問，如何**認識資料**、**有效率地處理資料**，並**形塑為預期的格式**，係本書的重點。本書旨在探討資料分析中的**「資料處理」**環節，羅列初學者必須理解的程式撰寫方法與技巧，**<u>並非</u>**著墨於資料科學的模型及理論！
 
-大數據的概念如圖\@ref(fig:data-information-fig)所示，最原始的資料（Data）通常是提供個體或雜亂無章的紀錄，必須透過資料處理轉換為有意義的資訊，可能以表或圖呈現之，有利於初步觀察與判斷潛在的趨勢。最後經過模型建構驗證假設，並以自身的專業所學（Domain Knowledge）或經驗剖析結果，最後產出具有政策意涵與引導決策執行的結論。
+數據分析的概念如圖\@ref(fig:data-information-fig)所示，最原始的資料（Data）通常是提供個體或雜亂無章的紀錄，必須透過資料處理轉換為有意義的資訊，可能以表或圖呈現之，有利於初步觀察與判斷潛在的趨勢。最後經過模型建構驗證假設，並以自身的專業所學（Domain Knowledge）或經驗剖析結果，最後產出具有政策意涵與引導決策執行的結論。
 
 ```{r data-information-fig, echo=F, eval=T, out.width="50%", fig.align="center", fig.cap="數據分析概念"}
 include_graphics("./figure/data_information.png")
@@ -54,8 +78,6 @@ include_graphics("./figure/data_information.png")
 ```{r learning-curve-fig, echo=F, eval=T, out.width="50%", fig.align="center", fig.cap="學習曲線"}
 include_graphics("./figure/learning_curve.png")
 ```
-
-本書簡介運輸資料分析之方法，並透過實務應用瞭解運輸資料的特性、分析原理，以及 R 語言各套件與函式的功能。共分為四大章節：R 語言基礎語法、基本資料統計、地理分析、進階應用，各章節皆以運輸資料為示範，期能擴充 R 語言使用者對於此一領域的熟悉程度。本書主要藉由零散的個案分析，提供較全面的實際資料操作。
 
 
 ## 安裝套件 {-}
@@ -91,11 +113,7 @@ kable(package_table, booktabs=T, caption="使用套件之功能")%>%
   row_spec(0, bold=T, color="white", background="#8E8E8E")
 ```
 
----
-
-## TDX 套件使用方式 {-}
-
-TDX 套件整合了各運輸資料與社會經濟資料串接方式，僅須透過一函式指令即可下載指定的資料，以省去資料分析時介接之不便，提升分析效率。使用 TDX 套件的大部分函式皆須一組金鑰（access token），其取得方式如下，請注意程式碼中 CLIENT_ID 與 CLIENT_SECRET 請自 [TDX 平臺](https://tdx.transportdata.tw/register)註冊會員並申請。
+其中 TDX 套件整合了各運輸資料與社會經濟資料串接方式，僅須透過一函式指令即可下載指定的資料，以省去資料分析時介接之不便，提升分析效率。使用 TDX 套件的大部分函式皆須一組金鑰（access token），其取得方式如下，請注意程式碼中 CLIENT_ID 與 CLIENT_SECRET 請自 [TDX 平臺](https://tdx.transportdata.tw/register)註冊會員並申請。
 
 ```{r tdx-usage, echo=T, eval=F}
 client_id=CLIENT_ID

@@ -29,7 +29,7 @@ access_token=get_token(client_id, client_secret)
 資料清洗與處理常用之套件與函式彙整如表\@ref(tab:function-data-clean)。  
 
 ```{r function-data-clean, echo=F, eval=T}
-fuc=data.frame(Package=c("`base`", rep("`dplyr`", 11), rep("`data.table`", 2)), Functions=c("`merge()`","`select()`","`filter()`","`mutate()`","`group_by()`","`reframe()`","`slice()`","`left_join()`","`arrange()`","`rename()`","`distinct()`","`case_when()`","`dcast()`","`melt()`"), Usage=c("根據指定欄位合併兩資料（同`left_join()`）", "選取特定欄位", "根據條件篩選資料", "新增資料屬性（欄位）",  "將資料依據特定欄位分群，後方經常連結`filter()`或`reframe()`", "將分群的資料予以計算", "依據條件擷取特定欄位", "根據指定欄位合併兩資料", "根據指定欄位將資料排序", "更改欄位名稱", "去除重複資料", "條件判斷", "轉換長資料為寬資料", "轉換寬資料為長資料"))
+fuc=data.frame(Package=c("`base`", rep("`dplyr`", 22), rep("`data.table`", 2)), Functions=c("`merge()`","`bind_rows()`","`bind_cols()`","`select()`","`filter()`","`mutate()`","`group_by()`","`summarise()`","`reframe()`","`slice()`","`left_join()`","`inner_join()","`full_join()","`arrange()`","`rename()`","`distinct()`","`intersect()`","`union()`","`union_all()`","`setdiff()`","`symdiff()`","`setequal()`","`case_when()`","`dcast()`","`melt()`"), Usage=c("根據指定欄位連接兩資料", "合併橫列", "合併直行", "選取特定欄位", "根據條件篩選資料", "新增資料屬性（直行）",  "將資料依據特定欄位分群`", "將分群的資料予以計算", "將分群的資料予以計算", "依據分群擷取特定資料", "根據指定欄位連接兩資料（僅保留左側資料）", "根據指定欄位連接兩資料（擁有的資料皆須保留）", "根據指定欄位連接兩資料（僅保留共同擁有的資料）", "根據指定欄位將資料排序", "更改欄位名稱", "去除重複資料", "尋找兩資料中共同擁有的資料列（交集）", "保留所有擁有的資料列（聯集，去除重複者）", "保留所有擁有的資料列（聯集，保留重複者）", "尋找唯獨左側資料擁有的資料列（差集）", "尋找唯獨其中一份資料擁有的資料列（互斥）", "檢查兩資料是否完全相同（無論排序）", "條件判斷", "轉換長資料為寬資料", "轉換寬資料為長資料"))
 
 colnames(fuc)=c("套件","函式","功能")
 
@@ -39,8 +39,51 @@ kbl(fuc, booktabs=T, escape=F, caption="資料處理重要函式")%>%
   row_spec(0, bold=T, color="white", background="#8E8E8E")
 ```
 
+## 合併資料
 
 
+
+
+## 選取資料欄位
+
+
+
+
+## 依條件篩選資料
+
+
+
+## 新增資料屬性
+
+
+
+
+## 資料分群與統計
+
+
+
+## 連接資料
+
+
+
+## 資料排序
+
+
+
+
+## 去除重複資料
+
+
+
+
+## 資料集合
+
+
+
+## 條件判斷
+
+
+## 資料型態轉換
 
 
 

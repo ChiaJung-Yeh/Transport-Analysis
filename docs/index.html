@@ -149,9 +149,9 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="divider"></li>
 <li class="chapter" data-level="" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i><strong>前言</strong></a>
 <ul>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html#簡介與目錄"><i class="fa fa-check"></i>簡介與目錄</a></li>
 <li class="chapter" data-level="" data-path="index.html"><a href="index.html#資料分析心法"><i class="fa fa-check"></i>資料分析心法</a></li>
 <li class="chapter" data-level="" data-path="index.html"><a href="index.html#安裝套件"><i class="fa fa-check"></i>安裝套件</a></li>
-<li class="chapter" data-level="" data-path="index.html"><a href="index.html#tdx-套件使用方式"><i class="fa fa-check"></i>TDX 套件使用方式</a></li>
 <li class="chapter" data-level="" data-path="index.html"><a href="index.html#其他參考資料"><i class="fa fa-check"></i>其他參考資料</a></li>
 </ul></li>
 <li class="chapter" data-level="1" data-path="r-語言基礎語法.html"><a href="r-語言基礎語法.html"><i class="fa fa-check"></i><b>1</b> <strong>R 語言基礎語法</strong></a>
@@ -193,7 +193,20 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="1.4.4" data-path="r-語言基礎語法.html"><a href="r-語言基礎語法.html#資料來源"><i class="fa fa-check"></i><b>1.4.4</b> 資料來源</a></li>
 </ul></li>
 </ul></li>
-<li class="chapter" data-level="2" data-path="資料清洗與處理.html"><a href="資料清洗與處理.html"><i class="fa fa-check"></i><b>2</b> <strong>資料清洗與處理</strong></a></li>
+<li class="chapter" data-level="2" data-path="資料清洗與處理.html"><a href="資料清洗與處理.html"><i class="fa fa-check"></i><b>2</b> <strong>資料清洗與處理</strong></a>
+<ul>
+<li class="chapter" data-level="2.1" data-path="資料清洗與處理.html"><a href="資料清洗與處理.html#合併資料"><i class="fa fa-check"></i><b>2.1</b> 合併資料</a></li>
+<li class="chapter" data-level="2.2" data-path="資料清洗與處理.html"><a href="資料清洗與處理.html#選取資料欄位"><i class="fa fa-check"></i><b>2.2</b> 選取資料欄位</a></li>
+<li class="chapter" data-level="2.3" data-path="資料清洗與處理.html"><a href="資料清洗與處理.html#依條件篩選資料"><i class="fa fa-check"></i><b>2.3</b> 依條件篩選資料</a></li>
+<li class="chapter" data-level="2.4" data-path="資料清洗與處理.html"><a href="資料清洗與處理.html#新增資料屬性"><i class="fa fa-check"></i><b>2.4</b> 新增資料屬性</a></li>
+<li class="chapter" data-level="2.5" data-path="資料清洗與處理.html"><a href="資料清洗與處理.html#資料分群與統計"><i class="fa fa-check"></i><b>2.5</b> 資料分群與統計</a></li>
+<li class="chapter" data-level="2.6" data-path="資料清洗與處理.html"><a href="資料清洗與處理.html#連接資料"><i class="fa fa-check"></i><b>2.6</b> 連接資料</a></li>
+<li class="chapter" data-level="2.7" data-path="資料清洗與處理.html"><a href="資料清洗與處理.html#資料排序"><i class="fa fa-check"></i><b>2.7</b> 資料排序</a></li>
+<li class="chapter" data-level="2.8" data-path="資料清洗與處理.html"><a href="資料清洗與處理.html#去除重複資料"><i class="fa fa-check"></i><b>2.8</b> 去除重複資料</a></li>
+<li class="chapter" data-level="2.9" data-path="資料清洗與處理.html"><a href="資料清洗與處理.html#資料集合"><i class="fa fa-check"></i><b>2.9</b> 資料集合</a></li>
+<li class="chapter" data-level="2.10" data-path="資料清洗與處理.html"><a href="資料清洗與處理.html#條件判斷"><i class="fa fa-check"></i><b>2.10</b> 條件判斷</a></li>
+<li class="chapter" data-level="2.11" data-path="資料清洗與處理.html"><a href="資料清洗與處理.html#資料型態轉換"><i class="fa fa-check"></i><b>2.11</b> 資料型態轉換</a></li>
+</ul></li>
 <li class="chapter" data-level="3" data-path="資料視覺化.html"><a href="資料視覺化.html"><i class="fa fa-check"></i><b>3</b> <strong>資料視覺化</strong></a></li>
 <li class="chapter" data-level="4" data-path="基本資料統計.html"><a href="基本資料統計.html"><i class="fa fa-check"></i><b>4</b> <strong>基本資料統計</strong></a>
 <ul>
@@ -238,10 +251,67 @@ M.S.: Department of Transportation and Logistics Management, NYCU</em></p>
 <strong>解決問題是學習資料分析的原動力…</strong>
 </p>
 </blockquote>
+<div id="簡介與目錄" class="section level2 unnumbered hasAnchor">
+<h2>簡介與目錄<a href="index.html#簡介與目錄" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>本書簡介運輸資料分析之方法，並透過實務應用瞭解運輸資料的特性、分析原理，以及 R 語言各套件與函式的功能。共分為六大章節。前三章節為 R 語言的資料探勘基礎，系統性地介紹資料分析的常用套件與函式，分節說明：R 語言基礎語法、資料清洗與處理、資料視覺化。後三章節以運輸資料為主軸，應用前三章節所介紹的函式分析資料，分節包含：基本資料統計、地理分析、進階應用。全書先系統性地介紹資料分析必學基礎，後藉由零散的個案分析，提供較全面的實際資料操作，期能擴充 R 語言使用者對於此一領域的熟悉程度。</p>
+<table class="table table-striped table-hover" style="font-size: 14px; margin-left: auto; margin-right: auto;">
+<caption style="font-size: initial !important;">
+<span id="tab:outline-table">表 0.1: </span>本書目錄
+</caption>
+<thead>
+<tr>
+<th style="text-align:left;font-weight: bold;color: white !important;background-color: #8E8E8E !important;">
+主題
+</th>
+<th style="text-align:left;font-weight: bold;color: white !important;background-color: #8E8E8E !important;">
+章節
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left;font-weight: bold;vertical-align: middle !important;" rowspan="3">
+資料分析基礎
+</td>
+<td style="text-align:left;">
+<a href="r-語言基礎語法.html#r-語言基礎語法"><strong>Chapter 1</strong> R 語言基礎語法</a>
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+<a href="資料清洗與處理.html#資料清洗與處理"><strong>Chapter 2</strong> 資料清洗與處理</a>
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+<a href="資料視覺化.html#資料視覺化"><strong>Chapter 3</strong> 資料視覺化</a>
+</td>
+</tr>
+<tr>
+<td style="text-align:left;font-weight: bold;vertical-align: middle !important;" rowspan="3">
+運輸資料分析
+</td>
+<td style="text-align:left;">
+<a href="基本資料統計.html#基本資料統計"><strong>Chapter 4</strong> 基本資料統計</a>
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+<a href="#地理分析"><strong>Chapter 5</strong> 地理分析</a>
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+<a href="#進階應用"><strong>Chapter 6</strong> 進階應用</a>
+</td>
+</tr>
+</tbody>
+</table>
+</div>
 <div id="資料分析心法" class="section level2 unnumbered hasAnchor">
 <h2>資料分析心法<a href="index.html#資料分析心法" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <p>數據分析是社會科學中重要的研究方法與課題，運輸領域亦不例外，而拜科技所賜，我們所能蒐集、儲存的數據量愈加龐大，所能剖析的面相愈多元，也更能夠瞭解資料背後的意義。數據資料處理是一門基本功，在深入分析、建構模型之前，必須透徹瞭解資料性質，並依此整理資料、繪製圖表，以觀察數據的整體趨勢，進而推敲可能的現象，並透過資料科學的手段模擬、驗證起初的假設。因此資料處理是最入門的學問，如何<strong>認識資料</strong>、<strong>有效率地處理資料</strong>，並<strong>形塑為預期的格式</strong>，係本書的重點。本書旨在探討資料分析中的<strong>「資料處理」</strong>環節，羅列初學者必須理解的程式撰寫方法與技巧，<strong><u>並非</u></strong>著墨於資料科學的模型及理論！</p>
-<p>大數據的概念如圖<a href="index.html#fig:data-information-fig">0.1</a>所示，最原始的資料（Data）通常是提供個體或雜亂無章的紀錄，必須透過資料處理轉換為有意義的資訊，可能以表或圖呈現之，有利於初步觀察與判斷潛在的趨勢。最後經過模型建構驗證假設，並以自身的專業所學（Domain Knowledge）或經驗剖析結果，最後產出具有政策意涵與引導決策執行的結論。</p>
+<p>數據分析的概念如圖<a href="index.html#fig:data-information-fig">0.1</a>所示，最原始的資料（Data）通常是提供個體或雜亂無章的紀錄，必須透過資料處理轉換為有意義的資訊，可能以表或圖呈現之，有利於初步觀察與判斷潛在的趨勢。最後經過模型建構驗證假設，並以自身的專業所學（Domain Knowledge）或經驗剖析結果，最後產出具有政策意涵與引導決策執行的結論。</p>
 <div class="figure" style="text-align: center"><span style="display:block;" id="fig:data-information-fig"></span>
 <img src="figure/data_information.png" alt="數據分析概念" width="50%" />
 <p class="caption">
@@ -255,11 +325,10 @@ M.S.: Department of Transportation and Logistics Management, NYCU</em></p>
 圖 0.2: 學習曲線
 </p>
 </div>
-<p>本書簡介運輸資料分析之方法，並透過實務應用瞭解運輸資料的特性、分析原理，以及 R 語言各套件與函式的功能。共分為四大章節：R 語言基礎語法、基本資料統計、地理分析、進階應用，各章節皆以運輸資料為示範，期能擴充 R 語言使用者對於此一領域的熟悉程度。本書主要藉由零散的個案分析，提供較全面的實際資料操作。</p>
 </div>
 <div id="安裝套件" class="section level2 unnumbered hasAnchor">
 <h2>安裝套件<a href="index.html#安裝套件" class="anchor-section" aria-label="Anchor link to header"></a></h2>
-<p>本書各分析所需使用的主要套件與其功能彙整如表<a href="index.html#tab:package-download-table">0.1</a>，請先行安裝。</p>
+<p>本書各分析所需使用的主要套件與其功能彙整如表<a href="index.html#tab:package-download-table">0.2</a>，請先行安裝。</p>
 <div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1-1"><a href="index.html#cb1-1" tabindex="-1"></a><span class="co"># 安裝dplyr、sf、ggplot2、devtools套件</span></span>
 <span id="cb1-2"><a href="index.html#cb1-2" tabindex="-1"></a><span class="fu">install.packages</span>(<span class="fu">c</span>(<span class="st">&quot;dplyr&quot;</span>, <span class="st">&quot;data.table&quot;</span>, <span class="st">&quot;ggplot2&quot;</span>, <span class="st">&quot;sf&quot;</span>, <span class="st">&quot;devtools&quot;</span>))</span>
 <span id="cb1-3"><a href="index.html#cb1-3" tabindex="-1"></a></span>
@@ -276,7 +345,7 @@ M.S.: Department of Transportation and Logistics Management, NYCU</em></p>
 <span id="cb1-14"><a href="index.html#cb1-14" tabindex="-1"></a><span class="fu">library</span>(TWspdata)</span></code></pre></div>
 <table class="table table-striped table-hover" style="font-size: 14px; margin-left: auto; margin-right: auto;">
 <caption style="font-size: initial !important;">
-<span id="tab:package-download-table">表 0.1: </span>使用套件之功能
+<span id="tab:package-download-table">表 0.2: </span>使用套件之功能
 </caption>
 <thead>
 <tr>
@@ -339,11 +408,7 @@ M.S.: Department of Transportation and Logistics Management, NYCU</em></p>
 </tr>
 </tbody>
 </table>
-<hr />
-</div>
-<div id="tdx-套件使用方式" class="section level2 unnumbered hasAnchor">
-<h2>TDX 套件使用方式<a href="index.html#tdx-套件使用方式" class="anchor-section" aria-label="Anchor link to header"></a></h2>
-<p>TDX 套件整合了各運輸資料與社會經濟資料串接方式，僅須透過一函式指令即可下載指定的資料，以省去資料分析時介接之不便，提升分析效率。使用 TDX 套件的大部分函式皆須一組金鑰（access token），其取得方式如下，請注意程式碼中 CLIENT_ID 與 CLIENT_SECRET 請自 <a href="https://tdx.transportdata.tw/register">TDX 平臺</a>註冊會員並申請。</p>
+<p>其中 TDX 套件整合了各運輸資料與社會經濟資料串接方式，僅須透過一函式指令即可下載指定的資料，以省去資料分析時介接之不便，提升分析效率。使用 TDX 套件的大部分函式皆須一組金鑰（access token），其取得方式如下，請注意程式碼中 CLIENT_ID 與 CLIENT_SECRET 請自 <a href="https://tdx.transportdata.tw/register">TDX 平臺</a>註冊會員並申請。</p>
 <div class="sourceCode" id="cb2"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb2-1"><a href="index.html#cb2-1" tabindex="-1"></a>client_id<span class="ot">=</span>CLIENT_ID</span>
 <span id="cb2-2"><a href="index.html#cb2-2" tabindex="-1"></a>client_secret<span class="ot">=</span>CLIENT_SECRET</span>
 <span id="cb2-3"><a href="index.html#cb2-3" tabindex="-1"></a>access_token<span class="ot">=</span><span class="fu">get_token</span>(client_id, client_secret)</span></code></pre></div>

@@ -85,9 +85,9 @@
 <li class="divider"></li>
 <li class="chapter" data-level="" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i><strong>前言</strong></a>
 <ul>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html#簡介與目錄"><i class="fa fa-check"></i>簡介與目錄</a></li>
 <li class="chapter" data-level="" data-path="index.html"><a href="index.html#資料分析心法"><i class="fa fa-check"></i>資料分析心法</a></li>
 <li class="chapter" data-level="" data-path="index.html"><a href="index.html#安裝套件"><i class="fa fa-check"></i>安裝套件</a></li>
-<li class="chapter" data-level="" data-path="index.html"><a href="index.html#tdx-套件使用方式"><i class="fa fa-check"></i>TDX 套件使用方式</a></li>
 <li class="chapter" data-level="" data-path="index.html"><a href="index.html#其他參考資料"><i class="fa fa-check"></i>其他參考資料</a></li>
 </ul></li>
 <li class="chapter" data-level="1" data-path="r-語言基礎語法.html"><a href="r-語言基礎語法.html"><i class="fa fa-check"></i><b>1</b> <strong>R 語言基礎語法</strong></a>
@@ -129,7 +129,20 @@
 <li class="chapter" data-level="1.4.4" data-path="r-語言基礎語法.html"><a href="r-語言基礎語法.html#資料來源"><i class="fa fa-check"></i><b>1.4.4</b> 資料來源</a></li>
 </ul></li>
 </ul></li>
-<li class="chapter" data-level="2" data-path="資料清洗與處理.html"><a href="資料清洗與處理.html"><i class="fa fa-check"></i><b>2</b> <strong>資料清洗與處理</strong></a></li>
+<li class="chapter" data-level="2" data-path="資料清洗與處理.html"><a href="資料清洗與處理.html"><i class="fa fa-check"></i><b>2</b> <strong>資料清洗與處理</strong></a>
+<ul>
+<li class="chapter" data-level="2.1" data-path="資料清洗與處理.html"><a href="資料清洗與處理.html#合併資料"><i class="fa fa-check"></i><b>2.1</b> 合併資料</a></li>
+<li class="chapter" data-level="2.2" data-path="資料清洗與處理.html"><a href="資料清洗與處理.html#選取資料欄位"><i class="fa fa-check"></i><b>2.2</b> 選取資料欄位</a></li>
+<li class="chapter" data-level="2.3" data-path="資料清洗與處理.html"><a href="資料清洗與處理.html#依條件篩選資料"><i class="fa fa-check"></i><b>2.3</b> 依條件篩選資料</a></li>
+<li class="chapter" data-level="2.4" data-path="資料清洗與處理.html"><a href="資料清洗與處理.html#新增資料屬性"><i class="fa fa-check"></i><b>2.4</b> 新增資料屬性</a></li>
+<li class="chapter" data-level="2.5" data-path="資料清洗與處理.html"><a href="資料清洗與處理.html#資料分群與統計"><i class="fa fa-check"></i><b>2.5</b> 資料分群與統計</a></li>
+<li class="chapter" data-level="2.6" data-path="資料清洗與處理.html"><a href="資料清洗與處理.html#連接資料"><i class="fa fa-check"></i><b>2.6</b> 連接資料</a></li>
+<li class="chapter" data-level="2.7" data-path="資料清洗與處理.html"><a href="資料清洗與處理.html#資料排序"><i class="fa fa-check"></i><b>2.7</b> 資料排序</a></li>
+<li class="chapter" data-level="2.8" data-path="資料清洗與處理.html"><a href="資料清洗與處理.html#去除重複資料"><i class="fa fa-check"></i><b>2.8</b> 去除重複資料</a></li>
+<li class="chapter" data-level="2.9" data-path="資料清洗與處理.html"><a href="資料清洗與處理.html#資料集合"><i class="fa fa-check"></i><b>2.9</b> 資料集合</a></li>
+<li class="chapter" data-level="2.10" data-path="資料清洗與處理.html"><a href="資料清洗與處理.html#條件判斷"><i class="fa fa-check"></i><b>2.10</b> 條件判斷</a></li>
+<li class="chapter" data-level="2.11" data-path="資料清洗與處理.html"><a href="資料清洗與處理.html#資料型態轉換"><i class="fa fa-check"></i><b>2.11</b> 資料型態轉換</a></li>
+</ul></li>
 <li class="chapter" data-level="3" data-path="資料視覺化.html"><a href="資料視覺化.html"><i class="fa fa-check"></i><b>3</b> <strong>資料視覺化</strong></a></li>
 <li class="chapter" data-level="4" data-path="基本資料統計.html"><a href="基本資料統計.html"><i class="fa fa-check"></i><b>4</b> <strong>基本資料統計</strong></a>
 <ul>
@@ -190,13 +203,29 @@
 <code>merge()</code>
 </td>
 <td style="text-align:left;">
-根據指定欄位合併兩資料（同<code>left_join()</code>）
+根據指定欄位連接兩資料
 </td>
 </tr>
 <tr>
-<td style="text-align:left;vertical-align: middle !important;" rowspan="11">
+<td style="text-align:left;vertical-align: middle !important;" rowspan="22">
 <code>dplyr</code>
 </td>
+<td style="text-align:left;">
+<code>bind_rows()</code>
+</td>
+<td style="text-align:left;">
+合併橫列
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+<code>bind_cols()</code>
+</td>
+<td style="text-align:left;">
+合併直行
+</td>
+</tr>
+<tr>
 <td style="text-align:left;">
 <code>select()</code>
 </td>
@@ -217,7 +246,7 @@
 <code>mutate()</code>
 </td>
 <td style="text-align:left;">
-新增資料屬性（欄位）
+新增資料屬性（直行）
 </td>
 </tr>
 <tr>
@@ -225,7 +254,15 @@
 <code>group_by()</code>
 </td>
 <td style="text-align:left;">
-將資料依據特定欄位分群，後方經常連結<code>filter()</code>或<code>reframe()</code>
+將資料依據特定欄位分群`
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+<code>summarise()</code>
+</td>
+<td style="text-align:left;">
+將分群的資料予以計算
 </td>
 </tr>
 <tr>
@@ -241,7 +278,7 @@
 <code>slice()</code>
 </td>
 <td style="text-align:left;">
-依據條件擷取特定欄位
+依據分群擷取特定資料
 </td>
 </tr>
 <tr>
@@ -249,7 +286,23 @@
 <code>left_join()</code>
 </td>
 <td style="text-align:left;">
-根據指定欄位合併兩資料
+根據指定欄位連接兩資料（僅保留左側資料）
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+`inner_join()
+</td>
+<td style="text-align:left;">
+根據指定欄位連接兩資料（擁有的資料皆須保留）
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+`full_join()
+</td>
+<td style="text-align:left;">
+根據指定欄位連接兩資料（僅保留共同擁有的資料）
 </td>
 </tr>
 <tr>
@@ -274,6 +327,54 @@
 </td>
 <td style="text-align:left;">
 去除重複資料
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+<code>intersect()</code>
+</td>
+<td style="text-align:left;">
+尋找兩資料中共同擁有的資料列（交集）
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+<code>union()</code>
+</td>
+<td style="text-align:left;">
+保留所有擁有的資料列（聯集，去除重複者）
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+<code>union_all()</code>
+</td>
+<td style="text-align:left;">
+保留所有擁有的資料列（聯集，保留重複者）
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+<code>setdiff()</code>
+</td>
+<td style="text-align:left;">
+尋找唯獨左側資料擁有的資料列（差集）
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+<code>symdiff()</code>
+</td>
+<td style="text-align:left;">
+尋找唯獨其中一份資料擁有的資料列（互斥）
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+<code>setequal()</code>
+</td>
+<td style="text-align:left;">
+檢查兩資料是否完全相同（無論排序）
 </td>
 </tr>
 <tr>
@@ -305,7 +406,40 @@
 </tr>
 </tbody>
 </table>
+<div id="合併資料" class="section level2 hasAnchor" number="2.1">
+<h2><span class="header-section-number">2.1</span> 合併資料<a href="資料清洗與處理.html#合併資料" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+</div>
+<div id="選取資料欄位" class="section level2 hasAnchor" number="2.2">
+<h2><span class="header-section-number">2.2</span> 選取資料欄位<a href="資料清洗與處理.html#選取資料欄位" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+</div>
+<div id="依條件篩選資料" class="section level2 hasAnchor" number="2.3">
+<h2><span class="header-section-number">2.3</span> 依條件篩選資料<a href="資料清洗與處理.html#依條件篩選資料" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+</div>
+<div id="新增資料屬性" class="section level2 hasAnchor" number="2.4">
+<h2><span class="header-section-number">2.4</span> 新增資料屬性<a href="資料清洗與處理.html#新增資料屬性" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+</div>
+<div id="資料分群與統計" class="section level2 hasAnchor" number="2.5">
+<h2><span class="header-section-number">2.5</span> 資料分群與統計<a href="資料清洗與處理.html#資料分群與統計" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+</div>
+<div id="連接資料" class="section level2 hasAnchor" number="2.6">
+<h2><span class="header-section-number">2.6</span> 連接資料<a href="資料清洗與處理.html#連接資料" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+</div>
+<div id="資料排序" class="section level2 hasAnchor" number="2.7">
+<h2><span class="header-section-number">2.7</span> 資料排序<a href="資料清洗與處理.html#資料排序" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+</div>
+<div id="去除重複資料" class="section level2 hasAnchor" number="2.8">
+<h2><span class="header-section-number">2.8</span> 去除重複資料<a href="資料清洗與處理.html#去除重複資料" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+</div>
+<div id="資料集合" class="section level2 hasAnchor" number="2.9">
+<h2><span class="header-section-number">2.9</span> 資料集合<a href="資料清洗與處理.html#資料集合" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+</div>
+<div id="條件判斷" class="section level2 hasAnchor" number="2.10">
+<h2><span class="header-section-number">2.10</span> 條件判斷<a href="資料清洗與處理.html#條件判斷" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+</div>
+<div id="資料型態轉換" class="section level2 hasAnchor" number="2.11">
+<h2><span class="header-section-number">2.11</span> 資料型態轉換<a href="資料清洗與處理.html#資料型態轉換" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 
+</div>
 </div>
             </section>
 
