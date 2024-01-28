@@ -1644,13 +1644,13 @@ read.csv("url")
 ```
 
 ```{r read-url, echo=T, eval=T}
-world=read.csv("https://raw.githubusercontent.com/ChiaJung-Yeh/R-Code-Sharing/main/R_Preliminary/world.csv")
+world=read.csv("https://raw.githubusercontent.com/ChiaJung-Yeh/Transport-Analysis/master/Data/world.csv")
 ```
 
 `world`資料讀取結果如下
 
 ```{r read-data-show, echo=F, eval=T, message=F, warning=F}
-world=read.csv("https://raw.githubusercontent.com/ChiaJung-Yeh/R-Code-Sharing/main/R_Preliminary/world.csv")
+world=read.csv("https://raw.githubusercontent.com/ChiaJung-Yeh/Transport-Analysis/master/Data/world.csv")
 datatable(world, options=list(pageLength=5, scrollX=T, headerCallback = DT::JS(
     "function(thead) {",
     "  $(thead).css('font-size', '0.7em');",
@@ -1678,7 +1678,7 @@ fread("路徑")  # 本機資料
 fread("url")   # 網路資料
 
 # 範例
-world=fread("https://raw.githubusercontent.com/ChiaJung-Yeh/R-Code-Sharing/main/R_Preliminary/world.csv")
+world=fread("https://raw.githubusercontent.com/ChiaJung-Yeh/Transport-Analysis/master/Data/world.csv")
 ```
 
 

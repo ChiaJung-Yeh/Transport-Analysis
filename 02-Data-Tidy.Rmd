@@ -159,7 +159,7 @@ head(world_sel1)
 <p style="color:#750000;">使用`data.table`套件選取欄位，程式碼撰寫如下。</p>  
 
 ```{r select-eg1-dt, echo=T, eval=F}
-world[, .(name_long, area_km2)]
+world_DT[, .(name_long, area_km2)]
 ```
 
 
@@ -193,7 +193,7 @@ head(world_sel2)
 <p style="color:#750000;">使用`data.table`套件選取欄位，程式碼撰寫如下。</p>  
 
 ```{r select-eg3-dt, echo=T, eval=F}
-world[, ..sel_col_name]
+world_DT[, ..sel_col_name]
 ```
 
 
@@ -213,7 +213,7 @@ head(world_sel3)
 
 ```{r select-eg4-dt, echo=T, eval=F}
 del_col_name=c("continent","region_un","subregion","type")
-world[, !..del_col_name]
+world_DT[, !..del_col_name]
 ```
 
 
