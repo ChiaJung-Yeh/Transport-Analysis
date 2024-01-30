@@ -143,6 +143,19 @@ kable(vector_operation, booktabs=T, caption="向量運算")%>%
   row_spec(0, bold=T, color="white", background="#8E8E8E")
 ```
 
+其中上述的函式大部分皆可設定`na.rm=`之引數，其用以設定是否忽略「NA」。若資料中存在「NA」，但未設定此一引數時，回傳結果亦為「NA」。範例說明如下：
+
+```{r vector-exg2, echo=T, eval=T}
+vec_na=c(1,2,NA,3,4)
+
+# 未設定na.rm=之引數
+sum(vec_na)
+
+# 設定na.rm=T
+sum(vec_na, na.rm=T)
+```
+
+
 <p style="font-size:18px;line-height:1">**<u>數學運算</u>**</p>  
 
 以下利用`vec4`與新建向量`vec5`作為範例，所有運算的程式碼與結果請參照表\@ref(tab:vector-calculation-table)。。

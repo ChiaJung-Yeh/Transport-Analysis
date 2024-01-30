@@ -425,11 +425,49 @@ head(world_casewhen[, c("name_long", "area_km2", "pop", "TYPE")])
 
 
 
-
-
-
 ## 資料分群與統計
 
+<p style="color:#003D79;font-size:18px;line-height:2">**⌾ 將資料依據特定欄位分群**</p>  
+
+```{r groupby-code, echo=T, eval=F}
+group_by(資料, 分群欄位)
+```
+
+利用`group_by()`函式分群後，資料並不會有任何變化，必須再搭配其他函式才能發揮分群的效果。
+
+<p style="color:#003D79;font-size:18px;line-height:2">**⌾ 分群篩選資料**</p>  
+
+透過分群篩選資料，可篩選特群組符合條件者，函式撰寫架構如下。
+
+```{r groupby-filter-code, echo=T, eval=F}
+group_by(資料, 分群欄位)%%>
+  filter(條件)
+```
+
+以`world`資料為例，先將資料依據洲（continent）分群，而後篩選出各洲資料中面積最大者，程式碼撰寫如下。
+
+```{r groupby-filter-eg, echo=T, eval=F}
+world_gro1=group_by(world, continent)%>%
+  filter(area_km2==max(area_km2))
+
+# 輸出資料
+world_gro1
+```
+
+
+<p style="color:#003D79;font-size:18px;line-height:2">**⌾ 分群統計資料（`summarise()`）**</p>  
+
+分群統計資料可針對各群組內的欄位做運算，如最大值、最小值、加總、平均...等，抑或使用自定義函式。以`world`資料為例，先將資料依據洲（continent）分群，而後統計各洲總人口數與國家數，程式碼撰寫如下。
+
+```{r groupby-summarise-eg, echo=T, eval=F}
+world_gro2=group_by(world, continent)%>%
+  summarise(pop=sum(pop, na.rm=T))
+
+# 輸出資料
+world_gro2
+```
+
+請注意於本範例中由於總人口數（pop）欄位中含有部分 NA，故為避免計算結果有誤，須在`sum()`函式中設定`na.rm=T`。此外，由輸出結果可發現，有別於`group_by() %>% filter()`函式會回傳所有的資料列，`group_by() %>% summarise()`函式僅回傳指定的統計資料列。
 
 
 
