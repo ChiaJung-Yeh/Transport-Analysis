@@ -1,16 +1,14 @@
-div.notice {
-    padding: 1em 1em 1em 7em;
+div.strong {
+    padding: 1em 1em 1em 1em;
     margin: 1em 0;
     background-size: 60px;
     background-repeat: no-repeat;
-    border-radius: 20px;
+    border-radius: 10px;
     background-position: 15px center;
     min-height: 50px;
-    color: #1f5386;
     font-size: 15px;
-    background-color: #BCD6EE;
-    border: solid 5px #75AADB;
-    background-image: url("./images/notice.png");
+    background-color: #fdf3dd;
+    border: solid 1px #c78710;
   }
   
   div.check {
