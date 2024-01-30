@@ -318,11 +318,93 @@ world_DT[continent %in% c("Asia", "Europe") | pop>100000000]
 
 
 ## 新增資料屬性
+前面所提及的[`cbind()`與`bind_cols()`函式](#合併資料)可以將欄位予以合併，藉此擴充資料屬性。此外，於第一章節中所提及的向量「`$`」亦可新增資料屬性。除以上寫法外，可利用`dplyr`套件中的`mutate()`函式擴增資料屬性，且操作更具有彈性。函式撰寫如下。
+
+```{r mutate-code, echo=T, eval=F}
+mutate(資料, 新變數1=..., 新變數2=..., ...)
+```
+
+<p style="color:#003D79;font-size:18px;line-height:2">**⌾ 新增資料屬性**</p>  
+以`world`資料為例，新增「各國人口密度(pop_dens)」之欄位（人口密度即總人口數除以面積），並新增一欄位串接 continent 和 subregion（使用[`paste0()`](#連接字串)函式串接向量）。程式碼撰寫如下。
+
+```{r mutate-eg1, echo=T, eval=T}
+# 新增人口密度屬性
+world_mut=mutate(world, pop_dens=pop/area_km2,
+                 district=paste0(continent, " (", subregion, ")"))
+
+# 查看前六筆資料
+head(world_mut[, c("name_long", "area_km2", "pop", "pop_dens")])
+```
+
+<p style="color:#750000;">使用`data.table`套件新增資料屬性，程式碼撰寫如下。</p>  
+
+```{r mutate-eg2, echo=T, eval=F}
+# 新增一個變數時
+world_mut=world_DT[, pop_dens := pop/area_km2]
+
+# 新增多個變數時
+world_mut=world_DT[, c("pop_dens", "district") := .(pop/area_km2, paste0(continent, " (", subregion, ")"))]
+```
+
+由以上程式碼可知，透過`data.table`套件新增欄位時，須利用「`:=`」定義運算方式，並將新增的欄位名稱置於其左側，而運算過程則放置於右側。
+
+其他寫法如下（請回顧[擴增資料欄（新增屬性）](#資料框data-frame)小節）：
+
+```{r mutate-eg3, echo=T, eval=F}
+# 利用$直接新增欄位
+world$pop_dens=world$pop/world$area_km2
+world$district=paste0(world$continent, " (", world$subregion, ")")
+```
 
 
+## 條件判斷
+於前一章中有提及「邏輯判斷(#邏輯判斷)」的流程控制方法，其中`ifelse()`函式可大幅縮減程式碼。在此亦可透過`mutate()`函式搭配`ifelse()`函式建立邏輯判斷的結果。以`world`資料為例，新增一欄位判斷國家面積的大小，若國家面積大於整體資料中位數，標記為「L」；否則記錄為「S」。程式碼撰寫如下。
+
+```{r ifelse-eg1, echo=T, eval=F}
+# 先計算面積中位數
+area_med=median(world$area_km2)
+
+# 利用ifelse函式判斷類群
+world_ifel=mutate(world, TYPE=ifelse(area_km2>=area_med, "L", "S"))
+
+# 查看六筆資料
+head(world_ifel[, c("name_long", "area_km2", "TYPE")])
+```
+
+`ifelse()`函式較適合應用於單純的邏輯判斷，若涉及多項判斷式可能須因而建立巢狀迴圈，使程式碼變得甚為複雜。此時我們可應用`dplyr`套件中的`case_when()`函式，同樣搭配`mutate()`函式以新增欄位。`case_when()`函式撰寫架構如下：
+
+```{r case-when-code, echo=T, eval=F}
+case_when(欄位, 
+          條件1 ~ 結果1, 
+          條件2 ~ 結果2, 
+          TRUE ~ 結果3,
+          ...)
+```
+
+其中的「`TRUE`」意謂著若前面所有條件皆「不成立」時，則回傳`TRUE`賦予的結果。
+
+再次以`world`資料為例，若欲將所有國家依據面積及人口數予以分類，並藉由中位數劃分數值高低，最後分為「面積大人口多（LALP）」、「面積大人口少（LASP）」、「面積小人口多（SALP）」與「面積小人口少（SASP）」四者。程式碼撰寫如下。
+
+```{r case-when-eg1, echo=T, eval=F}
+# 先計算面積與人口數中位數
+area_med=median(world$area_km2)
+pop_med=median(world$pop, na.rm=T) # 由於人口數中含有NA值，故設定na.rm=T以移除NA值後再計算
+
+# 使用case_when()函式新增分類
+world_casewhen=mutate(world, TYPE=case_when(
+  area_km2>=area_med & pop>=pop_med ~ "LALP",
+  area_km2>=area_med & pop<pop_med ~ "LASP",
+  area_km2<area_med & pop>=pop_med ~ "SALP",
+  TRUE ~ "SASP"
+))
+
+# 查看六筆資料
+head(world_casewhen[, c("name_long", "area_km2", "pop", "TYPE")])
+```
 
 
 ## 資料分群與統計
+
 
 
 
@@ -344,7 +426,7 @@ world_DT[continent %in% c("Asia", "Europe") | pop>100000000]
 
 
 
-## 條件判斷
+
 
 
 ## 資料型態轉換
