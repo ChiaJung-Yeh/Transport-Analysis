@@ -378,7 +378,7 @@ world$district=paste0(world$continent, " (", world$subregion, ")")
 
 於前一章中有提及「[邏輯判斷](#邏輯判斷)」的流程控制方法，其中`ifelse()`函式可大幅縮減程式碼。在此亦可透過`mutate()`函式搭配`ifelse()`函式建立邏輯判斷的結果。以`world`資料為例，新增一欄位判斷國家面積的大小，若國家面積大於整體資料中位數，標記為「L」；否則記錄為「S」。程式碼撰寫如下。
 
-```{r ifelse-eg1, echo=T, eval=F}
+```{r ifelse-eg1, echo=T, eval=T}
 # 先計算面積中位數
 area_med=median(world$area_km2)
 
@@ -392,7 +392,7 @@ head(world_ifel[, c("name_long", "area_km2", "TYPE")])
 
 <p style="color:#003D79;font-size:18px;line-height:2">**⌾ 使用`case_when()`函式判斷**</p>  
 
-`ifelse()`函式較適合應用於單純的邏輯判斷，若涉及多項判斷式可能須因而建立巢狀迴圈，使程式碼變得甚為複雜。此時我們可應用`dplyr`套件中的`case_when()`函式，同樣搭配`mutate()`函式以新增欄位。`case_when()`函式撰寫架構如下：
+`ifelse()`函式較適合應用於單純的邏輯判斷，若涉及多項判斷式可能須建立巢狀迴圈，使程式碼變得甚為複雜。此時我們可應用`dplyr`套件中的`case_when()`函式，並同樣搭配[`mutate()`](#新增資料屬性)函式以新增欄位。`case_when()`函式撰寫架構如下：
 
 ```{r case-when-code, echo=T, eval=F}
 case_when(欄位, 
@@ -406,7 +406,7 @@ case_when(欄位,
 
 再次以`world`資料為例，若欲將所有國家依據面積及人口數予以分類，並藉由中位數劃分數值高低，最後分為「面積大人口多（LALP）」、「面積大人口少（LASP）」、「面積小人口多（SALP）」與「面積小人口少（SASP）」四者。程式碼撰寫如下。
 
-```{r case-when-eg1, echo=T, eval=F}
+```{r case-when-eg1, echo=T, eval=T}
 # 先計算面積與人口數中位數
 area_med=median(world$area_km2)
 pop_med=median(world$pop, na.rm=T) # 由於人口數中含有NA值，故設定na.rm=T以移除NA值後再計算
@@ -425,6 +425,62 @@ head(world_casewhen[, c("name_long", "area_km2", "pop", "TYPE")])
 
 
 
+## 資料排序
+
+<p style="color:#003D79;font-size:18px;line-height:2">**⌾ 資料排序（正序）**</p>  
+
+在第一章節中我們提及許多排序的方法，包含[向量排序](#向量-vector)（`sort()`、`order()`、`rank()`）與[文字排序](#文字排序)（`str_sort()`、`str_order()`）。而在此我們可以進一步藉由`dplyr`套件中的`arrange()`函式排序資料，其函式撰寫架構如下。
+
+```{r arrange-code, echo=T, eval=F}
+arrange(資料, 待排序欄位)
+```
+
+以`world`資料為例，若欲將所有國家依人口數由少至多排列，程式碼撰寫如下。
+
+```{r arrange-eg1, echo=T, eval=T}
+world_arr1=arrange(world, pop)
+
+# 查看前六筆資料
+head(world_arr1[, c("name_long", "continent", "pop")])
+```
+
+:::strong
+<p style="color:#750000;">使用`data.table`套件排序，函式撰寫架構如下。</p>  
+
+```{r arrange-code-dt, echo=T, eval=F}
+資料[order(待排序欄位)]
+```
+
+以`world`資料，依人口數由少至多排列為例，程式碼撰寫如下
+```{r arrange-eg1-dt, echo=T, eval=F}
+world_DT[order(pop)]
+```
+:::
+
+
+<p style="color:#003D79;font-size:18px;line-height:2">**⌾ 資料排序（倒序）**</p>  
+
+須注意的是`arrange()`函式預設為由小到大（正序）排列，故若欲「倒序」排列，可在`待排序欄位`引數前面加上「`-`」即可，抑或使用`desc(待排序欄位)`函式。以`world`資料依人口數由多至少排列為例，程式碼撰寫如下。
+
+```{r arrange-eg2, echo=T, eval=T}
+world_arr2=arrange(world, -pop)
+
+# 或使用desc()函式倒序排列
+world_arr2=arrange(world, desc(pop))
+
+# 查看前六筆資料
+head(world_arr2[, c("name_long", "continent", "pop")])
+```
+
+:::strong
+<p style="color:#750000;">使用`data.table`套件倒序排列資料，程式碼撰寫如下。</p>  
+
+```{r arrange-eg2-dt, echo=T, eval=F}
+world_DT[order(-pop)]
+```
+:::
+
+
 ## 資料分群與統計
 
 <p style="color:#003D79;font-size:18px;line-height:2">**⌾ 將資料依據特定欄位分群**</p>  
@@ -435,47 +491,208 @@ group_by(資料, 分群欄位)
 
 利用`group_by()`函式分群後，資料並不會有任何變化，必須再搭配其他函式才能發揮分群的效果。
 
-<p style="color:#003D79;font-size:18px;line-height:2">**⌾ 分群篩選資料**</p>  
 
-透過分群篩選資料，可篩選特群組符合條件者，函式撰寫架構如下。
+<p style="color:#003D79;font-size:18px;line-height:2">**⌾ 分群篩選資料（`filter()`）**</p>  
+
+透過分群篩選資料，可篩選各群組符合條件者，函式撰寫架構如下。
 
 ```{r groupby-filter-code, echo=T, eval=F}
-group_by(資料, 分群欄位)%%>
+group_by(資料, 分群欄位)%>%
   filter(條件)
 ```
 
 以`world`資料為例，先將資料依據洲（continent）分群，而後篩選出各洲資料中面積最大者，程式碼撰寫如下。
 
-```{r groupby-filter-eg, echo=T, eval=F}
+```{r groupby-filter-eg, echo=T, eval=T}
 world_gro1=group_by(world, continent)%>%
   filter(area_km2==max(area_km2))
 
-# 輸出資料
-world_gro1
+# 查看資料
+world_gro1[, c("continent","name_long","area_km2")]
 ```
+
+
+<p style="color:#003D79;font-size:18px;line-height:2">**⌾ 分群篩選資料（`slice()`）**</p>  
+
+`slice()`函式用以回傳指定條件的索引值，故搭配`group_by()`時可以篩選各分群中的指定橫列位。函式撰寫架構如下。
+
+```{r groupby-slice-code, echo=T, eval=F}
+group_by(資料, 分群欄位)%>%
+  slice(索引值)
+```
+
+舉例而言，若欲回傳`world`資料中各分群內的第一筆資料，程式碼撰寫如下。
+
+```{r groupby-slice-eg1, echo=T, eval=T}
+world_gro2=group_by(world, continent)%>%
+  slice(1)
+
+# 查看資料
+world_gro2[, c("continent","name_long","area_km2","pop","lifeExp","gdpPercap")]
+```
+
+:::strong
+<p style="color:#750000;">使用`data.table`套件分群統計，程式碼撰寫如下。</p>  
+
+<p style="color:#4D0000;">**函式架構：**</p>  
+```{r groupby-slice-code-dt, echo=T, eval=F}
+資料[, .SD[索引值], by=分群欄位]
+```
+
+回傳`world`資料中各分群內的第一筆資料。
+```{r groupby-slice-eg1-dt, echo=T, eval=F}
+world_DT[, .SD[1], by=continent]
+```
+:::
+
+
+
+此外，亦可擷取多的索引值的資料，舉例而言，若欲回傳`world`資料中各分群內的第一筆與最後一筆資料，程式碼撰寫如下。
+
+```{r groupby-slice-eg2, echo=T, eval=T}
+world_gro3=group_by(world, continent)%>%
+  slice(1, n())
+
+# 查看資料
+world_gro3[, c("continent","name_long")]
+```
+
+:::strong
+<p style="color:#750000;">使用`data.table`套件分群統計，程式碼撰寫如下。</p>  
+
+回傳`world`資料中各分群（洲）內的第一筆資料。
+```{r groupby-slice-eg2-dt, echo=T, eval=F}
+world_DT[, .SD[c(1, .N)], by=continent]
+```
+
+上述程式碼中的`.N`意同`dplyr`套件中的`n()`。
+:::
+
+
+`group_by() %>% slice()`函式亦可與`arrange()`函式結合，以擷取特定序位的資料。再以`world`資料為例，若欲擷取每個洲前三大面積的國家，可以先利用[`arrange()`](#資料排序)函式將所有資料依據面積（area_km2）排列，而後再透過`group_by() %>% slice()`函式擷取需要的索引值（即`1:6`）。程式碼撰寫如下。
+
+```{r groupby-slice-eg3, echo=T, eval=T}
+world_gro4=arrange(world, desc(area_km2))%>%
+  group_by(continent)%>%
+  slice(1:6)
+
+# 查看資料
+world_gro4[, c("continent","name_long","area_km2","pop","lifeExp","gdpPercap")]
+```
+
+
+:::strong
+<p style="color:#750000;">使用`data.table`套件分群統計，程式碼撰寫如下。</p>  
+
+回傳`world`資料中各分群（洲）面積前六大的資料。
+```{r groupby-slice-eg3-dt, echo=T, eval=F}
+world_DT[order(-area_km2)]%>%
+  .[, .SD[c(1:6)], by=continent]
+```
+
+與`dplyr`套件的撰寫方式相同，若欲串接不同的函式，可透過 pipe (`%>%`) 連接。另外請注意此回傳結果會保留所有匹配與未匹配的資料，例如`world_DT`資料中 Antarctica 僅有一個區域，而由於我們尋找前六筆資料，此函式會回傳所有六筆結果，未匹配者則在其他筆資料中顯示`NA`。
+:::
+
+
+`group_by() %>% filter()`函式無法透過多個條件設定，回傳符合各個不同條件的資料。然而實務上有時候希望擷取滿足多個不同條件的資料，此時可以利用`group() %>% slice()`達成目的。
+
+以`world`資料為例，先將資料依據洲（continent）分群，而後篩選出各洲資料中面積最大與最小者，程式碼撰寫如下。
+
+```{r groupby-slice-eg4, echo=T, eval=T}
+world_gro5=group_by(world, continent)%>%
+  slice(which.max(area_km2),
+        which.min(area_km2))
+
+# 查看所有資料
+world_gro5[, c("continent","name_long","area_km2")]
+```
+
+以上程式碼中`which.max()`函式用以尋找最大值的索引；`which.min()`則尋找最小值之索引。此時利用`group_by() %>% slice()`函式可同時回傳符合不同特定條件者。綜上所述，`group_by() %>% slice()`函式的使用上較具彈性。
+
+:::strong
+<p style="color:#750000;">使用`data.table`套件分群統計，程式碼撰寫如下。</p>  
+
+回傳`world`資料中各分群（洲）面積最大與最小的資料。
+```{r groupby-slice-eg4-dt, echo=T, eval=F}
+world_DT[, .SD[c(which.min(area_km2), which.max(area_km2))], by=continent]
+```
+:::
 
 
 <p style="color:#003D79;font-size:18px;line-height:2">**⌾ 分群統計資料（`summarise()`）**</p>  
 
-分群統計資料可針對各群組內的欄位做運算，如最大值、最小值、加總、平均...等，抑或使用自定義函式。以`world`資料為例，先將資料依據洲（continent）分群，而後統計各洲總人口數與國家數，程式碼撰寫如下。
+分群統計資料可針對各群組內的欄位做運算，如最大值、最小值、加總、平均...等，抑或使用自定義函式。分群統計資料的函式撰寫架構如下。
 
-```{r groupby-summarise-eg, echo=T, eval=F}
-world_gro2=group_by(world, continent)%>%
-  summarise(pop=sum(pop, na.rm=T))
-
-# 輸出資料
-world_gro2
+```{r groupby-summarise-code, echo=T, eval=F}
+group_by(資料, 分群欄位)%>%
+  summarise(運算函式)
 ```
 
-請注意於本範例中由於總人口數（pop）欄位中含有部分 NA，故為避免計算結果有誤，須在`sum()`函式中設定`na.rm=T`。此外，由輸出結果可發現，有別於`group_by() %>% filter()`函式會回傳所有的資料列，`group_by() %>% summarise()`函式僅回傳指定的統計資料列。
+以`world`資料為例，先將資料依據洲（continent）分群，而後統計各洲總人口數與國家數，程式碼撰寫如下。
 
+```{r groupby-summarise-eg, echo=T, eval=T}
+world_gro6=group_by(world, continent)%>%
+  summarise(pop=sum(pop, na.rm=T),
+            County_N=n())
+
+# 輸出資料
+world_gro6
+```
+
+請注意於本範例中由於總人口數（pop）欄位中含有部分 NA，故為避免計算結果有誤，須在`sum()`函式中設定`na.rm=T`引數。此外，由輸出結果可發現，有別於`group_by() %>% filter()`函式會回傳所有的資料欄位，`group_by() %>% summarise()`函式僅回傳指定的統計資料欄位。另外`n()`函式表示計算各分群內的總資料筆數。
+
+
+:::strong
+<p style="color:#750000;">使用`data.table`套件分群統計，程式碼撰寫如下。</p>  
+
+<p style="color:#4D0000;">**函式架構：**</p>  
+```{r groupby-summarise-code-dt, echo=T, eval=F}
+資料[, .(運算函式), by=分群欄位]
+```
+
+回傳`world`資料中各分群（洲）總人口數與國家個數。
+```{r groupby-summarise-eg-dt, echo=T, eval=F}
+world_DT[, .(pop=sum(pop, na.rm=T), County_N=.N), by=continent]
+```
+:::
+
+
+<p style="color:#003D79;font-size:18px;line-height:2">**⌾ 分群統計資料（`reframe()`）**</p>  
+
+除了`group_by() %>% summarise()`以外，亦可使用`group_by() %>% reframe()`達到相同目的，且適用的彈性更大。如以上的範例，`group_by() %>% summarise()`回傳的是統計後的結果，通常`運算函式`僅回傳一個值，如`sum()`是針對所有群組內的特定變數做加總。然而有時候`運算函式`可能並非單純回傳一個值，例如`range()`函式回傳的是兩個值，包括最小值與最大值，此時使用`group_by() %>% summarise()`雖能得到結果，但會出現警告訊息，而使用`group_by() %>% reframe()`則可在無警告之下得到正確結果。`group_by() %>% reframe()`的函式撰寫架構如下，與`group_by() %>% summarise()`相同。
+
+```{r groupby-reframe-code, echo=T, eval=F}
+group_by(資料, 分群欄位)%>%
+  reframe(運算函式)
+```
+
+再次以`world`資料為例，將資料依據洲（continent）分群，而後統計各洲人均 GDP（gdpPercap）的範圍，程式碼撰寫如下。
+
+```{r groupby-reframe-eg, echo=T, eval=T, warning=F}
+world_gro7=group_by(world, continent)%>%
+  reframe(gdpPercap=range(gdpPercap, na.rm=T))
+
+# 輸出資料
+world_gro7
+```
+
+由以上程式碼可知各洲人均 GDP 的範圍。另須注意的是，由於「Antarctica」中所有國家並無人均 GDP 的資料，故回傳之上下界為 Inf 與 -Inf。
+
+:::strong
+<p style="color:#750000;">使用`data.table`套件分群統計，程式碼撰寫如下。</p>  
+
+回傳`world`資料中各分群（洲）總人口數與國家個數。
+```{r groupby-reframe-eg-dt, echo=T, eval=F}
+world_DT[, .(pop=sum(pop, na.rm=T), County_N=.N), by=continent]
+```
+:::
 
 
 ## 連接資料
 
 
 
-## 資料排序
+
 
 
 
