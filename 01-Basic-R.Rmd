@@ -145,7 +145,7 @@ kable(vector_operation, booktabs=T, caption="向量運算")%>%
 
 其中上述的函式大部分皆可設定`na.rm=`之引數，其用以設定是否忽略「NA」。若資料中存在「NA」，但未設定此一引數時，回傳結果亦為「NA」。範例說明如下：
 
-```{r vector-exg2, echo=T, eval=T}
+```{r vector-exg-na, echo=T, eval=T}
 vec_na=c(1,2,NA,3,4)
 
 # 未設定na.rm=之引數
