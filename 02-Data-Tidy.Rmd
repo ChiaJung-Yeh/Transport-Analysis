@@ -25,7 +25,7 @@ windowsFonts(A=windowsFont("微軟正黑體"))
 資料清洗與處理常用之套件與函式彙整如表\@ref(tab:function-data-clean)。  
 
 ```{r function-data-clean, echo=F, eval=T}
-fuc=data.frame(Package=c("`base`", rep("`dplyr`", 22), rep("`data.table`", 5)), Functions=c("[`merge()`](#連接資料)","[`bind_rows()`](#合併資料)","[`bind_cols()`](#合併資料)","[`select()`](#選取資料欄位)","[`filter()`](#依條件篩選資料)","[`mutate()`](#新增資料屬性)","[`group_by()`](#資料分群與統計)","[`summarise()`](#資料分群與統計)","[`reframe()`](#資料分群與統計)","[`slice()`](#資料分群與統計)","[`left_join()`](#連接資料)","[`inner_join()`](#連接資料)","[`full_join()`](#連接資料)","[`arrange()`](#資料排序)","`rename()`","`distinct()`","`intersect()`","`union()`","`union_all()`","`setdiff()`","`symdiff()`","`setequal()`","[`case_when()`](#條件判斷)","[`setDT()`](#data.frame-與-data.table)","[`setkey()`](#data.frame-與-data.table)","[`merge.data.table()`](##連接資料)","`dcast()`","`melt()`"), Usage=c("根據指定欄位連接兩資料", "合併橫列", "合併直行", "選取特定欄位", "根據條件篩選資料", "新增資料屬性（直行）",  "將資料依據特定欄位分群`", "將分群的資料予以計算", "將分群的資料予以計算", "依據分群擷取特定資料", "根據指定欄位連接兩資料（僅保留左側資料）", "根據指定欄位連接兩資料（擁有的資料皆須保留）", "根據指定欄位連接兩資料（僅保留共同擁有的資料）", "根據指定欄位將資料排序", "更改欄位名稱", "去除重複資料", "尋找兩資料中共同擁有的資料列（交集）", "保留所有擁有的資料列（聯集，去除重複者）", "保留所有擁有的資料列（聯集，保留重複者）", "尋找唯獨左側資料擁有的資料列（差集）", "尋找唯獨其中一份資料擁有的資料列（互斥）", "檢查兩資料是否完全相同（無論排序）", "條件判斷", "將資料轉換為`data.table`形式", "設定`data.table`資料的主鍵", "連接資料", "轉換長資料為寬資料", "轉換寬資料為長資料"))
+fuc=data.frame(Package=c("`base`", rep("`dplyr`", 22), rep("`data.table`", 5)), Functions=c("[`merge()`](#連接資料)","[`bind_rows()`](#合併資料)","[`bind_cols()`](#合併資料)","[`select()`](#選取資料欄位)","[`filter()`](#依條件篩選資料)","[`mutate()`](#新增資料屬性)","[`group_by()`](#資料分群與統計)","[`summarise()`](#資料分群與統計)","[`reframe()`](#資料分群與統計)","[`slice()`](#資料分群與統計)","[`left_join()`](#連接資料)","[`inner_join()`](#連接資料)","[`full_join()`](#連接資料)","[`arrange()`](#資料排序)","[`rename()](#重新命名欄位)`","[`distinct()`](#去除重複資料)","`intersect()`","`union()`","`union_all()`","`setdiff()`","`symdiff()`","`setequal()`","[`case_when()`](#條件判斷)","[`setDT()`](#data.frame-與-data.table)","[`setkey()`](#data.frame-與-data.table)","[`merge.data.table()`](##連接資料)","`dcast()`","`melt()`"), Usage=c("根據指定欄位連接兩資料", "合併橫列", "合併直行", "選取特定欄位", "根據條件篩選資料", "新增資料屬性（直行）",  "將資料依據特定欄位分群`", "將分群的資料予以計算", "將分群的資料予以計算", "依據分群擷取特定資料", "根據指定欄位連接兩資料（僅保留左側資料）", "根據指定欄位連接兩資料（擁有的資料皆須保留）", "根據指定欄位連接兩資料（僅保留共同擁有的資料）", "根據指定欄位將資料排序", "更改欄位名稱", "去除重複資料", "尋找兩資料中共同擁有的資料列（交集）", "保留所有擁有的資料列（聯集，去除重複者）", "保留所有擁有的資料列（聯集，保留重複者）", "尋找唯獨左側資料擁有的資料列（差集）", "尋找唯獨其中一份資料擁有的資料列（互斥）", "檢查兩資料是否完全相同（無論排序）", "條件判斷", "將資料轉換為`data.table`形式", "設定`data.table`資料的主鍵", "連接資料", "轉換長資料為寬資料", "轉換寬資料為長資料"))
 
 colnames(fuc)=c("套件","函式","功能")
 
@@ -756,7 +756,6 @@ merge.data.table(資料1, 資料2, all.x=T, by="參照欄位")
 # 若兩資料的參照欄位名稱不同
 merge(資料1, 資料2, all.x=T, by.x="資料1參照欄位", by.y="資料2參照欄位")
 merge.data.table(資料1, 資料2, all.x=T, by.x="資料1參照欄位", by.y="資料2參照欄位")
-
 ```
 
 以連接`StuInfo`與`StuScore`兩資料為例，參照欄位為「StudentID」。
@@ -855,10 +854,91 @@ merge.data.table(StuInfo_DT, StuScore_DT, by="StudentID")
 :::
 
 
+## 重新命名欄位
+在第一章節中提及設定資料欄位名稱的方法，可藉由`colnames()`設定或修改欄位名稱。此外`dplyr`套件中的`rename()`函式亦可指定修改名稱的欄位，並賦予新名稱。函式撰寫架構如下。
 
+```{r rename-code, echo=T, eval=F}
+rename(資料, 新欄位名稱=舊欄位名稱)
+```
+
+以修改`StuScore`資料的名稱為例，程式碼撰寫如下。
+
+```{r rename-eg1, echo=T, eval=F}
+StuInfo_rn1=rename(StuInfo, STUID=StudentID, CLASS=Class)
+
+StuInfo_rn1
+```
+
+此外，亦可利用`rename_with()`函式，使修改名稱的方式更有所彈性，其函式撰寫架構如下。
+
+```{r rename-with-code, echo=T, eval=F}
+rename_with(資料, 修正函式)
+```
+
+再以`StuScore`資料為例，若欲將所有欄位名稱[修正為全大寫字母](#文字處理)，程式碼撰寫如下。
+
+```{r rename-eg2, echo=T, eval=F}
+StuInfo_rn2=rename_with(StuInfo, toupper)
+
+StuInfo_rn2
+```
+
+除可設定既有的函式外，亦可藉由[自定義函式](#建立自定義函式)修正之，例如若我們希望所有名稱都接上「_A」，則程式碼撰寫如下。
+
+```{r rename-eg3, echo=T, eval=F}
+# 建立自定義函式
+paste_A=function(x){
+  return(paste0(x, "_A"))
+}
+
+# 修正名稱，全部欄位名稱加上「_A」
+StuInfo_rn3=rename_with(StuInfo, paste_A)
+
+StuInfo_rn3
+```
+
+
+而若希望有條件式的修正欄位名稱，則可利用`.cols=`引數設定需要更動的欄位索引值。以`StuInfo`資料為例，若欲針對欄位名稱具有「a」者，轉換為全大寫，程式碼撰寫如下。
+
+```{r rename-eg4, echo=T, eval=F}
+StuInfo_rn4=rename_with(StuInfo, toupper, .cols=grep("a", colnames(StuInfo)))
+
+StuInfo_rn4
+```
+
+以上程式碼中的[`colnames()`](#資料框data-frame)函式用以回傳特定資料的名稱，[`grep()`](#搜尋字元)函式為尋找特定字元所在的索引值。
 
 
 ## 去除重複資料
+在第一章節中我們提過可以利用`unique()`函式篩選出向量的唯一值，亦即將重複的元素予以去除。而若希望刪除重複的資料列，可利用`distinct()`函式，其撰寫架構如下。
+
+```{r distinct-code, echo=T, eval=F}
+distinct(資料)
+```
+
+以下範例演示`distinct()`函式的功能，同時利用[`duplicated`](#資料框data-frame)函式先行檢查是否有重複的列。
+
+```{r distinct-eg, echo=T, eval=F}
+# 建立具有重複資料的資料框
+StuScore_dup=data.frame(StudentID=c("ID1","ID2","ID4","ID3","ID4","ID5","ID2"),
+                        Name=c("Bob","Mary","Jason","Robert","Jason","Jane","Mary"),
+                        Score=c(60,80,40,100,40,100,80))
+
+# 檢查是否有重複列
+duplicated(dup_data)
+
+# 去除重複列
+distinct(StuScore_dup)
+```
+
+:::strong
+<p style="color:#750000;">**使用`base`套件去除重複資料**</p>  
+`unique()`函式不僅可去除向量內的重複元素，亦可去除資料框中的重複資料。
+
+```{r unique-eg-dt, echo=T, eval=F}
+unique(StuScore_dup)
+```
+:::
 
 
 

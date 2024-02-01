@@ -546,6 +546,16 @@ names(StuScore)
 colnames(StuScore)
 ```
 
+<p style="color:#003D79;font-size:18px;line-height:2">**⌾ 設定資料欄位名稱**</p>  
+設定資料欄位名稱亦可透過`colnames()`達成之，程式碼撰寫如下。
+```{r dataframe2-1, echo=T, eval=F}
+StuScore_rename=StuScore
+colnames(StuScore_rename)=c("STUID","SCORE")
+
+StuScore_rename
+```
+
+
 <p style="color:#003D79;font-size:18px;line-height:2">**⌾ 回傳特定欄列**</p>  
 
 <p style="font-size:18px;line-height:1">**<u>回傳指定橫列</u>**</p>  
