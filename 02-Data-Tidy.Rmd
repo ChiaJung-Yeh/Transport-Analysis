@@ -154,7 +154,7 @@ head(world_sel1)
 
 
 :::strong
-<p style="color:#750000;">使用`data.table`套件選取欄位，程式碼撰寫如下。</p>  
+<p style="color:#750000;">**使用`data.table`套件選取欄位**</p>  
 
 ```{r select-eg1-dt, echo=T, eval=F}
 world_DT[, .(name_long, area_km2)]
@@ -190,7 +190,7 @@ head(world_sel2)
 ```
 
 :::strong
-<p style="color:#750000;">使用`data.table`套件選取欄位，程式碼撰寫如下。</p>  
+<p style="color:#750000;">**使用`data.table`套件選取欄位**</p>  
 
 ```{r select-eg3-dt, echo=T, eval=F}
 world_DT[, ..sel_col_name]
@@ -212,7 +212,7 @@ head(world_sel3)
 
 
 :::strong
-<p style="color:#750000;">使用`data.table`套件刪除欄位，程式碼撰寫如下。</p>  
+<p style="color:#750000;">**使用`data.table`套件刪除欄位**</p>  
 
 ```{r select-eg4-dt, echo=T, eval=F}
 del_col_name=c("continent","region_un","subregion","type")
@@ -246,7 +246,7 @@ nrow(world_fil1)
 ```
 
 :::strong
-<p style="color:#750000;">使用`data.table`套件篩選資料，程式碼撰寫如下。</p>  
+<p style="color:#750000;">**使用`data.table`套件篩選資料**</p>  
 
 ```{r filter-eg1-dt, echo=T, eval=F}
 world_DT[pop>100000000]
@@ -268,7 +268,7 @@ head(world_fil2)
 ```
 
 :::strong
-<p style="color:#750000;">使用`data.table`套件篩選資料，程式碼撰寫如下。</p>  
+<p style="color:#750000;">**使用`data.table`套件篩選資料**</p>  
 
 ```{r filter-eg2-dt, echo=T, eval=F}
 world_DT[continent %in% c("Asia", "Europe")]
@@ -299,7 +299,7 @@ world_fil4=filter(world, continent %in% c("Asia", "Europe") & pop>100000000)
 ```
 
 :::strong
-<p style="color:#750000;">使用`data.table`套件篩選資料，程式碼撰寫如下。</p>  
+<p style="color:#750000;">**使用`data.table`套件篩選資料**</p>  
 
 ```{r filter-eg4-dt, echo=T, eval=F}
 world_DT[continent %in% c("Asia", "Europe") & pop>100000000]
@@ -321,7 +321,7 @@ nrow(world_fil5)
 
 
 :::strong
-<p style="color:#750000;">使用`data.table`套件篩選資料，程式碼撰寫如下。</p>  
+<p style="color:#750000;">**使用`data.table`套件篩選資料**</p>  
 
 ```{r filter-eg5-dt, echo=T, eval=F}
 world_DT[continent %in% c("Asia", "Europe") | pop>100000000]
@@ -350,7 +350,7 @@ head(world_mut[, c("name_long", "area_km2", "pop", "pop_dens")])
 
 
 :::strong
-<p style="color:#750000;">使用`data.table`套件新增資料屬性，程式碼撰寫如下。</p>  
+<p style="color:#750000;">**使用`data.table`套件新增資料屬性**</p>  
 
 ```{r mutate-eg2, echo=T, eval=F}
 # 新增一個變數時
@@ -445,8 +445,8 @@ head(world_arr1[, c("name_long", "continent", "pop")])
 ```
 
 :::strong
-<p style="color:#750000;">使用`data.table`套件排序，函式撰寫架構如下。</p>  
-
+<p style="color:#750000;">**使用`data.table`套件排序**</p>  
+<p style="color:#4D0000;">**函式架構：**</p>  
 ```{r arrange-code-dt, echo=T, eval=F}
 資料[order(待排序欄位)]
 ```
@@ -473,7 +473,7 @@ head(world_arr2[, c("name_long", "continent", "pop")])
 ```
 
 :::strong
-<p style="color:#750000;">使用`data.table`套件倒序排列資料，程式碼撰寫如下。</p>  
+<p style="color:#750000;">**使用`data.table`套件倒序排列資料**</p>  
 
 ```{r arrange-eg2-dt, echo=T, eval=F}
 world_DT[order(-pop)]
@@ -532,7 +532,7 @@ world_gro2[, c("continent","name_long","area_km2","pop","lifeExp","gdpPercap")]
 ```
 
 :::strong
-<p style="color:#750000;">使用`data.table`套件分群統計，程式碼撰寫如下。</p>  
+<p style="color:#750000;">**使用`data.table`套件分群統計**</p>  
 
 <p style="color:#4D0000;">**函式架構：**</p>  
 ```{r groupby-slice-code-dt, echo=T, eval=F}
@@ -558,9 +558,9 @@ world_gro3[, c("continent","name_long")]
 ```
 
 :::strong
-<p style="color:#750000;">使用`data.table`套件分群統計，程式碼撰寫如下。</p>  
+<p style="color:#750000;">**使用`data.table`套件分群統計**</p>  
 
-回傳`world`資料中各分群（洲）內的第一筆與最後一筆資料。
+回傳`world`資料中各分群（洲）內的第一筆與最後一筆資料，程式碼撰寫如下。
 ```{r groupby-slice-eg2-dt, echo=T, eval=F}
 world_DT[, .SD[c(1, .N)], by=continent]
 ```
@@ -582,9 +582,9 @@ world_gro4[, c("continent","name_long","area_km2","pop","lifeExp","gdpPercap")]
 
 
 :::strong
-<p style="color:#750000;">使用`data.table`套件分群統計，程式碼撰寫如下。</p>  
+<p style="color:#750000;">**使用`data.table`套件分群統計**</p>  
 
-回傳`world`資料中各分群（洲）面積前三大的資料。
+回傳`world`資料中各分群（洲）面積前三大的資料，程式碼撰寫如下。
 ```{r groupby-slice-eg3-dt, echo=T, eval=F}
 world_DT[order(-area_km2)]%>%
   .[, .SD[c(1:3)], by=continent]
@@ -610,9 +610,9 @@ world_gro5[, c("continent","name_long","area_km2")]
 以上程式碼中`which.max()`函式用以尋找最大值的索引；`which.min()`則尋找最小值之索引。此時利用`group_by() %>% slice()`函式可同時回傳符合不同特定條件者。綜上所述，`group_by() %>% slice()`函式的使用上相當具彈性。
 
 :::strong
-<p style="color:#750000;">使用`data.table`套件分群統計，程式碼撰寫如下。</p>  
+<p style="color:#750000;">**使用`data.table`套件分群統計**</p>  
 
-回傳`world`資料中各分群（洲）面積最大與最小的資料。
+回傳`world`資料中各分群（洲）面積最大與最小的資料，程式碼撰寫如下。
 ```{r groupby-slice-eg4-dt, echo=T, eval=F}
 world_DT[, .SD[c(which.min(area_km2), which.max(area_km2))], by=continent]
 ```
@@ -643,7 +643,7 @@ world_gro6
 
 
 :::strong
-<p style="color:#750000;">使用`data.table`套件分群統計，程式碼撰寫如下。</p>  
+<p style="color:#750000;">**使用`data.table`套件分群統計**</p>  
 
 <p style="color:#4D0000;">**函式架構：**</p>  
 ```{r groupby-summarise-code-dt, echo=T, eval=F}
@@ -679,9 +679,9 @@ world_gro7
 由以上程式碼可知各洲人均 GDP 的範圍。另須注意的是，由於「Antarctica」中所有國家並無人均 GDP 的資料，故回傳之上下界為 Inf 與 -Inf。
 
 :::strong
-<p style="color:#750000;">使用`data.table`套件分群統計，程式碼撰寫如下。</p>  
+<p style="color:#750000;">**使用`data.table`套件分群統計**</p>  
 
-回傳`world`資料中各分群（洲）總人口數與國家個數。
+回傳`world`資料中各分群（洲）總人口數與國家個數，程式碼撰寫如下。
 ```{r groupby-reframe-eg-dt, echo=T, eval=F}
 world_DT[, .(pop=sum(pop, na.rm=T), County_N=.N), by=continent]
 ```
@@ -706,29 +706,29 @@ include_graphics("./figure/join.png")
 ```{r join-table, echo=F, eval=T, fig.cap="join 示意圖"}
 join_table=data.frame(method=c("<A href='#left-join'>以第一份（左側）資料為基準</A>","<A href='#full-join'>保留資料1與資料2所有資料</A>","<A href='#inner-join'>保留共同擁有的參照欄位之資料</A>"),
                       func_dplyr=c("`left_join(資料1, 資料2)`","`full_join(資料1, 資料2)`","`inner_join(資料1, 資料2)`"),
-                      func_base=c("`merge(資料1, 資料2, all.x=T)`","`merge(資料1, 資料2)`","`merge(資料1, 資料2, all=T)`"),
-                      func_datatable=c("`merge.data.table(資料1, 資料2, all.x=T)`","`merge.data.table(資料1, 資料2)`","`merge.data.table(資料1, 資料2, all=T)`"))
+                      func_base=c("`merge(資料1, 資料2, all.x=T)`","`merge(資料1, 資料2, all=T)`","`merge(資料1, 資料2)`"),
+                      func_datatable=c("`merge.data.table(資料1, 資料2, all.x=T)`","`merge.data.table(資料1, 資料2, all=T)`","`merge.data.table(資料1, 資料2)`"))
 
 kbl(join_table, booktabs=T, escape=F, caption="連接資料函式彙整", col.names=c("資料連接方式","`dplyr`套件","`base`套件","`data.table`套件"))%>%
   kable_styling(bootstrap_options=c("striped", "hover"), font_size=14)%>%
   row_spec(0, bold=T, color="black", background="#8E8E8E")%>%
-  column_spec(1, bold=T, color="white", background="#8E8E8E")
+  column_spec(1, bold=T, color="white", background="#D0D0D0")
 ```
 
 
 <H2 id="left-join"><p style="color:#003D79;font-size:18px;line-height:2">**⌾ 以第一份（左側）資料為基準**</p></H2>  
 
-`1eft_join()`的函式撰寫架構如下。
+`left_join()`的函式撰寫架構如下。
 
 ```{r leftjoin-code, echo=T, eval=F}
-1eft_join(資料1, 資料2, by="參照欄位")
+left_join(資料1, 資料2, by="參照欄位")
 ```
 
-函式中的`by=`引數用以設定「參照欄位」，亦即若兩份資料的參照欄位內容是相同者，便將`資料2`的欄位貼附於`資料1`後。`1eft_join()`函式是保留`資料1`的所有資料，故若參照欄位的內容於`資料2`找不到相對應者，則該列貼附的結果會直接回傳「NA」。
+函式中的`by=`引數用以設定「參照欄位」，亦即若兩份資料的參照欄位內容是相同者，便將`資料2`的欄位貼附於`資料1`後。`left_join()`函式是保留`資料1`的所有資料，故若參照欄位的內容於`資料2`找不到相對應者，則該列貼附的結果會直接回傳「NA」。
 
 另外需注意的是，`by=`引數可以不用設定，而此時該函式預設在兩份資料中尋找所有相同欄位名稱者作為參照欄位。而若兩份資料內欲參照的欄位名稱不相同時，引數設定須為`by=c(資料1參照欄位=資料2參照欄位)`。若有多個參照欄位，各欄位的名稱須以向量表達，如`by=c("參照欄位1", "參照欄位2")`。
 
-以學生資料（`StuInfo`）與學生分數紀錄（StuScore）作為範例，程式碼撰寫如下。
+以學生資料（`StuInfo`）與學生分數紀錄（`StuScore`）作為範例，程式碼撰寫如下。
 
 ```{r leftjoin-eg1, echo=T, eval=T}
 # 建立學生資料與分數資料
@@ -745,10 +745,10 @@ left_join(StuInfo, StuScore, by="StudentID")
 以上程式碼中`by="StudentID"`即為兩份資料的共同參照欄位，由於兩參照欄位正好名稱相同，故若未設定此一引數亦可。另外從回傳結果可發現，由於資料 1（`StuInfo`）中並無學生代碼「ID7」，故該欄位的資料 2（`StuScore`）屬性皆為`NA。`
 
 :::strong
-<p style="color:#750000;">使用`base`與`data.table`套件連接資料，程式碼撰寫如下。</p>  
-在此二套件中，若連接方式為「以第一份（左側）資料為基準」，必須設定引數`all.x=T`。函式中的`by=`引數用以設定「參照欄位」，而若兩資料的參照欄位名稱不同時，需進一步設定`by.x=`與`by.y=`兩引數，分別為左側資料的參照欄位名稱與右側資料的欄位名稱。函式撰寫架構如下：
+<p style="color:#750000;">**使用`base`與`data.table`套件連接資料**</p>  
+在此二套件中，若連接方式為「**以第一份（左側）資料為基準**」，必須設定引數**`all.x=T`**。函式中的`by=`引數用以設定「參照欄位」，而若兩資料的參照欄位名稱不同時，需進一步設定`by.x=`與`by.y=`兩引數，分別為左側資料的參照欄位名稱與右側資料的欄位名稱。函式撰寫架構如下：
 
-```{r merge-code-dt, echo=T, eval=F}
+```{r merge1-code-dt, echo=T, eval=F}
 # 若兩資料的參照欄位名稱不同
 merge(資料1, 資料2, all.x=T, by="參照欄位")
 merge.data.table(資料1, 資料2, all.x=T, by="參照欄位")
@@ -776,23 +776,83 @@ merge.data.table(StuInfo_DT, StuScore_DT, all.x=T, by="StudentID")
 :::
 
 
-利用前述`world`與`coffee`兩資料依據國家名稱相連接為例，在`world`資料中貼附各國咖啡的產量。程式碼撰寫如下。
+利用前述`world`與`coffee`兩資料，依據國家名稱相連接為例，在`world`資料中貼附各國咖啡的產量。程式碼撰寫如下。
 
 ```{r leftjoin-eg2, echo=T, eval=T}
-left_join(world, coffee, by="name_long")
+# 合併world與coffee兩資料
+world_coffee=left_join(world, coffee, by="name_long")
+
+# 將world_coffee依據coffee_production_2017由大至小排序
+world_coffee=arrange(world_coffee, desc(coffee_production_2017))
+
+# 查看前六筆資料
+head(world_coffee[, c("name_long","continent","coffee_production_2016","coffee_production_2017")])
 ```
 
 請注意由於此範例中，`world`資料內的國家名稱欄位與`coffee`資料內的國家名稱相同，皆為「name_long」，故若不設定`by=`引數，亦可得到相同結果。
 
 
-
-
 <H2 id="full-join"><p style="color:#003D79;font-size:18px;line-height:2">**⌾ 保留資料1與資料2所有資料**</p></H2>  
+`full_join()`的函式撰寫架構與前述<A href='#left-join'>`left_join()`</A>函式完全相同。
 
+再次以`StuInfo`與`StuScore`兩資料為例，利用`full_join()`所得結果如下。
 
+```{r fulljoin-eg, echo=T, eval=T}
+full_join(StuInfo, StuScore, by="StudentID")
+```
+
+由以上結果可知，兩份資料中所有的「StudentID」皆會保留，而無法匹配資料者，顯示`NA`。例如「ID3」在`StuScore`中無紀錄；「ID7」在`StuInfo`中無紀錄，故配對後其他欄位的資料即顯示`NA`。
+
+:::strong
+<p style="color:#750000;">**使用`base`與`data.table`套件連接資料**</p>  
+若連接方式為「**保留資料1與資料2所有資料**」，必須設定引數**`all=T`**，而其他引數之設定方式與前者相同。函式撰寫架構如下：
+
+```{r merge2-code-dt, echo=T, eval=F}
+merge(資料1, 資料2, all=T, by="參照欄位")
+merge.data.table(資料1, 資料2, all=T, by="參照欄位")
+```
+
+以連接`StuInfo`與`StuScore`兩資料為例，參照欄位為「StudentID」。
+```{r merge-eg2-dt, echo=T, eval=F}
+# base套件
+merge(StuInfo, StuScore, all=T, by="StudentID")
+
+# data.table套件
+merge.data.table(StuInfo_DT, StuScore_DT, all=T, by="StudentID")
+```
+:::
 
 
 <H2 id="inner-join"><p style="color:#003D79;font-size:18px;line-height:2">**⌾ 保留共同擁有的參照欄位之資料**</p></H2>  
+`inner_join()`的函式撰寫架構亦與前述<A href='#left-join'>`left_join()`</A>函式完全相同。
+
+再次以`StuInfo`與`StuScore`兩資料為例，利用`inner_join()`所得結果如下。
+
+```{r innerjoin-eg, echo=T, eval=T}
+inner_join(StuInfo, StuScore, by="StudentID")
+```
+
+由以上結果可知，兩份資料中所有的「StudentID」僅會保留共同擁有的紀錄，而無法匹配資料者逕予以刪除。例如「ID3」在`StuScore`中無紀錄；「ID7」在`StuInfo`中無紀錄，故配對後即刪除此二筆資料。
+
+
+:::strong
+<p style="color:#750000;">**使用`base`與`data.table`套件連接資料**</p>  
+若連接方式為「**保留共同擁有的參照欄位之資料**」，**無須**設定`all=`或`all.x=`之引數。函式撰寫架構如下：
+
+```{r merge3-code-dt, echo=T, eval=F}
+merge(資料1, 資料2, by="參照欄位")
+merge.data.table(資料1, 資料2, by="參照欄位")
+```
+
+以連接`StuInfo`與`StuScore`兩資料為例，參照欄位為「StudentID」。
+```{r merge-eg3-dt, echo=T, eval=F}
+# base套件
+merge(StuInfo, StuScore, by="StudentID")
+
+# data.table套件
+merge.data.table(StuInfo_DT, StuScore_DT, by="StudentID")
+```
+:::
 
 
 

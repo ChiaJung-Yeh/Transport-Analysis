@@ -506,12 +506,12 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <p>為展示「資料清洗與處理」過程，後續範例中我們會使用的資料如下，請先讀取之。</p>
 <div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1-1"><a href="資料清洗與處理.html#cb1-1" tabindex="-1"></a><span class="co"># 世界國家資料</span></span>
 <span id="cb1-2"><a href="資料清洗與處理.html#cb1-2" tabindex="-1"></a>world<span class="ot">=</span><span class="fu">read.csv</span>(<span class="st">&quot;https://raw.githubusercontent.com/ChiaJung-Yeh/Transport-Analysis/master/Data/world.csv&quot;</span>)</span></code></pre></div>
-<div class="datatables html-widget html-fill-item-overflow-hidden html-fill-item" id="htmlwidget-10564214b2c606602076" style="width:100%;height:auto;"></div>
-<script type="application/json" data-for="htmlwidget-10564214b2c606602076">{"x":{"filter":"none","vertical":false,"data":[["1","2","3","4","5","6","7","8","9","10","11","12","13","14","15","16","17","18","19","20","21","22","23","24","25","26","27","28","29","30","31","32","33","34","35","36","37","38","39","40","41","42","43","44","45","46","47","48","49","50","51","52","53","54","55","56","57","58","59","60","61","62","63","64","65","66","67","68","69","70","71","72","73","74","75","76","77","78","79","80","81","82","83","84","85","86","87","88","89","90","91","92","93","94","95","96","97","98","99","100","101","102","103","104","105","106","107","108","109","110","111","112","113","114","115","116","117","118","119","120","121","122","123","124","125","126","127","128","129","130","131","132","133","134","135","136","137","138","139","140","141","142","143","144","145","146","147","148","149","150","151","152","153","154","155","156","157","158","159","160","161","162","163","164","165","166","167","168","169","170","171","172","173","174","175","176","177"],["FJ","TZ","EH","CA","US","KZ","UZ","PG","ID","AR","CL","CD","SO","KE","SD","TD","HT","DO","RU","BS","FK","NO","GL","TF","TL","ZA","LS","MX","UY","BR","BO","PE","CO","PA","CR","NI","HN","SV","GT","BZ","VE","GY","SR","FR","EC","PR","JM","CU","ZW","BW",null,"SN","ML","MR","BJ","NE","NG","CM","TG","GH","CI","GN","GW","LR","SL","BF","CF","CG","GA","GQ","ZM","MW","MZ","SZ","AO","BI","IL","LB","MG","PS","GM","TN","DZ","JO","AE","QA","KW","IQ","OM","VU","KH","TH","LA","MM","VN","KP","KR","MN","IN","BD","BT","NP","PK","AF","TJ","KG","TM","IR","SY","AM","SE","BY","UA","PL","AT","HU","MD","RO","LT","LV","EE","DE","BG","GR","TR","AL","HR","CH","LU","BE","NL","PT","ES","IE","NC","SB","NZ","AU","LK","CN","TW","IT","DK","GB","IS","AZ","GE","PH","MY","BN","SI","FI","SK","CZ","ER","JP","PY","YE","SA","AQ",null,"CY","MA","EG","LY","ET","DJ",null,"UG","RW","BA","MK","RS","ME","XK","TT","SS"],["Fiji","Tanzania","Western Sahara","Canada","United States","Kazakhstan","Uzbekistan","Papua New Guinea","Indonesia","Argentina","Chile","Democratic Republic of the Congo","Somalia","Kenya","Sudan","Chad","Haiti","Dominican Republic","Russian Federation","Bahamas","Falkland Islands","Norway","Greenland","French Southern and Antarctic Lands","Timor-Leste","South Africa","Lesotho","Mexico","Uruguay","Brazil","Bolivia","Peru","Colombia","Panama","Costa Rica","Nicaragua","Honduras","El Salvador","Guatemala","Belize","Venezuela","Guyana","Suriname","France","Ecuador","Puerto Rico","Jamaica","Cuba","Zimbabwe","Botswana","Namibia","Senegal","Mali","Mauritania","Benin","Niger","Nigeria","Cameroon","Togo","Ghana","Cote d'Ivoire","Guinea","Guinea-Bissau","Liberia","Sierra Leone","Burkina Faso","Central African Republic","Republic of the Congo","Gabon","Equatorial Guinea","Zambia","Malawi","Mozambique","eSwatini","Angola","Burundi","Israel","Lebanon","Madagascar","Palestine","The Gambia","Tunisia","Algeria","Jordan","United Arab Emirates","Qatar","Kuwait","Iraq","Oman","Vanuatu","Cambodia","Thailand","Lao PDR","Myanmar","Vietnam","Dem. Rep. Korea","Republic of Korea","Mongolia","India","Bangladesh","Bhutan","Nepal","Pakistan","Afghanistan","Tajikistan","Kyrgyzstan","Turkmenistan","Iran","Syria","Armenia","Sweden","Belarus","Ukraine","Poland","Austria","Hungary","Moldova","Romania","Lithuania","Latvia","Estonia","Germany","Bulgaria","Greece","Turkey","Albania","Croatia","Switzerland","Luxembourg","Belgium","Netherlands","Portugal","Spain","Ireland","New Caledonia","Solomon Islands","New Zealand","Australia","Sri Lanka","China","Taiwan","Italy","Denmark","United Kingdom","Iceland","Azerbaijan","Georgia","Philippines","Malaysia","Brunei Darussalam","Slovenia","Finland","Slovakia","Czech Republic","Eritrea","Japan","Paraguay","Yemen","Saudi Arabia","Antarctica","Northern Cyprus","Cyprus","Morocco","Egypt","Libya","Ethiopia","Djibouti","Somaliland","Uganda","Rwanda","Bosnia and Herzegovina","Macedonia","Serbia","Montenegro","Kosovo","Trinidad and Tobago","South Sudan"],["Oceania","Africa","Africa","North America","North America","Asia","Asia","Oceania","Asia","South America","South America","Africa","Africa","Africa","Africa","Africa","North America","North America","Europe","North America","South America","Europe","North America","Seven seas (open ocean)","Asia","Africa","Africa","North America","South America","South America","South America","South America","South America","North America","North America","North America","North America","North America","North America","North America","South America","South America","South America","Europe","South America","North America","North America","North America","Africa","Africa","Africa","Africa","Africa","Africa","Africa","Africa","Africa","Africa","Africa","Africa","Africa","Africa","Africa","Africa","Africa","Africa","Africa","Africa","Africa","Africa","Africa","Africa","Africa","Africa","Africa","Africa","Asia","Asia","Africa","Asia","Africa","Africa","Africa","Asia","Asia","Asia","Asia","Asia","Asia","Oceania","Asia","Asia","Asia","Asia","Asia","Asia","Asia","Asia","Asia","Asia","Asia","Asia","Asia","Asia","Asia","Asia","Asia","Asia","Asia","Asia","Europe","Europe","Europe","Europe","Europe","Europe","Europe","Europe","Europe","Europe","Europe","Europe","Europe","Europe","Asia","Europe","Europe","Europe","Europe","Europe","Europe","Europe","Europe","Europe","Oceania","Oceania","Oceania","Oceania","Asia","Asia","Asia","Europe","Europe","Europe","Europe","Asia","Asia","Asia","Asia","Asia","Europe","Europe","Europe","Europe","Africa","Asia","South America","Asia","Asia","Antarctica","Asia","Asia","Africa","Africa","Africa","Africa","Africa","Africa","Africa","Africa","Europe","Europe","Europe","Europe","Europe","North America","Africa"],["Oceania","Africa","Africa","Americas","Americas","Asia","Asia","Oceania","Asia","Americas","Americas","Africa","Africa","Africa","Africa","Africa","Americas","Americas","Europe","Americas","Americas","Europe","Americas","Seven seas (open ocean)","Asia","Africa","Africa","Americas","Americas","Americas","Americas","Americas","Americas","Americas","Americas","Americas","Americas","Americas","Americas","Americas","Americas","Americas","Americas","Europe","Americas","Americas","Americas","Americas","Africa","Africa","Africa","Africa","Africa","Africa","Africa","Africa","Africa","Africa","Africa","Africa","Africa","Africa","Africa","Africa","Africa","Africa","Africa","Africa","Africa","Africa","Africa","Africa","Africa","Africa","Africa","Africa","Asia","Asia","Africa","Asia","Africa","Africa","Africa","Asia","Asia","Asia","Asia","Asia","Asia","Oceania","Asia","Asia","Asia","Asia","Asia","Asia","Asia","Asia","Asia","Asia","Asia","Asia","Asia","Asia","Asia","Asia","Asia","Asia","Asia","Asia","Europe","Europe","Europe","Europe","Europe","Europe","Europe","Europe","Europe","Europe","Europe","Europe","Europe","Europe","Asia","Europe","Europe","Europe","Europe","Europe","Europe","Europe","Europe","Europe","Oceania","Oceania","Oceania","Oceania","Asia","Asia","Asia","Europe","Europe","Europe","Europe","Asia","Asia","Asia","Asia","Asia","Europe","Europe","Europe","Europe","Africa","Asia","Americas","Asia","Asia","Antarctica","Asia","Asia","Africa","Africa","Africa","Africa","Africa","Africa","Africa","Africa","Europe","Europe","Europe","Europe","Europe","Americas","Africa"],["Melanesia","Eastern Africa","Northern Africa","Northern America","Northern America","Central Asia","Central Asia","Melanesia","South-Eastern Asia","South America","South America","Middle Africa","Eastern Africa","Eastern Africa","Northern Africa","Middle Africa","Caribbean","Caribbean","Eastern Europe","Caribbean","South America","Northern Europe","Northern America","Seven seas (open ocean)","South-Eastern Asia","Southern Africa","Southern Africa","Central America","South America","South America","South America","South America","South America","Central America","Central America","Central America","Central America","Central America","Central America","Central America","South America","South America","South America","Western Europe","South America","Caribbean","Caribbean","Caribbean","Eastern Africa","Southern Africa","Southern Africa","Western Africa","Western Africa","Western Africa","Western Africa","Western Africa","Western Africa","Middle Africa","Western Africa","Western Africa","Western Africa","Western Africa","Western Africa","Western Africa","Western Africa","Western Africa","Middle Africa","Middle Africa","Middle Africa","Middle Africa","Eastern Africa","Eastern Africa","Eastern Africa","Southern Africa","Middle Africa","Eastern Africa","Western Asia","Western Asia","Eastern Africa","Western Asia","Western Africa","Northern Africa","Northern Africa","Western Asia","Western Asia","Western Asia","Western Asia","Western Asia","Western Asia","Melanesia","South-Eastern Asia","South-Eastern Asia","South-Eastern Asia","South-Eastern Asia","South-Eastern Asia","Eastern Asia","Eastern Asia","Eastern Asia","Southern Asia","Southern Asia","Southern Asia","Southern Asia","Southern Asia","Southern Asia","Central Asia","Central Asia","Central Asia","Southern Asia","Western Asia","Western Asia","Northern Europe","Eastern Europe","Eastern Europe","Eastern Europe","Western Europe","Eastern Europe","Eastern Europe","Eastern Europe","Northern Europe","Northern Europe","Northern Europe","Western Europe","Eastern Europe","Southern Europe","Western Asia","Southern Europe","Southern Europe","Western Europe","Western Europe","Western Europe","Western Europe","Southern Europe","Southern Europe","Northern Europe","Melanesia","Melanesia","Australia and New Zealand","Australia and New Zealand","Southern Asia","Eastern Asia","Eastern Asia","Southern Europe","Northern Europe","Northern Europe","Northern Europe","Western Asia","Western Asia","South-Eastern Asia","South-Eastern Asia","South-Eastern Asia","Southern Europe","Northern Europe","Eastern Europe","Eastern Europe","Eastern Africa","Eastern Asia","South America","Western Asia","Western Asia","Antarctica","Western Asia","Western Asia","Northern Africa","Northern Africa","Northern Africa","Eastern Africa","Eastern Africa","Eastern Africa","Eastern Africa","Eastern Africa","Southern Europe","Southern Europe","Southern Europe","Southern Europe","Southern Europe","Caribbean","Eastern Africa"],["Sovereign country","Sovereign country","Indeterminate","Sovereign country","Country","Sovereign country","Sovereign country","Sovereign country","Sovereign country","Sovereign country","Sovereign country","Sovereign country","Sovereign country","Sovereign country","Sovereign country","Sovereign country","Sovereign country","Sovereign country","Sovereign country","Sovereign country","Dependency","Sovereign country","Country","Dependency","Sovereign country","Sovereign country","Sovereign country","Sovereign country","Sovereign country","Sovereign country","Sovereign country","Sovereign country","Sovereign country","Sovereign country","Sovereign country","Sovereign country","Sovereign country","Sovereign country","Sovereign country","Sovereign country","Sovereign country","Sovereign country","Sovereign country","Country","Sovereign country","Dependency","Sovereign country","Sovereign country","Sovereign country","Sovereign country","Sovereign country","Sovereign country","Sovereign country","Sovereign country","Sovereign country","Sovereign country","Sovereign country","Sovereign country","Sovereign country","Sovereign country","Sovereign country","Sovereign country","Sovereign country","Sovereign country","Sovereign country","Sovereign country","Sovereign country","Sovereign country","Sovereign country","Sovereign country","Sovereign country","Sovereign country","Sovereign country","Sovereign country","Sovereign country","Sovereign country","Country","Sovereign country","Sovereign country","Disputed","Sovereign country","Sovereign country","Sovereign country","Sovereign country","Sovereign country","Sovereign country","Sovereign country","Sovereign country","Sovereign country","Sovereign country","Sovereign country","Sovereign country","Sovereign country","Sovereign country","Sovereign country","Sovereign country","Sovereign country","Sovereign country","Sovereign country","Sovereign country","Sovereign country","Sovereign country","Sovereign country","Sovereign country","Sovereign country","Sovereign country","Sovereign country","Sovereign country","Sovereign country","Sovereign country","Sovereign country","Sovereign country","Sovereign country","Sovereign country","Sovereign country","Sovereign country","Sovereign country","Sovereign country","Sovereign country","Sovereign country","Sovereign country","Sovereign country","Sovereign country","Sovereign country","Sovereign country","Sovereign country","Sovereign country","Sovereign country","Sovereign country","Sovereign country","Country","Sovereign country","Sovereign country","Sovereign country","Dependency","Sovereign country","Country","Country","Sovereign country","Country","Sovereign country","Sovereign country","Country","Country","Sovereign country","Sovereign country","Sovereign country","Sovereign country","Sovereign country","Sovereign country","Sovereign country","Country","Sovereign country","Sovereign country","Sovereign country","Sovereign country","Sovereign country","Sovereign country","Sovereign country","Indeterminate","Sovereign country","Sovereign country","Sovereign country","Sovereign country","Sovereign country","Sovereign country","Sovereign country","Indeterminate","Sovereign country","Sovereign country","Sovereign country","Sovereign country","Sovereign country","Sovereign country","Sovereign country","Sovereign country","Sovereign country"],[19289.9707329765,932745.792357074,96270.60104084721,10036042.9767873,9510743.744824581,2729810.51298781,461410.258459096,464520.072464586,1819251.32898731,2784468.58938384,814844.2204878021,2323492.47746214,484332.792984678,590836.914195733,1850885.56479243,1271694.59820398,28540.5459842261,48157.8742821646,17018507.4094666,15584.7908248632,16363.7987423901,397994.628980977,2206644.43953262,11602.5718467462,14714.9313315426,1216400.83108031,27505.6549786909,1969480.30676826,176853.635919616,8508557.091825729,1085269.59559136,1309699.63635968,1151882.92596349,75265.4490305216,53832.1357021123,129540.211674483,113789.774793235,20893.3402330773,109459.048786204,22045.4508313613,908499.070492869,209801.857246846,144268.722604462,644847.882258842,250747.109536984,9224.663167074759,12460.5868709093,114866.218150043,376328.488742711,591912.017166329,824886.560992482,194390.438881923,1235561.37340316,1054107.1940836,116998.712578633,1182269.64800007,905071.739171952,460324.701614163,60966.9622339568,243473.120281533,329825.951440485,239565.079458458,36191.8856963154,98206.7829620829,75980.3314665435,271593.671943161,621860.349185054,339681.855452815,269475.797919465,27120.5747694609,751921.215016539,111197.018347598,810994.757216461,18118.6341282849,1245463.74769785,26238.9478592737,22991.165807789,10099.0030328829,589382.827011519,5037.10382587155,14031.2844514589,156237.321647096,2315916.65788588,89207.13690631661,79880.73828096691,11327.854664807,16652.1196912198,436965.03416826,309302.033595231,7490.040146716,182235.977782045,510125.56979289,229080.422295565,679573.994237083,335990.801728306,125679.216030188,99044.36683048939,1544322.15019105,3142892.09769282,133782.141414655,39377.4020057345,150706.871321559,874119.998315395,652270.070308025,138111.759254274,195874.658497004,480809.521855032,1617559.0402466,185004.125494595,28656.6007515336,450581.582203591,208969.829718131,572548.983743491,310402.33298673,85064.89515859541,92476.460365273,32320.3917738368,238356.297115474,63831.0914781956,63923.5330136017,44678.1968086173,357430.341206566,110216.875059118,131964.646663977,798849.164057534,29694.8002916761,57530.8517530272,46185.2506729716,2416.87048266498,30126.0378859233,40024.104481118,93408.59409916009,502306.467818081,58457.5134141208,23219.0117362846,24728.114237136,277627.604539654,7687613.84310903,65370.3895242611,9409830.493433909,34345.7011138443,315104.851197605,42759.9277031922,249986.395211549,107735.721363006,91113.2541543127,69048.16050446031,292256.939380041,338226.486563138,10700.3342457981,19118.1227179494,341242.33887092,47068.0820296185,81207.60292943619,119319.584873889,404619.932853689,401335.916394788,455915.007254186,1920324.14608918,12335956.0763551,3786.36450592132,6207.00619061686,591718.98943203,996311.623193406,1633720.7173726,1132393.1671779,21880.2505119017,167349.612740013,245768.479387209,23365.4111927782,50605.0748516557,25062.2552860575,76388.6050646267,13443.6780594717,11230.2616721538,7737.80985537389,624909.0990858451],[885806,52234869,null,35535348,318622525,17288285,30757700,7755785,255131116,42981515,17613798,73722860,13513125,46024250,37737913,13569438,10572466,10405844,143819666,382169,null,null,56295,null,1212814,54539571,2145785,124221600,3419546,204213133,10562159,30973354,47791911,3903986,4757575,6013997,8809216,6281189,15923559,351694,30738378,763393,547928,null,15903112,3534874,2862087,11439767,15411675,2168573,2370992,14546111,16962846,4063920,10286712,19148219,176460502,22239904,7228915,26962563,22531350,11805509,1725744,4390737,7079162,17585977,4515392,4871101,1875713,1129424,15620974,17068838,27212382,1295097,26920466,9891790,8215700,5603279,23589801,4294682,1917852,11143908,39113313,8809306,9070867,2374419,3782450,35006080,3960925,258850,15270790,68416772,6576397,51924182,92544915,25116363,50746659,2923896,1293859294,159405279,776448,28323241,185546257,32758020,8362745,5835500,5466241,78411092,19203090,2906220,9696110,9474511,45271947,38011735,8546356,9866468,3556397,19908979,2932367,1993782,1314545,80982500,7223938,10892413,77030628,2889104,4238389,8188649,556319,11209057,16865008,10401062,46480882,4657740,268050,575504,4509700,23504138,20771000,1364270000,null,60789140,5643475,64613160,327386,9535079,3727000,100102249,30228017,411704,2061980,5461512,5418649,10525347,null,127276000,6552584,26246327,30776722,null,null,1152309,34318082,91812566,6204108,97366774,912164,null,38833338,11345357,3566002,2077495,7130576,621810,1821800,1354493,11530971],[69.95999999999999,64.163,null,81.9530487804878,78.84146341463411,71.62,71.039,65.23,68.85599999999999,76.252,79.117,58.782,55.467,66.242,64.002,52.204,62.757,73.483,70.7436585365854,75.379,null,null,null,null,68.285,60.993,53.268,76.753,77.19,75.042,68.357,74.518,74.02200000000001,77.61,79.44,74.884,73.181,73.015,72.869,70.027,74.196,66.425,71.13800000000001,null,75.879,79.3901219512195,75.68899999999999,79.41500000000001,59.36,64.78,62.981,66.376,57.007,62.907,60.373,59.228,52.549,57.111,59.601,62.154,52.52,58.846,56.598,61.527,50.951,59.457,50.621,63.536,65.211,57.18,60.775,61.932,57.099,56.287,60.858,56.688,82.1536585365854,79.23099999999999,65.133,73.126,60.707,75.33499999999999,75.64100000000001,74.03400000000001,76.94799999999999,77.88800000000001,74.458,69.458,76.578,71.709,68.251,74.895,65.97499999999999,66.285,75.855,71.179,81.72195121951221,68.84699999999999,68.021,71.803,69.43000000000001,69.511,66.139,62.895,70.69,70.4024390243902,67.55200000000001,75.46599999999999,69.81699999999999,74.255,82.25365853658541,72.9707317073171,71.1865853658537,77.60243902439031,81.490243902439,75.7634146341463,71.258,74.9609756097561,74.51707317073171,74.1243902439024,77.0341463414634,81.090243902439,74.4658536585366,81.3853658536585,75.239,77.96299999999999,77.4780487804878,83.1975609756098,82.2292682926829,81.2878048780488,81.7073170731707,81.1219512195122,83.2292682926829,81.3487804878049,77.25287259572259,70.113,81.4048780487805,82.3,74.90600000000001,75.932,null,83.090243902439,80.7,81.30487804878049,82.8609756097561,71.8,72.95099999999999,68.813,74.976,76.917,81.0780487804878,81.1804878048781,76.81219512195121,78.8243902439024,64.17400000000001,83.5878048780488,72.913,64.523,74.23399999999999,null,null,80.173,75.309,71.12,71.65900000000001,64.535,62.006,null,59.224,66.188,76.56100000000001,75.384,75.33658536585369,76.712,71.0975609756098,70.426,55.817],[8222.25378436842,2402.09940362843,null,43079.1425247165,51921.9846391384,23587.3375151466,5370.86580208835,3709.08164370316,10003.0890293448,18797.5479465897,22195.2743713617,785.347340663008,null,2753.23613475312,4188.33481399507,2076.65000798778,1652.85480345734,12663.0422473566,25284.5862019855,28456.8165292476,null,null,null,null,6262.90551556596,12389.7146679241,2677.19807805197,16622.5970457658,19827.5649886027,15374.2615071807,6324.82725807651,11547.8342162709,12715.9673914398,20017.9943624961,14372.4007814474,4784.83046366078,4231.32506716223,6890.72322429183,7147.42922806486,7999.57369198528,16745.0219796981,6906.01230864481,15306.6924367639,null,10901.4185562194,35066.0463763697,8051.24402830602,null,1925.138698418,15914.6702328332,9617.3969565111,2218.55191733521,1865.16062183071,3655.38850923143,2001.0772890116,904.456729989966,5671.9006010195,3196.36152634263,1315.3402595533,3868.60089371873,3054.53487386428,1734.73674695657,1398.25480632738,804.719886747093,1692.14206707555,1582.33369667322,597.135168986395,5538.05294137178,16678.6381326502,31542.5107726021,3632.50375331402,1090.3672076732,1079.82386564737,7870.97074814257,6257.15287433489,803.172837396172,31702.0835366295,13831.3752293893,1372.02096124513,4319.52828287882,1550.21843235512,10767.0276518537,13483.3378622219,8622.18546801292,63943.1858285789,120860.06755829,70832.36836452071,14838.3829483763,40365.2732623193,2892.34160435097,3124.31929344274,14857.202932021,5436.48264275006,4770.01209867368,5264.82809971072,null,33425.6895931418,11348.6473412397,5385.14181406703,2973.0415646346,7366.42412644897,2266.18429824848,4576.2270153496,1838.96024371997,2546.50048351137,3181.64216292265,14332.3657698371,16924.2006778247,null,7971.11792762162,44167.6318669891,17944.2098463253,8243.47351509088,24347.0736576846,44320.5020125474,24161.4255236519,4762.7808726743,19677.5202527307,26258.2100974103,22172.2535081352,27113.6859213723,43560.6192440775,16302.3205614307,24081.6305378246,22401.8804311394,10701.1207857986,20334.4464738451,57218.0279263612,93655.33416306481,41360.3955755286,45668.4414721322,26023.6978492184,31195.4052422035,48898.3286615603,null,2139.56074060145,34455.3312172237,43547.1974836868,10650.3901782483,12758.647789259,null,33945.8438783585,45057.0741699595,38251.7924802929,41701.1372653816,16715.1055213058,8749.156189273521,6585.89594870884,24194.6339084542,76089.2865740815,28417.656441512,39017.5372069548,27285.284673711,29119.6166119074,null,37337.3174057788,8501.54353959203,3766.80525494897,49958.4433361471,null,null,29786.3656529772,7078.88148932392,9879.79935855302,16371.9021546442,1424.52698442707,null,null,1637.27508138464,1629.86886584829,10516.7864355965,12298.4901835571,13112.9089581967,14796.6353955591,8698.291558898831,31181.8211959284,1935.87940008879]],"container":"<table class=\"display\">\n  <thead>\n    <tr>\n      <th> <\/th>\n      <th>iso_a2<\/th>\n      <th>name_long<\/th>\n      <th>continent<\/th>\n      <th>region_un<\/th>\n      <th>subregion<\/th>\n      <th>type<\/th>\n      <th>area_km2<\/th>\n      <th>pop<\/th>\n      <th>lifeExp<\/th>\n      <th>gdpPercap<\/th>\n    <\/tr>\n  <\/thead>\n<\/table>","options":{"pageLength":5,"scrollX":true,"headerCallback":"function(thead) {\n  $(thead).css('font-size', '0.7em');\n}","columnDefs":[{"targets":7,"render":"function(data, type, row, meta) {\n    return type !== 'display' ? data : DTWidget.formatRound(data, 2, 3, \",\", \".\", null);\n  }"},{"targets":9,"render":"function(data, type, row, meta) {\n    return type !== 'display' ? data : DTWidget.formatRound(data, 2, 3, \",\", \".\", null);\n  }"},{"targets":10,"render":"function(data, type, row, meta) {\n    return type !== 'display' ? data : DTWidget.formatRound(data, 2, 3, \",\", \".\", null);\n  }"},{"className":"dt-right","targets":[7,8,9,10]},{"orderable":false,"targets":0}],"order":[],"autoWidth":false,"orderClasses":false,"lengthMenu":[5,10,25,50,100],"rowCallback":"function(row, data, displayNum, displayIndex, dataIndex) {\nvar value=data[1]; $(this.api().cell(row, 1).node()).css({'font-size':'12px'});\nvar value=data[2]; $(this.api().cell(row, 2).node()).css({'font-size':'12px'});\nvar value=data[3]; $(this.api().cell(row, 3).node()).css({'font-size':'12px'});\nvar value=data[4]; $(this.api().cell(row, 4).node()).css({'font-size':'12px'});\nvar value=data[5]; $(this.api().cell(row, 5).node()).css({'font-size':'12px'});\nvar value=data[6]; $(this.api().cell(row, 6).node()).css({'font-size':'12px'});\nvar value=data[7]; $(this.api().cell(row, 7).node()).css({'font-size':'12px'});\nvar value=data[8]; $(this.api().cell(row, 8).node()).css({'font-size':'12px'});\nvar value=data[9]; $(this.api().cell(row, 9).node()).css({'font-size':'12px'});\nvar value=data[10]; $(this.api().cell(row, 10).node()).css({'font-size':'12px'});\n}"}},"evals":["options.headerCallback","options.columnDefs.0.render","options.columnDefs.1.render","options.columnDefs.2.render","options.rowCallback"],"jsHooks":[]}</script>
+<div class="datatables html-widget html-fill-item-overflow-hidden html-fill-item" id="htmlwidget-22fdf123348550971445" style="width:100%;height:auto;"></div>
+<script type="application/json" data-for="htmlwidget-22fdf123348550971445">{"x":{"filter":"none","vertical":false,"data":[["1","2","3","4","5","6","7","8","9","10","11","12","13","14","15","16","17","18","19","20","21","22","23","24","25","26","27","28","29","30","31","32","33","34","35","36","37","38","39","40","41","42","43","44","45","46","47","48","49","50","51","52","53","54","55","56","57","58","59","60","61","62","63","64","65","66","67","68","69","70","71","72","73","74","75","76","77","78","79","80","81","82","83","84","85","86","87","88","89","90","91","92","93","94","95","96","97","98","99","100","101","102","103","104","105","106","107","108","109","110","111","112","113","114","115","116","117","118","119","120","121","122","123","124","125","126","127","128","129","130","131","132","133","134","135","136","137","138","139","140","141","142","143","144","145","146","147","148","149","150","151","152","153","154","155","156","157","158","159","160","161","162","163","164","165","166","167","168","169","170","171","172","173","174","175","176","177"],["FJ","TZ","EH","CA","US","KZ","UZ","PG","ID","AR","CL","CD","SO","KE","SD","TD","HT","DO","RU","BS","FK","NO","GL","TF","TL","ZA","LS","MX","UY","BR","BO","PE","CO","PA","CR","NI","HN","SV","GT","BZ","VE","GY","SR","FR","EC","PR","JM","CU","ZW","BW",null,"SN","ML","MR","BJ","NE","NG","CM","TG","GH","CI","GN","GW","LR","SL","BF","CF","CG","GA","GQ","ZM","MW","MZ","SZ","AO","BI","IL","LB","MG","PS","GM","TN","DZ","JO","AE","QA","KW","IQ","OM","VU","KH","TH","LA","MM","VN","KP","KR","MN","IN","BD","BT","NP","PK","AF","TJ","KG","TM","IR","SY","AM","SE","BY","UA","PL","AT","HU","MD","RO","LT","LV","EE","DE","BG","GR","TR","AL","HR","CH","LU","BE","NL","PT","ES","IE","NC","SB","NZ","AU","LK","CN","TW","IT","DK","GB","IS","AZ","GE","PH","MY","BN","SI","FI","SK","CZ","ER","JP","PY","YE","SA","AQ",null,"CY","MA","EG","LY","ET","DJ",null,"UG","RW","BA","MK","RS","ME","XK","TT","SS"],["Fiji","Tanzania","Western Sahara","Canada","United States","Kazakhstan","Uzbekistan","Papua New Guinea","Indonesia","Argentina","Chile","Democratic Republic of the Congo","Somalia","Kenya","Sudan","Chad","Haiti","Dominican Republic","Russian Federation","Bahamas","Falkland Islands","Norway","Greenland","French Southern and Antarctic Lands","Timor-Leste","South Africa","Lesotho","Mexico","Uruguay","Brazil","Bolivia","Peru","Colombia","Panama","Costa Rica","Nicaragua","Honduras","El Salvador","Guatemala","Belize","Venezuela","Guyana","Suriname","France","Ecuador","Puerto Rico","Jamaica","Cuba","Zimbabwe","Botswana","Namibia","Senegal","Mali","Mauritania","Benin","Niger","Nigeria","Cameroon","Togo","Ghana","Cote d'Ivoire","Guinea","Guinea-Bissau","Liberia","Sierra Leone","Burkina Faso","Central African Republic","Republic of the Congo","Gabon","Equatorial Guinea","Zambia","Malawi","Mozambique","eSwatini","Angola","Burundi","Israel","Lebanon","Madagascar","Palestine","The Gambia","Tunisia","Algeria","Jordan","United Arab Emirates","Qatar","Kuwait","Iraq","Oman","Vanuatu","Cambodia","Thailand","Lao PDR","Myanmar","Vietnam","Dem. Rep. Korea","Republic of Korea","Mongolia","India","Bangladesh","Bhutan","Nepal","Pakistan","Afghanistan","Tajikistan","Kyrgyzstan","Turkmenistan","Iran","Syria","Armenia","Sweden","Belarus","Ukraine","Poland","Austria","Hungary","Moldova","Romania","Lithuania","Latvia","Estonia","Germany","Bulgaria","Greece","Turkey","Albania","Croatia","Switzerland","Luxembourg","Belgium","Netherlands","Portugal","Spain","Ireland","New Caledonia","Solomon Islands","New Zealand","Australia","Sri Lanka","China","Taiwan","Italy","Denmark","United Kingdom","Iceland","Azerbaijan","Georgia","Philippines","Malaysia","Brunei Darussalam","Slovenia","Finland","Slovakia","Czech Republic","Eritrea","Japan","Paraguay","Yemen","Saudi Arabia","Antarctica","Northern Cyprus","Cyprus","Morocco","Egypt","Libya","Ethiopia","Djibouti","Somaliland","Uganda","Rwanda","Bosnia and Herzegovina","Macedonia","Serbia","Montenegro","Kosovo","Trinidad and Tobago","South Sudan"],["Oceania","Africa","Africa","North America","North America","Asia","Asia","Oceania","Asia","South America","South America","Africa","Africa","Africa","Africa","Africa","North America","North America","Europe","North America","South America","Europe","North America","Seven seas (open ocean)","Asia","Africa","Africa","North America","South America","South America","South America","South America","South America","North America","North America","North America","North America","North America","North America","North America","South America","South America","South America","Europe","South America","North America","North America","North America","Africa","Africa","Africa","Africa","Africa","Africa","Africa","Africa","Africa","Africa","Africa","Africa","Africa","Africa","Africa","Africa","Africa","Africa","Africa","Africa","Africa","Africa","Africa","Africa","Africa","Africa","Africa","Africa","Asia","Asia","Africa","Asia","Africa","Africa","Africa","Asia","Asia","Asia","Asia","Asia","Asia","Oceania","Asia","Asia","Asia","Asia","Asia","Asia","Asia","Asia","Asia","Asia","Asia","Asia","Asia","Asia","Asia","Asia","Asia","Asia","Asia","Asia","Europe","Europe","Europe","Europe","Europe","Europe","Europe","Europe","Europe","Europe","Europe","Europe","Europe","Europe","Asia","Europe","Europe","Europe","Europe","Europe","Europe","Europe","Europe","Europe","Oceania","Oceania","Oceania","Oceania","Asia","Asia","Asia","Europe","Europe","Europe","Europe","Asia","Asia","Asia","Asia","Asia","Europe","Europe","Europe","Europe","Africa","Asia","South America","Asia","Asia","Antarctica","Asia","Asia","Africa","Africa","Africa","Africa","Africa","Africa","Africa","Africa","Europe","Europe","Europe","Europe","Europe","North America","Africa"],["Oceania","Africa","Africa","Americas","Americas","Asia","Asia","Oceania","Asia","Americas","Americas","Africa","Africa","Africa","Africa","Africa","Americas","Americas","Europe","Americas","Americas","Europe","Americas","Seven seas (open ocean)","Asia","Africa","Africa","Americas","Americas","Americas","Americas","Americas","Americas","Americas","Americas","Americas","Americas","Americas","Americas","Americas","Americas","Americas","Americas","Europe","Americas","Americas","Americas","Americas","Africa","Africa","Africa","Africa","Africa","Africa","Africa","Africa","Africa","Africa","Africa","Africa","Africa","Africa","Africa","Africa","Africa","Africa","Africa","Africa","Africa","Africa","Africa","Africa","Africa","Africa","Africa","Africa","Asia","Asia","Africa","Asia","Africa","Africa","Africa","Asia","Asia","Asia","Asia","Asia","Asia","Oceania","Asia","Asia","Asia","Asia","Asia","Asia","Asia","Asia","Asia","Asia","Asia","Asia","Asia","Asia","Asia","Asia","Asia","Asia","Asia","Asia","Europe","Europe","Europe","Europe","Europe","Europe","Europe","Europe","Europe","Europe","Europe","Europe","Europe","Europe","Asia","Europe","Europe","Europe","Europe","Europe","Europe","Europe","Europe","Europe","Oceania","Oceania","Oceania","Oceania","Asia","Asia","Asia","Europe","Europe","Europe","Europe","Asia","Asia","Asia","Asia","Asia","Europe","Europe","Europe","Europe","Africa","Asia","Americas","Asia","Asia","Antarctica","Asia","Asia","Africa","Africa","Africa","Africa","Africa","Africa","Africa","Africa","Europe","Europe","Europe","Europe","Europe","Americas","Africa"],["Melanesia","Eastern Africa","Northern Africa","Northern America","Northern America","Central Asia","Central Asia","Melanesia","South-Eastern Asia","South America","South America","Middle Africa","Eastern Africa","Eastern Africa","Northern Africa","Middle Africa","Caribbean","Caribbean","Eastern Europe","Caribbean","South America","Northern Europe","Northern America","Seven seas (open ocean)","South-Eastern Asia","Southern Africa","Southern Africa","Central America","South America","South America","South America","South America","South America","Central America","Central America","Central America","Central America","Central America","Central America","Central America","South America","South America","South America","Western Europe","South America","Caribbean","Caribbean","Caribbean","Eastern Africa","Southern Africa","Southern Africa","Western Africa","Western Africa","Western Africa","Western Africa","Western Africa","Western Africa","Middle Africa","Western Africa","Western Africa","Western Africa","Western Africa","Western Africa","Western Africa","Western Africa","Western Africa","Middle Africa","Middle Africa","Middle Africa","Middle Africa","Eastern Africa","Eastern Africa","Eastern Africa","Southern Africa","Middle Africa","Eastern Africa","Western Asia","Western Asia","Eastern Africa","Western Asia","Western Africa","Northern Africa","Northern Africa","Western Asia","Western Asia","Western Asia","Western Asia","Western Asia","Western Asia","Melanesia","South-Eastern Asia","South-Eastern Asia","South-Eastern Asia","South-Eastern Asia","South-Eastern Asia","Eastern Asia","Eastern Asia","Eastern Asia","Southern Asia","Southern Asia","Southern Asia","Southern Asia","Southern Asia","Southern Asia","Central Asia","Central Asia","Central Asia","Southern Asia","Western Asia","Western Asia","Northern Europe","Eastern Europe","Eastern Europe","Eastern Europe","Western Europe","Eastern Europe","Eastern Europe","Eastern Europe","Northern Europe","Northern Europe","Northern Europe","Western Europe","Eastern Europe","Southern Europe","Western Asia","Southern Europe","Southern Europe","Western Europe","Western Europe","Western Europe","Western Europe","Southern Europe","Southern Europe","Northern Europe","Melanesia","Melanesia","Australia and New Zealand","Australia and New Zealand","Southern Asia","Eastern Asia","Eastern Asia","Southern Europe","Northern Europe","Northern Europe","Northern Europe","Western Asia","Western Asia","South-Eastern Asia","South-Eastern Asia","South-Eastern Asia","Southern Europe","Northern Europe","Eastern Europe","Eastern Europe","Eastern Africa","Eastern Asia","South America","Western Asia","Western Asia","Antarctica","Western Asia","Western Asia","Northern Africa","Northern Africa","Northern Africa","Eastern Africa","Eastern Africa","Eastern Africa","Eastern Africa","Eastern Africa","Southern Europe","Southern Europe","Southern Europe","Southern Europe","Southern Europe","Caribbean","Eastern Africa"],["Sovereign country","Sovereign country","Indeterminate","Sovereign country","Country","Sovereign country","Sovereign country","Sovereign country","Sovereign country","Sovereign country","Sovereign country","Sovereign country","Sovereign country","Sovereign country","Sovereign country","Sovereign country","Sovereign country","Sovereign country","Sovereign country","Sovereign country","Dependency","Sovereign country","Country","Dependency","Sovereign country","Sovereign country","Sovereign country","Sovereign country","Sovereign country","Sovereign country","Sovereign country","Sovereign country","Sovereign country","Sovereign country","Sovereign country","Sovereign country","Sovereign country","Sovereign country","Sovereign country","Sovereign country","Sovereign country","Sovereign country","Sovereign country","Country","Sovereign country","Dependency","Sovereign country","Sovereign country","Sovereign country","Sovereign country","Sovereign country","Sovereign country","Sovereign country","Sovereign country","Sovereign country","Sovereign country","Sovereign country","Sovereign country","Sovereign country","Sovereign country","Sovereign country","Sovereign country","Sovereign country","Sovereign country","Sovereign country","Sovereign country","Sovereign country","Sovereign country","Sovereign country","Sovereign country","Sovereign country","Sovereign country","Sovereign country","Sovereign country","Sovereign country","Sovereign country","Country","Sovereign country","Sovereign country","Disputed","Sovereign country","Sovereign country","Sovereign country","Sovereign country","Sovereign country","Sovereign country","Sovereign country","Sovereign country","Sovereign country","Sovereign country","Sovereign country","Sovereign country","Sovereign country","Sovereign country","Sovereign country","Sovereign country","Sovereign country","Sovereign country","Sovereign country","Sovereign country","Sovereign country","Sovereign country","Sovereign country","Sovereign country","Sovereign country","Sovereign country","Sovereign country","Sovereign country","Sovereign country","Sovereign country","Sovereign country","Sovereign country","Sovereign country","Sovereign country","Sovereign country","Sovereign country","Sovereign country","Sovereign country","Sovereign country","Sovereign country","Sovereign country","Sovereign country","Sovereign country","Sovereign country","Sovereign country","Sovereign country","Sovereign country","Sovereign country","Sovereign country","Sovereign country","Country","Sovereign country","Sovereign country","Sovereign country","Dependency","Sovereign country","Country","Country","Sovereign country","Country","Sovereign country","Sovereign country","Country","Country","Sovereign country","Sovereign country","Sovereign country","Sovereign country","Sovereign country","Sovereign country","Sovereign country","Country","Sovereign country","Sovereign country","Sovereign country","Sovereign country","Sovereign country","Sovereign country","Sovereign country","Indeterminate","Sovereign country","Sovereign country","Sovereign country","Sovereign country","Sovereign country","Sovereign country","Sovereign country","Indeterminate","Sovereign country","Sovereign country","Sovereign country","Sovereign country","Sovereign country","Sovereign country","Sovereign country","Sovereign country","Sovereign country"],[19289.9707329765,932745.792357074,96270.60104084721,10036042.9767873,9510743.744824581,2729810.51298781,461410.258459096,464520.072464586,1819251.32898731,2784468.58938384,814844.2204878021,2323492.47746214,484332.792984678,590836.914195733,1850885.56479243,1271694.59820398,28540.5459842261,48157.8742821646,17018507.4094666,15584.7908248632,16363.7987423901,397994.628980977,2206644.43953262,11602.5718467462,14714.9313315426,1216400.83108031,27505.6549786909,1969480.30676826,176853.635919616,8508557.091825729,1085269.59559136,1309699.63635968,1151882.92596349,75265.4490305216,53832.1357021123,129540.211674483,113789.774793235,20893.3402330773,109459.048786204,22045.4508313613,908499.070492869,209801.857246846,144268.722604462,644847.882258842,250747.109536984,9224.663167074759,12460.5868709093,114866.218150043,376328.488742711,591912.017166329,824886.560992482,194390.438881923,1235561.37340316,1054107.1940836,116998.712578633,1182269.64800007,905071.739171952,460324.701614163,60966.9622339568,243473.120281533,329825.951440485,239565.079458458,36191.8856963154,98206.7829620829,75980.3314665435,271593.671943161,621860.349185054,339681.855452815,269475.797919465,27120.5747694609,751921.215016539,111197.018347598,810994.757216461,18118.6341282849,1245463.74769785,26238.9478592737,22991.165807789,10099.0030328829,589382.827011519,5037.10382587155,14031.2844514589,156237.321647096,2315916.65788588,89207.13690631661,79880.73828096691,11327.854664807,16652.1196912198,436965.03416826,309302.033595231,7490.040146716,182235.977782045,510125.56979289,229080.422295565,679573.994237083,335990.801728306,125679.216030188,99044.36683048939,1544322.15019105,3142892.09769282,133782.141414655,39377.4020057345,150706.871321559,874119.998315395,652270.070308025,138111.759254274,195874.658497004,480809.521855032,1617559.0402466,185004.125494595,28656.6007515336,450581.582203591,208969.829718131,572548.983743491,310402.33298673,85064.89515859541,92476.460365273,32320.3917738368,238356.297115474,63831.0914781956,63923.5330136017,44678.1968086173,357430.341206566,110216.875059118,131964.646663977,798849.164057534,29694.8002916761,57530.8517530272,46185.2506729716,2416.87048266498,30126.0378859233,40024.104481118,93408.59409916009,502306.467818081,58457.5134141208,23219.0117362846,24728.114237136,277627.604539654,7687613.84310903,65370.3895242611,9409830.493433909,34345.7011138443,315104.851197605,42759.9277031922,249986.395211549,107735.721363006,91113.2541543127,69048.16050446031,292256.939380041,338226.486563138,10700.3342457981,19118.1227179494,341242.33887092,47068.0820296185,81207.60292943619,119319.584873889,404619.932853689,401335.916394788,455915.007254186,1920324.14608918,12335956.0763551,3786.36450592132,6207.00619061686,591718.98943203,996311.623193406,1633720.7173726,1132393.1671779,21880.2505119017,167349.612740013,245768.479387209,23365.4111927782,50605.0748516557,25062.2552860575,76388.6050646267,13443.6780594717,11230.2616721538,7737.80985537389,624909.0990858451],[885806,52234869,null,35535348,318622525,17288285,30757700,7755785,255131116,42981515,17613798,73722860,13513125,46024250,37737913,13569438,10572466,10405844,143819666,382169,null,null,56295,null,1212814,54539571,2145785,124221600,3419546,204213133,10562159,30973354,47791911,3903986,4757575,6013997,8809216,6281189,15923559,351694,30738378,763393,547928,null,15903112,3534874,2862087,11439767,15411675,2168573,2370992,14546111,16962846,4063920,10286712,19148219,176460502,22239904,7228915,26962563,22531350,11805509,1725744,4390737,7079162,17585977,4515392,4871101,1875713,1129424,15620974,17068838,27212382,1295097,26920466,9891790,8215700,5603279,23589801,4294682,1917852,11143908,39113313,8809306,9070867,2374419,3782450,35006080,3960925,258850,15270790,68416772,6576397,51924182,92544915,25116363,50746659,2923896,1293859294,159405279,776448,28323241,185546257,32758020,8362745,5835500,5466241,78411092,19203090,2906220,9696110,9474511,45271947,38011735,8546356,9866468,3556397,19908979,2932367,1993782,1314545,80982500,7223938,10892413,77030628,2889104,4238389,8188649,556319,11209057,16865008,10401062,46480882,4657740,268050,575504,4509700,23504138,20771000,1364270000,null,60789140,5643475,64613160,327386,9535079,3727000,100102249,30228017,411704,2061980,5461512,5418649,10525347,null,127276000,6552584,26246327,30776722,null,null,1152309,34318082,91812566,6204108,97366774,912164,null,38833338,11345357,3566002,2077495,7130576,621810,1821800,1354493,11530971],[69.95999999999999,64.163,null,81.9530487804878,78.84146341463411,71.62,71.039,65.23,68.85599999999999,76.252,79.117,58.782,55.467,66.242,64.002,52.204,62.757,73.483,70.7436585365854,75.379,null,null,null,null,68.285,60.993,53.268,76.753,77.19,75.042,68.357,74.518,74.02200000000001,77.61,79.44,74.884,73.181,73.015,72.869,70.027,74.196,66.425,71.13800000000001,null,75.879,79.3901219512195,75.68899999999999,79.41500000000001,59.36,64.78,62.981,66.376,57.007,62.907,60.373,59.228,52.549,57.111,59.601,62.154,52.52,58.846,56.598,61.527,50.951,59.457,50.621,63.536,65.211,57.18,60.775,61.932,57.099,56.287,60.858,56.688,82.1536585365854,79.23099999999999,65.133,73.126,60.707,75.33499999999999,75.64100000000001,74.03400000000001,76.94799999999999,77.88800000000001,74.458,69.458,76.578,71.709,68.251,74.895,65.97499999999999,66.285,75.855,71.179,81.72195121951221,68.84699999999999,68.021,71.803,69.43000000000001,69.511,66.139,62.895,70.69,70.4024390243902,67.55200000000001,75.46599999999999,69.81699999999999,74.255,82.25365853658541,72.9707317073171,71.1865853658537,77.60243902439031,81.490243902439,75.7634146341463,71.258,74.9609756097561,74.51707317073171,74.1243902439024,77.0341463414634,81.090243902439,74.4658536585366,81.3853658536585,75.239,77.96299999999999,77.4780487804878,83.1975609756098,82.2292682926829,81.2878048780488,81.7073170731707,81.1219512195122,83.2292682926829,81.3487804878049,77.25287259572259,70.113,81.4048780487805,82.3,74.90600000000001,75.932,null,83.090243902439,80.7,81.30487804878049,82.8609756097561,71.8,72.95099999999999,68.813,74.976,76.917,81.0780487804878,81.1804878048781,76.81219512195121,78.8243902439024,64.17400000000001,83.5878048780488,72.913,64.523,74.23399999999999,null,null,80.173,75.309,71.12,71.65900000000001,64.535,62.006,null,59.224,66.188,76.56100000000001,75.384,75.33658536585369,76.712,71.0975609756098,70.426,55.817],[8222.25378436842,2402.09940362843,null,43079.1425247165,51921.9846391384,23587.3375151466,5370.86580208835,3709.08164370316,10003.0890293448,18797.5479465897,22195.2743713617,785.347340663008,null,2753.23613475312,4188.33481399507,2076.65000798778,1652.85480345734,12663.0422473566,25284.5862019855,28456.8165292476,null,null,null,null,6262.90551556596,12389.7146679241,2677.19807805197,16622.5970457658,19827.5649886027,15374.2615071807,6324.82725807651,11547.8342162709,12715.9673914398,20017.9943624961,14372.4007814474,4784.83046366078,4231.32506716223,6890.72322429183,7147.42922806486,7999.57369198528,16745.0219796981,6906.01230864481,15306.6924367639,null,10901.4185562194,35066.0463763697,8051.24402830602,null,1925.138698418,15914.6702328332,9617.3969565111,2218.55191733521,1865.16062183071,3655.38850923143,2001.0772890116,904.456729989966,5671.9006010195,3196.36152634263,1315.3402595533,3868.60089371873,3054.53487386428,1734.73674695657,1398.25480632738,804.719886747093,1692.14206707555,1582.33369667322,597.135168986395,5538.05294137178,16678.6381326502,31542.5107726021,3632.50375331402,1090.3672076732,1079.82386564737,7870.97074814257,6257.15287433489,803.172837396172,31702.0835366295,13831.3752293893,1372.02096124513,4319.52828287882,1550.21843235512,10767.0276518537,13483.3378622219,8622.18546801292,63943.1858285789,120860.06755829,70832.36836452071,14838.3829483763,40365.2732623193,2892.34160435097,3124.31929344274,14857.202932021,5436.48264275006,4770.01209867368,5264.82809971072,null,33425.6895931418,11348.6473412397,5385.14181406703,2973.0415646346,7366.42412644897,2266.18429824848,4576.2270153496,1838.96024371997,2546.50048351137,3181.64216292265,14332.3657698371,16924.2006778247,null,7971.11792762162,44167.6318669891,17944.2098463253,8243.47351509088,24347.0736576846,44320.5020125474,24161.4255236519,4762.7808726743,19677.5202527307,26258.2100974103,22172.2535081352,27113.6859213723,43560.6192440775,16302.3205614307,24081.6305378246,22401.8804311394,10701.1207857986,20334.4464738451,57218.0279263612,93655.33416306481,41360.3955755286,45668.4414721322,26023.6978492184,31195.4052422035,48898.3286615603,null,2139.56074060145,34455.3312172237,43547.1974836868,10650.3901782483,12758.647789259,null,33945.8438783585,45057.0741699595,38251.7924802929,41701.1372653816,16715.1055213058,8749.156189273521,6585.89594870884,24194.6339084542,76089.2865740815,28417.656441512,39017.5372069548,27285.284673711,29119.6166119074,null,37337.3174057788,8501.54353959203,3766.80525494897,49958.4433361471,null,null,29786.3656529772,7078.88148932392,9879.79935855302,16371.9021546442,1424.52698442707,null,null,1637.27508138464,1629.86886584829,10516.7864355965,12298.4901835571,13112.9089581967,14796.6353955591,8698.291558898831,31181.8211959284,1935.87940008879]],"container":"<table class=\"display\">\n  <thead>\n    <tr>\n      <th> <\/th>\n      <th>iso_a2<\/th>\n      <th>name_long<\/th>\n      <th>continent<\/th>\n      <th>region_un<\/th>\n      <th>subregion<\/th>\n      <th>type<\/th>\n      <th>area_km2<\/th>\n      <th>pop<\/th>\n      <th>lifeExp<\/th>\n      <th>gdpPercap<\/th>\n    <\/tr>\n  <\/thead>\n<\/table>","options":{"pageLength":5,"scrollX":true,"headerCallback":"function(thead) {\n  $(thead).css('font-size', '0.7em');\n}","columnDefs":[{"targets":7,"render":"function(data, type, row, meta) {\n    return type !== 'display' ? data : DTWidget.formatRound(data, 2, 3, \",\", \".\", null);\n  }"},{"targets":9,"render":"function(data, type, row, meta) {\n    return type !== 'display' ? data : DTWidget.formatRound(data, 2, 3, \",\", \".\", null);\n  }"},{"targets":10,"render":"function(data, type, row, meta) {\n    return type !== 'display' ? data : DTWidget.formatRound(data, 2, 3, \",\", \".\", null);\n  }"},{"className":"dt-right","targets":[7,8,9,10]},{"orderable":false,"targets":0}],"order":[],"autoWidth":false,"orderClasses":false,"lengthMenu":[5,10,25,50,100],"rowCallback":"function(row, data, displayNum, displayIndex, dataIndex) {\nvar value=data[1]; $(this.api().cell(row, 1).node()).css({'font-size':'12px'});\nvar value=data[2]; $(this.api().cell(row, 2).node()).css({'font-size':'12px'});\nvar value=data[3]; $(this.api().cell(row, 3).node()).css({'font-size':'12px'});\nvar value=data[4]; $(this.api().cell(row, 4).node()).css({'font-size':'12px'});\nvar value=data[5]; $(this.api().cell(row, 5).node()).css({'font-size':'12px'});\nvar value=data[6]; $(this.api().cell(row, 6).node()).css({'font-size':'12px'});\nvar value=data[7]; $(this.api().cell(row, 7).node()).css({'font-size':'12px'});\nvar value=data[8]; $(this.api().cell(row, 8).node()).css({'font-size':'12px'});\nvar value=data[9]; $(this.api().cell(row, 9).node()).css({'font-size':'12px'});\nvar value=data[10]; $(this.api().cell(row, 10).node()).css({'font-size':'12px'});\n}"}},"evals":["options.headerCallback","options.columnDefs.0.render","options.columnDefs.1.render","options.columnDefs.2.render","options.rowCallback"],"jsHooks":[]}</script>
 <div class="sourceCode" id="cb2"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb2-1"><a href="資料清洗與處理.html#cb2-1" tabindex="-1"></a><span class="co"># 咖啡產量資料</span></span>
 <span id="cb2-2"><a href="資料清洗與處理.html#cb2-2" tabindex="-1"></a>coffee<span class="ot">=</span><span class="fu">read.csv</span>(<span class="st">&quot;https://raw.githubusercontent.com/ChiaJung-Yeh/Transport-Analysis/master/Data/coffee.csv&quot;</span>)</span></code></pre></div>
-<div class="datatables html-widget html-fill-item-overflow-hidden html-fill-item" id="htmlwidget-cc8209a6cc63c6b8ac54" style="width:100%;height:auto;"></div>
-<script type="application/json" data-for="htmlwidget-cc8209a6cc63c6b8ac54">{"x":{"filter":"none","vertical":false,"data":[["1","2","3","4","5","6","7","8","9","10","11","12","13","14","15","16","17","18","19","20","21","22","23","24","25","26","27","28","29","30","31","32","33","34","35","36","37","38","39","40","41","42","43","44","45","46","47"],["Angola","Bolivia","Brazil","Burundi","Cameroon","Central African Republic","Congo, Dem. Rep. of","Colombia","Costa Rica","Cote d'Ivoire","Cuba","Dominican Republic","Ecuador","El Salvador","Ethiopia","Gabon","Ghana","Guatemala","Honduras","India","Indonesia","Jamaica","Kenya","Liberia","Madagascar","Malawi","Mexico","Nepal","Nicaragua","Panama","Papua New Guinea","Paraguay","Peru","Philippines","Rwanda","Sierra Leone","Tanzania","Thailand","Timor-Leste","Togo","Uganda","Venezuela","Vietnam","Yemen","Zambia","Zimbabwe","Others"],[null,3,3277,37,8,null,4,1330,28,114,null,1,87,5,215,null,1,58,149,453,742,null,60,null,3,3,151,null,42,3,114,null,585,2,36,1,81,39,14,2,408,null,1844,4,3,1,23],[null,4,2786,38,6,null,12,1169,32,130,null,null,62,8,283,null,1,70,165,566,360,1,50,null,5,1,220,null,45,3,74,null,625,null,42,3,66,16,2,3,443,null,1700,1,null,1,26]],"container":"<table class=\"display\">\n  <thead>\n    <tr>\n      <th> <\/th>\n      <th>name_long<\/th>\n      <th>coffee_production_2016<\/th>\n      <th>coffee_production_2017<\/th>\n    <\/tr>\n  <\/thead>\n<\/table>","options":{"pageLength":5,"scrollX":true,"headerCallback":"function(thead) {\n  $(thead).css('font-size', '0.7em');\n}","columnDefs":[{"className":"dt-right","targets":[2,3]},{"orderable":false,"targets":0}],"order":[],"autoWidth":false,"orderClasses":false,"lengthMenu":[5,10,25,50,100],"rowCallback":"function(row, data, displayNum, displayIndex, dataIndex) {\nvar value=data[1]; $(this.api().cell(row, 1).node()).css({'font-size':'12px'});\nvar value=data[2]; $(this.api().cell(row, 2).node()).css({'font-size':'12px'});\nvar value=data[3]; $(this.api().cell(row, 3).node()).css({'font-size':'12px'});\n}"}},"evals":["options.headerCallback","options.rowCallback"],"jsHooks":[]}</script>
+<div class="datatables html-widget html-fill-item-overflow-hidden html-fill-item" id="htmlwidget-b6e2417180a82b9413b7" style="width:100%;height:auto;"></div>
+<script type="application/json" data-for="htmlwidget-b6e2417180a82b9413b7">{"x":{"filter":"none","vertical":false,"data":[["1","2","3","4","5","6","7","8","9","10","11","12","13","14","15","16","17","18","19","20","21","22","23","24","25","26","27","28","29","30","31","32","33","34","35","36","37","38","39","40","41","42","43","44","45","46","47"],["Angola","Bolivia","Brazil","Burundi","Cameroon","Central African Republic","Congo, Dem. Rep. of","Colombia","Costa Rica","Cote d'Ivoire","Cuba","Dominican Republic","Ecuador","El Salvador","Ethiopia","Gabon","Ghana","Guatemala","Honduras","India","Indonesia","Jamaica","Kenya","Liberia","Madagascar","Malawi","Mexico","Nepal","Nicaragua","Panama","Papua New Guinea","Paraguay","Peru","Philippines","Rwanda","Sierra Leone","Tanzania","Thailand","Timor-Leste","Togo","Uganda","Venezuela","Vietnam","Yemen","Zambia","Zimbabwe","Others"],[null,3,3277,37,8,null,4,1330,28,114,null,1,87,5,215,null,1,58,149,453,742,null,60,null,3,3,151,null,42,3,114,null,585,2,36,1,81,39,14,2,408,null,1844,4,3,1,23],[null,4,2786,38,6,null,12,1169,32,130,null,null,62,8,283,null,1,70,165,566,360,1,50,null,5,1,220,null,45,3,74,null,625,null,42,3,66,16,2,3,443,null,1700,1,null,1,26]],"container":"<table class=\"display\">\n  <thead>\n    <tr>\n      <th> <\/th>\n      <th>name_long<\/th>\n      <th>coffee_production_2016<\/th>\n      <th>coffee_production_2017<\/th>\n    <\/tr>\n  <\/thead>\n<\/table>","options":{"pageLength":5,"scrollX":true,"headerCallback":"function(thead) {\n  $(thead).css('font-size', '0.7em');\n}","columnDefs":[{"className":"dt-right","targets":[2,3]},{"orderable":false,"targets":0}],"order":[],"autoWidth":false,"orderClasses":false,"lengthMenu":[5,10,25,50,100],"rowCallback":"function(row, data, displayNum, displayIndex, dataIndex) {\nvar value=data[1]; $(this.api().cell(row, 1).node()).css({'font-size':'12px'});\nvar value=data[2]; $(this.api().cell(row, 2).node()).css({'font-size':'12px'});\nvar value=data[3]; $(this.api().cell(row, 3).node()).css({'font-size':'12px'});\n}"}},"evals":["options.headerCallback","options.rowCallback"],"jsHooks":[]}</script>
 <p>世界國家資料（<code>world</code>）中詳記各國資訊，包括人口數（pop）、面積（area_km2）、lifeExp（壽命）、gdpPerCap（人均 GDP）等；咖啡（<code>coffee</code>）資料中詳記世界各國 2016 與 2017 年的咖啡產量。</p>
 <div id="data.frame-與-data.table" class="section level2 hasAnchor" number="2.1">
 <h2><span class="header-section-number">2.1</span> data.frame 與 data.table<a href="資料清洗與處理.html#data.frame-與-data.table" class="anchor-section" aria-label="Anchor link to header"></a></h2>
@@ -593,7 +593,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 ## 6     Kazakhstan  2729810.51</code></pre>
 <div class="strong">
 <p style="color:#750000;">
-使用<code>data.table</code>套件選取欄位，程式碼撰寫如下。
+<strong>使用<code>data.table</code>套件選取欄位</strong>
 </p>
 <div class="sourceCode" id="cb15"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb15-1"><a href="資料清洗與處理.html#cb15-1" tabindex="-1"></a>world_DT[, .(name_long, area_km2)]</span></code></pre></div>
 </div>
@@ -625,7 +625,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 ## 6     Kazakhstan          Asia     Central Asia</code></pre>
 <div class="strong">
 <p style="color:#750000;">
-使用<code>data.table</code>套件選取欄位，程式碼撰寫如下。
+<strong>使用<code>data.table</code>套件選取欄位</strong>
 </p>
 <div class="sourceCode" id="cb19"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb19-1"><a href="資料清洗與處理.html#cb19-1" tabindex="-1"></a>world_DT[, ..sel_col_name]</span></code></pre></div>
 </div>
@@ -647,7 +647,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 ## 6     KZ     Kazakhstan  2729810.51  17288285 71.62000 23587.338</code></pre>
 <div class="strong">
 <p style="color:#750000;">
-使用<code>data.table</code>套件刪除欄位，程式碼撰寫如下。
+<strong>使用<code>data.table</code>套件刪除欄位</strong>
 </p>
 <div class="sourceCode" id="cb22"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb22-1"><a href="資料清洗與處理.html#cb22-1" tabindex="-1"></a>del_col_name<span class="ot">=</span><span class="fu">c</span>(<span class="st">&quot;continent&quot;</span>,<span class="st">&quot;region_un&quot;</span>,<span class="st">&quot;subregion&quot;</span>,<span class="st">&quot;type&quot;</span>)</span>
 <span id="cb22-2"><a href="資料清洗與處理.html#cb22-2" tabindex="-1"></a>world_DT[, <span class="sc">!</span>..del_col_name]</span></code></pre></div>
@@ -686,7 +686,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <pre><code>## [1] 12</code></pre>
 <div class="strong">
 <p style="color:#750000;">
-使用<code>data.table</code>套件篩選資料，程式碼撰寫如下。
+<strong>使用<code>data.table</code>套件篩選資料</strong>
 </p>
 <div class="sourceCode" id="cb28"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb28-1"><a href="資料清洗與處理.html#cb28-1" tabindex="-1"></a>world_DT[pop<span class="sc">&gt;</span><span class="dv">100000000</span>]</span></code></pre></div>
 </div>
@@ -716,7 +716,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 ## 6 Sovereign country    14714.93   1212814 68.28500  6262.906</code></pre>
 <div class="strong">
 <p style="color:#750000;">
-使用<code>data.table</code>套件篩選資料，程式碼撰寫如下。
+<strong>使用<code>data.table</code>套件篩選資料</strong>
 </p>
 <div class="sourceCode" id="cb31"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb31-1"><a href="資料清洗與處理.html#cb31-1" tabindex="-1"></a>world_DT[continent <span class="sc">%in%</span> <span class="fu">c</span>(<span class="st">&quot;Asia&quot;</span>, <span class="st">&quot;Europe&quot;</span>)]</span></code></pre></div>
 </div>
@@ -751,7 +751,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <span id="cb36-2"><a href="資料清洗與處理.html#cb36-2" tabindex="-1"></a>world_fil4<span class="ot">=</span><span class="fu">filter</span>(world, continent <span class="sc">%in%</span> <span class="fu">c</span>(<span class="st">&quot;Asia&quot;</span>, <span class="st">&quot;Europe&quot;</span>) <span class="sc">&amp;</span> pop<span class="sc">&gt;</span><span class="dv">100000000</span>)</span></code></pre></div>
 <div class="strong">
 <p style="color:#750000;">
-使用<code>data.table</code>套件篩選資料，程式碼撰寫如下。
+<strong>使用<code>data.table</code>套件篩選資料</strong>
 </p>
 <div class="sourceCode" id="cb37"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb37-1"><a href="資料清洗與處理.html#cb37-1" tabindex="-1"></a>world_DT[continent <span class="sc">%in%</span> <span class="fu">c</span>(<span class="st">&quot;Asia&quot;</span>, <span class="st">&quot;Europe&quot;</span>) <span class="sc">&amp;</span> pop<span class="sc">&gt;</span><span class="dv">100000000</span>]</span></code></pre></div>
 </div>
@@ -767,7 +767,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <pre><code>## [1] 90</code></pre>
 <div class="strong">
 <p style="color:#750000;">
-使用<code>data.table</code>套件篩選資料，程式碼撰寫如下。
+<strong>使用<code>data.table</code>套件篩選資料</strong>
 </p>
 <div class="sourceCode" id="cb40"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb40-1"><a href="資料清洗與處理.html#cb40-1" tabindex="-1"></a>world_DT[continent <span class="sc">%in%</span> <span class="fu">c</span>(<span class="st">&quot;Asia&quot;</span>, <span class="st">&quot;Europe&quot;</span>) <span class="sc">|</span> pop<span class="sc">&gt;</span><span class="dv">100000000</span>]</span></code></pre></div>
 </div>
@@ -795,7 +795,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 ## 6     Kazakhstan  2729810.51  17288285  6.333145</code></pre>
 <div class="strong">
 <p style="color:#750000;">
-使用<code>data.table</code>套件新增資料屬性，程式碼撰寫如下。
+<strong>使用<code>data.table</code>套件新增資料屬性</strong>
 </p>
 <div class="sourceCode" id="cb44"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb44-1"><a href="資料清洗與處理.html#cb44-1" tabindex="-1"></a><span class="co"># 新增一個變數時</span></span>
 <span id="cb44-2"><a href="資料清洗與處理.html#cb44-2" tabindex="-1"></a>world_mut<span class="ot">=</span>world_DT[, pop_dens <span class="sc">:=</span> pop<span class="sc">/</span>area_km2]</span>
@@ -884,7 +884,10 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 ## 6       Bahamas North America 382169</code></pre>
 <div class="strong">
 <p style="color:#750000;">
-使用<code>data.table</code>套件排序，函式撰寫架構如下。
+<strong>使用<code>data.table</code>套件排序</strong>
+</p>
+<p style="color:#4D0000;">
+<strong>函式架構：</strong>
 </p>
 <div class="sourceCode" id="cb54"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb54-1"><a href="資料清洗與處理.html#cb54-1" tabindex="-1"></a>資料[<span class="fu">order</span>(待排序欄位)]</span></code></pre></div>
 <p>以<code>world</code>資料，依人口數由少至多排列為例，程式碼撰寫如下</p>
@@ -910,7 +913,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 ## 6      Pakistan          Asia  185546257</code></pre>
 <div class="strong">
 <p style="color:#750000;">
-使用<code>data.table</code>套件倒序排列資料，程式碼撰寫如下。
+<strong>使用<code>data.table</code>套件倒序排列資料</strong>
 </p>
 <div class="sourceCode" id="cb58"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb58-1"><a href="資料清洗與處理.html#cb58-1" tabindex="-1"></a>world_DT[<span class="fu">order</span>(<span class="sc">-</span>pop)]</span></code></pre></div>
 </div>
@@ -972,7 +975,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 ## 8 South America           Argentina             2.78e6  4.30e7    76.3    18798.</code></pre>
 <div class="strong">
 <p style="color:#750000;">
-使用<code>data.table</code>套件分群統計，程式碼撰寫如下。
+<strong>使用<code>data.table</code>套件分群統計</strong>
 </p>
 <p style="color:#4D0000;">
 <strong>函式架構：</strong>
@@ -1009,9 +1012,9 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 ## 16 South America           Paraguay</code></pre>
 <div class="strong">
 <p style="color:#750000;">
-使用<code>data.table</code>套件分群統計，程式碼撰寫如下。
+<strong>使用<code>data.table</code>套件分群統計</strong>
 </p>
-<p>回傳<code>world</code>資料中各分群（洲）內的第一筆與最後一筆資料。</p>
+<p>回傳<code>world</code>資料中各分群（洲）內的第一筆與最後一筆資料，程式碼撰寫如下。</p>
 <div class="sourceCode" id="cb70"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb70-1"><a href="資料清洗與處理.html#cb70-1" tabindex="-1"></a>world_DT[, .SD[<span class="fu">c</span>(<span class="dv">1</span>, .N)], by<span class="ot">=</span>continent]</span></code></pre></div>
 <p>上述程式碼中的<code>.N</code>意同<code>dplyr</code>套件中的<code>n()</code>。</p>
 </div>
@@ -1048,9 +1051,9 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 ## 20 South America           Peru                 1.31e6  3.10e7    74.5    11548.</code></pre>
 <div class="strong">
 <p style="color:#750000;">
-使用<code>data.table</code>套件分群統計，程式碼撰寫如下。
+<strong>使用<code>data.table</code>套件分群統計</strong>
 </p>
-<p>回傳<code>world</code>資料中各分群（洲）面積前三大的資料。</p>
+<p>回傳<code>world</code>資料中各分群（洲）面積前三大的資料，程式碼撰寫如下。</p>
 <div class="sourceCode" id="cb73"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb73-1"><a href="資料清洗與處理.html#cb73-1" tabindex="-1"></a>world_DT[<span class="fu">order</span>(<span class="sc">-</span>area_km2)]<span class="sc">%&gt;%</span></span>
 <span id="cb73-2"><a href="資料清洗與處理.html#cb73-2" tabindex="-1"></a>  .[, .SD[<span class="fu">c</span>(<span class="dv">1</span><span class="sc">:</span><span class="dv">3</span>)], by<span class="ot">=</span>continent]</span></code></pre></div>
 <p>與<code>dplyr</code>套件的撰寫方式相同，若欲串接不同的函式，可透過 pipe (<code>%&gt;%</code>) 連接。另外請注意此回傳結果會保留所有匹配與未匹配的資料，例如<code>world_DT</code>資料中 Antarctica 僅有一個區域，而由於我們尋找前六筆資料，此函式會回傳所有六筆結果，未匹配者則在其他筆資料中顯示<code>NA</code>。</p>
@@ -1086,9 +1089,9 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <p>以上程式碼中<code>which.max()</code>函式用以尋找最大值的索引；<code>which.min()</code>則尋找最小值之索引。此時利用<code>group_by() %&gt;% slice()</code>函式可同時回傳符合不同特定條件者。綜上所述，<code>group_by() %&gt;% slice()</code>函式的使用上相當具彈性。</p>
 <div class="strong">
 <p style="color:#750000;">
-使用<code>data.table</code>套件分群統計，程式碼撰寫如下。
+<strong>使用<code>data.table</code>套件分群統計</strong>
 </p>
-<p>回傳<code>world</code>資料中各分群（洲）面積最大與最小的資料。</p>
+<p>回傳<code>world</code>資料中各分群（洲）面積最大與最小的資料，程式碼撰寫如下。</p>
 <div class="sourceCode" id="cb76"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb76-1"><a href="資料清洗與處理.html#cb76-1" tabindex="-1"></a>world_DT[, .SD[<span class="fu">c</span>(<span class="fu">which.min</span>(area_km2), <span class="fu">which.max</span>(area_km2))], by<span class="ot">=</span>continent]</span></code></pre></div>
 </div>
 <p style="color:#003D79;font-size:18px;line-height:2">
@@ -1118,7 +1121,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <p>請注意於本範例中由於總人口數（pop）欄位中含有部分 NA，故為避免計算結果有誤，須在<code>sum()</code>函式中設定<code>na.rm=T</code>引數。此外，由輸出結果可發現，有別於<code>group_by() %&gt;% filter()</code>函式會回傳所有的資料欄位，<code>group_by() %&gt;% summarise()</code>函式僅回傳指定的統計資料欄位。另外<code>n()</code>函式表示計算各分群內的總資料筆數。</p>
 <div class="strong">
 <p style="color:#750000;">
-使用<code>data.table</code>套件分群統計，程式碼撰寫如下。
+<strong>使用<code>data.table</code>套件分群統計</strong>
 </p>
 <p style="color:#4D0000;">
 <strong>函式架構：</strong>
@@ -1161,9 +1164,9 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <p>由以上程式碼可知各洲人均 GDP 的範圍。另須注意的是，由於「Antarctica」中所有國家並無人均 GDP 的資料，故回傳之上下界為 Inf 與 -Inf。</p>
 <div class="strong">
 <p style="color:#750000;">
-使用<code>data.table</code>套件分群統計，程式碼撰寫如下。
+<strong>使用<code>data.table</code>套件分群統計</strong>
 </p>
-<p>回傳<code>world</code>資料中各分群（洲）總人口數與國家個數。</p>
+<p>回傳<code>world</code>資料中各分群（洲）總人口數與國家個數，程式碼撰寫如下。</p>
 <div class="sourceCode" id="cb85"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb85-1"><a href="資料清洗與處理.html#cb85-1" tabindex="-1"></a>world_DT[, .(<span class="at">pop=</span><span class="fu">sum</span>(pop, <span class="at">na.rm=</span>T), <span class="at">County_N=</span>.N), by<span class="ot">=</span>continent]</span></code></pre></div>
 </div>
 </div>
@@ -1202,7 +1205,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </thead>
 <tbody>
 <tr>
-<td style="text-align:left;font-weight: bold;color: white !important;background-color: #8E8E8E !important;">
+<td style="text-align:left;font-weight: bold;color: white !important;background-color: #D0D0D0 !important;">
 <a href="資料清洗與處理.html#left-join">以第一份（左側）資料為基準</a>
 </td>
 <td style="text-align:left;">
@@ -1216,31 +1219,31 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </td>
 </tr>
 <tr>
-<td style="text-align:left;font-weight: bold;color: white !important;background-color: #8E8E8E !important;">
+<td style="text-align:left;font-weight: bold;color: white !important;background-color: #D0D0D0 !important;">
 <a href="資料清洗與處理.html#full-join">保留資料1與資料2所有資料</a>
 </td>
 <td style="text-align:left;">
 <code>full_join(資料1, 資料2)</code>
 </td>
 <td style="text-align:left;">
-<code>merge(資料1, 資料2)</code>
+<code>merge(資料1, 資料2, all=T)</code>
 </td>
 <td style="text-align:left;">
-<code>merge.data.table(資料1, 資料2)</code>
+<code>merge.data.table(資料1, 資料2, all=T)</code>
 </td>
 </tr>
 <tr>
-<td style="text-align:left;font-weight: bold;color: white !important;background-color: #8E8E8E !important;">
+<td style="text-align:left;font-weight: bold;color: white !important;background-color: #D0D0D0 !important;">
 <a href="資料清洗與處理.html#inner-join">保留共同擁有的參照欄位之資料</a>
 </td>
 <td style="text-align:left;">
 <code>inner_join(資料1, 資料2)</code>
 </td>
 <td style="text-align:left;">
-<code>merge(資料1, 資料2, all=T)</code>
+<code>merge(資料1, 資料2)</code>
 </td>
 <td style="text-align:left;">
-<code>merge.data.table(資料1, 資料2, all=T)</code>
+<code>merge.data.table(資料1, 資料2)</code>
 </td>
 </tr>
 </tbody>
@@ -1250,11 +1253,11 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <strong>⌾ 以第一份（左側）資料為基準</strong>
 </p>
 </H2>
-<p><code>1eft_join()</code>的函式撰寫架構如下。</p>
-<div class="sourceCode" id="cb86"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb86-1"><a href="資料清洗與處理.html#cb86-1" tabindex="-1"></a>1eft<span class="fu">_join</span>(資料1, 資料2, <span class="at">by=</span><span class="st">&quot;參照欄位&quot;</span>)</span></code></pre></div>
-<p>函式中的<code>by=</code>引數用以設定「參照欄位」，亦即若兩份資料的參照欄位內容是相同者，便將<code>資料2</code>的欄位貼附於<code>資料1</code>後。<code>1eft_join()</code>函式是保留<code>資料1</code>的所有資料，故若參照欄位的內容於<code>資料2</code>找不到相對應者，則該列貼附的結果會直接回傳「NA」。</p>
+<p><code>left_join()</code>的函式撰寫架構如下。</p>
+<div class="sourceCode" id="cb86"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb86-1"><a href="資料清洗與處理.html#cb86-1" tabindex="-1"></a><span class="fu">left_join</span>(資料1, 資料2, <span class="at">by=</span><span class="st">&quot;參照欄位&quot;</span>)</span></code></pre></div>
+<p>函式中的<code>by=</code>引數用以設定「參照欄位」，亦即若兩份資料的參照欄位內容是相同者，便將<code>資料2</code>的欄位貼附於<code>資料1</code>後。<code>left_join()</code>函式是保留<code>資料1</code>的所有資料，故若參照欄位的內容於<code>資料2</code>找不到相對應者，則該列貼附的結果會直接回傳「NA」。</p>
 <p>另外需注意的是，<code>by=</code>引數可以不用設定，而此時該函式預設在兩份資料中尋找所有相同欄位名稱者作為參照欄位。而若兩份資料內欲參照的欄位名稱不相同時，引數設定須為<code>by=c(資料1參照欄位=資料2參照欄位)</code>。若有多個參照欄位，各欄位的名稱須以向量表達，如<code>by=c("參照欄位1", "參照欄位2")</code>。</p>
-<p>以學生資料（<code>StuInfo</code>）與學生分數紀錄（StuScore）作為範例，程式碼撰寫如下。</p>
+<p>以學生資料（<code>StuInfo</code>）與學生分數紀錄（<code>StuScore</code>）作為範例，程式碼撰寫如下。</p>
 <div class="sourceCode" id="cb87"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb87-1"><a href="資料清洗與處理.html#cb87-1" tabindex="-1"></a><span class="co"># 建立學生資料與分數資料</span></span>
 <span id="cb87-2"><a href="資料清洗與處理.html#cb87-2" tabindex="-1"></a>StuInfo<span class="ot">=</span><span class="fu">data.frame</span>(<span class="at">StudentID=</span><span class="fu">c</span>(<span class="st">&quot;ID1&quot;</span>,<span class="st">&quot;ID2&quot;</span>,<span class="st">&quot;ID3&quot;</span>,<span class="st">&quot;ID4&quot;</span>,<span class="st">&quot;ID5&quot;</span>,<span class="st">&quot;ID6&quot;</span>),</span>
 <span id="cb87-3"><a href="資料清洗與處理.html#cb87-3" tabindex="-1"></a>                   <span class="at">Class=</span><span class="fu">c</span>(<span class="st">&quot;A&quot;</span>,<span class="st">&quot;B&quot;</span>,<span class="st">&quot;A&quot;</span>,<span class="st">&quot;C&quot;</span>,<span class="st">&quot;D&quot;</span>,<span class="st">&quot;A&quot;</span>),</span>
@@ -1274,9 +1277,9 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <p>以上程式碼中<code>by="StudentID"</code>即為兩份資料的共同參照欄位，由於兩參照欄位正好名稱相同，故若未設定此一引數亦可。另外從回傳結果可發現，由於資料 1（<code>StuInfo</code>）中並無學生代碼「ID7」，故該欄位的資料 2（<code>StuScore</code>）屬性皆為<code>NA。</code></p>
 <div class="strong">
 <p style="color:#750000;">
-使用<code>base</code>與<code>data.table</code>套件連接資料，程式碼撰寫如下。
+<strong>使用<code>base</code>與<code>data.table</code>套件連接資料</strong>
 </p>
-<p>在此二套件中，若連接方式為「以第一份（左側）資料為基準」，必須設定引數<code>all.x=T</code>。函式中的<code>by=</code>引數用以設定「參照欄位」，而若兩資料的參照欄位名稱不同時，需進一步設定<code>by.x=</code>與<code>by.y=</code>兩引數，分別為左側資料的參照欄位名稱與右側資料的欄位名稱。函式撰寫架構如下：</p>
+<p>在此二套件中，若連接方式為「<strong>以第一份（左側）資料為基準</strong>」，必須設定引數<strong><code>all.x=T</code></strong>。函式中的<code>by=</code>引數用以設定「參照欄位」，而若兩資料的參照欄位名稱不同時，需進一步設定<code>by.x=</code>與<code>by.y=</code>兩引數，分別為左側資料的參照欄位名稱與右側資料的欄位名稱。函式撰寫架構如下：</p>
 <div class="sourceCode" id="cb89"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb89-1"><a href="資料清洗與處理.html#cb89-1" tabindex="-1"></a><span class="co"># 若兩資料的參照欄位名稱不同</span></span>
 <span id="cb89-2"><a href="資料清洗與處理.html#cb89-2" tabindex="-1"></a><span class="fu">merge</span>(資料1, 資料2, <span class="at">all.x=</span>T, <span class="at">by=</span><span class="st">&quot;參照欄位&quot;</span>)</span>
 <span id="cb89-3"><a href="資料清洗與處理.html#cb89-3" tabindex="-1"></a><span class="fu">merge.data.table</span>(資料1, 資料2, <span class="at">all.x=</span>T, <span class="at">by=</span><span class="st">&quot;參照欄位&quot;</span>)</span>
@@ -1297,731 +1300,83 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <span id="cb90-10"><a href="資料清洗與處理.html#cb90-10" tabindex="-1"></a><span class="co"># data.table套件</span></span>
 <span id="cb90-11"><a href="資料清洗與處理.html#cb90-11" tabindex="-1"></a><span class="fu">merge.data.table</span>(StuInfo_DT, StuScore_DT, <span class="at">all.x=</span>T, <span class="at">by=</span><span class="st">&quot;StudentID&quot;</span>)</span></code></pre></div>
 </div>
-<p>利用前述<code>world</code>與<code>coffee</code>兩資料依據國家名稱相連接為例，在<code>world</code>資料中貼附各國咖啡的產量。程式碼撰寫如下。</p>
-<div class="sourceCode" id="cb91"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb91-1"><a href="資料清洗與處理.html#cb91-1" tabindex="-1"></a><span class="fu">left_join</span>(world, coffee, <span class="at">by=</span><span class="st">&quot;name_long&quot;</span>)</span></code></pre></div>
-<pre><code>##     iso_a2                           name_long               continent
-## 1       FJ                                Fiji                 Oceania
-## 2       TZ                            Tanzania                  Africa
-## 3       EH                      Western Sahara                  Africa
-## 4       CA                              Canada           North America
-## 5       US                       United States           North America
-## 6       KZ                          Kazakhstan                    Asia
-## 7       UZ                          Uzbekistan                    Asia
-## 8       PG                    Papua New Guinea                 Oceania
-## 9       ID                           Indonesia                    Asia
-## 10      AR                           Argentina           South America
-## 11      CL                               Chile           South America
-## 12      CD    Democratic Republic of the Congo                  Africa
-## 13      SO                             Somalia                  Africa
-## 14      KE                               Kenya                  Africa
-## 15      SD                               Sudan                  Africa
-## 16      TD                                Chad                  Africa
-## 17      HT                               Haiti           North America
-## 18      DO                  Dominican Republic           North America
-## 19      RU                  Russian Federation                  Europe
-## 20      BS                             Bahamas           North America
-## 21      FK                    Falkland Islands           South America
-## 22      NO                              Norway                  Europe
-## 23      GL                           Greenland           North America
-## 24      TF French Southern and Antarctic Lands Seven seas (open ocean)
-## 25      TL                         Timor-Leste                    Asia
-## 26      ZA                        South Africa                  Africa
-## 27      LS                             Lesotho                  Africa
-## 28      MX                              Mexico           North America
-## 29      UY                             Uruguay           South America
-## 30      BR                              Brazil           South America
-## 31      BO                             Bolivia           South America
-## 32      PE                                Peru           South America
-## 33      CO                            Colombia           South America
-## 34      PA                              Panama           North America
-## 35      CR                          Costa Rica           North America
-## 36      NI                           Nicaragua           North America
-## 37      HN                            Honduras           North America
-## 38      SV                         El Salvador           North America
-## 39      GT                           Guatemala           North America
-## 40      BZ                              Belize           North America
-## 41      VE                           Venezuela           South America
-## 42      GY                              Guyana           South America
-## 43      SR                            Suriname           South America
-## 44      FR                              France                  Europe
-## 45      EC                             Ecuador           South America
-## 46      PR                         Puerto Rico           North America
-## 47      JM                             Jamaica           North America
-## 48      CU                                Cuba           North America
-## 49      ZW                            Zimbabwe                  Africa
-## 50      BW                            Botswana                  Africa
-## 51    &lt;NA&gt;                             Namibia                  Africa
-## 52      SN                             Senegal                  Africa
-## 53      ML                                Mali                  Africa
-## 54      MR                          Mauritania                  Africa
-## 55      BJ                               Benin                  Africa
-## 56      NE                               Niger                  Africa
-## 57      NG                             Nigeria                  Africa
-## 58      CM                            Cameroon                  Africa
-## 59      TG                                Togo                  Africa
-## 60      GH                               Ghana                  Africa
-## 61      CI                       Cote d&#39;Ivoire                  Africa
-## 62      GN                              Guinea                  Africa
-## 63      GW                       Guinea-Bissau                  Africa
-## 64      LR                             Liberia                  Africa
-## 65      SL                        Sierra Leone                  Africa
-## 66      BF                        Burkina Faso                  Africa
-## 67      CF            Central African Republic                  Africa
-## 68      CG               Republic of the Congo                  Africa
-## 69      GA                               Gabon                  Africa
-## 70      GQ                   Equatorial Guinea                  Africa
-## 71      ZM                              Zambia                  Africa
-## 72      MW                              Malawi                  Africa
-## 73      MZ                          Mozambique                  Africa
-## 74      SZ                            eSwatini                  Africa
-## 75      AO                              Angola                  Africa
-## 76      BI                             Burundi                  Africa
-## 77      IL                              Israel                    Asia
-## 78      LB                             Lebanon                    Asia
-## 79      MG                          Madagascar                  Africa
-## 80      PS                           Palestine                    Asia
-## 81      GM                          The Gambia                  Africa
-## 82      TN                             Tunisia                  Africa
-## 83      DZ                             Algeria                  Africa
-## 84      JO                              Jordan                    Asia
-## 85      AE                United Arab Emirates                    Asia
-## 86      QA                               Qatar                    Asia
-## 87      KW                              Kuwait                    Asia
-## 88      IQ                                Iraq                    Asia
-## 89      OM                                Oman                    Asia
-## 90      VU                             Vanuatu                 Oceania
-## 91      KH                            Cambodia                    Asia
-## 92      TH                            Thailand                    Asia
-## 93      LA                             Lao PDR                    Asia
-## 94      MM                             Myanmar                    Asia
-## 95      VN                             Vietnam                    Asia
-## 96      KP                     Dem. Rep. Korea                    Asia
-## 97      KR                   Republic of Korea                    Asia
-## 98      MN                            Mongolia                    Asia
-## 99      IN                               India                    Asia
-## 100     BD                          Bangladesh                    Asia
-## 101     BT                              Bhutan                    Asia
-## 102     NP                               Nepal                    Asia
-## 103     PK                            Pakistan                    Asia
-## 104     AF                         Afghanistan                    Asia
-## 105     TJ                          Tajikistan                    Asia
-## 106     KG                          Kyrgyzstan                    Asia
-## 107     TM                        Turkmenistan                    Asia
-## 108     IR                                Iran                    Asia
-## 109     SY                               Syria                    Asia
-## 110     AM                             Armenia                    Asia
-## 111     SE                              Sweden                  Europe
-## 112     BY                             Belarus                  Europe
-## 113     UA                             Ukraine                  Europe
-## 114     PL                              Poland                  Europe
-## 115     AT                             Austria                  Europe
-## 116     HU                             Hungary                  Europe
-## 117     MD                             Moldova                  Europe
-## 118     RO                             Romania                  Europe
-## 119     LT                           Lithuania                  Europe
-## 120     LV                              Latvia                  Europe
-## 121     EE                             Estonia                  Europe
-## 122     DE                             Germany                  Europe
-## 123     BG                            Bulgaria                  Europe
-## 124     GR                              Greece                  Europe
-## 125     TR                              Turkey                    Asia
-## 126     AL                             Albania                  Europe
-## 127     HR                             Croatia                  Europe
-## 128     CH                         Switzerland                  Europe
-## 129     LU                          Luxembourg                  Europe
-## 130     BE                             Belgium                  Europe
-## 131     NL                         Netherlands                  Europe
-## 132     PT                            Portugal                  Europe
-## 133     ES                               Spain                  Europe
-## 134     IE                             Ireland                  Europe
-## 135     NC                       New Caledonia                 Oceania
-## 136     SB                     Solomon Islands                 Oceania
-## 137     NZ                         New Zealand                 Oceania
-## 138     AU                           Australia                 Oceania
-## 139     LK                           Sri Lanka                    Asia
-## 140     CN                               China                    Asia
-## 141     TW                              Taiwan                    Asia
-## 142     IT                               Italy                  Europe
-## 143     DK                             Denmark                  Europe
-## 144     GB                      United Kingdom                  Europe
-## 145     IS                             Iceland                  Europe
-## 146     AZ                          Azerbaijan                    Asia
-## 147     GE                             Georgia                    Asia
-## 148     PH                         Philippines                    Asia
-## 149     MY                            Malaysia                    Asia
-## 150     BN                   Brunei Darussalam                    Asia
-## 151     SI                            Slovenia                  Europe
-## 152     FI                             Finland                  Europe
-## 153     SK                            Slovakia                  Europe
-## 154     CZ                      Czech Republic                  Europe
-## 155     ER                             Eritrea                  Africa
-## 156     JP                               Japan                    Asia
-## 157     PY                            Paraguay           South America
-## 158     YE                               Yemen                    Asia
-## 159     SA                        Saudi Arabia                    Asia
-## 160     AQ                          Antarctica              Antarctica
-## 161   &lt;NA&gt;                     Northern Cyprus                    Asia
-## 162     CY                              Cyprus                    Asia
-## 163     MA                             Morocco                  Africa
-## 164     EG                               Egypt                  Africa
-## 165     LY                               Libya                  Africa
-## 166     ET                            Ethiopia                  Africa
-## 167     DJ                            Djibouti                  Africa
-## 168   &lt;NA&gt;                          Somaliland                  Africa
-## 169     UG                              Uganda                  Africa
-## 170     RW                              Rwanda                  Africa
-## 171     BA              Bosnia and Herzegovina                  Europe
-## 172     MK                           Macedonia                  Europe
-## 173     RS                              Serbia                  Europe
-## 174     ME                          Montenegro                  Europe
-## 175     XK                              Kosovo                  Europe
-## 176     TT                 Trinidad and Tobago           North America
-## 177     SS                         South Sudan                  Africa
-##                   region_un                 subregion              type
-## 1                   Oceania                 Melanesia Sovereign country
-## 2                    Africa            Eastern Africa Sovereign country
-## 3                    Africa           Northern Africa     Indeterminate
-## 4                  Americas          Northern America Sovereign country
-## 5                  Americas          Northern America           Country
-## 6                      Asia              Central Asia Sovereign country
-## 7                      Asia              Central Asia Sovereign country
-## 8                   Oceania                 Melanesia Sovereign country
-## 9                      Asia        South-Eastern Asia Sovereign country
-## 10                 Americas             South America Sovereign country
-## 11                 Americas             South America Sovereign country
-## 12                   Africa             Middle Africa Sovereign country
-## 13                   Africa            Eastern Africa Sovereign country
-## 14                   Africa            Eastern Africa Sovereign country
-## 15                   Africa           Northern Africa Sovereign country
-## 16                   Africa             Middle Africa Sovereign country
-## 17                 Americas                 Caribbean Sovereign country
-## 18                 Americas                 Caribbean Sovereign country
-## 19                   Europe            Eastern Europe Sovereign country
-## 20                 Americas                 Caribbean Sovereign country
-## 21                 Americas             South America        Dependency
-## 22                   Europe           Northern Europe Sovereign country
-## 23                 Americas          Northern America           Country
-## 24  Seven seas (open ocean)   Seven seas (open ocean)        Dependency
-## 25                     Asia        South-Eastern Asia Sovereign country
-## 26                   Africa           Southern Africa Sovereign country
-## 27                   Africa           Southern Africa Sovereign country
-## 28                 Americas           Central America Sovereign country
-## 29                 Americas             South America Sovereign country
-## 30                 Americas             South America Sovereign country
-## 31                 Americas             South America Sovereign country
-## 32                 Americas             South America Sovereign country
-## 33                 Americas             South America Sovereign country
-## 34                 Americas           Central America Sovereign country
-## 35                 Americas           Central America Sovereign country
-## 36                 Americas           Central America Sovereign country
-## 37                 Americas           Central America Sovereign country
-## 38                 Americas           Central America Sovereign country
-## 39                 Americas           Central America Sovereign country
-## 40                 Americas           Central America Sovereign country
-## 41                 Americas             South America Sovereign country
-## 42                 Americas             South America Sovereign country
-## 43                 Americas             South America Sovereign country
-## 44                   Europe            Western Europe           Country
-## 45                 Americas             South America Sovereign country
-## 46                 Americas                 Caribbean        Dependency
-## 47                 Americas                 Caribbean Sovereign country
-## 48                 Americas                 Caribbean Sovereign country
-## 49                   Africa            Eastern Africa Sovereign country
-## 50                   Africa           Southern Africa Sovereign country
-## 51                   Africa           Southern Africa Sovereign country
-## 52                   Africa            Western Africa Sovereign country
-## 53                   Africa            Western Africa Sovereign country
-## 54                   Africa            Western Africa Sovereign country
-## 55                   Africa            Western Africa Sovereign country
-## 56                   Africa            Western Africa Sovereign country
-## 57                   Africa            Western Africa Sovereign country
-## 58                   Africa             Middle Africa Sovereign country
-## 59                   Africa            Western Africa Sovereign country
-## 60                   Africa            Western Africa Sovereign country
-## 61                   Africa            Western Africa Sovereign country
-## 62                   Africa            Western Africa Sovereign country
-## 63                   Africa            Western Africa Sovereign country
-## 64                   Africa            Western Africa Sovereign country
-## 65                   Africa            Western Africa Sovereign country
-## 66                   Africa            Western Africa Sovereign country
-## 67                   Africa             Middle Africa Sovereign country
-## 68                   Africa             Middle Africa Sovereign country
-## 69                   Africa             Middle Africa Sovereign country
-## 70                   Africa             Middle Africa Sovereign country
-## 71                   Africa            Eastern Africa Sovereign country
-## 72                   Africa            Eastern Africa Sovereign country
-## 73                   Africa            Eastern Africa Sovereign country
-## 74                   Africa           Southern Africa Sovereign country
-## 75                   Africa             Middle Africa Sovereign country
-## 76                   Africa            Eastern Africa Sovereign country
-## 77                     Asia              Western Asia           Country
-## 78                     Asia              Western Asia Sovereign country
-## 79                   Africa            Eastern Africa Sovereign country
-## 80                     Asia              Western Asia          Disputed
-## 81                   Africa            Western Africa Sovereign country
-## 82                   Africa           Northern Africa Sovereign country
-## 83                   Africa           Northern Africa Sovereign country
-## 84                     Asia              Western Asia Sovereign country
-## 85                     Asia              Western Asia Sovereign country
-## 86                     Asia              Western Asia Sovereign country
-## 87                     Asia              Western Asia Sovereign country
-## 88                     Asia              Western Asia Sovereign country
-## 89                     Asia              Western Asia Sovereign country
-## 90                  Oceania                 Melanesia Sovereign country
-## 91                     Asia        South-Eastern Asia Sovereign country
-## 92                     Asia        South-Eastern Asia Sovereign country
-## 93                     Asia        South-Eastern Asia Sovereign country
-## 94                     Asia        South-Eastern Asia Sovereign country
-## 95                     Asia        South-Eastern Asia Sovereign country
-## 96                     Asia              Eastern Asia Sovereign country
-## 97                     Asia              Eastern Asia Sovereign country
-## 98                     Asia              Eastern Asia Sovereign country
-## 99                     Asia             Southern Asia Sovereign country
-## 100                    Asia             Southern Asia Sovereign country
-## 101                    Asia             Southern Asia Sovereign country
-## 102                    Asia             Southern Asia Sovereign country
-## 103                    Asia             Southern Asia Sovereign country
-## 104                    Asia             Southern Asia Sovereign country
-## 105                    Asia              Central Asia Sovereign country
-## 106                    Asia              Central Asia Sovereign country
-## 107                    Asia              Central Asia Sovereign country
-## 108                    Asia             Southern Asia Sovereign country
-## 109                    Asia              Western Asia Sovereign country
-## 110                    Asia              Western Asia Sovereign country
-## 111                  Europe           Northern Europe Sovereign country
-## 112                  Europe            Eastern Europe Sovereign country
-## 113                  Europe            Eastern Europe Sovereign country
-## 114                  Europe            Eastern Europe Sovereign country
-## 115                  Europe            Western Europe Sovereign country
-## 116                  Europe            Eastern Europe Sovereign country
-## 117                  Europe            Eastern Europe Sovereign country
-## 118                  Europe            Eastern Europe Sovereign country
-## 119                  Europe           Northern Europe Sovereign country
-## 120                  Europe           Northern Europe Sovereign country
-## 121                  Europe           Northern Europe Sovereign country
-## 122                  Europe            Western Europe Sovereign country
-## 123                  Europe            Eastern Europe Sovereign country
-## 124                  Europe           Southern Europe Sovereign country
-## 125                    Asia              Western Asia Sovereign country
-## 126                  Europe           Southern Europe Sovereign country
-## 127                  Europe           Southern Europe Sovereign country
-## 128                  Europe            Western Europe Sovereign country
-## 129                  Europe            Western Europe Sovereign country
-## 130                  Europe            Western Europe Sovereign country
-## 131                  Europe            Western Europe           Country
-## 132                  Europe           Southern Europe Sovereign country
-## 133                  Europe           Southern Europe Sovereign country
-## 134                  Europe           Northern Europe Sovereign country
-## 135                 Oceania                 Melanesia        Dependency
-## 136                 Oceania                 Melanesia Sovereign country
-## 137                 Oceania Australia and New Zealand           Country
-## 138                 Oceania Australia and New Zealand           Country
-## 139                    Asia             Southern Asia Sovereign country
-## 140                    Asia              Eastern Asia           Country
-## 141                    Asia              Eastern Asia Sovereign country
-## 142                  Europe           Southern Europe Sovereign country
-## 143                  Europe           Northern Europe           Country
-## 144                  Europe           Northern Europe           Country
-## 145                  Europe           Northern Europe Sovereign country
-## 146                    Asia              Western Asia Sovereign country
-## 147                    Asia              Western Asia Sovereign country
-## 148                    Asia        South-Eastern Asia Sovereign country
-## 149                    Asia        South-Eastern Asia Sovereign country
-## 150                    Asia        South-Eastern Asia Sovereign country
-## 151                  Europe           Southern Europe Sovereign country
-## 152                  Europe           Northern Europe           Country
-## 153                  Europe            Eastern Europe Sovereign country
-## 154                  Europe            Eastern Europe Sovereign country
-## 155                  Africa            Eastern Africa Sovereign country
-## 156                    Asia              Eastern Asia Sovereign country
-## 157                Americas             South America Sovereign country
-## 158                    Asia              Western Asia Sovereign country
-## 159                    Asia              Western Asia Sovereign country
-## 160              Antarctica                Antarctica     Indeterminate
-## 161                    Asia              Western Asia Sovereign country
-## 162                    Asia              Western Asia Sovereign country
-## 163                  Africa           Northern Africa Sovereign country
-## 164                  Africa           Northern Africa Sovereign country
-## 165                  Africa           Northern Africa Sovereign country
-## 166                  Africa            Eastern Africa Sovereign country
-## 167                  Africa            Eastern Africa Sovereign country
-## 168                  Africa            Eastern Africa     Indeterminate
-## 169                  Africa            Eastern Africa Sovereign country
-## 170                  Africa            Eastern Africa Sovereign country
-## 171                  Europe           Southern Europe Sovereign country
-## 172                  Europe           Southern Europe Sovereign country
-## 173                  Europe           Southern Europe Sovereign country
-## 174                  Europe           Southern Europe Sovereign country
-## 175                  Europe           Southern Europe Sovereign country
-## 176                Americas                 Caribbean Sovereign country
-## 177                  Africa            Eastern Africa Sovereign country
-##         area_km2        pop  lifeExp   gdpPercap coffee_production_2016
-## 1      19289.971     885806 69.96000   8222.2538                     NA
-## 2     932745.792   52234869 64.16300   2402.0994                     81
-## 3      96270.601         NA       NA          NA                     NA
-## 4   10036042.977   35535348 81.95305  43079.1425                     NA
-## 5    9510743.745  318622525 78.84146  51921.9846                     NA
-## 6    2729810.513   17288285 71.62000  23587.3375                     NA
-## 7     461410.258   30757700 71.03900   5370.8658                     NA
-## 8     464520.072    7755785 65.23000   3709.0816                    114
-## 9    1819251.329  255131116 68.85600  10003.0890                    742
-## 10   2784468.589   42981515 76.25200  18797.5479                     NA
-## 11    814844.220   17613798 79.11700  22195.2744                     NA
-## 12   2323492.477   73722860 58.78200    785.3473                     NA
-## 13    484332.793   13513125 55.46700          NA                     NA
-## 14    590836.914   46024250 66.24200   2753.2361                     60
-## 15   1850885.565   37737913 64.00200   4188.3348                     NA
-## 16   1271694.598   13569438 52.20400   2076.6500                     NA
-## 17     28540.546   10572466 62.75700   1652.8548                     NA
-## 18     48157.874   10405844 73.48300  12663.0422                      1
-## 19  17018507.409  143819666 70.74366  25284.5862                     NA
-## 20     15584.791     382169 75.37900  28456.8165                     NA
-## 21     16363.799         NA       NA          NA                     NA
-## 22    397994.629         NA       NA          NA                     NA
-## 23   2206644.440      56295       NA          NA                     NA
-## 24     11602.572         NA       NA          NA                     NA
-## 25     14714.931    1212814 68.28500   6262.9055                     14
-## 26   1216400.831   54539571 60.99300  12389.7147                     NA
-## 27     27505.655    2145785 53.26800   2677.1981                     NA
-## 28   1969480.307  124221600 76.75300  16622.5970                    151
-## 29    176853.636    3419546 77.19000  19827.5650                     NA
-## 30   8508557.092  204213133 75.04200  15374.2615                   3277
-## 31   1085269.596   10562159 68.35700   6324.8273                      3
-## 32   1309699.636   30973354 74.51800  11547.8342                    585
-## 33   1151882.926   47791911 74.02200  12715.9674                   1330
-## 34     75265.449    3903986 77.61000  20017.9944                      3
-## 35     53832.136    4757575 79.44000  14372.4008                     28
-## 36    129540.212    6013997 74.88400   4784.8305                     42
-## 37    113789.775    8809216 73.18100   4231.3251                    149
-## 38     20893.340    6281189 73.01500   6890.7232                      5
-## 39    109459.049   15923559 72.86900   7147.4292                     58
-## 40     22045.451     351694 70.02700   7999.5737                     NA
-## 41    908499.070   30738378 74.19600  16745.0220                     NA
-## 42    209801.857     763393 66.42500   6906.0123                     NA
-## 43    144268.723     547928 71.13800  15306.6924                     NA
-## 44    644847.882         NA       NA          NA                     NA
-## 45    250747.110   15903112 75.87900  10901.4186                     87
-## 46      9224.663    3534874 79.39012  35066.0464                     NA
-## 47     12460.587    2862087 75.68900   8051.2440                     NA
-## 48    114866.218   11439767 79.41500          NA                     NA
-## 49    376328.489   15411675 59.36000   1925.1387                      1
-## 50    591912.017    2168573 64.78000  15914.6702                     NA
-## 51    824886.561    2370992 62.98100   9617.3970                     NA
-## 52    194390.439   14546111 66.37600   2218.5519                     NA
-## 53   1235561.373   16962846 57.00700   1865.1606                     NA
-## 54   1054107.194    4063920 62.90700   3655.3885                     NA
-## 55    116998.713   10286712 60.37300   2001.0773                     NA
-## 56   1182269.648   19148219 59.22800    904.4567                     NA
-## 57    905071.739  176460502 52.54900   5671.9006                     NA
-## 58    460324.702   22239904 57.11100   3196.3615                      8
-## 59     60966.962    7228915 59.60100   1315.3403                      2
-## 60    243473.120   26962563 62.15400   3868.6009                      1
-## 61    329825.951   22531350 52.52000   3054.5349                    114
-## 62    239565.079   11805509 58.84600   1734.7367                     NA
-## 63     36191.886    1725744 56.59800   1398.2548                     NA
-## 64     98206.783    4390737 61.52700    804.7199                     NA
-## 65     75980.331    7079162 50.95100   1692.1421                      1
-## 66    271593.672   17585977 59.45700   1582.3337                     NA
-## 67    621860.349    4515392 50.62100    597.1352                     NA
-## 68    339681.855    4871101 63.53600   5538.0529                     NA
-## 69    269475.798    1875713 65.21100  16678.6381                     NA
-## 70     27120.575    1129424 57.18000  31542.5108                     NA
-## 71    751921.215   15620974 60.77500   3632.5038                      3
-## 72    111197.018   17068838 61.93200   1090.3672                      3
-## 73    810994.757   27212382 57.09900   1079.8239                     NA
-## 74     18118.634    1295097 56.28700   7870.9707                     NA
-## 75   1245463.748   26920466 60.85800   6257.1529                     NA
-## 76     26238.948    9891790 56.68800    803.1728                     37
-## 77     22991.166    8215700 82.15366  31702.0835                     NA
-## 78     10099.003    5603279 79.23100  13831.3752                     NA
-## 79    589382.827   23589801 65.13300   1372.0210                      3
-## 80      5037.104    4294682 73.12600   4319.5283                     NA
-## 81     14031.284    1917852 60.70700   1550.2184                     NA
-## 82    156237.322   11143908 75.33500  10767.0277                     NA
-## 83   2315916.658   39113313 75.64100  13483.3379                     NA
-## 84     89207.137    8809306 74.03400   8622.1855                     NA
-## 85     79880.738    9070867 76.94800  63943.1858                     NA
-## 86     11327.855    2374419 77.88800 120860.0676                     NA
-## 87     16652.120    3782450 74.45800  70832.3684                     NA
-## 88    436965.034   35006080 69.45800  14838.3829                     NA
-## 89    309302.034    3960925 76.57800  40365.2733                     NA
-## 90      7490.040     258850 71.70900   2892.3416                     NA
-## 91    182235.978   15270790 68.25100   3124.3193                     NA
-## 92    510125.570   68416772 74.89500  14857.2029                     39
-## 93    229080.422    6576397 65.97500   5436.4826                     NA
-## 94    679573.994   51924182 66.28500   4770.0121                     NA
-## 95    335990.802   92544915 75.85500   5264.8281                   1844
-## 96    125679.216   25116363 71.17900          NA                     NA
-## 97     99044.367   50746659 81.72195  33425.6896                     NA
-## 98   1544322.150    2923896 68.84700  11348.6473                     NA
-## 99   3142892.098 1293859294 68.02100   5385.1418                    453
-## 100   133782.141  159405279 71.80300   2973.0416                     NA
-## 101    39377.402     776448 69.43000   7366.4241                     NA
-## 102   150706.871   28323241 69.51100   2266.1843                     NA
-## 103   874119.998  185546257 66.13900   4576.2270                     NA
-## 104   652270.070   32758020 62.89500   1838.9602                     NA
-## 105   138111.759    8362745 70.69000   2546.5005                     NA
-## 106   195874.658    5835500 70.40244   3181.6422                     NA
-## 107   480809.522    5466241 67.55200  14332.3658                     NA
-## 108  1617559.040   78411092 75.46600  16924.2007                     NA
-## 109   185004.125   19203090 69.81700          NA                     NA
-## 110    28656.601    2906220 74.25500   7971.1179                     NA
-## 111   450581.582    9696110 82.25366  44167.6319                     NA
-## 112   208969.830    9474511 72.97073  17944.2098                     NA
-## 113   572548.984   45271947 71.18659   8243.4735                     NA
-## 114   310402.333   38011735 77.60244  24347.0737                     NA
-## 115    85064.895    8546356 81.49024  44320.5020                     NA
-## 116    92476.460    9866468 75.76341  24161.4255                     NA
-## 117    32320.392    3556397 71.25800   4762.7809                     NA
-## 118   238356.297   19908979 74.96098  19677.5203                     NA
-## 119    63831.091    2932367 74.51707  26258.2101                     NA
-## 120    63923.533    1993782 74.12439  22172.2535                     NA
-## 121    44678.197    1314545 77.03415  27113.6859                     NA
-## 122   357430.341   80982500 81.09024  43560.6192                     NA
-## 123   110216.875    7223938 74.46585  16302.3206                     NA
-## 124   131964.647   10892413 81.38537  24081.6305                     NA
-## 125   798849.164   77030628 75.23900  22401.8804                     NA
-## 126    29694.800    2889104 77.96300  10701.1208                     NA
-## 127    57530.852    4238389 77.47805  20334.4465                     NA
-## 128    46185.251    8188649 83.19756  57218.0279                     NA
-## 129     2416.870     556319 82.22927  93655.3342                     NA
-## 130    30126.038   11209057 81.28780  41360.3956                     NA
-## 131    40024.104   16865008 81.70732  45668.4415                     NA
-## 132    93408.594   10401062 81.12195  26023.6978                     NA
-## 133   502306.468   46480882 83.22927  31195.4052                     NA
-## 134    58457.513    4657740 81.34878  48898.3287                     NA
-## 135    23219.012     268050 77.25287          NA                     NA
-## 136    24728.114     575504 70.11300   2139.5607                     NA
-## 137   277627.605    4509700 81.40488  34455.3312                     NA
-## 138  7687613.843   23504138 82.30000  43547.1975                     NA
-## 139    65370.390   20771000 74.90600  10650.3902                     NA
-## 140  9409830.493 1364270000 75.93200  12758.6478                     NA
-## 141    34345.701         NA       NA          NA                     NA
-## 142   315104.851   60789140 83.09024  33945.8439                     NA
-## 143    42759.928    5643475 80.70000  45057.0742                     NA
-## 144   249986.395   64613160 81.30488  38251.7925                     NA
-## 145   107735.721     327386 82.86098  41701.1373                     NA
-## 146    91113.254    9535079 71.80000  16715.1055                     NA
-## 147    69048.161    3727000 72.95100   8749.1562                     NA
-## 148   292256.939  100102249 68.81300   6585.8959                      2
-## 149   338226.487   30228017 74.97600  24194.6339                     NA
-## 150    10700.334     411704 76.91700  76089.2866                     NA
-## 151    19118.123    2061980 81.07805  28417.6564                     NA
-## 152   341242.339    5461512 81.18049  39017.5372                     NA
-## 153    47068.082    5418649 76.81220  27285.2847                     NA
-## 154    81207.603   10525347 78.82439  29119.6166                     NA
-## 155   119319.585         NA 64.17400          NA                     NA
-## 156   404619.933  127276000 83.58780  37337.3174                     NA
-## 157   401335.916    6552584 72.91300   8501.5435                     NA
-## 158   455915.007   26246327 64.52300   3766.8053                      4
-## 159  1920324.146   30776722 74.23400  49958.4433                     NA
-## 160 12335956.076         NA       NA          NA                     NA
-## 161     3786.365         NA       NA          NA                     NA
-## 162     6207.006    1152309 80.17300  29786.3657                     NA
-## 163   591718.989   34318082 75.30900   7078.8815                     NA
-## 164   996311.623   91812566 71.12000   9879.7994                     NA
-## 165  1633720.717    6204108 71.65900  16371.9022                     NA
-## 166  1132393.167   97366774 64.53500   1424.5270                    215
-## 167    21880.251     912164 62.00600          NA                     NA
-## 168   167349.613         NA       NA          NA                     NA
-## 169   245768.479   38833338 59.22400   1637.2751                    408
-## 170    23365.411   11345357 66.18800   1629.8689                     36
-## 171    50605.075    3566002 76.56100  10516.7864                     NA
-## 172    25062.255    2077495 75.38400  12298.4902                     NA
-## 173    76388.605    7130576 75.33659  13112.9090                     NA
-## 174    13443.678     621810 76.71200  14796.6354                     NA
-## 175    11230.262    1821800 71.09756   8698.2916                     NA
-## 176     7737.810    1354493 70.42600  31181.8212                     NA
-## 177   624909.099   11530971 55.81700   1935.8794                     NA
-##     coffee_production_2017
-## 1                       NA
-## 2                       66
-## 3                       NA
-## 4                       NA
-## 5                       NA
-## 6                       NA
-## 7                       NA
-## 8                       74
-## 9                      360
-## 10                      NA
-## 11                      NA
-## 12                      NA
-## 13                      NA
-## 14                      50
-## 15                      NA
-## 16                      NA
-## 17                      NA
-## 18                      NA
-## 19                      NA
-## 20                      NA
-## 21                      NA
-## 22                      NA
-## 23                      NA
-## 24                      NA
-## 25                       2
-## 26                      NA
-## 27                      NA
-## 28                     220
-## 29                      NA
-## 30                    2786
-## 31                       4
-## 32                     625
-## 33                    1169
-## 34                       3
-## 35                      32
-## 36                      45
-## 37                     165
-## 38                       8
-## 39                      70
-## 40                      NA
-## 41                      NA
-## 42                      NA
-## 43                      NA
-## 44                      NA
-## 45                      62
-## 46                      NA
-## 47                       1
-## 48                      NA
-## 49                       1
-## 50                      NA
-## 51                      NA
-## 52                      NA
-## 53                      NA
-## 54                      NA
-## 55                      NA
-## 56                      NA
-## 57                      NA
-## 58                       6
-## 59                       3
-## 60                       1
-## 61                     130
-## 62                      NA
-## 63                      NA
-## 64                      NA
-## 65                       3
-## 66                      NA
-## 67                      NA
-## 68                      NA
-## 69                      NA
-## 70                      NA
-## 71                      NA
-## 72                       1
-## 73                      NA
-## 74                      NA
-## 75                      NA
-## 76                      38
-## 77                      NA
-## 78                      NA
-## 79                       5
-## 80                      NA
-## 81                      NA
-## 82                      NA
-## 83                      NA
-## 84                      NA
-## 85                      NA
-## 86                      NA
-## 87                      NA
-## 88                      NA
-## 89                      NA
-## 90                      NA
-## 91                      NA
-## 92                      16
-## 93                      NA
-## 94                      NA
-## 95                    1700
-## 96                      NA
-## 97                      NA
-## 98                      NA
-## 99                     566
-## 100                     NA
-## 101                     NA
-## 102                     NA
-## 103                     NA
-## 104                     NA
-## 105                     NA
-## 106                     NA
-## 107                     NA
-## 108                     NA
-## 109                     NA
-## 110                     NA
-## 111                     NA
-## 112                     NA
-## 113                     NA
-## 114                     NA
-## 115                     NA
-## 116                     NA
-## 117                     NA
-## 118                     NA
-## 119                     NA
-## 120                     NA
-## 121                     NA
-## 122                     NA
-## 123                     NA
-## 124                     NA
-## 125                     NA
-## 126                     NA
-## 127                     NA
-## 128                     NA
-## 129                     NA
-## 130                     NA
-## 131                     NA
-## 132                     NA
-## 133                     NA
-## 134                     NA
-## 135                     NA
-## 136                     NA
-## 137                     NA
-## 138                     NA
-## 139                     NA
-## 140                     NA
-## 141                     NA
-## 142                     NA
-## 143                     NA
-## 144                     NA
-## 145                     NA
-## 146                     NA
-## 147                     NA
-## 148                     NA
-## 149                     NA
-## 150                     NA
-## 151                     NA
-## 152                     NA
-## 153                     NA
-## 154                     NA
-## 155                     NA
-## 156                     NA
-## 157                     NA
-## 158                      1
-## 159                     NA
-## 160                     NA
-## 161                     NA
-## 162                     NA
-## 163                     NA
-## 164                     NA
-## 165                     NA
-## 166                    283
-## 167                     NA
-## 168                     NA
-## 169                    443
-## 170                     42
-## 171                     NA
-## 172                     NA
-## 173                     NA
-## 174                     NA
-## 175                     NA
-## 176                     NA
-## 177                     NA</code></pre>
+<p>利用前述<code>world</code>與<code>coffee</code>兩資料，依據國家名稱相連接為例，在<code>world</code>資料中貼附各國咖啡的產量。程式碼撰寫如下。</p>
+<div class="sourceCode" id="cb91"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb91-1"><a href="資料清洗與處理.html#cb91-1" tabindex="-1"></a><span class="co"># 合併world與coffee兩資料</span></span>
+<span id="cb91-2"><a href="資料清洗與處理.html#cb91-2" tabindex="-1"></a>world_coffee<span class="ot">=</span><span class="fu">left_join</span>(world, coffee, <span class="at">by=</span><span class="st">&quot;name_long&quot;</span>)</span>
+<span id="cb91-3"><a href="資料清洗與處理.html#cb91-3" tabindex="-1"></a></span>
+<span id="cb91-4"><a href="資料清洗與處理.html#cb91-4" tabindex="-1"></a><span class="co"># 將world_coffee依據coffee_production_2017由大至小排序</span></span>
+<span id="cb91-5"><a href="資料清洗與處理.html#cb91-5" tabindex="-1"></a>world_coffee<span class="ot">=</span><span class="fu">arrange</span>(world_coffee, <span class="fu">desc</span>(coffee_production_2017))</span>
+<span id="cb91-6"><a href="資料清洗與處理.html#cb91-6" tabindex="-1"></a></span>
+<span id="cb91-7"><a href="資料清洗與處理.html#cb91-7" tabindex="-1"></a><span class="co"># 查看前六筆資料</span></span>
+<span id="cb91-8"><a href="資料清洗與處理.html#cb91-8" tabindex="-1"></a><span class="fu">head</span>(world_coffee[, <span class="fu">c</span>(<span class="st">&quot;name_long&quot;</span>,<span class="st">&quot;continent&quot;</span>,<span class="st">&quot;coffee_production_2016&quot;</span>,<span class="st">&quot;coffee_production_2017&quot;</span>)])</span></code></pre></div>
+<pre><code>##   name_long     continent coffee_production_2016 coffee_production_2017
+## 1    Brazil South America                   3277                   2786
+## 2   Vietnam          Asia                   1844                   1700
+## 3  Colombia South America                   1330                   1169
+## 4      Peru South America                    585                    625
+## 5     India          Asia                    453                    566
+## 6    Uganda        Africa                    408                    443</code></pre>
 <p>請注意由於此範例中，<code>world</code>資料內的國家名稱欄位與<code>coffee</code>資料內的國家名稱相同，皆為「name_long」，故若不設定<code>by=</code>引數，亦可得到相同結果。</p>
 <H2 id="full-join">
 <p style="color:#003D79;font-size:18px;line-height:2">
 <strong>⌾ 保留資料1與資料2所有資料</strong>
 </p>
 </H2>
+<p><code>full_join()</code>的函式撰寫架構與前述<A href='#left-join'><code>left_join()</code></A>函式完全相同。</p>
+<p>再次以<code>StuInfo</code>與<code>StuScore</code>兩資料為例，利用<code>full_join()</code>所得結果如下。</p>
+<div class="sourceCode" id="cb93"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb93-1"><a href="資料清洗與處理.html#cb93-1" tabindex="-1"></a><span class="fu">full_join</span>(StuInfo, StuScore, <span class="at">by=</span><span class="st">&quot;StudentID&quot;</span>)</span></code></pre></div>
+<pre><code>##   StudentID Class   Name Score
+## 1       ID1     A    Bob    60
+## 2       ID2     B   Mary    80
+## 3       ID3     A Robert    NA
+## 4       ID4     C  Jason    40
+## 5       ID5     D   Jane    50
+## 6       ID6     A Jessie   100
+## 7       ID7  &lt;NA&gt;   &lt;NA&gt;    90</code></pre>
+<p>由以上結果可知，兩份資料中所有的「StudentID」皆會保留，而無法匹配資料者，顯示<code>NA</code>。例如「ID3」在<code>StuScore</code>中無紀錄；「ID7」在<code>StuInfo</code>中無紀錄，故配對後其他欄位的資料即顯示<code>NA</code>。</p>
+<div class="strong">
+<p style="color:#750000;">
+<strong>使用<code>base</code>與<code>data.table</code>套件連接資料</strong>
+</p>
+<p>若連接方式為「<strong>保留資料1與資料2所有資料</strong>」，必須設定引數<strong><code>all=T</code></strong>，而其他引數之設定方式與前者相同。函式撰寫架構如下：</p>
+<div class="sourceCode" id="cb95"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb95-1"><a href="資料清洗與處理.html#cb95-1" tabindex="-1"></a><span class="fu">merge</span>(資料1, 資料2, <span class="at">all=</span>T, <span class="at">by=</span><span class="st">&quot;參照欄位&quot;</span>)</span>
+<span id="cb95-2"><a href="資料清洗與處理.html#cb95-2" tabindex="-1"></a><span class="fu">merge.data.table</span>(資料1, 資料2, <span class="at">all=</span>T, <span class="at">by=</span><span class="st">&quot;參照欄位&quot;</span>)</span></code></pre></div>
+<p>以連接<code>StuInfo</code>與<code>StuScore</code>兩資料為例，參照欄位為「StudentID」。</p>
+<div class="sourceCode" id="cb96"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb96-1"><a href="資料清洗與處理.html#cb96-1" tabindex="-1"></a><span class="co"># base套件</span></span>
+<span id="cb96-2"><a href="資料清洗與處理.html#cb96-2" tabindex="-1"></a><span class="fu">merge</span>(StuInfo, StuScore, <span class="at">all=</span>T, <span class="at">by=</span><span class="st">&quot;StudentID&quot;</span>)</span>
+<span id="cb96-3"><a href="資料清洗與處理.html#cb96-3" tabindex="-1"></a></span>
+<span id="cb96-4"><a href="資料清洗與處理.html#cb96-4" tabindex="-1"></a><span class="co"># data.table套件</span></span>
+<span id="cb96-5"><a href="資料清洗與處理.html#cb96-5" tabindex="-1"></a><span class="fu">merge.data.table</span>(StuInfo_DT, StuScore_DT, <span class="at">all=</span>T, <span class="at">by=</span><span class="st">&quot;StudentID&quot;</span>)</span></code></pre></div>
+</div>
 <H2 id="inner-join">
 <p style="color:#003D79;font-size:18px;line-height:2">
 <strong>⌾ 保留共同擁有的參照欄位之資料</strong>
 </p>
 </H2>
+<p><code>inner_join()</code>的函式撰寫架構亦與前述<A href='#left-join'><code>left_join()</code></A>函式完全相同。</p>
+<p>再次以<code>StuInfo</code>與<code>StuScore</code>兩資料為例，利用<code>inner_join()</code>所得結果如下。</p>
+<div class="sourceCode" id="cb97"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb97-1"><a href="資料清洗與處理.html#cb97-1" tabindex="-1"></a><span class="fu">inner_join</span>(StuInfo, StuScore, <span class="at">by=</span><span class="st">&quot;StudentID&quot;</span>)</span></code></pre></div>
+<pre><code>##   StudentID Class   Name Score
+## 1       ID1     A    Bob    60
+## 2       ID2     B   Mary    80
+## 3       ID4     C  Jason    40
+## 4       ID5     D   Jane    50
+## 5       ID6     A Jessie   100</code></pre>
+<p>由以上結果可知，兩份資料中所有的「StudentID」僅會保留共同擁有的紀錄，而無法匹配資料者逕予以刪除。例如「ID3」在<code>StuScore</code>中無紀錄；「ID7」在<code>StuInfo</code>中無紀錄，故配對後即刪除此二筆資料。</p>
+<div class="strong">
+<p style="color:#750000;">
+<strong>使用<code>base</code>與<code>data.table</code>套件連接資料</strong>
+</p>
+<p>若連接方式為「<strong>保留共同擁有的參照欄位之資料</strong>」，<strong>無須</strong>設定<code>all=</code>或<code>all.x=</code>之引數。函式撰寫架構如下：</p>
+<div class="sourceCode" id="cb99"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb99-1"><a href="資料清洗與處理.html#cb99-1" tabindex="-1"></a><span class="fu">merge</span>(資料1, 資料2, <span class="at">by=</span><span class="st">&quot;參照欄位&quot;</span>)</span>
+<span id="cb99-2"><a href="資料清洗與處理.html#cb99-2" tabindex="-1"></a><span class="fu">merge.data.table</span>(資料1, 資料2, <span class="at">by=</span><span class="st">&quot;參照欄位&quot;</span>)</span></code></pre></div>
+<p>以連接<code>StuInfo</code>與<code>StuScore</code>兩資料為例，參照欄位為「StudentID」。</p>
+<div class="sourceCode" id="cb100"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb100-1"><a href="資料清洗與處理.html#cb100-1" tabindex="-1"></a><span class="co"># base套件</span></span>
+<span id="cb100-2"><a href="資料清洗與處理.html#cb100-2" tabindex="-1"></a><span class="fu">merge</span>(StuInfo, StuScore, <span class="at">by=</span><span class="st">&quot;StudentID&quot;</span>)</span>
+<span id="cb100-3"><a href="資料清洗與處理.html#cb100-3" tabindex="-1"></a></span>
+<span id="cb100-4"><a href="資料清洗與處理.html#cb100-4" tabindex="-1"></a><span class="co"># data.table套件</span></span>
+<span id="cb100-5"><a href="資料清洗與處理.html#cb100-5" tabindex="-1"></a><span class="fu">merge.data.table</span>(StuInfo_DT, StuScore_DT, <span class="at">by=</span><span class="st">&quot;StudentID&quot;</span>)</span></code></pre></div>
+</div>
 </div>
 <div id="去除重複資料" class="section level2 hasAnchor" number="2.10">
 <h2><span class="header-section-number">2.10</span> 去除重複資料<a href="資料清洗與處理.html#去除重複資料" class="anchor-section" aria-label="Anchor link to header"></a></h2>
