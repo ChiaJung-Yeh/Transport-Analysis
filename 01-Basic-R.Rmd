@@ -1595,10 +1595,10 @@ lapply(list_eg, sum)
 # 利用dir()讀取指定資料夾檔案
 dir_files=dir("路徑")
 
-df=lapply(dir_files, read.csv)
+df=rbindlist(lapply(dir_files, read.csv))
 ```
 
-[`dir()`](#資料來源)函式係讀取指定資料夾內所有檔案名稱；[`read.csv()`](#csv-與-txt-檔)函式用以讀取文字檔案。
+[`dir()`](#資料來源)函式係讀取指定資料夾內所有檔案名稱；[`read.csv()`](#csv-與-txt-檔)函式用以讀取文字檔案；[`rbindlist()`]函式則是將所有儲存於陣列（list）的資料全數合併。
 
 
 <p style="color:#003D79;font-size:18px;line-height:2">**⌾ `sapply()`**</p>  
