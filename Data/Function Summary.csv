@@ -1,0 +1,70 @@
+﻿chapter,operation,func,package
+合併資料,合併橫列,"rbind(資料1, 資料2, ...)",base
+合併資料,合併橫列,"bind_rows(資料1, 資料2, ...)",dplyr
+合併資料,合併直行,"cbind(資料1, 資料2, ...)",base
+合併資料,合併直行,"bind_cols(資料1, 資料2, ...)",dplyr
+合併資料,合併陣列中的資料,rbindlist(陣列),data.table
+選取資料欄位,選取欄位,"資料[, 欄位名稱向量]",base
+選取資料欄位,選取欄位,"資料[, 欄位索引向量]",base
+選取資料欄位,選取欄位,"select(資料, 欄位名稱1, 欄位名稱2, ...)",dplyr
+選取資料欄位,選取欄位,"資料[, ..欄位名稱向量]",data.table
+選取資料欄位,刪除欄位,"資料[, -欄位名稱向量]",base
+選取資料欄位,刪除欄位,"資料[, -欄位索引向量]",base
+選取資料欄位,刪除欄位,"select(資料, -欄位名稱1, -欄位名稱2, ...)",dplyr
+選取資料欄位,刪除欄位,"資料[, !..欄位名稱向量]",data.table
+依條件篩選資料,篩選資料（AND）,"filter(資料, 條件1, 條件2, ...)",dplyr
+依條件篩選資料,篩選資料（AND）,"filter(資料, 條件1 & 條件2 & ...)",dplyr
+依條件篩選資料,篩選資料（AND）,資料[條件1 & 條件2 & ...],data.table
+依條件篩選資料,篩選資料（OR）,"filter(資料, 條件1 | 條件2 | ...)",dplyr
+依條件篩選資料,篩選資料（OR）,資料[條件1 | 條件2 | ...],data.table
+新增資料屬性,新增欄位,資料$新變數=c(...),base
+新增資料屬性,新增欄位,"mutate(資料, 新變數1=運算1, 新變數2=運算2, ...)",dplyr
+新增資料屬性,新增欄位,"資料[, c(""新變數1"", ""新變數2"") := .(運算1, 運算2)]",data.table
+條件判斷,邏輯判斷,"ifelse(判斷式, 正確回傳結果, 錯誤回傳結果)",base
+條件判斷,邏輯判斷,"case_when(欄位, 
+          條件1 ~ 結果1, 
+          條件2 ~ 結果2, 
+          TRUE ~ 結果3,
+          ...)",dplyr
+資料排序,資料排序（正序）,"arrange(資料, 待排序欄位)",dplyr
+資料排序,資料排序（正序）,資料[order(待排序欄位)],data.table
+資料排序,資料排序（倒序）,"arrange(資料, desc(待排序欄位))",dplyr
+資料排序,資料排序（倒序）,"arrange(資料, -待排序欄位)",dplyr
+資料排序,資料排序（倒序）,資料[order(-待排序欄位)],data.table
+資料分群與統計,分群篩選資料,"group_by(資料, 分群欄位)%>%
+  filter(條件)",dplyr
+資料分群與統計,分群篩選資料,"group_by(資料, 分群欄位)%>%
+  slice(索引值)",dplyr
+資料分群與統計,分群篩選資料,"資料[, .SD[索引值], by=分群欄位]",data.table
+資料分群與統計,分群統計資料,"group_by(資料, 分群欄位)%>%
+  summarise(運算函式)",dplyr
+資料分群與統計,分群統計資料,"資料[, .(運算函式), by=分群欄位]",data.table
+資料分群與統計,分群統計資料,"group_by(資料, 分群欄位)%>%
+  reframe(運算函式)",dplyr
+連接資料,以左側資料為基準,"merge(資料1, 資料2, all.x=T, by=""參照欄位"")",base
+連接資料,以左側資料為基準,"left_join(資料1, 資料2, by=""參照欄位"")",dplyr
+連接資料,以左側資料為基準,"merge.data.table(資料1, 資料2, all.x=T, by=""參照欄位"")",data.table
+連接資料,保留兩份所有資料,"merge(資料1, 資料2, all=T, by=""參照欄位"")",base
+連接資料,保留兩份所有資料,"full_join(資料1, 資料2, by=""參照欄位"")",dplyr
+連接資料,保留兩份所有資料,"merge.data.table(資料1, 資料2, all=T, by=""參照欄位"")",data.table
+連接資料,保留共同擁有欄位的資料,"merge(資料1, 資料2, by=""參照欄位"")",base
+連接資料,保留共同擁有欄位的資料,"inner_join(資料1, 資料2, by=""參照欄位"")",dplyr
+連接資料,保留共同擁有欄位的資料,"merge.data.table(資料1, 資料2, by=""參照欄位"")",data.table
+重新命名欄位,重新命名欄位（逐一羅列）,"rename(資料, 新欄位名稱=舊欄位名稱)",dplyr
+重新命名欄位,重新命名欄位（系統性修改）,"rename_with(資料, 修正函式)",dplyr
+去除重複資料,去除重複資料,distinct(資料),dplyr
+去除重複資料,去除重複資料,unique(資料),data.table
+資料集合,交集,"intersect(資料1, 資料2)",dplyr
+資料集合,交集,"fintersect(資料1, 資料2)",data.table
+資料集合,聯集,"union(資料1, 資料2)",dplyr
+資料集合,聯集,"funion(資料1, 資料2)",data.table
+資料集合,差集,"setdiff(資料1, 資料2)",dplyr
+資料集合,差集,"fsetdiff(資料1, 資料2)",data.table
+資料集合,對稱差集,"symdiff(資料1, 資料2)",dplyr
+資料集合,檢查兩資料是否完全相同,"setequal(資料1, 資料2)",dplyr
+資料集合,檢查兩資料是否完全相同,"fsetequal(資料1, 資料2)",data.table
+資料型態轉換,長資料轉換為寬資料,"cast(資料, 保留欄位+保留欄位+... ~ 參照欄位, value.var=""展開欄位"")",data.table
+資料型態轉換,寬資料轉換為長資料,"melt(資料, id.vars=c(""保留欄位"", ...),
+     measure.vars=""展開欄位"",
+     variable.name=""參照欄位名稱"",
+     value.name=""展開欄位名稱"")",data.table

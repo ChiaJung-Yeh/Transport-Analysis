@@ -114,3 +114,4 @@ fig:melt-dcast-fig
 其他應用
 合併多圖
 gif-繪製
+tab:function-summary
