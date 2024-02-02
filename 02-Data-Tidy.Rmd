@@ -719,11 +719,11 @@ world_DT[, .(pop=sum(pop, na.rm=T), County_N=.N), by=continent]
 
 關於連接資料的概念詳見圖\@ref(fig:join-fig)之示意圖，而以上三套件連接資料的函式彙整如表\@ref(tab:join-table)。
 
-```{r join-fig, echo=F, eval=T, out.width="80%", fig.align="center", fig.cap="join 示意圖"}
+```{r join-fig, echo=F, eval=T, out.width="80%", fig.align="center", fig.cap="連接資料示意圖"}
 include_graphics("./figure/join.png")
 ```
 
-```{r join-table, echo=F, eval=T, fig.cap="join 示意圖"}
+```{r join-table, echo=F, eval=T}
 join_table=data.frame(method=c("<A href='#left-join'>以第一份（左側）資料為基準</A>","<A href='#full-join'>保留資料1與資料2所有資料</A>","<A href='#inner-join'>保留共同擁有的參照欄位之資料</A>"),
                       func_dplyr=c("`left_join(資料1, 資料2)`","`full_join(資料1, 資料2)`","`inner_join(資料1, 資料2)`"),
                       func_base=c("`merge(資料1, 資料2, all.x=T)`","`merge(資料1, 資料2, all=T)`","`merge(資料1, 資料2)`"),
@@ -964,7 +964,7 @@ unique(StuScore_dup)
 ## 資料集合
 資料集合包含交集（intersect）、聯集（union）、差集（difference）、對稱差集（symmetric difference），如圖\@ref(fig:set-operations-fig)之示意圖所示。
 
-```{r set-operations-fig, echo=F, eval=T, out.width="80%", fig.align="center", fig.cap="join 示意圖"}
+```{r set-operations-fig, echo=F, eval=T, out.width="80%", fig.align="center", fig.cap="資料集合示意圖"}
 include_graphics("./figure/set_operations.png")
 ```
 
@@ -1084,7 +1084,7 @@ fsetequal(data1_DT, data2_DT)
 ## 資料型態轉換
 依據資料的長度與寬度，可以將其簡單分為「長資料（long data）」與「寬資料（wide data）」。長資料是指針對不同屬性**逐列羅列**的資料格式，通常資料筆數會較多，會存在許多重複的資料列；寬資料則是指將不同屬性**逐行展開**的資料格式，通常資料筆數較少。以圖\@ref(fig:melt-dcast-fig)之示意圖為例，若欲記錄學生各科目的成績，有兩種紀錄方式，其一為長資料，亦即將學生、科目、分數分欄紀錄；另一為寬資料，係建立科目別（如示意圖中為「Math」與「English」）欄位，並依序記錄各科目的分數。
 
-```{r melt-dcast-fig, echo=F, eval=T, out.width="85%", fig.align="center", fig.cap="join 示意圖"}
+```{r melt-dcast-fig, echo=F, eval=T, out.width="85%", fig.align="center", fig.cap="資料型態轉換示意圖"}
 include_graphics("./figure/melt_dcast.png")
 ```
 
@@ -1142,5 +1142,11 @@ StuScore_long=melt(StuScore_wide, id.vars=c("StuID", "Name"),
 # 查看資料
 StuScore_long
 ```
+
+
+
+
+
+
 
 
