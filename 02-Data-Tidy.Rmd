@@ -1161,6 +1161,8 @@ fuc_summary=mutate(fuc_summary, COLOR=case_when(
   package=="dplyr" ~ "#ECF5FF",
   package=="data.table" ~ "#F5FFE8"
 ))
+fuc_summary$func=gsub("&", "`&`", fuc_summary$func)
+fuc_summary$func=gsub(">", "`>`", fuc_summary$func)
 
 kbl(fuc_summary[, 1:3], booktabs=T, escape=T, caption="資料處理函式彙整", col.names=c("章節","操作","函式"))%>%
   kable_styling(bootstrap_options=c("striped", "hover"), font_size=14)%>%
