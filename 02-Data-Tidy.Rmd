@@ -97,7 +97,7 @@ class(world_DT)
 
 由最後輸出結果可知，`world_DT`資料經過`setDT()`函式設定後即新增 data.table 格式，同時亦會保留 data.frame 格式。
 
-此外，亦可直接利用`fread()`函式讀取資料，其資料型態即為 data.table，程式碼撰寫如下。
+此外，亦可直接利用[`fread()`](#資料讀取與匯出)函式讀取資料，其資料型態即為 data.table，程式碼撰寫如下。
 
 ```{r read-data-world-fread, echo=T, eval=F}
 world_DT=fread("https://raw.githubusercontent.com/ChiaJung-Yeh/Transport-Analysis/master/Data/world.csv")
@@ -1149,6 +1149,29 @@ StuScore_long=melt(StuScore_wide, id.vars=c("StuID", "Name"),
 # 查看資料
 StuScore_long
 ```
+
+以`coffee`資料為例，其屬於寬資料，將咖啡的產量分欄記錄（coffee_production_2016、coffee_production_2017），若欲將其轉換為長資料，亦即所有的產量放置於同一欄位，並額外新增一欄記錄「年度（Year）」，程式碼撰寫如下。
+
+```{r melt-eg-coffee1, echo=T, eval=T, warning=F}
+# 將寬資料轉換為長資料
+coffee_long=melt(coffee, id.vars=c("name_long"),
+                 measure.vars=c("coffee_production_2016","coffee_production_2017"),
+                 variable.name="Year", value.name="Production")
+
+# 查看資料
+head(coffee_long)
+```
+
+此時的「年度（Year）」欄位經過長資料轉換後，記錄的是「coffee_production_2016」與「coffee_production_2016」兩欄位名稱，若欲僅保留年度（2016、2017），可利用文字處理的函式[`gsub()`](#擷取與取代字元)將「coffee_production_」之字元取代為「無字元（`""`）」，並利用`as.numeric()`函式將其傳換為數值型態，程式碼撰寫如下。
+
+```{r melt-eg-coffee2, echo=T, eval=T, warning=F}
+# 以gsub()函式取代不需要的字元
+coffee_long$Year=as.numeric(gsub("coffee_production_", "", coffee_long$Year))
+
+# 查看前六筆資料
+head(coffee_long)
+```
+
 
 
 ## **所有函式彙整** {-}
