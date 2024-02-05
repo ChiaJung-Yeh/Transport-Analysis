@@ -1162,7 +1162,7 @@ coffee_long=melt(coffee, id.vars=c("name_long"),
 head(coffee_long)
 ```
 
-此時的「年度（Year）」欄位經過長資料轉換後，記錄的是「coffee_production_2016」與「coffee_production_2016」兩欄位名稱，若欲僅保留年度（2016、2017），可利用文字處理的函式[`gsub()`](#擷取與取代字元)將「coffee_production_」之字元取代為「無字元（`""`）」，並利用`as.numeric()`函式將其傳換為數值型態，程式碼撰寫如下。
+此時的「年度（Year）」欄位經過長資料轉換後，記錄的是「coffee_production_2016」與「coffee_production_2017」兩欄位名稱，若欲僅保留年度（2016、2017），可利用文字處理的函式[`gsub()`](#擷取與取代字元)將「coffee_production_」之字元取代為「無字元（`""`）」，並利用`as.numeric()`函式將其傳換為數值型態，程式碼撰寫如下。
 
 ```{r melt-eg-coffee2, echo=T, eval=T, warning=F}
 # 以gsub()函式取代不需要的字元

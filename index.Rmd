@@ -12,6 +12,7 @@ biblio-style: apalike
 link-citations: yes
 github-repo: ChiaJung-Yeh/Transport-Analysis
 description: "運輸資料分析"
+google-site-verification: "i4Iib3GevuN2t_jtsNp0YabkQRXcrER03lw4OKVffco"
 ---
 
 ```{r setup1, include=FALSE}
@@ -34,6 +35,7 @@ client_secret=read.csv("./key.txt", header=F)[2,2]
 access_token=get_token(client_id, client_secret)
 ```
 
+<meta name="google-site-verification" content="i4Iib3GevuN2t_jtsNp0YabkQRXcrER03lw4OKVffco" />
 
 # **前言** {-}
 
@@ -85,7 +87,7 @@ include_graphics("./figure/learning_curve.png")
 本書各分析所需使用的主要套件與其功能彙整如表\@ref(tab:package-download-table)，請先行安裝。
 
 ```{r package-download, echo=T, eval=F}
-# 安裝dplyr、sf、ggplot2、devtools套件
+# 安裝dplyr、data.table、ggplot2、sf、devtools套件
 install.packages(c("dplyr", "data.table", "ggplot2", "sf", "devtools"))
 
 # 另自GitHub下載TDX與TWspdata套件
