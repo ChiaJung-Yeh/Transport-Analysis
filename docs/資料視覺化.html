@@ -23,7 +23,7 @@
 <meta name="author" content="Chia-Jung (Robert) Yeh 葉家榮 PhD: Insitute of Transport and Logistics Studies, USYD M.S.: Department of Transportation and Logistics Management, NYCU" />
 
 
-<meta name="date" content="2024-02-13" />
+<meta name="date" content="2024-02-14" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -146,7 +146,7 @@
 </ul></li>
 <li class="chapter" data-level="3" data-path="資料視覺化.html"><a href="資料視覺化.html"><i class="fa fa-check"></i><b>3</b> <strong>資料視覺化</strong></a>
 <ul>
-<li class="chapter" data-level="3.1" data-path="資料視覺化.html"><a href="資料視覺化.html#圖表繪製"><i class="fa fa-check"></i><b>3.1</b> 圖表繪製</a>
+<li class="chapter" data-level="3.1" data-path="資料視覺化.html"><a href="資料視覺化.html#圖表類型"><i class="fa fa-check"></i><b>3.1</b> 圖表類型</a>
 <ul>
 <li class="chapter" data-level="3.1.1" data-path="資料視覺化.html"><a href="資料視覺化.html#直線曲線與線段"><i class="fa fa-check"></i><b>3.1.1</b> 直線、曲線與線段</a></li>
 <li class="chapter" data-level="3.1.2" data-path="資料視覺化.html"><a href="資料視覺化.html#直方圖"><i class="fa fa-check"></i><b>3.1.2</b> 直方圖</a></li>
@@ -214,10 +214,32 @@
 <div id="資料視覺化" class="section level1 hasAnchor" number="3">
 <h1><span class="header-section-number">Chapter 3</span> <strong>資料視覺化</strong><a href="資料視覺化.html#資料視覺化" class="anchor-section" aria-label="Anchor link to header"></a></h1>
 <p>資料視覺化是分析資料前相當重要的步驟，能夠將雜論無章的數據彙整為具有統計意義的圖，進而觀察資料趨勢與潛在的意涵；同時也是在資料分析後，用以呈現產出結果的重要手段，進而貫串整個分析的主題與故事。本章節介紹 R 語言中資料視覺化的方法，其中偏重於介紹<code>ggplot2</code>套件的使用，分別介紹不同圖表的應用與程式撰寫方式，並詳述圖表細節之設定，進而使圖表的呈現更加細緻與客製化。</p>
-<div id="圖表繪製" class="section level2 hasAnchor" number="3.1">
-<h2><span class="header-section-number">3.1</span> 圖表繪製<a href="資料視覺化.html#圖表繪製" class="anchor-section" aria-label="Anchor link to header"></a></h2>
-<p><code>ggplot2</code>套件是在 R 語言中最為常見的繪圖工具，此名稱中的「gg」意謂著「Grammar of Graphics」，亦即使用此套件繪圖時乃依據特定的規則，如同語言中的「文法」。<code>ggplot2</code>套件提供多種不同的函式可繪製各類型圖表，並可進一步細緻調整圖表樣式，提升資料之可視性。</p>
-<p><code>ggplot2</code>繪圖方法主要由三個部分構成：畫布、圖表與資料、主題設定。</p>
+<p><code>ggplot2</code>套件是在 R 語言中最為常見的繪圖工具，此名稱中的「gg」意謂著「<strong>G</strong>rammar of <strong>G</strong>raphics」，亦即使用此套件繪圖時乃依據特定的規則，如同語言中的「文法」。<code>ggplot2</code>套件提供多種不同的函式可繪製各類型圖表，並可進一步細緻調整圖表樣式，提升資料之可視性。</p>
+<p><code>ggplot2</code>繪圖方法主要由四個元素構成：資料與座標軸、圖表類型、尺度設定、主題設定，繪圖架構如圖<a href="資料視覺化.html#fig:ggplot2-fig">3.1</a>所示。</p>
+<div class="figure" style="text-align: center"><span style="display:block;" id="fig:ggplot2-fig"></span>
+<img src="figure/ggplot2.png" alt="`ggplot2`繪圖架構" width="50%" />
+<p class="caption">
+圖 3.1: <code>ggplot2</code>繪圖架構
+</p>
+</div>
+<p>以圖<a href="資料視覺化.html#fig:fig-exp">3.2</a>為例，各元素所控制的圖片要素彙整如下：</p>
+<ul>
+<li><strong>資料與座標軸：</strong>所輸入的資料為鳶尾花（iris）資料、設定花萼的長度（Sepal.Length）為橫軸；花萼的寬度（Sepal.Width）為縱軸<br />
+</li>
+<li><strong>圖表類型：</strong>使用點子圖<br />
+</li>
+<li><strong>尺度設定：</strong>將花瓣的寬度（Petal.Width）給定漸層顏色、將花瓣的長度（Petal.Length）給定層級大小<br />
+</li>
+<li><strong>主題設定：</strong>設定座標軸文字的顏色與大小、設定圖例的文字大小、粗細與背景顏色</li>
+</ul>
+<div class="figure" style="text-align: center"><span style="display:block;" id="fig:fig-exp"></span>
+<img src="series_files/figure-html/fig-exp-1.png" alt="繪圖範例" width="60%" />
+<p class="caption">
+圖 3.2: 繪圖範例
+</p>
+</div>
+<div id="圖表類型" class="section level2 hasAnchor" number="3.1">
+<h2><span class="header-section-number">3.1</span> 圖表類型<a href="資料視覺化.html#圖表類型" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <div id="直線曲線與線段" class="section level3 hasAnchor" number="3.1.1">
 <h3><span class="header-section-number">3.1.1</span> 直線、曲線與線段<a href="資料視覺化.html#直線曲線與線段" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 </div>

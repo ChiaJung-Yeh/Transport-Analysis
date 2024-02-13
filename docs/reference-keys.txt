@@ -117,3 +117,6 @@ gif-繪製
 tab:function-summary
 拆分欄位
 填補資料
+fig:ggplot2-fig
+fig:fig-exp
+圖表類型
