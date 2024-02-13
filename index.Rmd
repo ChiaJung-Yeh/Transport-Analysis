@@ -88,7 +88,7 @@ include_graphics("./figure/learning_curve.png")
 
 ```{r package-download, echo=T, eval=F}
 # 安裝dplyr、data.table、ggplot2、sf、devtools套件
-install.packages(c("dplyr", "data.table", "ggplot2", "sf", "devtools"))
+install.packages(c("dplyr", "tidyr", "data.table", "ggplot2", "sf", "devtools"))
 
 # 另自GitHub下載TDX與TWspdata套件
 devtools::install_github("ChiaJung-Yeh/NYCU_TDX")
@@ -96,6 +96,7 @@ devtools::install_github("ChiaJung-Yeh/TWspdata")
 
 # 載入套件
 library(dplyr)
+library(tidyr)
 library(data.table)
 library(ggplot2)
 library(sf)
@@ -104,8 +105,8 @@ library(TWspdata)
 ```
 
 ```{r package-download-table, echo=F, eval=T}
-package_table=data.frame(package=c("[`dplyr`](https://dplyr.tidyverse.org/)", "[`data.table`](https://rdatatable.gitlab.io/data.table/)", "[`ggplot2`](https://ggplot2.tidyverse.org/)", "[`sf`](https://r-spatial.github.io/sf/)", "[`TDX`](https://chiajung-yeh.github.io/TDX_Guide/)", "[`TWspdata`](https://github.com/ChiaJung-Yeh/TWspdata)"),
-                         package_function=c("數據分析","數據分析（尤其更大量的數據）","繪圖","地理分析","介接臺灣運輸資料
+package_table=data.frame(package=c("[`dplyr`](https://dplyr.tidyverse.org/)","[`tidyr`](https://tidyr.tidyverse.org/)", "[`data.table`](https://rdatatable.gitlab.io/data.table/)", "[`ggplot2`](https://ggplot2.tidyverse.org/)", "[`sf`](https://r-spatial.github.io/sf/)", "[`TDX`](https://chiajung-yeh.github.io/TDX_Guide/)", "[`TWspdata`](https://github.com/ChiaJung-Yeh/TWspdata)"),
+                         package_function=c("數據分析","數據分析","數據分析（尤其更大量的數據）","繪圖","地理分析","介接臺灣運輸資料
 ","臺灣相關資料"))
 
 colnames(package_table)=c("套件","功能")

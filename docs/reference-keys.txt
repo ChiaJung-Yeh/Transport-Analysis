@@ -115,3 +115,5 @@ fig:melt-dcast-fig
 合併多圖
 gif-繪製
 tab:function-summary
+拆分欄位
+填補資料
