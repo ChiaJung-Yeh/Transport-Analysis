@@ -1206,20 +1206,29 @@ separate(StuScore_split, col="Student", into=c("StuID","Name"), sep="-")
 
 
 ## 填補資料
-在實務資料中，往往有些資料是空缺的，若欲透過其上下筆資料予以填補，則可透過`fill()`函式達成目的，該函式撰寫架構如下。
+在實務資料中，往往有些資料是空缺的，必須將其填補後，尚能進一步進行統計與資料處理。若欲透過其上下筆資料予以填補，則可透過`fill()`函式達成目的，該函式撰寫架構如下。
 
 ```{r fill-code, echo=T, eval=F}
-fill(資料, .direction="方向")
+fill(資料, 欲填補欄位名稱, .direction="方向")
 ```
 
 其中`.direction=`引數用以設定填補的方向，可為上（`up`）、下（`down`）、先上後下（`updown`）與先下後上（`downup`）四種。
 
-以
+以臺鐵各鄉鎮市區的站點數目統計資料（`tra_town`）為例，其中詳列縣市、鄉鎮市區與車站數量，而縣市名稱（COUNTYNAME）僅羅列於各縣市的第一筆資料，因此需要將其「向下」填補。程式碼撰寫如下。
 
-```{r fill-eg, echo=T, eval=F}
+```{r fill-eg, echo=T, eval=T}
+# 讀取臺鐵各鄉鎮市區的站點數目統計資料
 tra_town=read.csv("https://raw.githubusercontent.com/ChiaJung-Yeh/Transport-Analysis/master/Data/TRA_Town.csv")
-```
 
+# 查看前六筆資料
+head(tra_town)
+
+# 將縣市名稱向下填補
+tra_town_fill=fill(tra_town, COUNTYNAME, .direction="down")
+
+# 再次查看前六筆資料
+head(tra_town_fill)
+```
 
 
 
@@ -1229,7 +1238,8 @@ tra_town=read.csv("https://raw.githubusercontent.com/ChiaJung-Yeh/Transport-Anal
 
 * <p style="background-color:#FFECEC;">`base`</p>  
 * <p style="background-color:#ECF5FF;">`dplyr`</p>  
-* <p style="background-color:#F5FFE8;">`data.table`（使用此套件時，建議使用 data.table 資料型態）</p>
+* <p style="background-color:#F5FFE8;">`data.table`（使用此套件時，建議使用 data.table 資料型態）</p>  
+* <p style="background-color:#FFFFDF;">`tidyr`</p>  
 
 ```{r function-summary, echo=F, eval=T}
 fuc_summary=read.csv("./Data/Function Summary.csv")
@@ -1238,7 +1248,8 @@ fuc_summary$func=paste0("`", fuc_summary$func, "`")
 fuc_summary=mutate(fuc_summary, COLOR=case_when(
   package=="base" ~ "#FFECEC",
   package=="dplyr" ~ "#ECF5FF",
-  package=="data.table" ~ "#F5FFE8"
+  package=="data.table" ~ "#F5FFE8",
+  package=="tidyr" ~ "#FFFFDF"
 ))
 fuc_summary$func=gsub("&", "`&`", fuc_summary$func)
 fuc_summary$func=gsub(">", "`>`", fuc_summary$func)

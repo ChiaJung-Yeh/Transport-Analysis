@@ -68,3 +68,5 @@
      measure.vars=""展開欄位"",
      variable.name=""參照欄位名稱"",
      value.name=""展開欄位名稱"")",data.table
+拆分欄位,文字切割後拆分欄位,"separate(資料, col=欲拆分欄位, into=新欄位名稱向量, sep=""分隔符號"")",tidyr
+填補資料,依據方向填補資料,"fill(資料, 欲填補欄位名稱, .direction=""方向"")",tidyr
