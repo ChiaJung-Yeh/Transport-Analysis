@@ -13,6 +13,7 @@ link-citations: yes
 github-repo: ChiaJung-Yeh/Transport-Analysis
 description: "本書簡介R語言資料分析的基礎，含括基礎語法、dplyr套件與ggplot2套件的使用，深入淺出資料分析的步驟，最後透過運輸案例將所介紹的套件與函式應用於實務資料。"
 google-site-verification: "i4Iib3GevuN2t_jtsNp0YabkQRXcrER03lw4OKVffco"
+cover-image: "images/cover.png"
 ---
 
 ```{r setup1, include=FALSE}
@@ -132,7 +133,7 @@ access_token=get_token(client_id, client_secret)
 
 ## 其他參考資料 {-}
 
-以下網站陳列較系統性的教材與參考資料：
+以下網站陳列其他教材與參考資料：
 
 1. [R Preliminary](https://chiajung-yeh.github.io/R-Code-Sharing/R_Preliminary/R_Preliminary.html)
 2. [Spatial Analysis with R](https://chiajung-yeh.github.io/Spatial-Analysis/)  

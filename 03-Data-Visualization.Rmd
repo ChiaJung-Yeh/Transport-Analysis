@@ -31,10 +31,10 @@ include_graphics("./figure/ggplot2.png")
 
 以圖\@ref(fig:fig-exp)為例，各元素所控制的圖片要素彙整如下：  
 
-* **資料與座標軸：**所輸入的資料為鳶尾花（iris）資料、設定花萼的長度（Sepal.Length）為橫軸；花萼的寬度（Sepal.Width）為縱軸  
-* **圖表類型：**使用點子圖  
-* **尺度設定：**將花瓣的寬度（Petal.Width）給定漸層顏色、將花瓣的長度（Petal.Length）給定層級大小  
-* **主題設定：**設定座標軸文字的顏色與大小、設定圖例的文字大小、粗細與背景顏色  
+* <span style="color:#BF9000">**資料與座標軸：**</span> 所輸入的資料為鳶尾花（iris）資料、設定花萼的長度（Sepal.Length）為橫軸；花萼的寬度（Sepal.Width）為縱軸  
+* <span style="color:#002060;">**圖表類型：**</span> 使用點子圖  
+* <span style="color:#548235;">**尺度設定：**</span> 將花瓣的寬度（Petal.Width）給定漸層顏色、將花瓣的長度（Petal.Length）給定層級大小  
+* <span style="color:#C55A11;">**主題設定：**</span> 設定座標軸文字的顏色與大小、設定圖例的文字大小、粗細與背景顏色  
 
 ```{r fig-exp, echo=F, eval=T, out.width="60%", fig.align="center", fig.cap="繪圖範例"}
 ggplot(data=iris, aes(x=Sepal.Length, y=Sepal.Width, color=Petal.Width, size=Petal.Length))+
@@ -50,35 +50,25 @@ ggplot(data=iris, aes(x=Sepal.Length, y=Sepal.Width, color=Petal.Width, size=Pet
 ```
 
 
-
 ## 圖表類型
 
 
+### 點子圖
 
-### 直線、曲線與線段
 
+### 折線圖
+
+
+
+### 長條圖
 
 
 
 ### 直方圖
 
 
-### 長條圖
-
-
-### 折線圖
-
-
-### 山脊圖
-
 
 ### 密度圖
-
-
-### 點子圖
-
-
-### 氣泡圖
 
 
 ### 圓餅圖
@@ -88,6 +78,14 @@ ggplot(data=iris, aes(x=Sepal.Length, y=Sepal.Width, color=Petal.Width, size=Pet
 
 
 ### 小提琴圖
+
+
+### 氣泡圖
+
+
+
+### 山脊圖
+
 
 
 ### 熱力圖
@@ -103,6 +101,10 @@ ggplot(data=iris, aes(x=Sepal.Length, y=Sepal.Width, color=Petal.Width, size=Pet
 
 
 ### 三元圖
+
+
+
+### 直線、曲線與線段
 
 
 
