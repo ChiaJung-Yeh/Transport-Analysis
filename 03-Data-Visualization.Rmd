@@ -62,10 +62,9 @@ ggplot(data=iris, aes(x=Sepal.Length, y=Sepal.Width, color=Petal.Width, size=Pet
 
 
 ## 圖表類型
-本節彙整常見的圖表類型，並介紹各圖表繪製方法，利用不同的資料視覺化呈現。
+本節彙整常見的圖表類型（如表\@ref(tab:tab-export-plot)），並介紹各圖表繪製方法，利用不同的資料視覺化呈現。
 
-
-```{r fig-export-plot, echo=F, eval=T, out.width="60%"}
+```{r tab-export-plot, echo=F, eval=T}
 ggplot_summary=read.csv("./Data/ggplot Summary.csv")
 temp=paste0("./figure/ggplot/", ggplot_summary$Figure, ".png")
 ggplot_summary$Figure=""

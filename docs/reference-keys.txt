@@ -122,3 +122,4 @@ fig:fig-exp
 圖表類型
 散佈圖
 tab:fig-export-plot
+tab:tab-export-plot
