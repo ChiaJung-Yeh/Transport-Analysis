@@ -1,35 +1,39 @@
-﻿Plot,Feature,Figure
+﻿Plot,Feature,Package,Function,Figure
 [散佈圖<br>Scatter Plot](#散佈圖),"* 表達兩連續變數的關係
-* 點的顏色與大小可以反映第三個變數",scatter_plot
+* 點的顏色與大小可以反映第三個變數",ggplot2,geom_point(),scatter_plot
 [折線圖<br>Line Chart](#折線圖),"* 表達連續變數的變化
-* 時間序列",line_plot
+* 時間序列",ggplot2,geom_line(),line_plot
 [長條圖<br>Bar Chart](#長條圖),"* 表達各類別的統計量
-* 可利用不同顏色表達類別",bar_chart
+* 可利用不同顏色表達類別",ggplot2,geom_bar(),bar_chart
 [直方圖<br>Histogram](#直方圖),"* 表達連續變數的統計分布
-* 長條夠多即近似於密度圖",histogram
+* 長條夠多即近似於密度圖",ggplot2,geom_histogram(),histogram
 [密度圖<br>Density Plot](#密度圖),"* 表達連續變數的統計分布
-* 曲線下面積總和為 1",density_plot
+* 曲線下面積總和為 1",ggplot2,geom_density(),density_plot
 [圓餅圖<br>Pie Chart](#圓餅圖),"* 表達各類別在資料中的占比
-* 以扇形面積表達比例",pie_chart
+* 以扇形面積表達比例",ggplot2,geom_bar() + coord_polar(),pie_chart
 [盒狀圖<br>Box Plot](#盒狀圖),"* 表達連續變數的統計分布
-* 可得知四分位數",box_plot
+* 可得知四分位數",ggplot2,geom_boxplot(),box_plot
 [小提琴圖<br>Violin Plot](#小提琴圖),"* 表達連續變數的統計分布
 * 與盒狀圖相似
-* 可觀察資料集中趨勢",violin_plot
+* 可觀察資料集中趨勢",ggplot2,geom_violin(),violin_plot
 [氣泡圖<br>Bubble Plot](#氣泡圖),"* 表達三個連續變數的關係
 * 與散布圖相似
-* 第三個變數可為類別或連續",bubble_plot
+* 第三個變數可為類別或連續",ggplot2,geom_point(),bubble_plot
 [山脊圖<br>Ridgeline Plot](#山脊圖),"* 表達多個連續變數的統計分布
 * 與密度圖相似
-* 可同時觀察不同變數間的集中程度",ridgeline_plot
+* 可同時觀察不同變數間的集中程度",ggridges,geom_density_ridges(),ridgeline_plot
 [熱力圖<br>Heat Plot](#熱力圖),"* 表達資料整體數值的相對大小
-* 表達各變數之間的相關性",heat_plot
+* 表達各變數之間的相關性","ggplot2
+stats",geom_tile(),heat_plot
 [矩形式樹狀圖<br>Treemap](#矩形式樹狀圖),"* 表達各類別組成的占比
-* 以矩形面積表達比例",tree_map
+* 以矩形面積表達比例","**treemapify**
+treemap",geom_treemap(),tree_map
 [桑基圖<br>Sankey Diagram](#桑基圖),"* 表達各類別之間的流動量
 * 具有方向性
-* 流線粗細表示流動量",sankey_diagram
+* 流線粗細表示流動量","**ggalluvial**
+ggsankey",geom_density_sankes(),sankey_diagram
 [雷達圖<br>Radar Chart](#雷達圖),"* 表達各數據的配重
-* 觀察各類別間的相對優勢",radar_plot
+* 觀察各類別間的相對優勢",**ggradar**,ggradar(),radar_plot
 [三元圖<br>Ternary Plot](#三元圖),"* 表達三個連續變數間的分配占比
-* 觀察各類別的傾向",ternary_plot
+* 觀察各類別的傾向","**ggtern**
+Ternary",geom_ternary(),ternary_plot

@@ -793,6 +793,7 @@ temp=paste0("./figure/string/", c(1:11,3,4,12,9,10,13,11,14,15,5,7,8,16,6,1,1,17
 kbl(str_fun, booktabs=T, escape=F, caption="文字處理重要函式")%>%
   kable_styling(bootstrap_options=c("striped", "hover"), font_size=14)%>%
   column_spec(4, image=spec_image(temp, 700, 100))%>%
+  column_spec(1:4 ,extra_css="vertical-align:middle;")%>%
   collapse_rows(1)%>%
   row_spec(0, bold=T, color="white", background="#8E8E8E")
 ```

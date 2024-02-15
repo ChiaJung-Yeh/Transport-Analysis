@@ -59,6 +59,8 @@ ggplot(data=iris, aes(x=Sepal.Length, y=Sepal.Width, color=Petal.Width, size=Pet
 
 * [The R Graph Gallery](https://r-graph-gallery.com/index.html)
 * [R CHARTS](https://r-charts.com/)
+* [from Data to Viz](https://www.data-to-viz.com/)
+* [Visual Vocabulary](https://journalismcourses.org/wp-content/uploads/2020/07/Visual-vocabulary.pdf)
 
 
 ## 圖表類型
@@ -66,17 +68,31 @@ ggplot(data=iris, aes(x=Sepal.Length, y=Sepal.Width, color=Petal.Width, size=Pet
 
 ```{r tab-export-plot, echo=F, eval=T}
 ggplot_summary=read.csv("./Data/ggplot Summary.csv")
-temp=paste0("./figure/ggplot/", ggplot_summary$Figure, ".png")
+temp1=paste0("./figure/ggplot/", ggplot_summary$Figure, ".png")
 ggplot_summary$Figure=""
-kable(ggplot_summary, booktabs=T, escape=F, caption="圖表類型彙整", col.names=c("圖表類型","應用時機","圖示"), align=c("llc"))%>%
+temp2=strsplit(ggplot_summary$Package, "\n")
+temp2=mapply(function(y) mapply(function(x) paste0("`", temp2[[y]][x], "`"), c(1:length(temp2[[y]]))), c(1:length(temp2)))
+temp2=mapply(function(x) paste(temp2[[x]], collapse="<br>"), c(1:length(temp2)))
+temp2=gsub("\\*\\*\\`", "\\`\\*\\*", temp2)
+temp2=gsub("\\`\\*\\*g", "\\*\\*\\`g", temp2)
+temp2=gsub("\\`\\*\\*t", "\\*\\*\\`t", temp2)
+ggplot_summary$Package=temp2
+ggplot_summary$Function=paste0("`", ggplot_summary$Function, "`")
+
+kable(ggplot_summary, booktabs=T, escape=F, caption="圖表類型彙整", col.names=c("圖表類型","特徵/應用","套件","函式","圖示"), align=c("llc"))%>%
   kable_styling(bootstrap_options=c("striped", "hover"), font_size=14)%>%
-  column_spec(1:2 ,extra_css="vertical-align:middle;")%>%
-  column_spec(3, image=spec_image(temp, 450, 300))%>%
-  row_spec(0, bold=T, color="white", background="#8E8E8E")
+  column_spec(5, width="4.5cm")%>%
+  column_spec(1:5, extra_css="vertical-align:middle;")%>%
+  column_spec(5, image=spec_image(temp1, 375, 250))%>%
+  row_spec(0, bold=T, color="white", background="#8E8E8E")%>%
+  footnote("套件中的**粗體字**為可以與`ggplot2`套件整合者")
+
 ```
 
 
 ### 散佈圖
+散佈圖（Scatter Plot）應用於表達兩個連續變數之間的關係，橫軸與縱軸分別代表不同的連續變數，並利用點表示此二連續變數在二維空間的分布。
+
 
 
 ### 折線圖
