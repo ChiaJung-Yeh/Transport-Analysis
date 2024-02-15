@@ -14,6 +14,7 @@ library(stringr)
 library(jsonlite)
 library(xml2)
 library(tidyr)
+library(knitrhooks)
 
 Sys.setlocale(category = "LC_ALL", locale = "zh_TW.UTF-8")
 
@@ -397,6 +398,52 @@ world_mut=world_DT[, c("pop_dens", "district") := .(pop/area_km2, paste0(contine
 # 利用$直接新增欄位
 world$pop_dens=world$pop/world$area_km2
 world$district=paste0(world$continent, " (", world$subregion, ")")
+```
+
+<p style="color:#003D79;font-size:18px;line-height:2">**⌾ 新增多個相同運算的資料屬性**</p>  
+
+此外，若欲依據多個欄位作相同運算，並取代原欄位（或建立新欄位），可利用`mutate_at()`函式達成之，其中必須放置欲運算的欄位名稱，函式撰寫架構如下。其中，欄位名稱的撰寫有兩種方法，第一種（以下程式碼中的「-1」）是將欲運算的變數以文字向量儲存；第二種（以下程式碼中的「-2」）則是將欲運算的欄位包在`vars()`函式中。
+
+另須注意，若`運算函式`僅一個，則回傳結果會直接取代舊有欄位；而若希望保留原本的欄位不變，並新增新的欄位名稱，則應透過`list()`函式將運算的函式包覆其中。在`list()`函式中可進一步設定新增欄位的名稱，其是依據原始欄位加上底線再加上新名稱，亦即`舊名稱_新名稱`。
+
+```{r mutate_at-code, echo=T, eval=F}
+# 取代原欄位-1
+mutate_at(資料, c("變數1", "變數2", ...), 運算函式)
+# 取代原欄位-2
+mutate_at(資料, vars(變數1, 變數2, ...), 運算函式)
+
+# 建立新欄位-1
+mutate_at(資料, c("變數1", "變數2", ...), list(新名稱1=運算函式1, 新名稱2=運算函式2))
+# 建立新欄位-2
+mutate_at(資料, vars(變數1, 變數2, ...), list(新名稱1=運算函式1, 新名稱2=運算函式2))
+```
+
+舉例而言，若欲針對`world`資料，建立面積與人口數的對數值（`log()`），程式碼撰寫如下。
+
+```{r mutate-eg4, echo=T, eval=T}
+# 建立面積與人口數的對數值欄位(取代原欄位)-1
+world_mutat1=mutate_at(world, c("area_km2", "pop"), log)
+
+# 建立面積與人口數的對數值欄位(取代原欄位)-2
+world_mutat1=mutate_at(world, vars(area_km2, pop), log)
+
+# 查看前六筆資料
+head(world_mutat1[, c("name_long","area_km2","pop")])
+```
+
+請注意，以上回傳結果中 area_km2 與 pop 兩欄位已變為正規化的數值，原始資料即被取代。
+
+而若欲同時建立面積與人口數的對數值（`log()`）與正規化（`scale()`），並保留原始欄位，程式碼撰寫如下。
+
+```{r mutate-eg5, echo=T, eval=T}
+# 建立面積與人口數的對數值欄位(建立新欄位)-1
+world_mutat2=mutate_at(world, c("area_km2", "pop"), list(log=log, scale=scale))
+
+# 建立面積與人口數的對數值欄位(建立新欄位)-2
+world_mutat2=mutate_at(world, vars(area_km2, pop), list(log=log, scale=scale))
+
+# 查看前六筆資料
+head(world_mutat2[, c("name_long","area_km2","pop","area_km2_log","pop_log","area_km2_scale","pop_scale")])
 ```
 
 
