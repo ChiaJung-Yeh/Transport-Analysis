@@ -120,3 +120,5 @@ tab:function-summary
 fig:ggplot2-fig
 fig:fig-exp
 圖表類型
+散佈圖
+tab:fig-export-plot
