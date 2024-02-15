@@ -618,7 +618,7 @@ world_DT[order(-area_km2)]%>%
   .[, .SD[c(1:3)], by=continent]
 ```
 
-與`dplyr`套件的撰寫方式相同，若欲串接不同的函式，可透過 pipe (`%>%`) 連接。另外請注意此回傳結果會保留所有匹配與未匹配的資料，例如`world_DT`資料中 Antarctica 僅有一個區域，而由於我們尋找前六筆資料，此函式會回傳所有六筆結果，未匹配者則在其他筆資料中顯示`NA`。
+與`dplyr`套件的撰寫方式相同，若欲串接不同的函式，可透過 pipe (`%>%`) 連接。另外請注意此回傳結果會保留所有匹配與未匹配的資料，例如`world_DT`資料中 Antarctica 僅有一個區域，而由於我們尋找前三筆資料，此函式會回傳所有三筆結果，未匹配者則在其他筆資料中顯示`NA`。
 :::
 
 
@@ -658,7 +658,7 @@ group_by(資料, 分群欄位)%>%
 
 以`world`資料為例，先將資料依據洲（continent）分群，而後統計各洲總人口數與國家數，程式碼撰寫如下。
 
-```{r groupby-summarise-eg, echo=T, eval=T}
+```{r groupby-summarise-eg1, echo=T, eval=T}
 world_gro6=group_by(world, continent)%>%
   summarise(pop=sum(pop, na.rm=T),
             County_N=n())
@@ -685,6 +685,46 @@ world_DT[, .(pop=sum(pop, na.rm=T), County_N=.N), by=continent]
 :::
 
 
+若欲針對多個屬性資料做相同的運算，可利用`summarise_at()`函式給定多個欄位名稱。舉例而言，若欲針對`world`資料統計各洲的平均壽命與人均 GDP，程式碼撰寫如下。
+
+```{r groupby-summarise-eg2, echo=T, eval=T, warning=F}
+world_gro7=group_by(world, continent)%>%
+  summarise_at(c("lifeExp", "gdpPercap"), mean, na.rm=T)
+
+# 輸出資料
+world_gro7
+```
+
+此外，若欲選取的變數名稱非常多，不大可能逐一詳列變數，此時可利用`across()`函式表達變數選取範圍，
+`across()`函式放置於`summarise()`函式內，其中需給定變數名稱範圍，以及運算函式。函式撰寫架構如下。
+
+```{r groupby-summarise-across-code, echo=T, eval=F}
+group_by(資料, 分群欄位)%>%
+  summarise(across(變數1:變數2, ~ 運算函式(.x)))
+```
+
+舉例而言，若欲針對`world`資料計算 area_km2 至 lifeExp 欄位的平均值，程式碼撰寫如下。
+
+```{r groupby-summarise-eg3, echo=T, eval=T, warning=F}
+world_gro8=group_by(world, continent)%>%
+  summarise(across(area_km2:lifeExp, ~ mean(.x, na.rm=T)))
+
+# 輸出資料
+world_gro8
+```
+
+若欲針對所有給定條件做運算，則可利用`summarise_if()`函式，設定條件尋找所有符合條件的欄位，並再透過運算函式計算之。舉例而言，若欲計算所有`world`資料中，屬於數值的欄位（利用`is.numeric()`函式檢查）之平均值，程式碼撰寫如下。
+
+```{r groupby-summarise-eg4, echo=T, eval=T, warning=F}
+world_gro9=group_by(world, continent)%>%
+  summarise_if(is.numeric, mean, na.rm=T)
+
+# 輸出資料
+world_gro9
+```
+
+
+
 <p style="color:#003D79;font-size:18px;line-height:2">**⌾ 分群統計資料（`reframe()`）**</p>  
 
 除了`group_by() %>% summarise()`以外，亦可使用`group_by() %>% reframe()`達到相同目的，且適用的彈性更大。如以上的範例，`group_by() %>% summarise()`回傳的是統計後的結果，通常`運算函式`僅回傳一個值，如`sum()`是針對所有群組內的特定變數做加總。然而有時候`運算函式`可能並非單純回傳一個值，例如`range()`函式回傳的是兩個值，包括最小值與最大值，此時使用`group_by() %>% summarise()`雖能得到結果，但會出現警告訊息，而使用`group_by() %>% reframe()`則可在無警告之下得到正確結果。`group_by() %>% reframe()`的函式撰寫架構如下，與`group_by() %>% summarise()`相同。
@@ -697,11 +737,11 @@ group_by(資料, 分群欄位)%>%
 再次以`world`資料為例，將資料依據洲（continent）分群，而後統計各洲人均 GDP（gdpPercap）的範圍，程式碼撰寫如下。
 
 ```{r groupby-reframe-eg, echo=T, eval=T, warning=F}
-world_gro7=group_by(world, continent)%>%
+world_gro10=group_by(world, continent)%>%
   reframe(gdpPercap=range(gdpPercap, na.rm=T))
 
 # 輸出資料
-world_gro7
+world_gro10
 ```
 
 由以上程式碼可知各洲人均 GDP 的範圍。另須注意的是，由於「Antarctica」中所有國家並無人均 GDP 的資料，故回傳之上下界為 Inf 與 -Inf。

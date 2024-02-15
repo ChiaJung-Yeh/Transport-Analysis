@@ -5,20 +5,20 @@
   <meta charset="utf-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <title>Chapter 3 資料視覺化 | 運輸資料分析角落：初學者園地</title>
-  <meta name="description" content="本書簡介R語言資料分析的基礎，含括基礎語法、dplyr套件與ggplot2套件的使用，深入淺出資料分析的步驟，最後透過運輸案例將所介紹的套件與函式應用於實務資料。" />
+  <meta name="description" content="本書簡介R語言資料分析的基礎，含括基礎語法、dplyr套件與ggplot2套件的使用，深入淺出資料分析的步驟，最後透過交通運輸案例將所介紹的套件與函式應用於實務資料。" />
   <meta name="generator" content="bookdown 0.35 and GitBook 2.6.7" />
 
   <meta property="og:title" content="Chapter 3 資料視覺化 | 運輸資料分析角落：初學者園地" />
   <meta property="og:type" content="book" />
-  <meta property="og:image" content="/images/cover.png" />
-  <meta property="og:description" content="本書簡介R語言資料分析的基礎，含括基礎語法、dplyr套件與ggplot2套件的使用，深入淺出資料分析的步驟，最後透過運輸案例將所介紹的套件與函式應用於實務資料。" />
+  
+  <meta property="og:description" content="本書簡介R語言資料分析的基礎，含括基礎語法、dplyr套件與ggplot2套件的使用，深入淺出資料分析的步驟，最後透過交通運輸案例將所介紹的套件與函式應用於實務資料。" />
   <meta name="github-repo" content="ChiaJung-Yeh/Transport-Analysis" />
 
   <meta name="twitter:card" content="summary" />
   <meta name="twitter:title" content="Chapter 3 資料視覺化 | 運輸資料分析角落：初學者園地" />
   
-  <meta name="twitter:description" content="本書簡介R語言資料分析的基礎，含括基礎語法、dplyr套件與ggplot2套件的使用，深入淺出資料分析的步驟，最後透過運輸案例將所介紹的套件與函式應用於實務資料。" />
-  <meta name="twitter:image" content="/images/cover.png" />
+  <meta name="twitter:description" content="本書簡介R語言資料分析的基礎，含括基礎語法、dplyr套件與ggplot2套件的使用，深入淺出資料分析的步驟，最後透過交通運輸案例將所介紹的套件與函式應用於實務資料。" />
+  
 
 <meta name="author" content="Chia-Jung (Robert) Yeh 葉家榮 PhD: Insitute of Transport and Logistics Studies, USYD M.S.: Department of Transportation and Logistics Management, NYCU" />
 
@@ -213,7 +213,7 @@
             <section class="normal" id="section-">
 <div id="資料視覺化" class="section level1 hasAnchor" number="3">
 <h1><span class="header-section-number">Chapter 3</span> <strong>資料視覺化</strong><a href="資料視覺化.html#資料視覺化" class="anchor-section" aria-label="Anchor link to header"></a></h1>
-<p>資料視覺化是分析資料前相當重要的步驟，能夠將雜論無章的數據彙整為具有統計意義的圖，進而觀察資料趨勢與潛在的意涵；同時也是在資料分析後，用以呈現產出結果的重要手段，進而貫串整個分析的主題與故事。本章節介紹 R 語言中資料視覺化的方法，其中偏重於介紹<code>ggplot2</code>套件的使用，分別介紹不同圖表的應用與程式撰寫方式，並詳述圖表細節之設定，進而使圖表的呈現更加細緻與客製化。</p>
+<p>資料視覺化是分析資料前相當重要的步驟，能夠將雜論無章的數據彙整為具有統計意義的圖，進而觀察資料趨勢與潛在的意涵；同時也是在資料分析後，用以呈現產出結果的重要手段，進而貫串整個分析的主題與故事。本章節介紹 R 語言中資料視覺化的方法，其中側重於<code>ggplot2</code>套件的使用，分別介紹不同圖表的應用與程式撰寫方式，並詳述圖表細節之設定，進而使圖表的呈現更加細緻與客製化。</p>
 <p><code>ggplot2</code>套件是在 R 語言中最為常見的繪圖工具，此名稱中的「gg」意謂著「<strong>G</strong>rammar of <strong>G</strong>raphics」，亦即使用此套件繪圖時乃依據特定的規則，如同語言中的「文法」。<code>ggplot2</code>套件提供多種不同的函式可繪製各類型圖表，並可進一步細緻調整圖表樣式，提升資料之可視性。</p>
 <p><code>ggplot2</code>繪圖方法主要由四個元素構成：資料與座標軸、圖表類型、尺度設定、主題設定，繪圖架構如圖<a href="資料視覺化.html#fig:ggplot2-fig">3.1</a>所示。</p>
 <div class="figure" style="text-align: center"><span style="display:block;" id="fig:ggplot2-fig"></span>
@@ -228,7 +228,7 @@
 </li>
 <li><span style="color:#002060;"><strong>圖表類型：</strong></span> 使用點子圖<br />
 </li>
-<li><span style="color:#548235;"><strong>尺度設定：</strong></span> 將花瓣的寬度（Petal.Width）給定漸層顏色、將花瓣的長度（Petal.Length）給定層級大小<br />
+<li><span style="color:#548235;"><strong>尺度設定：</strong></span> 將花瓣的寬度（Petal.Width）給定漸層顏色、將花瓣的長度（Petal.Length）給定點子大小<br />
 </li>
 <li><span style="color:#C55A11;"><strong>主題設定：</strong></span> 設定座標軸文字的顏色與大小、設定圖例的文字大小、粗細與背景顏色</li>
 </ul>
@@ -238,8 +238,14 @@
 圖 3.2: 繪圖範例
 </p>
 </div>
+<p>本章節僅介紹常見的圖表，並系統性彙整<code>ggplot2</code>套件的作圖概念，惟無法涵蓋所有圖表繪製與細節調整，建議可以直接在網路上利用關鍵字（盡可能用英文關鍵字，所得到的回饋會更多、更完整）搜索，藉此模仿他人的程式碼，並從中學習作圖技巧。此外，以下羅列非常豐富的 R 繪圖相簿，內含完整的程式碼可供觀摩：</p>
+<ul>
+<li><a href="https://r-graph-gallery.com/index.html">The R Graph Gallery</a></li>
+<li><a href="https://r-charts.com/">R CHARTS</a></li>
+</ul>
 <div id="圖表類型" class="section level2 hasAnchor" number="3.1">
 <h2><span class="header-section-number">3.1</span> 圖表類型<a href="資料視覺化.html#圖表類型" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>本節彙整常見的圖表類型，並介紹各圖表繪製方法，利用不同的資料視覺化呈現。</p>
 <div id="點子圖" class="section level3 hasAnchor" number="3.1.1">
 <h3><span class="header-section-number">3.1.1</span> 點子圖<a href="資料視覺化.html#點子圖" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 </div>

@@ -13,13 +13,17 @@ library(DT)
 library(stringr)
 library(jsonlite)
 library(xml2)
+library(tidyr)
+library(ggridges)
+library(TWspdata)
+library(treemapify)
 
 Sys.setlocale(category = "LC_ALL", locale = "zh_TW.UTF-8")
-windowsFonts(A=windowsFont("微軟正黑體"))
+windowsFonts(A=windowsFont("Taipei Sans TC Beta"))
 ```
 
 # **資料視覺化**
-資料視覺化是分析資料前相當重要的步驟，能夠將雜論無章的數據彙整為具有統計意義的圖，進而觀察資料趨勢與潛在的意涵；同時也是在資料分析後，用以呈現產出結果的重要手段，進而貫串整個分析的主題與故事。本章節介紹 R 語言中資料視覺化的方法，其中偏重於介紹`ggplot2`套件的使用，分別介紹不同圖表的應用與程式撰寫方式，並詳述圖表細節之設定，進而使圖表的呈現更加細緻與客製化。
+資料視覺化是分析資料前相當重要的步驟，能夠將雜論無章的數據彙整為具有統計意義的圖，進而觀察資料趨勢與潛在的意涵；同時也是在資料分析後，用以呈現產出結果的重要手段，進而貫串整個分析的主題與故事。本章節介紹 R 語言中資料視覺化的方法，其中側重於`ggplot2`套件的使用，分別介紹不同圖表的應用與程式撰寫方式，並詳述圖表細節之設定，進而使圖表的呈現更加細緻與客製化。
 
 `ggplot2`套件是在 R 語言中最為常見的繪圖工具，此名稱中的「gg」意謂著「**G**rammar of **G**raphics」，亦即使用此套件繪圖時乃依據特定的規則，如同語言中的「文法」。`ggplot2`套件提供多種不同的函式可繪製各類型圖表，並可進一步細緻調整圖表樣式，提升資料之可視性。
 
@@ -33,7 +37,7 @@ include_graphics("./figure/ggplot2.png")
 
 * <span style="color:#BF9000">**資料與座標軸：**</span> 所輸入的資料為鳶尾花（iris）資料、設定花萼的長度（Sepal.Length）為橫軸；花萼的寬度（Sepal.Width）為縱軸  
 * <span style="color:#002060;">**圖表類型：**</span> 使用點子圖  
-* <span style="color:#548235;">**尺度設定：**</span> 將花瓣的寬度（Petal.Width）給定漸層顏色、將花瓣的長度（Petal.Length）給定層級大小  
+* <span style="color:#548235;">**尺度設定：**</span> 將花瓣的寬度（Petal.Width）給定漸層顏色、將花瓣的長度（Petal.Length）給定點子大小  
 * <span style="color:#C55A11;">**主題設定：**</span> 設定座標軸文字的顏色與大小、設定圖例的文字大小、粗細與背景顏色  
 
 ```{r fig-exp, echo=F, eval=T, out.width="60%", fig.align="center", fig.cap="繪圖範例"}
@@ -49,8 +53,197 @@ ggplot(data=iris, aes(x=Sepal.Length, y=Sepal.Width, color=Petal.Width, size=Pet
         legend.box.background=element_rect(fill=alpha("#E0E0E0", 0.8), color="#ADADAD"))
 ```
 
+本章節僅介紹常見的圖表，並系統性彙整`ggplot2`套件的作圖概念，惟無法涵蓋所有圖表繪製與細節調整，建議可以直接在網路上利用關鍵字（盡可能用英文關鍵字，所得到的回饋會更多、更完整）搜索，藉此模仿他人的程式碼，並從中學習作圖技巧。此外，以下羅列非常豐富的 R 繪圖相簿，內含完整的程式碼可供觀摩：
+
+* [The R Graph Gallery](https://r-graph-gallery.com/index.html)
+* [R CHARTS](https://r-charts.com/)
+
 
 ## 圖表類型
+本節彙整常見的圖表類型，並介紹各圖表繪製方法，利用不同的資料視覺化呈現。
+
+
+```{r fig-export-plot, echo=F, eval=F, out.width="60%", fig.align="center", fig.cap="繪圖範例"}
+# 點子圖
+png("./figure/ggplot/dot_plot.png", width=714*2, height=419*2, res=200)
+ggplot(data=iris, aes(x=Sepal.Length, y=Sepal.Width))+
+  geom_point()+
+  theme(axis.title=element_text(size=15, family="A"),
+        axis.text=element_text(size=12, family="A"))
+dev.off()
+
+# 折線圖
+png("./figure/ggplot/line_plot.png", width=714*2, height=419*2, res=200)
+temp=airquality
+temp$Date=as.Date(paste0(str_pad(temp$Month, 2, "left", 0), "-", str_pad(temp$Day, 2, "left", 0)), format="%m-%d")
+Sys.setlocale(category="LC_ALL", locale="English")
+ggplot(data=temp, aes(x=Date, y=Temp))+
+  geom_line(group=1)+
+  scale_x_date(date_breaks="month", date_labels="%B")+
+  ylab("Temperature")+
+  theme(axis.title=element_text(size=15, family="A"),
+        axis.text=element_text(size=12, family="A"))
+Sys.setlocale(category="LC_ALL", locale="zh_TW.UTF-8")
+dev.off()
+
+# 長條圖
+png("./figure/ggplot/bar_chart.png", width=714*2, height=419*2, res=200)
+temp=read.csv("https://raw.githubusercontent.com/ChiaJung-Yeh/Transport-Analysis/master/Data/TRA_Town.csv")%>%
+  fill(COUNTYNAME, .direction="down")%>%
+  group_by(COUNTYNAME)%>%
+  summarise(TRA_num=sum(TRA_num))%>%
+  arrange(-TRA_num)
+temp$COUNTYNAME=factor(temp$COUNTYNAME, temp$COUNTYNAME)
+ggplot(data=temp, aes(x=COUNTYNAME, y=TRA_num))+
+  geom_bar(stat="identity")+
+  xlab("縣市") + ylab("臺鐵站點數")+
+  theme(axis.title=element_text(size=15, family="A"),
+        axis.text=element_text(size=8, family="A"))
+dev.off()
+
+# 直方圖
+png("./figure/ggplot/histogram.png", width=714*2, height=419*2, res=200)
+ggplot(data=airquality, aes(x=Wind))+
+  geom_histogram(binwidth=2)+
+  ylab("Frequency")+
+  scale_x_continuous(breaks=seq(0,22,2))+
+  theme(axis.title=element_text(size=15, family="A"),
+        axis.text=element_text(size=12, family="A"))
+dev.off()
+
+# 密度圖
+png("./figure/ggplot/demsity_plot.png", width=714*2, height=419*2, res=200)
+ggplot(data=airquality, aes(x=Wind))+
+  geom_density()+
+  ylab("Density")+
+  scale_x_continuous(breaks=seq(0,22,2))+
+  theme(axis.title=element_text(size=15, family="A"),
+        axis.text=element_text(size=12, family="A"))
+dev.off()
+
+# 圓餅圖
+png("./figure/ggplot/pie_chart.png", width=714*2, height=419*2, res=200)
+temp=read.csv("https://raw.githubusercontent.com/ChiaJung-Yeh/Transport-Analysis/master/Data/TRA_Town.csv")%>%
+  fill(COUNTYNAME, .direction="down")%>%
+  group_by(COUNTYNAME)%>%
+  summarise(TRA_num=sum(TRA_num))%>%
+  arrange(-TRA_num)%>%
+  mutate(id=c(1:nrow(.)),
+         COUNTYNAME=ifelse(id<=5, COUNTYNAME, "其他縣市"))
+temp$COUNTYNAME=factor(temp$COUNTYNAME, unique(temp$COUNTYNAME))
+temp=group_by(temp, COUNTYNAME)%>%
+  summarise(TRA_num=sum(TRA_num))%>%
+  arrange(desc(COUNTYNAME))%>%
+  mutate(prop=TRA_num/sum(TRA_num)*100)%>%
+  mutate(ypos=cumsum(prop)-0.5*prop)
+ggplot(temp, aes(x="", y=prop, fill=COUNTYNAME))+
+  geom_bar(stat="identity", width=1, alpha=0.8)+
+  coord_polar("y", start=0, direction=-1)+
+  geom_text(aes(y=ypos, label=TRA_num), color="white", size=6)+
+  scale_fill_brewer(palette="Set2", name="臺鐵站點數")+
+  theme_void()+
+  theme(legend.title=element_text(family="A", size=15),
+        legend.text=element_text(family="A", size=12))
+dev.off()
+
+# 盒狀圖
+png("./figure/ggplot/box_plot.png", width=714*2, height=419*2, res=200)
+ggplot(data=iris, aes(x=Species, y=Sepal.Length))+
+  geom_boxplot()+
+  theme(axis.title=element_text(size=15, family="A"),
+        axis.text=element_text(size=12, family="A"))
+dev.off()
+
+# 小提琴圖
+png("./figure/ggplot/violin_plot.png", width=714*2, height=419*2, res=200)
+ggplot(data=iris, aes(x=Species, y=Sepal.Length))+
+  geom_violin()+
+  theme(axis.title=element_text(size=15, family="A"),
+        axis.text=element_text(size=12, family="A"))
+dev.off()
+
+# 氣泡圖
+png("./figure/ggplot/bubble_plot.png", width=714*2, height=419*2, res=200)
+temp=read.csv("https://raw.githubusercontent.com/ChiaJung-Yeh/Transport-Analysis/master/Data/world.csv")
+tt=round(classInt::classIntervals(temp$pop, n=5, style="fisher")$brks, -5)/100000
+ggplot(data=temp, aes(x=lifeExp, y=gdpPercap, size=pop/100000))+
+  geom_point(alpha=0.2)+
+  scale_size_continuous(range=c(.1, 10), breaks=tt, name="Population (100K)")+
+  xlab("Life Expectancy") + ylab("GDP per Capital")+
+  theme(axis.title=element_text(size=15, family="A"),
+        axis.text=element_text(size=12, family="A"))
+dev.off()
+
+# 山脊圖
+png("./figure/ggplot/ridgeline_plot.png", width=714*2, height=419*2, res=200)
+ggplot(iris, aes(x=Sepal.Length, y=Species, fill=Species))+
+  geom_density_ridges(show.legend=F)+
+  theme(axis.title=element_text(size=15, family="A"),
+        axis.text=element_text(size=12, family="A"))
+dev.off()
+
+# 熱力圖
+png("./figure/ggplot/heat_plot.png", width=714*2, height=419*2, res=200)
+heatmap(as.matrix(mtcars), scale="column")
+dev.off()
+# temp=data.frame(scale(mtcars))
+# temp$Cars=row.names(temp)
+# temp$Cars=factor(temp$Cars, levels=unique(temp$Cars))
+# temp=melt(temp, id.vars="Cars", measure.vars=c(1:(ncol(temp)-1)))
+# ggplot(temp, aes(variable, Cars, fill=value))+
+#   geom_tile()+
+#   scale_fill_distiller(palette="YlOrRd", direction=1)
+
+# 矩形式樹狀圖
+png("./figure/ggplot/tree_map.png", width=714*2, height=419*2, res=200)
+temp=mutate(taiwan_village_pop, COUNTYNAME=substr(site_id, 1, 3))%>%
+  group_by(COUNTYNAME)%>%
+  summarise(people_total=sum(people_total))%>%
+  mutate(District=case_when(
+    COUNTYNAME %in% c("臺北市","新北市","基隆市","桃園市","宜蘭縣","新竹縣","新竹市") ~ "北部",
+    COUNTYNAME %in% c("苗栗縣","臺中市","彰化縣","南投縣","雲林縣") ~ "中部",
+    COUNTYNAME %in% c("嘉義市","嘉義縣","臺南市","高雄市","屏東縣") ~ "南部",
+    COUNTYNAME %in% c("花蓮縣","臺東縣") ~ "東部",
+    TRUE ~ "離島"
+  ))
+# treemap::treemap(temp, index=c("District","COUNTYNAME"), vSize="people_total", type="index", fontfamily.title="A", fontfamily.labels="A", title="臺灣總人口數", bg.labels="white")
+ggplot(temp, aes(area=people_total, fill=District, label=COUNTYNAME, subgroup=District, subgroup2=COUNTYNAME))+
+  geom_treemap(show.legend=F)+
+  scale_fill_brewer(palette="Set2")+
+  geom_treemap_subgroup_border(colour="white", size=5, show.legend=F)+
+  geom_treemap_subgroup_text(place="centre", grow=T, alpha=0.25, colour="black", fontface="bold", family="A", size=2)+
+  geom_treemap_subgroup2_text(color="white", place="centre", size=1, grow=T, family="A", alpha=0.7)
+dev.off()
+
+# 桑基圖
+png("./figure/ggplot/sankey_diagram.png", width=714*2, height=419*2, res=200)
+temp=read.csv("./Data/neihu_commuting.csv")%>%
+  mutate(PT=ceiling(PT/10), PV=ceiling(PV/10))%>%
+  melt(id.vars=c("TOWNNAME","DESTINATION"), measure.vars=c("PV","PT"), variable.name="Mode")%>%
+  mutate(Mode=ifelse(Mode=="PT", "公共運輸", "私有運具"))
+colnames(temp)=c("鄉鎮市區","迄點","運具","value")
+temp=temp[rep(c(1:nrow(temp)), temp$value),]%>%
+  select(-value)%>%
+  make_long(鄉鎮市區, 運具, 迄點)
+ggplot(temp, aes(x=x, next_x=next_x, node=node, next_node=next_node, fill=factor(node), label=node))+
+  geom_sankey()+
+  geom_sankey_label(size=3, color="white", fill="gray40", family="A") +
+  scale_fill_viridis_d()+
+  theme_sankey(base_size=16, base_family="A")+
+  theme(legend.position="none",
+        axis.title=element_blank()) 
+dev.off()
+
+
+# 雷達圖
+temp=group_by(iris, Species)%>%
+  summarise_at(vars(Sepal.Length:Petal.Width), mean)%>%
+  mutate_at(vars(-Species), scales::rescale)
+
+
+
+```
+
 
 
 ### 點子圖
