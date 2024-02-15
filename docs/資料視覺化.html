@@ -23,7 +23,7 @@
 <meta name="author" content="Chia-Jung (Robert) Yeh 葉家榮 PhD: Insitute of Transport and Logistics Studies, USYD M.S.: Department of Transportation and Logistics Management, NYCU" />
 
 
-<meta name="date" content="2024-02-15" />
+<meta name="date" content="2024-02-16" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -58,6 +58,70 @@
 <script src="libs/bsTable-3.3.7/bootstrapTable.js"></script>
 
 
+<style type="text/css">
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { color: #008000; } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { color: #008000; font-weight: bold; } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+</style>
 
 <style type="text/css">
   
@@ -242,7 +306,7 @@
 圖 3.2: 繪圖範例
 </p>
 </div>
-<p>本章節僅介紹常見的圖表，並系統性彙整<code>ggplot2</code>套件的作圖概念，惟無法涵蓋所有圖表繪製與細節調整，建議可以直接在網路上利用關鍵字（盡可能用英文關鍵字，所得到的回饋會更多、更完整）搜索，藉此模仿他人的程式碼，並從中學習作圖技巧。此外，以下羅列非常豐富的 R 繪圖相簿，內含完整的程式碼可供觀摩：</p>
+<p>本章僅介紹常見的圖表，並系統性彙整<code>ggplot2</code>套件的作圖概念，惟無法涵蓋所有圖表繪製與細節調整，建議可以直接在網路上利用關鍵字（盡可能用英文關鍵字，所得到的回饋會更多、更完整）搜索，藉此模仿他人的程式碼，並從中學習作圖技巧。此外，以下羅列非常豐富的 R 繪圖相簿，內含完整的程式碼可供觀摩：</p>
 <ul>
 <li><a href="https://r-graph-gallery.com/index.html">The R Graph Gallery</a></li>
 <li><a href="https://r-charts.com/">R CHARTS</a></li>
@@ -251,6 +315,9 @@
 </ul>
 <div id="圖表類型" class="section level2 hasAnchor" number="3.1">
 <h2><span class="header-section-number">3.1</span> 圖表類型<a href="資料視覺化.html#圖表類型" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p style="color:#003D79;font-size:18px;line-height:2">
+<strong>⌾ 圖表類型彙整</strong>
+</p>
 <p>本節彙整常見的圖表類型（如表<a href="資料視覺化.html#tab:tab-export-plot">3.1</a>），並介紹各圖表繪製方法，利用不同的資料視覺化呈現。</p>
 <table class="table table-striped table-hover" style="font-size: 14px; margin-left: auto; margin-right: auto;border-bottom: 0;">
 <caption style="font-size: initial !important;">
@@ -589,20 +656,66 @@
 </tr>
 <tr>
 <td style="padding: 0; " colspan="100%">
-<sup></sup> 套件中的<strong>粗體字</strong>為可以與<code>ggplot2</code>套件整合者
-</td>
-</tr>
-<tr>
-<td style="padding: 0; " colspan="100%">
-<sup><em></sup> </em>
+<sup></sup> 套件欄位中的<strong>粗體字</strong>為可以與<code>ggplot2</code>套件整合者
 </td>
 </tr>
 </tfoot>
 </table>
-<p>大部分的</p>
+<p style="color:#003D79;font-size:18px;line-height:2">
+<strong>⌾ 初始化</strong>
+</p>
+<p>如前文所提，<code>ggplot2</code>是依循著繪圖文法的套件，其最基礎的元素即是<strong>資料與座標軸</strong>，也就是繪製各種類型圖表前的「畫布」，可利用<code>ggplot()</code>函式生成之，函式撰寫架構如下。</p>
+<div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1-1"><a href="資料視覺化.html#cb1-1" tabindex="-1"></a><span class="fu">ggplot</span>(資料, <span class="fu">aes</span>(<span class="at">x=</span>, <span class="at">y=</span>))</span></code></pre></div>
+<p>其中的<code>aes</code>表示「aesthetics（美學）」，用以定義圖表中需要「座標」的資訊。舉例而言，繪製圖表的點與線時必須要有座標，因此<code>x=</code>與<code>y=</code>兩引數務必放置於<code>aes()</code>函式中。而若希望不同資料點或線具有不同顏色、粗細、大小等，則亦須要透過「座標」控制之，此時亦須在該函式中設定之。</p>
+<p>以<code>iris</code>套件為例建立畫布，並以 Sepal.Length 為橫軸、Sepal.Width 為縱軸，設定最基礎的畫布如圖<a href="資料視覺化.html#fig:ggplot-code-eg">3.3</a>。</p>
+<div class="sourceCode" id="cb2"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb2-1"><a href="資料視覺化.html#cb2-1" tabindex="-1"></a><span class="fu">ggplot</span>(iris, <span class="fu">aes</span>(<span class="at">x=</span>Sepal.Length, <span class="at">y=</span>Sepal.Width))</span></code></pre></div>
+<div class="figure" style="text-align: center"><span style="display:block;" id="fig:ggplot-code-eg"></span>
+<img src="series_files/figure-html/ggplot-code-eg-1.png" alt="畫布建置" width="70%" />
+<p class="caption">
+圖 3.3: 畫布建置
+</p>
+</div>
+<p style="color:#003D79;font-size:18px;line-height:2">
+<strong>⌾ 圖示設定</strong>
+</p>
+<p>在 R 語言中各類型圖表皆可能需要設定其形狀（<code>shape</code>）、線條樣式（<code>linetype</code>）、顏色（<code>color</code>）等，以下簡介各設定之代碼。</p>
+<p>點的形狀在 R 語言中共 26 個預設代碼，詳列如圖<a href="資料視覺化.html#fig:geom-setting-shape">3.4</a>，可直接設定數字使用符號。此外，亦可自訂代碼，如設定「<code>"X"</code>」，即表示使用「X」符號。</p>
+<div class="figure" style="text-align: center"><span style="display:block;" id="fig:geom-setting-shape"></span>
+<img src="series_files/figure-html/geom-setting-shape-1.png" alt="點形狀代碼" width="70%" />
+<p class="caption">
+圖 3.4: 點形狀代碼
+</p>
+</div>
+<p>線條樣式在 R 語言中共 7 個預設代碼，詳列如圖<a href="資料視覺化.html#fig:geom-setting-linetype">3.5</a>。</p>
+<div class="figure" style="text-align: center"><span style="display:block;" id="fig:geom-setting-linetype"></span>
+<img src="series_files/figure-html/geom-setting-linetype-1.png" alt="線條樣式代碼" width="70%" />
+<p class="caption">
+圖 3.5: 線條樣式代碼
+</p>
+</div>
+<p>在 R 語言中顏色的設定可以直接輸入預設的顏色名稱，詳列如圖<a href="資料視覺化.html#fig:geom-setting-color">3.6</a>，抑或直接透過十六進位值色碼，請參考<a href="https://www.ifreesite.com/color/">此</a>。</p>
+<div class="figure" style="text-align: center"><span style="display:block;" id="fig:geom-setting-color"></span>
+<img src="series_files/figure-html/geom-setting-color-1.png" alt="顏色代碼" width="90%" />
+<p class="caption">
+圖 3.6: 顏色代碼
+</p>
+</div>
+<p>接下來就讓我們用各種不同資料與案例說明各圖表的功能及程式撰寫方式。</p>
 <div id="散佈圖" class="section level3 hasAnchor" number="3.1.1">
 <h3><span class="header-section-number">3.1.1</span> 散佈圖<a href="資料視覺化.html#散佈圖" class="anchor-section" aria-label="Anchor link to header"></a></h3>
-<p>散佈圖（Scatter Plot）應用於表達兩個連續變數之間的關係，橫軸與縱軸分別代表不同的連續變數，並利用點表示此二連續變數在二維空間的分布。</p>
+<p>散佈圖（Scatter Plot）應用於表達兩個連續變數之間的關係，橫軸與縱軸分別代表不同的連續變數，並利用點表示此二連續變數在二維空間的分布，可利用<code>geom_point()</code>函式達成之，函式撰寫架構如下。</p>
+<div class="sourceCode" id="cb3"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb3-1"><a href="資料視覺化.html#cb3-1" tabindex="-1"></a><span class="fu">geom_point</span>(<span class="at">color=</span>, <span class="at">shape=</span>, <span class="at">size=</span>, <span class="at">stroke=</span>, <span class="at">fill=</span>, <span class="at">alpha=</span>)</span></code></pre></div>
+<p>以上各引數的功能彙整如</p>
+<!-- ```{r geom-point-code-tab, echo=T, eval=F} -->
+<!-- gp_code=data.frame(argument=c("`color=`","`shape=`","`size=`","`stroke=`","`fill=`","`alpha=`"), -->
+<!--                    setting=c("設定點的顏色","設定點的形狀","設定點的大小","設定點外圍框線的粗細","設定點內部的顏色","設定點的透明度"), explain=c("顏色利用文字或[十六進位值色碼](https://www.ifreesite.com/color/)","")) -->
+<!-- kable(gp_code, booktabs=T, escape=F, caption="圖表類型彙整", col.names=c("引數","功能設定"))%>% -->
+<!--   kable_styling(bootstrap_options=c("striped", "hover"), font_size=14) -->
+<!--   column_spec(5, width="4.5cm")%>% -->
+<!--   column_spec(1:5, extra_css="vertical-align:middle;")%>% -->
+<!--   column_spec(5, image=spec_image(temp1, 375, 250))%>% -->
+<!--   row_spec(0, bold=T, color="white", background="#8E8E8E") -->
+<!-- ``` -->
 </div>
 <div id="折線圖" class="section level3 hasAnchor" number="3.1.2">
 <h3><span class="header-section-number">3.1.2</span> 折線圖<a href="資料視覺化.html#折線圖" class="anchor-section" aria-label="Anchor link to header"></a></h3>

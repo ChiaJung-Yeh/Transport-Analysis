@@ -123,3 +123,8 @@ fig:fig-exp
 散佈圖
 tab:fig-export-plot
 tab:tab-export-plot
+fig:ggplot-fig
+fig:ggplot-code-eg
+fig:geom-setting-shape
+fig:geom-setting-linetype
+fig:geom-setting-color
