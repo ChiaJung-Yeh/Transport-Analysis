@@ -65,8 +65,8 @@ ggplot(data=iris, aes(x=Sepal.Length, y=Sepal.Width, color=Petal.Width, size=Pet
 
 ## 圖表類型
 
-<p style="color:#003D79;font-size:18px;line-height:2">**⌾ 圖表類型彙整**</p>  
-
+<!-- <p style="color:#003D79;font-size:18px;line-height:2">**⌾ 圖表類型彙整**</p>   -->
+### **圖表類型彙整** {-}
 本節彙整常見的圖表類型（如表\@ref(tab:tab-export-plot)），並介紹各圖表繪製方法，利用不同的資料視覺化呈現。
 
 ```{r tab-export-plot, echo=F, eval=T}
@@ -91,7 +91,7 @@ kable(ggplot_summary, booktabs=T, escape=F, caption="圖表類型彙整", col.na
   footnote("套件欄位中的**粗體字**為可以與`ggplot2`套件整合者")
 ```
 
-<p style="color:#003D79;font-size:18px;line-height:2">**⌾ 初始化**</p>  
+### **初始化** {-}
 如前文所提，`ggplot2`是依循著繪圖文法的套件，其最基礎的元素即是**資料與座標軸**，也就是繪製各種類型圖表前的「畫布」，可利用`ggplot()`函式生成之，函式撰寫架構如下。
 
 ```{r ggplot-code, echo=T, eval=F}
@@ -106,34 +106,37 @@ ggplot(資料, aes(x=, y=))
 ggplot(iris, aes(x=Sepal.Length, y=Sepal.Width))
 ```
 
-<p style="color:#003D79;font-size:18px;line-height:2">**⌾ 圖示設定**</p>  
+### **圖示設定** {-}
 在 R 語言中各類型圖表皆可能需要設定其形狀（`shape`）、線條樣式（`linetype`）、顏色（`color`）等，以下簡介各設定之代碼。
 
 點的形狀在 R 語言中共 26 個預設代碼，詳列如圖\@ref(fig:geom-setting-shape)，可直接設定數字使用符號。此外，亦可自訂代碼，如設定「`"X"`」，即表示使用「X」符號。
 
-```{r geom-setting-shape, echo=F, eval=T, out.width="70%", fig.align="center", fig.cap="點形狀代碼"}
+<H2 id="geom-setting-shape"></H2>
+```{r geom-setting-shape, echo=F, eval=T, out.width="65%", fig.align="center", fig.cap="點形狀代碼"}
 temp=data.frame(id=c(0:25))%>%
   mutate(x=(id)%%6+1, y=5-(id)%/%6+1)
 ggplot()+
   geom_point(data=temp, aes(x=x, y=y, shape=as.character(id)), stroke=1, size=6, fill="#FFFF37", show.legend=F)+
   scale_shape_manual(values=c(0:25))+
-  geom_text(data=temp, aes(x=x, y=y+0.3, label=id), family="A")+
+  geom_text(data=temp, aes(x=x, y=y+0.3, label=id), family="A", size=4.5)+
   theme_void()
 ```
 
 線條樣式在 R 語言中共 7 個預設代碼，詳列如圖\@ref(fig:geom-setting-linetype)。
 
+<H2 id="geom-setting-linetype"></H2>
 ```{r geom-setting-linetype, echo=F, eval=T, out.width="70%", fig.align="center", fig.cap="線條樣式代碼"}
 temp=data.frame(id=rep(c(0:6), each=2), linetype=rep(c("blank","solid","dashed","dotted","dotdash","longdash","twodash"), each=2), x=rep(c(1,2), times=7))
 ggplot()+
   geom_line(data=temp, aes(x=x, y=id, group=id, linetype=factor(id)), linewidth=1, show.legend=F)+
   scale_linetype_manual(values=c(0:6))+
-  geom_text(data=temp, aes(x=1.5, y=id+0.3, label=paste0(id, " - ", linetype)), family="A")+
+  geom_text(data=temp, aes(x=1.5, y=id+0.3, label=paste0(id, " - ", linetype)), family="A", size=4.5)+
   theme_void()
 ```
 
 在 R 語言中顏色的設定可以直接輸入預設的顏色名稱，詳列如圖\@ref(fig:geom-setting-color)，抑或直接透過十六進位值色碼，請參考[此](https://www.ifreesite.com/color/)。
 
+<H2 id="geom-setting-color"></H2>
 ```{r geom-setting-color, echo=F, eval=T, out.width="90%", fig.align="center", fig.cap="顏色代碼"}
 temp=data.frame(color=grDevices::colors())%>%
   filter(!grepl("[0-9]", color))%>%
@@ -152,7 +155,7 @@ ggplot(temp, aes(x=x, y=y, fill=color)) +
   theme_void()
 ```
 
-接下來就讓我們用各種不同資料與案例說明各圖表的功能及程式撰寫方式。
+有了上述對於圖表的基本認識後，接下來就讓我們用各種不同資料與案例說明各圖表的功能及程式撰寫方式。
 
 
 ### 散佈圖
@@ -162,19 +165,16 @@ ggplot(temp, aes(x=x, y=y, fill=color)) +
 geom_point(color=, shape=, size=, stroke=, fill=, alpha=)
 ```
 
-以上各引數的功能彙整如
+以上各引數的功能彙整如表\@ref(tab:geom-point-code-tab)
 
-<!-- ```{r geom-point-code-tab, echo=T, eval=F} -->
-<!-- gp_code=data.frame(argument=c("`color=`","`shape=`","`size=`","`stroke=`","`fill=`","`alpha=`"), -->
-<!--                    setting=c("設定點的顏色","設定點的形狀","設定點的大小","設定點外圍框線的粗細","設定點內部的顏色","設定點的透明度"), explain=c("顏色利用文字或[十六進位值色碼](https://www.ifreesite.com/color/)","")) -->
+```{r geom-point-code-tab, echo=F, eval=T}
+gp_code=data.frame(argument=c("`color=`","`shape=`","`size=`","`stroke=`","`fill=`","`alpha=`"),
+                   setting=c("設定點的顏色","設定點的形狀","設定點的大小","設定點外圍框線的粗細","設定點內部的顏色","設定點的透明度"), explain=c("請參考<A href='#geom-setting-color'>顏色設定</A>","請參考<A href='#geom-setting-shape'>形狀設定</A>","數值","數值，僅有空心形狀者（如<A href='#geom-setting-shape'>形狀設定</A>為 5~9 者）尚有效","請參考<A href='#geom-setting-color'>顏色設定</A>，僅有空心形狀者（如<A href='#geom-setting-shape'>形狀設定</A>為 5~9 者）尚有效","數值，介於 0（完全透明）與 1（完全不透明）間"))
 
-<!-- kable(gp_code, booktabs=T, escape=F, caption="圖表類型彙整", col.names=c("引數","功能設定"))%>% -->
-<!--   kable_styling(bootstrap_options=c("striped", "hover"), font_size=14) -->
-<!--   column_spec(5, width="4.5cm")%>% -->
-<!--   column_spec(1:5, extra_css="vertical-align:middle;")%>% -->
-<!--   column_spec(5, image=spec_image(temp1, 375, 250))%>% -->
-<!--   row_spec(0, bold=T, color="white", background="#8E8E8E") -->
-<!-- ``` -->
+kable(gp_code, booktabs=T, escape=F, caption="圖表類型彙整", col.names=c("引數","功能設定","說明"))%>%
+  kable_styling(bootstrap_options=c("striped", "hover"), font_size=14)%>%
+  row_spec(0, bold=T, color="white", background="#8E8E8E")
+```
 
 
 

@@ -128,3 +128,4 @@ fig:ggplot-code-eg
 fig:geom-setting-shape
 fig:geom-setting-linetype
 fig:geom-setting-color
+tab:geom-point-code-tab
