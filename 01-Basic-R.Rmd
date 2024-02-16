@@ -30,11 +30,12 @@ access_token=get_token(client_id, client_secret)
 ## 物件（Object）
 物件是 R 語言中構成資料的基本要素，常見者包含五大類：  
 
-1.  向量（vector）  
-2.  因子（factor）  
-3.  矩陣（matrix）   
-4.  資料框（data frame）  
-5.  陣列（list）  
+1.  [向量（vector）](#向量vector)  
+2.  [因子（factor）](#因子factor)  
+3.  [矩陣（matrix）](#矩陣matrix)   
+4.  [資料框（data frame）](#資料框data-frame)  
+5.  [陣列（list）](#陣列list)  
+6.  [日期與時間](#日期與時間)  
 
 物件的圖示如圖\@ref(fig:object-fig)。
 
@@ -829,7 +830,7 @@ date_str=as.Date(date_str)
 class(date_str)
 ```
 
-建立時間可利用`as.POSIXct()`函式，其中只要輸入完整的日期與時間即可（日期若忽略，系統會自動填補為當下的電腦日期），另可加入`format=`與`tz=`引數，分別用以確保正確的時間格式。程式碼撰寫如下。
+建立時間可利用`as.POSIXct()`函式，其中只要輸入完整的日期與時間即可（日期若忽略，系統會自動填補為當下的電腦日期），另可加入`format=`與`tz=`引數，用以確保正確的時間格式。程式碼撰寫如下。
 
 ```{r as-POSIXct1, echo=T, eval=T}
 # 建立日期時間文字
@@ -856,9 +857,6 @@ Sys.setlocale(category="LC_ALL", locale="en")
 
 # 將文字向量轉換為時間格式
 as.POSIXct(time_str2, format="%Y/%B/%d %I%M%S %p", tz="Asia/Taipei")
-
-# 輸出結果
-time_str2
 
 # 建議時間處理完後，再調整到中文地區，否則後續中文文字的輸出會有問題！！
 Sys.setlocale(category="LC_ALL", locale="zh_TW.UTF-8")
@@ -892,7 +890,7 @@ kbl(temp, booktabs=T, escape=F, caption="`month()`與`wday()`函式引數設定"
   kable_styling(bootstrap_options=c("striped", "hover"), font_size=14)%>%
   row_spec(0, bold=T, color="white", background="#8E8E8E")%>%
   column_spec(1, width="11cm")%>%
-  pack_rows("`month())` 月", 1, 4, bold=T, background="#ECFFFF")%>%
+  pack_rows("`month()` 月", 1, 4, bold=T, background="#ECFFFF")%>%
   pack_rows("`wday()` 星期", 5, 10, bold=T, background="#ECFFFF")
 ```
 
