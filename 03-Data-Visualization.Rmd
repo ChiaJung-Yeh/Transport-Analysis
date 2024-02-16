@@ -92,7 +92,7 @@ kable(ggplot_summary, booktabs=T, escape=F, caption="圖表類型彙整", col.na
 ```
 
 ### **初始化** {-}
-如前文所提，`ggplot2`是依循著繪圖文法的套件，其最基礎的元素即是**資料與座標軸**，也就是繪製各種類型圖表前的「畫布」，可利用`ggplot()`函式生成之，函式撰寫架構如下。
+如前文所提，`ggplot2`是依循著繪圖文法的套件，其最基礎的元素即是**資料與座標軸**，也就是繪製各類型圖表前的「畫布」，可利用`ggplot()`函式生成之，函式撰寫架構如下。
 
 ```{r ggplot-code, echo=T, eval=F}
 ggplot(資料, aes(x=, y=))
@@ -158,8 +158,8 @@ ggplot(temp, aes(x=x, y=y, fill=color)) +
 有了上述對於圖表的基本認識後，接下來就讓我們用各種不同資料與案例說明各圖表的功能及程式撰寫方式。
 
 
-### 散佈圖
-散佈圖（Scatter Plot）應用於表達兩個連續變數之間的關係，橫軸與縱軸分別代表不同的連續變數，並利用點表示此二連續變數在二維空間的分布，可利用`geom_point()`函式達成之，函式撰寫架構如下。
+### 散布圖
+散布圖（Scatter Plot）應用於表達兩個連續變數之間的關係，橫軸與縱軸分別代表不同的連續變數，並利用點表示此二連續變數在二維空間的分布，可利用`geom_point()`函式達成之，函式撰寫架構如下。
 
 ```{r geom-point-code, echo=T, eval=F}
 geom_point(color=, shape=, size=, stroke=, fill=, alpha=)
@@ -177,6 +177,7 @@ kable(gp_code, booktabs=T, escape=F, caption="圖表類型彙整", col.names=c("
 ```
 
 
+<p style="color:#003D79;font-size:18px;line-height:2">**⌾ 基礎散佈圖**</p>  
 
 
 

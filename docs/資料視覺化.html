@@ -219,7 +219,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="" data-path="資料視覺化.html"><a href="資料視覺化.html#圖表類型彙整"><i class="fa fa-check"></i><strong>圖表類型彙整</strong></a></li>
 <li class="chapter" data-level="" data-path="資料視覺化.html"><a href="資料視覺化.html#初始化"><i class="fa fa-check"></i><strong>初始化</strong></a></li>
 <li class="chapter" data-level="" data-path="資料視覺化.html"><a href="資料視覺化.html#圖示設定"><i class="fa fa-check"></i><strong>圖示設定</strong></a></li>
-<li class="chapter" data-level="3.1.1" data-path="資料視覺化.html"><a href="資料視覺化.html#散佈圖"><i class="fa fa-check"></i><b>3.1.1</b> 散佈圖</a></li>
+<li class="chapter" data-level="3.1.1" data-path="資料視覺化.html"><a href="資料視覺化.html#散布圖"><i class="fa fa-check"></i><b>3.1.1</b> 散布圖</a></li>
 <li class="chapter" data-level="3.1.2" data-path="資料視覺化.html"><a href="資料視覺化.html#折線圖"><i class="fa fa-check"></i><b>3.1.2</b> 折線圖</a></li>
 <li class="chapter" data-level="3.1.3" data-path="資料視覺化.html"><a href="資料視覺化.html#長條圖"><i class="fa fa-check"></i><b>3.1.3</b> 長條圖</a></li>
 <li class="chapter" data-level="3.1.4" data-path="資料視覺化.html"><a href="資料視覺化.html#直方圖"><i class="fa fa-check"></i><b>3.1.4</b> 直方圖</a></li>
@@ -348,7 +348,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <tbody>
 <tr>
 <td style="text-align:left;vertical-align:middle;">
-<a href="資料視覺化.html#散佈圖">散佈圖<br>Scatter Plot</a>
+<a href="資料視覺化.html#散布圖">散布圖<br>Scatter Plot</a>
 </td>
 <td style="text-align:left;vertical-align:middle;">
 <ul>
@@ -539,7 +539,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li>可同時觀察不同變數間的集中程度
 </td>
 <td style="text-align:center;vertical-align:middle;">
-<code>ggridges</code>
+<strong><code>ggridges</code></strong>
 </td>
 <td style="text-align:left;vertical-align:middle;">
 <code>geom_density_ridges()</code>
@@ -597,7 +597,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <ul>
 <li>表達各類別之間的流動量</li>
 <li>具有方向性</li>
-<li>流線粗細表示流動量
+<li>線條粗細表示流動量
 </td>
 <td style="text-align:center;vertical-align:middle;">
 <strong><code>ggalluvial</code></strong><br><code>ggsankey</code>
@@ -667,7 +667,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </div>
 <div id="初始化" class="section level3 unnumbered hasAnchor">
 <h3><strong>初始化</strong><a href="資料視覺化.html#初始化" class="anchor-section" aria-label="Anchor link to header"></a></h3>
-<p>如前文所提，<code>ggplot2</code>是依循著繪圖文法的套件，其最基礎的元素即是<strong>資料與座標軸</strong>，也就是繪製各種類型圖表前的「畫布」，可利用<code>ggplot()</code>函式生成之，函式撰寫架構如下。</p>
+<p>如前文所提，<code>ggplot2</code>是依循著繪圖文法的套件，其最基礎的元素即是<strong>資料與座標軸</strong>，也就是繪製各類型圖表前的「畫布」，可利用<code>ggplot()</code>函式生成之，函式撰寫架構如下。</p>
 <div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1-1"><a href="資料視覺化.html#cb1-1" tabindex="-1"></a><span class="fu">ggplot</span>(資料, <span class="fu">aes</span>(<span class="at">x=</span>, <span class="at">y=</span>))</span></code></pre></div>
 <p>其中的<code>aes</code>表示「aesthetics（美學）」，用以定義圖表中需要「座標」的資訊。舉例而言，繪製圖表的點與線時必須要有座標，因此<code>x=</code>與<code>y=</code>兩引數務必放置於<code>aes()</code>函式中。而若希望不同資料點或線具有不同顏色、粗細、大小等，則亦須要透過「座標」控制之，此時亦須在該函式中設定之。</p>
 <p>以<code>iris</code>套件為例建立畫布，並以 Sepal.Length 為橫軸、Sepal.Width 為縱軸，設定最基礎的畫布如圖<a href="資料視覺化.html#fig:ggplot-code-eg">3.3</a>。</p>
@@ -711,9 +711,9 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </div>
 <p>有了上述對於圖表的基本認識後，接下來就讓我們用各種不同資料與案例說明各圖表的功能及程式撰寫方式。</p>
 </div>
-<div id="散佈圖" class="section level3 hasAnchor" number="3.1.1">
-<h3><span class="header-section-number">3.1.1</span> 散佈圖<a href="資料視覺化.html#散佈圖" class="anchor-section" aria-label="Anchor link to header"></a></h3>
-<p>散佈圖（Scatter Plot）應用於表達兩個連續變數之間的關係，橫軸與縱軸分別代表不同的連續變數，並利用點表示此二連續變數在二維空間的分布，可利用<code>geom_point()</code>函式達成之，函式撰寫架構如下。</p>
+<div id="散布圖" class="section level3 hasAnchor" number="3.1.1">
+<h3><span class="header-section-number">3.1.1</span> 散布圖<a href="資料視覺化.html#散布圖" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>散布圖（Scatter Plot）應用於表達兩個連續變數之間的關係，橫軸與縱軸分別代表不同的連續變數，並利用點表示此二連續變數在二維空間的分布，可利用<code>geom_point()</code>函式達成之，函式撰寫架構如下。</p>
 <div class="sourceCode" id="cb3"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb3-1"><a href="資料視覺化.html#cb3-1" tabindex="-1"></a><span class="fu">geom_point</span>(<span class="at">color=</span>, <span class="at">shape=</span>, <span class="at">size=</span>, <span class="at">stroke=</span>, <span class="at">fill=</span>, <span class="at">alpha=</span>)</span></code></pre></div>
 <p>以上各引數的功能彙整如表<a href="資料視覺化.html#tab:geom-point-code-tab">3.2</a></p>
 <table class="table table-striped table-hover" style="font-size: 14px; margin-left: auto; margin-right: auto;">
@@ -802,6 +802,9 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </tr>
 </tbody>
 </table>
+<p style="color:#003D79;font-size:18px;line-height:2">
+<strong>⌾ 基礎散佈圖</strong>
+</p>
 </div>
 <div id="折線圖" class="section level3 hasAnchor" number="3.1.2">
 <h3><span class="header-section-number">3.1.2</span> 折線圖<a href="資料視覺化.html#折線圖" class="anchor-section" aria-label="Anchor link to header"></a></h3>
