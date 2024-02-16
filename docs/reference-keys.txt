@@ -136,3 +136,7 @@ fig:geom-point-eg2
 修正散布圖樣式
 tab:geom-smooth-code-tab
 fig:geom-smooth-eg2
+tab:timezone
+tab:timeformat
+日期與時間
+tab:geom-line-code-tab

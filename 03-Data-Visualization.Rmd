@@ -100,11 +100,11 @@ kable(ggplot_summary, booktabs=T, escape=F, caption="圖表類型彙整", col.na
 ggplot(資料, aes(x=, y=))
 ```
 
-其中的`aes`表示「aesthetics（美學）」，用以定義圖表中需要「座標」的資訊。舉例而言，繪製圖表的點與線時必須要有座標，因此`x=`與`y=`兩引數務必放置於`aes()`函式中。而若希望不同資料點或線具有不同顏色、粗細、大小等，則亦須要透過「座標」控制之，此時亦須在該函式中設定之。
+其中的`aes`表示「aesthetics（美學）」，用以定義圖表中需要「座標」的資訊。舉例而言，繪製圖表的點與線時必須要有座標，因此`x=`與`y=`兩引數務必放置於`aes()`函式中。而若希望不同資料點或線具有不同顏色、粗細、大小等，則須透過「座標」控制之，此時亦應在該函式中設定之。
 
-以`iris`套件為例建立畫布，並以 Sepal.Length 為橫軸、Sepal.Width 為縱軸，設定最基礎的畫布如圖\@ref(fig:ggplot-code-eg)。
+以`iris`鳶尾花資料為例建立畫布，並以 Sepal.Length 為橫軸、Sepal.Width 為縱軸，設定最基礎的畫布，程式碼撰寫如下。
 
-```{r ggplot-code-eg, echo=T, eval=T, out.width="70%", fig.align="center", fig.cap="畫布建置"}
+```{r ggplot-code-eg, echo=T, eval=T, out.width="70%", fig.align="center"}
 ggplot(iris, aes(x=Sepal.Length, y=Sepal.Width))
 ```
 
@@ -136,7 +136,7 @@ ggplot()+
   theme_void()
 ```
 
-在 R 語言中顏色的設定可以直接輸入預設的顏色名稱，詳列如圖\@ref(fig:geom-setting-color)，抑或直接透過十六進位值色碼，請參考[此](https://www.ifreesite.com/color/)。
+在 R 語言中顏色的設定可以直接輸入預設的顏色名稱，詳列如圖\@ref(fig:geom-setting-color)，抑或直接透過十六進位值色碼，請參考[色碼表](https://www.ifreesite.com/color/)。
 
 <H2 id="geom-setting-color"></H2>
 ```{r geom-setting-color, echo=F, eval=T, out.width="90%", fig.align="center", fig.cap="顏色代碼"}
@@ -228,7 +228,7 @@ kable(gs_code, booktabs=T, escape=F, caption="`geom_smooth()`函式引數設定"
   row_spec(0, bold=T, color="white", background="#8E8E8E")
 ```
 
-以加入線性的趨勢線為例，此時`method=`引數設定為`lm`，即線性迴歸（linear model），而公式則為$y=\beta x$（`y~x`）。另請注意在線性迴歸時，即無須另設定用於曲線的`span=`引數。
+以加入線性的趨勢線為例，此時`method=`引數設定為`lm`，即線性迴歸（linear model），而公式則為$y=\beta x$（`y~x`），程式碼撰寫如下。另請注意在線性迴歸時，即無須另設定用於曲線的`span=`引數。
 
 ```{r geom-smooth-eg1, echo=T, eval=T, out.width="70%", fig.align="center"}
 ggplot(iris, aes(x=Sepal.Length, Sepal.Width))+
@@ -298,6 +298,38 @@ ggplot(mpg, aes(cyl, hwy))+
 ```{r geom-line-code, echo=T, eval=F}
 geom_line(color=, linetype=, linewidth=, alpha=, group=)
 ```
+
+函式中各引數的功能彙整如表\@ref(tab:geom-line-code-tab)。
+
+```{r geom-line-code-tab, echo=F, eval=T}
+gl_code=data.frame(argument=c("`color=`","`linetype=`","`linewidth=`","`alpha=`","`group=`"),
+                   setting=c("設定線條的顏色","設定線條樣式","設定線條的粗細","設定線條的透明度","設定線條的分群"), explain=c("請參考<A href='#geom-setting-color'>顏色設定</A>","請參考<A href='#geom-setting-linetype'>線條樣式設定</A>","數值","數值，介於 0（完全透明）與 1（完全不透明）間","分群欄位名稱"))
+
+kable(gl_code, booktabs=T, escape=F, caption="`geom_line()`函式引數設定", col.names=c("引數","功能設定","說明"))%>%
+  kable_styling(bootstrap_options=c("striped", "hover"), font_size=14)%>%
+  row_spec(0, bold=T, color="white", background="#8E8E8E")
+```
+
+<p style="color:#003D79;font-size:18px;line-height:2">**⌾ 基礎折線圖**</p>  
+
+以`airquality`（空氣品質）資料為例，以日期（Month & Day）為橫軸，溫度（Temp）為縱軸，繪製折線圖，程式碼撰寫如下。
+
+```{r geom-line-eg1, echo=T, eval=T, out.width="70%", fig.align="center"}
+# 先處理airquality資料(建立日期)
+temp=airquality
+temp$Date=as.Date(paste0(str_pad(temp$Month, 2, "left", 0), "-", str_pad(temp$Day, 2, "left", 0)), format="%m-%d")
+
+ggplot(data=temp, aes(x=Date, y=Temp))+
+  geom_line(group=1)+
+  scale_x_date(date_breaks="month", date_labels="%B")+
+  ylab("Temperature")+
+  theme(axis.title=element_text(size=15, family="A"),
+        axis.text=element_text(size=12, family="A"))
+```
+
+<p style="color:#003D79;font-size:18px;line-height:2">**⌾ 修正散布圖樣式**</p>  
+若希望更動點的樣式，可利用表\@ref(tab:geom-point-code-tab)的引數控制之。
+
 
 
 ### 長條圖

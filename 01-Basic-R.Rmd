@@ -772,6 +772,121 @@ unlist(num_list)
 ```
 
 
+### 日期與時間
+在資料處理中，設定日期與時間的格式有助於後續計算時間差、繪製時間序列圖等，而在 R 語言中，可以利用`base`、`lubridate`套件處理時間資料。請注意，由於兩套件的部分函式名稱相同，故建議使用函式時寫清楚套件的名稱，如`lubridate::XXXX()`。
+
+<p style="color:#003D79;font-size:18px;line-height:2">**⌾  基礎設定**</p>  
+
+時間的格式與電腦所在地區有相當的關聯，若時間格式中含有中文，請務必設定中文的地區格式如下：
+```{r setlocale1, echo=T, eval=F}
+Sys.setlocale(category="LC_ALL", locale="zh_TW.UTF-8")
+```
+
+而若為全英文者，可直接設定英文的地區格式如下：
+```{r setlocale2, echo=T, eval=F}
+Sys.setlocale(category="LC_ALL", locale="en")
+```
+
+此外，時區亦為重要的資訊，在日期與時間的函式中皆可設定之，數個常見的時區設定如表\@ref(tab:timezone)所示。
+
+```{r timezone, echo=F, eval=T}
+temp=data.frame(timezone=c("標準時間","臺北時區","東京時區","美國東部標準時間","坎培拉時間"), tz_code=c("UTC","Asia/Taipei","Asia/Tokyo","US/Eastern","Australia/Canberra"), code=c("UTC","CST","JST","EDT","AEDT"))
+
+kbl(temp, booktabs=T, escape=F, caption="時區格式範例", col.names=c("時區","全名","縮寫"))%>%
+  kable_styling(bootstrap_options=c("striped", "hover"), font_size=14)%>%
+  row_spec(0, bold=T, color="white", background="#8E8E8E")
+```
+
+其他時區的設定請參照[此](https://www.wikiwand.com/en/List_of_tz_database_time_zones)。
+
+而時間與日期的格式亦有通用的格式設定方式，常見者彙整如表\@ref(tab:timeformat)所示。
+```{r timeformat, echo=F, eval=T}
+temp=data.frame(code=c("%Y","%y","%B","%b","%m","%d","%H","%h","%M","%S","%p","%Z"),
+                name=c("年（四位數）","年（二位數）","月（全稱）","月（縮寫）","月（數字）","日","時（24 小時制）","時（12 小時制）","分","秒","AM/PM","時區"))
+
+temp=cbind(temp[1:6,], temp[7:12,])
+kbl(temp, booktabs=T, escape=F, caption="時間格式範例", col.names=c("代號","意義","代號","意義"), align="cccc")%>%
+  kable_styling(bootstrap_options=c("striped", "hover"), font_size=14)%>%
+  row_spec(0, bold=T, color="black", background="#8E8E8E")%>%
+  column_spec(2, border_right="1.5px solid #ADADAD")
+```
+
+舉例而言，「2024-02-14 13:14:52」的時間格式為「%Y-%m-%d %H:%M:%S」。
+
+
+<p style="color:#003D79;font-size:18px;line-height:2">**⌾  建立日期與時間**</p>  
+建立日期可利用`as.Date()`函式，其中只要輸入日期格式即可，另可加入`format=`引數，用以確保正確的格式，程式碼撰寫如下。
+
+```{r as-date, echo=T, eval=T}
+# 建立日期文字
+date_str=c("2024-02-14","2023-11-07","2022-07-28")
+
+# 將文字向量轉換為日期格式
+date_str=as.Date(date_str)
+
+# 檢查格式
+class(date_str)
+```
+
+建立時間可利用`as.POSIXct()`函式，其中只要輸入完整的日期與時間即可（日期若忽略，系統會自動填補為當下的電腦日期），另可加入`format=`與`tz=`引數，分別用以確保正確的時間格式。程式碼撰寫如下。
+
+```{r as-POSIXct1, echo=T, eval=T}
+# 建立日期時間文字
+time_str=c("2024-02-14 13:14:52","2023-11-07 07:18:22","2022-07-28 20:10:31")
+
+# 將文字向量轉換為時間格式
+time_str=as.POSIXct(time_str, tz="Asia/Taipei")
+
+# 檢查格式
+class(time_str)
+
+# 輸出結果
+time_str
+```
+
+若時間格式並非上述典型的形式，則必須自行設定`format=`引數，並參照表\@ref(tab:timeformat)填入適當的格式，範例如以下程式碼。**_另請注意，若文字中含有「英文」，請務必確保電腦的文字及地區設定為`LC_ALL`，否則會出錯！！_**
+
+```{r as-POSIXct2, echo=T, eval=T}
+# 建立日期時間文字
+time_str=c("2024/Feb/14 011452 PM","2023/Nov/07 071822 AM","2022/July/28 081031 PM")
+
+# 確保電腦的文字及地區為英文
+Sys.setlocale(category="LC_ALL", locale="en")
+
+# 將文字向量轉換為時間格式
+as.POSIXct(time_str, format="%Y/%B/%d %I%M%S %p", tz="Asia/Taipei")
+
+# 輸出結果
+time_str
+
+# 建議時間處理完後，再調整到中文地區，否則後續中文文字的輸出會有問題！！
+Sys.setlocale(category="LC_ALL", locale="zh_TW.UTF-8")
+```
+
+
+<p style="color:#003D79;font-size:18px;line-height:2">**⌾  回傳時間資訊**</p>
+
+```{r unlist, echo=T, eval=T}
+
+
+month(as.Date("2022-05-04", format="%Y-%m-%d"), label=T)
+month(x, label = FALSE, abbr = TRUE, locale)
+
+format(Sys.Date(), format="%B %d %Y")
+as.Date("2022-May-04", format="%Y-%B-%d")
+as.POSIXct("2022-02-04 18:20:51", tz)
+
+lubridate::day("2022-02-04")
+lubridate::month("2022-02-04")
+lubridate::wday("2022-02-04", label=T)
+lubridate::year("2022-02-04", label=T)
+lubridate::hour("2022-02-04 18:20:51")
+
+```
+
+
+
+
 ## 文字處理
 在資料分析中，文字處理是相當重要的程序，可從中解析特定的詞彙，如計算詞彙數量、取代特定字詞、查看文字出現位置等等，從中探索資料中的文字內容。文字處理可以透過 R 內建的`base`套件或另安裝`stringr`套件處理之，本節主要即是針對此二套件說明文字處理之應用。
 
