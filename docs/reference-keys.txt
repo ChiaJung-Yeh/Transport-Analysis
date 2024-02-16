@@ -132,3 +132,7 @@ tab:geom-point-code-tab
 散布圖
 fig:geom-point-eg1
 fig:geom-point-eg2
+加入趨勢線
+修正散布圖樣式
+tab:geom-smooth-code-tab
+fig:geom-smooth-eg2
