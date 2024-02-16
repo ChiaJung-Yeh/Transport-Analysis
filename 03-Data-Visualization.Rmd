@@ -117,7 +117,7 @@ temp=data.frame(id=c(0:25))%>%
   mutate(x=(id)%%6+1, y=5-(id)%/%6+1)
 ggplot()+
   geom_point(data=temp, aes(x=x, y=y, shape=as.character(id)), stroke=1, size=6, fill="#FFFF37", show.legend=F)+
-  scale_shape_manual(values=c(0:25))+
+  scale_shape_manual(limits=factor(temp$id), values=temp$id)+
   geom_text(data=temp, aes(x=x, y=y+0.3, label=id), family="A", size=4.5)+
   theme_void()
 ```
@@ -165,11 +165,11 @@ ggplot(temp, aes(x=x, y=y, fill=color)) +
 geom_point(color=, shape=, size=, stroke=, fill=, alpha=)
 ```
 
-以上各引數的功能彙整如表\@ref(tab:geom-point-code-tab)
+以上各引數的功能彙整如表\@ref(tab:geom-point-code-tab)。
 
 ```{r geom-point-code-tab, echo=F, eval=T}
 gp_code=data.frame(argument=c("`color=`","`shape=`","`size=`","`stroke=`","`fill=`","`alpha=`"),
-                   setting=c("設定點的顏色","設定點的形狀","設定點的大小","設定點外圍框線的粗細","設定點內部的顏色","設定點的透明度"), explain=c("請參考<A href='#geom-setting-color'>顏色設定</A>","請參考<A href='#geom-setting-shape'>形狀設定</A>","數值","數值，僅有空心形狀者（如<A href='#geom-setting-shape'>形狀設定</A>為 5~9 者）尚有效","請參考<A href='#geom-setting-color'>顏色設定</A>，僅有空心形狀者（如<A href='#geom-setting-shape'>形狀設定</A>為 5~9 者）尚有效","數值，介於 0（完全透明）與 1（完全不透明）間"))
+                   setting=c("設定點的顏色","設定點的形狀","設定點的大小","設定點外圍框線的粗細","設定點內部的顏色","設定點的透明度"), explain=c("請參考<A href='#geom-setting-color'>顏色設定</A>","請參考<A href='#geom-setting-shape'>形狀設定</A>","數值","數值，僅有空心形狀者（如<A href='#geom-setting-shape'>形狀設定</A>為 21~25 者）尚有效","請參考<A href='#geom-setting-color'>顏色設定</A>，僅有空心形狀者（如<A href='#geom-setting-shape'>形狀設定</A>為 21~25 者）尚有效","數值，介於 0（完全透明）與 1（完全不透明）間"))
 
 kable(gp_code, booktabs=T, escape=F, caption="圖表類型彙整", col.names=c("引數","功能設定","說明"))%>%
   kable_styling(bootstrap_options=c("striped", "hover"), font_size=14)%>%
@@ -177,11 +177,64 @@ kable(gp_code, booktabs=T, escape=F, caption="圖表類型彙整", col.names=c("
 ```
 
 
-<p style="color:#003D79;font-size:18px;line-height:2">**⌾ 基礎散佈圖**</p>  
+<p style="color:#003D79;font-size:18px;line-height:2">**⌾ 基礎散布圖**</p>  
+以`iris`資料為例，以花萼的長度（Sepal.Length）為橫軸，花萼的寬度（Sepal.Width）為縱軸，繪製散布圖，程式碼撰寫如下。
 
+```{r geom-point-eg1, echo=T, eval=T, out.width="70%", fig.align="center"}
+ggplot(iris, aes(x=Sepal.Length, Sepal.Width))+
+  geom_point()
+```
 
+<p style="color:#003D79;font-size:18px;line-height:2">**⌾ 修正散布圖樣式**</p>  
+若希望更動點的樣式，可利用表\@ref(tab:geom-point-code-tab)的引數控制之。
 
+```{r geom-point-eg2, echo=T, eval=T, out.width="70%", fig.align="center"}
+ggplot(iris, aes(x=Sepal.Length, Sepal.Width))+
+  geom_point(color="red", shape=23, size=3, stroke=1, fill="#AE57A4", alpha=0.5)
+```
 
+<p style="color:#003D79;font-size:18px;line-height:2">**⌾ 漸層樣式散布圖**</p>  
+散布圖一般而言僅能表示二維的數據，且大多是連續變數，然而若能在點子上給定顏色或大小，則可進一步顯示更多維度的資料。漸層樣式散布圖中，須**依據資料隨之變動**的樣式，其引數設定必須置於`aes()`函式**內**；反之，若樣式不會隨資料變動，則須放置於`aes()`函式**外**。
+
+承繼上述案例，若希望用顏色表示品種（Species），並以點子的大小表示花瓣的長度（Petal.Width），而點子的形狀皆固定為圓點（引數需置於`aes()`函式**外**），程式碼撰寫如下。
+
+```{r geom-point-eg3, echo=T, eval=T, out.width="70%", fig.align="center"}
+ggplot(iris, aes(x=Sepal.Length, Sepal.Width))+
+  geom_point(aes(color=Species, size=Petal.Width), shape=20)
+```
+
+圖中「品種」為類別型資料；「花瓣的長度」為連續型資料，透過漸層樣式散布圖可表達更多維度的資料，添增資訊的豐富度。觀察出圖結果，可發現，setosa 類別（ <span style="color:#F8766D">紅色點子</span>）的花瓣寬度（點子大小）與花萼長度（橫軸）相較於另兩品種偏小，有相當明顯的區別。因此透過漸層樣式散布圖可初步觀察對於資料分類的重要影響變數，為資料科學的關鍵步驟。
+
+若希望修正顏色漸層，請參考[此](#顏色漸層)；若希望修正點子大小之漸層，請參考[此](#大小尺度)。
+
+<p style="color:#003D79;font-size:18px;line-height:2">**⌾ 加入跳點**</p>  
+有時資料點會重疊，導致肉眼無法觀察，更難以判斷資料的集中程度（重疊後變成單一點，反而會將群聚的點誤判為稀疏），此一情境即常發生於具有整數或類別型的資料。如以下案例，利用`mpg`資料，以汽缸數（cyl）為橫軸；以每加侖英里數（hwy）為縱軸，繪製散布圖如下。
+
+```{r geom-point-eg4, echo=T, eval=T, out.width="70%", fig.align="center"}
+ggplot(mpg, aes(cyl, hwy))+
+  geom_point()
+```
+
+由於汽缸數與每加侖英里數在該資料中皆為正整數，導致有許多資料是重疊的，不易觀察。此時可以利用`geom_jitter()`加入亂數，使資料跳動至鄰近的座標點上，得以較明確觀察資料間的散布情形，且不影響原資料的分布。`geom_jitter()`函式的撰寫架構如下。
+
+```{r geom-jitter-code, echo=T, eval=F}
+geom_jitter(width=, height=)
+```
+
+其中，`width=`引數表示橫軸變動的幅度，如`width=0.1`，表示針對橫軸向左與右隨機變動 10% 以內。`height=`引數則表示橫軸變動的幅度。
+
+另外`geom_point()`內部的所有引數皆可套用至`geom_jitter()`函式中，如需設定顏色、大小等，皆可使用表\@ref(tab:geom-point-code-tab)的引數。
+
+```{r geom-jitter-eg, echo=T, eval=T, out.width="70%", fig.align="center"}
+# 先利用duplicated()函式檢查重複的個數
+sum(duplicated(mpg[, c("cyl","hwy")]))
+
+# 繪製具有跳點的散布圖
+ggplot(mpg, aes(cyl, hwy))+
+  geom_jitter(width=0.2, height=0.2)
+```
+
+由出圖結果可知，使用`geom_jitter()`可使資料更容易辨識，惟須注意的是，`width=`與`height=`引數對於圖表的視覺化程度有相當大的影響，若數值設定的愈大，資料連續性的情況就會越明顯，但可能過度偏離實際情況。因此針對不同資料，此二引數的調整需多次嘗試，尋找最佳可視化且不影響原始資料分布的繪圖方式。
 
 
 ### 折線圖

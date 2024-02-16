@@ -130,3 +130,5 @@ fig:geom-setting-linetype
 fig:geom-setting-color
 tab:geom-point-code-tab
 散布圖
+fig:geom-point-eg1
+fig:geom-point-eg2
