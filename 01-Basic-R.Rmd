@@ -883,7 +883,7 @@ kbl(temp, booktabs=T, escape=F, caption="回傳日期時間範例", col.names=c(
 temp1=as.Date(c(as.Date("2024-01-01"):as.Date("2024-01-07")))
 temp2=as.Date(paste0("2024-", str_pad(1:12, 2, "left", 0), "-01"))
 
-temp=data.frame(fun=c('`month(月份向量)`','`month(月份向量, label=T, locale="en")`','`month(月份向量, label=T, abbr=F, locale="en")`','`month(月份向量, label=T, locale="zh_TW.UTF-8")`','`wday(日期向量)`','`wday(日期向量, week_start=1)`','`wday(日期向量, label=T, locale="en")`','`wday(日期向量, label=T, abbr=F, locale="en")`','`wday(日期向量, label=T, locale="zh_TW.UTF-8")`','`wday(日期向量, label=T, abbr=F, locale="zh_TW.UTF-8")`'),
+temp=data.frame(fun=c('`month(日期向量)`','`month(日期向量, label=T, locale="en")`','`month(日期向量, label=T, abbr=F, locale="en")`','`month(日期向量, label=T, locale="zh_TW.UTF-8")`','`wday(日期向量)`','`wday(日期向量, week_start=1)`','`wday(日期向量, label=T, locale="en")`','`wday(日期向量, label=T, abbr=F, locale="en")`','`wday(日期向量, label=T, locale="zh_TW.UTF-8")`','`wday(日期向量, label=T, abbr=F, locale="zh_TW.UTF-8")`'),
                 result=c(paste0(month(temp2), collapse=" "), paste0(month(temp2, label=T, locale="en"), collapse=" "), paste0(month(temp2, label=T, abbr=F, locale="en"), collapse=" "), paste0(month(temp2, label=T, locale="zh_TW.UTF-8"), collapse=" "), paste0(wday(temp1), collapse=" "), paste0(wday(temp1, week_start=1), collapse=" "), paste0(wday(temp1, label=T, locale="en"), collapse=" "), paste0(wday(temp1, label=T, abbr=F, locale="en"), collapse=" "), paste0(wday(temp1, label=T, locale="zh_TW.UTF-8"), collapse=" "), paste0(wday(temp1, label=T, abbr=F, locale="zh_TW.UTF-8"), collapse=" ")))
 
 kbl(temp, booktabs=T, escape=F, caption="`month()`與`wday()`函式引數設定", col.names=c("函式與引數","回傳結果"))%>%

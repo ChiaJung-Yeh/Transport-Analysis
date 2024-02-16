@@ -100,13 +100,17 @@ kable(ggplot_summary, booktabs=T, escape=F, caption="圖表類型彙整", col.na
 ggplot(資料, aes(x=, y=))
 ```
 
-其中的`aes`表示「aesthetics（美學）」，用以定義圖表中需要「座標」的資訊。舉例而言，繪製圖表的點與線時必須要有座標，因此`x=`與`y=`兩引數務必放置於`aes()`函式中。而若希望不同資料點或線具有不同顏色、粗細、大小等，則須透過「座標」控制之，此時亦應在該函式中設定之。
-
 以`iris`鳶尾花資料為例建立畫布，並以 Sepal.Length 為橫軸、Sepal.Width 為縱軸，設定最基礎的畫布，程式碼撰寫如下。
 
 ```{r ggplot-code-eg, echo=T, eval=T, out.width="70%", fig.align="center"}
 ggplot(iris, aes(x=Sepal.Length, y=Sepal.Width))
 ```
+
+
+<H2 id="ggplot-aes"><p style="color:#003D79;font-size:18px;line-height:2">**⌾ `aes()`函式功能**</p></H2>  
+
+`aes`表示「aesthetics（美學）」，用以定義圖表中「隨著資料有所變動」的資訊。舉例而言，繪製圖表的點與線時必須根據資料的座標而定，因此`x=`與`y=`兩引數務必放置於`aes()`函式中。而若希望不同資料點或線具有不同顏色（`color=`）、大小（`size=`）、粗細（`linewidth=`）、線條樣式（`linetype=`）等，則須透過資料控制之，此時亦應在該函式中設定各設計的細節。總結而論，**「隨著資料而有所變動的引數」必須放置於`aes()`函式內，「在圖表中皆固定者」必須放置於`aes()`函式外。**
+
 
 ### **圖示設定** {-}
 在 R 語言中各類型圖表皆可能需要設定其形狀（`shape`）、線條樣式（`linetype`）、顏色（`color`）等，以下簡介各設定之代碼。
@@ -196,9 +200,9 @@ ggplot(iris, aes(x=Sepal.Length, Sepal.Width))+
 ```
 
 <p style="color:#003D79;font-size:18px;line-height:2">**⌾ 漸層樣式散布圖**</p>  
-散布圖一般而言僅能表示二維的數據，且大多是連續變數，然而若能在點子上給定顏色或大小，則可進一步顯示更多維度的資料。漸層樣式散布圖中，須**依據資料隨之變動**的樣式，其引數設定必須置於`aes()`函式**內**；反之，若樣式不會隨資料變動，則須放置於`aes()`函式**外**。
+散布圖一般而言僅能表示二維的數據，且大多是連續變數，然而若能在點子上給定顏色或大小，則可進一步顯示更多維度的資料。漸層樣式散布圖中，須**依據資料隨之變動**的樣式，其引數設定亦須置於<A href="#ggplot-aes">`aes()`</A>函式**內**；反之，若樣式不會隨資料變動，則須放置於<A href="#ggplot-aes">`aes()`</A>函式**外**。
 
-承繼上述案例，若希望用顏色表示品種（Species），並以點子的大小表示花瓣的長度（Petal.Width），而點子的形狀皆固定為圓點（引數需置於`aes()`函式**外**），程式碼撰寫如下。
+承繼上述案例，若希望用顏色表示品種（Species），並以點子的大小表示花瓣的長度（Petal.Width），而點子的形狀皆固定為圓點（引數需置於<A href="#ggplot-aes">`aes()`</A>函式**外**），程式碼撰寫如下。
 
 ```{r geom-point-eg3, echo=T, eval=T, out.width="70%", fig.align="center"}
 ggplot(iris, aes(x=Sepal.Length, Sepal.Width))+
@@ -303,7 +307,7 @@ geom_line(color=, linetype=, linewidth=, alpha=, group=)
 
 ```{r geom-line-code-tab, echo=F, eval=T}
 gl_code=data.frame(argument=c("`color=`","`linetype=`","`linewidth=`","`alpha=`","`group=`"),
-                   setting=c("設定線條的顏色","設定線條樣式","設定線條的粗細","設定線條的透明度","設定線條的分群"), explain=c("請參考<A href='#geom-setting-color'>顏色設定</A>","請參考<A href='#geom-setting-linetype'>線條樣式設定</A>","數值","數值，介於 0（完全透明）與 1（完全不透明）間","分群欄位名稱"))
+                   setting=c("設定線條的顏色","設定線條樣式","設定線條的粗細","設定線條的透明度","設定線條的分群"), explain=c("請參考<A href='#geom-setting-color'>顏色設定</A>","請參考<A href='#geom-setting-linetype'>線條樣式設定</A>","數值","數值，介於 0（完全透明）與 1（完全不透明）間","分群欄位名稱（若設定為 1，表示將資料全部連成一折線）"))
 
 kable(gl_code, booktabs=T, escape=F, caption="`geom_line()`函式引數設定", col.names=c("引數","功能設定","說明"))%>%
   kable_styling(bootstrap_options=c("striped", "hover"), font_size=14)%>%
@@ -312,23 +316,38 @@ kable(gl_code, booktabs=T, escape=F, caption="`geom_line()`函式引數設定", 
 
 <p style="color:#003D79;font-size:18px;line-height:2">**⌾ 基礎折線圖**</p>  
 
-以`airquality`（空氣品質）資料為例，以日期（Month & Day）為橫軸，溫度（Temp）為縱軸，繪製折線圖，程式碼撰寫如下。
+以`airquality`（空氣品質）資料為例，以日期（Month & Day）為橫軸，溫度（Temp）為縱軸，繪製折線圖，程式碼撰寫如下。其中利用[`as.Date()`](#日期與時間)函式建立日期資料，並透過[`str_pad()`](#文字處理)函式建立相同長度的文字。而在`geom_line()`函式中必須設定`group=1`之引數，用以表達將所有資料連貫為一條折線。
 
 ```{r geom-line-eg1, echo=T, eval=T, out.width="70%", fig.align="center"}
 # 先處理airquality資料(建立日期)
-temp=airquality
-temp$Date=as.Date(paste0(str_pad(temp$Month, 2, "left", 0), "-", str_pad(temp$Day, 2, "left", 0)), format="%m-%d")
+airquality_new=airquality
+airquality_new$Date=as.Date(paste0(str_pad(airquality_new$Month, 2, "left", 0), "-", str_pad(airquality_new$Day, 2, "left", 0)), format="%m-%d")
 
-ggplot(data=temp, aes(x=Date, y=Temp))+
-  geom_line(group=1)+
-  scale_x_date(date_breaks="month", date_labels="%B")+
-  ylab("Temperature")+
-  theme(axis.title=element_text(size=15, family="A"),
-        axis.text=element_text(size=12, family="A"))
+ggplot(data=airquality_new, aes(x=Date, y=Temp))+
+  geom_line(group=1, color="red")
 ```
 
-<p style="color:#003D79;font-size:18px;line-height:2">**⌾ 修正散布圖樣式**</p>  
-若希望更動點的樣式，可利用表\@ref(tab:geom-point-code-tab)的引數控制之。
+圖中的橫軸為日期資料，而若欲修正時間軸的日期顯示方式，請參考[此](#座標軸尺度)。
+
+<p style="color:#003D79;font-size:18px;line-height:2">**⌾ 多線折線圖**</p>  
+以上的折線圖僅顯示單一條線，而有時我們希望在同一張圖表達多條折線，可藉此必較不同區間的資料，此時必須在`geom_line()`函式中設定`group=`函數為指定的分群欄位。
+
+再次以`airquality`（空氣品質）資料為例，若希望根據月份繪製不同折線，並給定不同顏色，此時`group=`引數即須設定為「Month」，並置於<A href="#ggplot-aes">`aes()`</A>函式中，表示須根據不同類別而使設定有所更動者。由於不同折線將賦予不同顏色，故`color=`引數必須置於<A href="#ggplot-aes">`aes()`</A>函式內。最後，若折線的粗細為一固定值，則必須將`linewidth=`引數置於<A href="#ggplot-aes">`aes()`</A>函式外。根據上述繪圖邏輯，程式碼撰寫如下。
+
+```{r geom-line-eg2, echo=T, eval=T, out.width="70%", fig.align="center"}
+ggplot(data=airquality, aes(x=Day, y=Temp))+
+  geom_line(aes(group=Month, color=as.factor(Month)), linewidth=1)
+```
+
+
+<p style="color:#003D79;font-size:18px;line-height:2">**⌾ 折線圖與散布圖疊合**</p>  
+通常表達數據的趨勢，除了使用折線圖外，為了使資料的座標更為清晰，會另將散布圖疊在其上，以`airquality`資料為例，程式碼撰寫如下。程式碼中另將不同月份賦予不同點子的形狀，故此時`geom_point()`函式中的`shape=`引數亦須放置於<A href="#ggplot-aes">`aes()`</A>函式內。而點子的大小不會因為不同月份而有所變動，在圖表中皆為固定者，故須置於<A href="#ggplot-aes">`aes()`</A>函式外。
+
+```{r geom-line-eg3, echo=T, eval=T, out.width="70%", fig.align="center"}
+ggplot(data=airquality, aes(x=Day, y=Temp))+
+  geom_line(aes(group=Month, color=as.factor(Month)), linewidth=1)+
+  geom_point(aes(group=Month, color=as.factor(Month), shape=as.factor(Month)), size=2)
+```
 
 
 
@@ -390,6 +409,10 @@ ggplot(data=temp, aes(x=Date, y=Temp))+
 #### 大小尺度
 
 #### 粗細尺度
+
+#### 座標軸尺度
+
+
 
 
 ### 主題設定

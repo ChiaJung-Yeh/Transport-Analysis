@@ -142,3 +142,4 @@ tab:timeformat
 tab:geom-line-code-tab
 tab:time-retrieve
 tab:wday-month
+座標軸尺度

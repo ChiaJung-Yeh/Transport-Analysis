@@ -670,10 +670,15 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <h3><strong>初始化</strong><a href="資料視覺化.html#初始化" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <p>如前文所提，<code>ggplot2</code>是依循著繪圖文法的套件，其最基礎的元素即是<strong>資料與座標軸</strong>，也就是繪製各類型圖表前的「畫布」，可利用<code>ggplot()</code>函式生成之，函式撰寫架構如下。</p>
 <div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1-1"><a href="資料視覺化.html#cb1-1" tabindex="-1"></a><span class="fu">ggplot</span>(資料, <span class="fu">aes</span>(<span class="at">x=</span>, <span class="at">y=</span>))</span></code></pre></div>
-<p>其中的<code>aes</code>表示「aesthetics（美學）」，用以定義圖表中需要「座標」的資訊。舉例而言，繪製圖表的點與線時必須要有座標，因此<code>x=</code>與<code>y=</code>兩引數務必放置於<code>aes()</code>函式中。而若希望不同資料點或線具有不同顏色、粗細、大小等，則須透過「座標」控制之，此時亦應在該函式中設定之。</p>
 <p>以<code>iris</code>鳶尾花資料為例建立畫布，並以 Sepal.Length 為橫軸、Sepal.Width 為縱軸，設定最基礎的畫布，程式碼撰寫如下。</p>
 <div class="sourceCode" id="cb2"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb2-1"><a href="資料視覺化.html#cb2-1" tabindex="-1"></a><span class="fu">ggplot</span>(iris, <span class="fu">aes</span>(<span class="at">x=</span>Sepal.Length, <span class="at">y=</span>Sepal.Width))</span></code></pre></div>
 <p><img src="series_files/figure-html/ggplot-code-eg-1.png" width="70%" style="display: block; margin: auto;" /></p>
+<H2 id="ggplot-aes">
+<p style="color:#003D79;font-size:18px;line-height:2">
+<strong>⌾ <code>aes()</code>函式功能</strong>
+</p>
+</H2>
+<p><code>aes</code>表示「aesthetics（美學）」，用以定義圖表中「隨著資料有所變動」的資訊。舉例而言，繪製圖表的點與線時必須根據資料的座標而定，因此<code>x=</code>與<code>y=</code>兩引數務必放置於<code>aes()</code>函式中。而若希望不同資料點或線具有不同顏色（<code>color=</code>）、大小（<code>size=</code>）、粗細（<code>linewidth=</code>）、線條樣式（<code>linetype=</code>）等，則須透過資料控制之，此時亦應在該函式中設定各設計的細節。總結而論，<strong>「隨著資料而有所變動的引數」必須放置於<code>aes()</code>函式內，「在圖表中皆固定者」必須放置於<code>aes()</code>函式外。</strong></p>
 </div>
 <div id="圖示設定" class="section level3 unnumbered hasAnchor">
 <h3><strong>圖示設定</strong><a href="資料視覺化.html#圖示設定" class="anchor-section" aria-label="Anchor link to header"></a></h3>
@@ -815,8 +820,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <p style="color:#003D79;font-size:18px;line-height:2">
 <strong>⌾ 漸層樣式散布圖</strong>
 </p>
-<p>散布圖一般而言僅能表示二維的數據，且大多是連續變數，然而若能在點子上給定顏色或大小，則可進一步顯示更多維度的資料。漸層樣式散布圖中，須<strong>依據資料隨之變動</strong>的樣式，其引數設定必須置於<code>aes()</code>函式<strong>內</strong>；反之，若樣式不會隨資料變動，則須放置於<code>aes()</code>函式<strong>外</strong>。</p>
-<p>承繼上述案例，若希望用顏色表示品種（Species），並以點子的大小表示花瓣的長度（Petal.Width），而點子的形狀皆固定為圓點（引數需置於<code>aes()</code>函式<strong>外</strong>），程式碼撰寫如下。</p>
+<p>散布圖一般而言僅能表示二維的數據，且大多是連續變數，然而若能在點子上給定顏色或大小，則可進一步顯示更多維度的資料。漸層樣式散布圖中，須<strong>依據資料隨之變動</strong>的樣式，其引數設定亦須置於<A href="#ggplot-aes"><code>aes()</code></A>函式<strong>內</strong>；反之，若樣式不會隨資料變動，則須放置於<A href="#ggplot-aes"><code>aes()</code></A>函式<strong>外</strong>。</p>
+<p>承繼上述案例，若希望用顏色表示品種（Species），並以點子的大小表示花瓣的長度（Petal.Width），而點子的形狀皆固定為圓點（引數需置於<A href="#ggplot-aes"><code>aes()</code></A>函式<strong>外</strong>），程式碼撰寫如下。</p>
 <div class="sourceCode" id="cb6"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb6-1"><a href="資料視覺化.html#cb6-1" tabindex="-1"></a><span class="fu">ggplot</span>(iris, <span class="fu">aes</span>(<span class="at">x=</span>Sepal.Length, Sepal.Width))<span class="sc">+</span></span>
 <span id="cb6-2"><a href="資料視覺化.html#cb6-2" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="fu">aes</span>(<span class="at">color=</span>Species, <span class="at">size=</span>Petal.Width), <span class="at">shape=</span><span class="dv">20</span>)</span></code></pre></div>
 <p><img src="series_files/figure-html/geom-point-eg3-1.png" width="70%" style="display: block; margin: auto;" /></p>
@@ -1065,7 +1070,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 設定線條的分群
 </td>
 <td style="text-align:left;">
-分群欄位名稱
+分群欄位名稱（若設定為 1，表示將資料全部連成一折線）
 </td>
 </tr>
 </tbody>
@@ -1073,22 +1078,31 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <p style="color:#003D79;font-size:18px;line-height:2">
 <strong>⌾ 基礎折線圖</strong>
 </p>
-<p>以<code>airquality</code>（空氣品質）資料為例，以日期（Month &amp; Day）為橫軸，溫度（Temp）為縱軸，繪製折線圖，程式碼撰寫如下。</p>
+<p>以<code>airquality</code>（空氣品質）資料為例，以日期（Month &amp; Day）為橫軸，溫度（Temp）為縱軸，繪製折線圖，程式碼撰寫如下。其中利用<a href="r-語言基礎語法.html#日期與時間"><code>as.Date()</code></a>函式建立日期資料，並透過<a href="r-語言基礎語法.html#文字處理"><code>str_pad()</code></a>函式建立相同長度的文字。而在<code>geom_line()</code>函式中必須設定<code>group=1</code>之引數，用以表達將所有資料連貫為一條折線。</p>
 <div class="sourceCode" id="cb15"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb15-1"><a href="資料視覺化.html#cb15-1" tabindex="-1"></a><span class="co"># 先處理airquality資料(建立日期)</span></span>
-<span id="cb15-2"><a href="資料視覺化.html#cb15-2" tabindex="-1"></a>temp<span class="ot">=</span>airquality</span>
-<span id="cb15-3"><a href="資料視覺化.html#cb15-3" tabindex="-1"></a>temp<span class="sc">$</span>Date<span class="ot">=</span><span class="fu">as.Date</span>(<span class="fu">paste0</span>(<span class="fu">str_pad</span>(temp<span class="sc">$</span>Month, <span class="dv">2</span>, <span class="st">&quot;left&quot;</span>, <span class="dv">0</span>), <span class="st">&quot;-&quot;</span>, <span class="fu">str_pad</span>(temp<span class="sc">$</span>Day, <span class="dv">2</span>, <span class="st">&quot;left&quot;</span>, <span class="dv">0</span>)), <span class="at">format=</span><span class="st">&quot;%m-%d&quot;</span>)</span>
+<span id="cb15-2"><a href="資料視覺化.html#cb15-2" tabindex="-1"></a>airquality_new<span class="ot">=</span>airquality</span>
+<span id="cb15-3"><a href="資料視覺化.html#cb15-3" tabindex="-1"></a>airquality_new<span class="sc">$</span>Date<span class="ot">=</span><span class="fu">as.Date</span>(<span class="fu">paste0</span>(<span class="fu">str_pad</span>(airquality_new<span class="sc">$</span>Month, <span class="dv">2</span>, <span class="st">&quot;left&quot;</span>, <span class="dv">0</span>), <span class="st">&quot;-&quot;</span>, <span class="fu">str_pad</span>(airquality_new<span class="sc">$</span>Day, <span class="dv">2</span>, <span class="st">&quot;left&quot;</span>, <span class="dv">0</span>)), <span class="at">format=</span><span class="st">&quot;%m-%d&quot;</span>)</span>
 <span id="cb15-4"><a href="資料視覺化.html#cb15-4" tabindex="-1"></a></span>
-<span id="cb15-5"><a href="資料視覺化.html#cb15-5" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data=</span>temp, <span class="fu">aes</span>(<span class="at">x=</span>Date, <span class="at">y=</span>Temp))<span class="sc">+</span></span>
-<span id="cb15-6"><a href="資料視覺化.html#cb15-6" tabindex="-1"></a>  <span class="fu">geom_line</span>(<span class="at">group=</span><span class="dv">1</span>)<span class="sc">+</span></span>
-<span id="cb15-7"><a href="資料視覺化.html#cb15-7" tabindex="-1"></a>  <span class="fu">scale_x_date</span>(<span class="at">date_breaks=</span><span class="st">&quot;month&quot;</span>, <span class="at">date_labels=</span><span class="st">&quot;%B&quot;</span>)<span class="sc">+</span></span>
-<span id="cb15-8"><a href="資料視覺化.html#cb15-8" tabindex="-1"></a>  <span class="fu">ylab</span>(<span class="st">&quot;Temperature&quot;</span>)<span class="sc">+</span></span>
-<span id="cb15-9"><a href="資料視覺化.html#cb15-9" tabindex="-1"></a>  <span class="fu">theme</span>(<span class="at">axis.title=</span><span class="fu">element_text</span>(<span class="at">size=</span><span class="dv">15</span>, <span class="at">family=</span><span class="st">&quot;A&quot;</span>),</span>
-<span id="cb15-10"><a href="資料視覺化.html#cb15-10" tabindex="-1"></a>        <span class="at">axis.text=</span><span class="fu">element_text</span>(<span class="at">size=</span><span class="dv">12</span>, <span class="at">family=</span><span class="st">&quot;A&quot;</span>))</span></code></pre></div>
+<span id="cb15-5"><a href="資料視覺化.html#cb15-5" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data=</span>airquality_new, <span class="fu">aes</span>(<span class="at">x=</span>Date, <span class="at">y=</span>Temp))<span class="sc">+</span></span>
+<span id="cb15-6"><a href="資料視覺化.html#cb15-6" tabindex="-1"></a>  <span class="fu">geom_line</span>(<span class="at">group=</span><span class="dv">1</span>, <span class="at">color=</span><span class="st">&quot;red&quot;</span>)</span></code></pre></div>
 <p><img src="series_files/figure-html/geom-line-eg1-1.png" width="70%" style="display: block; margin: auto;" /></p>
+<p>圖中的橫軸為日期資料，而若欲修正時間軸的日期顯示方式，請參考<a href="資料視覺化.html#座標軸尺度">此</a>。</p>
 <p style="color:#003D79;font-size:18px;line-height:2">
-<strong>⌾ 修正散布圖樣式</strong>
+<strong>⌾ 多線折線圖</strong>
 </p>
-<p>若希望更動點的樣式，可利用表<a href="資料視覺化.html#tab:geom-point-code-tab">3.2</a>的引數控制之。</p>
+<p>以上的折線圖僅顯示單一條線，而有時我們希望在同一張圖表達多條折線，可藉此必較不同區間的資料，此時必須在<code>geom_line()</code>函式中設定<code>group=</code>函數為指定的分群欄位。</p>
+<p>再次以<code>airquality</code>（空氣品質）資料為例，若希望根據月份繪製不同折線，並給定不同顏色，此時<code>group=</code>引數即須設定為「Month」，並置於<A href="#ggplot-aes"><code>aes()</code></A>函式中，表示須根據不同類別而使設定有所更動者。由於不同折線將賦予不同顏色，故<code>color=</code>引數必須置於<A href="#ggplot-aes"><code>aes()</code></A>函式內。最後，若折線的粗細為一固定值，則必須將<code>linewidth=</code>引數置於<A href="#ggplot-aes"><code>aes()</code></A>函式外。根據上述繪圖邏輯，程式碼撰寫如下。</p>
+<div class="sourceCode" id="cb16"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb16-1"><a href="資料視覺化.html#cb16-1" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data=</span>airquality, <span class="fu">aes</span>(<span class="at">x=</span>Day, <span class="at">y=</span>Temp))<span class="sc">+</span></span>
+<span id="cb16-2"><a href="資料視覺化.html#cb16-2" tabindex="-1"></a>  <span class="fu">geom_line</span>(<span class="fu">aes</span>(<span class="at">group=</span>Month, <span class="at">color=</span><span class="fu">as.factor</span>(Month)), <span class="at">linewidth=</span><span class="dv">1</span>)</span></code></pre></div>
+<p><img src="series_files/figure-html/geom-line-eg2-1.png" width="70%" style="display: block; margin: auto;" /></p>
+<p style="color:#003D79;font-size:18px;line-height:2">
+<strong>⌾ 折線圖與散布圖疊合</strong>
+</p>
+<p>通常表達數據的趨勢，除了使用折線圖外，為了使資料的座標更為清晰，會另將散布圖疊在其上，以<code>airquality</code>資料為例，程式碼撰寫如下。程式碼中另將不同月份賦予不同點子的形狀，故此時<code>geom_point()</code>函式中的<code>shape=</code>引數亦須放置於<A href="#ggplot-aes"><code>aes()</code></A>函式內。而點子的大小不會因為不同月份而有所變動，在圖表中皆為固定者，故須放置於<A href="#ggplot-aes"><code>aes()</code></A>函式外。</p>
+<div class="sourceCode" id="cb17"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb17-1"><a href="資料視覺化.html#cb17-1" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data=</span>airquality, <span class="fu">aes</span>(<span class="at">x=</span>Day, <span class="at">y=</span>Temp))<span class="sc">+</span></span>
+<span id="cb17-2"><a href="資料視覺化.html#cb17-2" tabindex="-1"></a>  <span class="fu">geom_line</span>(<span class="fu">aes</span>(<span class="at">group=</span>Month, <span class="at">color=</span><span class="fu">as.factor</span>(Month)), <span class="at">linewidth=</span><span class="dv">1</span>)<span class="sc">+</span></span>
+<span id="cb17-3"><a href="資料視覺化.html#cb17-3" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="fu">aes</span>(<span class="at">group=</span>Month, <span class="at">color=</span><span class="fu">as.factor</span>(Month), <span class="at">shape=</span><span class="fu">as.factor</span>(Month)), <span class="at">size=</span><span class="dv">2</span>)</span></code></pre></div>
+<p><img src="series_files/figure-html/geom-line-eg3-1.png" width="70%" style="display: block; margin: auto;" /></p>
 </div>
 <div id="長條圖" class="section level3 hasAnchor" number="3.1.3">
 <h3><span class="header-section-number">3.1.3</span> 長條圖<a href="資料視覺化.html#長條圖" class="anchor-section" aria-label="Anchor link to header"></a></h3>
@@ -1145,6 +1159,9 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </div>
 <div id="粗細尺度" class="section level4 hasAnchor" number="3.2.1.3">
 <h4><span class="header-section-number">3.2.1.3</span> 粗細尺度<a href="資料視覺化.html#粗細尺度" class="anchor-section" aria-label="Anchor link to header"></a></h4>
+</div>
+<div id="座標軸尺度" class="section level4 hasAnchor" number="3.2.1.4">
+<h4><span class="header-section-number">3.2.1.4</span> 座標軸尺度<a href="資料視覺化.html#座標軸尺度" class="anchor-section" aria-label="Anchor link to header"></a></h4>
 </div>
 </div>
 <div id="主題設定" class="section level3 hasAnchor" number="3.2.2">
