@@ -140,3 +140,5 @@ tab:timezone
 tab:timeformat
 日期與時間
 tab:geom-line-code-tab
+tab:time-retrieve
+tab:wday-month

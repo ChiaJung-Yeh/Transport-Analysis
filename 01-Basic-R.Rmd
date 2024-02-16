@@ -13,6 +13,7 @@ library(DT)
 library(stringr)
 library(jsonlite)
 library(xml2)
+library(lubridate)
 
 Sys.setlocale(category = "LC_ALL", locale = "zh_TW.UTF-8")
 
@@ -832,58 +833,68 @@ class(date_str)
 
 ```{r as-POSIXct1, echo=T, eval=T}
 # 建立日期時間文字
-time_str=c("2024-02-14 13:14:52","2023-11-07 07:18:22","2022-07-28 20:10:31")
+time_str1=c("2024-02-14 13:14:52","2023-11-07 07:18:22","2022-07-28 20:10:31")
 
 # 將文字向量轉換為時間格式
-time_str=as.POSIXct(time_str, tz="Asia/Taipei")
+time_str1=as.POSIXct(time_str1, tz="Asia/Taipei")
 
 # 檢查格式
-class(time_str)
+class(time_str1)
 
 # 輸出結果
-time_str
+time_str1
 ```
 
 若時間格式並非上述典型的形式，則必須自行設定`format=`引數，並參照表\@ref(tab:timeformat)填入適當的格式，範例如以下程式碼。**_另請注意，若文字中含有「英文」，請務必確保電腦的文字及地區設定為`LC_ALL`，否則會出錯！！_**
 
 ```{r as-POSIXct2, echo=T, eval=T}
 # 建立日期時間文字
-time_str=c("2024/Feb/14 011452 PM","2023/Nov/07 071822 AM","2022/July/28 081031 PM")
+time_str2=c("2024/Feb/14 011452 PM","2023/Nov/07 071822 AM","2022/July/28 081031 PM")
 
 # 確保電腦的文字及地區為英文
 Sys.setlocale(category="LC_ALL", locale="en")
 
 # 將文字向量轉換為時間格式
-as.POSIXct(time_str, format="%Y/%B/%d %I%M%S %p", tz="Asia/Taipei")
+as.POSIXct(time_str2, format="%Y/%B/%d %I%M%S %p", tz="Asia/Taipei")
 
 # 輸出結果
-time_str
+time_str2
 
 # 建議時間處理完後，再調整到中文地區，否則後續中文文字的輸出會有問題！！
 Sys.setlocale(category="LC_ALL", locale="zh_TW.UTF-8")
 ```
 
 
-<p style="color:#003D79;font-size:18px;line-height:2">**⌾  回傳時間資訊**</p>
+<p style="color:#003D79;font-size:18px;line-height:2">**⌾  回傳日期時間資訊**</p>
+回傳日期與時間相關資訊的函式彙整如表\@ref(tab:time-retrieve)所示，並以前文的`time_str1`資料為例。
 
-```{r unlist, echo=T, eval=T}
+```{r time-retrieve, echo=F, eval=T}
+temp=data.frame(fun=c("","`year()`","`month()`","`day()`","`week()`","`wday()`","`hour()`","`minute()`","`second()`"),
+                meaning=c("","年","月","日","週","星期","時","分","秒"),
+                eg=c(paste(c("2024-02-14 13:14:52","2023-11-07 07:18:22","2022-07-28 20:10:31"), collapse="<br>"), paste(year(time_str1), collapse=", "), paste(month(time_str1), collapse=", "), paste(day(time_str1), collapse=", "), paste(week(time_str1), collapse=", "), paste(wday(time_str1), collapse=", "), paste(hour(time_str1), collapse=", "), paste(minute(time_str1), collapse=", "), paste(second(time_str1), collapse=", ")))
 
-
-month(as.Date("2022-05-04", format="%Y-%m-%d"), label=T)
-month(x, label = FALSE, abbr = TRUE, locale)
-
-format(Sys.Date(), format="%B %d %Y")
-as.Date("2022-May-04", format="%Y-%B-%d")
-as.POSIXct("2022-02-04 18:20:51", tz)
-
-lubridate::day("2022-02-04")
-lubridate::month("2022-02-04")
-lubridate::wday("2022-02-04", label=T)
-lubridate::year("2022-02-04", label=T)
-lubridate::hour("2022-02-04 18:20:51")
-
+kbl(temp, booktabs=T, escape=F, caption="回傳日期時間範例", col.names=c("函式","意義","範例（以<span style='color:black'>`time_str1`</span>為例）"))%>%
+  kable_styling(bootstrap_options=c("striped", "hover"), font_size=14)%>%
+  row_spec(0, bold=T, color="white", background="#8E8E8E")%>%
+  row_spec(1, bold=T, color="black", background="#ECFFFF", monospace=T)
 ```
 
+其中`wday()`星期函式所回傳的結果並非實際的星期，乃因該函式預設以「星期日」為一週的首日。此外，`month()`與`wday()`兩函式皆可設定回傳中英文、全名與縮寫等詳細資訊，完整參數設定詳如表\@ref(tab:time-retrieve)。其中`label=`引數設定是否回傳文字，否則預設為數值；`abbr=`引數設定是否回傳縮寫，此引數僅在`label=T`有效；`locale=`引數設定語言，如`en`為英文，而`zh_TW.UTF-8`為臺灣中文。
+
+```{r wday-month, echo=F, eval=T}
+temp1=as.Date(c(as.Date("2024-01-01"):as.Date("2024-01-07")))
+temp2=as.Date(paste0("2024-", str_pad(1:12, 2, "left", 0), "-01"))
+
+temp=data.frame(fun=c('`month(月份向量)`','`month(月份向量, label=T, locale="en")`','`month(月份向量, label=T, abbr=F, locale="en")`','`month(月份向量, label=T, locale="zh_TW.UTF-8")`','`wday(日期向量)`','`wday(日期向量, week_start=1)`','`wday(日期向量, label=T, locale="en")`','`wday(日期向量, label=T, abbr=F, locale="en")`','`wday(日期向量, label=T, locale="zh_TW.UTF-8")`','`wday(日期向量, label=T, abbr=F, locale="zh_TW.UTF-8")`'),
+                result=c(paste0(month(temp2), collapse=" "), paste0(month(temp2, label=T, locale="en"), collapse=" "), paste0(month(temp2, label=T, abbr=F, locale="en"), collapse=" "), paste0(month(temp2, label=T, locale="zh_TW.UTF-8"), collapse=" "), paste0(wday(temp1), collapse=" "), paste0(wday(temp1, week_start=1), collapse=" "), paste0(wday(temp1, label=T, locale="en"), collapse=" "), paste0(wday(temp1, label=T, abbr=F, locale="en"), collapse=" "), paste0(wday(temp1, label=T, locale="zh_TW.UTF-8"), collapse=" "), paste0(wday(temp1, label=T, abbr=F, locale="zh_TW.UTF-8"), collapse=" ")))
+
+kbl(temp, booktabs=T, escape=F, caption="`month()`與`wday()`函式引數設定", col.names=c("函式與引數","回傳結果"))%>%
+  kable_styling(bootstrap_options=c("striped", "hover"), font_size=14)%>%
+  row_spec(0, bold=T, color="white", background="#8E8E8E")%>%
+  column_spec(1, width="11cm")%>%
+  pack_rows("`month())` 月", 1, 4, bold=T, background="#ECFFFF")%>%
+  pack_rows("`wday()` 星期", 5, 10, bold=T, background="#ECFFFF")
+```
 
 
 
