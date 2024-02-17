@@ -143,3 +143,13 @@ tab:geom-line-code-tab
 tab:time-retrieve
 tab:wday-month
 座標軸尺度
+tab:geom-bar-code-tab
+標註插圖
+圖例與座標軸設定
+調整圖例名稱順序
+調整座標軸名稱順序
+雙重尺度設定
+多個不同尺度
+雙縱軸dual-y-axis
+細節樣式設定
+tab:geom-histogram-code-tab
