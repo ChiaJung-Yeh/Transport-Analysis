@@ -23,7 +23,7 @@
 <meta name="author" content="Chia-Jung (Robert) Yeh 葉家榮 PhD: Insitute of Transport and Logistics Studies, USYD M.S.: Department of Transportation and Logistics Management, NYCU" />
 
 
-<meta name="date" content="2024-02-17" />
+<meta name="date" content="2024-02-18" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -1086,7 +1086,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 設定線條的分群
 </td>
 <td style="text-align:left;">
-分群欄位名稱（若設定為 1，表示將資料全部連成一折線）
+設定分群欄位名稱（若設定為 1，表示將資料全部連成一折線）
 </td>
 </tr>
 </tbody>
@@ -1153,8 +1153,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 設定統計方法
 </td>
 <td style="text-align:left;vertical-align:middle;">
-<code>count</code>:統計類別的個數
-<code>identity</code>:依據給定資料繪製
+<code>count</code>:統計類別的個數<br><code>identity</code>:依據給定資料繪製
 </td>
 </tr>
 <tr>
@@ -1165,8 +1164,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 設定子類別的長條為疊加或並排
 </td>
 <td style="text-align:left;vertical-align:middle;">
-<code>stack</code>:將不同子類別疊加
-<code>dodge</code>:將不同子類別並排
+<code>stack</code>:將不同子類別疊加<br><code>dodge</code>:將不同子類別並排
 </td>
 </tr>
 <tr>
@@ -1297,7 +1295,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <span id="cb24-6"><a href="資料視覺化.html#cb24-6" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data=</span>tp_school_sum2, <span class="fu">aes</span>(<span class="at">x=</span>District, <span class="at">y=</span>Count))<span class="sc">+</span></span>
 <span id="cb24-7"><a href="資料視覺化.html#cb24-7" tabindex="-1"></a>  <span class="fu">geom_col</span>(<span class="fu">aes</span>(<span class="at">fill=</span>TYPE))</span></code></pre></div>
 <p><img src="series_files/figure-html/geom-bar-eg5-1.png" width="70%" style="display: block; margin: auto;" /></p>
-<p>若欲修正長條疊圖的順序以及圖例中排列的順序（如希望學校層級由小至大依序排列），請參考<a href="資料視覺化.html#調整圖例名稱順序">此</a>。</p>
+<p>若欲修正長條疊圖的順序以及圖例中排列的順序（如將學校層級由小至大依序排列），請參考<a href="資料視覺化.html#調整圖例名稱順序">此</a>。</p>
 <p style="color:#003D79;font-size:18px;line-height:2">
 <strong>⌾ 子類別並排長條圖</strong>
 </p>
@@ -1309,12 +1307,12 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </div>
 <div id="直方圖" class="section level3 hasAnchor" number="3.1.4">
 <h3><span class="header-section-number">3.1.4</span> 直方圖<a href="資料視覺化.html#直方圖" class="anchor-section" aria-label="Anchor link to header"></a></h3>
-<p>直方圖與長條圖非常相像，然而長條圖的橫軸多用於類別變數或時間、整數，而直方圖的橫軸通常為一連續區間，該函式撰寫架構如下。</p>
-<div class="sourceCode" id="cb26"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb26-1"><a href="資料視覺化.html#cb26-1" tabindex="-1"></a><span class="fu">geom_histogram</span>(<span class="at">binwidth=</span>, <span class="at">bins=</span>, <span class="at">color=</span>, <span class="at">linetype=</span>, <span class="at">linewidth=</span>, <span class="at">fill=</span>, <span class="at">alpha=</span>, <span class="at">position=</span>)</span></code></pre></div>
+<p>直方圖（Histogram）與長條圖非常相像，然而長條圖的橫軸多用於類別變數或時間、整數，而直方圖的橫軸多用於連續變數，該函式撰寫架構如下。</p>
+<div class="sourceCode" id="cb26"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb26-1"><a href="資料視覺化.html#cb26-1" tabindex="-1"></a><span class="fu">geom_histogram</span>(<span class="at">binwidth=</span>, <span class="at">bins=</span>, <span class="at">color=</span>, <span class="at">linetype=</span>, <span class="at">linewidth=</span>, <span class="at">fill=</span>, <span class="at">alpha=</span>, <span class="at">position=</span>, <span class="at">group=</span>)</span></code></pre></div>
 <p>以上各引數的功能彙整如表<a href="資料視覺化.html#tab:geom-histogram-code-tab">3.6</a>。</p>
 <table class="table table-striped table-hover" style="font-size: 14px; margin-left: auto; margin-right: auto;">
 <caption style="font-size: initial !important;">
-<span id="tab:geom-histogram-code-tab">表 3.6: </span><code>geom_bar()</code>與<code>geom_col()</code>函式引數設定
+<span id="tab:geom-histogram-code-tab">表 3.6: </span><code>geom_histogram()</code>函式引數設定
 </caption>
 <thead>
 <tr>
@@ -1349,8 +1347,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 設定分群總數
 </td>
 <td style="text-align:left;vertical-align:middle;">
-數值
-當<code>binwidth=</code>引數有被設定時，即忽略<code>bins=</code>的設定
+數值<br>當<code>binwidth=</code>引數有被設定時，即忽略<code>bins=</code>的設定
 </td>
 </tr>
 <tr>
@@ -1416,8 +1413,18 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 設定子類別的長條為疊加或並排
 </td>
 <td style="text-align:left;vertical-align:middle;">
-<code>stack</code>:將不同子類別疊加
-<code>identity</code>:將不同子類別重疊
+<code>stack</code>:將不同子類別疊加<br><code>identity</code>:將不同子類別重疊
+</td>
+</tr>
+<tr>
+<td style="text-align:left;vertical-align:middle;">
+<code>group=</code>
+</td>
+<td style="text-align:left;vertical-align:middle;">
+設定分群欄位名稱
+</td>
+<td style="text-align:left;vertical-align:middle;">
+若欲針對不同子類別繪製直方圖於同一張圖表中，必須設定子類別欄位
 </td>
 </tr>
 </tbody>
@@ -1443,7 +1450,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <p>有時我們會希望觀察不同類別間的分布情形，故在同一張圖表上繪製多組資料的直方圖，以觀察分布情形，此時可以透過不同的填色（<code>fill=</code>）表達各類別的資料。再次以<code>airquality</code>的資料為例，若欲觀察五月與八月這兩個月份的溫度分布情形，將兩月份的溫度直方圖同時繪製於同一張圖表上，此時由於填色（<code>fill=</code>）會依據不同的資料而有所變動，故必須置於<A href="#ggplot-aes"><code>aes()</code></A>函式內，另外必須設置<code>position="identity"</code>引數，以確保繪製時將不同的類別分開呈現。程式碼撰寫如下。</p>
 <div class="sourceCode" id="cb29"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb29-1"><a href="資料視覺化.html#cb29-1" tabindex="-1"></a>airquality58<span class="ot">=</span><span class="fu">filter</span>(airquality, Month <span class="sc">%in%</span> <span class="fu">c</span>(<span class="dv">5</span>,<span class="dv">8</span>))</span>
 <span id="cb29-2"><a href="資料視覺化.html#cb29-2" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data=</span>airquality58, <span class="fu">aes</span>(<span class="at">x=</span>Temp))<span class="sc">+</span></span>
-<span id="cb29-3"><a href="資料視覺化.html#cb29-3" tabindex="-1"></a>  <span class="fu">geom_histogram</span>(<span class="fu">aes</span>(<span class="at">fill=</span><span class="fu">as.factor</span>(Month)), <span class="at">bins=</span><span class="dv">10</span>, <span class="at">color=</span><span class="st">&quot;grey&quot;</span>, <span class="at">alpha=</span><span class="fl">0.3</span>, <span class="at">position=</span><span class="st">&quot;identity&quot;</span>)</span></code></pre></div>
+<span id="cb29-3"><a href="資料視覺化.html#cb29-3" tabindex="-1"></a>  <span class="fu">geom_histogram</span>(<span class="fu">aes</span>(<span class="at">fill=</span><span class="fu">as.factor</span>(Month), <span class="at">group=</span><span class="fu">as.factor</span>(Month)), <span class="at">bins=</span><span class="dv">10</span>, <span class="at">color=</span><span class="st">&quot;grey&quot;</span>, <span class="at">alpha=</span><span class="fl">0.3</span>, <span class="at">position=</span><span class="st">&quot;identity&quot;</span>)</span></code></pre></div>
 <p><img src="series_files/figure-html/geom-histogram-eg3-1.png" width="70%" style="display: block; margin: auto;" /></p>
 <p>請注意以上程式碼中，由於需依據月份分類繪圖，故將 Month 轉換為文字或<a href="r-語言基礎語法.html#因子factor">因子</a>形式。</p>
 <p>重疊時縱然使用透明度以增加可識別性，然而可能還是不夠清楚，此時可以將各類別的直方圖分別繪製，並上下交錯排列，以增加視覺的辨識性。如上相同案例，修正為上下倒置的直方圖，程式碼撰寫如下。</p>
@@ -1455,6 +1462,109 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </div>
 <div id="密度圖" class="section level3 hasAnchor" number="3.1.5">
 <h3><span class="header-section-number">3.1.5</span> 密度圖<a href="資料視覺化.html#密度圖" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>密度圖（Density Plot）與直方圖的功能相同，皆用以表示資料分布的情況。密度圖的橫軸一樣是連續型變數，而縱軸則為密度，將該密度曲線下的面積加總所得結果必然為 1。在<code>ggplot2</code>套件中，可以利用<code>geom_density()</code>繪製密度圖，函式撰寫架構如下。</p>
+<div class="sourceCode" id="cb31"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb31-1"><a href="資料視覺化.html#cb31-1" tabindex="-1"></a><span class="fu">geom_density</span>(<span class="at">color=</span>, <span class="at">linetype=</span>, <span class="at">linewidth=</span>, <span class="at">fill=</span>, <span class="at">alpha=</span>, <span class="at">group=</span>)</span></code></pre></div>
+<p>以上各引數的功能彙整如表<a href="資料視覺化.html#tab:geom-density-code-tab">3.7</a>。</p>
+<table class="table table-striped table-hover" style="font-size: 14px; margin-left: auto; margin-right: auto;">
+<caption style="font-size: initial !important;">
+<span id="tab:geom-density-code-tab">表 3.7: </span><code>geom_density()</code>函式引數設定
+</caption>
+<thead>
+<tr>
+<th style="text-align:left;font-weight: bold;color: white !important;background-color: #8E8E8E !important;">
+引數
+</th>
+<th style="text-align:left;font-weight: bold;color: white !important;background-color: #8E8E8E !important;">
+功能設定
+</th>
+<th style="text-align:left;font-weight: bold;color: white !important;background-color: #8E8E8E !important;">
+說明
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left;vertical-align:middle;">
+<code>color=</code>
+</td>
+<td style="text-align:left;vertical-align:middle;">
+設定密度曲線顏色
+</td>
+<td style="text-align:left;vertical-align:middle;">
+請參考<a href="資料視覺化.html#geom-setting-color">顏色設定</a>
+</td>
+</tr>
+<tr>
+<td style="text-align:left;vertical-align:middle;">
+<code>linetype=</code>
+</td>
+<td style="text-align:left;vertical-align:middle;">
+設定密度曲線樣式
+</td>
+<td style="text-align:left;vertical-align:middle;">
+請參考<a href="資料視覺化.html#geom-setting-linetype">線條樣式設定 </a>
+</td>
+</tr>
+<tr>
+<td style="text-align:left;vertical-align:middle;">
+<code>linewidth=</code>
+</td>
+<td style="text-align:left;vertical-align:middle;">
+設定密度曲線粗細
+</td>
+<td style="text-align:left;vertical-align:middle;">
+數值
+</td>
+</tr>
+<tr>
+<td style="text-align:left;vertical-align:middle;">
+<code>fill=</code>
+</td>
+<td style="text-align:left;vertical-align:middle;">
+設定密度曲線下面積之填色
+</td>
+<td style="text-align:left;vertical-align:middle;">
+請參考<a href="資料視覺化.html#geom-setting-color">顏色設定</a>
+</td>
+</tr>
+<tr>
+<td style="text-align:left;vertical-align:middle;">
+<code>alpha=</code>
+</td>
+<td style="text-align:left;vertical-align:middle;">
+設定密度曲線下面積之填色透明度
+</td>
+<td style="text-align:left;vertical-align:middle;">
+數值，介於 0（完全透明）與 1（完全不透明）間
+</td>
+</tr>
+<tr>
+<td style="text-align:left;vertical-align:middle;">
+<code>group=</code>
+</td>
+<td style="text-align:left;vertical-align:middle;">
+設定分群欄位名稱
+</td>
+<td style="text-align:left;vertical-align:middle;">
+若欲針對不同子類別繪製密度圖於同一張圖表中，必須設定子類別欄位
+</td>
+</tr>
+</tbody>
+</table>
+<p style="color:#003D79;font-size:18px;line-height:2">
+<strong>⌾ 基礎密度圖</strong>
+</p>
+<p>以<code>airquality</code>資料為例，繪製溫度的密度圖，程式碼撰寫如下。</p>
+<div class="sourceCode" id="cb32"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb32-1"><a href="資料視覺化.html#cb32-1" tabindex="-1"></a><span class="fu">ggplot</span>(airquality, <span class="fu">aes</span>(<span class="at">x=</span>Temp))<span class="sc">+</span></span>
+<span id="cb32-2"><a href="資料視覺化.html#cb32-2" tabindex="-1"></a>  <span class="fu">geom_density</span>(<span class="at">color=</span><span class="st">&quot;#004B97&quot;</span>, <span class="at">fill=</span><span class="st">&quot;#D2E9FF&quot;</span>, <span class="at">alpha=</span><span class="fl">0.5</span>)</span></code></pre></div>
+<p><img src="series_files/figure-html/geom-density-eg1-1.png" width="70%" style="display: block; margin: auto;" /></p>
+<p style="color:#003D79;font-size:18px;line-height:2">
+<strong>⌾ 多類別密度圖</strong>
+</p>
+<p>多類別的密度圖可以觀察不同子類別的分布趨勢，以瞭解資料的集中性。相較於直方圖而言，密度圖在多類別的繪製上能夠更清楚表達，不會因過度重疊而難以辨識。建立多類別的密度圖時，若欲使用曲線顏色、曲線下面積填色等表達不同類別，則應將該引數置於<A href="#ggplot-aes"><code>aes()</code></A>函式內。</p>
+<div class="sourceCode" id="cb33"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb33-1"><a href="資料視覺化.html#cb33-1" tabindex="-1"></a><span class="fu">ggplot</span>(airquality, <span class="fu">aes</span>(<span class="at">x=</span>Temp))<span class="sc">+</span></span>
+<span id="cb33-2"><a href="資料視覺化.html#cb33-2" tabindex="-1"></a>  <span class="fu">geom_density</span>(<span class="fu">aes</span>(<span class="at">color=</span><span class="fu">as.factor</span>(Month), <span class="at">fill=</span><span class="fu">as.factor</span>(Month), <span class="at">group=</span><span class="fu">as.factor</span>(Month)), <span class="at">alpha=</span><span class="fl">0.4</span>)</span></code></pre></div>
+<p><img src="series_files/figure-html/geom-density-eg2-1.png" width="70%" style="display: block; margin: auto;" /></p>
 </div>
 <div id="圓餅圖" class="section level3 hasAnchor" number="3.1.6">
 <h3><span class="header-section-number">3.1.6</span> 圓餅圖<a href="資料視覺化.html#圓餅圖" class="anchor-section" aria-label="Anchor link to header"></a></h3>

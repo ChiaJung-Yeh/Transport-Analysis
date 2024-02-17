@@ -325,7 +325,7 @@ geom_line(color=, linetype=, linewidth=, alpha=, group=)
 
 ```{r geom-line-code-tab, echo=F, eval=T}
 gl_code=data.frame(argument=c("`color=`","`linetype=`","`linewidth=`","`alpha=`","`group=`"),
-                   setting=c("設定線條的顏色","設定線條樣式","設定線條的粗細","設定線條的透明度","設定線條的分群"), explain=c("請參考<A href='#geom-setting-color'>顏色設定</A>","請參考<A href='#geom-setting-linetype'>線條樣式設定</A>","數值","數值，介於 0（完全透明）與 1（完全不透明）間","分群欄位名稱（若設定為 1，表示將資料全部連成一折線）"))
+                   setting=c("設定線條的顏色","設定線條樣式","設定線條的粗細","設定線條的透明度","設定線條的分群"), explain=c("請參考<A href='#geom-setting-color'>顏色設定</A>","請參考<A href='#geom-setting-linetype'>線條樣式設定</A>","數值","數值，介於 0（完全透明）與 1（完全不透明）間","設定分群欄位名稱（若設定為 1，表示將資料全部連成一折線）"))
 
 kable(gl_code, booktabs=T, escape=F, caption="`geom_line()`函式引數設定", col.names=c("引數","功能設定","說明"))%>%
   kable_styling(bootstrap_options=c("striped", "hover"), font_size=14)%>%
@@ -382,7 +382,7 @@ geom_col(position=, color=, linetype=, linewidth=, fill=, alpha=)
 
 ```{r geom-bar-code-tab, echo=F, eval=T}
 gb_code=data.frame(argument=c("`stat=`","`position=`","`color=`","`linetype=`","`linewidth=`","`fill=`","`alpha=`"),
-                   setting=c("設定統計方法","設定子類別的長條為疊加或並排","設定條狀外圍顏色","設定條狀外圍線條樣式","設定條狀外圍線條粗細","設定條狀內部填色","設定條狀內部填色透明度"), explain=c("`count`:統計類別的個數\n`identity`:依據給定資料繪製","`stack`:將不同子類別疊加\n`dodge`:將不同子類別並排","請參考<A href='#geom-setting-color'>顏色設定</A>","請參考<A href='#geom-setting-linetype'>線條樣式設定","數值","請參考<A href='#geom-setting-color'>顏色設定</A>","數值，介於 0（完全透明）與 1（完全不透明）間"))
+                   setting=c("設定統計方法","設定子類別的長條為疊加或並排","設定條狀外圍顏色","設定條狀外圍線條樣式","設定條狀外圍線條粗細","設定條狀內部填色","設定條狀內部填色透明度"), explain=c("`count`:統計類別的個數<br>`identity`:依據給定資料繪製","`stack`:將不同子類別疊加<br>`dodge`:將不同子類別並排","請參考<A href='#geom-setting-color'>顏色設定</A>","請參考<A href='#geom-setting-linetype'>線條樣式設定","數值","請參考<A href='#geom-setting-color'>顏色設定</A>","數值，介於 0（完全透明）與 1（完全不透明）間"))
 
 kable(gb_code, booktabs=T, escape=F, caption="`geom_bar()`與`geom_col()`函式引數設定", col.names=c("引數","功能設定","說明"))%>%
   kable_styling(bootstrap_options=c("striped", "hover"), font_size=14)%>%
@@ -472,7 +472,7 @@ ggplot(data=tp_school_sum2, aes(x=District, y=Count))+
   geom_col(aes(fill=TYPE))
 ```
 
-若欲修正長條疊圖的順序以及圖例中排列的順序（如希望學校層級由小至大依序排列），請參考[此](#調整圖例名稱順序)。
+若欲修正長條疊圖的順序以及圖例中排列的順序（如將學校層級由小至大依序排列），請參考[此](#調整圖例名稱順序)。
 
 
 <p style="color:#003D79;font-size:18px;line-height:2">**⌾ 子類別並排長條圖**</p>  
@@ -486,19 +486,19 @@ ggplot(data=tp_school_sum2, aes(x=District, y=Count))+
 
 
 ### 直方圖
-直方圖與長條圖非常相像，然而長條圖的橫軸多用於類別變數或時間、整數，而直方圖的橫軸通常為一連續區間，該函式撰寫架構如下。
+直方圖（Histogram）與長條圖非常相像，然而長條圖的橫軸多用於類別變數或時間、整數，而直方圖的橫軸多用於連續變數，該函式撰寫架構如下。
 
 ```{r geom-histogram-code, echo=T, eval=F}
-geom_histogram(binwidth=, bins=, color=, linetype=, linewidth=, fill=, alpha=, position=)
+geom_histogram(binwidth=, bins=, color=, linetype=, linewidth=, fill=, alpha=, position=, group=)
 ```
 
 以上各引數的功能彙整如表\@ref(tab:geom-histogram-code-tab)。
 
 ```{r geom-histogram-code-tab, echo=F, eval=T}
-gh_code=data.frame(argument=c("`binwidth=`","`bins=`","`color=`","`linetype=`","`linewidth=`","`fill=`","`alpha=`","`position=`"),
-                   setting=c("設定分群寬度","設定分群總數","設定條狀外圍顏色","設定條狀外圍線條樣式","設定條狀外圍線條粗細","設定條狀內部填色","設定條狀內部填色透明度","設定子類別的長條為疊加或並排"), explain=c("數值","數值\n當`binwidth=`引數有被設定時，即忽略`bins=`的設定","請參考<A href='#geom-setting-color'>顏色設定</A>","請參考<A href='#geom-setting-linetype'>線條樣式設定","數值","請參考<A href='#geom-setting-color'>顏色設定</A>","數值，介於 0（完全透明）與 1（完全不透明）間","`stack`:將不同子類別疊加\n`identity`:將不同子類別重疊"))
+gh_code=data.frame(argument=c("`binwidth=`","`bins=`","`color=`","`linetype=`","`linewidth=`","`fill=`","`alpha=`","`position=`","`group=`"),
+                   setting=c("設定分群寬度","設定分群總數","設定條狀外圍顏色","設定條狀外圍線條樣式","設定條狀外圍線條粗細","設定條狀內部填色","設定條狀內部填色透明度","設定子類別的長條為疊加或並排","設定分群欄位名稱"), explain=c("數值","數值<br>當`binwidth=`引數有被設定時，即忽略`bins=`的設定","請參考<A href='#geom-setting-color'>顏色設定</A>","請參考<A href='#geom-setting-linetype'>線條樣式設定","數值","請參考<A href='#geom-setting-color'>顏色設定</A>","數值，介於 0（完全透明）與 1（完全不透明）間","`stack`:將不同子類別疊加<br>`identity`:將不同子類別重疊","若欲針對不同子類別繪製直方圖於同一張圖表中，必須設定子類別欄位"))
 
-kable(gh_code, booktabs=T, escape=F, caption="`geom_bar()`與`geom_col()`函式引數設定", col.names=c("引數","功能設定","說明"))%>%
+kable(gh_code, booktabs=T, escape=F, caption="`geom_histogram()`函式引數設定", col.names=c("引數","功能設定","說明"))%>%
   kable_styling(bootstrap_options=c("striped", "hover"), font_size=14)%>%
   column_spec(1:3 ,extra_css="vertical-align:middle;")%>%
   row_spec(0, bold=T, color="white", background="#8E8E8E")
@@ -534,7 +534,7 @@ ggplot(data=airquality, aes(x=Temp))+
 ```{r geom-histogram-eg3, echo=T, eval=T, out.width="70%", fig.align="center"}
 airquality58=filter(airquality, Month %in% c(5,8))
 ggplot(data=airquality58, aes(x=Temp))+
-  geom_histogram(aes(fill=as.factor(Month)), bins=10, color="grey", alpha=0.3, position="identity")
+  geom_histogram(aes(fill=as.factor(Month), group=as.factor(Month)), bins=10, color="grey", alpha=0.3, position="identity")
 ```
 
 請注意以上程式碼中，由於需依據月份分類繪圖，故將 Month 轉換為文字或[因子](#因子factor)形式。
@@ -551,6 +551,42 @@ ggplot()+
 
 
 ### 密度圖
+密度圖（Density Plot）與直方圖的功能相同，皆用以表示資料分布的情況。密度圖的橫軸一樣是連續型變數，而縱軸則為密度，將該密度曲線下的面積加總所得結果必然為 1。在`ggplot2`套件中，可以利用`geom_density()`繪製密度圖，函式撰寫架構如下。
+
+```{r geom-density-code, echo=T, eval=F}
+geom_density(color=, linetype=, linewidth=, fill=, alpha=, group=)
+```
+
+以上各引數的功能彙整如表\@ref(tab:geom-density-code-tab)。
+
+```{r geom-density-code-tab, echo=F, eval=T}
+gd_code=data.frame(argument=c("`color=`","`linetype=`","`linewidth=`","`fill=`","`alpha=`", "`group=`"),
+                   setting=c("設定密度曲線顏色","設定密度曲線樣式","設定密度曲線粗細","設定密度曲線下面積之填色","設定密度曲線下面積之填色透明度","設定分群欄位名稱"), explain=c("請參考<A href='#geom-setting-color'>顏色設定</A>","請參考<A href='#geom-setting-linetype'>線條樣式設定","數值","請參考<A href='#geom-setting-color'>顏色設定</A>","數值，介於 0（完全透明）與 1（完全不透明）間","若欲針對不同子類別繪製密度圖於同一張圖表中，必須設定子類別欄位"))
+
+kable(gd_code, booktabs=T, escape=F, caption="`geom_density()`函式引數設定", col.names=c("引數","功能設定","說明"))%>%
+  kable_styling(bootstrap_options=c("striped", "hover"), font_size=14)%>%
+  column_spec(1:3 ,extra_css="vertical-align:middle;")%>%
+  row_spec(0, bold=T, color="white", background="#8E8E8E")
+```
+
+<p style="color:#003D79;font-size:18px;line-height:2">**⌾ 基礎密度圖**</p>  
+
+以`airquality`資料為例，繪製溫度的密度圖，程式碼撰寫如下。
+
+```{r geom-density-eg1, echo=T, eval=T, out.width="70%", fig.align="center"}
+ggplot(airquality, aes(x=Temp))+
+  geom_density(color="#004B97", fill="#D2E9FF", alpha=0.5)
+```
+
+
+<p style="color:#003D79;font-size:18px;line-height:2">**⌾ 多類別密度圖**</p>  
+
+多類別的密度圖可以觀察不同子類別的分布趨勢，以瞭解資料的集中性。相較於直方圖而言，密度圖在多類別的繪製上能夠更清楚表達，不會因過度重疊而難以辨識。建立多類別的密度圖時，若欲使用曲線顏色、曲線下面積填色等表達不同類別，則應將該引數置於<A href="#ggplot-aes">`aes()`</A>函式內。
+
+```{r geom-density-eg2, echo=T, eval=T, out.width="70%", fig.align="center"}
+ggplot(airquality, aes(x=Temp))+
+  geom_density(aes(color=as.factor(Month), fill=as.factor(Month), group=as.factor(Month)), alpha=0.4)
+```
 
 ### 圓餅圖
 

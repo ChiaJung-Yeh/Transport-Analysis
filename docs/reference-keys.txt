@@ -153,3 +153,4 @@ tab:geom-bar-code-tab
 雙縱軸dual-y-axis
 細節樣式設定
 tab:geom-histogram-code-tab
+tab:geom-density-code-tab
