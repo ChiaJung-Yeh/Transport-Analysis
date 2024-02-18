@@ -154,3 +154,4 @@ tab:geom-bar-code-tab
 細節樣式設定
 tab:geom-histogram-code-tab
 tab:geom-density-code-tab
+fig:geom-bar-cumsum-fig

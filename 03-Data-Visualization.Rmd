@@ -229,10 +229,46 @@ ggplot(iris, aes(x=Sepal.Length, Sepal.Width))+
 
 圖中「品種」為類別型資料；「花瓣的寬度」為連續型資料，透過漸層樣式散布圖可表達更多維度的資料，添增資訊的豐富度。觀察出圖結果可發現，setosa 類別（ <span style="color:#F8766D">紅色點子</span>）的花瓣寬度（點子大小）與花萼長度（橫軸）相較於另兩品種偏小，有相當明顯的區別。因此透過漸層樣式散布圖可初步觀察對於資料分類的重要影響變數，為資料科學的關鍵步驟。
 
-若希望修正顏色漸層，請參考[此](#顏色漸層)；若希望修正點子大小之漸層，請參考[此](#大小尺度)。
+若欲修正顏色漸層，請參考[此](#顏色漸層)；若欲修正點子大小之漸層，請參考[此](#大小尺度)。
+
+
+<p style="color:#003D79;font-size:18px;line-height:2">**⌾ 漸層樣式散布圖--修正圖例順序**</p>  
+關於圖例修正的順序請先參考[此](#調整圖例名稱順序)。在預設情況下，圖例是依據字母順序排列，而若欲修正圖例順序為指定的格式，須利用[`factor()`](#因子factor)函式定義類別的層級。舉例而言，若希望將圖例順序修正為「virginica, versicolor, setosa」，程式碼撰寫如下。
+
+```{r geom-point-eg4, echo=T, eval=T, out.width="70%", fig.align="center"}
+iris_rev=iris
+iris_rev$Species=factor(iris_rev$Species, c("virginica","versicolor","setosa"))
+ggplot(iris_rev, aes(x=Sepal.Length, Sepal.Width))+
+  geom_point(aes(color=Species, size=Petal.Width), shape=20)
+```
+
+
+<p style="color:#003D79;font-size:18px;line-height:2">**⌾ 加入文字或標籤**</p>  
+關於圖表中插入文字，應利用`geom_text()`函式，請先參考[此](#標註文字)。以加入各品種（Species）分群中心點的名稱為例，以下程式碼先行透過`group_by() %>% summarise()`計算各分群的中心點位置，最後再添上文字。
+
+```{r geom-point-eg5, echo=T, eval=T, out.width="70%", fig.align="center"}
+# 統計各品種的中心點
+iris_sum=group_by(iris, Species)%>%
+  summarise_at(c("Sepal.Length", "Sepal.Width"), mean)
+
+# 加入文字
+ggplot()+
+  geom_point(data=iris, aes(x=Sepal.Length, Sepal.Width, color=Species, size=Petal.Width), shape=20, alpha=0.5)+
+  geom_text(data=iris_sum, aes(x=Sepal.Length, y=Sepal.Width, color=Species, label=Species), size=5)
+```
+
+抑或使用`geom_label()`建立標籤，程式碼撰寫如下。
+
+```{r geom-point-eg6, echo=T, eval=T, out.width="70%", fig.align="center"}
+# 加入文字
+ggplot()+
+  geom_point(data=iris, aes(x=Sepal.Length, Sepal.Width, color=Species, size=Petal.Width), shape=20, alpha=0.5)+
+  geom_label(data=iris_sum, aes(x=Sepal.Length, y=Sepal.Width, color=Species, label=Species), size=4)
+```
+
 
 <p style="color:#003D79;font-size:18px;line-height:2">**⌾ 加入趨勢線**</p>  
-點子圖通常用以表示兩連續變數的關係，可從中推敲其趨勢，繪圖時可另考量繪製趨勢線，有助於引導閱讀者瞭解變數間的關係。趨勢線可透過`geom_smooth()`繪製，函式撰寫如下。
+點子圖通常用以表示兩連續變數的關係，可從中推敲其趨勢，繪圖時可另考量繪製趨勢線，有助於引導閱讀者瞭解變數間的關係。趨勢線可透過`geom_smooth()`繪製，函式撰寫架構如下。
 
 ```{r geom-smooth-code, echo=T, eval=F}
 geom_smooth(method, se=, span=, level=, color=, linetype=, linewidth=, fill=, alpha=)
@@ -258,9 +294,9 @@ ggplot(iris, aes(x=Sepal.Length, Sepal.Width))+
   geom_smooth(method=lm, formula=y~x, color="#CE0000", fill="#FF7575", alpha=0.2)
 ```
 
-不同的`span=`引數所繪製的趨勢圖亦有所不同，如圖\@ref(fig:geom-smooth-eg2)所示，可發現當所設定的數值愈大時，趨勢線愈加平滑。
+繪製曲線之趨勢線時，不同的`span=`引數所繪製的趨勢圖亦有所不同，如圖\@ref(fig:geom-smooth-eg2)所示，可發現當所設定的數值愈大時，趨勢線愈加平滑。
 
-```{r geom-smooth-eg2, echo=F, eval=T, out.width="90%", fig.align="center", fig.cap="趨勢線中的`span=`引數", warning=F, message=F}
+```{r geom-smooth-eg2, echo=F, eval=T, out.width="85%", fig.align="center", fig.cap="趨勢線中的`span=`引數", warning=F, message=F}
 plot_list=list()
 all_span=c(0.2,0.5,0.8,1,1.5,2)
 for(i in c(1:length(all_span))){
@@ -287,7 +323,7 @@ cowplot::plot_grid(plot_list[[1]]+theme2, plot_list[[2]]+theme3, plot_list[[3]]+
 <p style="color:#003D79;font-size:18px;line-height:2">**⌾ 加入跳點**</p>  
 有時資料點會重疊，導致肉眼無法觀察，更難以判斷資料的集中程度（重疊後變成單一點，反而會將群聚的點誤判為稀疏），此一情境即常發生於具有整數或類別型的資料。如以下案例，利用`mpg`資料，以汽缸數（cyl）為橫軸；以每加侖英里數（hwy）為縱軸，繪製散布圖如下。
 
-```{r geom-point-eg4, echo=T, eval=T, out.width="70%", fig.align="center"}
+```{r geom-point-eg7, echo=T, eval=T, out.width="70%", fig.align="center"}
 ggplot(mpg, aes(cyl, hwy))+
   geom_point()
 ```
@@ -358,6 +394,9 @@ ggplot(data=airquality, aes(x=Day, y=Temp))+
 ```
 
 請注意以上程式碼中，由於需依據月份分類繪圖，故將 Month 轉換為文字或因子形式。
+
+若欲修正顏色漸層，請參考[此](#顏色漸層)。
+
 
 <p style="color:#003D79;font-size:18px;line-height:2">**⌾ 折線圖與散布圖疊合**</p>  
 通常表達數據的趨勢，除了使用折線圖外，為了使資料的座標更為清晰，會另將散布圖疊在其上，以`airquality`資料為例，程式碼撰寫如下。程式碼中另將不同月份賦予不同點子的形狀，故此時`geom_point()`函式中的`shape=`引數亦須放置於<A href="#ggplot-aes">`aes()`</A>函式內。而點子的大小不會因為不同月份而有所變動，在圖表中皆為固定者，故須置於<A href="#ggplot-aes">`aes()`</A>函式外。
@@ -472,17 +511,64 @@ ggplot(data=tp_school_sum2, aes(x=District, y=Count))+
   geom_col(aes(fill=TYPE))
 ```
 
-若欲修正長條疊圖的順序以及圖例中排列的順序（如將學校層級由小至大依序排列），請參考[此](#調整圖例名稱順序)。
+
+<p style="color:#003D79;font-size:18px;line-height:2">**⌾ 子類別疊加長條圖--調整圖例順序**</p>  
+
+若欲修正長條疊圖的順序以及圖例中排列的順序，請先參考[此](#調整圖例名稱順序)。如將學校層級由小至大依序排列，程式碼撰寫如下。
+
+```{r geom-bar-eg6, echo=T, eval=T, out.width="70%", fig.align="center", message=F}
+# 修正層級
+tp_school_sum2$TYPE=factor(tp_school_sum2$TYPE, levels=c("國小","國中","高中","大學","其他"))
+
+# 繪製長條圖
+ggplot(data=tp_school_sum2, aes(x=District, y=Count))+
+  geom_col(aes(fill=TYPE))
+```
+
+若欲將上圖中的「國小」置於圖表最下方，「其他」置於最上方，則僅需在`factor()`函式中將`levels=`引數倒序排列即可。
 
 
 <p style="color:#003D79;font-size:18px;line-height:2">**⌾ 子類別並排長條圖**</p>  
 在預設情況下若有多個類別繪製長條圖，係將其垂直疊加，然若希望將所有子類別的長條圖以並排方式呈現，則需另在`geom_col()`函式中設定`position="dodge"`。再次以前述`tp_school_sum2`的資料為例，程式碼撰寫如下。
 
-```{r geom-bar-eg6, echo=T, eval=T, out.width="70%", fig.align="center", message=F}
-# 繪製長條圖
+```{r geom-bar-eg7, echo=T, eval=T, out.width="70%", fig.align="center", message=F}
 ggplot(data=tp_school_sum2, aes(x=District, y=Count))+
   geom_col(position="dodge", aes(fill=TYPE))
 ```
+
+
+<p style="color:#003D79;font-size:18px;line-height:2">**⌾ 加入文字或標籤**</p>  
+關於圖表中插入文字，應利用`geom_text()`函式，請先參考[此](#標註文字)。在繪製長條圖時，有時會希望在長條圖上標註類別或數字，以明確顯示充分的資訊，增加可讀性。以前文`mpg_sum`資料為例，將各廠牌（manufacturer）類別的統計數量（Count）標註於長條的頂端。程式碼中在設定文字的標註位置時，將縱軸設定為各數量再加一，以避免與頂端的邊界重疊而影響判讀。
+
+```{r geom-bar-eg8, echo=T, eval=T, out.width="70%", fig.align="center"}
+ggplot()+
+  geom_col(data=mpg_sum, aes(x=manufacturer, y=Count))+
+  geom_text(data=mpg_sum, aes(x=manufacturer, y=Count+1, label=Count), color="blue")
+```
+
+若欲在子類別疊加長條圖中，各類別的區塊標註文字，需特別注意文字標註的縱軸位置，其必須依據不同群組累積加總統計數量，尚能正確表達位置。而分群累積加總，請參考[資料分群與統計](#資料分群與統計)一節中的「**分群新增資料屬性（`mutate()`）**」之內容，而標記的縱軸位置計算方式詳如圖\@ref(fig:geom-bar-cumsum-fig)之示意圖所示。此外在標註時須注意原始資料的排序，務必利用[`arrange()`](#資料排序)函式針對特定類別先行排序。
+
+```{r geom-bar-cumsum-fig, echo=F, eval=T, out.width="60%", fig.align="center", fig.cap="子類別疊加長條圖 標註文字方法"}
+include_graphics("./figure/bar_cumsum.png")
+```
+
+再次以`tp_school_sum2`資料為例，若欲在子類別長條圖（疊圖）上標註各行政區各學校層級的統計量數值，程式碼撰寫如下。
+
+```{r geom-bar-eg9, echo=T, eval=T, out.width="70%", fig.align="center", message=F}
+# 將tp_school_sum2資料依據學校層級排序後，計算標註的縱軸位置
+tp_school_sum2_cum=group_by(tp_school_sum2, District)%>%
+  arrange(District, desc(TYPE))%>%
+  mutate(Count_cum=cumsum(Count))
+
+# 計算邏輯請參考以上示意圖
+tp_school_sum2_cum$lab_y=tp_school_sum2_cum$Count_cum-tp_school_sum2_cum$Count/2
+
+# 繪製長條圖
+ggplot()+
+  geom_col(data=tp_school_sum2, aes(x=District, y=Count, fill=TYPE))+
+  geom_text(data=tp_school_sum2_cum, aes(x=District, y=lab_y, label=Count))
+```
+
 
 
 ### 直方圖
@@ -503,8 +589,6 @@ kable(gh_code, booktabs=T, escape=F, caption="`geom_histogram()`函式引數設�
   column_spec(1:3 ,extra_css="vertical-align:middle;")%>%
   row_spec(0, bold=T, color="white", background="#8E8E8E")
 ```
-
-
 
 <p style="color:#003D79;font-size:18px;line-height:2">**⌾ 基礎直方圖（設定分群寬度）**</p>  
 
@@ -589,6 +673,14 @@ ggplot(airquality, aes(x=Temp))+
 ```
 
 ### 圓餅圖
+圓餅圖（Pie Chart）用於表達各類別的比例，可瞭解類別變數在資料中分布的狀況。相較於長條圖而言，圓餅圖比較能夠觀察出各類別間的占比關係，而
+
+```{r geom-pie-code, echo=T, eval=F}
+geom_density(color=, linetype=, linewidth=, fill=, alpha=, group=)
+```
+
+
+
 
 ### 盒狀圖
 

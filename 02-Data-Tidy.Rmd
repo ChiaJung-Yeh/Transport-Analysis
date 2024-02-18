@@ -587,6 +587,20 @@ world_gro1[, c("continent","name_long","area_km2")]
 ```
 
 
+<p style="color:#003D79;font-size:18px;line-height:2">**⌾ 分群新增資料屬性（`mutate()`）**</p>  
+
+透過分群新增資料屬性，可依據不同群組設定運算函式，藉此新增資料屬性。以`world`資料為例，若欲計算各洲面積累積加總，程式碼撰寫如下。
+
+```{r groupby-mutate-eg, echo=T, eval=T}
+world_gro2=group_by(world, continent)%>%
+  mutate(area_km2_cum=cumsum(area_km2))%>%
+  arrange(continent)
+
+# 查看前六筆資料
+head(world_gro2[, c("continent","name_long","area_km2","area_km2_cum")])
+```
+
+
 <p style="color:#003D79;font-size:18px;line-height:2">**⌾ 分群篩選資料（`slice()`）**</p>  
 
 `slice()`函式用以回傳指定條件的索引值，故搭配`group_by()`時可以篩選各分群中的指定橫列位。函式撰寫架構如下。
@@ -599,11 +613,11 @@ group_by(資料, 分群欄位)%>%
 舉例而言，若欲回傳`world`資料中各分群內的第一筆資料，程式碼撰寫如下。
 
 ```{r groupby-slice-eg1, echo=T, eval=T}
-world_gro2=group_by(world, continent)%>%
+world_gro3=group_by(world, continent)%>%
   slice(1)
 
 # 查看資料
-world_gro2[, c("continent","name_long","area_km2","pop","lifeExp","gdpPercap")]
+world_gro3[, c("continent","name_long","area_km2","pop","lifeExp","gdpPercap")]
 ```
 
 :::strong
@@ -625,11 +639,11 @@ world_DT[, .SD[1], by=continent]
 此外，亦可擷取多個索引值的資料，舉例而言，若欲回傳`world`資料中各分群內的第一筆與最後一筆資料，程式碼撰寫如下。
 
 ```{r groupby-slice-eg2, echo=T, eval=T}
-world_gro3=group_by(world, continent)%>%
+world_gro4=group_by(world, continent)%>%
   slice(1, n())
 
 # 查看資料
-world_gro3[, c("continent","name_long")]
+world_gro4[, c("continent","name_long")]
 ```
 
 :::strong
@@ -647,12 +661,12 @@ world_DT[, .SD[c(1, .N)], by=continent]
 `group_by() %>% slice()`函式亦可與`arrange()`函式結合，以擷取排序後特定序位的資料。再以`world`資料為例，若欲擷取每個洲前三大面積的國家，可以先利用[`arrange()`](#資料排序)函式將所有資料依據面積（area_km2）排列，而後再透過`group_by() %>% slice()`函式擷取需要的索引值（即`1:3`）。程式碼撰寫如下。
 
 ```{r groupby-slice-eg3, echo=T, eval=T}
-world_gro4=arrange(world, desc(area_km2))%>%
+world_gro5=arrange(world, desc(area_km2))%>%
   group_by(continent)%>%
   slice(1:3)
 
 # 查看資料
-world_gro4[, c("continent","name_long","area_km2","pop","lifeExp","gdpPercap")]
+world_gro5[, c("continent","name_long","area_km2","pop","lifeExp","gdpPercap")]
 ```
 
 
@@ -674,12 +688,12 @@ world_DT[order(-area_km2)]%>%
 以`world`資料為例，先將資料依據洲（continent）分群，而後篩選出各洲資料中面積最大與最小者，程式碼撰寫如下。
 
 ```{r groupby-slice-eg4, echo=T, eval=T}
-world_gro5=group_by(world, continent)%>%
+world_gro6=group_by(world, continent)%>%
   slice(which.max(area_km2),
         which.min(area_km2))
 
 # 查看所有資料
-world_gro5[, c("continent","name_long","area_km2")]
+world_gro6[, c("continent","name_long","area_km2")]
 ```
 
 以上程式碼中`which.max()`函式用以尋找最大值的索引；`which.min()`則尋找最小值之索引。此時利用`group_by() %>% slice()`函式可同時回傳符合不同特定條件者。綜上所述，`group_by() %>% slice()`函式的使用上相當具彈性。
@@ -706,12 +720,12 @@ group_by(資料, 分群欄位)%>%
 以`world`資料為例，先將資料依據洲（continent）分群，而後統計各洲總人口數與國家數，程式碼撰寫如下。
 
 ```{r groupby-summarise-eg1, echo=T, eval=T}
-world_gro6=group_by(world, continent)%>%
+world_gro7=group_by(world, continent)%>%
   summarise(pop=sum(pop, na.rm=T),
             County_N=n())
 
 # 輸出資料
-world_gro6
+world_gro7
 ```
 
 請注意於本範例中由於總人口數（pop）欄位中含有部分 NA，故為避免計算結果有誤，須在`sum()`函式中設定`na.rm=T`引數。此外，由輸出結果可發現，有別於`group_by() %>% filter()`函式會回傳所有的資料欄位，`group_by() %>% summarise()`函式僅回傳指定的統計資料欄位。另外`n()`函式表示計算各分群內的總資料筆數。
@@ -735,11 +749,11 @@ world_DT[, .(pop=sum(pop, na.rm=T), County_N=.N), by=continent]
 若欲針對多個屬性資料做相同的運算，可利用`summarise_at()`函式給定多個欄位名稱。舉例而言，若欲針對`world`資料統計各洲的平均壽命與人均 GDP，程式碼撰寫如下。
 
 ```{r groupby-summarise-eg2, echo=T, eval=T, warning=F}
-world_gro7=group_by(world, continent)%>%
+world_gro8=group_by(world, continent)%>%
   summarise_at(c("lifeExp", "gdpPercap"), mean, na.rm=T)
 
 # 輸出資料
-world_gro7
+world_gro8
 ```
 
 此外，若欲選取的變數名稱非常多，不大可能逐一詳列變數，此時可利用`across()`函式表達變數選取範圍，
@@ -753,21 +767,21 @@ group_by(資料, 分群欄位)%>%
 舉例而言，若欲針對`world`資料計算 area_km2 至 lifeExp 欄位的平均值，程式碼撰寫如下。
 
 ```{r groupby-summarise-eg3, echo=T, eval=T, warning=F}
-world_gro8=group_by(world, continent)%>%
+world_gro9=group_by(world, continent)%>%
   summarise(across(area_km2:lifeExp, ~ mean(.x, na.rm=T)))
 
 # 輸出資料
-world_gro8
+world_gro9
 ```
 
 若欲針對所有給定條件做運算，則可利用`summarise_if()`函式，設定條件尋找所有符合條件的欄位，並再透過運算函式計算之。舉例而言，若欲計算所有`world`資料中，屬於數值的欄位（利用`is.numeric()`函式檢查）之平均值，程式碼撰寫如下。
 
 ```{r groupby-summarise-eg4, echo=T, eval=T, warning=F}
-world_gro9=group_by(world, continent)%>%
+world_gro10=group_by(world, continent)%>%
   summarise_if(is.numeric, mean, na.rm=T)
 
 # 輸出資料
-world_gro9
+world_gro10
 ```
 
 
@@ -784,11 +798,11 @@ group_by(資料, 分群欄位)%>%
 再次以`world`資料為例，將資料依據洲（continent）分群，而後統計各洲人均 GDP（gdpPercap）的範圍，程式碼撰寫如下。
 
 ```{r groupby-reframe-eg, echo=T, eval=T, warning=F}
-world_gro10=group_by(world, continent)%>%
+world_gro11=group_by(world, continent)%>%
   reframe(gdpPercap=range(gdpPercap, na.rm=T))
 
 # 輸出資料
-world_gro10
+world_gro11
 ```
 
 由以上程式碼可知各洲人均 GDP 的範圍。另須注意的是，由於「Antarctica」中所有國家並無人均 GDP 的資料，故回傳之上下界為 Inf 與 -Inf。
