@@ -770,7 +770,7 @@ ggplot(tp_school_sum3_lev2, aes(x="", y=Count_per))+
 
 <p style="color:#003D79;font-size:18px;line-height:2">**⌾ 加入文字或標籤**</p>  
 
-關於圖表中插入標籤，應利用`geom_label()`函式，請先參考[此](#標註標籤)。而若欲在圓餅圖各區塊上分別標註標籤，請參考圖\@ref(fig:geom-bar-cumsum-fig)關於縱軸數值計算邏輯之示意圖。另外，請務必在計算累積比例與縱軸數值前，先將資料**依據圖例層級排列**，否則標註的文字或標籤將無法座落於正確的位置上。
+關於圖表中插入標籤，應利用`geom_text()`函式，請先參考[此](#標註文字)。而若欲在圓餅圖各區塊上分別標註文字，請參考圖\@ref(fig:geom-bar-cumsum-fig)關於縱軸數值計算邏輯之示意圖。另外，請務必在計算累積比例與縱軸數值前，先將資料**依據圖例層級排列**，否則標註的文字或標籤將無法座落於正確的位置上。
 
 ```{r geom-pie-eg5, echo=T, eval=T, out.width="70%", fig.align="center"}
 # 透過factor()函式固定圖例的排列順序
@@ -791,10 +791,72 @@ ggplot()+
   coord_polar("y")
 ```
 
-關於標籤的設計調整，請參考[此](#標註標籤)。
-
 
 ### 盒狀圖
+盒狀圖（Box Plot）係用以表達各類別的連續變數分布情形，與直方圖和密度圖的功能類似，惟盒狀圖更適合應用在橫軸為類別變數時，且可清楚觀察資料的四分位數。盒狀圖的基本要素如圖\@ref(fig:geom-boxplot-fig)所示。
+
+```{r geom-boxplot-fig, echo=F, eval=T, out.width="70%", fig.align="center", fig.cap="盒狀圖基本要素"}
+include_graphics("./figure/boxplot.png")
+```
+
+在`ggplot2`套件中可利用`geom_boxplot()`函式繪製盒狀圖，該函式撰寫架構如下。
+
+```{r geom-box-code, echo=T, eval=F}
+geom_boxplot(group=, color=, linetype=, linewidth=, fill=, alpha=)
+```
+
+以上各引數的功能彙整如表\@ref(tab:geom-box-code-tab)。
+
+```{r geom-box-code-tab, echo=F, eval=T}
+gb_code=data.frame(argument=c("`group=`","`color=`","`linetype=`","`linewidth=`","`fill=`","`alpha=`"),
+                   setting=c("設定分群欄位名稱","設定盒狀外圍顏色","設定盒狀外圍線條樣式","設定盒狀外圍線條粗細","設定盒狀內部填色","設定盒狀內部填色透明度"), explain=c("若欲針對不同類別繪製盒狀圖於同一張圖表中，必須設定分群欄位","請參考<A href='#geom-setting-color'>顏色設定</A>","請參考<A href='#geom-setting-linetype'>線條樣式設定","數值","請參考<A href='#geom-setting-color'>顏色設定</A>","數值，介於 0（完全透明）與 1（完全不透明）間"))
+
+kable(gb_code, booktabs=T, escape=F, caption="`geom_boxplot()`函式引數設定", col.names=c("引數","功能設定","說明"))%>%
+  kable_styling(bootstrap_options=c("striped", "hover"), font_size=14)%>%
+  column_spec(1:3 ,extra_css="vertical-align:middle;")%>%
+  row_spec(0, bold=T, color="white", background="#8E8E8E")
+```
+
+除上述引數外，`geom_boxplot()`函式亦可調整離群值（outlier）的樣式設定，引數名稱為`outlier.XXX=`。如調整離群值形狀的引數為`outlier.shape=`，而調整其顏色的引數為`outlier.color=`，其他則以此類推。
+
+
+<p style="color:#003D79;font-size:18px;line-height:2">**⌾ 單一變量盒狀圖**</p>  
+在單一盒狀圖中，須設定縱軸或橫軸為特定連續資料，其一即可，以表示盒狀圖的呈現方式。以`airquality`資料為例，繪製溫度（Temp）的盒狀圖，程式碼撰寫如下。
+
+```{r geom-box-eg1, echo=T, eval=T, out.width="70%", fig.align="center"}
+ggplot(airquality, aes(y=Temp))+
+  geom_boxplot(fill="#ECF5FF", color="#004B97")
+```
+
+上圖中的橫軸並不具有任何意義，可透過[細節樣式設定](#細節樣式設定)去除之。
+
+
+<p style="color:#003D79;font-size:18px;line-height:2">**⌾ 雙變量盒狀圖**</p>  
+除針對單一變量盒狀圖外，有時我們會希望同時呈現不同類別的盒狀圖，以同時比較資料分布的差異。再次以`airquality`資料為例，若欲瞭解不同月份的溫度分布情形，除可透過前述所提及的直方圖、密度圖外，亦可透過盒狀圖呈現之。其中必須注意的是，在多類別變量的盒狀圖中，須同時設定橫軸與縱軸，其中一軸為類別資料（即分群的變數），另一則為連續型資料，並另在`geom_boxplot()`函式中設定`group=`引數，以確保資料會依據特定類別分群。以`airquality`資料為例，若欲將不同月份的溫度盒狀圖繪製在同一張圖表上，程式碼撰寫如下。
+
+```{r geom-box-eg2, echo=T, eval=T, out.width="70%", fig.align="center"}
+ggplot(airquality, aes(x=Month, y=Temp))+
+  geom_boxplot(aes(group=Month))
+```
+
+
+<p style="color:#003D79;font-size:18px;line-height:2">**⌾ 多變量盒狀圖**</p>  
+雙變量可以同時呈現不同類別間的資料分布，而若希望多增加一個子類別，使圖表呈現的資訊更加豐富，可以考慮透過填色（`fill=`）增加資料欄位。以`mpg`資料為例，若欲瞭解不同汽車類型的每加侖英里數分布情形，並依據不同年度分類繪製，程式碼撰寫如下。其中新增填色（`fill=`）引數為「年度（year）」。
+
+```{r geom-box-eg3, echo=T, eval=T, out.width="70%", fig.align="center"}
+ggplot(mpg, aes(x=class, y=hwy))+
+  geom_boxplot(aes(fill=as.character(year)), outlier.shape="X")
+```
+
+
+<p style="color:#003D79;font-size:18px;line-height:2">**⌾ 盒狀圖與散布圖疊合**</p>  
+有時我們會希望把原始的資料散布在盒狀圖上，以更清楚瞭解資料分布及集中的趨勢，此時可以利用`geom_point()`呈現之，然而由於通常盒狀圖其中一軸為類別變數，將導致許多資料點重疊而影響視覺判斷，因此可以藉由`geom_jitter()`之函式生成跳動點。以`airquality`資料為例，若欲將不同月份的溫度盒狀圖繪製於同一張圖表，且同時呈現原始資料點的分布，程式碼撰寫如下。
+
+```{r geom-box-eg4, echo=T, eval=T, out.width="70%", fig.align="center"}
+ggplot()+
+  geom_boxplot(data=airquality, aes(x=Month, y=Temp, group=Month), outlier.color="red", outlier.shape="X", outlier.size=3)+
+  geom_jitter(data=airquality, aes(x=Month, y=Temp), width=0.2, alpha=0.4, color="#005AB5")
+```
 
 ### 小提琴圖
 

@@ -156,3 +156,5 @@ tab:geom-histogram-code-tab
 tab:geom-density-code-tab
 fig:geom-bar-cumsum-fig
 tab:geom-pie-code-tab
+tab:geom-box-code-tab
+fig:geom-boxplot-fig

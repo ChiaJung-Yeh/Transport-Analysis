@@ -1759,7 +1759,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <p style="color:#003D79;font-size:18px;line-height:2">
 <strong>⌾ 加入文字或標籤</strong>
 </p>
-<p>關於圖表中插入標籤，應利用<code>geom_label()</code>函式，請先參考<a href="資料視覺化.html#標註標籤">此</a>。而若欲在圓餅圖各區塊上分別標註標籤，請參考圖<a href="資料視覺化.html#fig:geom-bar-cumsum-fig">3.7</a>關於縱軸數值計算邏輯之示意圖。另外，請務必在計算累積比例與縱軸數值前，先將資料<strong>依據圖例層級排列</strong>，否則標註的文字或標籤將無法座落於正確的位置上。</p>
+<p>關於圖表中插入標籤，應利用<code>geom_text()</code>函式，請先參考<a href="資料視覺化.html#標註文字">此</a>。而若欲在圓餅圖各區塊上分別標註文字，請參考圖<a href="資料視覺化.html#fig:geom-bar-cumsum-fig">3.7</a>關於縱軸數值計算邏輯之示意圖。另外，請務必在計算累積比例與縱軸數值前，先將資料<strong>依據圖例層級排列</strong>，否則標註的文字或標籤將無法座落於正確的位置上。</p>
 <div class="sourceCode" id="cb45"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb45-1"><a href="資料視覺化.html#cb45-1" tabindex="-1"></a><span class="co"># 透過factor()函式固定圖例的排列順序</span></span>
 <span id="cb45-2"><a href="資料視覺化.html#cb45-2" tabindex="-1"></a>tp_school_sum3_lev3<span class="ot">=</span>tp_school_sum3</span>
 <span id="cb45-3"><a href="資料視覺化.html#cb45-3" tabindex="-1"></a></span>
@@ -1777,10 +1777,136 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <span id="cb45-15"><a href="資料視覺化.html#cb45-15" tabindex="-1"></a>  <span class="fu">geom_label</span>(<span class="at">data=</span>tp_school_sum3_lev3, <span class="fu">aes</span>(<span class="at">x=</span><span class="st">&quot;&quot;</span>, <span class="at">y=</span>lab_y, <span class="at">label=</span><span class="fu">paste0</span>(<span class="fu">round</span>(Count_per, <span class="dv">1</span>), <span class="st">&quot;%&quot;</span>)))<span class="sc">+</span></span>
 <span id="cb45-16"><a href="資料視覺化.html#cb45-16" tabindex="-1"></a>  <span class="fu">coord_polar</span>(<span class="st">&quot;y&quot;</span>)</span></code></pre></div>
 <p><img src="series_files/figure-html/geom-pie-eg5-1.png" width="70%" style="display: block; margin: auto;" /></p>
-<p>關於標籤的設計調整，請參考<a href="資料視覺化.html#標註標籤">此</a>。</p>
 </div>
 <div id="盒狀圖" class="section level3 hasAnchor" number="3.1.7">
 <h3><span class="header-section-number">3.1.7</span> 盒狀圖<a href="資料視覺化.html#盒狀圖" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>盒狀圖（Box Plot）係用以表達各類別的連續變數分布情形，與直方圖和密度圖的功能類似，惟盒狀圖更適合應用在橫軸為類別變數時，且可清楚觀察資料的四分位數。盒狀圖的基本要素如圖<a href="資料視覺化.html#fig:geom-boxplot-fig">3.8</a>所示。</p>
+<div class="figure" style="text-align: center"><span style="display:block;" id="fig:geom-boxplot-fig"></span>
+<img src="figure/boxplot.png" alt="盒狀圖基本要素" width="70%" />
+<p class="caption">
+圖 3.8: 盒狀圖基本要素
+</p>
+</div>
+<p>在<code>ggplot2</code>套件中可利用<code>geom_boxplot()</code>函式繪製盒狀圖，該函式撰寫架構如下。</p>
+<div class="sourceCode" id="cb46"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb46-1"><a href="資料視覺化.html#cb46-1" tabindex="-1"></a><span class="fu">geom_boxplot</span>(<span class="at">group=</span>, <span class="at">color=</span>, <span class="at">linetype=</span>, <span class="at">linewidth=</span>, <span class="at">fill=</span>, <span class="at">alpha=</span>)</span></code></pre></div>
+<p>以上各引數的功能彙整如表<a href="資料視覺化.html#tab:geom-box-code-tab">3.9</a>。</p>
+<table class="table table-striped table-hover" style="font-size: 14px; margin-left: auto; margin-right: auto;">
+<caption style="font-size: initial !important;">
+<span id="tab:geom-box-code-tab">表 3.9: </span><code>geom_boxplot()</code>函式引數設定
+</caption>
+<thead>
+<tr>
+<th style="text-align:left;font-weight: bold;color: white !important;background-color: #8E8E8E !important;">
+引數
+</th>
+<th style="text-align:left;font-weight: bold;color: white !important;background-color: #8E8E8E !important;">
+功能設定
+</th>
+<th style="text-align:left;font-weight: bold;color: white !important;background-color: #8E8E8E !important;">
+說明
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left;vertical-align:middle;">
+<code>group=</code>
+</td>
+<td style="text-align:left;vertical-align:middle;">
+設定分群欄位名稱
+</td>
+<td style="text-align:left;vertical-align:middle;">
+若欲針對不同類別繪製盒狀圖於同一張圖表中，必須設定分群欄位
+</td>
+</tr>
+<tr>
+<td style="text-align:left;vertical-align:middle;">
+<code>color=</code>
+</td>
+<td style="text-align:left;vertical-align:middle;">
+設定盒狀外圍顏色
+</td>
+<td style="text-align:left;vertical-align:middle;">
+請參考<a href="資料視覺化.html#geom-setting-color">顏色設定</a>
+</td>
+</tr>
+<tr>
+<td style="text-align:left;vertical-align:middle;">
+<code>linetype=</code>
+</td>
+<td style="text-align:left;vertical-align:middle;">
+設定盒狀外圍線條樣式
+</td>
+<td style="text-align:left;vertical-align:middle;">
+請參考<a href="資料視覺化.html#geom-setting-linetype">線條樣式設定 </a>
+</td>
+</tr>
+<tr>
+<td style="text-align:left;vertical-align:middle;">
+<code>linewidth=</code>
+</td>
+<td style="text-align:left;vertical-align:middle;">
+設定盒狀外圍線條粗細
+</td>
+<td style="text-align:left;vertical-align:middle;">
+數值
+</td>
+</tr>
+<tr>
+<td style="text-align:left;vertical-align:middle;">
+<code>fill=</code>
+</td>
+<td style="text-align:left;vertical-align:middle;">
+設定盒狀內部填色
+</td>
+<td style="text-align:left;vertical-align:middle;">
+請參考<a href="資料視覺化.html#geom-setting-color">顏色設定</a>
+</td>
+</tr>
+<tr>
+<td style="text-align:left;vertical-align:middle;">
+<code>alpha=</code>
+</td>
+<td style="text-align:left;vertical-align:middle;">
+設定盒狀內部填色透明度
+</td>
+<td style="text-align:left;vertical-align:middle;">
+數值，介於 0（完全透明）與 1（完全不透明）間
+</td>
+</tr>
+</tbody>
+</table>
+<p>除上述引數外，<code>geom_boxplot()</code>函式亦可調整離群值（outlier）的樣式設定，引數名稱為<code>outlier.XXX=</code>。如調整離群值形狀的引數為<code>outlier.shape=</code>，而調整其顏色的引數為<code>outlier.color=</code>，其他則以此類推。</p>
+<p style="color:#003D79;font-size:18px;line-height:2">
+<strong>⌾ 單一變量盒狀圖</strong>
+</p>
+<p>在單一盒狀圖中，須設定縱軸或橫軸為特定連續資料，其一即可，以表示盒狀圖的呈現方式。以<code>airquality</code>資料為例，繪製溫度（Temp）的盒狀圖，程式碼撰寫如下。</p>
+<div class="sourceCode" id="cb47"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb47-1"><a href="資料視覺化.html#cb47-1" tabindex="-1"></a><span class="fu">ggplot</span>(airquality, <span class="fu">aes</span>(<span class="at">y=</span>Temp))<span class="sc">+</span></span>
+<span id="cb47-2"><a href="資料視覺化.html#cb47-2" tabindex="-1"></a>  <span class="fu">geom_boxplot</span>(<span class="at">fill=</span><span class="st">&quot;#ECF5FF&quot;</span>, <span class="at">color=</span><span class="st">&quot;#004B97&quot;</span>)</span></code></pre></div>
+<p><img src="series_files/figure-html/geom-box-eg1-1.png" width="70%" style="display: block; margin: auto;" /></p>
+<p>上圖中的橫軸並不具有任何意義，可透過<a href="資料視覺化.html#細節樣式設定">細節樣式設定</a>去除之。</p>
+<p style="color:#003D79;font-size:18px;line-height:2">
+<strong>⌾ 雙變量盒狀圖</strong>
+</p>
+<p>除針對單一變量盒狀圖外，有時我們會希望同時呈現不同類別的盒狀圖，以同時比較資料分布的差異。再次以<code>airquality</code>資料為例，若欲瞭解不同月份的溫度分布情形，除可透過前述所提及的直方圖、密度圖外，亦可透過盒狀圖呈現之。其中必須注意的是，在多類別變量的盒狀圖中，須同時設定橫軸與縱軸，其中一軸為類別資料（即分群的變數），另一則為連續型資料，並另在<code>geom_boxplot()</code>函式中設定<code>group=</code>引數，以確保資料會依據特定類別分群。以<code>airquality</code>資料為例，若欲將不同月份的溫度盒狀圖繪製在同一張圖表上，程式碼撰寫如下。</p>
+<div class="sourceCode" id="cb48"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb48-1"><a href="資料視覺化.html#cb48-1" tabindex="-1"></a><span class="fu">ggplot</span>(airquality, <span class="fu">aes</span>(<span class="at">x=</span>Month, <span class="at">y=</span>Temp))<span class="sc">+</span></span>
+<span id="cb48-2"><a href="資料視覺化.html#cb48-2" tabindex="-1"></a>  <span class="fu">geom_boxplot</span>(<span class="fu">aes</span>(<span class="at">group=</span>Month))</span></code></pre></div>
+<p><img src="series_files/figure-html/geom-box-eg2-1.png" width="70%" style="display: block; margin: auto;" /></p>
+<p style="color:#003D79;font-size:18px;line-height:2">
+<strong>⌾ 多變量盒狀圖</strong>
+</p>
+<p>雙變量可以同時呈現不同類別間的資料分布，而若希望多增加一個子類別，使圖表呈現的資訊更加豐富，可以考慮透過填色（<code>fill=</code>）增加資料欄位。以<code>mpg</code>資料為例，若欲瞭解不同汽車類型的每加侖英里數分布情形，並依據不同年度分類繪製，程式碼撰寫如下。其中新增填色（<code>fill=</code>）引數為「年度（year）」。</p>
+<div class="sourceCode" id="cb49"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb49-1"><a href="資料視覺化.html#cb49-1" tabindex="-1"></a><span class="fu">ggplot</span>(mpg, <span class="fu">aes</span>(<span class="at">x=</span>class, <span class="at">y=</span>hwy))<span class="sc">+</span></span>
+<span id="cb49-2"><a href="資料視覺化.html#cb49-2" tabindex="-1"></a>  <span class="fu">geom_boxplot</span>(<span class="fu">aes</span>(<span class="at">fill=</span><span class="fu">as.character</span>(year)), <span class="at">outlier.shape=</span><span class="st">&quot;X&quot;</span>)</span></code></pre></div>
+<p><img src="series_files/figure-html/geom-box-eg3-1.png" width="70%" style="display: block; margin: auto;" /></p>
+<p style="color:#003D79;font-size:18px;line-height:2">
+<strong>⌾ 盒狀圖與散布圖疊合</strong>
+</p>
+<p>有時我們會希望把原始的資料散布在盒狀圖上，以更清楚瞭解資料分布及集中的趨勢，此時可以利用<code>geom_point()</code>呈現之，然而由於通常盒狀圖其中一軸為類別變數，將導致許多資料點重疊而影響視覺判斷，因此可以藉由<code>geom_jitter()</code>之函式生成跳動點。以<code>airquality</code>資料為例，若欲將不同月份的溫度盒狀圖繪製於同一張圖表，且同時呈現原始資料點的分布，程式碼撰寫如下。</p>
+<div class="sourceCode" id="cb50"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb50-1"><a href="資料視覺化.html#cb50-1" tabindex="-1"></a><span class="fu">ggplot</span>()<span class="sc">+</span></span>
+<span id="cb50-2"><a href="資料視覺化.html#cb50-2" tabindex="-1"></a>  <span class="fu">geom_boxplot</span>(<span class="at">data=</span>airquality, <span class="fu">aes</span>(<span class="at">x=</span>Month, <span class="at">y=</span>Temp, <span class="at">group=</span>Month), <span class="at">outlier.color=</span><span class="st">&quot;red&quot;</span>, <span class="at">outlier.shape=</span><span class="st">&quot;X&quot;</span>, <span class="at">outlier.size=</span><span class="dv">3</span>)<span class="sc">+</span></span>
+<span id="cb50-3"><a href="資料視覺化.html#cb50-3" tabindex="-1"></a>  <span class="fu">geom_jitter</span>(<span class="at">data=</span>airquality, <span class="fu">aes</span>(<span class="at">x=</span>Month, <span class="at">y=</span>Temp), <span class="at">width=</span><span class="fl">0.2</span>, <span class="at">alpha=</span><span class="fl">0.4</span>, <span class="at">color=</span><span class="st">&quot;#005AB5&quot;</span>)</span></code></pre></div>
+<p><img src="series_files/figure-html/geom-box-eg4-1.png" width="70%" style="display: block; margin: auto;" /></p>
 </div>
 <div id="小提琴圖" class="section level3 hasAnchor" number="3.1.8">
 <h3><span class="header-section-number">3.1.8</span> 小提琴圖<a href="資料視覺化.html#小提琴圖" class="anchor-section" aria-label="Anchor link to header"></a></h3>
