@@ -1258,7 +1258,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <p style="color:#003D79;font-size:18px;line-height:2">
 <strong>⌾ 基本統計圖（自動統計）</strong>
 </p>
-<p><code>geom_bar()</code>函式在欲設情況下，<code>stat=</code>為<code>count</code>，故可直接輸入欲統計的變數（通常是類別變數），該函式會自動計算各類別的資料筆數，並依此繪製長條圖。以下以<code>mpg</code>資料為例，設定橫軸為汽車廠牌（manufacturer）的類別變數，在預設情況下，會自動統計該欄位的個數，程式碼撰寫如下。</p>
+<p><code>geom_bar()</code>函式在預設情況下，<code>stat=</code>引數為<code>count</code>，故可直接輸入欲統計的變數（通常是類別變數），該函式會自動計算各類別的資料筆數，並依此繪製長條圖。以下以<code>mpg</code>資料為例，設定橫軸為汽車廠牌（manufacturer）的類別變數，在預設情況下，會自動統計該欄位的個數，程式碼撰寫如下。</p>
 <div class="sourceCode" id="cb23"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb23-1"><a href="資料視覺化.html#cb23-1" tabindex="-1"></a><span class="fu">ggplot</span>(mpg, <span class="fu">aes</span>(<span class="at">x=</span>manufacturer))<span class="sc">+</span></span>
 <span id="cb23-2"><a href="資料視覺化.html#cb23-2" tabindex="-1"></a>  <span class="fu">geom_bar</span>()</span></code></pre></div>
 <p><img src="series_files/figure-html/geom-bar-eg1-1.png" width="70%" style="display: block; margin: auto;" /></p>
@@ -1282,6 +1282,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <p><img src="series_files/figure-html/geom-bar-eg3-1.png" width="70%" style="display: block; margin: auto;" /></p>
 <p>資料的形式也可能更加複雜，而根據不同的原始資料，可能需要先利用第二章的<a href="資料清洗與處理.html#資料清洗與處理">資料處理套件</a>將原始資料彙整為具有統計量的資訊，再依此進一步繪製長條圖。舉例而言，使用<a href="index.html#安裝套件"><code>TWspdata</code>套件</a>中的<code>taiwan_school</code>為例，若欲統計臺北市各行政區不同類型學校的數量，則必須先針對原始資料的學校名稱欄位（name）建立標籤，給定各學校不同的層級（以下範例中分為五類：國小、國中、高中、大學、其他），並擷取地址欄位（address）中的行政區資訊。最後再依據行政區與學校層級，透過<a href="資料清洗與處理.html#資料分群與統計"><code>group_by() %&gt;% summarise()</code></a>函式計算各群組內的總數量。</p>
 <p>以下程式碼先行建立以臺北市各行政區為橫軸，各行政區學校數量為縱軸的長條圖。</p>
+<H2 id="tp-school">
+</H2>
 <div class="sourceCode" id="cb26"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb26-1"><a href="資料視覺化.html#cb26-1" tabindex="-1"></a><span class="co"># 將所有學校予以分類，並擷取其所在行政區</span></span>
 <span id="cb26-2"><a href="資料視覺化.html#cb26-2" tabindex="-1"></a>tp_school<span class="ot">=</span><span class="fu">filter</span>(taiwan_school, <span class="fu">grepl</span>(<span class="st">&quot;臺北市&quot;</span>, address))<span class="sc">%&gt;%</span></span>
 <span id="cb26-3"><a href="資料視覺化.html#cb26-3" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">TYPE=</span><span class="fu">case_when</span>(</span>
@@ -1317,7 +1319,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <p style="color:#003D79;font-size:18px;line-height:2">
 <strong>⌾ 子類別疊加長條圖</strong>
 </p>
-<p>有時我們會希望在每一根長條上利用不同顏色標示出各「子類別」的資訊，此時可以利用<code>fill=</code>引數，以針對不同子類別設定不同填色。而若欲將不同的子類別疊加顯示，可使用<code>position="stack"</code>之引數（預設為此，故無需額外設定）。承繼前述範例，以行政區為橫軸；並在每一長條上分別利用不同填色表示學校層級，此時應在<code>geom_col()</code>函式中另設定顏色（<code>fill=</code>）引數，且該引數務必置於<A href="#ggplot-aes"><code>aes()</code></A>函式內，表示其會隨著資料有所改變。程式碼撰寫如下。</p>
+<p>有時我們會希望在每一根長條上利用不同顏色標示出各「子類別」的資訊，此時可以利用<code>fill=</code>引數，以針對不同子類別設定不同填色。而若欲將不同的子類別疊加顯示，可使用<code>position="stack"</code>之引數（預設為此，故無需額外設定）。承繼前述範例，以行政區為橫軸；並在每一長條上分別利用不同填色表示學校層級，此時應在<code>geom_col()</code>函式中另設定填色（<code>fill=</code>）引數，且該引數務必置於<A href="#ggplot-aes"><code>aes()</code></A>函式內，表示其會隨著資料有所改變。程式碼撰寫如下。</p>
 <div class="sourceCode" id="cb27"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb27-1"><a href="資料視覺化.html#cb27-1" tabindex="-1"></a><span class="co"># 依據行政區與學校層級，統計學校數量</span></span>
 <span id="cb27-2"><a href="資料視覺化.html#cb27-2" tabindex="-1"></a>tp_school_sum2<span class="ot">=</span><span class="fu">group_by</span>(tp_school, District, TYPE)<span class="sc">%&gt;%</span></span>
 <span id="cb27-3"><a href="資料視覺化.html#cb27-3" tabindex="-1"></a>  <span class="fu">summarise</span>(<span class="at">Count=</span><span class="fu">n</span>())</span>
@@ -1353,7 +1355,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <span id="cb30-2"><a href="資料視覺化.html#cb30-2" tabindex="-1"></a>  <span class="fu">geom_col</span>(<span class="at">data=</span>mpg_sum, <span class="fu">aes</span>(<span class="at">x=</span>manufacturer, <span class="at">y=</span>Count))<span class="sc">+</span></span>
 <span id="cb30-3"><a href="資料視覺化.html#cb30-3" tabindex="-1"></a>  <span class="fu">geom_text</span>(<span class="at">data=</span>mpg_sum, <span class="fu">aes</span>(<span class="at">x=</span>manufacturer, <span class="at">y=</span>Count<span class="sc">+</span><span class="dv">1</span>, <span class="at">label=</span>Count), <span class="at">color=</span><span class="st">&quot;blue&quot;</span>)</span></code></pre></div>
 <p><img src="series_files/figure-html/geom-bar-eg8-1.png" width="70%" style="display: block; margin: auto;" /></p>
-<p>若欲在子類別疊加長條圖中，各類別的區塊標註文字，需特別注意文字標註的縱軸位置，其必須依據不同群組累積加總統計數量，尚能正確表達位置。而分群累積加總，請參考<a href="資料清洗與處理.html#資料分群與統計">資料分群與統計</a>一節中的「<strong>分群新增資料屬性（<code>mutate()</code>）</strong>」之內容，而標記的縱軸位置計算方式詳如圖<a href="資料視覺化.html#fig:geom-bar-cumsum-fig">3.7</a>之示意圖所示。此外在標註時須注意原始資料的排序，務必利用<a href="資料清洗與處理.html#資料排序"><code>arrange()</code></a>函式針對特定類別先行排序。</p>
+<p>若欲在子類別疊加長條圖中，各類別的區塊標註文字，需特別注意文字標註的縱軸位置，其必須依據不同群組累積加總統計數量，尚能正確表達位置。而分群累積加總，請參考<a href="資料清洗與處理.html#資料分群與統計">資料分群與統計</a>一節中的「<strong>分群新增資料屬性（<code>mutate()</code>）</strong>」之內容，而標記的縱軸位置計算方式詳如圖<a href="資料視覺化.html#fig:geom-bar-cumsum-fig">3.7</a>之示意圖所示。此外在標註時須注意原始資料的排序，務必利用<a href="資料清洗與處理.html#資料排序"><code>arrange()</code></a>函式針對特定類別先行<strong>倒序排列（<code>desc()</code>）</strong>。</p>
 <div class="figure" style="text-align: center"><span style="display:block;" id="fig:geom-bar-cumsum-fig"></span>
 <img src="figure/bar_cumsum.png" alt="子類別疊加長條圖 標註文字方法" width="60%" />
 <p class="caption">
@@ -1361,18 +1363,21 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </p>
 </div>
 <p>再次以<code>tp_school_sum2</code>資料為例，若欲在子類別長條圖（疊圖）上標註各行政區各學校層級的統計量數值，程式碼撰寫如下。</p>
-<div class="sourceCode" id="cb31"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb31-1"><a href="資料視覺化.html#cb31-1" tabindex="-1"></a><span class="co"># 將tp_school_sum2資料依據學校層級排序後，計算標註的縱軸位置</span></span>
-<span id="cb31-2"><a href="資料視覺化.html#cb31-2" tabindex="-1"></a>tp_school_sum2_cum<span class="ot">=</span><span class="fu">group_by</span>(tp_school_sum2, District)<span class="sc">%&gt;%</span></span>
-<span id="cb31-3"><a href="資料視覺化.html#cb31-3" tabindex="-1"></a>  <span class="fu">arrange</span>(District, <span class="fu">desc</span>(TYPE))<span class="sc">%&gt;%</span></span>
-<span id="cb31-4"><a href="資料視覺化.html#cb31-4" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">Count_cum=</span><span class="fu">cumsum</span>(Count))</span>
-<span id="cb31-5"><a href="資料視覺化.html#cb31-5" tabindex="-1"></a></span>
-<span id="cb31-6"><a href="資料視覺化.html#cb31-6" tabindex="-1"></a><span class="co"># 計算邏輯請參考以上示意圖</span></span>
-<span id="cb31-7"><a href="資料視覺化.html#cb31-7" tabindex="-1"></a>tp_school_sum2_cum<span class="sc">$</span>lab_y<span class="ot">=</span>tp_school_sum2_cum<span class="sc">$</span>Count_cum<span class="sc">-</span>tp_school_sum2_cum<span class="sc">$</span>Count<span class="sc">/</span><span class="dv">2</span></span>
+<div class="sourceCode" id="cb31"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb31-1"><a href="資料視覺化.html#cb31-1" tabindex="-1"></a><span class="co"># 務必設定層級</span></span>
+<span id="cb31-2"><a href="資料視覺化.html#cb31-2" tabindex="-1"></a>tp_school_sum2<span class="sc">$</span>TYPE<span class="ot">=</span><span class="fu">factor</span>(tp_school_sum2<span class="sc">$</span>TYPE, <span class="at">levels=</span><span class="fu">c</span>(<span class="st">&quot;國小&quot;</span>,<span class="st">&quot;國中&quot;</span>,<span class="st">&quot;高中&quot;</span>,<span class="st">&quot;大學&quot;</span>,<span class="st">&quot;其他&quot;</span>))</span>
+<span id="cb31-3"><a href="資料視覺化.html#cb31-3" tabindex="-1"></a></span>
+<span id="cb31-4"><a href="資料視覺化.html#cb31-4" tabindex="-1"></a><span class="co"># 將tp_school_sum2資料依據學校層級排序(倒序排列)後，計算標註的縱軸位置</span></span>
+<span id="cb31-5"><a href="資料視覺化.html#cb31-5" tabindex="-1"></a>tp_school_sum2_cum<span class="ot">=</span><span class="fu">group_by</span>(tp_school_sum2, District)<span class="sc">%&gt;%</span></span>
+<span id="cb31-6"><a href="資料視覺化.html#cb31-6" tabindex="-1"></a>  <span class="fu">arrange</span>(District, <span class="fu">desc</span>(TYPE))<span class="sc">%&gt;%</span></span>
+<span id="cb31-7"><a href="資料視覺化.html#cb31-7" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">Count_cum=</span><span class="fu">cumsum</span>(Count))</span>
 <span id="cb31-8"><a href="資料視覺化.html#cb31-8" tabindex="-1"></a></span>
-<span id="cb31-9"><a href="資料視覺化.html#cb31-9" tabindex="-1"></a><span class="co"># 繪製長條圖</span></span>
-<span id="cb31-10"><a href="資料視覺化.html#cb31-10" tabindex="-1"></a><span class="fu">ggplot</span>()<span class="sc">+</span></span>
-<span id="cb31-11"><a href="資料視覺化.html#cb31-11" tabindex="-1"></a>  <span class="fu">geom_col</span>(<span class="at">data=</span>tp_school_sum2, <span class="fu">aes</span>(<span class="at">x=</span>District, <span class="at">y=</span>Count, <span class="at">fill=</span>TYPE))<span class="sc">+</span></span>
-<span id="cb31-12"><a href="資料視覺化.html#cb31-12" tabindex="-1"></a>  <span class="fu">geom_text</span>(<span class="at">data=</span>tp_school_sum2_cum, <span class="fu">aes</span>(<span class="at">x=</span>District, <span class="at">y=</span>lab_y, <span class="at">label=</span>Count))</span></code></pre></div>
+<span id="cb31-9"><a href="資料視覺化.html#cb31-9" tabindex="-1"></a><span class="co"># 計算邏輯請參考以上示意圖</span></span>
+<span id="cb31-10"><a href="資料視覺化.html#cb31-10" tabindex="-1"></a>tp_school_sum2_cum<span class="sc">$</span>lab_y<span class="ot">=</span>tp_school_sum2_cum<span class="sc">$</span>Count_cum<span class="sc">-</span>tp_school_sum2_cum<span class="sc">$</span>Count<span class="sc">/</span><span class="dv">2</span></span>
+<span id="cb31-11"><a href="資料視覺化.html#cb31-11" tabindex="-1"></a></span>
+<span id="cb31-12"><a href="資料視覺化.html#cb31-12" tabindex="-1"></a><span class="co"># 繪製長條圖</span></span>
+<span id="cb31-13"><a href="資料視覺化.html#cb31-13" tabindex="-1"></a><span class="fu">ggplot</span>()<span class="sc">+</span></span>
+<span id="cb31-14"><a href="資料視覺化.html#cb31-14" tabindex="-1"></a>  <span class="fu">geom_col</span>(<span class="at">data=</span>tp_school_sum2, <span class="fu">aes</span>(<span class="at">x=</span>District, <span class="at">y=</span>Count, <span class="at">fill=</span>TYPE))<span class="sc">+</span></span>
+<span id="cb31-15"><a href="資料視覺化.html#cb31-15" tabindex="-1"></a>  <span class="fu">geom_text</span>(<span class="at">data=</span>tp_school_sum2_cum, <span class="fu">aes</span>(<span class="at">x=</span>District, <span class="at">y=</span>lab_y, <span class="at">label=</span>Count))</span></code></pre></div>
 <p><img src="series_files/figure-html/geom-bar-eg9-1.png" width="70%" style="display: block; margin: auto;" /></p>
 </div>
 <div id="直方圖" class="section level3 hasAnchor" number="3.1.4">
@@ -1502,6 +1507,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <p style="color:#003D79;font-size:18px;line-height:2">
 <strong>⌾ 基礎直方圖（設定分群寬度）</strong>
 </p>
+<p>以<code>airquality</code>資料為例，依據溫度繪製直方圖，程式碼撰寫如下。</p>
 <div class="sourceCode" id="cb33"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb33-1"><a href="資料視覺化.html#cb33-1" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data=</span>airquality, <span class="fu">aes</span>(<span class="at">x=</span>Temp))<span class="sc">+</span></span>
 <span id="cb33-2"><a href="資料視覺化.html#cb33-2" tabindex="-1"></a>  <span class="fu">geom_histogram</span>(<span class="at">binwidth=</span><span class="dv">5</span>)</span></code></pre></div>
 <p><img src="series_files/figure-html/geom-histogram-eg1-1.png" width="70%" style="display: block; margin: auto;" /></p>
@@ -1638,8 +1644,140 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </div>
 <div id="圓餅圖" class="section level3 hasAnchor" number="3.1.6">
 <h3><span class="header-section-number">3.1.6</span> 圓餅圖<a href="資料視覺化.html#圓餅圖" class="anchor-section" aria-label="Anchor link to header"></a></h3>
-<p>圓餅圖（Pie Chart）用於表達各類別的比例，可瞭解類別變數在資料中分布的狀況。相較於長條圖而言，圓餅圖比較能夠觀察出各類別間的占比關係，而</p>
-<div class="sourceCode" id="cb40"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb40-1"><a href="資料視覺化.html#cb40-1" tabindex="-1"></a><span class="fu">geom_density</span>(<span class="at">color=</span>, <span class="at">linetype=</span>, <span class="at">linewidth=</span>, <span class="at">fill=</span>, <span class="at">alpha=</span>, <span class="at">group=</span>)</span></code></pre></div>
+<p>圓餅圖（Pie Chart）用於表達各類別的比例，可瞭解類別變數在資料中分布的狀況。相較於長條圖而言，圓餅圖較能夠觀察出各類別間的占比關係。在<code>ggplot2</code>套件中並無特定繪製圓餅圖的函式，而是藉由<code>geom_bar()</code>或<code>geom_col()</code>函式，並將座標軸轉換為圓軸的方式，函式撰寫架構如下。</p>
+<div class="sourceCode" id="cb40"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb40-1"><a href="資料視覺化.html#cb40-1" tabindex="-1"></a><span class="fu">geom_bar</span>(<span class="at">stat=</span>, <span class="at">color=</span>, <span class="at">linetype=</span>, <span class="at">linewidth=</span>, <span class="at">fill=</span>, <span class="at">alpha=</span>)<span class="sc">+</span></span>
+<span id="cb40-2"><a href="資料視覺化.html#cb40-2" tabindex="-1"></a>  <span class="fu">coord_polar</span>(<span class="at">theta=</span><span class="st">&quot;y&quot;</span>, <span class="at">start=</span>, <span class="at">direction=</span>)</span></code></pre></div>
+<p>關於<code>geom_bar()</code>函式的設定請參考表<a href="資料視覺化.html#tab:geom-bar-code-tab">3.5</a>，而<code>coord_polar()</code>函式則是將長條圖轉變為圓軸，該函式所需設定之引數彙整如表<a href="資料視覺化.html#tab:geom-pie-code-tab">3.8</a>所示。</p>
+<table class="table table-striped table-hover" style="font-size: 14px; margin-left: auto; margin-right: auto;">
+<caption style="font-size: initial !important;">
+<span id="tab:geom-pie-code-tab">表 3.8: </span><code>coord_polar()</code>函式引數設定
+</caption>
+<thead>
+<tr>
+<th style="text-align:left;font-weight: bold;color: white !important;background-color: #8E8E8E !important;">
+引數
+</th>
+<th style="text-align:left;font-weight: bold;color: white !important;background-color: #8E8E8E !important;">
+功能設定
+</th>
+<th style="text-align:left;font-weight: bold;color: white !important;background-color: #8E8E8E !important;">
+說明
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left;vertical-align:middle;">
+<code>theta=</code>
+</td>
+<td style="text-align:left;vertical-align:middle;">
+設定圓餅圖的角度依據
+</td>
+<td style="text-align:left;vertical-align:middle;">
+在圓餅圖中一致設定為<code>"y"</code>
+</td>
+</tr>
+<tr>
+<td style="text-align:left;vertical-align:middle;">
+<code>start=</code>
+</td>
+<td style="text-align:left;vertical-align:middle;">
+座標軸旋轉角度
+</td>
+<td style="text-align:left;vertical-align:middle;">
+弧度（radius），上方為 0 ，90 度為 <span class="math inline">\(pi/2\)</span>
+</td>
+</tr>
+<tr>
+<td style="text-align:left;vertical-align:middle;">
+<code>direction=</code>
+</td>
+<td style="text-align:left;vertical-align:middle;">
+座標軸旋轉方向與圓餅圖各區塊排列方向
+</td>
+<td style="text-align:left;vertical-align:middle;">
+<code>1</code>:順時針<br><code>-1</code>:逆時針
+</td>
+</tr>
+</tbody>
+</table>
+<p style="color:#003D79;font-size:18px;line-height:2">
+<strong>⌾ 基礎圓餅圖</strong>
+</p>
+<p>繪製圓餅圖前，務必先計算各分群所佔的比例，累積的比例值將用於縱軸。以<A href="#tp-school">臺北市學校資料（<code>tp_school</code>）</A>為例，依據學校層級（TYPE）透過<code>group_by() %&gt;% summarise()</code>函式統計各學校的數量，並繪製圓餅圖，程式碼撰寫如下。</p>
+<div class="sourceCode" id="cb41"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb41-1"><a href="資料視覺化.html#cb41-1" tabindex="-1"></a><span class="co"># 依學校層級統計學校數目</span></span>
+<span id="cb41-2"><a href="資料視覺化.html#cb41-2" tabindex="-1"></a>tp_school_sum3<span class="ot">=</span><span class="fu">group_by</span>(tp_school, TYPE)<span class="sc">%&gt;%</span></span>
+<span id="cb41-3"><a href="資料視覺化.html#cb41-3" tabindex="-1"></a>  <span class="fu">summarise</span>(<span class="at">Count=</span><span class="fu">n</span>())</span>
+<span id="cb41-4"><a href="資料視覺化.html#cb41-4" tabindex="-1"></a></span>
+<span id="cb41-5"><a href="資料視覺化.html#cb41-5" tabindex="-1"></a><span class="co"># 計算各分群的比例、累積比例與縱軸數值</span></span>
+<span id="cb41-6"><a href="資料視覺化.html#cb41-6" tabindex="-1"></a>tp_school_sum3<span class="ot">=</span><span class="fu">mutate</span>(tp_school_sum3,</span>
+<span id="cb41-7"><a href="資料視覺化.html#cb41-7" tabindex="-1"></a>                      <span class="at">Count_per=</span>Count<span class="sc">/</span><span class="fu">sum</span>(Count)<span class="sc">*</span><span class="dv">100</span>)   <span class="co"># 計算各分群占整體的比例</span></span>
+<span id="cb41-8"><a href="資料視覺化.html#cb41-8" tabindex="-1"></a></span>
+<span id="cb41-9"><a href="資料視覺化.html#cb41-9" tabindex="-1"></a><span class="co"># 繪製圓餅圖</span></span>
+<span id="cb41-10"><a href="資料視覺化.html#cb41-10" tabindex="-1"></a><span class="fu">ggplot</span>(tp_school_sum3, <span class="fu">aes</span>(<span class="at">x=</span><span class="st">&quot;&quot;</span>, <span class="at">y=</span>Count_per))<span class="sc">+</span></span>
+<span id="cb41-11"><a href="資料視覺化.html#cb41-11" tabindex="-1"></a>  <span class="fu">geom_col</span>(<span class="fu">aes</span>(<span class="at">fill=</span>TYPE))<span class="sc">+</span></span>
+<span id="cb41-12"><a href="資料視覺化.html#cb41-12" tabindex="-1"></a>  <span class="fu">coord_polar</span>(<span class="st">&quot;y&quot;</span>, <span class="at">direction=</span><span class="dv">1</span>)</span></code></pre></div>
+<p><img src="series_files/figure-html/geom-pie-eg1-1.png" width="70%" style="display: block; margin: auto;" /></p>
+<p>以上程式碼中，由於希望圖表能夠依據不同學校層級填色（<code>fill=</code>），故必須在<code>geom_col()</code>函式中將該引數放置於<A href="#ggplot-aes"><code>aes()</code></A>函式內。另外須注意的是，以上出圖結果是順時針排列，由圖例中的最底部（國中）順時針排列至最上方（大學）。</p>
+<p style="color:#003D79;font-size:18px;line-height:2">
+<strong>⌾ 基礎圓餅圖–調整座標軸</strong>
+</p>
+<p>若欲調整座標軸的旋轉角度與方向，需另外在<code>coord_polar()</code>函式中分別設定<code>start=</code>與<code>direction=</code>兩引數。承繼以上<code>tp_school_sum3</code>資料之案例，上圖中在預設情況下會以 0 度（<code>start=0</code>）為起始位置順時針（<code>direction=1</code>）排列各圖例，然若欲將整個座標軸「逆時針（<code>direction=-1</code>）」旋轉「90 度角（<code>start=pi/2</code>）」，並將各區塊逆時針排列，程式碼撰寫如下。</p>
+<div class="sourceCode" id="cb42"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb42-1"><a href="資料視覺化.html#cb42-1" tabindex="-1"></a><span class="co"># 繪製圓餅圖</span></span>
+<span id="cb42-2"><a href="資料視覺化.html#cb42-2" tabindex="-1"></a><span class="fu">ggplot</span>(tp_school_sum3, <span class="fu">aes</span>(<span class="at">x=</span><span class="st">&quot;&quot;</span>, <span class="at">y=</span>Count_per))<span class="sc">+</span></span>
+<span id="cb42-3"><a href="資料視覺化.html#cb42-3" tabindex="-1"></a>  <span class="fu">geom_col</span>(<span class="fu">aes</span>(<span class="at">fill=</span>TYPE))<span class="sc">+</span></span>
+<span id="cb42-4"><a href="資料視覺化.html#cb42-4" tabindex="-1"></a>  <span class="fu">coord_polar</span>(<span class="st">&quot;y&quot;</span>, <span class="at">start=</span>pi<span class="sc">/</span><span class="dv">2</span>, <span class="at">direction=</span><span class="sc">-</span><span class="dv">1</span>)</span></code></pre></div>
+<p><img src="series_files/figure-html/geom-pie-eg2-1.png" width="70%" style="display: block; margin: auto;" /></p>
+<p>請特別注意，以上出圖結果是逆時針排列，由圖例中的最底部（國中）逆時針排列至最上方（大學）。</p>
+<p style="color:#003D79;font-size:18px;line-height:2">
+<strong>⌾ 基礎圓餅圖–修正圖例順序</strong>
+</p>
+<p>以上圓餅圖的繪製並非依據學校層級排列，若希望圓餅圖各區塊及圖例係依據學校層級排列，應先利用<a href="r-語言基礎語法.html#因子factor"><code>factor()</code></a>函式控制之。以<code>tp_school_sum3</code>統計資料為例，程式碼撰寫如下。</p>
+<div class="sourceCode" id="cb43"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb43-1"><a href="資料視覺化.html#cb43-1" tabindex="-1"></a>tp_school_sum3_lev1<span class="ot">=</span>tp_school_sum3</span>
+<span id="cb43-2"><a href="資料視覺化.html#cb43-2" tabindex="-1"></a></span>
+<span id="cb43-3"><a href="資料視覺化.html#cb43-3" tabindex="-1"></a><span class="co"># 建立學校層級因子</span></span>
+<span id="cb43-4"><a href="資料視覺化.html#cb43-4" tabindex="-1"></a>tp_school_sum3_lev1<span class="sc">$</span>TYPE<span class="ot">=</span><span class="fu">factor</span>(tp_school_sum3_lev1<span class="sc">$</span>TYPE, <span class="at">levels=</span><span class="fu">c</span>(<span class="st">&quot;國小&quot;</span>,<span class="st">&quot;國中&quot;</span>,<span class="st">&quot;高中&quot;</span>,<span class="st">&quot;大學&quot;</span>,<span class="st">&quot;其他&quot;</span>))</span>
+<span id="cb43-5"><a href="資料視覺化.html#cb43-5" tabindex="-1"></a></span>
+<span id="cb43-6"><a href="資料視覺化.html#cb43-6" tabindex="-1"></a><span class="co"># 繪製圓餅圖</span></span>
+<span id="cb43-7"><a href="資料視覺化.html#cb43-7" tabindex="-1"></a><span class="fu">ggplot</span>(tp_school_sum3_lev1, <span class="fu">aes</span>(<span class="at">x=</span><span class="st">&quot;&quot;</span>, <span class="at">y=</span>Count_per))<span class="sc">+</span></span>
+<span id="cb43-8"><a href="資料視覺化.html#cb43-8" tabindex="-1"></a>  <span class="fu">geom_col</span>(<span class="fu">aes</span>(<span class="at">fill=</span>TYPE))<span class="sc">+</span></span>
+<span id="cb43-9"><a href="資料視覺化.html#cb43-9" tabindex="-1"></a>  <span class="fu">coord_polar</span>(<span class="st">&quot;y&quot;</span>, <span class="at">direction=</span><span class="sc">-</span><span class="dv">1</span>)</span></code></pre></div>
+<p><img src="series_files/figure-html/geom-pie-eg3-1.png" width="70%" style="display: block; margin: auto;" /></p>
+<p>另特別注意，以上出圖結果是逆時針排列（<code>direction=-1</code>），由圖例中的最底部（其他）逆時針排列至最上方（國小）。</p>
+<p>而有時候我們希望圖表的順序須依據比例的大小排列，此時必須再計算完各類別的比例後，再透過<a href="r-語言基礎語法.html#因子factor"><code>factor()</code></a>函式控制類別的順序，再次以<code>tp_school_sum3</code>統計資料為例，程式碼撰寫如下。</p>
+<div class="sourceCode" id="cb44"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb44-1"><a href="資料視覺化.html#cb44-1" tabindex="-1"></a><span class="co"># 先依據比例大小排序</span></span>
+<span id="cb44-2"><a href="資料視覺化.html#cb44-2" tabindex="-1"></a>tp_school_sum3_lev2<span class="ot">=</span><span class="fu">arrange</span>(tp_school_sum3, <span class="fu">desc</span>(Count_per))</span>
+<span id="cb44-3"><a href="資料視覺化.html#cb44-3" tabindex="-1"></a></span>
+<span id="cb44-4"><a href="資料視覺化.html#cb44-4" tabindex="-1"></a><span class="co"># 建立學校層級因子</span></span>
+<span id="cb44-5"><a href="資料視覺化.html#cb44-5" tabindex="-1"></a>tp_school_sum3_lev2<span class="sc">$</span>TYPE<span class="ot">=</span><span class="fu">factor</span>(tp_school_sum3_lev2<span class="sc">$</span>TYPE, <span class="at">levels=</span>tp_school_sum3_lev2<span class="sc">$</span>TYPE)</span>
+<span id="cb44-6"><a href="資料視覺化.html#cb44-6" tabindex="-1"></a></span>
+<span id="cb44-7"><a href="資料視覺化.html#cb44-7" tabindex="-1"></a><span class="co"># 繪製圓餅圖</span></span>
+<span id="cb44-8"><a href="資料視覺化.html#cb44-8" tabindex="-1"></a><span class="fu">ggplot</span>(tp_school_sum3_lev2, <span class="fu">aes</span>(<span class="at">x=</span><span class="st">&quot;&quot;</span>, <span class="at">y=</span>Count_per))<span class="sc">+</span></span>
+<span id="cb44-9"><a href="資料視覺化.html#cb44-9" tabindex="-1"></a>  <span class="fu">geom_col</span>(<span class="fu">aes</span>(<span class="at">fill=</span>TYPE))<span class="sc">+</span></span>
+<span id="cb44-10"><a href="資料視覺化.html#cb44-10" tabindex="-1"></a>  <span class="fu">coord_polar</span>(<span class="st">&quot;y&quot;</span>)</span></code></pre></div>
+<p><img src="series_files/figure-html/geom-pie-eg4-1.png" width="70%" style="display: block; margin: auto;" /></p>
+<p style="color:#003D79;font-size:18px;line-height:2">
+<strong>⌾ 加入文字或標籤</strong>
+</p>
+<p>關於圖表中插入標籤，應利用<code>geom_label()</code>函式，請先參考<a href="資料視覺化.html#標註標籤">此</a>。而若欲在圓餅圖各區塊上分別標註標籤，請參考圖<a href="資料視覺化.html#fig:geom-bar-cumsum-fig">3.7</a>關於縱軸數值計算邏輯之示意圖。另外，請務必在計算累積比例與縱軸數值前，先將資料<strong>依據圖例層級排列</strong>，否則標註的文字或標籤將無法座落於正確的位置上。</p>
+<div class="sourceCode" id="cb45"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb45-1"><a href="資料視覺化.html#cb45-1" tabindex="-1"></a><span class="co"># 透過factor()函式固定圖例的排列順序</span></span>
+<span id="cb45-2"><a href="資料視覺化.html#cb45-2" tabindex="-1"></a>tp_school_sum3_lev3<span class="ot">=</span>tp_school_sum3</span>
+<span id="cb45-3"><a href="資料視覺化.html#cb45-3" tabindex="-1"></a></span>
+<span id="cb45-4"><a href="資料視覺化.html#cb45-4" tabindex="-1"></a><span class="co"># 務必給定類別層級</span></span>
+<span id="cb45-5"><a href="資料視覺化.html#cb45-5" tabindex="-1"></a>tp_school_sum3_lev3<span class="sc">$</span>TYPE<span class="ot">=</span><span class="fu">factor</span>(tp_school_sum3_lev3<span class="sc">$</span>TYPE, <span class="at">levels=</span><span class="fu">c</span>(<span class="st">&quot;國小&quot;</span>,<span class="st">&quot;國中&quot;</span>,<span class="st">&quot;高中&quot;</span>,<span class="st">&quot;大學&quot;</span>,<span class="st">&quot;其他&quot;</span>))</span>
+<span id="cb45-6"><a href="資料視覺化.html#cb45-6" tabindex="-1"></a></span>
+<span id="cb45-7"><a href="資料視覺化.html#cb45-7" tabindex="-1"></a><span class="co"># 先將層級倒序排列，並計算各分群的比例、累積比例與縱軸數值</span></span>
+<span id="cb45-8"><a href="資料視覺化.html#cb45-8" tabindex="-1"></a>tp_school_sum3_lev3<span class="ot">=</span><span class="fu">arrange</span>(tp_school_sum3_lev3, <span class="fu">desc</span>(TYPE))<span class="sc">%&gt;%</span></span>
+<span id="cb45-9"><a href="資料視覺化.html#cb45-9" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">Count_per_cum=</span><span class="fu">cumsum</span>(Count_per),   <span class="co"># 計算累積比例</span></span>
+<span id="cb45-10"><a href="資料視覺化.html#cb45-10" tabindex="-1"></a>         <span class="at">lab_y=</span>Count_per_cum<span class="sc">-</span>Count_per<span class="sc">/</span><span class="dv">2</span>)   <span class="co"># 計算縱軸數值)</span></span>
+<span id="cb45-11"><a href="資料視覺化.html#cb45-11" tabindex="-1"></a></span>
+<span id="cb45-12"><a href="資料視覺化.html#cb45-12" tabindex="-1"></a><span class="co"># 繪製圓餅圖</span></span>
+<span id="cb45-13"><a href="資料視覺化.html#cb45-13" tabindex="-1"></a><span class="fu">ggplot</span>()<span class="sc">+</span></span>
+<span id="cb45-14"><a href="資料視覺化.html#cb45-14" tabindex="-1"></a>  <span class="fu">geom_col</span>(<span class="at">data=</span>tp_school_sum3_lev3, <span class="fu">aes</span>(<span class="at">x=</span><span class="st">&quot;&quot;</span>, <span class="at">y=</span>Count_per, <span class="at">fill=</span>TYPE))<span class="sc">+</span></span>
+<span id="cb45-15"><a href="資料視覺化.html#cb45-15" tabindex="-1"></a>  <span class="fu">geom_label</span>(<span class="at">data=</span>tp_school_sum3_lev3, <span class="fu">aes</span>(<span class="at">x=</span><span class="st">&quot;&quot;</span>, <span class="at">y=</span>lab_y, <span class="at">label=</span><span class="fu">paste0</span>(<span class="fu">round</span>(Count_per, <span class="dv">1</span>), <span class="st">&quot;%&quot;</span>)))<span class="sc">+</span></span>
+<span id="cb45-16"><a href="資料視覺化.html#cb45-16" tabindex="-1"></a>  <span class="fu">coord_polar</span>(<span class="st">&quot;y&quot;</span>)</span></code></pre></div>
+<p><img src="series_files/figure-html/geom-pie-eg5-1.png" width="70%" style="display: block; margin: auto;" /></p>
+<p>關於標籤的設計調整，請參考<a href="資料視覺化.html#標註標籤">此</a>。</p>
 </div>
 <div id="盒狀圖" class="section level3 hasAnchor" number="3.1.7">
 <h3><span class="header-section-number">3.1.7</span> 盒狀圖<a href="資料視覺化.html#盒狀圖" class="anchor-section" aria-label="Anchor link to header"></a></h3>

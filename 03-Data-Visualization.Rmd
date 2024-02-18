@@ -430,7 +430,7 @@ kable(gb_code, booktabs=T, escape=F, caption="`geom_bar()`與`geom_col()`函式�
 ```
 
 <p style="color:#003D79;font-size:18px;line-height:2">**⌾ 基本統計圖（自動統計）**</p>  
-`geom_bar()`函式在欲設情況下，`stat=`為`count`，故可直接輸入欲統計的變數（通常是類別變數），該函式會自動計算各類別的資料筆數，並依此繪製長條圖。以下以`mpg`資料為例，設定橫軸為汽車廠牌（manufacturer）的類別變數，在預設情況下，會自動統計該欄位的個數，程式碼撰寫如下。
+`geom_bar()`函式在預設情況下，`stat=`引數為`count`，故可直接輸入欲統計的變數（通常是類別變數），該函式會自動計算各類別的資料筆數，並依此繪製長條圖。以下以`mpg`資料為例，設定橫軸為汽車廠牌（manufacturer）的類別變數，在預設情況下，會自動統計該欄位的個數，程式碼撰寫如下。
 
 ```{r geom-bar-eg1, echo=T, eval=T, out.width="70%", fig.align="center"}
 ggplot(mpg, aes(x=manufacturer))+
@@ -464,6 +464,8 @@ ggplot(data=mpg_sum, aes(x=manufacturer, y=Count))+
 資料的形式也可能更加複雜，而根據不同的原始資料，可能需要先利用第二章的[資料處理套件](#資料清洗與處理)將原始資料彙整為具有統計量的資訊，再依此進一步繪製長條圖。舉例而言，使用[`TWspdata`套件](#安裝套件)中的`taiwan_school`為例，若欲統計臺北市各行政區不同類型學校的數量，則必須先針對原始資料的學校名稱欄位（name）建立標籤，給定各學校不同的層級（以下範例中分為五類：國小、國中、高中、大學、其他），並擷取地址欄位（address）中的行政區資訊。最後再依據行政區與學校層級，透過[`group_by() %>% summarise()`](#資料分群與統計)函式計算各群組內的總數量。
 
 以下程式碼先行建立以臺北市各行政區為橫軸，各行政區學校數量為縱軸的長條圖。
+
+<H2 id="tp-school"></H2>  
 
 ```{r geom-bar-eg4, echo=T, eval=T, out.width="70%", fig.align="center", message=F}
 # 將所有學校予以分類，並擷取其所在行政區
@@ -499,7 +501,7 @@ ggplot(data=tp_school_sum1, aes(x=District, y=Count))+
 
 <p style="color:#003D79;font-size:18px;line-height:2">**⌾ 子類別疊加長條圖**</p>  
 
-有時我們會希望在每一根長條上利用不同顏色標示出各「子類別」的資訊，此時可以利用`fill=`引數，以針對不同子類別設定不同填色。而若欲將不同的子類別疊加顯示，可使用`position="stack"`之引數（預設為此，故無需額外設定）。承繼前述範例，以行政區為橫軸；並在每一長條上分別利用不同填色表示學校層級，此時應在`geom_col()`函式中另設定顏色（`fill=`）引數，且該引數務必置於<A href="#ggplot-aes">`aes()`</A>函式內，表示其會隨著資料有所改變。程式碼撰寫如下。
+有時我們會希望在每一根長條上利用不同顏色標示出各「子類別」的資訊，此時可以利用`fill=`引數，以針對不同子類別設定不同填色。而若欲將不同的子類別疊加顯示，可使用`position="stack"`之引數（預設為此，故無需額外設定）。承繼前述範例，以行政區為橫軸；並在每一長條上分別利用不同填色表示學校層級，此時應在`geom_col()`函式中另設定填色（`fill=`）引數，且該引數務必置於<A href="#ggplot-aes">`aes()`</A>函式內，表示其會隨著資料有所改變。程式碼撰寫如下。
 
 ```{r geom-bar-eg5, echo=T, eval=T, out.width="70%", fig.align="center", message=F}
 # 依據行政區與學校層級，統計學校數量
@@ -546,7 +548,7 @@ ggplot()+
   geom_text(data=mpg_sum, aes(x=manufacturer, y=Count+1, label=Count), color="blue")
 ```
 
-若欲在子類別疊加長條圖中，各類別的區塊標註文字，需特別注意文字標註的縱軸位置，其必須依據不同群組累積加總統計數量，尚能正確表達位置。而分群累積加總，請參考[資料分群與統計](#資料分群與統計)一節中的「**分群新增資料屬性（`mutate()`）**」之內容，而標記的縱軸位置計算方式詳如圖\@ref(fig:geom-bar-cumsum-fig)之示意圖所示。此外在標註時須注意原始資料的排序，務必利用[`arrange()`](#資料排序)函式針對特定類別先行排序。
+若欲在子類別疊加長條圖中，各類別的區塊標註文字，需特別注意文字標註的縱軸位置，其必須依據不同群組累積加總統計數量，尚能正確表達位置。而分群累積加總，請參考[資料分群與統計](#資料分群與統計)一節中的「**分群新增資料屬性（`mutate()`）**」之內容，而標記的縱軸位置計算方式詳如圖\@ref(fig:geom-bar-cumsum-fig)之示意圖所示。此外在標註時須注意原始資料的排序，務必利用[`arrange()`](#資料排序)函式針對特定類別先行**倒序排列（`desc()`）**。
 
 ```{r geom-bar-cumsum-fig, echo=F, eval=T, out.width="60%", fig.align="center", fig.cap="子類別疊加長條圖 標註文字方法"}
 include_graphics("./figure/bar_cumsum.png")
@@ -555,7 +557,10 @@ include_graphics("./figure/bar_cumsum.png")
 再次以`tp_school_sum2`資料為例，若欲在子類別長條圖（疊圖）上標註各行政區各學校層級的統計量數值，程式碼撰寫如下。
 
 ```{r geom-bar-eg9, echo=T, eval=T, out.width="70%", fig.align="center", message=F}
-# 將tp_school_sum2資料依據學校層級排序後，計算標註的縱軸位置
+# 務必設定層級
+tp_school_sum2$TYPE=factor(tp_school_sum2$TYPE, levels=c("國小","國中","高中","大學","其他"))
+
+# 將tp_school_sum2資料依據學校層級排序(倒序排列)後，計算標註的縱軸位置
 tp_school_sum2_cum=group_by(tp_school_sum2, District)%>%
   arrange(District, desc(TYPE))%>%
   mutate(Count_cum=cumsum(Count))
@@ -591,6 +596,7 @@ kable(gh_code, booktabs=T, escape=F, caption="`geom_histogram()`函式引數設�
 ```
 
 <p style="color:#003D79;font-size:18px;line-height:2">**⌾ 基礎直方圖（設定分群寬度）**</p>  
+以`airquality`資料為例，依據溫度繪製直方圖，程式碼撰寫如下。
 
 ```{r geom-histogram-eg1, echo=T, eval=T, out.width="70%", fig.align="center"}
 ggplot(data=airquality, aes(x=Temp))+
@@ -673,13 +679,119 @@ ggplot(airquality, aes(x=Temp))+
 ```
 
 ### 圓餅圖
-圓餅圖（Pie Chart）用於表達各類別的比例，可瞭解類別變數在資料中分布的狀況。相較於長條圖而言，圓餅圖比較能夠觀察出各類別間的占比關係，而
+圓餅圖（Pie Chart）用於表達各類別的比例，可瞭解類別變數在資料中分布的狀況。相較於長條圖而言，圓餅圖較能夠觀察出各類別間的占比關係。在`ggplot2`套件中並無特定繪製圓餅圖的函式，而是藉由`geom_bar()`或`geom_col()`函式，並將座標軸轉換為圓軸的方式，函式撰寫架構如下。
 
 ```{r geom-pie-code, echo=T, eval=F}
-geom_density(color=, linetype=, linewidth=, fill=, alpha=, group=)
+geom_bar(stat=, color=, linetype=, linewidth=, fill=, alpha=)+
+  coord_polar(theta="y", start=, direction=)
+```
+
+關於`geom_bar()`函式的設定請參考表\@ref(tab:geom-bar-code-tab)，而`coord_polar()`函式則是將長條圖轉變為圓軸，該函式所需設定之引數彙整如表\@ref(tab:geom-pie-code-tab)所示。
+
+```{r geom-pie-code-tab, echo=F, eval=T}
+gp_code=data.frame(argument=c("`theta=`","`start=`","`direction=`"),
+                   setting=c("設定圓餅圖的角度依據","座標軸旋轉角度","座標軸旋轉方向與圓餅圖各區塊排列方向"), explain=c('在圓餅圖中一致設定為`"y"`',"弧度（radius），上方為 0 ，90 度為 $pi/2$","`1`:順時針<br>`-1`:逆時針"))
+
+kable(gp_code, booktabs=T, escape=F, caption="`coord_polar()`函式引數設定", col.names=c("引數","功能設定","說明"))%>%
+  kable_styling(bootstrap_options=c("striped", "hover"), font_size=14)%>%
+  column_spec(1:3 ,extra_css="vertical-align:middle;")%>%
+  row_spec(0, bold=T, color="white", background="#8E8E8E")
 ```
 
 
+
+<p style="color:#003D79;font-size:18px;line-height:2">**⌾ 基礎圓餅圖**</p>  
+繪製圓餅圖前，務必先計算各分群所佔的比例，累積的比例值將用於縱軸。以<A href="#tp-school">臺北市學校資料（`tp_school`）</A>為例，依據學校層級（TYPE）透過`group_by() %>% summarise()`函式統計各學校的數量，並繪製圓餅圖，程式碼撰寫如下。
+
+```{r geom-pie-eg1, echo=T, eval=T, out.width="70%", fig.align="center"}
+# 依學校層級統計學校數目
+tp_school_sum3=group_by(tp_school, TYPE)%>%
+  summarise(Count=n())
+
+# 計算各分群的比例、累積比例與縱軸數值
+tp_school_sum3=mutate(tp_school_sum3,
+                      Count_per=Count/sum(Count)*100)   # 計算各分群占整體的比例
+
+# 繪製圓餅圖
+ggplot(tp_school_sum3, aes(x="", y=Count_per))+
+  geom_col(aes(fill=TYPE))+
+  coord_polar("y", direction=1)
+```
+
+以上程式碼中，由於希望圖表能夠依據不同學校層級填色（`fill=`），故必須在`geom_col()`函式中將該引數放置於<A href="#ggplot-aes">`aes()`</A>函式內。另外須注意的是，以上出圖結果是順時針排列，由圖例中的最底部（國中）順時針排列至最上方（大學）。
+
+
+<p style="color:#003D79;font-size:18px;line-height:2">**⌾ 基礎圓餅圖--調整座標軸**</p>  
+若欲調整座標軸的旋轉角度與方向，需另外在`coord_polar()`函式中分別設定`start=`與`direction=`兩引數。承繼以上`tp_school_sum3`資料之案例，上圖中在預設情況下會以 0 度（`start=0`）為起始位置順時針（`direction=1`）排列各圖例，然若欲將整個座標軸「逆時針（`direction=-1`）」旋轉「90 度角（`start=pi/2`）」，並將各區塊逆時針排列，程式碼撰寫如下。
+
+```{r geom-pie-eg2, echo=T, eval=T, out.width="70%", fig.align="center"}
+# 繪製圓餅圖
+ggplot(tp_school_sum3, aes(x="", y=Count_per))+
+  geom_col(aes(fill=TYPE))+
+  coord_polar("y", start=pi/2, direction=-1)
+```
+
+請特別注意，以上出圖結果是逆時針排列，由圖例中的最底部（國中）逆時針排列至最上方（大學）。
+
+
+<p style="color:#003D79;font-size:18px;line-height:2">**⌾ 基礎圓餅圖--修正圖例順序**</p>  
+以上圓餅圖的繪製並非依據學校層級排列，若希望圓餅圖各區塊及圖例係依據學校層級排列，應先利用[`factor()`](#因子factor)函式控制之。以`tp_school_sum3`統計資料為例，程式碼撰寫如下。
+
+```{r geom-pie-eg3, echo=T, eval=T, out.width="70%", fig.align="center"}
+tp_school_sum3_lev1=tp_school_sum3
+
+# 建立學校層級因子
+tp_school_sum3_lev1$TYPE=factor(tp_school_sum3_lev1$TYPE, levels=c("國小","國中","高中","大學","其他"))
+
+# 繪製圓餅圖
+ggplot(tp_school_sum3_lev1, aes(x="", y=Count_per))+
+  geom_col(aes(fill=TYPE))+
+  coord_polar("y", direction=-1)
+```
+
+另特別注意，以上出圖結果是逆時針排列（`direction=-1`），由圖例中的最底部（其他）逆時針排列至最上方（國小）。
+
+
+而有時候我們希望圖表的順序須依據比例的大小排列，此時必須再計算完各類別的比例後，再透過[`factor()`](#因子factor)函式控制類別的順序，再次以`tp_school_sum3`統計資料為例，程式碼撰寫如下。
+
+```{r geom-pie-eg4, echo=T, eval=T, out.width="70%", fig.align="center"}
+# 先依據比例大小排序
+tp_school_sum3_lev2=arrange(tp_school_sum3, desc(Count_per))
+
+# 建立學校層級因子
+tp_school_sum3_lev2$TYPE=factor(tp_school_sum3_lev2$TYPE, levels=tp_school_sum3_lev2$TYPE)
+
+# 繪製圓餅圖
+ggplot(tp_school_sum3_lev2, aes(x="", y=Count_per))+
+  geom_col(aes(fill=TYPE))+
+  coord_polar("y")
+```
+
+
+<p style="color:#003D79;font-size:18px;line-height:2">**⌾ 加入文字或標籤**</p>  
+
+關於圖表中插入標籤，應利用`geom_label()`函式，請先參考[此](#標註標籤)。而若欲在圓餅圖各區塊上分別標註標籤，請參考圖\@ref(fig:geom-bar-cumsum-fig)關於縱軸數值計算邏輯之示意圖。另外，請務必在計算累積比例與縱軸數值前，先將資料**依據圖例層級排列**，否則標註的文字或標籤將無法座落於正確的位置上。
+
+```{r geom-pie-eg5, echo=T, eval=T, out.width="70%", fig.align="center"}
+# 透過factor()函式固定圖例的排列順序
+tp_school_sum3_lev3=tp_school_sum3
+
+# 務必給定類別層級
+tp_school_sum3_lev3$TYPE=factor(tp_school_sum3_lev3$TYPE, levels=c("國小","國中","高中","大學","其他"))
+
+# 先將層級倒序排列，並計算各分群的比例、累積比例與縱軸數值
+tp_school_sum3_lev3=arrange(tp_school_sum3_lev3, desc(TYPE))%>%
+  mutate(Count_per_cum=cumsum(Count_per),   # 計算累積比例
+         lab_y=Count_per_cum-Count_per/2)   # 計算縱軸數值)
+
+# 繪製圓餅圖
+ggplot()+
+  geom_col(data=tp_school_sum3_lev3, aes(x="", y=Count_per, fill=TYPE))+
+  geom_label(data=tp_school_sum3_lev3, aes(x="", y=lab_y, label=paste0(round(Count_per, 1), "%")))+
+  coord_polar("y")
+```
+
+關於標籤的設計調整，請參考[此](#標註標籤)。
 
 
 ### 盒狀圖
