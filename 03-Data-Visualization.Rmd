@@ -787,7 +787,7 @@ tp_school_sum3_lev3=arrange(tp_school_sum3_lev3, desc(TYPE))%>%
 # 繪製圓餅圖
 ggplot()+
   geom_col(data=tp_school_sum3_lev3, aes(x="", y=Count_per, fill=TYPE))+
-  geom_label(data=tp_school_sum3_lev3, aes(x="", y=lab_y, label=paste0(round(Count_per, 1), "%")))+
+  geom_text(data=tp_school_sum3_lev3, aes(x="", y=lab_y, label=paste0(round(Count_per, 1), "%")))+
   coord_polar("y")
 ```
 
@@ -951,7 +951,6 @@ ggplot(data=world, aes(x=lifeExp, y=gdpPercap))+
 ```
 
 程式碼中[`scale_size_continuous()`](#大小尺度)函式控制點子大小；[`scale_fill_brewer()`](#顏色漸層)函式則設計點子的填色。透過顏色、大小的設計調整，可使資料更視覺化，易於讀者觀察圖表，也可更客製化設計圖表樣式。所有關於圖表的設計請參考[尺度設定](#尺度設定)章節。
-
 
 
 ### 山脊圖
