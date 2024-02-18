@@ -24,6 +24,8 @@ client_secret=read.csv("./key.txt", header=F)[2,2]
 access_token=get_token(client_id, client_secret)
 ```
 
+# (PART\*) 資料分析基礎 {-}
+
 # **R 語言基礎語法**
 本章節系統性介紹 R 語言的重要基礎語法，包含 R 語言中的資料型態（物件）、文字處理方式、控制流程，以及資料讀取與匯出方法，請務必熟悉各物件函式，以便後續程式碼撰寫。  
 
