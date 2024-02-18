@@ -27,7 +27,7 @@ windowsFonts(B=windowsFont("Consolas"))
 ```
 
 # **資料視覺化**
-資料視覺化是分析資料前相當重要的步驟，能夠將雜論無章的數據彙整為具有統計意義的圖，進而觀察資料趨勢與潛在的意涵；同時也是在資料分析後，用以呈現產出結果的重要手段，進而貫串整個分析的主題與故事。本章節介紹 R 語言中資料視覺化的方法，其中側重於`ggplot2`套件的使用，分別介紹不同圖表的應用與程式撰寫方式，並詳述圖表細節之設定，進而使圖表的呈現更加細緻與客製化。
+資料視覺化是分析資料前相當重要的步驟，能夠將雜亂無章的數據彙整為具有統計意義的圖，進而觀察資料趨勢與潛在的意涵；同時也是在資料分析後，用以呈現產出結果的重要手段，進而貫串整個分析的主題與故事。本章節介紹 R 語言中資料視覺化的方法，其中側重於`ggplot2`套件的使用，分別介紹不同圖表的應用與程式撰寫方式，並詳述圖表細節之設定，進而使圖表的呈現更加細緻與客製化。
 
 `ggplot2`套件是在 R 語言中最為常見的繪圖工具，此名稱中的「gg」意謂著「**G**rammar of **G**raphics」，亦即使用此套件繪圖時乃依據特定的規則，如同語言中的「文法」。`ggplot2`套件提供多種不同的函式可繪製各類型圖表，並可進一步細緻調整圖表樣式，提升資料之可視性。
 
@@ -821,7 +821,7 @@ kable(gb_code, booktabs=T, escape=F, caption="`geom_boxplot()`函式引數設定
 
 
 <p style="color:#003D79;font-size:18px;line-height:2">**⌾ 單一變量盒狀圖**</p>  
-在單一盒狀圖中，須設定縱軸或橫軸為特定連續資料，其一即可，以表示盒狀圖的呈現方式。以`airquality`資料為例，繪製溫度（Temp）的盒狀圖，程式碼撰寫如下。
+在單一變量盒狀圖中，須設定縱軸或橫軸為特定連續資料，其一即可，以表示盒狀圖的呈現方式。以`airquality`資料為例，繪製溫度（Temp）的盒狀圖，程式碼撰寫如下。
 
 ```{r geom-box-eg1, echo=T, eval=T, out.width="70%", fig.align="center"}
 ggplot(airquality, aes(y=Temp))+
@@ -858,9 +858,101 @@ ggplot()+
   geom_jitter(data=airquality, aes(x=Month, y=Temp), width=0.2, alpha=0.4, color="#005AB5")
 ```
 
+
 ### 小提琴圖
+小提琴圖（Violin Plot）與盒狀圖相似，接用以呈現資料的分布情形，惟小提琴圖可進一步呈現資料的密度分布。在`ggplot2`套件中可利用`geom_violin()`函式建立小提琴圖，函式撰寫架構如下。
+
+```{r geom-violin-code, echo=T, eval=F}
+geom_violin(trim=, scale=, group=, color=, linetype=, linewidth=, fill=, alpha=)
+```
+
+以上函式中的引數設定彙整如表\@ref(tab:geom-violin-code-tab)。
+
+```{r geom-violin-code-tab, echo=F, eval=T}
+gv_code=data.frame(argument=c("`trim=`","`scale=`","`group=`","`color=`","`linetype=`","`linewidth=`","`fill=`","`alpha=`"),
+                   setting=c("是否要將圖的兩端點以全距表示","縮放面積設定","設定分群欄位名稱","設定盒狀外圍顏色","設定盒狀外圍線條樣式","設定盒狀外圍線條粗細","設定盒狀內部填色","設定盒狀內部填色透明度"), explain=c("`T`:兩端點以全距表示<br>`F`:兩端匯聚於一點","`area`（預設）:所有小提琴的面積相同<br>`count`:小提琴的面積依據類別的樣本數而定<br>`width`:所有小提琴面積皆相同","若欲針對不同類別繪製小提琴圖於同一張圖表中，必須設定分群欄位","請參考<A href='#geom-setting-color'>顏色設定</A>","請參考<A href='#geom-setting-linetype'>線條樣式設定","數值","請參考<A href='#geom-setting-color'>顏色設定</A>","數值，介於 0（完全透明）與 1（完全不透明）間"))
+
+kable(gv_code, booktabs=T, escape=F, caption="`geom_boxplot()`函式引數設定", col.names=c("引數","功能設定","說明"))%>%
+  kable_styling(bootstrap_options=c("striped", "hover"), font_size=14)%>%
+  column_spec(1:3 ,extra_css="vertical-align:middle;")%>%
+  row_spec(0, bold=T, color="white", background="#8E8E8E")
+```
+
+
+<p style="color:#003D79;font-size:18px;line-height:2">**⌾ 單一變量小提琴圖**</p>  
+繪製小提琴圖與繪製盒狀圖的邏輯相當，對於單一變量而言，僅需於橫軸或縱軸其一設定變量即可。舉例而言，若欲瞭解`airquality`資料的分布情形，程式碼撰寫如下。另需特別注意的是，在函式中`x=`與`y=`引數皆須設置，其中一個設定欲繪製的變量，另一者則直接空白。
+
+```{r geom-violin-eg1, echo=T, eval=T, out.width="70%", fig.align="center"}
+ggplot(airquality, aes(x="", y=Temp))+
+  geom_violin(color="red", fill="pink", alpha=0.5)
+```
+
+而若希望兩端點能夠聚會於一點，不以全距呈現之，則應設定`trim=F`之引數，程式碼撰寫如下。
+
+```{r geom-violin-eg2, echo=T, eval=T, out.width="70%", fig.align="center"}
+ggplot(airquality, aes(x="", y=Temp))+
+  geom_violin(color="red", fill="pink", alpha=0.5, trim=F)
+```
+
+
+<p style="color:#003D79;font-size:18px;line-height:2">**⌾ 雙變量小提琴圖**</p>  
+此外亦可建立雙變量的小提琴圖，亦即使用其他類別變數予以分類，以觀察不同類別間的連續變量分布差異。此時可以在`geom_violin()`函式中另外設定`group=`引數，用以分類不同的月份。再次以`airquality`資料為例，將月份作為分群變數（須設定`group=`引數），繪製各月份小提琴圖，程式碼撰寫如下。
+
+```{r geom-violin-eg3, echo=T, eval=T, out.width="70%", fig.align="center"}
+ggplot(airquality, aes(x=Month, y=Temp))+
+  geom_violin(aes(group=Month))
+```
+
+
+<p style="color:#003D79;font-size:18px;line-height:2">**⌾ 多變量小提琴圖**</p>  
+若希望增加另一個類別變量，以呈現更豐富的圖表資訊，則可以透過不同的填色（`fill=`）表示之，程式碼撰寫如下。以`mpg`資料為例，若欲瞭解不同汽車類型的每加侖英里數分布情形，並依不同年度並列繪製，程式碼撰寫如下。其中新增填色（`fill=`）引數為「年度（year）」。
+
+```{r geom-violin-eg4, echo=T, eval=T, out.width="70%", fig.align="center"}
+ggplot(mpg, aes(x=class, y=hwy))+
+  geom_violin(aes(fill=as.character(year)))
+```
+
+
+<p style="color:#003D79;font-size:18px;line-height:2">**⌾ 小提琴圖與散布圖疊合**</p>  
+若欲將原始資料散於小提琴圖上，以瞭解原始資料分布及集中的趨勢，可利用`geom_jitter()`函式生成跳動點。以`airquality`資料為例，若欲將不同月份的溫度小提琴圖繪製於同一張圖表，且同時呈現原始資料點的分布，程式碼撰寫如下。
+
+```{r geom-violin-eg5, echo=T, eval=T, out.width="70%", fig.align="center"}
+ggplot()+
+  geom_violin(data=airquality, aes(x=Month, y=Temp, group=Month, fill=as.factor(Month)), alpha=0.2)+
+  geom_jitter(data=airquality, aes(x=Month, y=Temp, group=Month, color=as.factor(Month)), width=0.2)
+```
+
+
+<p style="color:#003D79;font-size:18px;line-height:2">**⌾ 小提琴圖與盒狀圖疊合**</p>  
+小提琴圖與盒狀圖本質上是相同的東西，惟小提琴圖可另提供密度的訊息，而盒狀圖可另提供四分位數，故在不影響視覺判讀的情況下，亦能整併兩圖表。以`airquality`資料為例，若欲將不同月份的溫度小提琴圖繪製於同一張圖表，且同時以小提琴圖與盒狀圖表達之，程式碼撰寫如下。
+
+```{r geom-violin-eg6, echo=T, eval=T, out.width="70%", fig.align="center"}
+ggplot()+
+  geom_violin(data=airquality, aes(x=Month, y=Temp, group=Month, fill=as.factor(Month)), alpha=0.2)+
+  geom_boxplot(data=airquality, aes(x=Month, y=Temp, group=Month, color=as.factor(Month)), width=0.2, outlier.shape="X", outlier.size=3)
+```
+
 
 ### 氣泡圖
+氣泡圖（Bubble）事實上是一種散布圖，並透過顏色與大小表示橫軸與縱軸以外的資訊。我們在[散布圖](#散布圖)的章節中已繪製過此類型圖表，再次以其他範例說明之。以`world`資料為例，以平均壽命（lifeExp）為橫軸；人均 GDP（gdpPercap）為縱軸，並利用人口數作為點的大小依據，而不同的填色用以表示不同的洲。
+
+```{r geom-bubble-eg, echo=T, eval=T, out.width="70%", fig.align="center", warning=F}
+# 讀取world資料
+world=read.csv("https://raw.githubusercontent.com/ChiaJung-Yeh/Transport-Analysis/master/Data/world.csv")
+
+# 將world資料依據人口數由多至少排列(可避免小點被大點遮蔽)
+world=arrange(world, desc(pop))
+
+# 繪製氣泡圖
+ggplot(data=world, aes(x=lifeExp, y=gdpPercap))+
+  geom_point(aes(size=pop/100000, fill=continent), alpha=0.5, shape=21)+
+  scale_size_continuous(range=c(.1, 10), breaks=round(classInt::classIntervals(world$pop, n=5, style="fisher")$brks, -5)/100000, name="Population (100K)")+
+  scale_fill_brewer(palette="Set2")
+```
+
+程式碼中[`scale_size_continuous()`](#大小尺度)函式控制點子大小；[`scale_fill_brewer()`](#顏色漸層)函式則設計點子的填色。透過顏色、大小的設計調整，可使資料更視覺化，易於讀者觀察圖表，也可更客製化設計圖表樣式。所有關於圖表的設計請參考[尺度設定](#尺度設定)章節。
+
+
 
 ### 山脊圖
 

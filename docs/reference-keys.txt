@@ -158,3 +158,4 @@ fig:geom-bar-cumsum-fig
 tab:geom-pie-code-tab
 tab:geom-box-code-tab
 fig:geom-boxplot-fig
+tab:geom-violin-code-tab
