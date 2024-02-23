@@ -23,7 +23,7 @@
 <meta name="author" content="Chia-Jung (Robert) Yeh 葉家榮 PhD: Insitute of Transport and Logistics Studies, USYD M.S.: Department of Transportation and Logistics Management, NYCU" />
 
 
-<meta name="date" content="2024-02-23" />
+<meta name="date" content="2024-02-24" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -1915,7 +1915,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <p>以上函式中的引數設定彙整如表<a href="資料視覺化.html#tab:geom-violin-code-tab">3.10</a>。</p>
 <table class="table table-striped table-hover" style="font-size: 14px; margin-left: auto; margin-right: auto;">
 <caption style="font-size: initial !important;">
-<span id="tab:geom-violin-code-tab">表 3.10: </span><code>geom_boxplot()</code>函式引數設定
+<span id="tab:geom-violin-code-tab">表 3.10: </span><code>geom_violin()</code>函式引數設定
 </caption>
 <thead>
 <tr>
@@ -2211,7 +2211,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <p style="color:#003D79;font-size:18px;line-height:2">
 <strong>⌾ 山脊圖加入分位數</strong>
 </p>
-<p>分位數在統計上亦能夠顯示資料分布的情形，最常見的如四分位數（<code>quantile=4</code>，預設）、十分位數（<code>quantile=10</code>），而其落處於正中間的線段即為中位數。若欲建立具有分位數的山脊圖，可利用<code>stat_density_ridges()</code>函式，並透過<code>quantile_lines=T</code>設定回傳分位數，而<code>quantiles=</code>引數則可進一步設定分位數。</p>
+<p>分位數在統計上亦能夠顯示資料分布的情形，最常見的如四分位數（<code>quantile=4</code>，預設）、十分位數（<code>quantile=10</code>），而其落處於正中間的線段即為中位數。若欲建立具有分位數的山脊圖，可利用<code>stat_density_ridges()</code>函式，並透過<code>quantile_lines=T</code>設定回傳分位數，而<code>quantiles=</code>引數則可進一步設定分位數。再次以<code>airquality</code>資料為例，程式碼撰寫如下。</p>
 <div class="sourceCode" id="cb62"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb62-1"><a href="資料視覺化.html#cb62-1" tabindex="-1"></a><span class="fu">ggplot</span>(airquality, <span class="fu">aes</span>(<span class="at">x=</span>Temp, <span class="at">y=</span><span class="fu">as.factor</span>(Month)))<span class="sc">+</span></span>
 <span id="cb62-2"><a href="資料視覺化.html#cb62-2" tabindex="-1"></a>  <span class="fu">stat_density_ridges</span>(<span class="fu">aes</span>(<span class="at">fill=</span><span class="fu">as.factor</span>(Month), <span class="at">group=</span><span class="fu">as.factor</span>(Month)), <span class="at">quantile_lines=</span>T, <span class="at">quantiles=</span><span class="dv">10</span>)</span></code></pre></div>
 <pre><code>## Warning: Using the `size` aesthetic with geom_segment was deprecated in ggplot2 3.4.0.
@@ -2223,6 +2223,103 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </div>
 <div id="熱力圖" class="section level3 hasAnchor" number="3.1.11">
 <h3><span class="header-section-number">3.1.11</span> 熱力圖<a href="資料視覺化.html#熱力圖" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>熱力圖有兩種主要功能，其一是表達資料數值的相對大小，另一則是表達變數間的關係，並透過顏色深淺表達數值大小，以視覺化呈現資料的分布情形。在<code>ggplot2</code>套件中可利用<code>geom_tile()</code>函式建立熱力圖，該函式撰寫架構如下。</p>
+<div class="sourceCode" id="cb64"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb64-1"><a href="資料視覺化.html#cb64-1" tabindex="-1"></a><span class="fu">geom_tile</span>(<span class="at">color=</span>, <span class="at">linetype=</span>, <span class="at">linewidth=</span>, <span class="at">fill=</span>, <span class="at">alpha=</span>, )</span></code></pre></div>
+<p>以上函式中的引數設定彙整如表<a href="資料視覺化.html#tab:geom-violin-code-tab">3.10</a>。</p>
+<table class="table table-striped table-hover" style="font-size: 14px; margin-left: auto; margin-right: auto;">
+<caption style="font-size: initial !important;">
+<span id="tab:geom-heatmap-code-tab">表 3.12: </span><code>geom_tile()</code>函式引數設定
+</caption>
+<thead>
+<tr>
+<th style="text-align:left;font-weight: bold;color: white !important;background-color: #8E8E8E !important;">
+引數
+</th>
+<th style="text-align:left;font-weight: bold;color: white !important;background-color: #8E8E8E !important;">
+功能設定
+</th>
+<th style="text-align:left;font-weight: bold;color: white !important;background-color: #8E8E8E !important;">
+說明
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left;vertical-align:middle;">
+<code>color=</code>
+</td>
+<td style="text-align:left;vertical-align:middle;">
+設定每一方框顏色
+</td>
+<td style="text-align:left;vertical-align:middle;">
+請參考<a href="資料視覺化.html#geom-setting-color">顏色設定</a>
+</td>
+</tr>
+<tr>
+<td style="text-align:left;vertical-align:middle;">
+<code>linetype=</code>
+</td>
+<td style="text-align:left;vertical-align:middle;">
+設定每一方框外圍線條樣式
+</td>
+<td style="text-align:left;vertical-align:middle;">
+請參考<a href="資料視覺化.html#geom-setting-linetype">線條樣式設定 </a>
+</td>
+</tr>
+<tr>
+<td style="text-align:left;vertical-align:middle;">
+<code>linewidth=</code>
+</td>
+<td style="text-align:left;vertical-align:middle;">
+設定每一方框外圍線條粗細
+</td>
+<td style="text-align:left;vertical-align:middle;">
+數值
+</td>
+</tr>
+<tr>
+<td style="text-align:left;vertical-align:middle;">
+<code>fill=</code>
+</td>
+<td style="text-align:left;vertical-align:middle;">
+設定每一方框內部填色
+</td>
+<td style="text-align:left;vertical-align:middle;">
+請參考<a href="資料視覺化.html#geom-setting-color">顏色設定</a>
+</td>
+</tr>
+<tr>
+<td style="text-align:left;vertical-align:middle;">
+<code>alpha=</code>
+</td>
+<td style="text-align:left;vertical-align:middle;">
+設定每一方框內部填色透明度
+</td>
+<td style="text-align:left;vertical-align:middle;">
+數值，介於 0（完全透明）與 1（完全不透明）間
+</td>
+</tr>
+</tbody>
+</table>
+<p style="color:#003D79;font-size:18px;line-height:2">
+<strong>⌾ 二維資料熱力圖</strong>
+</p>
+<p>二維資料可直接利用熱力圖表達，其中縱軸與橫軸為二維資料表達座標位置的資料，熱力圖的顏色則須依據數值大小填色（<code>fill=</code>）。以<code>airquality</code>資料為例，若希望建立每日的溫度熱力圖，此時可以將「月份（Month）」縱軸；「日期（Day）」為橫軸，而矩陣內各方框則利用溫度數值（Temp）填色。程式碼撰寫如下。</p>
+<div class="sourceCode" id="cb65"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb65-1"><a href="資料視覺化.html#cb65-1" tabindex="-1"></a><span class="fu">ggplot</span>(airquality, <span class="fu">aes</span>(<span class="at">x=</span>Day, <span class="at">y=</span>Month))<span class="sc">+</span></span>
+<span id="cb65-2"><a href="資料視覺化.html#cb65-2" tabindex="-1"></a>  <span class="fu">geom_tile</span>(<span class="fu">aes</span>(<span class="at">fill=</span>Temp))</span></code></pre></div>
+<p><img src="series_files/figure-html/geom-heatmap-eg1-1.png" width="70%" style="display: block; margin: auto;" /></p>
+<p>然由上圖可見，該顏色分布並不直覺，數值小的為深色，數值大的卻為淺色，但實際上人類的直覺感受理應相反，故可進一步透過<a href="資料視覺化.html#顏色漸層">顏色漸層之尺度設定</a>調整之。程式碼撰寫如下。</p>
+<div class="sourceCode" id="cb66"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb66-1"><a href="資料視覺化.html#cb66-1" tabindex="-1"></a><span class="fu">ggplot</span>(airquality, <span class="fu">aes</span>(<span class="at">x=</span>Day, <span class="at">y=</span>Month))<span class="sc">+</span></span>
+<span id="cb66-2"><a href="資料視覺化.html#cb66-2" tabindex="-1"></a>  <span class="fu">geom_tile</span>(<span class="fu">aes</span>(<span class="at">fill=</span>Temp))<span class="sc">+</span></span>
+<span id="cb66-3"><a href="資料視覺化.html#cb66-3" tabindex="-1"></a>  <span class="fu">scale_fill_distiller</span>(<span class="at">palette=</span><span class="st">&quot;YlOrRd&quot;</span>, <span class="at">direction=</span><span class="dv">1</span>)</span></code></pre></div>
+<p><img src="series_files/figure-html/geom-heatmap-eg2-1.png" width="70%" style="display: block; margin: auto;" /></p>
+<div class="sourceCode" id="cb67"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb67-1"><a href="資料視覺化.html#cb67-1" tabindex="-1"></a>mtcars_scale<span class="ot">=</span><span class="fu">data.frame</span>(<span class="fu">scale</span>(mtcars))</span>
+<span id="cb67-2"><a href="資料視覺化.html#cb67-2" tabindex="-1"></a>mtcars_scale<span class="sc">$</span>Cars<span class="ot">=</span><span class="fu">row.names</span>(mtcars_scale)</span>
+<span id="cb67-3"><a href="資料視覺化.html#cb67-3" tabindex="-1"></a>mtcars_scale<span class="ot">=</span><span class="fu">melt</span>(mtcars_scale, <span class="at">id.vars=</span><span class="st">&quot;Cars&quot;</span>, <span class="at">measure.vars=</span><span class="fu">c</span>(<span class="dv">1</span><span class="sc">:</span>(<span class="fu">ncol</span>(mtcars_scale)<span class="sc">-</span><span class="dv">1</span>)))</span>
+<span id="cb67-4"><a href="資料視覺化.html#cb67-4" tabindex="-1"></a><span class="fu">ggplot</span>(mtcars_scale, <span class="fu">aes</span>(variable, Cars, <span class="at">fill=</span>value))<span class="sc">+</span></span>
+<span id="cb67-5"><a href="資料視覺化.html#cb67-5" tabindex="-1"></a>  <span class="fu">geom_tile</span>()<span class="sc">+</span></span>
+<span id="cb67-6"><a href="資料視覺化.html#cb67-6" tabindex="-1"></a>  <span class="fu">scale_fill_distiller</span>(<span class="at">palette=</span><span class="st">&quot;YlOrRd&quot;</span>, <span class="at">direction=</span><span class="dv">1</span>)</span></code></pre></div>
+<p><img src="series_files/figure-html/geom-heatmap-eg3-1.png" width="70%" style="display: block; margin: auto;" /></p>
 </div>
 <div id="矩形式樹狀圖" class="section level3 hasAnchor" number="3.1.12">
 <h3><span class="header-section-number">3.1.12</span> 矩形式樹狀圖<a href="資料視覺化.html#矩形式樹狀圖" class="anchor-section" aria-label="Anchor link to header"></a></h3>
