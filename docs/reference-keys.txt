@@ -159,3 +159,4 @@ tab:geom-pie-code-tab
 tab:geom-box-code-tab
 fig:geom-boxplot-fig
 tab:geom-violin-code-tab
+tab:geom-ridgeline-code-tab

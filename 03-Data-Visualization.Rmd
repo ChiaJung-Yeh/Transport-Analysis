@@ -954,8 +954,77 @@ ggplot(data=world, aes(x=lifeExp, y=gdpPercap))+
 
 
 ### 山脊圖
+山脊圖（Ridgeline Plot）與密度圖非常相似，可表達許多不同類別的連續資料分布情形，而山脊圖可將不同類別的資料平行並列，以較容易觀察類別間的差異。繪製山脊圖可利用`ggridges`套件中的`geom_density_ridges()`與`stat_density_ridges()`函式，其撰寫架構如下。
+
+```{r geom-ridgeline-code, echo=T, eval=F}
+geom_density_ridges(group=, color=, linetype=, size=, fill=, alpha=, jittered_points=)
+stat_density_ridges(group=, color=, linetype=, size=, fill=, alpha=, quantile_lines=, quantiles=)
+```
+
+以上函式中的引數設定彙整如表\@ref(tab:geom-ridgeline-code-tab)。
+
+```{r geom-ridgeline-code-tab, echo=F, eval=T}
+gr_code=data.frame(argument=c("`color=`","`linetype=`","`size=`","`fill=`","`alpha=`","`jittered_points=`","`quantile_lines=`","`quantiles=`"),
+                   setting=c("設定山脊圖外圍顏色","設定山脊圖外圍線條樣式","設定山脊圖外圍線條粗細","設定山脊圖內部填色","設定山脊圖內部填色透明度","是否加入跳點（用以顯示原始資料分布）","是否加入分位數線段","分位數"), explain=c("請參考<A href='#geom-setting-color'>顏色設定</A>","請參考<A href='#geom-setting-linetype'>線條樣式設定","數值","請參考<A href='#geom-setting-color'>顏色設定</A>","數值，介於 0（完全透明）與 1（完全不透明）間","`T`:加入跳點<br>`F`:不加入跳點","`T`:加入分位數線段<br>`F`:不加入分位數線段","數值（預設為四分位數）"))
+
+kable(gr_code, booktabs=T, escape=F, caption="`geom_boxplot()`函式引數設定", col.names=c("引數","功能設定","說明"))%>%
+  kable_styling(bootstrap_options=c("striped", "hover"), font_size=14)%>%
+  column_spec(1:3 ,extra_css="vertical-align:middle;")%>%
+  row_spec(0, bold=T, color="white", background="#8E8E8E")
+```
+
+
+<p style="color:#003D79;font-size:18px;line-height:2">**⌾ 基礎山脊圖**</p>  
+前文中提及多類別的密度圖，可藉以瞭解資料的集中性，然不同類別間往往因重疊而使圖表難以判讀。此時可利用山脊圖呈現多個類別間的密度分布關係，其橫軸通常是一個連續數值，縱軸則為密度。建立山脊圖時若欲利用曲線顏色、曲線下面積填色等表達不同類別，則應將相對應的引數置於<A href="#ggplot-aes">`aes()`</A>函式內。以`airquality`資料為例，繪製山脊圖的程式碼撰寫如下。
+
+```{r geom-ridgeline-eg1, echo=T, eval=T, out.width="70%", fig.align="center", message=F}
+ggplot(airquality, aes(x=Temp, y=as.factor(Month)))+
+  geom_density_ridges(aes(fill=as.factor(Month), group=as.factor(Month)))
+```
+
+
+<p style="color:#003D79;font-size:18px;line-height:2">**⌾ 山脊圖加入跳點**</p>  
+跳點可用以表示原始資料的分布情形，輔助圖表的判讀，如同`geom_jitter()`函式之功能。在`geom_density_ridges()`函式中可利用`jittered_points=`參數設定是否回傳跳點。
+
+```{r geom-ridgeline-eg2, echo=T, eval=T, out.width="70%", fig.align="center", message=F}
+ggplot(airquality, aes(x=Temp, y=as.factor(Month)))+
+  geom_density_ridges(aes(fill=as.factor(Month), group=as.factor(Month)), jittered_points=T)
+```
+
+
+<p style="color:#003D79;font-size:18px;line-height:2">**⌾ 山脊圖加入分位數**</p>  
+分位數在統計上亦能夠顯示資料分布的情形，最常見的如四分位數（`quantile=4`，預設）、十分位數（`quantile=10`），而其落處於正中間的線段即為中位數。若欲建立具有分位數的山脊圖，可利用`stat_density_ridges()`函式，並透過`quantile_lines=T`設定回傳分位數，而`quantiles=`引數則可進一步設定分位數。
+
+```{r geom-ridgeline-eg3, echo=T, eval=T, out.width="70%", fig.align="center", message=F}
+ggplot(airquality, aes(x=Temp, y=as.factor(Month)))+
+  stat_density_ridges(aes(fill=as.factor(Month), group=as.factor(Month)), quantile_lines=T, quantiles=10)
+```
+
 
 ### 熱力圖
+熱力圖大致有兩種功能，其一是表達
+
+
+
+```{r geom-heatmap-eg1, echo=T, eval=T, out.width="70%", fig.align="center"}
+ggplot(airquality, aes(x=Month, y=Day, fill=Temp))+
+  geom_tile()+
+  scale_fill_distiller(palette="YlOrRd", direction=1)
+```
+
+
+
+```{r geom-heatmap-eg2, echo=T, eval=T, out.width="70%", fig.align="center"}
+mtcars_scale=data.frame(scale(mtcars))
+mtcars_scale$Cars=row.names(mtcars_scale)
+mtcars_scale=melt(mtcars_scale, id.vars="Cars", measure.vars=c(1:(ncol(mtcars_scale)-1)))
+ggplot(mtcars_scale, aes(variable, Cars, fill=value))+
+  geom_tile()+
+  scale_fill_distiller(palette="YlOrRd", direction=1)
+```
+
+
+
 
 ### 矩形式樹狀圖
 
