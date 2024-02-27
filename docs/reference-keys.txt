@@ -162,3 +162,4 @@ tab:geom-violin-code-tab
 tab:geom-ridgeline-code-tab
 tab:geom-heatmap-code-tab
 tab:geom-corrplot-code-tab
+tab:geom-treemap-code2-tab

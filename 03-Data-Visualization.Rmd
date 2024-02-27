@@ -717,6 +717,9 @@ tp_school_sum3=mutate(tp_school_sum3,
 ggplot(tp_school_sum3, aes(x="", y=Count_per))+
   geom_col(aes(fill=TYPE))+
   coord_polar("y", direction=1)
+
+tp_school_sum3$ymax=cumsum(tp_school_sum3$Count_per)
+tp_school_sum3$ymin=c(0, head(tp_school_sum3$ymax, n=-1))
 ```
 
 以上程式碼中，由於希望圖表能夠依據不同學校層級填色（`fill=`），故必須在`geom_col()`函式中將該引數放置於<A href="#ggplot-aes">`aes()`</A>函式內。另外須注意的是，以上出圖結果是順時針排列，由圖例中的最底部（國中）順時針排列至最上方（大學）。
@@ -1111,7 +1114,35 @@ corrplot(cor(mtcars))
 
 
 ### 矩形式樹狀圖
-矩形式樹狀圖（Treemap）可用以視覺化呈現
+矩形式樹狀圖（Treemap）可用以視覺化呈現不同類別間的占比，亦可同時表現分類架構。在 R 語言中可另安裝`treemapify`套件繪製矩形式樹狀圖，該套件所提供的函式彙整如表\@ref(tab:geom-treemap-code1-tab)。另建議所有引數皆設定於`ggplot()`函式中，以便建立不同階層的樹狀圖，函式撰寫架構如下。
+
+```{r geom-treemap-code, echo=T, eval=F}
+ggplot(資料, aes(area=, color=, fill=, linetype=, alpha=, subgroup=, subgroup2=, subgroup3=))
+```
+
+以上函式中的引數設定彙整如表\@ref(tab:geom-treemap-code2-tab)。
+
+```{r geom-treemap-code2-tab, echo=F, eval=T}
+gt_code=data.frame(argument=c("`area=`","`color=`","`fill=`","`linetype=`","`linewidth=`","`alpha=`"),
+                   setting=c("設定矩形面積","設定矩形外框顏色","設定矩形填色","設定矩形外框樣式","設定矩形外框粗細","設定矩形填色透明度"), explain=c("通常設定為面積所參考的變量","通常設定固定顏色（請參考<A href='#geom-setting-color'>顏色設定</A>），抑或設定為顏色所參考的變量","通常設定為填色所參考的變量","通常為固定樣式（請參考<A href='#geom-setting-linetype'>線條樣式設定）","通常為固定數值","通常為固定數值，介於 0（完全透明）與 1（完全不透明）間"))
+
+kable(gt_code, booktabs=T, escape=F, caption="矩形式樹狀圖相關函式引數設定", col.names=c("引數","功能設定","說明"))%>%
+  kable_styling(bootstrap_options=c("striped", "hover"), font_size=14)%>%
+  column_spec(1:3 ,extra_css="vertical-align:middle;")%>%
+  row_spec(0, bold=T, color="white", background="#8E8E8E")
+```
+
+
+<!-- ```{r geom-treemap-code1-tab, echo=F, eval=T} -->
+<!-- temp=data.frame(fun=c("`geom_treemap()`","`geom_treemap_subgroup_border()`","`geom_treemap_text()`","`geom_treemap_subgroup_text()`"), use=c("建立樹狀圖","設定樹狀圖子類別間線條樣式","設定樹狀圖文字樣式","設定樹狀圖子類別文字樣式")) -->
+
+<!-- kable(temp, booktabs=T, escape=F, caption="`geom_tile()`函式引數設定", col.names=c("函式","功能"))%>% -->
+<!--   kable_styling(bootstrap_options=c("striped", "hover"), font_size=14)%>% -->
+<!--   column_spec(1:2 ,extra_css="vertical-align:middle;")%>% -->
+<!--   row_spec(0, bold=T, color="white", background="#8E8E8E") -->
+<!-- ``` -->
+
+
 
 
 
