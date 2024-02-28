@@ -1260,7 +1260,7 @@ ggplot(data = titanic_wide,
 ```{r geom-Sankey-eg2, echo=F, eval=T, out.width="70%", fig.align="center", warning=F}
 scmig=read.csv("https://raw.githubusercontent.com/ChiaJung-Yeh/Transport-Analysis/master/Data/social_migration.csv")
 scmig=melt(scmig, id.vars="X", measure.vars=2:7, variable.names="TO", value.name="People")
-
+scmig$People
 
 
 ggplot(data = titanic_wide,
