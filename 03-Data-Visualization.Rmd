@@ -21,6 +21,7 @@ library(ggsankey)
 library(ggradar)
 library(ggtext)
 library(corrplot)
+library(ggalluvial)
 
 Sys.setlocale(category = "LC_ALL", locale = "zh_TW.UTF-8")
 windowsFonts(A=windowsFont("Taipei Sans TC Beta"))
@@ -1232,6 +1233,44 @@ ggplot(tw_pop, aes(area=people_total, fill=District, label=COUNTYNAME, subgroup=
 ### 桑基圖
 桑基圖（Sankey Diagram）可用以表達各階層的流動，
 
+
+```{r geom-Sankey-eg1, echo=F, eval=T, out.width="70%", fig.align="center", warning=F}
+scmig=read.csv("https://raw.githubusercontent.com/ChiaJung-Yeh/Transport-Analysis/master/Data/social_migration.csv")
+melt(scmig, id.vars="X", measure.vars=c)
+
+hair_eye=data.frame(HairEyeColor)
+
+ggplot(data=hair_eye, aes(axis1=Hair, axis2=Eye, y=Freq))+
+  geom_alluvium(aes(fill=Sex)) +
+  geom_stratum()+
+  geom_text(stat="stratum", aes(label=after_stat(stratum))) 
+
+
+ggplot(data = titanic_wide,
+       aes(axis1 = Class, axis2 = Sex, axis3 = Age,
+           y = Freq)) +
+  scale_x_discrete(limits = c("Class", "Sex", "Age"), expand = c(.2, .05)) +
+  xlab("Demographic") +
+  geom_alluvium(aes(fill = Survived)) +
+  geom_stratum() 
+```
+
+
+
+```{r geom-Sankey-eg2, echo=F, eval=T, out.width="70%", fig.align="center", warning=F}
+scmig=read.csv("https://raw.githubusercontent.com/ChiaJung-Yeh/Transport-Analysis/master/Data/social_migration.csv")
+scmig=melt(scmig, id.vars="X", measure.vars=2:7, variable.names="TO", value.name="People")
+
+
+
+ggplot(data = titanic_wide,
+       aes(axis1 = Class, axis2 = Sex, axis3 = Age,
+           y = Freq)) +
+  scale_x_discrete(limits = c("Class", "Sex", "Age"), expand = c(.2, .05)) +
+  xlab("Demographic") +
+  geom_alluvium(aes(fill = Survived)) +
+  geom_stratum() 
+```
 
 
 ### 雷達圖
