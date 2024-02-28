@@ -164,3 +164,8 @@ tab:geom-heatmap-code-tab
 tab:geom-corrplot-code-tab
 tab:geom-treemap-code2-tab
 tab:geom-treemap-code1-tab
+調整圖例名稱
+調整座標軸名稱
+fig:geom-sankey-fig1
+fig:geom-sankey-fig2
+tab:geom-sankey-code1-tab
