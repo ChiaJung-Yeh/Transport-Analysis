@@ -163,3 +163,4 @@ tab:geom-ridgeline-code-tab
 tab:geom-heatmap-code-tab
 tab:geom-corrplot-code-tab
 tab:geom-treemap-code2-tab
+tab:geom-treemap-code1-tab
