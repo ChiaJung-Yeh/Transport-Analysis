@@ -2655,9 +2655,9 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </div>
 <p>在 R 語言中，可透過<code>ggalluvial</code>套件繪製桑基圖，使用此套件時，須建立由節點所組成的欄位，表達節點間的流動方向，而另有一欄位記錄出現的頻次（Frequency），以表達流動量。以圖<a href="資料視覺化.html#fig:geom-sankey-fig2">3.10</a>為例，此桑基圖用以表示各家戶所在縣市使用不同運具抵達公司所在地的通勤行為。於本案例中會出現三個階層，含括：家、運具、公司，各<strong>階層必須記錄於資料中的「表頭」</strong>。而以「運具」階層為例，其中包含兩種狀態：私有運具、公共運輸，故該階層下會出現兩個節點，各<strong>節點則詳細記錄於所屬階層的欄位中</strong>。最後必須要有一欄位記錄每個階層間流動的量，如圖<a href="資料視覺化.html#fig:geom-sankey-fig2">3.10</a>中的「頻次」欄位。</p>
 <div class="figure" style="text-align: center"><span style="display:block;" id="fig:geom-sankey-fig2"></span>
-<img src="figure/sankey_diagram_table.png" alt="桑基圖架構示意圖" width="60%" />
+<img src="figure/sankey_diagram_table.png" alt="桑基圖範例" width="80%" />
 <p class="caption">
-圖 3.10: 桑基圖架構示意圖
+圖 3.10: 桑基圖範例
 </p>
 </div>
 <p>在繪製桑基圖時，可以透過<code>ggplot()</code>函式設定各階層與流動量，引數設定如表<a href="資料視覺化.html#tab:geom-sankey-code1-tab">3.16</a>所示。</p>

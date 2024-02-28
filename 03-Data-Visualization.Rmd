@@ -1239,7 +1239,7 @@ include_graphics("./figure/sankey_diagram.png")
 
 在 R 語言中，可透過`ggalluvial`套件繪製桑基圖，使用此套件時，須建立由節點所組成的欄位，表達節點間的流動方向，而另有一欄位記錄出現的頻次（Frequency），以表達流動量。以圖\@ref(fig:geom-sankey-fig2)為例，此桑基圖用以表示各家戶所在縣市使用不同運具抵達公司所在地的通勤行為。於本案例中會出現三個階層，含括：家、運具、公司，各**階層必須記錄於資料中的「表頭」**。而以「運具」階層為例，其中包含兩種狀態：私有運具、公共運輸，故該階層下會出現兩個節點，各**節點則詳細記錄於所屬階層的欄位中**。最後必須要有一欄位記錄每個階層間流動的量，如圖\@ref(fig:geom-sankey-fig2)中的「頻次」欄位。
 
-```{r geom-sankey-fig2, echo=F, eval=T, out.width="60%", fig.align="center", fig.cap="桑基圖架構示意圖"}
+```{r geom-sankey-fig2, echo=F, eval=T, out.width="80%", fig.align="center", fig.cap="桑基圖範例"}
 include_graphics("./figure/sankey_diagram_table.png")
 ```
 
