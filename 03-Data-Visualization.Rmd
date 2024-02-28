@@ -1006,7 +1006,7 @@ ggplot(airquality, aes(x=Temp, y=as.factor(Month)))+
 
 
 ### 熱力圖
-熱力圖（Heatmap）有兩種主要功能，其一是表達資料數值的相對大小，另一則是表達變數間的關係，並透過顏色深淺表達數值大小，以視覺化呈現資料的分布情形。在`ggplot2`套件中可利用`geom_tile()`函式建立熱力圖，該函式撰寫架構如下。
+熱力圖（Heat Plot）有兩種主要功能，其一是表達資料數值的相對大小，另一則是表達變數間的關係，並透過顏色深淺表達數值大小，以視覺化呈現資料的分布情形。在`ggplot2`套件中可利用`geom_tile()`函式建立熱力圖，該函式撰寫架構如下。
 
 ```{r geom-heatmap-code, echo=T, eval=F}
 geom_tile(color=, linetype=, linewidth=, fill=, alpha=, )
@@ -1086,7 +1086,7 @@ heatmap(as.matrix(mtcars), scale="column")
 
 <p style="color:#003D79;font-size:18px;line-height:2">**⌾ 相關係數熱力圖**</p>  
 
-除了可以利用`heatmap()`中的樹狀圖表達變數之間的相關性外，亦可先行計算相關係數，而後透過`corrplot`套件中的`corrplot()`函式繪製相關係數熱力圖。請注意未使用此一函式，請務必先行下載`corrplot`套件。`corrplot()`函式的撰寫架構與主要引數設定如下。
+除了可以利用`heatmap()`中的樹狀圖表達變數之間的相關性外，亦可先行計算相關係數，而後透過`corrplot`套件中的`corrplot()`函式繪製相關係數熱力圖。請注意為使用此一函式，請務必先行下載`corrplot`套件。`corrplot()`函式的撰寫架構與主要引數設定如下。
 
 ```{r geom-corrplot-code, echo=T, eval=F}
 corrplot(相關係數矩陣, method=, type=)
@@ -1134,21 +1134,21 @@ kable(gt_code, booktabs=T, escape=F, caption="矩形式樹狀圖相關函式引�
 
 
 ```{r geom-treemap-code1-tab, echo=F, eval=T}
-temp=data.frame(fun=c("`geom_treemap()`","`geom_treemap_subgroup_border()`","`geom_treemap_text()`","`geom_treemap_subgroup_text()`"), use=c("建立樹狀圖","設定樹狀圖子類別間線條樣式","設定樹狀圖文字樣式","設定樹狀圖子類別文字樣式"), para=c(rep("引數設定承襲於`ggplot()`函式內各引數（表\\@ref(tab:geom-treemap-code2-tab)）", 2), rep("`color`:文字顏色<br>`size`:文字大小<br>`alpha`:文字透明度<br>`family`:文字字型<br>`fontface`:文字樣式<br>`angle`:文字角度<br>`place`:文字位置（`bottom`、`topleft`、`top`、`topright`...<br>`grow`:將文字壓縮於矩形內）", 2)))
+temp=data.frame(fun=c("`geom_treemap()`","`geom_treemap_subgroup_border()`","`geom_treemap_text()`","`geom_treemap_subgroup_text()`"), use=c("建立樹狀圖","設定樹狀圖子類別間線條樣式","設定樹狀圖文字樣式","設定樹狀圖子類別文字樣式"), para=c(rep("引數設定承襲於`ggplot()`函式內各引數（表\\@ref(tab:geom-treemap-code2-tab)）", 2), rep("`color`:文字顏色<br>`size`:文字大小<br>`alpha`:文字透明度<br>`family`:文字字型<br>`fontface`:文字樣式<br>`angle`:文字角度<br>`place`:文字位置（`bottom`、`topleft`、`top`、`topright`...）<br>`grow`:將文字壓縮於矩形內", 2)))
 
-kable(temp, booktabs=T, escape=F, caption="`geom_tile()`函式引數設定", col.names=c("函式","功能","引數"))%>%
+kable(temp, booktabs=T, escape=F, caption="`treemapify`重要函式", col.names=c("函式","功能","引數"))%>%
   kable_styling(bootstrap_options=c("striped", "hover"), font_size=14)%>%
   column_spec(1:2 ,extra_css="vertical-align:middle;")%>%
   collapse_rows(3)%>%
   row_spec(0, bold=T, color="white", background="#8E8E8E")%>%
-  footnote("`geom_treemap_subgroup`後面可接數字，表示各子類別的層級，包含`geom_treemap_subgroup2_XX`與`geom_treemap_subgroup3_XX`")
+  footnote("`geom_treemap_subgroup`後面可接數字，表示各子類別的層級，包含：<br>`geom_treemap_subgroup2_XX`與`geom_treemap_subgroup3_XX`")
 ```
 
 
 <p style="color:#003D79;font-size:18px;line-height:2">**⌾ 基礎矩形式樹狀圖**</p>  
 以`TWspdata`套件中的`taiwan_village_pop`資料為例，先行統計（利用[`group_by() %>% summarise()`](#資料分群與統計)函式）各縣市行政區的總人口數，並依據其區位劃分為：北部、中部、南部、東部（利用[`case_when()`](#條件判斷)函式），以及標記各行政區是否為直轄市。藉由矩形式樹狀圖，我們可以利用顏色表達區域劃分的分群結果，並利用面積大小象徵人口數多寡。利用`geom_treemap()`函式繪製矩形式樹狀圖的程式碼撰寫如下，其中必須設定`subgroup=`引數為區域劃分（District），便可將相同區域的縣市繪製在同一個區塊。
 
-```{r geom-treemap-eg1, echo=T, eval=T, out.width="80%", fig.align="center", warning=F}
+```{r geom-treemap-eg1, echo=T, eval=T, out.width="70%", fig.align="center", warning=F}
 # 人口數統計與區域劃分
 tw_pop=mutate(taiwan_village_pop, COUNTYNAME=substr(site_id, 1, 3))%>%
   group_by(COUNTYNAME)%>%
@@ -1174,28 +1174,28 @@ ggplot(tw_pop, aes(area=people_total, fill=District, subgroup=District))+
 <p style="color:#003D79;font-size:18px;line-height:2">**⌾ 矩形式樹狀圖加上文字標記**</p>  
 若欲在樹狀圖加上文字標記，需透過`geom_treemap_text()`函式標記之，此外務必在`ggplot()`函式中設定`label=`引數為欲標記的欄位名稱。承繼前一範例，若欲在矩形式樹狀圖上標註縣市名稱，須先行在`ggplot()`函式中設定`label=COUNTYNAME`，並額外連結`geom_treemap_text()`函式。程式碼撰寫如下。
 
-```{r geom-treemap-eg2, echo=T, eval=F, out.width="80%", fig.align="center", warning=F}
+```{r geom-treemap-eg2, echo=T, eval=F, out.width="70%", fig.align="center", warning=F}
 ggplot(tw_pop, aes(area=people_total, fill=District, label=COUNTYNAME, subgroup=District))+
   geom_treemap()+
   geom_treemap_text(size=15, color="#3C3C3C", alpha=0.5, fontface="bold")
 ```
 
-```{r geom-treemap-eg2-fig, echo=F, eval=T, out.width="80%", fig.align="center", warning=F}
+```{r geom-treemap-eg2-fig, echo=F, eval=T, out.width="70%", fig.align="center", warning=F}
 ggplot(tw_pop, aes(area=people_total, fill=District, label=COUNTYNAME, subgroup=District))+
   geom_treemap()+
   geom_treemap_text(family="A", size=15, color="#3C3C3C", alpha=0.5, fontface="bold")
 ```
 
-此外，若欲一併標記各類別的名稱，如以上範例中「區域劃分」的類別名稱。程式碼撰寫如下。
+此外，若欲一併標記各類別的名稱，如以上範例中「區域劃分」的類別名稱，程式碼撰寫如下。
 
-```{r geom-treemap-eg3, echo=T, eval=F, out.width="80%", fig.align="center", warning=F}
+```{r geom-treemap-eg3, echo=T, eval=F, out.width="70%", fig.align="center", warning=F}
 ggplot(tw_pop, aes(area=people_total, fill=District, label=COUNTYNAME, subgroup=District))+
   geom_treemap()+
   geom_treemap_text(size=15, color="#3C3C3C", alpha=0.5, fontface="bold")+
   geom_treemap_subgroup_text(grow=T, color="white", alpha=0.3, fontface="bold", place="center")
 ```
 
-```{r geom-treemap-eg3-fig, echo=F, eval=T, out.width="80%", fig.align="center", warning=F}
+```{r geom-treemap-eg3-fig, echo=F, eval=T, out.width="70%", fig.align="center", warning=F}
 ggplot(tw_pop, aes(area=people_total, fill=District, label=COUNTYNAME, subgroup=District))+
   geom_treemap()+
   geom_treemap_text(size=15, color="#3C3C3C", alpha=0.5, fontface="bold", family="A")+
@@ -1208,7 +1208,7 @@ ggplot(tw_pop, aes(area=people_total, fill=District, label=COUNTYNAME, subgroup=
 <p style="color:#003D79;font-size:18px;line-height:2">**⌾ 矩形式樹狀圖加上子類別**</p>  
 若欲新增不同的子類別，可以利用`subgroup2=`、`subgroup3=`（最多僅能共出現三個類別）引數新增之。承繼以上範例，若希望另外表達各縣市是否為直轄市，並藉由`geom_treemap_subgroup2_border()`函式設定各子類別的分界線樣式；透過`geom_treemap_subgroup2_text()`函式設定各子類別的文字標記樣式，以在各區域劃分中明確顯示子分類。
 
-```{r geom-treemap-eg4, echo=T, eval=F, out.width="80%", fig.align="center", warning=F}
+```{r geom-treemap-eg4, echo=T, eval=F, out.width="70%", fig.align="center", warning=F}
 ggplot(tw_pop, aes(area=people_total, fill=District, label=COUNTYNAME, subgroup=District, subgroup2=Type))+
   geom_treemap(show.legend=F)+
   geom_treemap_text(size=15, color="#3C3C3C", alpha=0.5, fontface="bold")+
@@ -1217,7 +1217,7 @@ ggplot(tw_pop, aes(area=people_total, fill=District, label=COUNTYNAME, subgroup=
   geom_treemap_subgroup2_text(size=10, color="#003D79", alpha=0.5, fontface="bold", place="bottomright")
 ```
 
-```{r geom-treemap-eg4-fig, echo=F, eval=T, out.width="80%", fig.align="center", warning=F}
+```{r geom-treemap-eg4-fig, echo=F, eval=T, out.width="70%", fig.align="center", warning=F}
 ggplot(tw_pop, aes(area=people_total, fill=District, label=COUNTYNAME, subgroup=District, subgroup2=Type))+
   geom_treemap(show.legend=F)+
   geom_treemap_text(size=15, color="#3C3C3C", alpha=0.5, fontface="bold", family="A")+
@@ -1230,6 +1230,9 @@ ggplot(tw_pop, aes(area=people_total, fill=District, label=COUNTYNAME, subgroup=
 
 
 ### 桑基圖
+桑基圖（Sankey Diagram）可用以表達各階層的流動，
+
+
 
 ### 雷達圖
 
