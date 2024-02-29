@@ -1325,8 +1325,6 @@ devtools::install_github("ricardo-bion/ggradar")
 install.packages("fmsb")
 ```
 
-
-<p style="color:#003D79;font-size:18px;line-height:2">**⌾ 基礎雷達圖**</p>  
 在`ggradar`套件中繪製雷達圖，僅須透過`ggradar()`函式即可建立之，該函式中的重要引數設定詳如表\@ref(tab:geom-radar-code-tab)，並請參見圖\@ref(fig:geom-radar-fig)之示意圖，而其他細節引數設定請透過`?ggradar`查看。
 
 ```{r geom-radar-code-tab, echo=F, eval=T}
@@ -1339,7 +1337,7 @@ kable(gr_code, booktabs=T, escape=F, caption="`ggradar()`函式引數設定", co
   row_spec(0, bold=T, color="white", background="#8E8E8E")
 ```
 
-```{r geom-radar-fig, echo=F, eval=T, out.width="75%", fig.align="center", fig.cap="雷達圖重要元素與`ggradar()`函式引數設定"}
+```{r geom-radar-fig, echo=F, eval=T, out.width="85%", fig.align="center", fig.cap="雷達圖重要元素與`ggradar()`函式引數設定"}
 include_graphics("./figure/ggradar.png")
 ```
 
@@ -1392,6 +1390,7 @@ StuScore2=data.frame(Math=c(80,90,70),
 StuScore2=rbind(100, 0, StuScore2)
 
 # 繪製雷達圖
+library(fmsb)
 radarchart(StuScore2,
            cglty="dashed",                          # 雷達圖線條樣式
            cglcol="#9D9D9D",                        # 雷達圖線條顏色
