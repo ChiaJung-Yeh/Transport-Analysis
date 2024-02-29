@@ -1371,7 +1371,7 @@ ggradar(StuScore1, legend.text.size=10, grid.label.size=4, axis.label.size=5, ba
 
 除`ggradar`套件外，亦可透過`fmsb`套件中的`radarchart()`函式繪製雷達圖。該函式所需輸入的資料必須符合以下原則：  
 
-* 各類別必須放置在直行名稱（透過`col.names()`設定之）  
+* 各類別必須放置在直行名稱  
 * 第一橫列必須放置最大值  
 * 第二橫列必須放置最小值  
 * 所有的屬性由第三橫列開始記錄，並確保其屬同一層級  
@@ -1418,6 +1418,9 @@ ggradar(mtcars_part, legend.text.size=10, grid.label.size=4, axis.label.size=5, 
 
 
 ### 三元圖
+三元圖（Ternary Plot）用於表達三個類別之間的比例關係，
+
+
 
 ### 直線、曲線與線段
 
