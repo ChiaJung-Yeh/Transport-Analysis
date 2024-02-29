@@ -6,7 +6,7 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <title>Chapter 3 資料視覺化 | 運輸資料分析角落：初學者園地</title>
   <meta name="description" content="本書簡介R語言資料分析的基礎，含括基礎語法、dplyr套件與ggplot2套件的使用，深入淺出資料分析的步驟，最後透過交通運輸案例將所介紹的套件與函式應用於實務資料。" />
-  <meta name="generator" content="bookdown 0.35 and GitBook 2.6.7" />
+  <meta name="generator" content="bookdown 0.37 and GitBook 2.6.7" />
 
   <meta property="og:title" content="Chapter 3 資料視覺化 | 運輸資料分析角落：初學者園地" />
   <meta property="og:type" content="book" />
@@ -696,7 +696,6 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <span id="cb3-6"><a href="資料視覺化.html#cb3-6" tabindex="-1"></a><span class="fu">ggplot</span>()<span class="sc">+</span></span>
 <span id="cb3-7"><a href="資料視覺化.html#cb3-7" tabindex="-1"></a>  <span class="fu">geom_XX</span>(<span class="at">data=</span>資料, <span class="fu">aes</span>(<span class="at">x=</span>, <span class="at">y=</span>))</span></code></pre></div>
 <p>在疊圖的時候，若不同類型的圖表所使用的資料與座標軸完全相同時，可直接放置於<code>ggplot()</code>函式內即可；然若疊加的圖表所使用的資料與座標軸不一致，建議應個別在<code>geom_XX()</code>設定圖表類型時，逐一重新設置之。</p>
-<p>以下的各章節中，大部分情況下會統一採用將資料與座標軸設定放置於<code>ggplot()</code>函式內的寫法，然若遇到疊圖時無論使用的資料是否一致，會統一放在<code>geom_XX()</code>函式內。</p>
 </div>
 <div id="圖示設定" class="section level3 unnumbered hasAnchor">
 <h3><strong>圖示設定</strong><a href="資料視覺化.html#圖示設定" class="anchor-section" aria-label="Anchor link to header"></a></h3>
@@ -2587,7 +2586,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </tr>
 <tr>
 <td style="padding: 0; " colspan="100%">
-<sup></sup> <code>geom_treemap_subgroup</code>後面可接數字，表示各子類別的層級，包含：&lt;br&gt;<code>geom_treemap_subgroup2_XX</code>與<code>geom_treemap_subgroup3_XX</code>
+<sup></sup> <code>geom_treemap_subgroup</code>後面可接數字，表示各子類別的層級，包含：<code>geom_treemap_subgroup2_XX</code>與<code>geom_treemap_subgroup3_XX</code>
 </td>
 </tr>
 </tfoot>
@@ -2655,7 +2654,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </div>
 <p>在 R 語言中，可透過<code>ggalluvial</code>套件繪製桑基圖，使用此套件時，須建立由節點所組成的欄位，表達節點間的流動方向，而另有一欄位記錄出現的頻次（Frequency），以表達流動量。以圖<a href="資料視覺化.html#fig:geom-sankey-fig2">3.10</a>為例，此桑基圖用以表示各家戶所在縣市使用不同運具抵達公司所在地的通勤行為。於本案例中會出現三個階層，含括：家、運具、公司，各<strong>階層必須記錄於資料中的「表頭」</strong>。而以「運具」階層為例，其中包含兩種狀態：私有運具、公共運輸，故該階層下會出現兩個節點，各<strong>節點則詳細記錄於所屬階層的欄位中</strong>。最後必須要有一欄位記錄每個階層間流動的量，如圖<a href="資料視覺化.html#fig:geom-sankey-fig2">3.10</a>中的「頻次」欄位。</p>
 <div class="figure" style="text-align: center"><span style="display:block;" id="fig:geom-sankey-fig2"></span>
-<img src="figure/sankey_diagram_table.png" alt="桑基圖範例" width="80%" />
+<img src="figure/sankey_diagram_table.png" alt="桑基圖範例" width="90%" />
 <p class="caption">
 圖 3.10: 桑基圖範例
 </p>
@@ -2698,7 +2697,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 設定流動量
 </td>
 <td style="text-align:left;vertical-align:middle;">
-流動量欄位
+<code>y=流動量欄位</code>
 </td>
 </tr>
 </tbody>
@@ -2772,6 +2771,201 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </div>
 <div id="雷達圖" class="section level3 hasAnchor" number="3.1.14">
 <h3><span class="header-section-number">3.1.14</span> 雷達圖<a href="資料視覺化.html#雷達圖" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>雷達圖（Radar Chart）可用於比較不同類別間的在各屬性上表現的狀況，並比較各類別間的相對優勢與劣勢。該圖通常是由多邊形或圓形所構成，其中心點代表最低數值，多邊形的頂點或圓形的邊界意謂各屬性的最大值。在 R 語言中可以透過<code>ggradar</code>與<code>fmsb</code>兩套件繪製雷達圖，其安裝方式如下。</p>
+<div class="sourceCode" id="cb89"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb89-1"><a href="資料視覺化.html#cb89-1" tabindex="-1"></a><span class="co"># 安裝ggradar</span></span>
+<span id="cb89-2"><a href="資料視覺化.html#cb89-2" tabindex="-1"></a>devtools<span class="sc">::</span><span class="fu">install_github</span>(<span class="st">&quot;ricardo-bion/ggradar&quot;</span>)</span>
+<span id="cb89-3"><a href="資料視覺化.html#cb89-3" tabindex="-1"></a></span>
+<span id="cb89-4"><a href="資料視覺化.html#cb89-4" tabindex="-1"></a><span class="co"># 安裝fmsb</span></span>
+<span id="cb89-5"><a href="資料視覺化.html#cb89-5" tabindex="-1"></a><span class="fu">install.packages</span>(<span class="st">&quot;fmsb&quot;</span>)</span></code></pre></div>
+<p style="color:#003D79;font-size:18px;line-height:2">
+<strong>⌾ 基礎雷達圖</strong>
+</p>
+<p>在<code>ggradar</code>套件中繪製雷達圖，僅須透過<code>ggradar()</code>函式即可建立之，該函式中的重要引數設定詳如表<a href="資料視覺化.html#tab:geom-radar-code-tab">3.17</a>，並請參見圖<a href="資料視覺化.html#fig:geom-radar-fig">3.11</a>之示意圖，而其他細節引數設定請透過<code>?ggradar</code>查看。</p>
+<table class="table table-striped table-hover" style="font-size: 14px; margin-left: auto; margin-right: auto;">
+<caption style="font-size: initial !important;">
+<span id="tab:geom-radar-code-tab">表 3.17: </span><code>ggradar()</code>函式引數設定
+</caption>
+<thead>
+<tr>
+<th style="text-align:left;font-weight: bold;color: white !important;background-color: #8E8E8E !important;">
+引數
+</th>
+<th style="text-align:left;font-weight: bold;color: white !important;background-color: #8E8E8E !important;">
+功能設定
+</th>
+<th style="text-align:left;font-weight: bold;color: white !important;background-color: #8E8E8E !important;">
+說明
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left;vertical-align:middle;">
+<code>values.radar=</code>
+</td>
+<td style="text-align:left;vertical-align:middle;">
+雷達圈的文字標記
+</td>
+<td style="text-align:left;vertical-align:middle;">
+預設為 0%、50%、100%，且僅能設定三個標記
+</td>
+</tr>
+<tr>
+<td style="text-align:left;vertical-align:middle;">
+<code>grid.label.size=</code>
+</td>
+<td style="text-align:left;vertical-align:middle;">
+雷達圈的文字大小
+</td>
+<td style="text-align:left;vertical-align:middle;">
+數值
+</td>
+</tr>
+<tr>
+<td style="text-align:left;vertical-align:middle;">
+<code>axis.label.size=</code>
+</td>
+<td style="text-align:left;vertical-align:middle;">
+雷達屬性文字大小
+</td>
+<td style="text-align:left;vertical-align:middle;">
+數值
+</td>
+</tr>
+<tr>
+<td style="text-align:left;vertical-align:middle;">
+<code>axis.line.colour=</code>
+</td>
+<td style="text-align:left;vertical-align:middle;">
+雷達射線顏色
+</td>
+<td style="text-align:left;vertical-align:middle;">
+請參考<a href="資料視覺化.html#geom-setting-color">顏色設定</a>
+</td>
+</tr>
+<tr>
+<td style="text-align:left;vertical-align:middle;">
+<code>legend.text.size=</code>
+</td>
+<td style="text-align:left;vertical-align:middle;">
+圖例文字大小
+</td>
+<td style="text-align:left;vertical-align:middle;">
+數值
+</td>
+</tr>
+<tr>
+<td style="text-align:left;vertical-align:middle;">
+<code>legend.position=</code>
+</td>
+<td style="text-align:left;vertical-align:middle;">
+圖例位置
+</td>
+<td style="text-align:left;vertical-align:middle;">
+<code>top</code>、<code>bottom</code>、<code>right</code>、<code>left</code>（預設）
+</td>
+</tr>
+<tr>
+<td style="text-align:left;vertical-align:middle;">
+<code>background.circle.colour=</code>
+</td>
+<td style="text-align:left;vertical-align:middle;">
+雷達背景顏色
+</td>
+<td style="text-align:left;vertical-align:middle;">
+請參考<a href="資料視覺化.html#geom-setting-color">顏色設定</a>
+</td>
+</tr>
+<tr>
+<td style="text-align:left;vertical-align:middle;">
+<code>background.circle.transparency=</code>
+</td>
+<td style="text-align:left;vertical-align:middle;">
+雷達背景透明度
+</td>
+<td style="text-align:left;vertical-align:middle;">
+數值，介於 0（完全透明）與 1（完全不透明）間
+</td>
+</tr>
+</tbody>
+</table>
+<div class="figure" style="text-align: center"><span style="display:block;" id="fig:geom-radar-fig"></span>
+<img src="figure/ggradar.png" alt="雷達圖重要元素與`ggradar()`函式引數設定" width="75%" />
+<p class="caption">
+圖 3.11: 雷達圖重要元素與<code>ggradar()</code>函式引數設定
+</p>
+</div>
+<p style="color:#003D79;font-size:18px;line-height:2">
+<strong>⌾ 基礎雷達圖</strong>
+</p>
+<p>透過<code>ggradar()</code>函式繪製雷達圖時，所輸入的資料請務必符合以下原則：</p>
+<ul>
+<li>各類別必須放置在第一直行<br />
+</li>
+<li>各屬性必須由第二直行始逐行建立<br />
+</li>
+<li>所有的數值必須位於同一個區間（介於 0 與 1 之間，若非介於此區間會自動轉換）</li>
+</ul>
+<p>根據以上原則，以下以各科成績為例，建立學科分數雷達圖，程式碼撰寫如下。</p>
+<div class="sourceCode" id="cb90"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb90-1"><a href="資料視覺化.html#cb90-1" tabindex="-1"></a><span class="co"># 建議學科分數資料</span></span>
+<span id="cb90-2"><a href="資料視覺化.html#cb90-2" tabindex="-1"></a>StuScore1<span class="ot">=</span><span class="fu">data.frame</span>(<span class="at">Name=</span><span class="fu">c</span>(<span class="st">&quot;Joe&quot;</span>,<span class="st">&quot;Mary&quot;</span>,<span class="st">&quot;Robert&quot;</span>),</span>
+<span id="cb90-3"><a href="資料視覺化.html#cb90-3" tabindex="-1"></a>                     <span class="at">Math=</span><span class="fu">c</span>(<span class="dv">80</span>,<span class="dv">90</span>,<span class="dv">70</span>),</span>
+<span id="cb90-4"><a href="資料視覺化.html#cb90-4" tabindex="-1"></a>                     <span class="at">English=</span><span class="fu">c</span>(<span class="dv">45</span>,<span class="dv">90</span>,<span class="dv">65</span>),</span>
+<span id="cb90-5"><a href="資料視覺化.html#cb90-5" tabindex="-1"></a>                     <span class="at">Chemistry=</span><span class="fu">c</span>(<span class="dv">95</span>,<span class="dv">60</span>,<span class="dv">80</span>), </span>
+<span id="cb90-6"><a href="資料視覺化.html#cb90-6" tabindex="-1"></a>                     <span class="at">Biology=</span><span class="fu">c</span>(<span class="dv">60</span>,<span class="dv">85</span>,<span class="dv">50</span>),</span>
+<span id="cb90-7"><a href="資料視覺化.html#cb90-7" tabindex="-1"></a>                     <span class="at">Physics=</span><span class="fu">c</span>(<span class="dv">95</span>,<span class="dv">80</span>,<span class="dv">55</span>))</span>
+<span id="cb90-8"><a href="資料視覺化.html#cb90-8" tabindex="-1"></a></span>
+<span id="cb90-9"><a href="資料視覺化.html#cb90-9" tabindex="-1"></a><span class="co"># 轉換數值至0與1間</span></span>
+<span id="cb90-10"><a href="資料視覺化.html#cb90-10" tabindex="-1"></a>StuScore1<span class="ot">=</span><span class="fu">mutate_at</span>(StuScore1, <span class="dv">2</span><span class="sc">:</span><span class="dv">6</span>, <span class="cf">function</span>(x) x<span class="sc">/</span><span class="dv">100</span>)</span>
+<span id="cb90-11"><a href="資料視覺化.html#cb90-11" tabindex="-1"></a></span>
+<span id="cb90-12"><a href="資料視覺化.html#cb90-12" tabindex="-1"></a><span class="co"># 繪製雷達圖</span></span>
+<span id="cb90-13"><a href="資料視覺化.html#cb90-13" tabindex="-1"></a><span class="fu">ggradar</span>(StuScore1, <span class="at">legend.text.size=</span><span class="dv">10</span>, <span class="at">grid.label.size=</span><span class="dv">4</span>, <span class="at">axis.label.size=</span><span class="dv">5</span>, <span class="at">background.circle.transparency=</span><span class="dv">0</span>)</span></code></pre></div>
+<p><img src="series_files/figure-html/geom-radar-eg1-1.png" width="70%" style="display: block; margin: auto;" /></p>
+<p>請注意此一範例中，所有學生（Name）必須放置於資料的第一直行，而分數屬性則羅列於第二直行後，並確保分數的數值必須介於 0 與 1 間，故以上程式碼中透過<a href="資料清洗與處理.html#新增資料屬性"><code>mutate_at()</code></a>函式統一修正（除以 100）數值。</p>
+<p>除<code>ggradar</code>套件外，亦可透過<code>fmsb</code>套件中的<code>radarchart()</code>函式繪製雷達圖。該函式所需輸入的資料必須符合以下原則：</p>
+<ul>
+<li>各類別必須放置在直行名稱（透過<code>col.names()</code>設定之）<br />
+</li>
+<li>第一橫列必須放置最大值<br />
+</li>
+<li>第二橫列必須放置最小值<br />
+</li>
+<li>所有的屬性由第三橫列開始記錄，並確保其屬同一層級</li>
+</ul>
+<p>此一函式有非常多的引數可供設定，提升視覺效果之呈現，惟在此無法逐一羅列，請參見<code>?radarchart</code>。以下範例中再次以學生分數資料為例，程式碼撰寫如下。</p>
+<div class="sourceCode" id="cb91"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb91-1"><a href="資料視覺化.html#cb91-1" tabindex="-1"></a><span class="co"># 先建立分數資料</span></span>
+<span id="cb91-2"><a href="資料視覺化.html#cb91-2" tabindex="-1"></a>StuScore2<span class="ot">=</span><span class="fu">data.frame</span>(<span class="at">Math=</span><span class="fu">c</span>(<span class="dv">80</span>,<span class="dv">90</span>,<span class="dv">70</span>),</span>
+<span id="cb91-3"><a href="資料視覺化.html#cb91-3" tabindex="-1"></a>                     <span class="at">English=</span><span class="fu">c</span>(<span class="dv">45</span>,<span class="dv">90</span>,<span class="dv">65</span>),</span>
+<span id="cb91-4"><a href="資料視覺化.html#cb91-4" tabindex="-1"></a>                     <span class="at">Chemistry=</span><span class="fu">c</span>(<span class="dv">95</span>,<span class="dv">60</span>,<span class="dv">80</span>), </span>
+<span id="cb91-5"><a href="資料視覺化.html#cb91-5" tabindex="-1"></a>                     <span class="at">Biology=</span><span class="fu">c</span>(<span class="dv">60</span>,<span class="dv">85</span>,<span class="dv">50</span>),</span>
+<span id="cb91-6"><a href="資料視覺化.html#cb91-6" tabindex="-1"></a>                     <span class="at">Physics=</span><span class="fu">c</span>(<span class="dv">95</span>,<span class="dv">80</span>,<span class="dv">55</span>))</span>
+<span id="cb91-7"><a href="資料視覺化.html#cb91-7" tabindex="-1"></a></span>
+<span id="cb91-8"><a href="資料視覺化.html#cb91-8" tabindex="-1"></a><span class="co"># 第一橫列補上最大值；第二橫列補上最小值</span></span>
+<span id="cb91-9"><a href="資料視覺化.html#cb91-9" tabindex="-1"></a>StuScore2<span class="ot">=</span><span class="fu">rbind</span>(<span class="dv">100</span>, <span class="dv">0</span>, StuScore2)</span>
+<span id="cb91-10"><a href="資料視覺化.html#cb91-10" tabindex="-1"></a></span>
+<span id="cb91-11"><a href="資料視覺化.html#cb91-11" tabindex="-1"></a><span class="co"># 繪製雷達圖</span></span>
+<span id="cb91-12"><a href="資料視覺化.html#cb91-12" tabindex="-1"></a><span class="fu">radarchart</span>(StuScore2,</span>
+<span id="cb91-13"><a href="資料視覺化.html#cb91-13" tabindex="-1"></a>           <span class="at">cglty=</span><span class="st">&quot;dashed&quot;</span>,                          <span class="co"># 雷達圖線條樣式</span></span>
+<span id="cb91-14"><a href="資料視覺化.html#cb91-14" tabindex="-1"></a>           <span class="at">cglcol=</span><span class="st">&quot;#9D9D9D&quot;</span>,                        <span class="co"># 雷達圖線條顏色</span></span>
+<span id="cb91-15"><a href="資料視覺化.html#cb91-15" tabindex="-1"></a>           <span class="at">pcol=</span><span class="fu">c</span>(<span class="st">&quot;#46A3FF&quot;</span>,<span class="st">&quot;#00DB00&quot;</span>,<span class="st">&quot;#EA0000&quot;</span>),   <span class="co"># 各類別顏色</span></span>
+<span id="cb91-16"><a href="資料視覺化.html#cb91-16" tabindex="-1"></a>           <span class="at">plwd=</span><span class="dv">2</span>,                                  <span class="co"># 各類別線條寬度</span></span>
+<span id="cb91-17"><a href="資料視覺化.html#cb91-17" tabindex="-1"></a>           <span class="at">plty=</span><span class="dv">1</span>)                                  <span class="co"># 各類別線條樣式</span></span></code></pre></div>
+<p><img src="series_files/figure-html/geom-radar-eg2-1.png" width="70%" style="display: block; margin: auto;" /></p>
+<p style="color:#003D79;font-size:18px;line-height:2">
+<strong>⌾ 標準化雷達圖</strong>
+</p>
+<p>雷達圖會呈現不同類別間多個屬性的關係，惟各屬性的數值大小不一、量級不同、單位不一致，無法直接將原始數值做比較，故在<code>ggradar</code>套件中，通常會將數據標準化再繪製雷達圖。以<code>mtcars</code>資料為例，先將各屬性的數值標準化後再繪製雷達圖，程式碼撰寫如下。</p>
+<div class="sourceCode" id="cb92"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb92-1"><a href="資料視覺化.html#cb92-1" tabindex="-1"></a><span class="co"># 取前五筆資料繪製雷達圖</span></span>
+<span id="cb92-2"><a href="資料視覺化.html#cb92-2" tabindex="-1"></a>mtcars_part<span class="ot">=</span>mtcars[<span class="dv">1</span><span class="sc">:</span><span class="dv">5</span>,]</span>
+<span id="cb92-3"><a href="資料視覺化.html#cb92-3" tabindex="-1"></a>mtcars_part<span class="sc">$</span>Car<span class="ot">=</span><span class="fu">row.names</span>(mtcars_part)</span>
+<span id="cb92-4"><a href="資料視覺化.html#cb92-4" tabindex="-1"></a></span>
+<span id="cb92-5"><a href="資料視覺化.html#cb92-5" tabindex="-1"></a><span class="co"># 擷取需要的屬性繪製雷達圖，並將各屬性標準化</span></span>
+<span id="cb92-6"><a href="資料視覺化.html#cb92-6" tabindex="-1"></a>mtcars_part<span class="ot">=</span><span class="fu">select</span>(mtcars_part, Car, mpg, disp, hp, wt, qsec)<span class="sc">%&gt;%</span></span>
+<span id="cb92-7"><a href="資料視覺化.html#cb92-7" tabindex="-1"></a>  <span class="fu">mutate_at</span>(<span class="fu">vars</span>(<span class="sc">-</span>Car), scales<span class="sc">::</span>rescale)</span>
+<span id="cb92-8"><a href="資料視覺化.html#cb92-8" tabindex="-1"></a></span>
+<span id="cb92-9"><a href="資料視覺化.html#cb92-9" tabindex="-1"></a><span class="co"># 繪製雷達圖</span></span>
+<span id="cb92-10"><a href="資料視覺化.html#cb92-10" tabindex="-1"></a><span class="fu">ggradar</span>(mtcars_part, <span class="at">legend.text.size=</span><span class="dv">10</span>, <span class="at">grid.label.size=</span><span class="dv">4</span>, <span class="at">axis.label.size=</span><span class="dv">5</span>, <span class="at">background.circle.transparency=</span><span class="dv">0</span>)</span></code></pre></div>
+<p><img src="series_files/figure-html/geom-radar-eg3-1.png" width="70%" style="display: block; margin: auto;" /></p>
 </div>
 <div id="三元圖" class="section level3 hasAnchor" number="3.1.15">
 <h3><span class="header-section-number">3.1.15</span> 三元圖<a href="資料視覺化.html#三元圖" class="anchor-section" aria-label="Anchor link to header"></a></h3>

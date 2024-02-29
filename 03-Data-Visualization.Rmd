@@ -22,6 +22,7 @@ library(ggradar)
 library(ggtext)
 library(corrplot)
 library(ggalluvial)
+library(fmsb)
 
 Sys.setlocale(category = "LC_ALL", locale = "zh_TW.UTF-8")
 windowsFonts(A=windowsFont("Taipei Sans TC Beta"))
@@ -128,8 +129,6 @@ ggplot()+
 ```
 
 在疊圖的時候，若不同類型的圖表所使用的資料與座標軸完全相同時，可直接放置於`ggplot()`函式內即可；然若疊加的圖表所使用的資料與座標軸不一致，建議應個別在`geom_XX()`設定圖表類型時，逐一重新設置之。
-
-以下的各章節中，大部分情況下會統一採用將資料與座標軸設定放置於`ggplot()`函式內的寫法，然若遇到疊圖時無論使用的資料是否一致，會統一放在`geom_XX()`函式內。
 
 
 ### **圖示設定** {-}
@@ -1142,7 +1141,7 @@ kable(temp, booktabs=T, escape=F, caption="`treemapify`重要函式", col.names=
   column_spec(1:2 ,extra_css="vertical-align:middle;")%>%
   collapse_rows(3)%>%
   row_spec(0, bold=T, color="white", background="#8E8E8E")%>%
-  footnote("`geom_treemap_subgroup`後面可接數字，表示各子類別的層級，包含：<br>`geom_treemap_subgroup2_XX`與`geom_treemap_subgroup3_XX`")
+  footnote("`geom_treemap_subgroup`後面可接數字，表示各子類別的層級，包含：`geom_treemap_subgroup2_XX`與`geom_treemap_subgroup3_XX`")
 ```
 
 
@@ -1239,14 +1238,14 @@ include_graphics("./figure/sankey_diagram.png")
 
 在 R 語言中，可透過`ggalluvial`套件繪製桑基圖，使用此套件時，須建立由節點所組成的欄位，表達節點間的流動方向，而另有一欄位記錄出現的頻次（Frequency），以表達流動量。以圖\@ref(fig:geom-sankey-fig2)為例，此桑基圖用以表示各家戶所在縣市使用不同運具抵達公司所在地的通勤行為。於本案例中會出現三個階層，含括：家、運具、公司，各**階層必須記錄於資料中的「表頭」**。而以「運具」階層為例，其中包含兩種狀態：私有運具、公共運輸，故該階層下會出現兩個節點，各**節點則詳細記錄於所屬階層的欄位中**。最後必須要有一欄位記錄每個階層間流動的量，如圖\@ref(fig:geom-sankey-fig2)中的「頻次」欄位。
 
-```{r geom-sankey-fig2, echo=F, eval=T, out.width="80%", fig.align="center", fig.cap="桑基圖範例"}
+```{r geom-sankey-fig2, echo=F, eval=T, out.width="90%", fig.align="center", fig.cap="桑基圖範例"}
 include_graphics("./figure/sankey_diagram_table.png")
 ```
 
 在繪製桑基圖時，可以透過`ggplot()`函式設定各階層與流動量，引數設定如表\@ref(tab:geom-sankey-code1-tab)所示。
 
 ```{r geom-sankey-code1-tab, echo=F, eval=T}
-gs_code=data.frame(argument=c("`axis[1-9]=`","`y=`"), setting=c("設定階層","設定流動量"), explain=c("`axis1=欄位名稱`,`axis2=欄位名稱`,...","流動量欄位"))
+gs_code=data.frame(argument=c("`axis[1-9]=`","`y=`"), setting=c("設定階層","設定流動量"), explain=c("`axis1=欄位名稱`,`axis2=欄位名稱`,...","`y=流動量欄位`"))
 
 kable(gs_code, booktabs=T, escape=F, caption="桑基圖引數設定", col.names=c("引數","功能設定","說明"))%>%
   kable_styling(bootstrap_options=c("striped", "hover"), font_size=14)%>%
@@ -1316,6 +1315,108 @@ ggplot(data=scmig, aes(axis1=From, axis2=To, y=Migration))+
 
 
 ### 雷達圖
+雷達圖（Radar Chart）可用於比較不同類別間的在各屬性上表現的狀況，並比較各類別間的相對優勢與劣勢。該圖通常是由多邊形或圓形所構成，其中心點代表最低數值，多邊形的頂點或圓形的邊界意謂各屬性的最大值。在 R 語言中可以透過`ggradar`與`fmsb`兩套件繪製雷達圖，其安裝方式如下。
+
+```{r geom-radar-package, echo=T, eval=F}
+# 安裝ggradar
+devtools::install_github("ricardo-bion/ggradar")
+
+# 安裝fmsb
+install.packages("fmsb")
+```
+
+
+<p style="color:#003D79;font-size:18px;line-height:2">**⌾ 基礎雷達圖**</p>  
+在`ggradar`套件中繪製雷達圖，僅須透過`ggradar()`函式即可建立之，該函式中的重要引數設定詳如表\@ref(tab:geom-radar-code-tab)，並請參見圖\@ref(fig:geom-radar-fig)之示意圖，而其他細節引數設定請透過`?ggradar`查看。
+
+```{r geom-radar-code-tab, echo=F, eval=T}
+gr_code=data.frame(argument=c("`values.radar=`","`grid.label.size=`","`axis.label.size=`","`axis.line.colour=`","`legend.text.size=`","`legend.position=`","`background.circle.colour=`","`background.circle.transparency=`"),
+                   setting=c("雷達圈的文字標記","雷達圈的文字大小","雷達屬性文字大小","雷達射線顏色","圖例文字大小","圖例位置","雷達背景顏色","雷達背景透明度"), explain=c("預設為 0%、50%、100%，且僅能設定三個標記","數值","數值","請參考<A href='#geom-setting-color'>顏色設定</A>","數值","`top`、`bottom`、`right`、`left`（預設）","請參考<A href='#geom-setting-color'>顏色設定</A>","數值，介於 0（完全透明）與 1（完全不透明）間"))
+
+kable(gr_code, booktabs=T, escape=F, caption="`ggradar()`函式引數設定", col.names=c("引數","功能設定","說明"))%>%
+  kable_styling(bootstrap_options=c("striped", "hover"), font_size=14)%>%
+  column_spec(1:3 ,extra_css="vertical-align:middle;")%>%
+  row_spec(0, bold=T, color="white", background="#8E8E8E")
+```
+
+```{r geom-radar-fig, echo=F, eval=T, out.width="75%", fig.align="center", fig.cap="雷達圖重要元素與`ggradar()`函式引數設定"}
+include_graphics("./figure/ggradar.png")
+```
+
+<p style="color:#003D79;font-size:18px;line-height:2">**⌾ 基礎雷達圖**</p>  
+透過`ggradar()`函式繪製雷達圖時，所輸入的資料請務必符合以下原則：  
+
+* 各類別必須放置在第一直行  
+* 各屬性必須由第二直行始逐行建立  
+* 所有的數值必須位於同一個區間（介於 0 與 1 之間，若非介於此區間會自動轉換）  
+
+根據以上原則，以下以各科成績為例，建立學科分數雷達圖，程式碼撰寫如下。
+
+```{r geom-radar-eg1, echo=T, eval=T, out.width="70%", fig.align="center", warning=F}
+# 建議學科分數資料
+StuScore1=data.frame(Name=c("Joe","Mary","Robert"),
+                     Math=c(80,90,70),
+                     English=c(45,90,65),
+                     Chemistry=c(95,60,80), 
+                     Biology=c(60,85,50),
+                     Physics=c(95,80,55))
+
+# 轉換數值至0與1間
+StuScore1=mutate_at(StuScore1, 2:6, function(x) x/100)
+
+# 繪製雷達圖
+ggradar(StuScore1, legend.text.size=10, grid.label.size=4, axis.label.size=5, background.circle.transparency=0)
+```
+
+請注意此一範例中，所有學生（Name）必須放置於資料的第一直行，而分數屬性則羅列於第二直行後，並確保分數的數值必須介於 0 與 1 間，故以上程式碼中透過[`mutate_at()`](#新增資料屬性)函式統一修正（除以 100）數值。
+
+
+除`ggradar`套件外，亦可透過`fmsb`套件中的`radarchart()`函式繪製雷達圖。該函式所需輸入的資料必須符合以下原則：  
+
+* 各類別必須放置在直行名稱（透過`col.names()`設定之）  
+* 第一橫列必須放置最大值  
+* 第二橫列必須放置最小值  
+* 所有的屬性由第三橫列開始記錄，並確保其屬同一層級  
+
+此一函式有非常多的引數可供設定，提升視覺效果之呈現，惟在此無法逐一羅列，請參見`?radarchart`。以下範例中再次以學生分數資料為例，程式碼撰寫如下。
+
+```{r geom-radar-eg2, echo=T, eval=T, out.width="70%", fig.align="center", warning=F}
+# 先建立分數資料
+StuScore2=data.frame(Math=c(80,90,70),
+                     English=c(45,90,65),
+                     Chemistry=c(95,60,80), 
+                     Biology=c(60,85,50),
+                     Physics=c(95,80,55))
+
+# 第一橫列補上最大值；第二橫列補上最小值
+StuScore2=rbind(100, 0, StuScore2)
+
+# 繪製雷達圖
+radarchart(StuScore2,
+           cglty="dashed",                          # 雷達圖線條樣式
+           cglcol="#9D9D9D",                        # 雷達圖線條顏色
+           pcol=c("#46A3FF","#00DB00","#EA0000"),   # 各類別顏色
+           plwd=2,                                  # 各類別線條寬度
+           plty=1)                                  # 各類別線條樣式
+```
+
+
+<p style="color:#003D79;font-size:18px;line-height:2">**⌾ 標準化雷達圖**</p>  
+雷達圖會呈現不同類別間多個屬性的關係，惟各屬性的數值大小不一、量級不同、單位不一致，無法直接將原始數值做比較，故在`ggradar`套件中，通常會將數據標準化再繪製雷達圖。以`mtcars`資料為例，先將各屬性的數值標準化後再繪製雷達圖，程式碼撰寫如下。
+
+```{r geom-radar-eg3, echo=T, eval=T, out.width="70%", fig.align="center", warning=F}
+# 取前五筆資料繪製雷達圖
+mtcars_part=mtcars[1:5,]
+mtcars_part$Car=row.names(mtcars_part)
+
+# 擷取需要的屬性繪製雷達圖，並將各屬性標準化
+mtcars_part=select(mtcars_part, Car, mpg, disp, hp, wt, qsec)%>%
+  mutate_at(vars(-Car), scales::rescale)
+
+# 繪製雷達圖
+ggradar(mtcars_part, legend.text.size=10, grid.label.size=4, axis.label.size=5, background.circle.transparency=0)
+```
+
 
 ### 三元圖
 
