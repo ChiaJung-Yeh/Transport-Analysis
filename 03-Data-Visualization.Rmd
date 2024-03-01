@@ -23,6 +23,7 @@ library(ggtext)
 library(corrplot)
 library(ggalluvial)
 library(fmsb)
+library(ggtern)
 
 Sys.setlocale(category = "LC_ALL", locale = "zh_TW.UTF-8")
 windowsFonts(A=windowsFont("Taipei Sans TC Beta"))
@@ -1242,9 +1243,9 @@ include_graphics("./figure/sankey_diagram.png")
 include_graphics("./figure/sankey_diagram_table.png")
 ```
 
-在繪製桑基圖時，可以透過`ggplot()`函式設定各階層與流動量，引數設定如表\@ref(tab:geom-sankey-code1-tab)所示。
+在繪製桑基圖時，可以透過`ggplot()`函式設定各階層與流動量，引數設定如表\@ref(tab:geom-sankey-code-tab)所示。
 
-```{r geom-sankey-code1-tab, echo=F, eval=T}
+```{r geom-sankey-code-tab, echo=F, eval=T}
 gs_code=data.frame(argument=c("`axis[1-9]=`","`y=`"), setting=c("設定階層","設定流動量"), explain=c("`axis1=欄位名稱`,`axis2=欄位名稱`,...","`y=流動量欄位`"))
 
 kable(gs_code, booktabs=T, escape=F, caption="桑基圖引數設定", col.names=c("引數","功能設定","說明"))%>%
@@ -1253,7 +1254,14 @@ kable(gs_code, booktabs=T, escape=F, caption="桑基圖引數設定", col.names=
   row_spec(0, bold=T, color="white", background="#8E8E8E")
 ```
 
-除上述的階層與流動量設定外，`geom_alluvium()`函式可用以設定節線的樣式；`geom_stratum()`函式則用以設定節點樣式，函式中的引數設定與其他圖表雷同，而通常會設定`fill=`引數依據不同類別填色。
+除上述的階層與流動量設定外，`geom_alluvium()`函式可用以設定節線的樣式；`geom_stratum()`函式則用以設定節點樣式，函式中的引數設定與其他圖表雷同，而通常會設定`fill=`引數依據不同類別填色。綜上所論，繪製桑基圖的程式撰寫架構如下。
+
+```{r geom-sankey-code, echo=T, eval=F}
+ggplot(data=資料, aes(axis1=階層1, axis2=階層2, ...., y=頻次))+   # 設定階層與頻次
+  geom_alluvium()+                                                # 設定節線樣式
+  geom_stratum()                                                  # 設定節點樣式
+```
+
 
 <p style="color:#003D79;font-size:18px;line-height:2">**⌾ 基礎桑基圖**</p>  
 桑基圖有利於表達階層間的流動，以下範例以`HairEyeColor`資料展示桑基圖，該資料中詳細記載各眼睛的顏色（Eye）、髮色（Hair）、性別（Sex）及其總數量（Freq）。程式碼撰寫如下，首先透過`ggplot()`函式設定各階層（`axis[1-9]=`）與流動量（`y`），並利用`geom_alluvium()`函式設定節線樣式，以性別（Sex）予以填色，而後`geom_stratum()`函式則設定節點樣式。
@@ -1418,11 +1426,59 @@ ggradar(mtcars_part, legend.text.size=10, grid.label.size=4, axis.label.size=5, 
 
 
 ### 三元圖
-三元圖（Ternary Plot）用於表達三個類別之間的比例關係，
+三元圖（Ternary Plot）用於表達三個類別之間的比例關係，圖中每一點所對應至座標軸的數值加總必為 100，如圖\@ref(fig:geom-ternary-fig)之示意圖所示。
 
+```{r geom-ternary-fig, echo=F, eval=T, out.width="45%", fig.align="center", fig.cap="三元圖示意圖"}
+include_graphics("./figure/ggtern.png")
+```
+
+在 R 語言中可以透過`ggtern`套件中的`ggtern()`函式建立三元圖，並利用`geom_point()`函式將點繪製其上，程式撰寫架構如下。
+
+```{r geom-ternary-code, echo=T, eval=F}
+ggtern(data=資料, aes(x=變數1, y=變數2, z=變數3))+
+  geom_point()
+```
+
+<p style="color:#003D79;font-size:18px;line-height:2">**⌾ 基礎三元圖**</p>  
+三元圖可以表達不同的三個類別之間的比例關係，以臺灣 2024 年總統選舉為例，有三個政黨推派候選人，故相當適合透過三元圖表達投票結果。以下程式碼中先行讀取全臺各鄉鎮的總統投票結果資料（tw_vote），其中記錄總票數（Votes_Total），以及各政黨的得票率，其中包含 KMT（國民黨）、DPP（民進黨）、TPP（民眾黨）三者。
+
+```{r geom-ternary-eg1, echo=T, eval=T, out.width="70%", fig.align="center", warning=F}
+# 讀取資料
+tw_vote=read.csv("https://raw.githubusercontent.com/ChiaJung-Yeh/Transport-Analysis/master/Data/tw_president_vote.csv")
+
+# 篩選北部地區的資料
+nor_vote=filter(tw_vote, COUNTYNAME %in% c("臺北市","新北市","桃園市","基隆市","新竹市","新竹縣","宜蘭縣"))
+
+ggtern(data=nor_vote, aes(x=TPP, y=DPP, z=KMT))+
+  geom_point()
+```
+
+
+<p style="color:#003D79;font-size:18px;line-height:2">**⌾ 三元圖--以填色表示不同類別**</p>  
+在三元圖的打點資料中，我們亦可將點利用大小表示量級，或利用顏色表示類別，其設定方式與[`geom_point()`](#散布圖)函式完全一致。以上述總統投票結果資料為例，針對不同縣市給予不同顏色，如是可進一步觀察各縣市的政治傾向。
+
+```{r geom-ternary-eg2, echo=T, eval=T, out.width="70%", fig.align="center", warning=F}
+ggtern(data=nor_vote, aes(x=TPP, y=DPP, z=KMT))+
+  geom_point(aes(color=COUNTYNAME))
+```
+
+
+<p style="color:#003D79;font-size:18px;line-height:2">**⌾ 三元圖設計細節調整**</p>  
+除以上調整外，在`ggtern`套件中另外提供諸多函式可調整圖表的細節，如`tern_limits()`可用以設定座標軸的標記間隔，其中設定`breaks=`引數可調整之。以下程式碼中`breaks=seq(0.1,1,by=0.1)`表示由 0.1 始標記，並每 0.1 為間隔標誌 1。另外該套件亦提供許多[主題設定的函式](https://rdrr.io/cran/ggtern/man/ggtern_themes.html)，皆以`theme_`開頭，如以下程式碼中利用`theme_arrownormal()`函式在三角形的邊上加上箭頭，用以表示特定類別的傾向，有利於觀察與判讀。
+
+```{r geom-ternary-eg3, echo=T, eval=T, out.width="70%", fig.align="center", warning=F}
+ggtern(data=nor_vote, aes(x=TPP, y=DPP, z=KMT))+
+  geom_point(aes(color=COUNTYNAME))+
+  tern_limits(breaks=seq(0.1,1,by=0.1))+
+  theme_arrownormal()
+```
 
 
 ### 直線、曲線與線段
+在圖表上我們往往會增加輔助線，有助於讀者判讀，或增添趨勢線
+
+
+
 
 
 
