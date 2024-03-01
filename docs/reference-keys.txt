@@ -173,3 +173,4 @@ tab:geom-radar-code-tab
 fig:geom-radar-fig
 tab:geom-sankey-code-tab
 fig:geom-ternary-fig
+tab:geom-linecurve-code-tab

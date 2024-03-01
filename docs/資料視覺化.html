@@ -3013,7 +3013,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <p style="color:#003D79;font-size:18px;line-height:2">
 <strong>⌾ 三元圖設計細節調整</strong>
 </p>
-<p>除以上調整外，在<code>ggtern</code>套件中另外提供諸多函式可調整圖表的細節，如<code>tern_limits()</code>可用以設定座標軸的標記間隔，其中設定<code>breaks=</code>引數可調整之。以下程式碼中<code>breaks=seq(0.1,1,by=0.1)</code>表示由 0.1 始標記，並每 0.1 為間隔標誌 1。另外該套件亦提供許多<a href="https://rdrr.io/cran/ggtern/man/ggtern_themes.html">主題設定的函式</a>，皆以<code>theme_</code>開頭，如以下程式碼中利用<code>theme_arrownormal()</code>函式在三角形的邊上加上箭頭，用以表示特定類別的傾向，有利於觀察與判讀。</p>
+<p>除以上調整外，在<code>ggtern</code>套件中另外提供諸多函式可調整圖表的細節，如<code>tern_limits()</code>可用以設定座標軸的標記間隔，其中設定<code>breaks=</code>引數可調整之。以下程式碼中<code>breaks=seq(0.1,1,by=0.1)</code>表示由 0.1 始標記，並每 0.1 為間隔標至 1。另外該套件亦提供許多<a href="https://rdrr.io/cran/ggtern/man/ggtern_themes.html">主題設定的函式</a>，皆以<code>theme_</code>開頭，如以下程式碼中利用<code>theme_arrownormal()</code>函式在三角形的邊上加上箭頭，用以表示特定類別的傾向，有利於觀察與判讀。</p>
 <div class="sourceCode" id="cb102"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb102-1"><a href="資料視覺化.html#cb102-1" tabindex="-1"></a><span class="fu">ggtern</span>(<span class="at">data=</span>nor_vote, <span class="fu">aes</span>(<span class="at">x=</span>TPP, <span class="at">y=</span>DPP, <span class="at">z=</span>KMT))<span class="sc">+</span></span>
 <span id="cb102-2"><a href="資料視覺化.html#cb102-2" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="fu">aes</span>(<span class="at">color=</span>COUNTYNAME))<span class="sc">+</span></span>
 <span id="cb102-3"><a href="資料視覺化.html#cb102-3" tabindex="-1"></a>  <span class="fu">tern_limits</span>(<span class="at">breaks=</span><span class="fu">seq</span>(<span class="fl">0.1</span>,<span class="dv">1</span>,<span class="at">by=</span><span class="fl">0.1</span>))<span class="sc">+</span></span>
@@ -3022,6 +3022,83 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </div>
 <div id="直線曲線與線段" class="section level3 hasAnchor" number="3.1.16">
 <h3><span class="header-section-number">3.1.16</span> 直線、曲線與線段<a href="資料視覺化.html#直線曲線與線段" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>在圖表上我們往往會增加輔助線，用以說明資料的分界、資料的趨勢，或表達資料點間移動的方向性，而在<code>ggplot2</code>套件中可利用表<a href="資料視覺化.html#tab:geom-linecurve-code-tab">3.18</a>所列函式增加直線、曲線或線段。</p>
+<table class="table table-striped table-hover" style="font-size: 14px; margin-left: auto; margin-right: auto;">
+<caption style="font-size: initial !important;">
+<span id="tab:geom-linecurve-code-tab">表 3.18: </span>直線、曲線與線段函式引數設定
+</caption>
+<thead>
+<tr>
+<th style="text-align:left;font-weight: bold;color: white !important;background-color: #8E8E8E !important;">
+引數
+</th>
+<th style="text-align:left;font-weight: bold;color: white !important;background-color: #8E8E8E !important;">
+功能設定
+</th>
+<th style="text-align:left;font-weight: bold;color: white !important;background-color: #8E8E8E !important;">
+說明
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left;vertical-align:middle;">
+<code>geom_hline=</code>
+</td>
+<td style="text-align:left;vertical-align:middle;">
+增加水平直線
+</td>
+<td style="text-align:left;vertical-align:middle;">
+<code>xintercept</code>:設定橫軸座標
+</td>
+</tr>
+<tr>
+<td style="text-align:left;vertical-align:middle;">
+<code>geom_vline=</code>
+</td>
+<td style="text-align:left;vertical-align:middle;">
+增加垂直直線
+</td>
+<td style="text-align:left;vertical-align:middle;">
+<code>yintercept</code>:設定縱軸座標
+</td>
+</tr>
+<tr>
+<td style="text-align:left;vertical-align:middle;">
+<code>geom_abline=</code>
+</td>
+<td style="text-align:left;vertical-align:middle;">
+增加斜直線
+</td>
+<td style="text-align:left;vertical-align:middle;">
+<code>slope</code>:設定斜率<br><code>intercept</code>:設定截距
+</td>
+</tr>
+<tr>
+<td style="text-align:left;vertical-align:middle;">
+<code>geom_segment=</code>
+</td>
+<td style="text-align:left;vertical-align:middle;">
+增加線段
+</td>
+<td style="text-align:left;vertical-align:middle;">
+<code>x=</code>:設定起始點 X 座標<br><code>y=</code>:設定起始點 Y 座標<br><code>xend=</code>:設定末端點 X 座標<br><code>yend=</code>:設定末端點 Y 座標<br><code>arrow</code>:設定箭頭樣式（未設定此引述即無箭頭）<br><code>arrow.fill</code>:設定箭頭的顏色<br><code>lineend</code>:設定箭頭末端點樣式（<code>round</code>、<code>butt</code>、<code>square</code>）<br><code>linejoin</code>:設定箭頭起始點樣式（<code>round</code>、<code>butt</code>、<code>square</code>）
+</td>
+</tr>
+<tr>
+<td style="text-align:left;vertical-align:middle;">
+<code>geom_curve=</code>
+</td>
+<td style="text-align:left;vertical-align:middle;">
+增加曲線
+</td>
+<td style="text-align:left;vertical-align:middle;">
+所有<code>geom_segement()</code>函式的引數<br><code>curvature</code>:設定曲率（正值向右曲；負值向左曲）
+</td>
+</tr>
+</tbody>
+</table>
+<p>此外，以上所有函式皆可透過<code>color=</code>設定線條<A href='#geom-setting-color'>顏色</A>；<code>linetype=</code>設定<A href='#geom-setting-linetype'>線條樣式</A>；<code>linewidth=</code>設定線條粗細；<code>alpha=</code>設定透明度。</p>
 </div>
 </div>
 <div id="圖表文字與插圖" class="section level2 hasAnchor" number="3.2">
