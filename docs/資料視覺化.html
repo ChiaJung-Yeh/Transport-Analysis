@@ -624,7 +624,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li>觀察各類別間的相對優勢
 </td>
 <td style="text-align:center;vertical-align:middle;">
-<strong><code>ggradar</code></strong>
+<strong><code>ggradar</code></strong><br><code>fmsb</code>
 </td>
 <td style="text-align:left;vertical-align:middle;">
 <code>ggradar()</code>
@@ -3030,6 +3030,84 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <thead>
 <tr>
 <th style="text-align:left;font-weight: bold;color: white !important;background-color: #8E8E8E !important;">
+函式
+</th>
+<th style="text-align:left;font-weight: bold;color: white !important;background-color: #8E8E8E !important;">
+功能
+</th>
+<th style="text-align:left;font-weight: bold;color: white !important;background-color: #8E8E8E !important;">
+引數
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left;vertical-align:middle;">
+<code>geom_hline()</code>
+</td>
+<td style="text-align:left;vertical-align:middle;">
+增加水平直線
+</td>
+<td style="text-align:left;vertical-align:middle;">
+<code>xintercept</code>:設定橫軸座標
+</td>
+</tr>
+<tr>
+<td style="text-align:left;vertical-align:middle;">
+<code>geom_vline()</code>
+</td>
+<td style="text-align:left;vertical-align:middle;">
+增加垂直直線
+</td>
+<td style="text-align:left;vertical-align:middle;">
+<code>yintercept</code>:設定縱軸座標
+</td>
+</tr>
+<tr>
+<td style="text-align:left;vertical-align:middle;">
+<code>geom_abline()</code>
+</td>
+<td style="text-align:left;vertical-align:middle;">
+增加斜直線
+</td>
+<td style="text-align:left;vertical-align:middle;">
+<code>slope</code>:設定斜率<br><code>intercept</code>:設定截距
+</td>
+</tr>
+<tr>
+<td style="text-align:left;vertical-align:middle;">
+<code>geom_segment()</code>
+</td>
+<td style="text-align:left;vertical-align:middle;">
+增加線段
+</td>
+<td style="text-align:left;vertical-align:middle;">
+<code>x=</code>:設定起始點 X 座標<br><code>y=</code>:設定起始點 Y 座標<br><code>xend=</code>:設定末端點 X 座標<br><code>yend=</code>:設定末端點 Y 座標<br><code>arrow</code>:設定箭頭樣式（未設定此引述即無箭頭）<br><code>arrow.fill</code>:設定箭頭的顏色
+</td>
+</tr>
+<tr>
+<td style="text-align:left;vertical-align:middle;">
+<code>geom_curve()</code>
+</td>
+<td style="text-align:left;vertical-align:middle;">
+增加曲線
+</td>
+<td style="text-align:left;vertical-align:middle;">
+所有<code>geom_segement()</code>函式的引數<br><code>curvature</code>:設定曲率（正值向右曲；負值向左曲）
+</td>
+</tr>
+</tbody>
+</table>
+<p>此外，以上所有函式皆可透過<code>color=</code>設定線條<A href='#geom-setting-color'>顏色</A>；<code>linetype=</code>設定<A href='#geom-setting-linetype'>線條樣式</A>；<code>linewidth=</code>設定線條粗細；<code>alpha=</code>設定透明度。</p>
+<p>對於<code>geom_segment()</code>與<code>geom_curve()</code>兩函式而言，其可透過<code>arrow=</code>引數設定箭頭，而箭頭的樣式則可進一步透過<code>arrow()</code>函式建立之，該函式撰寫架構如下，其引數設定如表<a href="資料視覺化.html#tab:geom-arrow-code-tab">3.19</a>所示。</p>
+<div class="sourceCode" id="cb103"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb103-1"><a href="資料視覺化.html#cb103-1" tabindex="-1"></a><span class="fu">arrow</span>(<span class="at">angle=</span>, <span class="at">length=</span>, <span class="at">ends=</span>, <span class="at">type=</span>)</span></code></pre></div>
+<table class="table table-striped table-hover" style="font-size: 14px; margin-left: auto; margin-right: auto;">
+<caption style="font-size: initial !important;">
+<span id="tab:geom-arrow-code-tab">表 3.19: </span><code>arrow()</code>函式引數設定
+</caption>
+<thead>
+<tr>
+<th style="text-align:left;font-weight: bold;color: white !important;background-color: #8E8E8E !important;">
 引數
 </th>
 <th style="text-align:left;font-weight: bold;color: white !important;background-color: #8E8E8E !important;">
@@ -3043,62 +3121,65 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <tbody>
 <tr>
 <td style="text-align:left;vertical-align:middle;">
-<code>geom_hline=</code>
+<code>angle=</code>
 </td>
 <td style="text-align:left;vertical-align:middle;">
-增加水平直線
+箭頭的角度
 </td>
 <td style="text-align:left;vertical-align:middle;">
-<code>xintercept</code>:設定橫軸座標
-</td>
-</tr>
-<tr>
-<td style="text-align:left;vertical-align:middle;">
-<code>geom_vline=</code>
-</td>
-<td style="text-align:left;vertical-align:middle;">
-增加垂直直線
-</td>
-<td style="text-align:left;vertical-align:middle;">
-<code>yintercept</code>:設定縱軸座標
+數值（預設為 30°）
 </td>
 </tr>
 <tr>
 <td style="text-align:left;vertical-align:middle;">
-<code>geom_abline=</code>
+<code>length=</code>
 </td>
 <td style="text-align:left;vertical-align:middle;">
-增加斜直線
+箭頭的長度
 </td>
 <td style="text-align:left;vertical-align:middle;">
-<code>slope</code>:設定斜率<br><code>intercept</code>:設定截距
-</td>
-</tr>
-<tr>
-<td style="text-align:left;vertical-align:middle;">
-<code>geom_segment=</code>
-</td>
-<td style="text-align:left;vertical-align:middle;">
-增加線段
-</td>
-<td style="text-align:left;vertical-align:middle;">
-<code>x=</code>:設定起始點 X 座標<br><code>y=</code>:設定起始點 Y 座標<br><code>xend=</code>:設定末端點 X 座標<br><code>yend=</code>:設定末端點 Y 座標<br><code>arrow</code>:設定箭頭樣式（未設定此引述即無箭頭）<br><code>arrow.fill</code>:設定箭頭的顏色<br><code>lineend</code>:設定箭頭末端點樣式（<code>round</code>、<code>butt</code>、<code>square</code>）<br><code>linejoin</code>:設定箭頭起始點樣式（<code>round</code>、<code>butt</code>、<code>square</code>）
+利用<code>unit(數值, "單位")</code>設定之
 </td>
 </tr>
 <tr>
 <td style="text-align:left;vertical-align:middle;">
-<code>geom_curve=</code>
+<code>ends=</code>
 </td>
 <td style="text-align:left;vertical-align:middle;">
-增加曲線
+箭頭位置
 </td>
 <td style="text-align:left;vertical-align:middle;">
-所有<code>geom_segement()</code>函式的引數<br><code>curvature</code>:設定曲率（正值向右曲；負值向左曲）
+<code>last</code>:加在線段或曲線的末端（預設）<br><code>last</code>:加在線段或曲線的起始端<br><code>both</code>:加在線段或曲線的兩端點
+</td>
+</tr>
+<tr>
+<td style="text-align:left;vertical-align:middle;">
+<code>type=</code>
+</td>
+<td style="text-align:left;vertical-align:middle;">
+箭頭類型
+</td>
+<td style="text-align:left;vertical-align:middle;">
+<code>open</code>:開放箭頭<br><code>closed</code>:封閉箭頭
 </td>
 </tr>
 </tbody>
 </table>
-<p>此外，以上所有函式皆可透過<code>color=</code>設定線條<A href='#geom-setting-color'>顏色</A>；<code>linetype=</code>設定<A href='#geom-setting-linetype'>線條樣式</A>；<code>linewidth=</code>設定線條粗細；<code>alpha=</code>設定透明度。</p>
+<p style="color:#003D79;font-size:18px;line-height:2">
+<strong>⌾ 建立直線、曲線與線段</strong>
+</p>
+<p>根據表<a href="資料視覺化.html#tab:geom-linecurve-code-tab">3.18</a>羅列之所有函式，建立不同樣式的直線、曲線與線段，程式碼撰寫如下。</p>
+<div class="sourceCode" id="cb104"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb104-1"><a href="資料視覺化.html#cb104-1" tabindex="-1"></a><span class="fu">ggplot</span>()<span class="sc">+</span></span>
+<span id="cb104-2"><a href="資料視覺化.html#cb104-2" tabindex="-1"></a>  <span class="fu">geom_hline</span>(<span class="at">yintercept=</span><span class="fu">c</span>(<span class="dv">1</span>,<span class="dv">2</span>,<span class="dv">3</span>), <span class="at">color=</span><span class="st">&quot;blue&quot;</span>)<span class="sc">+</span></span>
+<span id="cb104-3"><a href="資料視覺化.html#cb104-3" tabindex="-1"></a>  <span class="fu">geom_vline</span>(<span class="at">xintercept=</span><span class="fu">c</span>(<span class="dv">1</span>,<span class="dv">2</span>,<span class="dv">3</span>), <span class="at">color=</span><span class="st">&quot;red&quot;</span>, <span class="at">linetype=</span><span class="st">&quot;dashed&quot;</span>, <span class="at">linewidth=</span><span class="dv">1</span>)<span class="sc">+</span></span>
+<span id="cb104-4"><a href="資料視覺化.html#cb104-4" tabindex="-1"></a>  <span class="fu">geom_abline</span>(<span class="at">slope=</span><span class="dv">1</span>, <span class="at">intercept=</span><span class="dv">0</span>, <span class="at">color=</span><span class="st">&quot;purple&quot;</span>)<span class="sc">+</span></span>
+<span id="cb104-5"><a href="資料視覺化.html#cb104-5" tabindex="-1"></a>  <span class="fu">geom_curve</span>(<span class="fu">aes</span>(<span class="at">x=</span><span class="fl">1.5</span>, <span class="at">y=</span><span class="fl">1.25</span>, <span class="at">xend=</span><span class="fl">2.5</span>, <span class="at">yend=</span><span class="fl">2.25</span>), <span class="at">curvature=</span><span class="fl">0.5</span>, <span class="at">color=</span><span class="st">&quot;#00AEAE&quot;</span>, <span class="at">arrow=</span><span class="fu">arrow</span>(<span class="at">type=</span><span class="st">&quot;closed&quot;</span>, <span class="at">length=</span><span class="fu">unit</span>(<span class="fl">0.5</span>, <span class="st">&quot;cm&quot;</span>)))<span class="sc">+</span></span>
+<span id="cb104-6"><a href="資料視覺化.html#cb104-6" tabindex="-1"></a>  <span class="fu">geom_curve</span>(<span class="fu">aes</span>(<span class="at">x=</span><span class="fl">1.5</span>, <span class="at">y=</span><span class="fl">1.75</span>, <span class="at">xend=</span><span class="fl">2.5</span>, <span class="at">yend=</span><span class="fl">2.75</span>), <span class="at">curvature=</span><span class="sc">-</span><span class="fl">0.5</span>, <span class="at">color=</span><span class="st">&quot;#00BB00&quot;</span>)<span class="sc">+</span></span>
+<span id="cb104-7"><a href="資料視覺化.html#cb104-7" tabindex="-1"></a>  <span class="fu">geom_segment</span>(<span class="fu">aes</span>(<span class="at">x=</span><span class="dv">1</span>, <span class="at">y=</span><span class="dv">2</span>, <span class="at">xend=</span><span class="fl">1.5</span>, <span class="at">yend=</span><span class="dv">3</span>), <span class="at">arrow=</span><span class="fu">arrow</span>(<span class="at">type=</span><span class="st">&quot;open&quot;</span>, <span class="at">length=</span><span class="fu">unit</span>(<span class="fl">0.5</span>, <span class="st">&quot;cm&quot;</span>), <span class="at">angle=</span><span class="dv">20</span>))</span></code></pre></div>
+<p><img src="series_files/figure-html/geom-linecurve-eg1-1.png" width="70%" style="display: block; margin: auto;" /></p>
+<p style="color:#003D79;font-size:18px;line-height:2">
+<strong>⌾ 建立直線、曲線與線段</strong>
+</p>
 </div>
 </div>
 <div id="圖表文字與插圖" class="section level2 hasAnchor" number="3.2">

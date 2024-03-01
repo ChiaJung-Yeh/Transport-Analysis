@@ -1478,16 +1478,64 @@ ggtern(data=nor_vote, aes(x=TPP, y=DPP, z=KMT))+
 在圖表上我們往往會增加輔助線，用以說明資料的分界、資料的趨勢，或表達資料點間移動的方向性，而在`ggplot2`套件中可利用表\@ref(tab:geom-linecurve-code-tab)所列函式增加直線、曲線或線段。
 
 ```{r geom-linecurve-code-tab, echo=F, eval=T}
-gl_code=data.frame(argument=c("`geom_hline=`","`geom_vline=`","`geom_abline=`","`geom_segment=`","`geom_curve=`"),
-                   setting=c("增加水平直線","增加垂直直線","增加斜直線","增加線段","增加曲線"), para=c("`xintercept`:設定橫軸座標","`yintercept`:設定縱軸座標","`slope`:設定斜率<br>`intercept`:設定截距","`x=`:設定起始點 X 座標<br>`y=`:設定起始點 Y 座標<br>`xend=`:設定末端點 X 座標<br>`yend=`:設定末端點 Y 座標<br>`arrow`:設定箭頭樣式（未設定此引述即無箭頭）<br>`arrow.fill`:設定箭頭的顏色<br>`lineend`:設定箭頭末端點樣式（`round`、`butt`、`square`）<br>`linejoin`:設定箭頭起始點樣式（`round`、`butt`、`square`）","所有`geom_segement()`函式的引數<br>`curvature`:設定曲率（正值向右曲；負值向左曲）"))
+gl_code=data.frame(argument=c("`geom_hline()`","`geom_vline()`","`geom_abline()`","`geom_segment()`","`geom_curve()`"),
+                   setting=c("增加水平直線","增加垂直直線","增加斜直線","增加線段","增加曲線"), para=c("`xintercept`:設定橫軸座標","`yintercept`:設定縱軸座標","`slope`:設定斜率<br>`intercept`:設定截距","`x=`:設定起始點 X 座標<br>`y=`:設定起始點 Y 座標<br>`xend=`:設定末端點 X 座標<br>`yend=`:設定末端點 Y 座標<br>`arrow`:設定箭頭樣式（未設定此引述即無箭頭）<br>`arrow.fill`:設定箭頭的顏色","所有`geom_segement()`函式的引數<br>`curvature`:設定曲率（正值向右曲；負值向左曲）"))
 
-kable(gl_code, booktabs=T, escape=F, caption="直線、曲線與線段函式引數設定", col.names=c("引數","功能設定","說明"))%>%
+kable(gl_code, booktabs=T, escape=F, caption="直線、曲線與線段函式引數設定", col.names=c("函式","功能","引數"))%>%
   kable_styling(bootstrap_options=c("striped", "hover"), font_size=14)%>%
   column_spec(1:3 ,extra_css="vertical-align:middle;")%>%
   row_spec(0, bold=T, color="white", background="#8E8E8E")
 ```
 
 此外，以上所有函式皆可透過`color=`設定線條<A href='#geom-setting-color'>顏色</A>；`linetype=`設定<A href='#geom-setting-linetype'>線條樣式</A>；`linewidth=`設定線條粗細；`alpha=`設定透明度。
+
+對於`geom_segment()`與`geom_curve()`兩函式而言，其可透過`arrow=`引數設定箭頭，而箭頭的樣式則可進一步透過`arrow()`函式建立之，該函式撰寫架構如下，其引數設定如表\@ref(tab:geom-arrow-code-tab)所示。
+
+```{r geom-arrow-code, echo=T, eval=F}
+arrow(angle=, length=, ends=, type=)
+```
+
+```{r geom-arrow-code-tab, echo=F, eval=T}
+ga_code=data.frame(argument=c("`angle=`","`length=`","`ends=`","`type=`"),
+                   setting=c("箭頭的角度","箭頭的長度","箭頭位置","箭頭類型"), para=c("數值（預設為 30°）",'利用`unit(數值, "單位")`設定之',"`last`:加在線段或曲線的末端（預設）<br>`last`:加在線段或曲線的起始端<br>`both`:加在線段或曲線的兩端點","`open`:開放箭頭<br>`closed`:封閉箭頭"))
+
+kable(ga_code, booktabs=T, escape=F, caption="`arrow()`函式引數設定", col.names=c("引數","功能設定","說明"))%>%
+  kable_styling(bootstrap_options=c("striped", "hover"), font_size=14)%>%
+  column_spec(1:3 ,extra_css="vertical-align:middle;")%>%
+  row_spec(0, bold=T, color="white", background="#8E8E8E")
+```
+
+
+<p style="color:#003D79;font-size:18px;line-height:2">**⌾ 建立直線、曲線與線段**</p>  
+根據表\@ref(tab:geom-linecurve-code-tab)羅列之所有函式，建立不同樣式的直線、曲線與線段，程式碼撰寫如下。
+
+```{r geom-linecurve-eg1, echo=T, eval=T, out.width="70%", fig.align="center", warning=F}
+ggplot()+
+  geom_hline(yintercept=c(1,2,3), color="blue")+
+  geom_vline(xintercept=c(1,2,3), color="red", linetype="dashed", linewidth=1)+
+  geom_abline(slope=1, intercept=0, color="purple")+
+  geom_curve(aes(x=1.5, y=1.25, xend=2.5, yend=2.25), curvature=0.5, color="#00AEAE", arrow=arrow(type="closed", length=unit(0.5, "cm")))+
+  geom_curve(aes(x=1.5, y=1.75, xend=2.5, yend=2.75), curvature=-0.5, color="#00BB00")+
+  geom_segment(aes(x=1, y=2, xend=1.5, yend=3), arrow=arrow(type="open", length=unit(0.5, "cm"), angle=20))
+```
+
+
+<p style="color:#003D79;font-size:18px;line-height:2">**⌾ 輔助線功能**</p>  
+在圖表中有時會利用額外的直線、曲線或線段表達資料的分界與特殊的標示。以下範例在直方圖上另標註水平線，程式碼撰寫如下。
+
+```{r geom-linecurve-eg2, echo=T, eval=T, out.width="70%", fig.align="center", warning=F}
+ggplot(data=airquality, aes(x=Temp))+
+  geom_histogram(bins=10)+
+  geom_hline(yintercept=20, color="red", linetype="dashed")
+```
+
+此外，亦可加入文字
+
+```{r geom-linecurve-eg3, echo=T, eval=T, out.width="70%", fig.align="center", warning=F}
+ggplot(data=airquality, aes(x=Temp))+
+  geom_histogram(bins=10)+
+  geom_hline(yintercept=20, color="red", linetype="dashed")
+```
 
 
 

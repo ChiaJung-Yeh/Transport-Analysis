@@ -33,7 +33,8 @@ treemap",geom_treemap(),tree_map
 * 線條粗細表示流動量","**ggalluvial**
 ggsankey",geom_density_sankes(),sankey_diagram
 [雷達圖<br>Radar Chart](#雷達圖),"* 表達各數據的配重
-* 觀察各類別間的相對優勢",**ggradar**,ggradar(),radar_plot
+* 觀察各類別間的相對優勢","**ggradar**
+fmsb",ggradar(),radar_plot
 [三元圖<br>Ternary Plot](#三元圖),"* 表達三個連續變數間的分配占比
 * 觀察各類別的傾向","**ggtern**
 Ternary",geom_ternary(),ternary_plot
