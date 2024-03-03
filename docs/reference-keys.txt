@@ -176,3 +176,4 @@ fig:geom-ternary-fig
 tab:geom-linecurve-code-tab
 tab:geom-arrow-code-tab
 tab:tab-textfig-plot
+tab:tab-geom-text

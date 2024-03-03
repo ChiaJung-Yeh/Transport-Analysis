@@ -3333,6 +3333,172 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </table>
 <div id="標註文字" class="section level3 hasAnchor" number="3.2.1">
 <h3><span class="header-section-number">3.2.1</span> 標註文字<a href="資料視覺化.html#標註文字" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>標註文字可利用<code>geom_text()</code>，該函式撰寫架構如下。</p>
+<div class="sourceCode" id="cb108"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb108-1"><a href="資料視覺化.html#cb108-1" tabindex="-1"></a><span class="fu">geom_text</span>(<span class="fu">aes</span>(<span class="at">x=</span>, <span class="at">y=</span>, <span class="at">label=</span>), <span class="at">color=</span>, <span class="at">size=</span>, <span class="at">alpha=</span>, <span class="at">angle=</span>, <span class="at">family=</span>, <span class="at">fontface=</span>, hjust, <span class="at">vjust=</span>)</span></code></pre></div>
+<p>各引數設定請參考表<a href="資料視覺化.html#tab:tab-geom-text">3.21</a>。</p>
+<table class="table table-striped table-hover" style="font-size: 14px; margin-left: auto; margin-right: auto;">
+<caption style="font-size: initial !important;">
+<span id="tab:tab-geom-text">表 3.21: </span><code>geom_text()</code>函式引數設定
+</caption>
+<thead>
+<tr>
+<th style="text-align:left;font-weight: bold;color: white !important;background-color: #8E8E8E !important;">
+引數
+</th>
+<th style="text-align:left;font-weight: bold;color: white !important;background-color: #8E8E8E !important;">
+功能設定
+</th>
+<th style="text-align:left;font-weight: bold;color: white !important;background-color: #8E8E8E !important;">
+說明
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left;vertical-align:middle;">
+<code>x=</code>
+</td>
+<td style="text-align:left;vertical-align:middle;">
+橫軸座標（必須<a href="資料視覺化.html#ggplot-aes"><code>aes()</code></a>函式內）
+</td>
+<td style="text-align:left;vertical-align:middle;">
+橫軸座標欄位
+</td>
+</tr>
+<tr>
+<td style="text-align:left;vertical-align:middle;">
+<code>y=</code>
+</td>
+<td style="text-align:left;vertical-align:middle;">
+縱軸座標（必須<a href="資料視覺化.html#ggplot-aes"><code>aes()</code></a>函式內）
+</td>
+<td style="text-align:left;vertical-align:middle;">
+縱軸座標欄位
+</td>
+</tr>
+<tr>
+<td style="text-align:left;vertical-align:middle;">
+<code>label=</code>
+</td>
+<td style="text-align:left;vertical-align:middle;">
+標註文字（必須<a href="資料視覺化.html#ggplot-aes"><code>aes()</code></a>函式內）
+</td>
+<td style="text-align:left;vertical-align:middle;">
+標註文字欄位
+</td>
+</tr>
+<tr>
+<td style="text-align:left;vertical-align:middle;">
+<code>color=</code>
+</td>
+<td style="text-align:left;vertical-align:middle;">
+文字顏色
+</td>
+<td style="text-align:left;vertical-align:middle;">
+請參考<a href="資料視覺化.html#geom-setting-color">顏色設定</a>
+</td>
+</tr>
+<tr>
+<td style="text-align:left;vertical-align:middle;">
+<code>size=</code>
+</td>
+<td style="text-align:left;vertical-align:middle;">
+文字大小
+</td>
+<td style="text-align:left;vertical-align:middle;">
+數值
+</td>
+</tr>
+<tr>
+<td style="text-align:left;vertical-align:middle;">
+<code>alpha=</code>
+</td>
+<td style="text-align:left;vertical-align:middle;">
+文字透明度
+</td>
+<td style="text-align:left;vertical-align:middle;">
+數值，介於 0（完全透明）與 1（完全不透明）間
+</td>
+</tr>
+<tr>
+<td style="text-align:left;vertical-align:middle;">
+<code>angle=</code>
+</td>
+<td style="text-align:left;vertical-align:middle;">
+文字角度
+</td>
+<td style="text-align:left;vertical-align:middle;">
+數值，介於 0° 至 360° 間
+</td>
+</tr>
+<tr>
+<td style="text-align:left;vertical-align:middle;">
+<code>family=</code>
+</td>
+<td style="text-align:left;vertical-align:middle;">
+文字字體
+</td>
+<td style="text-align:left;vertical-align:middle;">
+請參見
+</td>
+</tr>
+<tr>
+<td style="text-align:left;vertical-align:middle;">
+<code>fontface=</code>
+</td>
+<td style="text-align:left;vertical-align:middle;">
+文字字型
+</td>
+<td style="text-align:left;vertical-align:middle;">
+<code>plain</code>:一般<br><code>bold</code>:粗體<br><code>italic</code>:斜體<br><code>bold.italic</code>:粗斜體
+</td>
+</tr>
+<tr>
+<td style="text-align:left;vertical-align:middle;">
+<code>hjust=</code>
+</td>
+<td style="text-align:left;vertical-align:middle;">
+文字橫軸對齊
+</td>
+<td style="text-align:left;vertical-align:middle;">
+<strong>數值：</strong><code>0</code>:靠左；<code>0.5</code>:置中；<code>1</code>:靠右<br><strong>文字：</strong><code>left</code>:靠左；<code>middle</code>:置中；<code>right</code>:靠右
+</td>
+</tr>
+<tr>
+<td style="text-align:left;vertical-align:middle;">
+<code>vjust=</code>
+</td>
+<td style="text-align:left;vertical-align:middle;">
+文字縱軸對齊
+</td>
+<td style="text-align:left;vertical-align:middle;">
+<strong>數值：</strong><code>0</code>:靠下；<code>0.5</code>:置中；<code>1</code>:靠上<br><strong>文字：</strong><code>bottom</code>:靠下；<code>center</code>:置中；<code>top</code>:靠上
+</td>
+</tr>
+<tr>
+<td style="text-align:left;vertical-align:middle;">
+<code>nudge_x=</code>
+</td>
+<td style="text-align:left;vertical-align:middle;">
+文字橫軸位移
+</td>
+<td style="text-align:left;vertical-align:middle;">
+將文字橫向移動單位數
+</td>
+</tr>
+<tr>
+<td style="text-align:left;vertical-align:middle;">
+<code>nudge_y=</code>
+</td>
+<td style="text-align:left;vertical-align:middle;">
+文字縱軸位移
+</td>
+<td style="text-align:left;vertical-align:middle;">
+將文字縱向移動單位數
+</td>
+</tr>
+</tbody>
+</table>
 </div>
 <div id="標註標籤" class="section level3 hasAnchor" number="3.2.2">
 <h3><span class="header-section-number">3.2.2</span> 標註標籤<a href="資料視覺化.html#標註標籤" class="anchor-section" aria-label="Anchor link to header"></a></h3>

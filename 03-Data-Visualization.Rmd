@@ -1603,6 +1603,26 @@ kable(textfig, booktabs=T, escape=F, caption="圖表文字與插圖函式", col.
 
 
 ### 標註文字
+標註文字可利用`geom_text()`，該函式撰寫架構如下。
+
+```{r geom-text-code, echo=T, eval=F}
+geom_text(aes(x=, y=, label=), color=, size=, alpha=, angle=, family=, fontface=, hjust, vjust=)
+```
+
+各引數設定請參考表\@ref(tab:tab-geom-text)。
+
+```{r tab-geom-text, echo=F, eval=T}
+gt_code=data.frame(argument=c("`x=`","`y=`","`label=`","`color=`","`size=`","`alpha=`","`angle=`","`family=`","`fontface=`","`hjust=`","`vjust=`","`nudge_x=`","`nudge_y=`"),
+                   setting=c('橫軸座標（必須<A href="#ggplot-aes">`aes()`</A>函式內）','縱軸座標（必須<A href="#ggplot-aes">`aes()`</A>函式內）','標註文字（必須<A href="#ggplot-aes">`aes()`</A>函式內）',"文字顏色","文字大小","文字透明度","文字角度","文字字體","文字字型","文字橫軸對齊","文字縱軸對齊","文字橫軸位移","文字縱軸位移"), explain=c("橫軸座標欄位","縱軸座標欄位","標註文字欄位","請參考<A href='#geom-setting-color'>顏色設定</A>","數值","數值，介於 0（完全透明）與 1（完全不透明）間","數值，介於 0° 至 360° 間","請參見","`plain`:一般<br>`bold`:粗體<br>`italic`:斜體<br>`bold.italic`:粗斜體","**數值：**`0`:靠左；`0.5`:置中；`1`:靠右<br>**文字：**`left`:靠左；`middle`:置中；`right`:靠右","**數值：**`0`:靠下；`0.5`:置中；`1`:靠上<br>**文字：**`bottom`:靠下；`center`:置中；`top`:靠上","將文字橫向移動單位數","將文字縱向移動單位數"))
+
+kable(gt_code, booktabs=T, escape=F, caption="`geom_text()`函式引數設定", col.names=c("引數","功能設定","說明"))%>%
+  kable_styling(bootstrap_options=c("striped", "hover"), font_size=14)%>%
+  column_spec(1:3 ,extra_css="vertical-align:middle;")%>%
+  row_spec(0, bold=T, color="white", background="#8E8E8E")
+```
+
+
+
 
 ### 標註標籤
 
