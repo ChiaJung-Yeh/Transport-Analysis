@@ -23,7 +23,7 @@
 <meta name="author" content="Chia-Jung (Robert) Yeh 葉家榮 PhD: Insitute of Transport and Logistics Studies, USYD M.S.: Department of Transportation and Logistics Management, NYCU" />
 
 
-<meta name="date" content="2024-03-01" />
+<meta name="date" content="2024-03-03" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -2746,7 +2746,13 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <p style="color:#003D79;font-size:18px;line-height:2">
 <strong>⌾ 彙整資料後繪製桑基圖</strong>
 </p>
-<p>有時候資料型態並不見得如同前面的範例，將所有節點逐欄羅列並給予統計量，此時我們必須預先處理資料尚能繪製桑基圖。以 2023 年臺灣直轄市間的社會遷入與遷出資料（scmig）為例，其資料記錄結構如下。</p>
+有時候資料型態並不見得如同前面的範例，將所有節點逐欄羅列並給予統計量，此時我們必須預先處理資料尚能繪製桑基圖。以 2023 年臺灣直轄市間的
+<H2 id="scmig">
+<p style="color:#003D79;font-size:18px;line-height:2">
+社會遷入與遷出資料（scmig）
+</p>
+</H2>
+<p>為例，其資料記錄結構如下。</p>
 <div class="sourceCode" id="cb90"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb90-1"><a href="資料視覺化.html#cb90-1" tabindex="-1"></a><span class="co"># 讀取資料</span></span>
 <span id="cb90-2"><a href="資料視覺化.html#cb90-2" tabindex="-1"></a>scmig<span class="ot">=</span><span class="fu">read.csv</span>(<span class="st">&quot;https://raw.githubusercontent.com/ChiaJung-Yeh/Transport-Analysis/master/Data/social_migration.csv&quot;</span>)</span>
 <span id="cb90-3"><a href="資料視覺化.html#cb90-3" tabindex="-1"></a></span>
@@ -3170,16 +3176,68 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </p>
 <p>根據表<a href="資料視覺化.html#tab:geom-linecurve-code-tab">3.18</a>羅列之所有函式，建立不同樣式的直線、曲線與線段，程式碼撰寫如下。</p>
 <div class="sourceCode" id="cb104"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb104-1"><a href="資料視覺化.html#cb104-1" tabindex="-1"></a><span class="fu">ggplot</span>()<span class="sc">+</span></span>
-<span id="cb104-2"><a href="資料視覺化.html#cb104-2" tabindex="-1"></a>  <span class="fu">geom_hline</span>(<span class="at">yintercept=</span><span class="fu">c</span>(<span class="dv">1</span>,<span class="dv">2</span>,<span class="dv">3</span>), <span class="at">color=</span><span class="st">&quot;blue&quot;</span>)<span class="sc">+</span></span>
-<span id="cb104-3"><a href="資料視覺化.html#cb104-3" tabindex="-1"></a>  <span class="fu">geom_vline</span>(<span class="at">xintercept=</span><span class="fu">c</span>(<span class="dv">1</span>,<span class="dv">2</span>,<span class="dv">3</span>), <span class="at">color=</span><span class="st">&quot;red&quot;</span>, <span class="at">linetype=</span><span class="st">&quot;dashed&quot;</span>, <span class="at">linewidth=</span><span class="dv">1</span>)<span class="sc">+</span></span>
-<span id="cb104-4"><a href="資料視覺化.html#cb104-4" tabindex="-1"></a>  <span class="fu">geom_abline</span>(<span class="at">slope=</span><span class="dv">1</span>, <span class="at">intercept=</span><span class="dv">0</span>, <span class="at">color=</span><span class="st">&quot;purple&quot;</span>)<span class="sc">+</span></span>
-<span id="cb104-5"><a href="資料視覺化.html#cb104-5" tabindex="-1"></a>  <span class="fu">geom_curve</span>(<span class="fu">aes</span>(<span class="at">x=</span><span class="fl">1.5</span>, <span class="at">y=</span><span class="fl">1.25</span>, <span class="at">xend=</span><span class="fl">2.5</span>, <span class="at">yend=</span><span class="fl">2.25</span>), <span class="at">curvature=</span><span class="fl">0.5</span>, <span class="at">color=</span><span class="st">&quot;#00AEAE&quot;</span>, <span class="at">arrow=</span><span class="fu">arrow</span>(<span class="at">type=</span><span class="st">&quot;closed&quot;</span>, <span class="at">length=</span><span class="fu">unit</span>(<span class="fl">0.5</span>, <span class="st">&quot;cm&quot;</span>)))<span class="sc">+</span></span>
-<span id="cb104-6"><a href="資料視覺化.html#cb104-6" tabindex="-1"></a>  <span class="fu">geom_curve</span>(<span class="fu">aes</span>(<span class="at">x=</span><span class="fl">1.5</span>, <span class="at">y=</span><span class="fl">1.75</span>, <span class="at">xend=</span><span class="fl">2.5</span>, <span class="at">yend=</span><span class="fl">2.75</span>), <span class="at">curvature=</span><span class="sc">-</span><span class="fl">0.5</span>, <span class="at">color=</span><span class="st">&quot;#00BB00&quot;</span>)<span class="sc">+</span></span>
-<span id="cb104-7"><a href="資料視覺化.html#cb104-7" tabindex="-1"></a>  <span class="fu">geom_segment</span>(<span class="fu">aes</span>(<span class="at">x=</span><span class="dv">1</span>, <span class="at">y=</span><span class="dv">2</span>, <span class="at">xend=</span><span class="fl">1.5</span>, <span class="at">yend=</span><span class="dv">3</span>), <span class="at">arrow=</span><span class="fu">arrow</span>(<span class="at">type=</span><span class="st">&quot;open&quot;</span>, <span class="at">length=</span><span class="fu">unit</span>(<span class="fl">0.5</span>, <span class="st">&quot;cm&quot;</span>), <span class="at">angle=</span><span class="dv">20</span>))</span></code></pre></div>
+<span id="cb104-2"><a href="資料視覺化.html#cb104-2" tabindex="-1"></a>  <span class="co"># 藍色水平線</span></span>
+<span id="cb104-3"><a href="資料視覺化.html#cb104-3" tabindex="-1"></a>  <span class="fu">geom_hline</span>(<span class="at">yintercept=</span><span class="fu">c</span>(<span class="dv">1</span>,<span class="dv">2</span>,<span class="dv">3</span>), <span class="at">color=</span><span class="st">&quot;blue&quot;</span>)<span class="sc">+</span></span>
+<span id="cb104-4"><a href="資料視覺化.html#cb104-4" tabindex="-1"></a>  <span class="co"># 紅色垂直線</span></span>
+<span id="cb104-5"><a href="資料視覺化.html#cb104-5" tabindex="-1"></a>  <span class="fu">geom_vline</span>(<span class="at">xintercept=</span><span class="fu">c</span>(<span class="dv">1</span>,<span class="dv">2</span>,<span class="dv">3</span>), <span class="at">color=</span><span class="st">&quot;red&quot;</span>, <span class="at">linetype=</span><span class="st">&quot;dashed&quot;</span>, <span class="at">linewidth=</span><span class="dv">1</span>)<span class="sc">+</span></span>
+<span id="cb104-6"><a href="資料視覺化.html#cb104-6" tabindex="-1"></a>  <span class="co"># 紫色斜率為0，截距為1之直線</span></span>
+<span id="cb104-7"><a href="資料視覺化.html#cb104-7" tabindex="-1"></a>  <span class="fu">geom_abline</span>(<span class="at">slope=</span><span class="dv">1</span>, <span class="at">intercept=</span><span class="dv">0</span>, <span class="at">color=</span><span class="st">&quot;purple&quot;</span>)<span class="sc">+</span></span>
+<span id="cb104-8"><a href="資料視覺化.html#cb104-8" tabindex="-1"></a>  <span class="co"># 由(1.5,1.25)至(2.5,2.25)之曲線，曲率為0.5，箭頭為封閉式</span></span>
+<span id="cb104-9"><a href="資料視覺化.html#cb104-9" tabindex="-1"></a>  <span class="fu">geom_curve</span>(<span class="fu">aes</span>(<span class="at">x=</span><span class="fl">1.5</span>, <span class="at">y=</span><span class="fl">1.25</span>, <span class="at">xend=</span><span class="fl">2.5</span>, <span class="at">yend=</span><span class="fl">2.25</span>), <span class="at">curvature=</span><span class="fl">0.5</span>, <span class="at">color=</span><span class="st">&quot;#00AEAE&quot;</span>, <span class="at">arrow=</span><span class="fu">arrow</span>(<span class="at">type=</span><span class="st">&quot;closed&quot;</span>, <span class="at">length=</span><span class="fu">unit</span>(<span class="fl">0.5</span>, <span class="st">&quot;cm&quot;</span>)))<span class="sc">+</span></span>
+<span id="cb104-10"><a href="資料視覺化.html#cb104-10" tabindex="-1"></a>  <span class="co"># 由(1.5,1.75)至(2.5,2.75)之曲線，曲率為-0.5，無箭頭</span></span>
+<span id="cb104-11"><a href="資料視覺化.html#cb104-11" tabindex="-1"></a>  <span class="fu">geom_curve</span>(<span class="fu">aes</span>(<span class="at">x=</span><span class="fl">1.5</span>, <span class="at">y=</span><span class="fl">1.75</span>, <span class="at">xend=</span><span class="fl">2.5</span>, <span class="at">yend=</span><span class="fl">2.75</span>), <span class="at">curvature=</span><span class="sc">-</span><span class="fl">0.5</span>, <span class="at">color=</span><span class="st">&quot;#00BB00&quot;</span>)<span class="sc">+</span></span>
+<span id="cb104-12"><a href="資料視覺化.html#cb104-12" tabindex="-1"></a>  <span class="co"># 由(1,2)至(1.5,3)之線段，箭頭為開放式（預設）</span></span>
+<span id="cb104-13"><a href="資料視覺化.html#cb104-13" tabindex="-1"></a>  <span class="fu">geom_segment</span>(<span class="fu">aes</span>(<span class="at">x=</span><span class="dv">1</span>, <span class="at">y=</span><span class="dv">2</span>, <span class="at">xend=</span><span class="fl">1.5</span>, <span class="at">yend=</span><span class="dv">3</span>), <span class="at">arrow=</span><span class="fu">arrow</span>(<span class="at">type=</span><span class="st">&quot;open&quot;</span>, <span class="at">length=</span><span class="fu">unit</span>(<span class="fl">0.5</span>, <span class="st">&quot;cm&quot;</span>), <span class="at">angle=</span><span class="dv">20</span>))</span></code></pre></div>
 <p><img src="series_files/figure-html/geom-linecurve-eg1-1.png" width="70%" style="display: block; margin: auto;" /></p>
 <p style="color:#003D79;font-size:18px;line-height:2">
-<strong>⌾ 建立直線、曲線與線段</strong>
+<strong>⌾ 輔助線功能</strong>
 </p>
+<p>在圖表中有時會利用額外的直線、曲線或線段表達資料的分界與特殊的標示。以下範例在直方圖上另標註水平線，並加上文字說明以標註額外訊息，程式碼撰寫如下。</p>
+<div class="sourceCode" id="cb105"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb105-1"><a href="資料視覺化.html#cb105-1" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data=</span>airquality, <span class="fu">aes</span>(<span class="at">x=</span>Temp))<span class="sc">+</span></span>
+<span id="cb105-2"><a href="資料視覺化.html#cb105-2" tabindex="-1"></a>  <span class="fu">geom_histogram</span>(<span class="at">bins=</span><span class="dv">10</span>)<span class="sc">+</span></span>
+<span id="cb105-3"><a href="資料視覺化.html#cb105-3" tabindex="-1"></a>  <span class="fu">geom_hline</span>(<span class="at">yintercept=</span><span class="dv">20</span>, <span class="at">color=</span><span class="st">&quot;red&quot;</span>, <span class="at">linetype=</span><span class="st">&quot;dashed&quot;</span>)<span class="sc">+</span></span>
+<span id="cb105-4"><a href="資料視覺化.html#cb105-4" tabindex="-1"></a>  <span class="fu">geom_text</span>(<span class="fu">aes</span>(<span class="at">x=</span><span class="dv">50</span>, <span class="at">y=</span><span class="dv">22</span>, <span class="at">label=</span><span class="st">&quot;門檻值&quot;</span>), <span class="at">color=</span><span class="st">&quot;red&quot;</span>)</span></code></pre></div>
+<p><img src="series_files/figure-html/geom-linecurve-eg2-1.png" width="70%" style="display: block; margin: auto;" /></p>
+<p style="color:#003D79;font-size:18px;line-height:2">
+<strong>⌾ 曲線繪製流動與方向</strong>
+</p>
+<p>曲線亦可用以表示點之間的流動，其中箭頭可表示流動方向；線條粗細表示流動量。再次以<A href='#scmig'>社會遷入與遷出資料</A>為例，若欲在圖中標記各直轄市的位置以及臺中市「社會遷出」的概況，程式碼撰寫如下。</p>
+<div class="sourceCode" id="cb106"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb106-1"><a href="資料視覺化.html#cb106-1" tabindex="-1"></a><span class="co"># 讀取資料</span></span>
+<span id="cb106-2"><a href="資料視覺化.html#cb106-2" tabindex="-1"></a>scmig<span class="ot">=</span><span class="fu">read.csv</span>(<span class="st">&quot;https://raw.githubusercontent.com/ChiaJung-Yeh/Transport-Analysis/master/Data/social_migration.csv&quot;</span>)</span>
+<span id="cb106-3"><a href="資料視覺化.html#cb106-3" tabindex="-1"></a></span>
+<span id="cb106-4"><a href="資料視覺化.html#cb106-4" tabindex="-1"></a><span class="co"># 將資料修正為長資料</span></span>
+<span id="cb106-5"><a href="資料視覺化.html#cb106-5" tabindex="-1"></a>scmig<span class="ot">=</span><span class="fu">melt</span>(scmig, <span class="at">id.vars=</span><span class="st">&quot;X&quot;</span>, <span class="at">measure.vars=</span><span class="dv">2</span><span class="sc">:</span><span class="dv">7</span>, <span class="at">variable.name=</span><span class="st">&quot;To&quot;</span>, <span class="at">value.name=</span><span class="st">&quot;Migration&quot;</span>)<span class="sc">%&gt;%</span></span>
+<span id="cb106-6"><a href="資料視覺化.html#cb106-6" tabindex="-1"></a>  <span class="fu">rename</span>(<span class="at">From=</span>X)<span class="sc">%&gt;%</span></span>
+<span id="cb106-7"><a href="資料視覺化.html#cb106-7" tabindex="-1"></a>  <span class="fu">filter</span>(<span class="sc">!</span><span class="fu">is.na</span>(Migration))</span>
+<span id="cb106-8"><a href="資料視覺化.html#cb106-8" tabindex="-1"></a></span>
+<span id="cb106-9"><a href="資料視覺化.html#cb106-9" tabindex="-1"></a><span class="co"># 各縣市經緯度資料</span></span>
+<span id="cb106-10"><a href="資料視覺化.html#cb106-10" tabindex="-1"></a>county_location<span class="ot">=</span><span class="fu">data.frame</span>(<span class="at">COUNTYNAME=</span><span class="fu">c</span>(<span class="st">&quot;臺北市&quot;</span>,<span class="st">&quot;新北市&quot;</span>,<span class="st">&quot;臺中市&quot;</span>,<span class="st">&quot;臺南市&quot;</span>,<span class="st">&quot;高雄市&quot;</span>,<span class="st">&quot;桃園市&quot;</span>),</span>
+<span id="cb106-11"><a href="資料視覺化.html#cb106-11" tabindex="-1"></a>                           <span class="at">X=</span><span class="fu">c</span>(<span class="fl">121.553</span>, <span class="fl">121.595</span>, <span class="fl">120.892</span>, <span class="fl">120.325</span>, <span class="fl">120.614</span>, <span class="fl">121.258</span>),</span>
+<span id="cb106-12"><a href="資料視覺化.html#cb106-12" tabindex="-1"></a>                           <span class="at">Y=</span><span class="fu">c</span>(<span class="fl">25.083</span>, <span class="fl">24.987</span>, <span class="fl">24.238</span>, <span class="fl">23.151</span>, <span class="fl">22.993</span>, <span class="fl">24.903</span>))</span>
+<span id="cb106-13"><a href="資料視覺化.html#cb106-13" tabindex="-1"></a></span>
+<span id="cb106-14"><a href="資料視覺化.html#cb106-14" tabindex="-1"></a><span class="co"># 貼附經緯度資料</span></span>
+<span id="cb106-15"><a href="資料視覺化.html#cb106-15" tabindex="-1"></a>scmig<span class="ot">=</span><span class="fu">left_join</span>(scmig, county_location, <span class="at">by=</span><span class="fu">c</span>(<span class="st">&quot;From&quot;</span><span class="ot">=</span><span class="st">&quot;COUNTYNAME&quot;</span>))<span class="sc">%&gt;%</span></span>
+<span id="cb106-16"><a href="資料視覺化.html#cb106-16" tabindex="-1"></a>  <span class="fu">rename</span>(<span class="at">From_X=</span>X, <span class="at">From_Y=</span>Y)<span class="sc">%&gt;%</span></span>
+<span id="cb106-17"><a href="資料視覺化.html#cb106-17" tabindex="-1"></a>  <span class="fu">left_join</span>(county_location, <span class="at">by=</span><span class="fu">c</span>(<span class="st">&quot;To&quot;</span><span class="ot">=</span><span class="st">&quot;COUNTYNAME&quot;</span>))<span class="sc">%&gt;%</span></span>
+<span id="cb106-18"><a href="資料視覺化.html#cb106-18" tabindex="-1"></a>  <span class="fu">rename</span>(<span class="at">To_X=</span>X, <span class="at">To_Y=</span>Y)<span class="sc">%&gt;%</span></span>
+<span id="cb106-19"><a href="資料視覺化.html#cb106-19" tabindex="-1"></a>  <span class="fu">filter</span>(From<span class="sc">==</span><span class="st">&quot;臺中市&quot;</span>)</span></code></pre></div>
+<p>以上程式碼中首先透過<a href="r-語言基礎語法.html#csv-與-txt-檔"><code>read.csv()</code></a>函式讀取社會遷移資料，由於該資料為一矩陣，記錄各直轄市間的流動情形，故在此須先將社會遷移的原始資料轉換為長資料，以便後續處理資料與繪圖。<code>county_location</code>資料為各縣市的名稱與經度（X）、緯度（Y）資料，記錄各直轄市的中心點位置，隨後將該資料與<code>scmig</code>資料貼附後，並篩選遷出城市，亦即出發點（From）為臺中市的資料，即可進一步繪製臺中市的社會遷出分布圖。關於以上程式碼中各函式的功能參見如下：</p>
+<ul>
+<li><a href="資料清洗與處理.html#資料型態轉換"><code>melt()</code></a>:將社會遷移的資料轉換為長資料<br />
+</li>
+<li><a href="資料清洗與處理.html#重新命名欄位"><code>rename()</code></a>:將欄位重新命名，用以標示出發點與到達點的座標（X、Y）<br />
+</li>
+<li><a href="資料清洗與處理.html#連接資料"><code>left_join()</code></a>:將社會遷移的資料貼附經緯度屬性，以便後續繪圖</li>
+</ul>
+<p>最後繪製圖表如下，其中利用<code>geom_curve()</code>函式標記臺中市到達其他直轄市的社會遷出，並透過線條粗細表示移動人口的量。此外透<a href="資料視覺化.html#散布圖"><code>geom_point()</code></a>函式標記各直轄市位置，最後利用<a href="資料視覺化.html#標註文字"><code>geom_text()</code></a>函式標註直轄市名稱。</p>
+<div class="sourceCode" id="cb107"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb107-1"><a href="資料視覺化.html#cb107-1" tabindex="-1"></a><span class="fu">ggplot</span>()<span class="sc">+</span></span>
+<span id="cb107-2"><a href="資料視覺化.html#cb107-2" tabindex="-1"></a>  <span class="fu">geom_curve</span>(<span class="at">data=</span>scmig, <span class="fu">aes</span>(<span class="at">x=</span>From_X, <span class="at">y=</span>From_Y, <span class="at">xend=</span>To_X, <span class="at">yend=</span>To_Y, <span class="at">linewidth=</span>Migration),</span>
+<span id="cb107-3"><a href="資料視覺化.html#cb107-3" tabindex="-1"></a>             <span class="at">color=</span><span class="st">&quot;#7B7B7B&quot;</span>, <span class="at">curvature=</span><span class="fl">0.2</span>,</span>
+<span id="cb107-4"><a href="資料視覺化.html#cb107-4" tabindex="-1"></a>             <span class="at">arrow=</span><span class="fu">arrow</span>(<span class="at">type=</span><span class="st">&quot;closed&quot;</span>, <span class="at">length=</span><span class="fu">unit</span>(<span class="fl">0.3</span>, <span class="st">&quot;cm&quot;</span>)))<span class="sc">+</span></span>
+<span id="cb107-5"><a href="資料視覺化.html#cb107-5" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="at">data=</span>county_location, <span class="fu">aes</span>(<span class="at">x=</span>X, <span class="at">y=</span>Y, <span class="at">color=</span>COUNTYNAME), <span class="at">size=</span><span class="dv">5</span>, <span class="at">show.legend=</span>F)<span class="sc">+</span></span>
+<span id="cb107-6"><a href="資料視覺化.html#cb107-6" tabindex="-1"></a>  <span class="fu">geom_text</span>(<span class="at">data=</span>county_location, <span class="fu">aes</span>(<span class="at">x=</span>X, <span class="at">y=</span>Y, <span class="at">label=</span>COUNTYNAME), <span class="at">size=</span><span class="dv">5</span>)</span></code></pre></div>
+<p><img src="series_files/figure-html/geom-linecurve-eg4-1.png" width="70%" style="display: block; margin: auto;" /></p>
+<p>由以上繪圖結果可知，臺中市大部分的人口係移動至新北市，其次為臺北市、桃園市。</p>
 </div>
 </div>
 <div id="圖表文字與插圖" class="section level2 hasAnchor" number="3.2">

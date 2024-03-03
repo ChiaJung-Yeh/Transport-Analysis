@@ -1291,7 +1291,7 @@ ggplot(data=hair_eye, aes(axis1=Hair, axis2=Eye, y=Freq))+
 
 
 <p style="color:#003D79;font-size:18px;line-height:2">**⌾ 彙整資料後繪製桑基圖**</p>  
-有時候資料型態並不見得如同前面的範例，將所有節點逐欄羅列並給予統計量，此時我們必須預先處理資料尚能繪製桑基圖。以 2023 年臺灣直轄市間的社會遷入與遷出資料（scmig）為例，其資料記錄結構如下。
+有時候資料型態並不見得如同前面的範例，將所有節點逐欄羅列並給予統計量，此時我們必須預先處理資料尚能繪製桑基圖。以 2023 年臺灣直轄市間的<H2 id="scmig"><p style="color:#003D79;font-size:18px;line-height:2">社會遷入與遷出資料（scmig）</p></H2>  為例，其資料記錄結構如下。
 
 ```{r geom-sankey-eg3, echo=T, eval=T, out.width="70%", fig.align="center", warning=F}
 # 讀取資料
@@ -1511,31 +1511,75 @@ kable(ga_code, booktabs=T, escape=F, caption="`arrow()`函式引數設定", col.
 
 ```{r geom-linecurve-eg1, echo=T, eval=T, out.width="70%", fig.align="center", warning=F}
 ggplot()+
+  # 藍色水平線
   geom_hline(yintercept=c(1,2,3), color="blue")+
+  # 紅色垂直線
   geom_vline(xintercept=c(1,2,3), color="red", linetype="dashed", linewidth=1)+
+  # 紫色斜率為0，截距為1之直線
   geom_abline(slope=1, intercept=0, color="purple")+
+  # 由(1.5,1.25)至(2.5,2.25)之曲線，曲率為0.5，箭頭為封閉式
   geom_curve(aes(x=1.5, y=1.25, xend=2.5, yend=2.25), curvature=0.5, color="#00AEAE", arrow=arrow(type="closed", length=unit(0.5, "cm")))+
+  # 由(1.5,1.75)至(2.5,2.75)之曲線，曲率為-0.5，無箭頭
   geom_curve(aes(x=1.5, y=1.75, xend=2.5, yend=2.75), curvature=-0.5, color="#00BB00")+
+  # 由(1,2)至(1.5,3)之線段，箭頭為開放式（預設）
   geom_segment(aes(x=1, y=2, xend=1.5, yend=3), arrow=arrow(type="open", length=unit(0.5, "cm"), angle=20))
 ```
 
 
 <p style="color:#003D79;font-size:18px;line-height:2">**⌾ 輔助線功能**</p>  
-在圖表中有時會利用額外的直線、曲線或線段表達資料的分界與特殊的標示。以下範例在直方圖上另標註水平線，程式碼撰寫如下。
+在圖表中有時會利用額外的直線、曲線或線段表達資料的分界與特殊的標示。以下範例在直方圖上另標註水平線，並加上文字說明以標註額外訊息，程式碼撰寫如下。
 
 ```{r geom-linecurve-eg2, echo=T, eval=T, out.width="70%", fig.align="center", warning=F}
 ggplot(data=airquality, aes(x=Temp))+
   geom_histogram(bins=10)+
-  geom_hline(yintercept=20, color="red", linetype="dashed")
+  geom_hline(yintercept=20, color="red", linetype="dashed")+
+  geom_text(aes(x=50, y=22, label="門檻值"), color="red")
 ```
 
-此外，亦可加入文字
 
-```{r geom-linecurve-eg3, echo=T, eval=T, out.width="70%", fig.align="center", warning=F}
-ggplot(data=airquality, aes(x=Temp))+
-  geom_histogram(bins=10)+
-  geom_hline(yintercept=20, color="red", linetype="dashed")
+<p style="color:#003D79;font-size:18px;line-height:2">**⌾ 曲線繪製流動與方向**</p>  
+曲線亦可用以表示點之間的流動，其中箭頭可表示流動方向；線條粗細表示流動量。再次以<A href='#scmig'>社會遷入與遷出資料</A>為例，若欲在圖中標記各直轄市的位置以及臺中市「社會遷出」的概況，程式碼撰寫如下。
+
+```{r geom-linecurve-eg3, echo=T, eval=T, warning=F}
+# 讀取資料
+scmig=read.csv("https://raw.githubusercontent.com/ChiaJung-Yeh/Transport-Analysis/master/Data/social_migration.csv")
+
+# 將資料修正為長資料
+scmig=melt(scmig, id.vars="X", measure.vars=2:7, variable.name="To", value.name="Migration")%>%
+  rename(From=X)%>%
+  filter(!is.na(Migration))
+
+# 各縣市經緯度資料
+county_location=data.frame(COUNTYNAME=c("臺北市","新北市","臺中市","臺南市","高雄市","桃園市"),
+                           X=c(121.553, 121.595, 120.892, 120.325, 120.614, 121.258),
+                           Y=c(25.083, 24.987, 24.238, 23.151, 22.993, 24.903))
+
+# 貼附經緯度資料
+scmig=left_join(scmig, county_location, by=c("From"="COUNTYNAME"))%>%
+  rename(From_X=X, From_Y=Y)%>%
+  left_join(county_location, by=c("To"="COUNTYNAME"))%>%
+  rename(To_X=X, To_Y=Y)%>%
+  filter(From=="臺中市")
 ```
+
+以上程式碼中首先透過[`read.csv()`](#csv-與-txt-檔)函式讀取社會遷移資料，由於該資料為一矩陣，記錄各直轄市間的流動情形，故在此須先將社會遷移的原始資料轉換為長資料，以便後續處理資料與繪圖。`county_location`資料為各縣市的名稱與經度（X）、緯度（Y）資料，記錄各直轄市的中心點位置，隨後將該資料與`scmig`資料貼附後，並篩選遷出城市，亦即出發點（From）為臺中市的資料，即可進一步繪製臺中市的社會遷出分布圖。關於以上程式碼中各函式的功能參見如下：
+
+* [`melt()`](#資料型態轉換):將社會遷移的資料轉換為長資料  
+* [`rename()`](#重新命名欄位):將欄位重新命名，用以標示出發點與到達點的座標（X、Y）  
+* [`left_join()`](#連接資料):將社會遷移的資料貼附經緯度屬性，以便後續繪圖
+
+最後繪製圖表如下，其中利用`geom_curve()`函式標記臺中市到達其他直轄市的社會遷出，並透過線條粗細表示移動人口的量。此外透[`geom_point()`](#散布圖)函式標記各直轄市位置，最後利用[`geom_text()`](#標註文字)函式標註直轄市名稱。
+
+```{r geom-linecurve-eg4, echo=T, eval=T, out.width="70%", fig.align="center", warning=F}
+ggplot()+
+  geom_curve(data=scmig, aes(x=From_X, y=From_Y, xend=To_X, yend=To_Y, linewidth=Migration),
+             color="#7B7B7B", curvature=0.2,
+             arrow=arrow(type="closed", length=unit(0.3, "cm")))+
+  geom_point(data=county_location, aes(x=X, y=Y, color=COUNTYNAME), size=5, show.legend=F)+
+  geom_text(data=county_location, aes(x=X, y=Y, label=COUNTYNAME), size=5)
+```
+
+由以上繪圖結果可知，臺中市大部分的人口係移動至新北市，其次為臺北市、桃園市。
 
 
 
