@@ -1590,13 +1590,14 @@ ggplot()+
 在圖表中有時會插入文字或圖片，已標示更明確的訊息或輔助圖表判讀，並增添視覺化效果。在 R 語言中可以利用`ggplot2`套件及其延伸的套件客製化插入文字與圖表，所有本節會使用到的套件與函式彙整如表\@ref(tab:tab-textfig-plot)。
 
 ```{r tab-textfig-plot, echo=F, eval=T}
-textfig=data.frame(pack=c(rep("`ggplot2`", 2), rep("`ggrepel`", 2), rep("ggtext", 2), rep("ggimage", 1)),
+textfig=data.frame(pack=c(rep("`ggplot2`", 2), rep("`ggrepel`", 2), rep("`ggtext`", 2), rep("`ggimage`", 1)),
                    func=c("`geom_text()`","`geom_label()`","`geom_text_repel()`","`geom_label_repel()`","`geom_richtext()`","`geom_textbox()`","`geom_image()`"),
                    feature=c("標註文字","標註標籤","標註文字（不重疊）","標註標籤（不重疊）","標註 html 文字","標註 html 標籤","標註插圖"))
 
 kable(textfig, booktabs=T, escape=F, caption="圖表文字與插圖函式", col.names=c("套件","函式","功能"))%>%
   kable_styling(bootstrap_options=c("striped", "hover"), font_size=14)%>%
   column_spec(1:3, extra_css="vertical-align:middle;")%>%
+  collapse_rows(1)%>%
   row_spec(0, bold=T, color="white", background="#8E8E8E")
 ```
 
