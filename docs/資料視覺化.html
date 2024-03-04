@@ -23,7 +23,7 @@
 <meta name="author" content="Chia-Jung (Robert) Yeh 葉家榮 PhD: Insitute of Transport and Logistics Studies, USYD M.S.: Department of Transportation and Logistics Management, NYCU" />
 
 
-<meta name="date" content="2024-03-03" />
+<meta name="date" content="2024-03-04" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -242,7 +242,12 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <ul>
 <li class="chapter" data-level="3.2.1" data-path="資料視覺化.html"><a href="資料視覺化.html#標註文字"><i class="fa fa-check"></i><b>3.2.1</b> 標註文字</a></li>
 <li class="chapter" data-level="3.2.2" data-path="資料視覺化.html"><a href="資料視覺化.html#標註標籤"><i class="fa fa-check"></i><b>3.2.2</b> 標註標籤</a></li>
-<li class="chapter" data-level="3.2.3" data-path="資料視覺化.html"><a href="資料視覺化.html#標註插圖"><i class="fa fa-check"></i><b>3.2.3</b> 標註插圖</a></li>
+<li class="chapter" data-level="3.2.3" data-path="資料視覺化.html"><a href="資料視覺化.html#文字字體與字型"><i class="fa fa-check"></i><b>3.2.3</b> 文字字體與字型</a></li>
+<li class="chapter" data-level="3.2.4" data-path="資料視覺化.html"><a href="資料視覺化.html#文字角度與對齊"><i class="fa fa-check"></i><b>3.2.4</b> 文字角度與對齊</a></li>
+<li class="chapter" data-level="3.2.5" data-path="資料視覺化.html"><a href="資料視覺化.html#文字位移"><i class="fa fa-check"></i><b>3.2.5</b> 文字位移</a></li>
+<li class="chapter" data-level="3.2.6" data-path="資料視覺化.html"><a href="資料視覺化.html#文字避免重複"><i class="fa fa-check"></i><b>3.2.6</b> 文字避免重複</a></li>
+<li class="chapter" data-level="3.2.7" data-path="資料視覺化.html"><a href="資料視覺化.html#html-文字ggtext套件"><i class="fa fa-check"></i><b>3.2.7</b> html 文字（<code>ggtext</code>套件）</a></li>
+<li class="chapter" data-level="3.2.8" data-path="資料視覺化.html"><a href="資料視覺化.html#標註插圖"><i class="fa fa-check"></i><b>3.2.8</b> 標註插圖</a></li>
 </ul></li>
 <li class="chapter" data-level="3.3" data-path="資料視覺化.html"><a href="資料視覺化.html#繪圖設定"><i class="fa fa-check"></i><b>3.3</b> 繪圖設定</a>
 <ul>
@@ -1154,8 +1159,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <div id="長條圖" class="section level3 hasAnchor" number="3.1.3">
 <h3><span class="header-section-number">3.1.3</span> 長條圖<a href="資料視覺化.html#長條圖" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <p>長條圖（Bar Chart）用以表達各類別的統計量，例如各月份的總收入、各學生的成績等，用以比較類別間的差異。此外，長條圖亦可應用於時間序列上，表達隨著時間變動的趨勢。在<code>ggplot2</code>套件中，長條圖可以利用<code>geom_bar()</code>與<code>geom_col()</code>繪製，前者會自動計算資料中各類別的數量，僅需輸入需要統計的類別即可；後者則是在已統計完成的資料中，給定橫軸與縱軸。兩函式的撰寫架構如下。</p>
-<div class="sourceCode" id="cb22"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb22-1"><a href="資料視覺化.html#cb22-1" tabindex="-1"></a><span class="fu">geom_bar</span>(<span class="at">stat=</span>, <span class="at">position=</span>, <span class="at">color=</span>, <span class="at">linetype=</span>, <span class="at">linewidth=</span>, <span class="at">fill=</span>, <span class="at">alpha=</span>)</span>
-<span id="cb22-2"><a href="資料視覺化.html#cb22-2" tabindex="-1"></a><span class="fu">geom_col</span>(<span class="at">position=</span>, <span class="at">color=</span>, <span class="at">linetype=</span>, <span class="at">linewidth=</span>, <span class="at">fill=</span>, <span class="at">alpha=</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb22"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb22-1"><a href="資料視覺化.html#cb22-1" tabindex="-1"></a><span class="fu">geom_bar</span>(<span class="at">stat=</span>, <span class="at">position=</span>, <span class="at">color=</span>, <span class="at">linetype=</span>, <span class="at">linewidth=</span>, <span class="at">fill=</span>, <span class="at">alpha=</span>, <span class="at">width=</span>)</span>
+<span id="cb22-2"><a href="資料視覺化.html#cb22-2" tabindex="-1"></a><span class="fu">geom_col</span>(<span class="at">position=</span>, <span class="at">color=</span>, <span class="at">linetype=</span>, <span class="at">linewidth=</span>, <span class="at">fill=</span>, <span class="at">alpha=</span>, <span class="at">width=</span>)</span></code></pre></div>
 <p>以上各引數的功能彙整如表<a href="資料視覺化.html#tab:geom-bar-code-tab">3.5</a>。</p>
 <table class="table table-striped table-hover" style="font-size: 14px; margin-left: auto; margin-right: auto;">
 <caption style="font-size: initial !important;">
@@ -1250,6 +1255,17 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </td>
 <td style="text-align:left;vertical-align:middle;">
 數值，介於 0（完全透明）與 1（完全不透明）間
+</td>
+</tr>
+<tr>
+<td style="text-align:left;vertical-align:middle;">
+<code>width=</code>
+</td>
+<td style="text-align:left;vertical-align:middle;">
+柱狀寬度
+</td>
+<td style="text-align:left;vertical-align:middle;">
+數值
 </td>
 </tr>
 </tbody>
@@ -2748,9 +2764,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </p>
 有時候資料型態並不見得如同前面的範例，將所有節點逐欄羅列並給予統計量，此時我們必須預先處理資料尚能繪製桑基圖。以 2023 年臺灣直轄市間的
 <H2 id="scmig">
-<p style="color:#003D79;font-size:18px;line-height:2">
 社會遷入與遷出資料（scmig）
-</p>
 </H2>
 <p>為例，其資料記錄結構如下。</p>
 <div class="sourceCode" id="cb90"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb90-1"><a href="資料視覺化.html#cb90-1" tabindex="-1"></a><span class="co"># 讀取資料</span></span>
@@ -2999,7 +3013,11 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <p style="color:#003D79;font-size:18px;line-height:2">
 <strong>⌾ 基礎三元圖</strong>
 </p>
-<p>三元圖可以表達不同的三個類別之間的比例關係，以臺灣 2024 年總統選舉為例，有三個政黨推派候選人，故相當適合透過三元圖表達投票結果。以下程式碼中先行讀取全臺各鄉鎮的總統投票結果資料（tw_vote），其中記錄總票數（Votes_Total），以及各政黨的得票率，其中包含 KMT（國民黨）、DPP（民進黨）、TPP（民眾黨）三者。</p>
+三元圖可以表達不同的三個類別之間的比例關係，以
+<H2 id="tw-vote">
+臺灣 2024 年總統選舉資料（tw_vote）
+</H2>
+<p>為例，有三個政黨推派候選人，故相當適合透過三元圖表達投票結果。以下程式碼中先行讀取全臺各鄉鎮的總統投票結果資料（tw_vote），其中記錄總票數（Votes_Total），以及各政黨的得票率，其中包含 KMT（國民黨）、DPP（民進黨）、TPP（民眾黨）三者。</p>
 <div class="sourceCode" id="cb100"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb100-1"><a href="資料視覺化.html#cb100-1" tabindex="-1"></a><span class="co"># 讀取資料</span></span>
 <span id="cb100-2"><a href="資料視覺化.html#cb100-2" tabindex="-1"></a>tw_vote<span class="ot">=</span><span class="fu">read.csv</span>(<span class="st">&quot;https://raw.githubusercontent.com/ChiaJung-Yeh/Transport-Analysis/master/Data/tw_president_vote.csv&quot;</span>)</span>
 <span id="cb100-3"><a href="資料視覺化.html#cb100-3" tabindex="-1"></a></span>
@@ -3229,7 +3247,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </li>
 <li><a href="資料清洗與處理.html#連接資料"><code>left_join()</code></a>:將社會遷移的資料貼附經緯度屬性，以便後續繪圖</li>
 </ul>
-<p>最後繪製圖表如下，其中利用<code>geom_curve()</code>函式標記臺中市到達其他直轄市的社會遷出，並透過線條粗細表示移動人口的量。此外透<a href="資料視覺化.html#散布圖"><code>geom_point()</code></a>函式標記各直轄市位置，最後利用<a href="資料視覺化.html#標註文字"><code>geom_text()</code></a>函式標註直轄市名稱。</p>
+<p>最後繪製圖表如下，其中利用<code>geom_curve()</code>函式標記臺中市到達其他直轄市的社會遷出，並透過線條粗細表示移動人口的量。此外透<a href="資料視覺化.html#散布圖"><code>geom_point()</code></a>函式標記各直轄市位置，且利用<a href="資料視覺化.html#標註文字"><code>geom_text()</code></a>函式標註直轄市名稱。</p>
 <div class="sourceCode" id="cb107"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb107-1"><a href="資料視覺化.html#cb107-1" tabindex="-1"></a><span class="fu">ggplot</span>()<span class="sc">+</span></span>
 <span id="cb107-2"><a href="資料視覺化.html#cb107-2" tabindex="-1"></a>  <span class="fu">geom_curve</span>(<span class="at">data=</span>scmig, <span class="fu">aes</span>(<span class="at">x=</span>From_X, <span class="at">y=</span>From_Y, <span class="at">xend=</span>To_X, <span class="at">yend=</span>To_Y, <span class="at">linewidth=</span>Migration),</span>
 <span id="cb107-3"><a href="資料視覺化.html#cb107-3" tabindex="-1"></a>             <span class="at">color=</span><span class="st">&quot;#7B7B7B&quot;</span>, <span class="at">curvature=</span><span class="fl">0.2</span>,</span>
@@ -3237,7 +3255,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <span id="cb107-5"><a href="資料視覺化.html#cb107-5" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="at">data=</span>county_location, <span class="fu">aes</span>(<span class="at">x=</span>X, <span class="at">y=</span>Y, <span class="at">color=</span>COUNTYNAME), <span class="at">size=</span><span class="dv">5</span>, <span class="at">show.legend=</span>F)<span class="sc">+</span></span>
 <span id="cb107-6"><a href="資料視覺化.html#cb107-6" tabindex="-1"></a>  <span class="fu">geom_text</span>(<span class="at">data=</span>county_location, <span class="fu">aes</span>(<span class="at">x=</span>X, <span class="at">y=</span>Y, <span class="at">label=</span>COUNTYNAME), <span class="at">size=</span><span class="dv">5</span>)</span></code></pre></div>
 <p><img src="series_files/figure-html/geom-linecurve-eg4-1.png" width="70%" style="display: block; margin: auto;" /></p>
-<p>由以上繪圖結果可知，臺中市大部分的人口係移動至新北市，其次為臺北市、桃園市。</p>
+<p>由以上繪圖結果可知，臺中市大部分的人口係移動至新北市，其次為桃園市、臺北市。</p>
 </div>
 </div>
 <div id="圖表文字與插圖" class="section level2 hasAnchor" number="3.2">
@@ -3266,7 +3284,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <code>ggplot2</code>
 </td>
 <td style="text-align:left;vertical-align:middle;">
-<code>geom_text()</code>
+<a href="資料視覺化.html#標註文字"><code>geom_text()</code></a>
 </td>
 <td style="text-align:left;vertical-align:middle;">
 標註文字
@@ -3274,7 +3292,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </tr>
 <tr>
 <td style="text-align:left;vertical-align:middle;">
-<code>geom_label()</code>
+<a href="資料視覺化.html#標註標籤"><code>geom_label()</code></a>
 </td>
 <td style="text-align:left;vertical-align:middle;">
 標註標籤
@@ -3285,7 +3303,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <code>ggrepel</code>
 </td>
 <td style="text-align:left;vertical-align:middle;">
-<code>geom_text_repel()</code>
+[<code>geom_text_repel()](#文字避免重複)</code>
 </td>
 <td style="text-align:left;vertical-align:middle;">
 標註文字（不重疊）
@@ -3293,7 +3311,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </tr>
 <tr>
 <td style="text-align:left;vertical-align:middle;">
-<code>geom_label_repel()</code>
+<a href="資料視覺化.html#文字避免重複"><code>geom_label_repel()</code></a>
 </td>
 <td style="text-align:left;vertical-align:middle;">
 標註標籤（不重疊）
@@ -3304,7 +3322,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <code>ggtext</code>
 </td>
 <td style="text-align:left;vertical-align:middle;">
-<code>geom_richtext()</code>
+<a href="資料視覺化.html#html-文字ggtext套件"><code>geom_richtext()</code></a>
 </td>
 <td style="text-align:left;vertical-align:middle;">
 標註 html 文字
@@ -3312,7 +3330,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </tr>
 <tr>
 <td style="text-align:left;vertical-align:middle;">
-<code>geom_textbox()</code>
+<a href="資料視覺化.html#html-文字ggtext套件"><code>geom_textbox()</code></a>
 </td>
 <td style="text-align:left;vertical-align:middle;">
 標註 html 標籤
@@ -3323,7 +3341,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <code>ggimage</code>
 </td>
 <td style="text-align:left;vertical-align:middle;">
-<code>geom_image()</code>
+<a href="資料視覺化.html#標註插圖"><code>geom_image()</code></a>
 </td>
 <td style="text-align:left;vertical-align:middle;">
 標註插圖
@@ -3334,7 +3352,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <div id="標註文字" class="section level3 hasAnchor" number="3.2.1">
 <h3><span class="header-section-number">3.2.1</span> 標註文字<a href="資料視覺化.html#標註文字" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <p>標註文字可利用<code>geom_text()</code>，該函式撰寫架構如下。</p>
-<div class="sourceCode" id="cb108"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb108-1"><a href="資料視覺化.html#cb108-1" tabindex="-1"></a><span class="fu">geom_text</span>(<span class="fu">aes</span>(<span class="at">x=</span>, <span class="at">y=</span>, <span class="at">label=</span>), <span class="at">color=</span>, <span class="at">size=</span>, <span class="at">alpha=</span>, <span class="at">angle=</span>, <span class="at">family=</span>, <span class="at">fontface=</span>, hjust, <span class="at">vjust=</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb108"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb108-1"><a href="資料視覺化.html#cb108-1" tabindex="-1"></a><span class="fu">geom_text</span>(<span class="fu">aes</span>(<span class="at">x=</span>, <span class="at">y=</span>, <span class="at">label=</span>), <span class="at">color=</span>, <span class="at">size=</span>, <span class="at">alpha=</span>, <span class="at">angle=</span>, <span class="at">family=</span>, <span class="at">fontface=</span>, <span class="at">hjust=</span>, <span class="at">vjust=</span>)</span></code></pre></div>
 <p>各引數設定請參考表<a href="資料視覺化.html#tab:tab-geom-text">3.21</a>。</p>
 <table class="table table-striped table-hover" style="font-size: 14px; margin-left: auto; margin-right: auto;">
 <caption style="font-size: initial !important;">
@@ -3439,7 +3457,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 文字字體
 </td>
 <td style="text-align:left;vertical-align:middle;">
-請參見
+請參見<a href="資料視覺化.html#文字字體與字型">文字字體與字型</a>
 </td>
 </tr>
 <tr>
@@ -3450,7 +3468,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 文字字型
 </td>
 <td style="text-align:left;vertical-align:middle;">
-<code>plain</code>:一般<br><code>bold</code>:粗體<br><code>italic</code>:斜體<br><code>bold.italic</code>:粗斜體
+<code>plain</code>:一般（預設）<br><code>bold</code>:粗體<br><code>italic</code>:斜體<br><code>bold.italic</code>:粗斜體
 </td>
 </tr>
 <tr>
@@ -3499,12 +3517,141 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </tr>
 </tbody>
 </table>
+<p>以下範例展示設定字體與字型的方法，再次以<A href='#tw-vote'>2024 年總統大選</A>資料為例，並萃取新竹縣的資料，繪製各鄉鎮的政黨得票率比例長條圖，最後在長條上標註得票比例及行政區名稱，程式碼撰寫如下。</p>
+<div class="sourceCode" id="cb109"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb109-1"><a href="資料視覺化.html#cb109-1" tabindex="-1"></a><span class="co"># 先在系統中設定字體</span></span>
+<span id="cb109-2"><a href="資料視覺化.html#cb109-2" tabindex="-1"></a><span class="fu">windowsFonts</span>(<span class="at">biaukai=</span><span class="fu">windowsFont</span>(<span class="st">&quot;標楷體&quot;</span>))</span>
+<span id="cb109-3"><a href="資料視覺化.html#cb109-3" tabindex="-1"></a><span class="fu">windowsFonts</span>(<span class="at">TNR=</span><span class="fu">windowsFont</span>(<span class="st">&quot;Times New Roman&quot;</span>))</span>
+<span id="cb109-4"><a href="資料視覺化.html#cb109-4" tabindex="-1"></a></span>
+<span id="cb109-5"><a href="資料視覺化.html#cb109-5" tabindex="-1"></a><span class="co"># 讀取投總統大選資料並篩選出新竹市資料</span></span>
+<span id="cb109-6"><a href="資料視覺化.html#cb109-6" tabindex="-1"></a>hs_vote<span class="ot">=</span><span class="fu">read.csv</span>(<span class="st">&quot;https://raw.githubusercontent.com/ChiaJung-Yeh/Transport-Analysis/master/Data/tw_president_vote.csv&quot;</span>)<span class="sc">%&gt;%</span></span>
+<span id="cb109-7"><a href="資料視覺化.html#cb109-7" tabindex="-1"></a>  <span class="fu">filter</span>(COUNTYNAME<span class="sc">==</span><span class="st">&quot;新竹縣&quot;</span>)<span class="sc">%&gt;%</span></span>
+<span id="cb109-8"><a href="資料視覺化.html#cb109-8" tabindex="-1"></a>  <span class="fu">melt</span>(<span class="at">id.vars=</span><span class="st">&quot;TOWNNAME&quot;</span>, <span class="at">measure.vars=</span><span class="fu">c</span>(<span class="st">&quot;TPP&quot;</span>,<span class="st">&quot;DPP&quot;</span>,<span class="st">&quot;KMT&quot;</span>), <span class="at">variable.name=</span><span class="st">&quot;Party&quot;</span>, <span class="at">value.name=</span><span class="st">&quot;Rate&quot;</span>)</span>
+<span id="cb109-9"><a href="資料視覺化.html#cb109-9" tabindex="-1"></a>hs_vote<span class="sc">$</span>Party<span class="ot">=</span><span class="fu">factor</span>(hs_vote<span class="sc">$</span>Party, <span class="at">levels=</span><span class="fu">c</span>(<span class="st">&quot;TPP&quot;</span>,<span class="st">&quot;DPP&quot;</span>,<span class="st">&quot;KMT&quot;</span>))</span>
+<span id="cb109-10"><a href="資料視覺化.html#cb109-10" tabindex="-1"></a>hs_vote<span class="ot">=</span><span class="fu">group_by</span>(hs_vote, TOWNNAME)<span class="sc">%&gt;%</span></span>
+<span id="cb109-11"><a href="資料視覺化.html#cb109-11" tabindex="-1"></a>  <span class="fu">arrange</span>(TOWNNAME, <span class="fu">desc</span>(Party))<span class="sc">%&gt;%</span></span>
+<span id="cb109-12"><a href="資料視覺化.html#cb109-12" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">Rate_cum=</span><span class="fu">cumsum</span>(Rate))</span>
+<span id="cb109-13"><a href="資料視覺化.html#cb109-13" tabindex="-1"></a></span>
+<span id="cb109-14"><a href="資料視覺化.html#cb109-14" tabindex="-1"></a><span class="co"># 計算邏輯請參考以上示意圖</span></span>
+<span id="cb109-15"><a href="資料視覺化.html#cb109-15" tabindex="-1"></a>hs_vote<span class="sc">$</span>lab_y<span class="ot">=</span>hs_vote<span class="sc">$</span>Rate_cum<span class="sc">-</span>hs_vote<span class="sc">$</span>Rate<span class="sc">/</span><span class="dv">2</span></span>
+<span id="cb109-16"><a href="資料視覺化.html#cb109-16" tabindex="-1"></a>  </span>
+<span id="cb109-17"><a href="資料視覺化.html#cb109-17" tabindex="-1"></a><span class="co"># 繪製圖表時設定family、fontface、hjust、nudge_y引數</span></span>
+<span id="cb109-18"><a href="資料視覺化.html#cb109-18" tabindex="-1"></a><span class="fu">ggplot</span>()<span class="sc">+</span></span>
+<span id="cb109-19"><a href="資料視覺化.html#cb109-19" tabindex="-1"></a>  <span class="fu">geom_col</span>(<span class="at">data=</span>hs_vote, <span class="fu">aes</span>(<span class="at">x=</span>TOWNNAME, <span class="at">y=</span>Rate, <span class="at">fill=</span>Party), <span class="at">width=</span><span class="fl">0.5</span>)<span class="sc">+</span></span>
+<span id="cb109-20"><a href="資料視覺化.html#cb109-20" tabindex="-1"></a>  <span class="fu">geom_text</span>(<span class="at">data=</span>hs_vote, <span class="fu">aes</span>(<span class="at">x=</span>TOWNNAME, <span class="at">y=</span>lab_y, <span class="at">label=</span><span class="fu">paste0</span>(<span class="fu">round</span>(Rate<span class="sc">*</span><span class="dv">100</span>, <span class="dv">1</span>), <span class="st">&quot;%&quot;</span>)), <span class="at">size=</span><span class="dv">3</span>, <span class="at">family=</span><span class="st">&quot;TNR&quot;</span>, <span class="at">nudge_y=</span><span class="sc">-</span><span class="fl">0.05</span>)<span class="sc">+</span></span>
+<span id="cb109-21"><a href="資料視覺化.html#cb109-21" tabindex="-1"></a>  <span class="fu">geom_text</span>(<span class="at">data=</span>hs_vote, <span class="fu">aes</span>(<span class="at">x=</span>TOWNNAME, <span class="at">y=</span><span class="dv">1</span>, <span class="at">label=</span>TOWNNAME), <span class="at">size=</span><span class="dv">3</span>, <span class="at">family=</span><span class="st">&quot;biaukai&quot;</span>, <span class="at">angle=</span><span class="dv">45</span>, <span class="at">hjust=</span><span class="dv">1</span>)</span></code></pre></div>
+<p><img src="series_files/figure-html/font-family-type-eg2-1.png" width="80%" style="display: block; margin: auto;" /></p>
+<p>關於資料處理的過程請參考<a href="資料視覺化.html#長條圖">長條圖</a>中「加入文字或標籤」的範例，而在繪圖函式中，利用以下引數設定字體與樣式：</p>
+<ul>
+<li><a href="資料視覺化.html#文字字體與字型"><code>family=</code></a>:設定文字的字體<br />
+</li>
+<li><a href="資料視覺化.html#文字角度與對齊"><code>angle=</code></a>:設定文字角度<br />
+</li>
+<li><a href="資料視覺化.html#文字角度與對齊"><code>hjust=</code></a>:設定文字對齊<br />
+</li>
+<li><a href="資料視覺化.html#文字角度與對齊"><code>nudge_y=</code></a>:設定文字位移</li>
+</ul>
+<p><strong>各引數的設定請參見@ref(#文字字體與字型)至@ref(#文字位移)章節！</strong></p>
 </div>
 <div id="標註標籤" class="section level3 hasAnchor" number="3.2.2">
 <h3><span class="header-section-number">3.2.2</span> 標註標籤<a href="資料視覺化.html#標註標籤" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 </div>
-<div id="標註插圖" class="section level3 hasAnchor" number="3.2.3">
-<h3><span class="header-section-number">3.2.3</span> 標註插圖<a href="資料視覺化.html#標註插圖" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<div id="文字字體與字型" class="section level3 hasAnchor" number="3.2.3">
+<h3><span class="header-section-number">3.2.3</span> 文字字體與字型<a href="資料視覺化.html#文字字體與字型" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p style="color:#003D79">
+請注意文字字體與字型設定不限於<code>geom_text()</code>函式，亦包含可擴充 html 文字的<a href="資料視覺化.html#html-文字ggtext套件"><code>geom_richtext()</code>與<code>geom_textbox()</code></a>，以及用以設定主題的<a href="資料視覺化.html#細節樣式設定"><code>element_text()</code>與<code>element_markdown()</code></a>等，任何有關文字設定的套件通常皆可透過本小節所述方式設定字體與字型。
+</p>
+<p>在 Windows 系統中，若欲設定字體，可利用以下函式設定之：</p>
+<div class="sourceCode" id="cb110"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb110-1"><a href="資料視覺化.html#cb110-1" tabindex="-1"></a><span class="fu">windowsFonts</span>(變數名稱<span class="ot">=</span><span class="fu">windowsFont</span>(<span class="st">&quot;字體名稱&quot;</span>))</span></code></pre></div>
+<p>設定完成後即可透過<code>family="變數名稱"</code>之引數設定圖片中的文字字體。而字型的設定可以透過<code>fontface=</code>設定之（惟主題樣式設定中的<a href="資料視覺化.html#細節樣式設定"><code>element_text()</code></a>是<code>face=</code>引數），包含原形（<code>plain</code>，預設）、粗體（<code>bold</code>）、斜體（<code>italic</code>）與粗斜體（<code>bold.italic</code>）。圖<a href="資料視覺化.html#fig:font-family-type">3.13</a>列舉數個字體與字型。</p>
+<div class="figure" style="text-align: center"><span style="display:block;" id="fig:font-family-type"></span>
+<img src="series_files/figure-html/font-family-type-1.png" alt="調整文字字體與字型" width="75%" />
+<p class="caption">
+圖 3.13: 調整文字字體與字型
+</p>
+</div>
+<p>本節係介紹 Windows 系統的字體設定方式，若在 Mac 系統中即無法透過<code>windowsFonts()</code>函式設定。R 語言中無論何系統，皆可透過<code>showtext</code>套件設定字體，該套件能夠更彈性地擴充字體，詳情請見<a href="https://cran.rstudio.com/web/packages/showtext/vignettes/introduction.html">此</a>。</p>
+</div>
+<div id="文字角度與對齊" class="section level3 hasAnchor" number="3.2.4">
+<h3><span class="header-section-number">3.2.4</span> 文字角度與對齊<a href="資料視覺化.html#文字角度與對齊" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p style="color:#003D79">
+請注意文字角度與對齊設定不限於<code>geom_text()</code>函式，亦包含可擴充 html 文字的<a href="資料視覺化.html#html-文字ggtext套件"><code>geom_richtext()</code>與<code>geom_textbox()</code></a>，以及用以設定主題的<a href="資料視覺化.html#細節樣式設定"><code>element_text()</code>與<code>element_markdown()</code></a>等，任何有關文字設定的套件通常皆可透過本小節所述方式設定角度與對齊。
+</p>
+<p>所有有關文字角度與對齊的函數，其引數設定方式皆同。調整角度利用<code>angle=</code>引數；調整對齊則利用<code>hjust=</code>與<code>vjust</code>引數，各引數設定參見表表<a href="資料視覺化.html#tab:font-angle-just-tab">3.22</a>，設定結果參照圖<a href="資料視覺化.html#fig:font-angle-just">3.14</a>所示。</p>
+<table class="table table-striped table-hover" style="font-size: 14px; margin-left: auto; margin-right: auto;">
+<caption style="font-size: initial !important;">
+<span id="tab:font-angle-just-tab">表 3.22: </span>角度與對齊引數設定
+</caption>
+<thead>
+<tr>
+<th style="text-align:left;font-weight: bold;color: white !important;background-color: #8E8E8E !important;">
+引數
+</th>
+<th style="text-align:left;font-weight: bold;color: white !important;background-color: #8E8E8E !important;">
+功能設定
+</th>
+<th style="text-align:left;font-weight: bold;color: white !important;background-color: #8E8E8E !important;">
+說明
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left;vertical-align:middle;">
+<code>angle=</code>
+</td>
+<td style="text-align:left;vertical-align:middle;">
+文字角度
+</td>
+<td style="text-align:left;vertical-align:middle;">
+數值，介於 0° 至 360° 間
+</td>
+</tr>
+<tr>
+<td style="text-align:left;vertical-align:middle;">
+<code>hjust=</code>
+</td>
+<td style="text-align:left;vertical-align:middle;">
+文字橫軸對齊
+</td>
+<td style="text-align:left;vertical-align:middle;">
+<strong>數值：</strong><code>0</code>:靠左；<code>0.5</code>:置中；<code>1</code>:靠右<br><strong>文字：</strong><code>left</code>:靠左；<code>middle</code>:置中；<code>right</code>:靠右
+</td>
+</tr>
+<tr>
+<td style="text-align:left;vertical-align:middle;">
+<code>vjust=</code>
+</td>
+<td style="text-align:left;vertical-align:middle;">
+文字縱軸對齊
+</td>
+<td style="text-align:left;vertical-align:middle;">
+<strong>數值：</strong><code>0</code>:靠下；<code>0.5</code>:置中；<code>1</code>:靠上<br><strong>文字：</strong><code>bottom</code>:靠下；<code>center</code>:置中；<code>top</code>:靠上
+</td>
+</tr>
+</tbody>
+</table>
+<div class="figure" style="text-align: center"><span style="display:block;" id="fig:font-angle-just"></span>
+<img src="series_files/figure-html/font-angle-just-1.png" alt="調整文字角度與對齊" width="100%" />
+<p class="caption">
+圖 3.14: 調整文字角度與對齊
+</p>
+</div>
+</div>
+<div id="文字位移" class="section level3 hasAnchor" number="3.2.5">
+<h3><span class="header-section-number">3.2.5</span> 文字位移<a href="資料視覺化.html#文字位移" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p style="color:#003D79">
+請注意文字位移設定不限於<code>geom_text()</code>函式，亦包含可擴充 html 文字的<a href="資料視覺化.html#html-文字ggtext套件"><code>geom_richtext()</code>與<code>geom_textbox()</code></a>，以及用以設定主題的<a href="資料視覺化.html#細節樣式設定"><code>element_text()</code>與<code>element_markdown()</code></a>等，任何有關文字設定的套件通常皆可透過本小節所述方式設定字體與字型。
+</p>
+<p>文字位移是指將所有文字或標籤往特定方向移動，如此可統一修正文字的位置，齊</p>
+</div>
+<div id="文字避免重複" class="section level3 hasAnchor" number="3.2.6">
+<h3><span class="header-section-number">3.2.6</span> 文字避免重複<a href="資料視覺化.html#文字避免重複" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+</div>
+<div id="html-文字ggtext套件" class="section level3 hasAnchor" number="3.2.7">
+<h3><span class="header-section-number">3.2.7</span> html 文字（<code>ggtext</code>套件）<a href="資料視覺化.html#html-文字ggtext套件" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+</div>
+<div id="標註插圖" class="section level3 hasAnchor" number="3.2.8">
+<h3><span class="header-section-number">3.2.8</span> 標註插圖<a href="資料視覺化.html#標註插圖" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 </div>
 </div>
 <div id="繪圖設定" class="section level2 hasAnchor" number="3.3">

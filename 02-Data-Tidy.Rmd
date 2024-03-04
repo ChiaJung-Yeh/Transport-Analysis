@@ -576,6 +576,8 @@ group_by(資料, 分群欄位)%>%
   filter(條件)
 ```
 
+請注意函式中的「`%>%`」為水管（pipe），可以承繼前一程式碼操作所得資料。只有在使用的資料皆相同時，尚能透過「`%>%`」函式連接程式碼。
+
 以`world`資料為例，先將資料依據洲（continent）分群，而後篩選出各洲資料中面積最大者，程式碼撰寫如下。
 
 ```{r groupby-filter-eg, echo=T, eval=T}
@@ -1330,7 +1332,6 @@ tra_town_fill=fill(tra_town, COUNTYNAME, .direction="down")
 # 再次查看前六筆資料
 head(tra_town_fill)
 ```
-
 
 
 ## **所有函式彙整** {-}

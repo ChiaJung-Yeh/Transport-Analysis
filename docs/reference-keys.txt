@@ -177,3 +177,11 @@ tab:geom-linecurve-code-tab
 tab:geom-arrow-code-tab
 tab:tab-textfig-plot
 tab:tab-geom-text
+fig:font-family-type
+fig:font-angle-just
+文字字體與字型
+文字角度與對齊
+文字位移
+文字避免重複
+html-文字ggtext套件
+tab:font-angle-just-tab
