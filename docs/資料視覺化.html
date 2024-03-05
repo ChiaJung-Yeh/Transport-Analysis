@@ -23,7 +23,7 @@
 <meta name="author" content="Chia-Jung (Robert) Yeh 葉家榮 PhD: Insitute of Transport and Logistics Studies, USYD M.S.: Department of Transportation and Logistics Management, NYCU" />
 
 
-<meta name="date" content="2024-03-05" />
+<meta name="date" content="2024-03-06" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -240,14 +240,13 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </ul></li>
 <li class="chapter" data-level="3.2" data-path="資料視覺化.html"><a href="資料視覺化.html#圖表文字與插圖"><i class="fa fa-check"></i><b>3.2</b> 圖表文字與插圖</a>
 <ul>
-<li class="chapter" data-level="3.2.1" data-path="資料視覺化.html"><a href="資料視覺化.html#標註文字"><i class="fa fa-check"></i><b>3.2.1</b> 標註文字</a></li>
-<li class="chapter" data-level="3.2.2" data-path="資料視覺化.html"><a href="資料視覺化.html#標註標籤"><i class="fa fa-check"></i><b>3.2.2</b> 標註標籤</a></li>
-<li class="chapter" data-level="3.2.3" data-path="資料視覺化.html"><a href="資料視覺化.html#文字字體與字型"><i class="fa fa-check"></i><b>3.2.3</b> 文字字體與字型</a></li>
-<li class="chapter" data-level="3.2.4" data-path="資料視覺化.html"><a href="資料視覺化.html#文字角度與對齊"><i class="fa fa-check"></i><b>3.2.4</b> 文字角度與對齊</a></li>
-<li class="chapter" data-level="3.2.5" data-path="資料視覺化.html"><a href="資料視覺化.html#文字位移"><i class="fa fa-check"></i><b>3.2.5</b> 文字位移</a></li>
-<li class="chapter" data-level="3.2.6" data-path="資料視覺化.html"><a href="資料視覺化.html#文字避免重複"><i class="fa fa-check"></i><b>3.2.6</b> 文字避免重複</a></li>
-<li class="chapter" data-level="3.2.7" data-path="資料視覺化.html"><a href="資料視覺化.html#html-文字ggtext套件"><i class="fa fa-check"></i><b>3.2.7</b> html 文字（<code>ggtext</code>套件）</a></li>
-<li class="chapter" data-level="3.2.8" data-path="資料視覺化.html"><a href="資料視覺化.html#標註插圖"><i class="fa fa-check"></i><b>3.2.8</b> 標註插圖</a></li>
+<li class="chapter" data-level="3.2.1" data-path="資料視覺化.html"><a href="資料視覺化.html#標註文字與標籤"><i class="fa fa-check"></i><b>3.2.1</b> 標註文字與標籤</a></li>
+<li class="chapter" data-level="3.2.2" data-path="資料視覺化.html"><a href="資料視覺化.html#文字字體與字型"><i class="fa fa-check"></i><b>3.2.2</b> 文字字體與字型</a></li>
+<li class="chapter" data-level="3.2.3" data-path="資料視覺化.html"><a href="資料視覺化.html#文字角度與對齊"><i class="fa fa-check"></i><b>3.2.3</b> 文字角度與對齊</a></li>
+<li class="chapter" data-level="3.2.4" data-path="資料視覺化.html"><a href="資料視覺化.html#文字位移"><i class="fa fa-check"></i><b>3.2.4</b> 文字位移</a></li>
+<li class="chapter" data-level="3.2.5" data-path="資料視覺化.html"><a href="資料視覺化.html#文字避免重疊"><i class="fa fa-check"></i><b>3.2.5</b> 文字避免重疊</a></li>
+<li class="chapter" data-level="3.2.6" data-path="資料視覺化.html"><a href="資料視覺化.html#html-文字ggtext套件"><i class="fa fa-check"></i><b>3.2.6</b> html 文字（<code>ggtext</code>套件）</a></li>
+<li class="chapter" data-level="3.2.7" data-path="資料視覺化.html"><a href="資料視覺化.html#標註插圖"><i class="fa fa-check"></i><b>3.2.7</b> 標註插圖</a></li>
 </ul></li>
 <li class="chapter" data-level="3.3" data-path="資料視覺化.html"><a href="資料視覺化.html#繪圖設定"><i class="fa fa-check"></i><b>3.3</b> 繪圖設定</a>
 <ul>
@@ -861,7 +860,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <p style="color:#003D79;font-size:18px;line-height:2">
 <strong>⌾ 加入文字或標籤</strong>
 </p>
-<p>關於圖表中插入文字，應利用<code>geom_text()</code>函式，請先參考<a href="資料視覺化.html#標註文字">此</a>。以加入各品種（Species）分群中心點的名稱為例，以下程式碼先行透過<code>group_by() %&gt;% summarise()</code>計算各分群的中心點位置，最後再添上文字。</p>
+<p>關於圖表中插入文字，應利用<code>geom_text()</code>函式，請先參考<a href="資料視覺化.html#標註文字與標籤">此</a>。以加入各品種（Species）分群中心點的名稱為例，以下程式碼先行透過<code>group_by() %&gt;% summarise()</code>計算各分群的中心點位置，最後再添上文字。</p>
 <div class="sourceCode" id="cb9"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb9-1"><a href="資料視覺化.html#cb9-1" tabindex="-1"></a><span class="co"># 統計各品種的中心點</span></span>
 <span id="cb9-2"><a href="資料視覺化.html#cb9-2" tabindex="-1"></a>iris_sum<span class="ot">=</span><span class="fu">group_by</span>(iris, Species)<span class="sc">%&gt;%</span></span>
 <span id="cb9-3"><a href="資料視覺化.html#cb9-3" tabindex="-1"></a>  <span class="fu">summarise_at</span>(<span class="fu">c</span>(<span class="st">&quot;Sepal.Length&quot;</span>, <span class="st">&quot;Sepal.Width&quot;</span>), mean)</span>
@@ -1365,7 +1364,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <p style="color:#003D79;font-size:18px;line-height:2">
 <strong>⌾ 加入文字或標籤</strong>
 </p>
-<p>關於圖表中插入文字，應利用<code>geom_text()</code>函式，請先參考<a href="資料視覺化.html#標註文字">此</a>。在繪製長條圖時，有時會希望在長條圖上標註類別或數字，以明確顯示充分的資訊，增加可讀性。以前文<code>mpg_sum</code>資料為例，將各廠牌（manufacturer）類別的統計數量（Count）標註於長條的頂端。程式碼中在設定文字的標註位置時，將縱軸設定為各數量再加一，以避免與頂端的邊界重疊而影響判讀。</p>
+<p>關於圖表中插入文字，應利用<code>geom_text()</code>函式，請先參考<a href="資料視覺化.html#標註文字與標籤">此</a>。在繪製長條圖時，有時會希望在長條圖上標註類別或數字，以明確顯示充分的資訊，增加可讀性。以前文<code>mpg_sum</code>資料為例，將各廠牌（manufacturer）類別的統計數量（Count）標註於長條的頂端。程式碼中在設定文字的標註位置時，將縱軸設定為各數量再加一，以避免與頂端的邊界重疊而影響判讀。</p>
 <div class="sourceCode" id="cb30"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb30-1"><a href="資料視覺化.html#cb30-1" tabindex="-1"></a><span class="fu">ggplot</span>()<span class="sc">+</span></span>
 <span id="cb30-2"><a href="資料視覺化.html#cb30-2" tabindex="-1"></a>  <span class="fu">geom_col</span>(<span class="at">data=</span>mpg_sum, <span class="fu">aes</span>(<span class="at">x=</span>manufacturer, <span class="at">y=</span>Count))<span class="sc">+</span></span>
 <span id="cb30-3"><a href="資料視覺化.html#cb30-3" tabindex="-1"></a>  <span class="fu">geom_text</span>(<span class="at">data=</span>mpg_sum, <span class="fu">aes</span>(<span class="at">x=</span>manufacturer, <span class="at">y=</span>Count<span class="sc">+</span><span class="dv">1</span>, <span class="at">label=</span>Count), <span class="at">color=</span><span class="st">&quot;blue&quot;</span>)</span></code></pre></div>
@@ -1784,7 +1783,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <p style="color:#003D79;font-size:18px;line-height:2">
 <strong>⌾ 加入文字或標籤</strong>
 </p>
-<p>關於圖表中插入標籤，應利用<code>geom_text()</code>函式，請先參考<a href="資料視覺化.html#標註文字">此</a>。而若欲在圓餅圖各區塊上分別標註文字，請參考圖<a href="資料視覺化.html#fig:geom-bar-cumsum-fig">3.7</a>關於縱軸數值計算邏輯之示意圖。另外，請務必在計算累積比例與縱軸數值前，先將資料<strong>依據圖例層級排列</strong>，否則標註的文字或標籤將無法座落於正確的位置上。</p>
+<p>關於圖表中插入標籤，應利用<code>geom_text()</code>函式，請先參考<a href="資料視覺化.html#標註文字與標籤">此</a>。而若欲在圓餅圖各區塊上分別標註文字，請參考圖<a href="資料視覺化.html#fig:geom-bar-cumsum-fig">3.7</a>關於縱軸數值計算邏輯之示意圖。另外，請務必在計算累積比例與縱軸數值前，先將資料<strong>依據圖例層級排列</strong>，否則標註的文字或標籤將無法座落於正確的位置上。</p>
 <div class="sourceCode" id="cb50"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb50-1"><a href="資料視覺化.html#cb50-1" tabindex="-1"></a><span class="co"># 透過factor()函式固定圖例的排列順序</span></span>
 <span id="cb50-2"><a href="資料視覺化.html#cb50-2" tabindex="-1"></a>tp_school_sum3_lev3<span class="ot">=</span>tp_school_sum3</span>
 <span id="cb50-3"><a href="資料視覺化.html#cb50-3" tabindex="-1"></a></span>
@@ -2758,15 +2757,11 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <span id="cb89-4"><a href="資料視覺化.html#cb89-4" tabindex="-1"></a>  <span class="fu">geom_text</span>(<span class="at">stat=</span><span class="st">&quot;stratum&quot;</span>, <span class="fu">aes</span>(<span class="at">label=</span><span class="fu">after_stat</span>(stratum)))<span class="sc">+</span></span>
 <span id="cb89-5"><a href="資料視覺化.html#cb89-5" tabindex="-1"></a>  <span class="fu">scale_x_discrete</span>(<span class="at">limits=</span><span class="fu">c</span>(<span class="st">&quot;Hair&quot;</span>,<span class="st">&quot;Eye&quot;</span>), <span class="at">expand=</span><span class="fu">c</span>(<span class="fl">0.2</span>, <span class="fl">0.05</span>))</span></code></pre></div>
 <p><img src="series_files/figure-html/geom-sankey-eg2-1.png" width="70%" style="display: block; margin: auto;" /></p>
-<p>關於<code>geom_text()</code>函式在圖表上加註文字，請參考<a href="資料視覺化.html#標註文字">此</a>；透過<code>scale_x_discrete()</code>函式調整座標軸名稱，請參考<a href="#調整座標軸名稱順序">此</a>。</p>
+<p>關於<code>geom_text()</code>函式在圖表上加註文字，請參考<a href="資料視覺化.html#標註文字與標籤">此</a>；透過<code>scale_x_discrete()</code>函式調整座標軸名稱，請參考<a href="#調整座標軸名稱順序">此</a>。</p>
 <p style="color:#003D79;font-size:18px;line-height:2">
 <strong>⌾ 彙整資料後繪製桑基圖</strong>
 </p>
-有時候資料型態並不見得如同前面的範例，將所有節點逐欄羅列並給予統計量，此時我們必須預先處理資料尚能繪製桑基圖。以 2023 年臺灣直轄市間的
-<H2 id="scmig">
-社會遷入與遷出資料（scmig）
-</H2>
-<p>為例，其資料記錄結構如下。</p>
+<p>有時候資料型態並不見得如同前面的範例，將所有節點逐欄羅列並給予統計量，此時我們必須預先處理資料尚能繪製桑基圖。以 2023 年臺灣直轄市間的<span id="scmig">社會遷入與遷出資料（scmig）</span> 為例，其資料記錄結構如下。</p>
 <div class="sourceCode" id="cb90"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb90-1"><a href="資料視覺化.html#cb90-1" tabindex="-1"></a><span class="co"># 讀取資料</span></span>
 <span id="cb90-2"><a href="資料視覺化.html#cb90-2" tabindex="-1"></a>scmig<span class="ot">=</span><span class="fu">read.csv</span>(<span class="st">&quot;https://raw.githubusercontent.com/ChiaJung-Yeh/Transport-Analysis/master/Data/social_migration.csv&quot;</span>)</span>
 <span id="cb90-3"><a href="資料視覺化.html#cb90-3" tabindex="-1"></a></span>
@@ -3013,11 +3008,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <p style="color:#003D79;font-size:18px;line-height:2">
 <strong>⌾ 基礎三元圖</strong>
 </p>
-三元圖可以表達不同的三個類別之間的比例關係，以
-<H2 id="tw-vote">
-臺灣 2024 年總統選舉資料（tw_vote）
-</H2>
-<p>為例，有三個政黨推派候選人，故相當適合透過三元圖表達投票結果。以下程式碼中先行讀取全臺各鄉鎮的總統投票結果資料（tw_vote），其中記錄總票數（Votes_Total），以及各政黨的得票率，其中包含 KMT（國民黨）、DPP（民進黨）、TPP（民眾黨）三者。</p>
+<p>三元圖可以表達不同的三個類別之間的比例關係，以<span id="tw-vote">臺灣 2024 年總統選舉資料（tw_vote）</span>為例，有三個政黨推派候選人，故相當適合透過三元圖表達投票結果。以下程式碼中先行讀取全臺各鄉鎮的總統投票結果資料（tw_vote），其中記錄總票數（Votes_Total），以及各政黨的得票率，其中包含 KMT（國民黨）、DPP（民進黨）、TPP（民眾黨）三者。</p>
 <div class="sourceCode" id="cb100"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb100-1"><a href="資料視覺化.html#cb100-1" tabindex="-1"></a><span class="co"># 讀取資料</span></span>
 <span id="cb100-2"><a href="資料視覺化.html#cb100-2" tabindex="-1"></a>tw_vote<span class="ot">=</span><span class="fu">read.csv</span>(<span class="st">&quot;https://raw.githubusercontent.com/ChiaJung-Yeh/Transport-Analysis/master/Data/tw_president_vote.csv&quot;</span>)</span>
 <span id="cb100-3"><a href="資料視覺化.html#cb100-3" tabindex="-1"></a></span>
@@ -3247,7 +3238,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </li>
 <li><a href="資料清洗與處理.html#連接資料"><code>left_join()</code></a>:將社會遷移的資料貼附經緯度屬性，以便後續繪圖</li>
 </ul>
-<p>最後繪製圖表如下，其中利用<code>geom_curve()</code>函式標記臺中市到達其他直轄市的社會遷出，並透過線條粗細表示移動人口的量。此外透<a href="資料視覺化.html#散布圖"><code>geom_point()</code></a>函式標記各直轄市位置，且利用<a href="資料視覺化.html#標註文字"><code>geom_text()</code></a>函式標註直轄市名稱。</p>
+<p>最後繪製圖表如下，其中利用<code>geom_curve()</code>函式標記臺中市到達其他直轄市的社會遷出，並透過線條粗細表示移動人口的量。此外透<a href="資料視覺化.html#散布圖"><code>geom_point()</code></a>函式標記各直轄市位置，且利用<a href="資料視覺化.html#標註文字與標籤"><code>geom_text()</code></a>函式標註直轄市名稱。</p>
 <div class="sourceCode" id="cb107"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb107-1"><a href="資料視覺化.html#cb107-1" tabindex="-1"></a><span class="fu">ggplot</span>()<span class="sc">+</span></span>
 <span id="cb107-2"><a href="資料視覺化.html#cb107-2" tabindex="-1"></a>  <span class="fu">geom_curve</span>(<span class="at">data=</span>scmig, <span class="fu">aes</span>(<span class="at">x=</span>From_X, <span class="at">y=</span>From_Y, <span class="at">xend=</span>To_X, <span class="at">yend=</span>To_Y, <span class="at">linewidth=</span>Migration),</span>
 <span id="cb107-3"><a href="資料視覺化.html#cb107-3" tabindex="-1"></a>             <span class="at">color=</span><span class="st">&quot;#7B7B7B&quot;</span>, <span class="at">curvature=</span><span class="fl">0.2</span>,</span>
@@ -3260,7 +3251,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </div>
 <div id="圖表文字與插圖" class="section level2 hasAnchor" number="3.2">
 <h2><span class="header-section-number">3.2</span> 圖表文字與插圖<a href="資料視覺化.html#圖表文字與插圖" class="anchor-section" aria-label="Anchor link to header"></a></h2>
-<p>在圖表中有時會插入文字或圖片，已標示更明確的訊息或輔助圖表判讀，並增添視覺化效果。在 R 語言中可以利用<code>ggplot2</code>套件及其延伸的套件客製化插入文字與圖表，所有本節會使用到的套件與函式彙整如表<a href="資料視覺化.html#tab:tab-textfig-plot">3.20</a>。</p>
+<p>在圖表中有時會插入文字或圖片，以標示更明確的訊息或輔助圖表判讀，並增添視覺化效果。在 R 語言中可以利用<code>ggplot2</code>套件及其延伸的套件客製化插入文字與圖表，所有本節會使用到的套件與函式彙整如表<a href="資料視覺化.html#tab:tab-textfig-plot">3.20</a>。</p>
 <table class="table table-striped table-hover" style="font-size: 14px; margin-left: auto; margin-right: auto;">
 <caption style="font-size: initial !important;">
 <span id="tab:tab-textfig-plot">表 3.20: </span>圖表文字與插圖函式
@@ -3284,7 +3275,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <code>ggplot2</code>
 </td>
 <td style="text-align:left;vertical-align:middle;">
-<a href="資料視覺化.html#標註文字"><code>geom_text()</code></a>
+<a href="資料視覺化.html#標註文字與標籤"><code>geom_text()</code></a>
 </td>
 <td style="text-align:left;vertical-align:middle;">
 標註文字
@@ -3292,7 +3283,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </tr>
 <tr>
 <td style="text-align:left;vertical-align:middle;">
-<a href="資料視覺化.html#標註標籤"><code>geom_label()</code></a>
+<a href="資料視覺化.html#標註文字與標籤"><code>geom_label()</code></a>
 </td>
 <td style="text-align:left;vertical-align:middle;">
 標註標籤
@@ -3303,7 +3294,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <code>ggrepel</code>
 </td>
 <td style="text-align:left;vertical-align:middle;">
-[<code>geom_text_repel()](#文字避免重複)</code>
+<a href="資料視覺化.html#文字避免重疊"><code>geom_text_repel()</code></a>`
 </td>
 <td style="text-align:left;vertical-align:middle;">
 標註文字（不重疊）
@@ -3311,7 +3302,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </tr>
 <tr>
 <td style="text-align:left;vertical-align:middle;">
-<a href="資料視覺化.html#文字避免重複"><code>geom_label_repel()</code></a>
+<a href="資料視覺化.html#文字避免重疊"><code>geom_label_repel()</code></a>
 </td>
 <td style="text-align:left;vertical-align:middle;">
 標註標籤（不重疊）
@@ -3349,14 +3340,21 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </tr>
 </tbody>
 </table>
-<div id="標註文字" class="section level3 hasAnchor" number="3.2.1">
-<h3><span class="header-section-number">3.2.1</span> 標註文字<a href="資料視覺化.html#標註文字" class="anchor-section" aria-label="Anchor link to header"></a></h3>
-<p>標註文字可利用<code>geom_text()</code>，該函式撰寫架構如下。</p>
-<div class="sourceCode" id="cb108"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb108-1"><a href="資料視覺化.html#cb108-1" tabindex="-1"></a><span class="fu">geom_text</span>(<span class="fu">aes</span>(<span class="at">x=</span>, <span class="at">y=</span>, <span class="at">label=</span>), <span class="at">color=</span>, <span class="at">size=</span>, <span class="at">alpha=</span>, <span class="at">angle=</span>, <span class="at">family=</span>, <span class="at">fontface=</span>, <span class="at">hjust=</span>, <span class="at">vjust=</span>)</span></code></pre></div>
-<p>各引數設定請參考表<a href="資料視覺化.html#tab:tab-geom-text">3.21</a>。</p>
+<div id="標註文字與標籤" class="section level3 hasAnchor" number="3.2.1">
+<h3><span class="header-section-number">3.2.1</span> 標註文字與標籤<a href="資料視覺化.html#標註文字與標籤" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>「標註文字」係指在圖片上加入純文字，而「標註標籤」則是指加入具有背景、邊框的文字，範例如圖<a href="資料視覺化.html#fig:geom-text-eg0">3.13</a>所示所示。在<code>ggplot2</code>套件中，標註文字可利用<code>geom_text()</code>函式；標註標籤可利用<code>geom_label()</code>函式，兩函式的撰寫架構如下。</p>
+<div class="figure" style="text-align: center"><span style="display:block;" id="fig:geom-text-eg0"></span>
+<img src="series_files/figure-html/geom-text-eg0-1.png" alt="標註文字與標籤圖示" width="70%" />
+<p class="caption">
+圖 3.13: 標註文字與標籤圖示
+</p>
+</div>
+<div class="sourceCode" id="cb108"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb108-1"><a href="資料視覺化.html#cb108-1" tabindex="-1"></a><span class="fu">geom_text</span>(<span class="fu">aes</span>(<span class="at">x=</span>, <span class="at">y=</span>, <span class="at">label=</span>), <span class="at">color=</span>, <span class="at">size=</span>, <span class="at">alpha=</span>, <span class="at">angle=</span>, <span class="at">family=</span>, <span class="at">fontface=</span>, <span class="at">hjust=</span>, <span class="at">vjust=</span>)</span>
+<span id="cb108-2"><a href="資料視覺化.html#cb108-2" tabindex="-1"></a><span class="fu">geom_label</span>(<span class="fu">aes</span>(<span class="at">x=</span>, <span class="at">y=</span>, <span class="at">label=</span>), <span class="at">color=</span>, <span class="at">fill=</span>, <span class="at">size=</span>, <span class="at">alpha=</span>, <span class="at">angle=</span>, <span class="at">family=</span>, <span class="at">fontface=</span>, <span class="at">hjust=</span>, <span class="at">vjust=</span>, <span class="at">label.r=</span>, <span class="at">label.size=</span>)</span></code></pre></div>
+<p><code>geom_text()</code>與<code>geom_label()</code>函式中的各引數設定請參考表<a href="資料視覺化.html#tab:tab-geom-text">3.21</a>。</p>
 <table class="table table-striped table-hover" style="font-size: 14px; margin-left: auto; margin-right: auto;">
 <caption style="font-size: initial !important;">
-<span id="tab:tab-geom-text">表 3.21: </span><code>geom_text()</code>函式引數設定
+<span id="tab:tab-geom-text">表 3.21: </span><code>geom_text()</code>與<code>geom_label()</code>函式引數設定
 </caption>
 <thead>
 <tr>
@@ -3368,6 +3366,12 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </th>
 <th style="text-align:left;font-weight: bold;color: white !important;background-color: #8E8E8E !important;">
 說明
+</th>
+<th style="text-align:center;font-weight: bold;color: white !important;background-color: #8E8E8E !important;">
+<span style="color:black"><code>geom_text()</code></span>
+</th>
+<th style="text-align:center;font-weight: bold;color: white !important;background-color: #8E8E8E !important;">
+<span style="color:black"><code>geom_label()</code></span>
 </th>
 </tr>
 </thead>
@@ -3382,6 +3386,12 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <td style="text-align:left;vertical-align:middle;">
 橫軸座標欄位
 </td>
+<td style="text-align:center;vertical-align:middle;font-weight: bold;">
+✓
+</td>
+<td style="text-align:center;vertical-align:middle;font-weight: bold;">
+✓
+</td>
 </tr>
 <tr>
 <td style="text-align:left;vertical-align:middle;">
@@ -3392,6 +3402,12 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </td>
 <td style="text-align:left;vertical-align:middle;">
 縱軸座標欄位
+</td>
+<td style="text-align:center;vertical-align:middle;font-weight: bold;">
+✓
+</td>
+<td style="text-align:center;vertical-align:middle;font-weight: bold;">
+✓
 </td>
 </tr>
 <tr>
@@ -3404,16 +3420,45 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <td style="text-align:left;vertical-align:middle;">
 標註文字欄位
 </td>
+<td style="text-align:center;vertical-align:middle;font-weight: bold;">
+✓
+</td>
+<td style="text-align:center;vertical-align:middle;font-weight: bold;">
+✓
+</td>
 </tr>
 <tr>
 <td style="text-align:left;vertical-align:middle;">
 <code>color=</code>
 </td>
 <td style="text-align:left;vertical-align:middle;">
-文字顏色
+文字顏色（與標籤邊框的顏色）
 </td>
 <td style="text-align:left;vertical-align:middle;">
 請參考<a href="資料視覺化.html#geom-setting-color">顏色設定</a>
+</td>
+<td style="text-align:center;vertical-align:middle;font-weight: bold;">
+✓
+</td>
+<td style="text-align:center;vertical-align:middle;font-weight: bold;">
+✓
+</td>
+</tr>
+<tr>
+<td style="text-align:left;vertical-align:middle;">
+<code>fill=</code>
+</td>
+<td style="text-align:left;vertical-align:middle;">
+標籤內部填色
+</td>
+<td style="text-align:left;vertical-align:middle;">
+請參考<a href="資料視覺化.html#geom-setting-color">顏色設定</a>
+</td>
+<td style="text-align:center;vertical-align:middle;font-weight: bold;">
+✗
+</td>
+<td style="text-align:center;vertical-align:middle;font-weight: bold;">
+✓
 </td>
 </tr>
 <tr>
@@ -3426,6 +3471,12 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <td style="text-align:left;vertical-align:middle;">
 數值
 </td>
+<td style="text-align:center;vertical-align:middle;font-weight: bold;">
+✓
+</td>
+<td style="text-align:center;vertical-align:middle;font-weight: bold;">
+✓
+</td>
 </tr>
 <tr>
 <td style="text-align:left;vertical-align:middle;">
@@ -3436,6 +3487,12 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </td>
 <td style="text-align:left;vertical-align:middle;">
 數值，介於 0（完全透明）與 1（完全不透明）間
+</td>
+<td style="text-align:center;vertical-align:middle;font-weight: bold;">
+✓
+</td>
+<td style="text-align:center;vertical-align:middle;font-weight: bold;">
+✓
 </td>
 </tr>
 <tr>
@@ -3448,6 +3505,12 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <td style="text-align:left;vertical-align:middle;">
 數值，介於 0° 至 360° 間
 </td>
+<td style="text-align:center;vertical-align:middle;font-weight: bold;">
+✓
+</td>
+<td style="text-align:center;vertical-align:middle;font-weight: bold;">
+✗
+</td>
 </tr>
 <tr>
 <td style="text-align:left;vertical-align:middle;">
@@ -3458,6 +3521,12 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </td>
 <td style="text-align:left;vertical-align:middle;">
 請參見<a href="資料視覺化.html#文字字體與字型">文字字體與字型</a>
+</td>
+<td style="text-align:center;vertical-align:middle;font-weight: bold;">
+✓
+</td>
+<td style="text-align:center;vertical-align:middle;font-weight: bold;">
+✓
 </td>
 </tr>
 <tr>
@@ -3470,6 +3539,12 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <td style="text-align:left;vertical-align:middle;">
 <code>plain</code>:一般（預設）<br><code>bold</code>:粗體<br><code>italic</code>:斜體<br><code>bold.italic</code>:粗斜體
 </td>
+<td style="text-align:center;vertical-align:middle;font-weight: bold;">
+✓
+</td>
+<td style="text-align:center;vertical-align:middle;font-weight: bold;">
+✓
+</td>
 </tr>
 <tr>
 <td style="text-align:left;vertical-align:middle;">
@@ -3480,6 +3555,12 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </td>
 <td style="text-align:left;vertical-align:middle;">
 <strong>數值：</strong><code>0</code>:靠左；<code>0.5</code>:置中；<code>1</code>:靠右<br><strong>文字：</strong><code>left</code>:靠左；<code>middle</code>:置中；<code>right</code>:靠右
+</td>
+<td style="text-align:center;vertical-align:middle;font-weight: bold;">
+✓
+</td>
+<td style="text-align:center;vertical-align:middle;font-weight: bold;">
+✓
 </td>
 </tr>
 <tr>
@@ -3492,6 +3573,12 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <td style="text-align:left;vertical-align:middle;">
 <strong>數值：</strong><code>0</code>:靠下；<code>0.5</code>:置中；<code>1</code>:靠上<br><strong>文字：</strong><code>bottom</code>:靠下；<code>center</code>:置中；<code>top</code>:靠上
 </td>
+<td style="text-align:center;vertical-align:middle;font-weight: bold;">
+✓
+</td>
+<td style="text-align:center;vertical-align:middle;font-weight: bold;">
+✓
+</td>
 </tr>
 <tr>
 <td style="text-align:left;vertical-align:middle;">
@@ -3502,6 +3589,12 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </td>
 <td style="text-align:left;vertical-align:middle;">
 將文字橫向移動單位數
+</td>
+<td style="text-align:center;vertical-align:middle;font-weight: bold;">
+✓
+</td>
+<td style="text-align:center;vertical-align:middle;font-weight: bold;">
+✓
 </td>
 </tr>
 <tr>
@@ -3514,10 +3607,50 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <td style="text-align:left;vertical-align:middle;">
 將文字縱向移動單位數
 </td>
+<td style="text-align:center;vertical-align:middle;font-weight: bold;">
+✓
+</td>
+<td style="text-align:center;vertical-align:middle;font-weight: bold;">
+✓
+</td>
+</tr>
+<tr>
+<td style="text-align:left;vertical-align:middle;">
+<code>label.r=</code>
+</td>
+<td style="text-align:left;vertical-align:middle;">
+標籤邊框的四角半徑
+</td>
+<td style="text-align:left;vertical-align:middle;">
+數值
+</td>
+<td style="text-align:center;vertical-align:middle;font-weight: bold;">
+✗
+</td>
+<td style="text-align:center;vertical-align:middle;font-weight: bold;">
+✓
+</td>
+</tr>
+<tr>
+<td style="text-align:left;vertical-align:middle;">
+<code>label.size=</code>
+</td>
+<td style="text-align:left;vertical-align:middle;">
+標籤邊框粗細
+</td>
+<td style="text-align:left;vertical-align:middle;">
+以<code>units(數值, "單位")</code>設定之
+</td>
+<td style="text-align:center;vertical-align:middle;font-weight: bold;">
+✗
+</td>
+<td style="text-align:center;vertical-align:middle;font-weight: bold;">
+✓
+</td>
 </tr>
 </tbody>
 </table>
-<p>以下範例展示設定字體與字型的方法，再次以<A href='#tw-vote'>2024 年總統大選</A>資料為例，並萃取新竹縣的資料，繪製各鄉鎮的政黨得票率比例長條圖，最後在長條上標註得票比例及行政區名稱，程式碼撰寫如下。</p>
+<p>以下範例展示設定字體與字型的方法，再次以 <A href='#tw-vote'>2024 年總統大選</A>資料為例，並萃取新竹縣的資料，繪製各鄉鎮的政黨得票率比例長條圖，最後在長條上標註得票比例之標籤（<code>geom_label()</code>）及行政區名稱之文字（<code>geom_text()</code>），程式碼撰寫如下。</p>
 <div class="sourceCode" id="cb109"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb109-1"><a href="資料視覺化.html#cb109-1" tabindex="-1"></a><span class="co"># 先在系統中設定字體</span></span>
 <span id="cb109-2"><a href="資料視覺化.html#cb109-2" tabindex="-1"></a><span class="fu">windowsFonts</span>(<span class="at">biaukai=</span><span class="fu">windowsFont</span>(<span class="st">&quot;標楷體&quot;</span>))</span>
 <span id="cb109-3"><a href="資料視覺化.html#cb109-3" tabindex="-1"></a><span class="fu">windowsFonts</span>(<span class="at">TNR=</span><span class="fu">windowsFont</span>(<span class="st">&quot;Times New Roman&quot;</span>))</span>
@@ -3537,46 +3670,59 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <span id="cb109-17"><a href="資料視覺化.html#cb109-17" tabindex="-1"></a><span class="co"># 繪製圖表時設定family、fontface、hjust、nudge_y引數</span></span>
 <span id="cb109-18"><a href="資料視覺化.html#cb109-18" tabindex="-1"></a><span class="fu">ggplot</span>()<span class="sc">+</span></span>
 <span id="cb109-19"><a href="資料視覺化.html#cb109-19" tabindex="-1"></a>  <span class="fu">geom_col</span>(<span class="at">data=</span>hs_vote, <span class="fu">aes</span>(<span class="at">x=</span>TOWNNAME, <span class="at">y=</span>Rate, <span class="at">fill=</span>Party), <span class="at">width=</span><span class="fl">0.5</span>)<span class="sc">+</span></span>
-<span id="cb109-20"><a href="資料視覺化.html#cb109-20" tabindex="-1"></a>  <span class="fu">geom_text</span>(<span class="at">data=</span>hs_vote, <span class="fu">aes</span>(<span class="at">x=</span>TOWNNAME, <span class="at">y=</span>lab_y, <span class="at">label=</span><span class="fu">paste0</span>(<span class="fu">round</span>(Rate<span class="sc">*</span><span class="dv">100</span>, <span class="dv">1</span>), <span class="st">&quot;%&quot;</span>)), <span class="at">size=</span><span class="dv">3</span>, <span class="at">family=</span><span class="st">&quot;TNR&quot;</span>, <span class="at">nudge_y=</span><span class="sc">-</span><span class="fl">0.05</span>)<span class="sc">+</span></span>
+<span id="cb109-20"><a href="資料視覺化.html#cb109-20" tabindex="-1"></a>  <span class="fu">geom_label</span>(<span class="at">data=</span>hs_vote, <span class="fu">aes</span>(<span class="at">x=</span>TOWNNAME, <span class="at">y=</span>lab_y, <span class="at">label=</span><span class="fu">paste0</span>(<span class="fu">round</span>(Rate<span class="sc">*</span><span class="dv">100</span>, <span class="dv">1</span>), <span class="st">&quot;%&quot;</span>)), <span class="at">size=</span><span class="dv">3</span>, <span class="at">family=</span><span class="st">&quot;TNR&quot;</span>, <span class="at">nudge_y=</span><span class="sc">-</span><span class="fl">0.05</span>, <span class="at">color=</span><span class="st">&quot;white&quot;</span>, <span class="at">fill=</span><span class="st">&quot;#7B7B7B&quot;</span>)<span class="sc">+</span></span>
 <span id="cb109-21"><a href="資料視覺化.html#cb109-21" tabindex="-1"></a>  <span class="fu">geom_text</span>(<span class="at">data=</span>hs_vote, <span class="fu">aes</span>(<span class="at">x=</span>TOWNNAME, <span class="at">y=</span><span class="dv">1</span>, <span class="at">label=</span>TOWNNAME), <span class="at">size=</span><span class="dv">3</span>, <span class="at">family=</span><span class="st">&quot;biaukai&quot;</span>, <span class="at">angle=</span><span class="dv">45</span>, <span class="at">hjust=</span><span class="dv">1</span>)</span></code></pre></div>
-<p><img src="series_files/figure-html/font-family-type-eg2-1.png" width="80%" style="display: block; margin: auto;" /></p>
+<p><img src="series_files/figure-html/geom-text-eg2-1.png" width="80%" style="display: block; margin: auto;" /></p>
 <p>關於資料處理的過程請參考<a href="資料視覺化.html#長條圖">長條圖</a>中「加入文字或標籤」的範例，而在繪圖函式中，利用以下引數設定字體與樣式：</p>
 <ul>
-<li><a href="資料視覺化.html#文字字體與字型"><code>family=</code></a>:設定文字的字體<br />
+<li><a href="資料視覺化.html#文字字體與字型"><code>family=</code></a>:設定文字的字體，百分比數值使用 Times New Roman；鄉鎮市區名稱則用標楷體<br />
 </li>
-<li><a href="資料視覺化.html#文字角度與對齊"><code>angle=</code></a>:設定文字角度<br />
+<li><a href="資料視覺化.html#文字角度與對齊"><code>angle=</code></a>:設定文字角度，鄉鎮市區名稱以 45° 標記<br />
 </li>
-<li><a href="資料視覺化.html#文字角度與對齊"><code>hjust=</code></a>:設定文字對齊<br />
+<li><a href="資料視覺化.html#文字角度與對齊"><code>hjust=</code></a>:設定文字對齊，鄉鎮市區名稱文字靠右對齊<br />
 </li>
-<li><a href="資料視覺化.html#文字角度與對齊"><code>nudge_y=</code></a>:設定文字位移</li>
+<li><a href="資料視覺化.html#文字位移"><code>nudge_y=</code></a>:設定文字位移，百分比數值標記統一往下 0.05 單位</li>
 </ul>
-<p><strong>各引數的設定請參見<a href="資料視覺化.html#文字字體與字型">3.2.3</a>至<a href="資料視覺化.html#文字位移">3.2.5</a>章節！</strong></p>
+<p><strong>各引數的設定請參見<a href="資料視覺化.html#文字字體與字型">3.2.2</a>至<a href="資料視覺化.html#文字位移">3.2.4</a>章節！</strong></p>
 </div>
-<div id="標註標籤" class="section level3 hasAnchor" number="3.2.2">
-<h3><span class="header-section-number">3.2.2</span> 標註標籤<a href="資料視覺化.html#標註標籤" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<div id="文字字體與字型" class="section level3 hasAnchor" number="3.2.2">
+<h3><span class="header-section-number">3.2.2</span> 文字字體與字型<a href="資料視覺化.html#文字字體與字型" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<div class="note">
+<p>任何有關文字設定的套件通常皆可透過本小節所述方式設定<strong>字體與字型</strong>，包含以下函式：</p>
+<ul>
+<li><u><strong>標註文字與標籤</strong></u>：<a href="資料視覺化.html#標註文字與標籤"><code>geom_text()</code></a>、<a href="資料視覺化.html#標註文字與標籤"><code>geom_label()</code></a><br />
+</li>
+<li><u><strong>標註 html 文字與標籤</strong></u>：<a href="資料視覺化.html#html-文字ggtext套件"><code>geom_richtext()</code></a>、<a href="資料視覺化.html#html-文字ggtext套件"><code>geom_textbox()</code></a><br />
+</li>
+<li><u><strong>設定圖表主題</strong></u>：<a href="資料視覺化.html#細節樣式設定"><code>element_text()</code></a>、<a href="資料視覺化.html#細節樣式設定"><code>element_markdown()</code></a><br />
+</li>
+</ul>
 </div>
-<div id="文字字體與字型" class="section level3 hasAnchor" number="3.2.3">
-<h3><span class="header-section-number">3.2.3</span> 文字字體與字型<a href="資料視覺化.html#文字字體與字型" class="anchor-section" aria-label="Anchor link to header"></a></h3>
-<p style="color:#003D79">
-請注意文字字體與字型設定不限於<code>geom_text()</code>函式，亦包含可擴充 html 文字的<a href="資料視覺化.html#html-文字ggtext套件"><code>geom_richtext()</code>與<code>geom_textbox()</code></a>，以及用以設定主題的<a href="資料視覺化.html#細節樣式設定"><code>element_text()</code>與<code>element_markdown()</code></a>等，任何有關文字設定的套件通常皆可透過本小節所述方式設定字體與字型。
-</p>
 <p>在 Windows 系統中，若欲設定字體，可利用以下函式設定之：</p>
 <div class="sourceCode" id="cb110"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb110-1"><a href="資料視覺化.html#cb110-1" tabindex="-1"></a><span class="fu">windowsFonts</span>(變數名稱<span class="ot">=</span><span class="fu">windowsFont</span>(<span class="st">&quot;字體名稱&quot;</span>))</span></code></pre></div>
-<p>設定完成後即可透過<code>family="變數名稱"</code>之引數設定圖片中的文字字體。而字型的設定可以透過<code>fontface=</code>設定之（惟主題樣式設定中的<a href="資料視覺化.html#細節樣式設定"><code>element_text()</code></a>是<code>face=</code>引數），包含原形（<code>plain</code>，預設）、粗體（<code>bold</code>）、斜體（<code>italic</code>）與粗斜體（<code>bold.italic</code>）。圖<a href="資料視覺化.html#fig:font-family-type">3.13</a>列舉數個字體與字型。</p>
+<p>設定完成後即可透過<code>family="變數名稱"</code>之引數設定圖片中的文字字體。而字型的設定可以透過<code>fontface=</code>設定之（惟主題樣式設定中的<a href="資料視覺化.html#細節樣式設定"><code>element_text()</code></a>是<code>face=</code>引數），包含原形（<code>plain</code>，預設）、粗體（<code>bold</code>）、斜體（<code>italic</code>）與粗斜體（<code>bold.italic</code>）。圖<a href="資料視覺化.html#fig:font-family-type">3.14</a>列舉數個字體與字型。</p>
 <div class="figure" style="text-align: center"><span style="display:block;" id="fig:font-family-type"></span>
 <img src="series_files/figure-html/font-family-type-1.png" alt="調整文字字體與字型" width="75%" />
 <p class="caption">
-圖 3.13: 調整文字字體與字型
+圖 3.14: 調整文字字體與字型
 </p>
 </div>
 <p>本節係介紹 Windows 系統的字體設定方式，若在 Mac 系統中即無法透過<code>windowsFonts()</code>函式設定。R 語言中無論何系統，皆可透過<code>showtext</code>套件設定字體，該套件能夠更彈性地擴充字體，詳情請見<a href="https://cran.rstudio.com/web/packages/showtext/vignettes/introduction.html">此</a>。</p>
 </div>
-<div id="文字角度與對齊" class="section level3 hasAnchor" number="3.2.4">
-<h3><span class="header-section-number">3.2.4</span> 文字角度與對齊<a href="資料視覺化.html#文字角度與對齊" class="anchor-section" aria-label="Anchor link to header"></a></h3>
-<p style="color:#003D79">
-請注意文字角度與對齊設定不限於<code>geom_text()</code>函式，亦包含可擴充 html 文字的<a href="資料視覺化.html#html-文字ggtext套件"><code>geom_richtext()</code>與<code>geom_textbox()</code></a>，以及用以設定主題的<a href="資料視覺化.html#細節樣式設定"><code>element_text()</code>與<code>element_markdown()</code></a>等，任何有關文字設定的套件通常皆可透過本小節所述方式設定角度與對齊。
-</p>
-<p>所有有關文字角度與對齊的函數，其引數設定方式皆同。調整角度利用<code>angle=</code>引數；調整對齊則利用<code>hjust=</code>與<code>vjust</code>引數，各引數設定參見表表<a href="資料視覺化.html#tab:font-angle-just-tab">3.22</a>，設定結果參照圖<a href="資料視覺化.html#fig:font-angle-just">3.14</a>所示。</p>
+<div id="文字角度與對齊" class="section level3 hasAnchor" number="3.2.3">
+<h3><span class="header-section-number">3.2.3</span> 文字角度與對齊<a href="資料視覺化.html#文字角度與對齊" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<div class="note">
+<p>任何有關文字設定的套件通常皆可透過本小節所述方式設定<strong>角度與對齊</strong>，包含以下函式：</p>
+<ul>
+<li><u><strong>標註文字與標籤</strong></u>：<a href="資料視覺化.html#標註文字與標籤"><code>geom_text()</code></a>、<a href="資料視覺化.html#標註文字與標籤"><code>geom_label()</code></a><br />
+</li>
+<li><u><strong>標註 html 文字與標籤</strong></u>：<a href="資料視覺化.html#html-文字ggtext套件"><code>geom_richtext()</code></a>、<a href="資料視覺化.html#html-文字ggtext套件"><code>geom_textbox()</code></a><br />
+</li>
+<li><u><strong>設定圖表主題</strong></u>：<a href="資料視覺化.html#細節樣式設定"><code>element_text()</code></a>、<a href="資料視覺化.html#細節樣式設定"><code>element_markdown()</code></a><br />
+</li>
+</ul>
+</div>
+<p>所有有關文字角度與對齊的函數，其引數設定方式皆同。調整角度利用<code>angle=</code>引數；調整對齊則利用<code>hjust=</code>與<code>vjust</code>引數，各引數設定參見表表<a href="資料視覺化.html#tab:font-angle-just-tab">3.22</a>，設定結果參照圖<a href="資料視覺化.html#fig:font-angle-just">3.15</a>所示。</p>
 <table class="table table-striped table-hover" style="font-size: 14px; margin-left: auto; margin-right: auto;">
 <caption style="font-size: initial !important;">
 <span id="tab:font-angle-just-tab">表 3.22: </span>角度與對齊引數設定
@@ -3633,25 +3779,33 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <div class="figure" style="text-align: center"><span style="display:block;" id="fig:font-angle-just"></span>
 <img src="series_files/figure-html/font-angle-just-1.png" alt="調整文字角度與對齊" width="100%" />
 <p class="caption">
-圖 3.14: 調整文字角度與對齊
+圖 3.15: 調整文字角度與對齊
 </p>
 </div>
 </div>
-<div id="文字位移" class="section level3 hasAnchor" number="3.2.5">
-<h3><span class="header-section-number">3.2.5</span> 文字位移<a href="資料視覺化.html#文字位移" class="anchor-section" aria-label="Anchor link to header"></a></h3>
-<p style="color:#003D79">
-請注意文字位移設定不限於<code>geom_text()</code>函式，亦包含可擴充 html 文字的<a href="資料視覺化.html#html-文字ggtext套件"><code>geom_richtext()</code>與<code>geom_textbox()</code></a>，以及用以設定主題的<a href="資料視覺化.html#細節樣式設定"><code>element_text()</code>與<code>element_markdown()</code></a>等，任何有關文字設定的套件通常皆可透過本小節所述方式設定字體與字型。
-</p>
-<p>文字位移是指將所有文字或標籤往特定方向移動，如此可統一修正文字的位置，齊</p>
+<div id="文字位移" class="section level3 hasAnchor" number="3.2.4">
+<h3><span class="header-section-number">3.2.4</span> 文字位移<a href="資料視覺化.html#文字位移" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<div class="note">
+<p>任何有關文字設定的套件通常皆可透過本小節所述方式設定<strong>文字位移</strong>，包含以下函式：</p>
+<ul>
+<li><u><strong>標註文字與標籤</strong></u>：<a href="資料視覺化.html#標註文字與標籤"><code>geom_text()</code></a>、<a href="資料視覺化.html#標註文字與標籤"><code>geom_label()</code></a><br />
+</li>
+<li><u><strong>標註 html 文字與標籤</strong></u>：<a href="資料視覺化.html#html-文字ggtext套件"><code>geom_richtext()</code></a>、<a href="資料視覺化.html#html-文字ggtext套件"><code>geom_textbox()</code></a><br />
+</li>
+<li><u><strong>設定圖表主題</strong></u>：<a href="資料視覺化.html#細節樣式設定"><code>element_text()</code></a>、<a href="資料視覺化.html#細節樣式設定"><code>element_markdown()</code></a><br />
+</li>
+</ul>
 </div>
-<div id="文字避免重複" class="section level3 hasAnchor" number="3.2.6">
-<h3><span class="header-section-number">3.2.6</span> 文字避免重複<a href="資料視覺化.html#文字避免重複" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>文字位移是指將所有文字或標籤往特定方向移動，如此可統一修正文字的位置，</p>
 </div>
-<div id="html-文字ggtext套件" class="section level3 hasAnchor" number="3.2.7">
-<h3><span class="header-section-number">3.2.7</span> html 文字（<code>ggtext</code>套件）<a href="資料視覺化.html#html-文字ggtext套件" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<div id="文字避免重疊" class="section level3 hasAnchor" number="3.2.5">
+<h3><span class="header-section-number">3.2.5</span> 文字避免重疊<a href="資料視覺化.html#文字避免重疊" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 </div>
-<div id="標註插圖" class="section level3 hasAnchor" number="3.2.8">
-<h3><span class="header-section-number">3.2.8</span> 標註插圖<a href="資料視覺化.html#標註插圖" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<div id="html-文字ggtext套件" class="section level3 hasAnchor" number="3.2.6">
+<h3><span class="header-section-number">3.2.6</span> html 文字（<code>ggtext</code>套件）<a href="資料視覺化.html#html-文字ggtext套件" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+</div>
+<div id="標註插圖" class="section level3 hasAnchor" number="3.2.7">
+<h3><span class="header-section-number">3.2.7</span> 標註插圖<a href="資料視覺化.html#標註插圖" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 </div>
 </div>
 <div id="繪圖設定" class="section level2 hasAnchor" number="3.3">

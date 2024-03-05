@@ -252,7 +252,7 @@ ggplot(iris_rev, aes(x=Sepal.Length, Sepal.Width))+
 
 
 <p style="color:#003D79;font-size:18px;line-height:2">**⌾ 加入文字或標籤**</p>  
-關於圖表中插入文字，應利用`geom_text()`函式，請先參考[此](#標註文字)。以加入各品種（Species）分群中心點的名稱為例，以下程式碼先行透過`group_by() %>% summarise()`計算各分群的中心點位置，最後再添上文字。
+關於圖表中插入文字，應利用`geom_text()`函式，請先參考[此](#標註文字與標籤)。以加入各品種（Species）分群中心點的名稱為例，以下程式碼先行透過`group_by() %>% summarise()`計算各分群的中心點位置，最後再添上文字。
 
 ```{r geom-point-eg5, echo=T, eval=T, out.width="70%", fig.align="center"}
 # 統計各品種的中心點
@@ -548,7 +548,7 @@ ggplot(data=tp_school_sum2, aes(x=District, y=Count))+
 
 
 <p style="color:#003D79;font-size:18px;line-height:2">**⌾ 加入文字或標籤**</p>  
-關於圖表中插入文字，應利用`geom_text()`函式，請先參考[此](#標註文字)。在繪製長條圖時，有時會希望在長條圖上標註類別或數字，以明確顯示充分的資訊，增加可讀性。以前文`mpg_sum`資料為例，將各廠牌（manufacturer）類別的統計數量（Count）標註於長條的頂端。程式碼中在設定文字的標註位置時，將縱軸設定為各數量再加一，以避免與頂端的邊界重疊而影響判讀。
+關於圖表中插入文字，應利用`geom_text()`函式，請先參考[此](#標註文字與標籤)。在繪製長條圖時，有時會希望在長條圖上標註類別或數字，以明確顯示充分的資訊，增加可讀性。以前文`mpg_sum`資料為例，將各廠牌（manufacturer）類別的統計數量（Count）標註於長條的頂端。程式碼中在設定文字的標註位置時，將縱軸設定為各數量再加一，以避免與頂端的邊界重疊而影響判讀。
 
 ```{r geom-bar-eg8, echo=T, eval=T, out.width="70%", fig.align="center"}
 ggplot()+
@@ -781,7 +781,7 @@ ggplot(tp_school_sum3_lev2, aes(x="", y=Count_per))+
 
 <p style="color:#003D79;font-size:18px;line-height:2">**⌾ 加入文字或標籤**</p>  
 
-關於圖表中插入標籤，應利用`geom_text()`函式，請先參考[此](#標註文字)。而若欲在圓餅圖各區塊上分別標註文字，請參考圖\@ref(fig:geom-bar-cumsum-fig)關於縱軸數值計算邏輯之示意圖。另外，請務必在計算累積比例與縱軸數值前，先將資料**依據圖例層級排列**，否則標註的文字或標籤將無法座落於正確的位置上。
+關於圖表中插入標籤，應利用`geom_text()`函式，請先參考[此](#標註文字與標籤)。而若欲在圓餅圖各區塊上分別標註文字，請參考圖\@ref(fig:geom-bar-cumsum-fig)關於縱軸數值計算邏輯之示意圖。另外，請務必在計算累積比例與縱軸數值前，先將資料**依據圖例層級排列**，否則標註的文字或標籤將無法座落於正確的位置上。
 
 ```{r geom-pie-eg5, echo=T, eval=T, out.width="70%", fig.align="center"}
 # 透過factor()函式固定圖例的排列順序
@@ -1293,11 +1293,11 @@ ggplot(data=hair_eye, aes(axis1=Hair, axis2=Eye, y=Freq))+
   scale_x_discrete(limits=c("Hair","Eye"), expand=c(0.2, 0.05))
 ```
 
-關於`geom_text()`函式在圖表上加註文字，請參考[此](#標註文字)；透過`scale_x_discrete()`函式調整座標軸名稱，請參考[此](#調整座標軸名稱順序)。
+關於`geom_text()`函式在圖表上加註文字，請參考[此](#標註文字與標籤)；透過`scale_x_discrete()`函式調整座標軸名稱，請參考[此](#調整座標軸名稱順序)。
 
 
 <p style="color:#003D79;font-size:18px;line-height:2">**⌾ 彙整資料後繪製桑基圖**</p>  
-有時候資料型態並不見得如同前面的範例，將所有節點逐欄羅列並給予統計量，此時我們必須預先處理資料尚能繪製桑基圖。以 2023 年臺灣直轄市間的<H2 id="scmig">社會遷入與遷出資料（scmig）</H2>  為例，其資料記錄結構如下。
+有時候資料型態並不見得如同前面的範例，將所有節點逐欄羅列並給予統計量，此時我們必須預先處理資料尚能繪製桑基圖。以 2023 年臺灣直轄市間的<span id="scmig">社會遷入與遷出資料（scmig）</span>  為例，其資料記錄結構如下。
 
 ```{r geom-sankey-eg3, echo=T, eval=T, out.width="70%", fig.align="center", warning=F}
 # 讀取資料
@@ -1446,7 +1446,7 @@ ggtern(data=資料, aes(x=變數1, y=變數2, z=變數3))+
 ```
 
 <p style="color:#003D79;font-size:18px;line-height:2">**⌾ 基礎三元圖**</p>  
-三元圖可以表達不同的三個類別之間的比例關係，以<H2 id="tw-vote">臺灣 2024 年總統選舉資料（tw_vote）</H2>為例，有三個政黨推派候選人，故相當適合透過三元圖表達投票結果。以下程式碼中先行讀取全臺各鄉鎮的總統投票結果資料（tw_vote），其中記錄總票數（Votes_Total），以及各政黨的得票率，其中包含 KMT（國民黨）、DPP（民進黨）、TPP（民眾黨）三者。
+三元圖可以表達不同的三個類別之間的比例關係，以<span id="tw-vote">臺灣 2024 年總統選舉資料（tw_vote）</span>為例，有三個政黨推派候選人，故相當適合透過三元圖表達投票結果。以下程式碼中先行讀取全臺各鄉鎮的總統投票結果資料（tw_vote），其中記錄總票數（Votes_Total），以及各政黨的得票率，其中包含 KMT（國民黨）、DPP（民進黨）、TPP（民眾黨）三者。
 
 ```{r geom-ternary-eg1, echo=T, eval=T, out.width="70%", fig.align="center", warning=F}
 # 讀取資料
@@ -1574,7 +1574,7 @@ scmig=left_join(scmig, county_location, by=c("From"="COUNTYNAME"))%>%
 * [`rename()`](#重新命名欄位):將欄位重新命名，用以標示出發點與到達點的座標（X、Y）  
 * [`left_join()`](#連接資料):將社會遷移的資料貼附經緯度屬性，以便後續繪圖
 
-最後繪製圖表如下，其中利用`geom_curve()`函式標記臺中市到達其他直轄市的社會遷出，並透過線條粗細表示移動人口的量。此外透[`geom_point()`](#散布圖)函式標記各直轄市位置，且利用[`geom_text()`](#標註文字)函式標註直轄市名稱。
+最後繪製圖表如下，其中利用`geom_curve()`函式標記臺中市到達其他直轄市的社會遷出，並透過線條粗細表示移動人口的量。此外透[`geom_point()`](#散布圖)函式標記各直轄市位置，且利用[`geom_text()`](#標註文字與標籤)函式標註直轄市名稱。
 
 ```{r geom-linecurve-eg4, echo=T, eval=T, out.width="70%", fig.align="center", warning=F}
 ggplot()+
@@ -1590,11 +1590,11 @@ ggplot()+
 
 
 ## 圖表文字與插圖
-在圖表中有時會插入文字或圖片，已標示更明確的訊息或輔助圖表判讀，並增添視覺化效果。在 R 語言中可以利用`ggplot2`套件及其延伸的套件客製化插入文字與圖表，所有本節會使用到的套件與函式彙整如表\@ref(tab:tab-textfig-plot)。
+在圖表中有時會插入文字或圖片，以標示更明確的訊息或輔助圖表判讀，並增添視覺化效果。在 R 語言中可以利用`ggplot2`套件及其延伸的套件客製化插入文字與圖表，所有本節會使用到的套件與函式彙整如表\@ref(tab:tab-textfig-plot)。
 
 ```{r tab-textfig-plot, echo=F, eval=T}
 textfig=data.frame(pack=c(rep("`ggplot2`", 2), rep("`ggrepel`", 2), rep("`ggtext`", 2), rep("`ggimage`", 1)),
-                   func=c("[`geom_text()`](#標註文字)","[`geom_label()`](#標註標籤)","[`geom_text_repel()](#文字避免重複)`","[`geom_label_repel()`](#文字避免重複)","[`geom_richtext()`](#html-文字ggtext套件)","[`geom_textbox()`](#html-文字ggtext套件)","[`geom_image()`](#標註插圖)"),
+                   func=c("[`geom_text()`](#標註文字與標籤)","[`geom_label()`](#標註文字與標籤)","[`geom_text_repel()`](#文字避免重疊)`","[`geom_label_repel()`](#文字避免重疊)","[`geom_richtext()`](#html-文字ggtext套件)","[`geom_textbox()`](#html-文字ggtext套件)","[`geom_image()`](#標註插圖)"),
                    feature=c("標註文字","標註標籤","標註文字（不重疊）","標註標籤（不重疊）","標註 html 文字","標註 html 標籤","標註插圖"))
 
 kable(textfig, booktabs=T, escape=F, caption="圖表文字與插圖函式", col.names=c("套件","函式","功能"))%>%
@@ -1605,29 +1605,44 @@ kable(textfig, booktabs=T, escape=F, caption="圖表文字與插圖函式", col.
 ```
 
 
-### 標註文字
-標註文字可利用`geom_text()`，該函式撰寫架構如下。
+### 標註文字與標籤
+「標註文字」係指在圖片上加入純文字，而「標註標籤」則是指加入具有背景、邊框的文字，範例如圖\@ref(fig:geom-text-eg0)所示所示。在`ggplot2`套件中，標註文字可利用`geom_text()`函式；標註標籤可利用`geom_label()`函式，兩函式的撰寫架構如下。
+
+```{r geom-text-eg0, echo=F, eval=T, out.width="70%", fig.height=1, fig.width=5, fig.align="center", fig.cap="標註文字與標籤圖示"}
+temp=data.frame(x=c(0,1,0,1), y=c(0,0,1,1),
+                nam=c("標註文字", "標註標籤", "`geom_text()`", "`geom_label()`"))
+ggplot()+
+  geom_label(aes(x=0, y=1, label="geom_text()"), fill="#D0D0D0", family="A", size=3, label.size=0)+
+  geom_label(aes(x=1, y=1, label="geom_label()"), fill="#D0D0D0", family="A", size=3, label.size=0)+
+  geom_text(aes(x=0, y=0, label="標註文字"), color="red", size=6, family="A")+
+  geom_label(aes(x=1, y=0, label="標註標籤"), color="red", size=6, family="A", label.size=1, fill="#D2E9FF")+
+  scale_x_continuous(expand=expansion(add=0.5))+
+  scale_y_continuous(expand=expansion(add=0.5))+
+  theme_void()
+```
 
 ```{r geom-text-code, echo=T, eval=F}
 geom_text(aes(x=, y=, label=), color=, size=, alpha=, angle=, family=, fontface=, hjust=, vjust=)
+geom_label(aes(x=, y=, label=), color=, fill=, size=, alpha=, angle=, family=, fontface=, hjust=, vjust=, label.r=, label.size=)
 ```
 
-各引數設定請參考表\@ref(tab:tab-geom-text)。
+`geom_text()`與`geom_label()`函式中的各引數設定請參考表\@ref(tab:tab-geom-text)。
 
 ```{r tab-geom-text, echo=F, eval=T}
-gt_code=data.frame(argument=c("`x=`","`y=`","`label=`","`color=`","`size=`","`alpha=`","`angle=`","`family=`","`fontface=`","`hjust=`","`vjust=`","`nudge_x=`","`nudge_y=`"),
-                   setting=c('橫軸座標（必須<A href="#ggplot-aes">`aes()`</A>函式內）','縱軸座標（必須<A href="#ggplot-aes">`aes()`</A>函式內）','標註文字（必須<A href="#ggplot-aes">`aes()`</A>函式內）',"文字顏色","文字大小","文字透明度","文字角度","文字字體","文字字型","文字橫軸對齊","文字縱軸對齊","文字橫軸位移","文字縱軸位移"), explain=c("橫軸座標欄位","縱軸座標欄位","標註文字欄位","請參考<A href='#geom-setting-color'>顏色設定</A>","數值","數值，介於 0（完全透明）與 1（完全不透明）間","數值，介於 0° 至 360° 間","請參見[文字字體與字型](#文字字體與字型)","`plain`:一般（預設）<br>`bold`:粗體<br>`italic`:斜體<br>`bold.italic`:粗斜體","**數值：**`0`:靠左；`0.5`:置中；`1`:靠右<br>**文字：**`left`:靠左；`middle`:置中；`right`:靠右","**數值：**`0`:靠下；`0.5`:置中；`1`:靠上<br>**文字：**`bottom`:靠下；`center`:置中；`top`:靠上","將文字橫向移動單位數","將文字縱向移動單位數"))
+gt_code=data.frame(argument=c("`x=`","`y=`","`label=`","`color=`","`fill=`","`size=`","`alpha=`","`angle=`","`family=`","`fontface=`","`hjust=`","`vjust=`","`nudge_x=`","`nudge_y=`","`label.r=`","`label.size=`"),
+                   setting=c('橫軸座標（必須<A href="#ggplot-aes">`aes()`</A>函式內）','縱軸座標（必須<A href="#ggplot-aes">`aes()`</A>函式內）','標註文字（必須<A href="#ggplot-aes">`aes()`</A>函式內）',"文字顏色（與標籤邊框的顏色）","標籤內部填色","文字大小","文字透明度","文字角度","文字字體","文字字型","文字橫軸對齊","文字縱軸對齊","文字橫軸位移","文字縱軸位移","標籤邊框的四角半徑","標籤邊框粗細"), explain=c("橫軸座標欄位","縱軸座標欄位","標註文字欄位","請參考<A href='#geom-setting-color'>顏色設定</A>","請參考<A href='#geom-setting-color'>顏色設定</A>","數值","數值，介於 0（完全透明）與 1（完全不透明）間","數值，介於 0° 至 360° 間","請參見[文字字體與字型](#文字字體與字型)","`plain`:一般（預設）<br>`bold`:粗體<br>`italic`:斜體<br>`bold.italic`:粗斜體","**數值：**`0`:靠左；`0.5`:置中；`1`:靠右<br>**文字：**`left`:靠左；`middle`:置中；`right`:靠右","**數值：**`0`:靠下；`0.5`:置中；`1`:靠上<br>**文字：**`bottom`:靠下；`center`:置中；`top`:靠上","將文字橫向移動單位數","將文字縱向移動單位數",'數值','以`units(數值, "單位")`設定之'), fun1=c(rep("✓", 4), "✗", rep("✓", 9), rep("✗", 2)), fun2=c(rep("✓", 7), "✗", rep("✓", 8)))
 
-kable(gt_code, booktabs=T, escape=F, caption="`geom_text()`函式引數設定", col.names=c("引數","功能設定","說明"))%>%
+kable(gt_code, booktabs=T, escape=F, caption="`geom_text()`與`geom_label()`函式引數設定", col.names=c("引數","功能設定","說明","<span style='color:black'>`geom_text()`</span>","<span style='color:black'>`geom_label()`</span>"), align="lllcc")%>%
   kable_styling(bootstrap_options=c("striped", "hover"), font_size=14)%>%
-  column_spec(1:3 ,extra_css="vertical-align:middle;")%>%
+  column_spec(1:5 ,extra_css="vertical-align:middle;")%>%
+  column_spec(4:5, bold=T)%>%
   row_spec(0, bold=T, color="white", background="#8E8E8E")
 ```
 
 
-以下範例展示設定字體與字型的方法，再次以<A href='#tw-vote'>2024 年總統大選</A>資料為例，並萃取新竹縣的資料，繪製各鄉鎮的政黨得票率比例長條圖，最後在長條上標註得票比例及行政區名稱，程式碼撰寫如下。
+以下範例展示設定字體與字型的方法，再次以 <A href='#tw-vote'>2024 年總統大選</A>資料為例，並萃取新竹縣的資料，繪製各鄉鎮的政黨得票率比例長條圖，最後在長條上標註得票比例之標籤（`geom_label()`）及行政區名稱之文字（`geom_text()`），程式碼撰寫如下。
 
-```{r font-family-type-eg1, echo=T, eval=F, warning=F}
+```{r geom-text-eg1, echo=T, eval=F, warning=F}
 # 先在系統中設定字體
 windowsFonts(biaukai=windowsFont("標楷體"))
 windowsFonts(TNR=windowsFont("Times New Roman"))
@@ -1647,11 +1662,11 @@ hs_vote$lab_y=hs_vote$Rate_cum-hs_vote$Rate/2
 # 繪製圖表時設定family、fontface、hjust、nudge_y引數
 ggplot()+
   geom_col(data=hs_vote, aes(x=TOWNNAME, y=Rate, fill=Party), width=0.5)+
-  geom_text(data=hs_vote, aes(x=TOWNNAME, y=lab_y, label=paste0(round(Rate*100, 1), "%")), size=3, family="TNR", nudge_y=-0.05)+
+  geom_label(data=hs_vote, aes(x=TOWNNAME, y=lab_y, label=paste0(round(Rate*100, 1), "%")), size=3, family="TNR", nudge_y=-0.05, color="white", fill="#7B7B7B")+
   geom_text(data=hs_vote, aes(x=TOWNNAME, y=1, label=TOWNNAME), size=3, family="biaukai", angle=45, hjust=1)
 ```
 
-```{r font-family-type-eg2, echo=F, eval=T, out.width="80%", fig.align="center", warning=F}
+```{r geom-text-eg2, echo=F, eval=T, out.width="80%", fig.align="center", warning=F}
 hs_vote=read.csv("https://raw.githubusercontent.com/ChiaJung-Yeh/Transport-Analysis/master/Data/tw_president_vote.csv")%>%
   filter(COUNTYNAME=="新竹縣")%>%
   melt(id.vars="TOWNNAME", measure.vars=c("TPP","DPP","KMT"), variable.name="Party", value.name="Rate")
@@ -1662,25 +1677,28 @@ hs_vote=group_by(hs_vote, TOWNNAME)%>%
 hs_vote$lab_y=hs_vote$Rate_cum-hs_vote$Rate/2
 ggplot()+
   geom_col(data=hs_vote, aes(x=TOWNNAME, y=Rate, fill=Party), width=0.5)+
-  geom_text(data=hs_vote, aes(x=TOWNNAME, y=lab_y, label=paste0(round(Rate*100, 1), "%")), size=3, family="E", nudge_y=-0.05)+
+  geom_label(data=hs_vote, aes(x=TOWNNAME, y=lab_y, label=paste0(round(Rate*100, 1), "%")), size=3, family="E", nudge_y=-0.05, color="white", fill="#7B7B7B")+
   geom_text(data=hs_vote, aes(x=TOWNNAME, y=1, label=TOWNNAME), size=3, family="D", angle=45, hjust=1)
 ```
 
 關於資料處理的過程請參考[長條圖](#長條圖)中「加入文字或標籤」的範例，而在繪圖函式中，利用以下引數設定字體與樣式：
 
-* [`family=`](#文字字體與字型):設定文字的字體  
-* [`angle=`](#文字角度與對齊):設定文字角度  
-* [`hjust=`](#文字角度與對齊):設定文字對齊  
-* [`nudge_y=`](#文字位移):設定文字位移  
+* [`family=`](#文字字體與字型):設定文字的字體，百分比數值使用 Times New Roman；鄉鎮市區名稱則用標楷體  
+* [`angle=`](#文字角度與對齊):設定文字角度，鄉鎮市區名稱以 45° 標記   
+* [`hjust=`](#文字角度與對齊):設定文字對齊，鄉鎮市區名稱文字靠右對齊  
+* [`nudge_y=`](#文字位移):設定文字位移，百分比數值標記統一往下 0.05 單位  
 
-**各引數的設定請參見[3.2.3](#文字字體與字型)至[3.2.5](#文字位移)章節！**
-
-
-### 標註標籤
+**各引數的設定請參見[3.2.2](#文字字體與字型)至[3.2.4](#文字位移)章節！**
 
 
 ### 文字字體與字型
-<p style="color:#003D79">請注意文字字體與字型設定不限於`geom_text()`函式，亦包含可擴充 html 文字的[`geom_richtext()`與`geom_textbox()`](#html-文字ggtext套件)，以及用以設定主題的[`element_text()`與`element_markdown()`](#細節樣式設定)等，任何有關文字設定的套件通常皆可透過本小節所述方式設定字體與字型。</p>
+:::note
+任何有關文字設定的套件通常皆可透過本小節所述方式設定**字體與字型**，包含以下函式：
+
+* <u>**標註文字與標籤**</u>：[`geom_text()`](#標註文字與標籤)、[`geom_label()`](#標註文字與標籤)  
+* <u>**標註 html 文字與標籤**</u>：[`geom_richtext()`](#html-文字ggtext套件)、[`geom_textbox()`](#html-文字ggtext套件)  
+* <u>**設定圖表主題**</u>：[`element_text()`](#細節樣式設定)、[`element_markdown()`](#細節樣式設定)  
+:::
 
 在 Windows 系統中，若欲設定字體，可利用以下函式設定之：
 
@@ -1709,7 +1727,13 @@ ggplot(data=temp, aes(x=family, y=fontface))+
 
 
 ### 文字角度與對齊
-<p style="color:#003D79">請注意文字角度與對齊設定不限於`geom_text()`函式，亦包含可擴充 html 文字的[`geom_richtext()`與`geom_textbox()`](#html-文字ggtext套件)，以及用以設定主題的[`element_text()`與`element_markdown()`](#細節樣式設定)等，任何有關文字設定的套件通常皆可透過本小節所述方式設定角度與對齊。</p>
+:::note
+任何有關文字設定的套件通常皆可透過本小節所述方式設定**角度與對齊**，包含以下函式：
+
+* <u>**標註文字與標籤**</u>：[`geom_text()`](#標註文字與標籤)、[`geom_label()`](#標註文字與標籤)  
+* <u>**標註 html 文字與標籤**</u>：[`geom_richtext()`](#html-文字ggtext套件)、[`geom_textbox()`](#html-文字ggtext套件)  
+* <u>**設定圖表主題**</u>：[`element_text()`](#細節樣式設定)、[`element_markdown()`](#細節樣式設定)  
+:::
 
 所有有關文字角度與對齊的函數，其引數設定方式皆同。調整角度利用`angle=`引數；調整對齊則利用`hjust=`與`vjust`引數，各引數設定參見表表\@ref(tab:font-angle-just-tab)，設定結果參照圖\@ref(fig:font-angle-just)所示。
 
@@ -1741,13 +1765,20 @@ ggplot(data=temp)+
 
 
 ### 文字位移
-<p style="color:#003D79">請注意文字位移設定不限於`geom_text()`函式，亦包含可擴充 html 文字的[`geom_richtext()`與`geom_textbox()`](#html-文字ggtext套件)，以及用以設定主題的[`element_text()`與`element_markdown()`](#細節樣式設定)等，任何有關文字設定的套件通常皆可透過本小節所述方式設定字體與字型。</p>
+:::note
+任何有關文字設定的套件通常皆可透過本小節所述方式設定**文字位移**，包含以下函式：
 
-文字位移是指將所有文字或標籤往特定方向移動，如此可統一修正文字的位置，齊
+* <u>**標註文字與標籤**</u>：[`geom_text()`](#標註文字與標籤)、[`geom_label()`](#標註文字與標籤)  
+* <u>**標註 html 文字與標籤**</u>：[`geom_richtext()`](#html-文字ggtext套件)、[`geom_textbox()`](#html-文字ggtext套件)  
+* <u>**設定圖表主題**</u>：[`element_text()`](#細節樣式設定)、[`element_markdown()`](#細節樣式設定)  
+:::
+
+
+文字位移是指將所有文字或標籤往特定方向移動，如此可統一修正文字的位置，
 
 
 
-### 文字避免重複
+### 文字避免重疊
 
 
 

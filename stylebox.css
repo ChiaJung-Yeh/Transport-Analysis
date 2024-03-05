@@ -11,17 +11,17 @@ div.strong {
     border: solid 1px #c78710;
   }
   
-  div.check {
+  div.note {
     padding: 1em 1em 1em 7em;
     margin: 1em 0;
     background-size: 60px;
     background-repeat: no-repeat;
-    border-radius: 20px;
+    border-radius: 10px;
     background-position: 15px center;
     min-height: 50px;
-    color: #000000;
+    color: #000079;
     font-size: 15px;
-    background-color: #DFFFDF;
-    border: solid 5px #007500;
-    background-image: url("./images/warning.png");
+    background-color: #FFFFCE;
+    border: solid 5px #E1E100;
+    background-image: url("./figure/image/note.png");
   }

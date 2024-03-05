@@ -185,3 +185,6 @@ fig:font-angle-just
 文字避免重複
 html-文字ggtext套件
 tab:font-angle-just-tab
+文字避免重疊
+標註文字與標籤
+fig:geom-text-eg0
