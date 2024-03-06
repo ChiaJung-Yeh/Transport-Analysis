@@ -188,3 +188,5 @@ tab:font-angle-just-tab
 文字避免重疊
 標註文字與標籤
 fig:geom-text-eg0
+fig:font-nudge
+tab:ggrepel-code-tab

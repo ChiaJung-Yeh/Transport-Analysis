@@ -27,6 +27,7 @@ library(ggtern)
 library(ggrepel)
 library(ggtext)
 library(ggimage)
+library(cowplot)
 
 Sys.setlocale(category = "LC_ALL", locale = "zh_TW.UTF-8")
 windowsFonts(A=windowsFont("Taipei Sans TC Beta"))
@@ -1503,7 +1504,7 @@ arrow(angle=, length=, ends=, type=)
 
 ```{r geom-arrow-code-tab, echo=F, eval=T}
 ga_code=data.frame(argument=c("`angle=`","`length=`","`ends=`","`type=`"),
-                   setting=c("箭頭的角度","箭頭的長度","箭頭位置","箭頭類型"), para=c("數值（預設為 30°）",'利用`unit(數值, "單位")`設定之',"`last`:加在線段或曲線的末端（預設）<br>`last`:加在線段或曲線的起始端<br>`both`:加在線段或曲線的兩端點","`open`:開放箭頭<br>`closed`:封閉箭頭"))
+                   setting=c("箭頭的角度","箭頭的長度","箭頭位置","箭頭類型"), para=c("數值（預設為 30°）",'利用`unit(數值, "單位")`設定之',"`last`:加在線段或曲線的末端（預設）<br>`first`:加在線段或曲線的起始端<br>`both`:加在線段或曲線的兩端點","`open`:開放箭頭<br>`closed`:封閉箭頭"))
 
 kable(ga_code, booktabs=T, escape=F, caption="`arrow()`函式引數設定", col.names=c("引數","功能設定","說明"))%>%
   kable_styling(bootstrap_options=c("striped", "hover"), font_size=14)%>%
@@ -1647,7 +1648,7 @@ kable(gt_code, booktabs=T, escape=F, caption="`geom_text()`與`geom_label()`函�
 windowsFonts(biaukai=windowsFont("標楷體"))
 windowsFonts(TNR=windowsFont("Times New Roman"))
 
-# 讀取投總統大選資料並篩選出新竹市資料
+# 讀取投總統大選資料並篩選出新竹市資料(計算邏輯請參考長條圖中「加入文字或標籤」的範例)
 hs_vote=read.csv("https://raw.githubusercontent.com/ChiaJung-Yeh/Transport-Analysis/master/Data/tw_president_vote.csv")%>%
   filter(COUNTYNAME=="新竹縣")%>%
   melt(id.vars="TOWNNAME", measure.vars=c("TPP","DPP","KMT"), variable.name="Party", value.name="Rate")
@@ -1655,8 +1656,6 @@ hs_vote$Party=factor(hs_vote$Party, levels=c("TPP","DPP","KMT"))
 hs_vote=group_by(hs_vote, TOWNNAME)%>%
   arrange(TOWNNAME, desc(Party))%>%
   mutate(Rate_cum=cumsum(Rate))
-
-# 計算邏輯請參考以上示意圖
 hs_vote$lab_y=hs_vote$Rate_cum-hs_vote$Rate/2
   
 # 繪製圖表時設定family、fontface、hjust、nudge_y引數
@@ -1773,12 +1772,77 @@ ggplot(data=temp)+
 * <u>**設定圖表主題**</u>：[`element_text()`](#細節樣式設定)、[`element_markdown()`](#細節樣式設定)  
 :::
 
+文字位移是指將所有文字或標籤往特定方向移動，如此可統一修正文字的位置。在繪圖的時候若希望永遠標註在各點的同一側，則適合利用`nudge_x`與`nudge_y`修正之。`nudge_x`是沿著橫軸往右（+）或往左（-）移動；`nudge_y`是沿著縱軸往上（+）或往下（-）移動，詳請參見圖\@ref(fig:font-nudge)。
 
-文字位移是指將所有文字或標籤往特定方向移動，如此可統一修正文字的位置，
-
+```{r font-nudge, echo=F, eval=T, out.width="100%", fig.width=10, fig.height=3, fig.align="center", fig.cap="文字位移", warning=F}
+temp1=data.frame(x=c(0,2,1), y=c(0,0,2))
+temp2=data.frame(nx=c(-0.5,0,0.5), ny=c(-0.5,0,0.5))
+p_list=list()
+for(i in c(1:nrow(temp2))){
+  p=ggplot()+
+    geom_point(data=temp1, aes(x=x, y=y))+
+    geom_text(data=temp1, aes(x=x, y=y, label="NYCU"), nudge_x=temp2$nx[i], nudge_y=temp2$ny[i])+
+    scale_x_continuous(limits=c(-1,3), breaks=seq(-1,3,0.5))+
+    scale_y_continuous(limits=c(-1,3), breaks=seq(-1,3,0.5))+
+    ggtitle(label=paste0('<span style="font-family:B">nudge_x=', temp2$nx[i], "<br>nudge_y=", temp2$ny[i], "</span>"))+
+    theme_minimal()+
+    theme(plot.title=element_markdown(size=10))
+  p_list[[i]]=p
+}
+plot_grid(plotlist=p_list, ncol=3)
+```
 
 
 ### 文字避免重疊
+在`ggplot2`套件中，若有許多文字標註，很容易產生重疊的情形，此時可以安裝`ggrepel`套件，利用該套件中的`geom_text_repel()`與`geom_label_repel()`函式修正之，兩函式的設定引數與`geom_text()`及`geom_label()`函式大部分皆相同，惟能自動化調整文字或標籤的位置以避免重疊。關於此二函式額外的重要引數設定彙整如表\@ref(tab:ggrepel-code-tab)。
+
+```{r ggrepel-code-tab, echo=F, eval=T, out.width="70%", fig.align="center"}
+temp=data.frame(para=c("`min.segment.length=`","`direction=`","`arrow=`","`seed=`"),
+                setting=c("低於此一距離時，即繪製指示線","自動修正的方向","設定指示線的箭頭圖樣","設定隨機種子"),
+                explain=c('利用`unit(數值, "單位")`設定之<br>若欲強制新增指示線，可設定`unit(0, "cm")`',"`both`:同時修正橫軸與縱軸<br>`x`:修正橫軸<br>`y`:修正縱軸","利用`arrow()`函式設定之（參見表\\@ref(tab:geom-arrow-code-tab)）","由於修正的位移為隨機，故若希望每次繪圖結果皆固定，可設定隨機種子編號"))
+
+kable(temp, booktabs=T, escape=F, caption="`geom_text_repel()`與`geom_label_repel()`函式其他引數設定", col.names=c("引數","功能設定","說明"))%>%
+  kable_styling(bootstrap_options=c("striped", "hover"), font_size=14)%>%
+  row_spec(0, bold=T, color="white", background="#8E8E8E")
+```
+
+<p style="color:#003D79;font-size:18px;line-height:2">**⌾ 修正重疊文字**</p>  
+
+以`swiss`資料為例，該資料記錄西元 1888 年 47 個省份的生育率（Fertility）與社經變數，包括農業人口比例（Agriculture）、小學畢業人口比例（Education）、基督教人口比例（Catholic）等。以下程式碼繪製生育率與農業人口比例之間的關係，並單純使用`geom_text()`函式標記省份名稱。
+
+```{r ggrepel-eg1, echo=T, eval=T, out.width="80%", fig.align="center"}
+swiss_temp=swiss
+swiss_temp$Province=row.names(swiss_temp)
+ggplot()+
+  geom_point(data=swiss_temp, aes(x=Fertility, y=Agriculture))+
+  geom_text(data=swiss_temp, aes(x=Fertility, y=Agriculture, label=Province))
+```
+
+由出圖結果可知，標記的名稱有許多重疊之處，造成判讀不易，故以下進一步透過`geom_text_repel()`函式修正之，程式碼撰寫如下。
+
+```{r ggrepel-eg2, echo=T, eval=T, out.width="80%", fig.align="center"}
+ggplot()+
+  geom_point(data=swiss_temp, aes(x=Fertility, y=Agriculture))+
+  geom_text_repel(data=swiss_temp, aes(x=Fertility, y=Agriculture, label=Province))
+```
+
+利用`geom_label_repel()`函式標註不重疊的標籤，程式碼撰寫如下。
+
+```{r ggrepel-eg3, echo=T, eval=T, out.width="80%", fig.align="center"}
+ggplot()+
+  geom_point(data=swiss_temp, aes(x=Fertility, y=Agriculture))+
+  geom_label_repel(data=swiss_temp, aes(x=Fertility, y=Agriculture, label=Province))
+```
+
+
+<p style="color:#003D79;font-size:18px;line-height:2">**⌾ 新增指示線與箭頭**</p>  
+
+```{r ggrepel-eg4, echo=T, eval=T, out.width="80%", fig.align="center"}
+ggplot()+
+  geom_point(data=swiss_temp, aes(x=Fertility, y=Agriculture))+
+  geom_text_repel(data=swiss_temp, aes(x=Fertility, y=Agriculture, label=Province),
+                  min.segment.length=unit(0, "cm"), arrow=arrow(length=unit(0.1, "cm"), type="closed"))
+```
 
 
 
