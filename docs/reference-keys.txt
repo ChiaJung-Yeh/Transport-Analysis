@@ -190,3 +190,4 @@ tab:font-angle-just-tab
 fig:geom-text-eg0
 fig:font-nudge
 tab:ggrepel-code-tab
+棒棒糖圖

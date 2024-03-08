@@ -11,6 +11,8 @@
 * 曲線下面積總和為 1",ggplot2,geom_density(),density_plot
 [圓餅圖<br>Pie Chart](#圓餅圖),"* 表達各類別在資料中的占比
 * 以扇形面積表達比例",ggplot2,geom_bar() + coord_polar(),pie_chart
+[棒棒糖圖<br>Lollipop Plot](#棒棒糖圖),"* 與長條圖類似
+* 相較於圓餅圖能夠更精確表達數據",ggplot2,geom_segment(),lollipop_plot
 [盒狀圖<br>Box Plot](#盒狀圖),"* 表達連續變數的統計分布
 * 可得知四分位數",ggplot2,geom_boxplot(),box_plot
 [小提琴圖<br>Violin Plot](#小提琴圖),"* 表達連續變數的統計分布
