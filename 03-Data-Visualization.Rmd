@@ -805,7 +805,34 @@ ggplot()+
 
 
 ### 棒棒糖圖
-棒棒糖圖（Lollipop Plot）的呈現與長條圖非常類似，惟長條是利用柱狀表示統計量，而棒棒糖圖則是利用線段表示之，並利用點表示總量，故兩圖的功能甚為類似。此外，在繪製圖表時，縱使圓餅圖是最廣為應用的圖表設計，然而在實務上圓餅圖對於讀者而言無法清楚辨明大小關係（需判斷角度或面積大小，但對人類而言極難判別），致使視覺化效果不彰。因此在類別數量較多或各類別比例相近時，建議使用棒棒圖尚能提升視覺化程度。
+棒棒糖圖（Lollipop Plot）的呈現與長條圖非常類似，惟長條是利用柱狀表示統計量，而棒棒糖圖則是利用線段表示之，並利用點表示總量，故兩圖的功能甚為類似。此外，在繪製圖表時，縱使圓餅圖是最廣為應用的圖表設計，然而在實務上圓餅圖對於讀者而言無法清楚辨明大小關係（需判斷角度或面積大小，但對人類而言極難判別），致使視覺化效果不彰。因此在類別數量較多或各類別比例相近時，建議使用棒棒圖尚能提升視覺化程度。以圖\@ref(fig:geom-lollipop-eg0)的圓餅圖與棒棒糖圖為例，可發現類別 C 與 D、類別 E 與 F 間，難以判別兩者的差異，無法在第一時間判別大小關係，而棒棒糖圖則可以很清楚比較類別間的差異，更有利於讀者辨識。
+
+```{r geom-lollipop-eg0, echo=F, eval=T, out.width="90%", fig.align="center", fig.cap="圓餅圖與棒棒糖圖比較"}
+# temp=data.frame(Category=LETTERS[1:6], Percentage=c(5,9,15,18,25,28))
+# p1=ggplot()+
+#   geom_col(data=temp, aes(x="", y=Percentage, fill=Category))+
+#   coord_polar("y", direction=1)+
+#   scale_fill_brewer(palette="Set2")+
+#   theme_void()
+# 
+# p2=ggplot()+
+#   geom_segment(data=temp, aes(x=0, y=Category, xend=Percentage, yend=Category))+
+#   geom_point(data=temp, aes(x=Percentage, y=Category))+
+#   xlab("Percentage (%)")+
+#   scale_x_continuous(breaks=seq(0,30,2))+
+#   theme_minimal()+
+#   theme(axis.title=element_text(family="A", size=15),
+#         axis.text=element_text(family="A", size=12))
+# 
+# png("./figure/compare_pie.png", width=640*2, height=490*2, res=200)
+# print(p1)
+# dev.off()
+# png("./figure/compare_lollipop.png", width=780*2, height=490*2, res=200)
+# print(p2)
+# dev.off()
+include_graphics("./figure/compare_pie_lollipop.png")
+```
+
 
 在 R 語言中若欲繪製棒棒糖圖，可利用節線函式（`geom_segment()`）繪製，請參見表\@ref(tab:geom-linecurve-code-tab)關於`geom_segment()`函式之設定。該函式中必須設定`x=`與`y=`引數分別表示起始端點位置的橫坐標與縱坐標，而`xend=`與`yend=`引數則設置末端點的位置。最後可利用`geom_point()`函式新增總量的點，以精確表達總量。根據上述說明，棒棒圖的繪製架構如下所示。
 
@@ -823,7 +850,7 @@ ggplot()+
 
 
 <p style="color:#003D79;font-size:18px;line-height:2">**⌾ 呈現數值（類似長條圖）**</p>  
-棒棒糖圖的功能可與長條圖類似，用以呈現數值大小。以`mtcars`資料為例，繪製橫向的長條圖，故設定`x=`引數為 0，而`xend=`引數設定為數值大小（如以下範例中 mpg 變數），`y=`與`yend=`引數則設定為類別變數（如以下範例為 Car 變數）。程式碼撰寫如下。
+棒棒糖圖的功能可與長條圖類似，用以呈現各類別的數值大小。以`mtcars`資料為例，繪製橫向的棒棒糖圖，故設定`x=`引數為 0，而`xend=`引數設定為數值大小（如以下範例中 mpg 變數），`y=`與`yend=`引數則設定為類別變數（如以下範例為 Car 變數）。以`mtcars`資料為例，程式碼撰寫如下。
 
 ```{r geom-lollipop-eg1, echo=T, eval=T, out.width="70%", fig.align="center"}
 # 使用mtcars資料，並加上車種名稱
@@ -837,6 +864,7 @@ ggplot()+
 
 
 <p style="color:#003D79;font-size:18px;line-height:2">**⌾ 圖表依數值大小排序**</p>  
+此外，有時會希望圖表的類別依據數值大小排列，以提升觀察辨識的程度，可利用[`factor()`](#因子factor)函式調整之，程式碼撰寫如下。
 
 ```{r geom-lollipop-eg2, echo=T, eval=T, out.width="70%", fig.align="center"}
 mtcars_temp=arrange(mtcars_temp, mpg)
@@ -1882,6 +1910,7 @@ ggplot()+
 
 
 <p style="color:#003D79;font-size:18px;line-height:2">**⌾ 新增指示線與箭頭**</p>  
+透過`min.segment.length=unit(0, "cm")`強制新增指示線，並透過`arrow()`函式設定箭頭樣式，程式碼撰寫如下。
 
 ```{r ggrepel-eg4, echo=T, eval=T, out.width="80%", fig.align="center"}
 ggplot()+
