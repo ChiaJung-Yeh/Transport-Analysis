@@ -192,3 +192,5 @@ fig:font-nudge
 tab:ggrepel-code-tab
 棒棒糖圖
 fig:geom-lollipop-eg0
+tab:tab-html-font
+tab:geom-rich-setting

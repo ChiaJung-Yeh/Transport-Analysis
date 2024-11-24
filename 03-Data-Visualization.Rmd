@@ -1807,7 +1807,7 @@ ggplot(data=temp, aes(x=family, y=fontface))+
 * <u>**設定圖表主題**</u>：[`element_text()`](#細節樣式設定)、[`element_markdown()`](#細節樣式設定)  
 :::
 
-所有有關文字角度與對齊的函數，其引數設定方式皆同。調整角度利用`angle=`引數；調整對齊則利用`hjust=`與`vjust`引數，各引數設定參見表表\@ref(tab:font-angle-just-tab)，設定結果參照圖\@ref(fig:font-angle-just)所示。
+所有有關文字角度與對齊的函數，其引數設定方式皆同。調整角度利用`angle=`引數；調整對齊則利用`hjust=`與`vjust`引數，各引數設定參見表\@ref(tab:font-angle-just-tab)，設定結果參照圖\@ref(fig:font-angle-just)所示。
 
 ```{r font-angle-just-tab, echo=F, eval=T}
 gt_code=data.frame(argument=c("`angle=`","`hjust=`","`vjust=`"),
@@ -1921,13 +1921,53 @@ ggplot()+
 
 
 ### HTML 文字（`ggtext`套件）
-`geom_text()`與`geom_label()`函式皆存在其限制，而`ggtext`套件中的`geom_richtext()`與`geom_textbox()`兩函式可更彈性地提供透過 HTML 語法設定文字樣式，此外亦可利用`<span> style=</span>`之 HTML 標籤增加文字樣式的豐富度。常用的 HTML 文字樣式設定彙整如。
+`geom_text()`與`geom_label()`函式皆存在其限制，無法在同一函式中設定多個不同的樣式。舉例而言，若設定文字字體為標楷體，則無論中文或英文皆會以標楷體呈現，然而有時候會希望英文使用 Times New Roman 字體，此時即無法單純藉`geom_text()`與`geom_label()`函式設定之。`ggtext`套件中的`geom_richtext()`與`geom_textbox()`兩函式可更彈性地提供透過 HTML 語法設定文字樣式，此外亦可利用`<span style=''></span>`之 HTML 標籤增加文字樣式的豐富度。常用的 HTML 文字樣式設定彙整如表\@ref(tab:tab-html-font)），部分 HTML 標籤在本套件仍無法使用（如`<u></u>`表示底線，但未支援之）。
 
+```{r tab-html-font, echo=F, eval=T}
+html_span=data.frame(setting=c("文字大小","文字顏色","文字字體","文字字型（粗體）","文字字型（斜體）"), span_tag=c("<span style\\='font-size:18mm'><\\/span>","<span style\\='color:red'><\\/span>","<span style\\='font-family:Times New Roman'><\\/span>","\\<b><\\/b>","\\<i><\\/i>"))
 
+kable(html_span, booktabs=T, escape=F, caption="HTML 文字標籤設定", col.names=c("調整樣式","HTML 語法"), align=c("cl"))
+```
+
+HTML 標籤中`style`參數可直接以分號（`;`）分隔多重設定樣式，例如同時設定文字大小和顏色，則標籤寫法如下：
+```{r tab-html-code-eg, echo=T, eval=F}
+<span style='font-size:18mm;color:red'>欲呈現的文字</span>
+```
+
+`geom_richtext()`與`geom_textbox()`兩函式內所有參數分別與`geom_text()`與`geom_label()`幾乎一致，請參考表\@ref(tab:tab-geom-text)。在函式中的設定為基底樣式，而若在 HTML 標籤中有另外設定字體樣式，則會優先採用 HTML 標籤之設定。`geom_richtext()`與`geom_textbox()`兩者的設定結果幾乎一致，惟部分參數之特殊設定彙整如表\@ref(tab:geom-rich-setting)。
+
+```{r geom-rich-setting, echo=F, eval=T}
+geom_set=data.frame(setting=c("`color=`","`width=`","`box.color=`","`box.size=`"), description=c("設定文字和外圍方框的顏色，若要去除外框，可直接設定`color=NA`", "標籤的總寬度"," 外圍方框的顏色", "外圍方框的粗細"), function1=c("V","X","X","X"), function2=c("V","V","V","V"))
+
+kable(geom_set, booktabs=T, escape=F, caption="HTML 文字標籤設定", col.names=c("引數","設定說明","`geom_richtext()`","`geom_textbox()`"), align=c("llcc"))%>%
+  kable_styling(bootstrap_options=c("striped", "hover"), font_size=14)
+```
+
+以下範例分別利用`geom_richtext()`與`geom_textbox()`函式建立圖表上的文字標籤。在`geom_richtext()`函式中，基底樣式為紅色字體與框線（`color="red"`），以淺黃色填色（`fill="#FFFFAA"`），並設定字體為標楷體。而`text1`內文中額外設定該字串的字體為「Consolas」，顏色為「#AE00AE」。只有在`text1`字串中的文字，會依據其 HTML 的標籤設定，除此之外將會使用函式中的基底樣式。`text2`的字串中則利用`<b></b>`標籤將自型設定為粗體，並調整字體大小為「20pt」。只有在`text2`內的字串會使用粗體字，其餘則亦使用基底樣式。在`geom_textbox()`函式中的設定與上述雷同，惟另添加引數`width=`用以設定整個標籤的長度，若文字並未填滿整個方框則會予以空白；新增`box.color=`引數設定外框的顏色；`box.size=`引數用以調整框線的粗度。程式碼中的`hjust=0`表示靠左對齊；`hjust=
+1`表示靠右對齊，詳請參見表\@ref(tab:font-angle-just-tab)。
+
+```{r tab-html-eg1, echo=T, eval=T}
+windowsFonts(Consolas=windowsFont("Consolas"))
+windowsFonts(biaukai=windowsFont("標楷體"))
+
+# 設定文字顏色與字體
+text1="<span style='color:#AE00AE;font-family:Consolas'>geom_richtext()</span>"
+
+# 設定粗體與文字大小
+text2="<b><span style='font-size:20pt'>函式</span></b>"
+
+# 設定文字顏色與字體
+text3="<span style='color:#2894FF;font-family:Consolas'>geom_textbox()</span>"
+
+ggplot()+
+  geom_richtext(aes(x=-1, y=0, label=paste0(text1, text2)), color="red", fill="#FFFFAA", hjust=0, family="biaukai")+
+  geom_textbox(aes(x=1, y=0, label=paste0(text3, text2)), color="red", hjust=1, width=0.4, box.color="green", box.size=1, family="biaukai")
+```
 
 
 
 ### 標註插圖
+
 
 
 

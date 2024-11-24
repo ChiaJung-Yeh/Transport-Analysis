@@ -23,7 +23,7 @@
 <meta name="author" content="Chia-Jung (Robert) Yeh 葉家榮 PhD: Insitute of Transport and Logistics Studies, USYD M.S.: Department of Transportation and Logistics Management, NYCU" />
 
 
-<meta name="date" content="2024-03-09" />
+<meta name="date" content="2024-11-24" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -3784,7 +3784,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </li>
 </ul>
 </div>
-<p>所有有關文字角度與對齊的函數，其引數設定方式皆同。調整角度利用<code>angle=</code>引數；調整對齊則利用<code>hjust=</code>與<code>vjust</code>引數，各引數設定參見表表<a href="資料視覺化.html#tab:font-angle-just-tab">3.22</a>，設定結果參照圖<a href="資料視覺化.html#fig:font-angle-just">3.16</a>所示。</p>
+<p>所有有關文字角度與對齊的函數，其引數設定方式皆同。調整角度利用<code>angle=</code>引數；調整對齊則利用<code>hjust=</code>與<code>vjust</code>引數，各引數設定參見表<a href="資料視覺化.html#tab:font-angle-just-tab">3.22</a>，設定結果參照圖<a href="資料視覺化.html#fig:font-angle-just">3.16</a>所示。</p>
 <table class="table table-striped table-hover" style="font-size: 14px; margin-left: auto; margin-right: auto;">
 <caption style="font-size: initial !important;">
 <span id="tab:font-angle-just-tab">表 3.22: </span>角度與對齊引數設定
@@ -3965,7 +3965,163 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </div>
 <div id="html-文字ggtext套件" class="section level3 hasAnchor" number="3.2.6">
 <h3><span class="header-section-number">3.2.6</span> HTML 文字（<code>ggtext</code>套件）<a href="資料視覺化.html#html-文字ggtext套件" class="anchor-section" aria-label="Anchor link to header"></a></h3>
-<p><code>geom_text()</code>與<code>geom_label()</code>函式皆存在其限制，而<code>ggtext</code>套件中的<code>geom_richtext()</code>與<code>geom_textbox()</code>兩函式可更彈性地提供透過 HTML 語法設定文字樣式，此外亦可利用<code>&lt;span&gt; style=&lt;/span&gt;</code>之 HTML 標籤增加文字樣式的豐富度。常用的 HTML 文字樣式設定彙整如。</p>
+<p><code>geom_text()</code>與<code>geom_label()</code>函式皆存在其限制，無法在同一函式中設定多個不同的樣式。舉例而言，若設定文字字體為標楷體，則無論中文或英文皆會以標楷體呈現，然而有時候會希望英文使用 Times New Roman 字體，此時即無法單純藉<code>geom_text()</code>與<code>geom_label()</code>函式設定之。<code>ggtext</code>套件中的<code>geom_richtext()</code>與<code>geom_textbox()</code>兩函式可更彈性地提供透過 HTML 語法設定文字樣式，此外亦可利用<code>&lt;span style=''&gt;&lt;/span&gt;</code>之 HTML 標籤增加文字樣式的豐富度。常用的 HTML 文字樣式設定彙整如表<a href="資料視覺化.html#tab:tab-html-font">3.24</a>），部分 HTML 標籤在本套件仍無法使用（如<code>&lt;u&gt;&lt;/u&gt;</code>表示底線，但未支援之）。</p>
+<table>
+<caption>
+<span id="tab:tab-html-font">表 3.24: </span>HTML 文字標籤設定
+</caption>
+<thead>
+<tr>
+<th style="text-align:center;">
+調整樣式
+</th>
+<th style="text-align:left;">
+HTML 語法
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center;">
+文字大小
+</td>
+<td style="text-align:left;">
+&lt;span style=‘font-size:18mm’&gt;&lt;/span&gt;
+</td>
+</tr>
+<tr>
+<td style="text-align:center;">
+文字顏色
+</td>
+<td style="text-align:left;">
+&lt;span style=‘color:red’&gt;&lt;/span&gt;
+</td>
+</tr>
+<tr>
+<td style="text-align:center;">
+文字字體
+</td>
+<td style="text-align:left;">
+&lt;span style=‘font-family:Times New Roman’&gt;&lt;/span&gt;
+</td>
+</tr>
+<tr>
+<td style="text-align:center;">
+文字字型（粗體）
+</td>
+<td style="text-align:left;">
+&lt;b&gt;&lt;/b&gt;
+</td>
+</tr>
+<tr>
+<td style="text-align:center;">
+文字字型（斜體）
+</td>
+<td style="text-align:left;">
+&lt;i&gt;&lt;/i&gt;
+</td>
+</tr>
+</tbody>
+</table>
+<p>HTML 標籤中<code>style</code>參數可直接以分號（<code>;</code>）分隔多重設定樣式，例如同時設定文字大小和顏色，則標籤寫法如下：</p>
+<div class="sourceCode" id="cb118"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb118-1"><a href="資料視覺化.html#cb118-1" tabindex="-1"></a><span class="sc">&lt;</span>span style<span class="ot">=</span><span class="st">&#39;font-size:18mm;color:red&#39;</span><span class="sc">&gt;</span>欲呈現的文字<span class="sc">&lt;</span><span class="er">/</span>span<span class="sc">&gt;</span></span></code></pre></div>
+<p><code>geom_richtext()</code>與<code>geom_textbox()</code>兩函式內所有參數分別與<code>geom_text()</code>與<code>geom_label()</code>幾乎一致，請參考表<a href="資料視覺化.html#tab:tab-geom-text">3.21</a>。在函式中的設定為基底樣式，而若在 HTML 標籤中有另外設定字體樣式，則會優先採用 HTML 標籤之設定。<code>geom_richtext()</code>與<code>geom_textbox()</code>兩者的設定結果幾乎一致，惟部分參數之特殊設定彙整如表<a href="資料視覺化.html#tab:geom-rich-setting">3.25</a>。</p>
+<table class="table table-striped table-hover" style="font-size: 14px; margin-left: auto; margin-right: auto;">
+<caption style="font-size: initial !important;">
+<span id="tab:geom-rich-setting">表 3.25: </span>HTML 文字標籤設定
+</caption>
+<thead>
+<tr>
+<th style="text-align:left;">
+引數
+</th>
+<th style="text-align:left;">
+設定說明
+</th>
+<th style="text-align:center;">
+<code>geom_richtext()</code>
+</th>
+<th style="text-align:center;">
+<code>geom_textbox()</code>
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left;">
+<code>color=</code>
+</td>
+<td style="text-align:left;">
+設定文字和外圍方框的顏色，若要去除外框，可直接設定<code>color=NA</code>
+</td>
+<td style="text-align:center;">
+V
+</td>
+<td style="text-align:center;">
+V
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+<code>width=</code>
+</td>
+<td style="text-align:left;">
+標籤的總寬度
+</td>
+<td style="text-align:center;">
+X
+</td>
+<td style="text-align:center;">
+V
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+<code>box.color=</code>
+</td>
+<td style="text-align:left;">
+外圍方框的顏色
+</td>
+<td style="text-align:center;">
+X
+</td>
+<td style="text-align:center;">
+V
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+<code>box.size=</code>
+</td>
+<td style="text-align:left;">
+外圍方框的粗細
+</td>
+<td style="text-align:center;">
+X
+</td>
+<td style="text-align:center;">
+V
+</td>
+</tr>
+</tbody>
+</table>
+<p>以下範例分別利用<code>geom_richtext()</code>與<code>geom_textbox()</code>函式建立圖表上的文字標籤。在<code>geom_richtext()</code>函式中，基底樣式為紅色字體與框線（<code>color="red"</code>），以淺黃色填色（<code>fill="#FFFFAA"</code>），並設定字體為標楷體。而<code>text1</code>內文中額外設定該字串的字體為「Consolas」，顏色為「#AE00AE」。只有在<code>text1</code>字串中的文字，會依據其 HTML 的標籤設定，除此之外將會使用函式中的基底樣式。<code>text2</code>的字串中則利用<code>&lt;b&gt;&lt;/b&gt;</code>標籤將自型設定為粗體，並調整字體大小為「20pt」。只有在<code>text2</code>內的字串會使用粗體字，其餘則亦使用基底樣式。在<code>geom_textbox()</code>函式中的設定與上述雷同，惟另添加引數<code>width=</code>用以設定整個標籤的長度，若文字並未填滿整個方框則會予以空白；新增<code>box.color=</code>引數設定外框的顏色；<code>box.size=</code>引數用以調整框線的粗度。程式碼中的<code>hjust=0</code>表示靠左對齊；<code>hjust= 1</code>表示靠右對齊，詳請參見表<a href="資料視覺化.html#tab:font-angle-just-tab">3.22</a>。</p>
+<div class="sourceCode" id="cb119"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb119-1"><a href="資料視覺化.html#cb119-1" tabindex="-1"></a><span class="fu">windowsFonts</span>(<span class="at">Consolas=</span><span class="fu">windowsFont</span>(<span class="st">&quot;Consolas&quot;</span>))</span>
+<span id="cb119-2"><a href="資料視覺化.html#cb119-2" tabindex="-1"></a><span class="fu">windowsFonts</span>(<span class="at">biaukai=</span><span class="fu">windowsFont</span>(<span class="st">&quot;標楷體&quot;</span>))</span>
+<span id="cb119-3"><a href="資料視覺化.html#cb119-3" tabindex="-1"></a></span>
+<span id="cb119-4"><a href="資料視覺化.html#cb119-4" tabindex="-1"></a><span class="co"># 設定文字顏色與字體</span></span>
+<span id="cb119-5"><a href="資料視覺化.html#cb119-5" tabindex="-1"></a>text1<span class="ot">=</span><span class="st">&quot;&lt;span style=&#39;color:#AE00AE;font-family:Consolas&#39;&gt;geom_richtext()&lt;/span&gt;&quot;</span></span>
+<span id="cb119-6"><a href="資料視覺化.html#cb119-6" tabindex="-1"></a></span>
+<span id="cb119-7"><a href="資料視覺化.html#cb119-7" tabindex="-1"></a><span class="co"># 設定粗體與文字大小</span></span>
+<span id="cb119-8"><a href="資料視覺化.html#cb119-8" tabindex="-1"></a>text2<span class="ot">=</span><span class="st">&quot;&lt;b&gt;&lt;span style=&#39;font-size:20pt&#39;&gt;函式&lt;/span&gt;&lt;/b&gt;&quot;</span></span>
+<span id="cb119-9"><a href="資料視覺化.html#cb119-9" tabindex="-1"></a></span>
+<span id="cb119-10"><a href="資料視覺化.html#cb119-10" tabindex="-1"></a><span class="co"># 設定文字顏色與字體</span></span>
+<span id="cb119-11"><a href="資料視覺化.html#cb119-11" tabindex="-1"></a>text3<span class="ot">=</span><span class="st">&quot;&lt;span style=&#39;color:#2894FF;font-family:Consolas&#39;&gt;geom_textbox()&lt;/span&gt;&quot;</span></span>
+<span id="cb119-12"><a href="資料視覺化.html#cb119-12" tabindex="-1"></a></span>
+<span id="cb119-13"><a href="資料視覺化.html#cb119-13" tabindex="-1"></a><span class="fu">ggplot</span>()<span class="sc">+</span></span>
+<span id="cb119-14"><a href="資料視覺化.html#cb119-14" tabindex="-1"></a>  <span class="fu">geom_richtext</span>(<span class="fu">aes</span>(<span class="at">x=</span><span class="sc">-</span><span class="dv">1</span>, <span class="at">y=</span><span class="dv">0</span>, <span class="at">label=</span><span class="fu">paste0</span>(text1, text2)), <span class="at">color=</span><span class="st">&quot;red&quot;</span>, <span class="at">fill=</span><span class="st">&quot;#FFFFAA&quot;</span>, <span class="at">hjust=</span><span class="dv">0</span>, <span class="at">family=</span><span class="st">&quot;biaukai&quot;</span>)<span class="sc">+</span></span>
+<span id="cb119-15"><a href="資料視覺化.html#cb119-15" tabindex="-1"></a>  <span class="fu">geom_textbox</span>(<span class="fu">aes</span>(<span class="at">x=</span><span class="dv">1</span>, <span class="at">y=</span><span class="dv">0</span>, <span class="at">label=</span><span class="fu">paste0</span>(text3, text2)), <span class="at">color=</span><span class="st">&quot;red&quot;</span>, <span class="at">hjust=</span><span class="dv">1</span>, <span class="at">width=</span><span class="fl">0.4</span>, <span class="at">box.color=</span><span class="st">&quot;green&quot;</span>, <span class="at">box.size=</span><span class="dv">1</span>, <span class="at">family=</span><span class="st">&quot;biaukai&quot;</span>)</span></code></pre></div>
+<p><img src="series_files/figure-html/tab-html-eg1-1.png" width="672" /></p>
 </div>
 <div id="標註插圖" class="section level3 hasAnchor" number="3.2.7">
 <h3><span class="header-section-number">3.2.7</span> 標註插圖<a href="資料視覺化.html#標註插圖" class="anchor-section" aria-label="Anchor link to header"></a></h3>
