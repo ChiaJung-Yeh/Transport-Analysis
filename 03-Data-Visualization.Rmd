@@ -1039,6 +1039,11 @@ ggplot(data=world, aes(x=lifeExp, y=gdpPercap))+
 
 
 ### 山脊圖
+:::install
+**請下載`ggridges`套件！**  
+**`install.packages("ggridges")`**
+:::
+
 山脊圖（Ridgeline Plot）與密度圖非常相似，可表達許多不同類別的連續資料分布情形，而山脊圖可將不同類別的資料平行並列，以較容易觀察類別間的差異。繪製山脊圖可利用`ggridges`套件中的`geom_density_ridges()`與`stat_density_ridges()`函式，其撰寫架構如下。
 
 ```{r geom-ridgeline-code, echo=T, eval=F}
@@ -1195,6 +1200,11 @@ corrplot(cor(mtcars))
 
 
 ### 矩形式樹狀圖
+:::install
+**請下載`treemapify`套件！**  
+**`install.packages("treemapify")`**
+:::
+
 矩形式樹狀圖（Treemap）可用以視覺化呈現不同類別間的占比，亦可同時表現分類架構。在 R 語言中可另安裝`treemapify`套件繪製矩形式樹狀圖，該套件所提供的函式彙整如表\@ref(tab:geom-treemap-code1-tab)。另建議所有引數皆設定於`ggplot()`函式中，以便建立不同階層的樹狀圖，函式撰寫架構如下。
 
 ```{r geom-treemap-code, echo=T, eval=F}
@@ -1311,6 +1321,11 @@ ggplot(tw_pop, aes(area=people_total, fill=District, label=COUNTYNAME, subgroup=
 
 
 ### 桑基圖
+:::install
+**請下載`ggalluvial`套件！**  
+**`install.packages("ggalluvial")`**
+:::
+
 桑基圖（Sankey Diagram）可用以表達系統內各階層的流動，圖表係由節點與節線構成。節點用以表示狀態或屬性，其寬度可表示該狀態的占比；節線用以表示狀態之間轉移的流動，其線條粗細可表示流動量，而線條顏色則可表示所屬的類別。以圖\@ref(fig:geom-sankey-fig1)之示意圖為例，階層 1 含有四個狀態，故會包含 4 個節點，而階層 1 會透過節線流動至階層 2，並含有兩個狀態，其他則以此類推。
 
 ```{r geom-sankey-fig1, echo=F, eval=T, out.width="60%", fig.align="center", fig.cap="桑基圖架構示意圖"}
@@ -1403,15 +1418,13 @@ ggplot(data=scmig, aes(axis1=From, axis2=To, y=Migration))+
 
 
 ### 雷達圖
-雷達圖（Radar Chart）可用於比較不同類別間的在各屬性上表現的狀況，並比較各類別間的相對優勢與劣勢。該圖通常是由多邊形或圓形所構成，其中心點代表最低數值，多邊形的頂點或圓形的邊界意謂各屬性的最大值。在 R 語言中可以透過`ggradar`與`fmsb`兩套件繪製雷達圖，其安裝方式如下。
+:::install
+**請下載`ggradar`與`fmsb`套件！**  
+**`devtools::install_github("ricardo-bion/ggradar")`**  
+**`install.packages("fmsb")`**
+:::
 
-```{r geom-radar-package, echo=T, eval=F}
-# 安裝ggradar
-devtools::install_github("ricardo-bion/ggradar")
-
-# 安裝fmsb
-install.packages("fmsb")
-```
+雷達圖（Radar Chart）可用於比較不同類別間的在各屬性上表現的狀況，並比較各類別間的相對優勢與劣勢。該圖通常是由多邊形或圓形所構成，其中心點代表最低數值，多邊形的頂點或圓形的邊界意謂各屬性的最大值。在 R 語言中可以透過`ggradar`與`fmsb`兩套件繪製雷達圖。
 
 在`ggradar`套件中繪製雷達圖，僅須透過`ggradar()`函式即可建立之，該函式中的重要引數設定詳如表\@ref(tab:geom-radar-code-tab)，並請參見圖\@ref(fig:geom-radar-fig)之示意圖，而其他細節引數設定請透過`?ggradar`查看。
 
@@ -1506,6 +1519,11 @@ ggradar(mtcars_part, legend.text.size=10, grid.label.size=4, axis.label.size=5, 
 
 
 ### 三元圖
+:::install
+**請下載`ggtern`套件！**  
+**`install.packages("ggtern")`**
+:::
+
 三元圖（Ternary Plot）用於表達三個類別之間的比例關係，圖中每一點所對應至座標軸的數值加總必為 100，如圖\@ref(fig:geom-ternary-fig)之示意圖所示。
 
 ```{r geom-ternary-fig, echo=F, eval=T, out.width="45%", fig.align="center", fig.cap="三元圖示意圖"}
@@ -1867,6 +1885,11 @@ plot_grid(plotlist=p_list, ncol=3)
 
 
 ### 文字避免重疊
+:::install
+**請下載`ggrepel`套件！**  
+**`install.packages("ggrepel")`**
+:::
+
 在`ggplot2`套件中，若有許多文字標註，很容易產生重疊的情形，此時可以安裝`ggrepel`套件，利用該套件中的`geom_text_repel()`與`geom_label_repel()`函式修正之，兩函式的設定引數與`geom_text()`及`geom_label()`函式大部分皆相同，惟能自動化調整文字或標籤的位置以避免重疊。關於此二函式額外的重要引數設定彙整如表\@ref(tab:ggrepel-code-tab)。
 
 ```{r ggrepel-code-tab, echo=F, eval=T, out.width="70%", fig.align="center"}
@@ -1920,8 +1943,13 @@ ggplot()+
 ```
 
 
-### HTML 文字（`ggtext`套件）
-`geom_text()`與`geom_label()`函式皆存在其限制，無法在同一函式中設定多個不同的樣式。舉例而言，若設定文字字體為標楷體，則無論中文或英文皆會以標楷體呈現，然而有時候會希望英文使用 Times New Roman 字體，此時即無法單純藉`geom_text()`與`geom_label()`函式設定之。`ggtext`套件中的`geom_richtext()`與`geom_textbox()`兩函式可更彈性地提供透過 HTML 語法設定文字樣式，此外亦可利用`<span style=''></span>`之 HTML 標籤增加文字樣式的豐富度。常用的 HTML 文字樣式設定彙整如表\@ref(tab:tab-html-font)），部分 HTML 標籤在本套件仍無法使用（如`<u></u>`表示底線，但未支援之）。
+### HTML 文字
+:::install
+**請下載`ggtext`套件！**  
+**`install.packages("ggtext")`**
+:::
+
+`geom_text()`與`geom_label()`函式皆存在其限制，無法在同一函式中設定多個不同的樣式。舉例而言，若設定文字字體為標楷體，則無論中文或英文皆會以標楷體呈現，然而有時候會希望英文使用 Times New Roman 字體，此時即無法單純藉`geom_text()`與`geom_label()`函式設定之。`ggtext`套件中的`geom_richtext()`與`geom_textbox()`兩函式可更彈性地提供透過 HTML 語法設定文字樣式，此外亦可利用`<span style=''></span>`之 HTML 標籤增加文字樣式的豐富度。常用的 HTML 文字樣式設定彙整如表\@ref(tab:tab-html-font)，部分 HTML 標籤在本套件仍無法使用（如`<u></u>`表示底線，但未支援之）。
 
 ```{r tab-html-font, echo=F, eval=T}
 html_span=data.frame(setting=c("文字大小","文字顏色","文字字體","文字字型（粗體）","文字字型（斜體）"), span_tag=c("<span style\\='font-size:18mm'><\\/span>","<span style\\='color:red'><\\/span>","<span style\\='font-family:Times New Roman'><\\/span>","\\<b><\\/b>","\\<i><\\/i>"))
@@ -1937,14 +1965,15 @@ HTML 標籤中`style`參數可直接以分號（`;`）分隔多重設定樣式�
 `geom_richtext()`與`geom_textbox()`兩函式內所有參數分別與`geom_text()`與`geom_label()`幾乎一致，請參考表\@ref(tab:tab-geom-text)。在函式中的設定為基底樣式，而若在 HTML 標籤中有另外設定字體樣式，則會優先採用 HTML 標籤之設定。`geom_richtext()`與`geom_textbox()`兩者的設定結果幾乎一致，惟部分參數之特殊設定彙整如表\@ref(tab:geom-rich-setting)。
 
 ```{r geom-rich-setting, echo=F, eval=T}
-geom_set=data.frame(setting=c("`color=`","`width=`","`box.color=`","`box.size=`"), description=c("設定文字和外圍方框的顏色，若要去除外框，可直接設定`color=NA`", "標籤的總寬度"," 外圍方框的顏色", "外圍方框的粗細"), function1=c("V","X","X","X"), function2=c("V","V","V","V"))
+geom_set=data.frame(setting=c("`color=`","`width=`","`box.color=`","`box.size=`"), description=c("設定文字和外圍方框的顏色", "標籤的總寬度"," 外圍方框的顏色", "外圍方框的粗細"), function1=c("V","X","X","X"), function2=c("V","V","V","V"))
 
-kable(geom_set, booktabs=T, escape=F, caption="HTML 文字標籤設定", col.names=c("引數","設定說明","`geom_richtext()`","`geom_textbox()`"), align=c("llcc"))%>%
-  kable_styling(bootstrap_options=c("striped", "hover"), font_size=14)
+kable(geom_set, booktabs=T, escape=F, caption="HTML 文字標籤設定", col.names=c("引數","設定說明","geom_richtext()","geom_textbox()"), align=c("llcc"))%>%
+  kable_styling(bootstrap_options=c("striped", "hover"), font_size=14)%>%
+  row_spec(0, bold=T, color="white", background="#8E8E8E")
 ```
 
 以下範例分別利用`geom_richtext()`與`geom_textbox()`函式建立圖表上的文字標籤。在`geom_richtext()`函式中，基底樣式為紅色字體與框線（`color="red"`），以淺黃色填色（`fill="#FFFFAA"`），並設定字體為標楷體。而`text1`內文中額外設定該字串的字體為「Consolas」，顏色為「#AE00AE」。只有在`text1`字串中的文字，會依據其 HTML 的標籤設定，除此之外將會使用函式中的基底樣式。`text2`的字串中則利用`<b></b>`標籤將自型設定為粗體，並調整字體大小為「20pt」。只有在`text2`內的字串會使用粗體字，其餘則亦使用基底樣式。在`geom_textbox()`函式中的設定與上述雷同，惟另添加引數`width=`用以設定整個標籤的長度，若文字並未填滿整個方框則會予以空白；新增`box.color=`引數設定外框的顏色；`box.size=`引數用以調整框線的粗度。程式碼中的`hjust=0`表示靠左對齊；`hjust=
-1`表示靠右對齊，詳請參見表\@ref(tab:font-angle-just-tab)。
+1`表示靠右對齊，請參見表\@ref(tab:font-angle-just-tab)。
 
 ```{r tab-html-eg1, echo=T, eval=T}
 windowsFonts(Consolas=windowsFont("Consolas"))
@@ -1965,9 +1994,8 @@ ggplot()+
 ```
 
 
-
 ### 標註插圖
-
+在繪圖時可能會希望以圖示取代常見的圖形（如預設的圓點），則可利用標註插圖的方式，將圖檔疊加在`ggplot`所生成的圖上。在 R 語言中可利用`ggimage`套件
 
 
 

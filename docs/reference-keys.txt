@@ -194,3 +194,4 @@ tab:ggrepel-code-tab
 fig:geom-lollipop-eg0
 tab:tab-html-font
 tab:geom-rich-setting
+html-文字

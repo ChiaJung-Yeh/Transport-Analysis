@@ -23,7 +23,7 @@
 <meta name="author" content="Chia-Jung (Robert) Yeh 葉家榮 PhD: Insitute of Transport and Logistics Studies, USYD M.S.: Department of Transportation and Logistics Management, NYCU" />
 
 
-<meta name="date" content="2024-11-24" />
+<meta name="date" content="2024-11-27" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -246,7 +246,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="3.2.3" data-path="資料視覺化.html"><a href="資料視覺化.html#文字角度與對齊"><i class="fa fa-check"></i><b>3.2.3</b> 文字角度與對齊</a></li>
 <li class="chapter" data-level="3.2.4" data-path="資料視覺化.html"><a href="資料視覺化.html#文字位移"><i class="fa fa-check"></i><b>3.2.4</b> 文字位移</a></li>
 <li class="chapter" data-level="3.2.5" data-path="資料視覺化.html"><a href="資料視覺化.html#文字避免重疊"><i class="fa fa-check"></i><b>3.2.5</b> 文字避免重疊</a></li>
-<li class="chapter" data-level="3.2.6" data-path="資料視覺化.html"><a href="資料視覺化.html#html-文字ggtext套件"><i class="fa fa-check"></i><b>3.2.6</b> HTML 文字（<code>ggtext</code>套件）</a></li>
+<li class="chapter" data-level="3.2.6" data-path="資料視覺化.html"><a href="資料視覺化.html#html-文字"><i class="fa fa-check"></i><b>3.2.6</b> HTML 文字</a></li>
 <li class="chapter" data-level="3.2.7" data-path="資料視覺化.html"><a href="資料視覺化.html#標註插圖"><i class="fa fa-check"></i><b>3.2.7</b> 標註插圖</a></li>
 </ul></li>
 <li class="chapter" data-level="3.3" data-path="資料視覺化.html"><a href="資料視覺化.html#繪圖設定"><i class="fa fa-check"></i><b>3.3</b> 繪圖設定</a>
@@ -313,7 +313,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li><span style="color:#C55A11;"><strong>主題設定：</strong></span> 設定座標軸文字的顏色與大小、設定圖例的文字大小、粗細與背景顏色</li>
 </ul>
 <div class="figure" style="text-align: center"><span style="display:block;" id="fig:fig-exp"></span>
-<img src="series_files/figure-html/fig-exp-1.png" alt="繪圖範例" width="60%" />
+<img src="Transport-Analysis-R_files/figure-html/fig-exp-1.png" alt="繪圖範例" width="60%" />
 <p class="caption">
 圖 3.2: 繪圖範例
 </p>
@@ -700,7 +700,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1-1"><a href="資料視覺化.html#cb1-1" tabindex="-1"></a><span class="fu">ggplot</span>(資料, <span class="fu">aes</span>(<span class="at">x=</span>, <span class="at">y=</span>))</span></code></pre></div>
 <p>以<code>iris</code>鳶尾花資料為例建立畫布，並以 Sepal.Length 為橫軸、Sepal.Width 為縱軸，設定最基礎的畫布，程式碼撰寫如下。</p>
 <div class="sourceCode" id="cb2"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb2-1"><a href="資料視覺化.html#cb2-1" tabindex="-1"></a><span class="fu">ggplot</span>(iris, <span class="fu">aes</span>(<span class="at">x=</span>Sepal.Length, <span class="at">y=</span>Sepal.Width))</span></code></pre></div>
-<p><img src="series_files/figure-html/ggplot-code-eg-1.png" width="70%" style="display: block; margin: auto;" /></p>
+<p><img src="Transport-Analysis-R_files/figure-html/ggplot-code-eg-1.png" width="70%" style="display: block; margin: auto;" /></p>
 <H2 id="ggplot-aes">
 <p style="color:#003D79;font-size:18px;line-height:2">
 <strong>⌾ <code>aes()</code>函式功能</strong>
@@ -729,7 +729,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <H2 id="geom-setting-shape">
 </H2>
 <div class="figure" style="text-align: center"><span style="display:block;" id="fig:geom-setting-shape"></span>
-<img src="series_files/figure-html/geom-setting-shape-1.png" alt="點形狀代碼" width="65%" />
+<img src="Transport-Analysis-R_files/figure-html/geom-setting-shape-1.png" alt="點形狀代碼" width="65%" />
 <p class="caption">
 圖 3.3: 點形狀代碼
 </p>
@@ -738,7 +738,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <H2 id="geom-setting-linetype">
 </H2>
 <div class="figure" style="text-align: center"><span style="display:block;" id="fig:geom-setting-linetype"></span>
-<img src="series_files/figure-html/geom-setting-linetype-1.png" alt="線條樣式代碼" width="70%" />
+<img src="Transport-Analysis-R_files/figure-html/geom-setting-linetype-1.png" alt="線條樣式代碼" width="70%" />
 <p class="caption">
 圖 3.4: 線條樣式代碼
 </p>
@@ -747,7 +747,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <H2 id="geom-setting-color">
 </H2>
 <div class="figure" style="text-align: center"><span style="display:block;" id="fig:geom-setting-color"></span>
-<img src="series_files/figure-html/geom-setting-color-1.png" alt="顏色代碼" width="90%" />
+<img src="Transport-Analysis-R_files/figure-html/geom-setting-color-1.png" alt="顏色代碼" width="90%" />
 <p class="caption">
 圖 3.5: 顏色代碼
 </p>
@@ -851,14 +851,14 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <p>以<code>iris</code>資料為例，以花萼的長度（Sepal.Length）為橫軸，花萼的寬度（Sepal.Width）為縱軸，繪製散布圖，程式碼撰寫如下。</p>
 <div class="sourceCode" id="cb5"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb5-1"><a href="資料視覺化.html#cb5-1" tabindex="-1"></a><span class="fu">ggplot</span>(iris, <span class="fu">aes</span>(<span class="at">x=</span>Sepal.Length, Sepal.Width))<span class="sc">+</span></span>
 <span id="cb5-2"><a href="資料視覺化.html#cb5-2" tabindex="-1"></a>  <span class="fu">geom_point</span>()</span></code></pre></div>
-<p><img src="series_files/figure-html/geom-point-eg1-1.png" width="70%" style="display: block; margin: auto;" /></p>
+<p><img src="Transport-Analysis-R_files/figure-html/geom-point-eg1-1.png" width="70%" style="display: block; margin: auto;" /></p>
 <p style="color:#003D79;font-size:18px;line-height:2">
 <strong>⌾ 修正散布圖樣式</strong>
 </p>
 <p>若希望更動點的樣式，可利用表<a href="資料視覺化.html#tab:geom-point-code-tab">3.2</a>的引數控制之。</p>
 <div class="sourceCode" id="cb6"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb6-1"><a href="資料視覺化.html#cb6-1" tabindex="-1"></a><span class="fu">ggplot</span>(iris, <span class="fu">aes</span>(<span class="at">x=</span>Sepal.Length, Sepal.Width))<span class="sc">+</span></span>
 <span id="cb6-2"><a href="資料視覺化.html#cb6-2" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="at">color=</span><span class="st">&quot;red&quot;</span>, <span class="at">shape=</span><span class="dv">23</span>, <span class="at">size=</span><span class="dv">3</span>, <span class="at">stroke=</span><span class="dv">1</span>, <span class="at">fill=</span><span class="st">&quot;#AE57A4&quot;</span>, <span class="at">alpha=</span><span class="fl">0.5</span>)</span></code></pre></div>
-<p><img src="series_files/figure-html/geom-point-eg2-1.png" width="70%" style="display: block; margin: auto;" /></p>
+<p><img src="Transport-Analysis-R_files/figure-html/geom-point-eg2-1.png" width="70%" style="display: block; margin: auto;" /></p>
 <p style="color:#003D79;font-size:18px;line-height:2">
 <strong>⌾ 漸層樣式散布圖</strong>
 </p>
@@ -866,7 +866,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <p>承繼上述案例，若希望用顏色表示品種（Species），並以點子的大小表示花瓣的長度（Petal.Width），而點子的形狀皆固定為圓點（引數需置於<A href="#ggplot-aes"><code>aes()</code></A>函式<strong>外</strong>），程式碼撰寫如下。</p>
 <div class="sourceCode" id="cb7"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb7-1"><a href="資料視覺化.html#cb7-1" tabindex="-1"></a><span class="fu">ggplot</span>(iris, <span class="fu">aes</span>(<span class="at">x=</span>Sepal.Length, Sepal.Width))<span class="sc">+</span></span>
 <span id="cb7-2"><a href="資料視覺化.html#cb7-2" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="fu">aes</span>(<span class="at">color=</span>Species, <span class="at">size=</span>Petal.Width), <span class="at">shape=</span><span class="dv">20</span>)</span></code></pre></div>
-<p><img src="series_files/figure-html/geom-point-eg3-1.png" width="70%" style="display: block; margin: auto;" /></p>
+<p><img src="Transport-Analysis-R_files/figure-html/geom-point-eg3-1.png" width="70%" style="display: block; margin: auto;" /></p>
 <p>圖中「品種」為類別型資料；「花瓣的寬度」為連續型資料，透過漸層樣式散布圖可表達更多維度的資料，添增資訊的豐富度。觀察出圖結果可發現，setosa 類別（ <span style="color:#F8766D">紅色點子</span>）的花瓣寬度（點子大小）與花萼長度（橫軸）相較於另兩品種偏小，有相當明顯的區別。因此透過漸層樣式散布圖可初步觀察對於資料分類的重要影響變數，為資料科學的關鍵步驟。</p>
 <p>若欲修正顏色漸層，請參考<a href="資料視覺化.html#顏色漸層">此</a>；若欲修正點子大小之漸層，請參考<a href="資料視覺化.html#大小尺度">此</a>。</p>
 <p style="color:#003D79;font-size:18px;line-height:2">
@@ -877,7 +877,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <span id="cb8-2"><a href="資料視覺化.html#cb8-2" tabindex="-1"></a>iris_rev<span class="sc">$</span>Species<span class="ot">=</span><span class="fu">factor</span>(iris_rev<span class="sc">$</span>Species, <span class="fu">c</span>(<span class="st">&quot;virginica&quot;</span>,<span class="st">&quot;versicolor&quot;</span>,<span class="st">&quot;setosa&quot;</span>))</span>
 <span id="cb8-3"><a href="資料視覺化.html#cb8-3" tabindex="-1"></a><span class="fu">ggplot</span>(iris_rev, <span class="fu">aes</span>(<span class="at">x=</span>Sepal.Length, Sepal.Width))<span class="sc">+</span></span>
 <span id="cb8-4"><a href="資料視覺化.html#cb8-4" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="fu">aes</span>(<span class="at">color=</span>Species, <span class="at">size=</span>Petal.Width), <span class="at">shape=</span><span class="dv">20</span>)</span></code></pre></div>
-<p><img src="series_files/figure-html/geom-point-eg4-1.png" width="70%" style="display: block; margin: auto;" /></p>
+<p><img src="Transport-Analysis-R_files/figure-html/geom-point-eg4-1.png" width="70%" style="display: block; margin: auto;" /></p>
 <p style="color:#003D79;font-size:18px;line-height:2">
 <strong>⌾ 加入文字或標籤</strong>
 </p>
@@ -890,13 +890,13 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <span id="cb9-6"><a href="資料視覺化.html#cb9-6" tabindex="-1"></a><span class="fu">ggplot</span>()<span class="sc">+</span></span>
 <span id="cb9-7"><a href="資料視覺化.html#cb9-7" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="at">data=</span>iris, <span class="fu">aes</span>(<span class="at">x=</span>Sepal.Length, Sepal.Width, <span class="at">color=</span>Species, <span class="at">size=</span>Petal.Width), <span class="at">shape=</span><span class="dv">20</span>, <span class="at">alpha=</span><span class="fl">0.5</span>)<span class="sc">+</span></span>
 <span id="cb9-8"><a href="資料視覺化.html#cb9-8" tabindex="-1"></a>  <span class="fu">geom_text</span>(<span class="at">data=</span>iris_sum, <span class="fu">aes</span>(<span class="at">x=</span>Sepal.Length, <span class="at">y=</span>Sepal.Width, <span class="at">color=</span>Species, <span class="at">label=</span>Species), <span class="at">size=</span><span class="dv">5</span>)</span></code></pre></div>
-<p><img src="series_files/figure-html/geom-point-eg5-1.png" width="70%" style="display: block; margin: auto;" /></p>
+<p><img src="Transport-Analysis-R_files/figure-html/geom-point-eg5-1.png" width="70%" style="display: block; margin: auto;" /></p>
 <p>抑或使用<code>geom_label()</code>建立標籤，程式碼撰寫如下。</p>
 <div class="sourceCode" id="cb10"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb10-1"><a href="資料視覺化.html#cb10-1" tabindex="-1"></a><span class="co"># 加入文字</span></span>
 <span id="cb10-2"><a href="資料視覺化.html#cb10-2" tabindex="-1"></a><span class="fu">ggplot</span>()<span class="sc">+</span></span>
 <span id="cb10-3"><a href="資料視覺化.html#cb10-3" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="at">data=</span>iris, <span class="fu">aes</span>(<span class="at">x=</span>Sepal.Length, Sepal.Width, <span class="at">color=</span>Species, <span class="at">size=</span>Petal.Width), <span class="at">shape=</span><span class="dv">20</span>, <span class="at">alpha=</span><span class="fl">0.5</span>)<span class="sc">+</span></span>
 <span id="cb10-4"><a href="資料視覺化.html#cb10-4" tabindex="-1"></a>  <span class="fu">geom_label</span>(<span class="at">data=</span>iris_sum, <span class="fu">aes</span>(<span class="at">x=</span>Sepal.Length, <span class="at">y=</span>Sepal.Width, <span class="at">color=</span>Species, <span class="at">label=</span>Species), <span class="at">size=</span><span class="dv">4</span>)</span></code></pre></div>
-<p><img src="series_files/figure-html/geom-point-eg6-1.png" width="70%" style="display: block; margin: auto;" /></p>
+<p><img src="Transport-Analysis-R_files/figure-html/geom-point-eg6-1.png" width="70%" style="display: block; margin: auto;" /></p>
 <p style="color:#003D79;font-size:18px;line-height:2">
 <strong>⌾ 加入趨勢線</strong>
 </p>
@@ -1037,10 +1037,10 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <div class="sourceCode" id="cb12"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb12-1"><a href="資料視覺化.html#cb12-1" tabindex="-1"></a><span class="fu">ggplot</span>(iris, <span class="fu">aes</span>(<span class="at">x=</span>Sepal.Length, Sepal.Width))<span class="sc">+</span></span>
 <span id="cb12-2"><a href="資料視覺化.html#cb12-2" tabindex="-1"></a>  <span class="fu">geom_point</span>()<span class="sc">+</span></span>
 <span id="cb12-3"><a href="資料視覺化.html#cb12-3" tabindex="-1"></a>  <span class="fu">geom_smooth</span>(<span class="at">method=</span>lm, <span class="at">formula=</span>y<span class="sc">~</span>x, <span class="at">color=</span><span class="st">&quot;#CE0000&quot;</span>, <span class="at">fill=</span><span class="st">&quot;#FF7575&quot;</span>, <span class="at">alpha=</span><span class="fl">0.2</span>)</span></code></pre></div>
-<p><img src="series_files/figure-html/geom-smooth-eg1-1.png" width="70%" style="display: block; margin: auto;" /></p>
+<p><img src="Transport-Analysis-R_files/figure-html/geom-smooth-eg1-1.png" width="70%" style="display: block; margin: auto;" /></p>
 <p>繪製曲線之趨勢線時，不同的<code>span=</code>引數所繪製的趨勢圖亦有所不同，如圖<a href="資料視覺化.html#fig:geom-smooth-eg2">3.6</a>所示，可發現當所設定的數值愈大時，趨勢線愈加平滑。</p>
 <div class="figure" style="text-align: center"><span style="display:block;" id="fig:geom-smooth-eg2"></span>
-<img src="series_files/figure-html/geom-smooth-eg2-1.png" alt="趨勢線中的`span=`引數" width="85%" />
+<img src="Transport-Analysis-R_files/figure-html/geom-smooth-eg2-1.png" alt="趨勢線中的`span=`引數" width="85%" />
 <p class="caption">
 圖 3.6: 趨勢線中的<code>span=</code>引數
 </p>
@@ -1051,7 +1051,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <p>有時資料點會重疊，導致肉眼無法觀察，更難以判斷資料的集中程度（重疊後變成單一點，反而會將群聚的點誤判為稀疏），此一情境即常發生於具有整數或類別型的資料。如以下案例，利用<code>mpg</code>資料，以汽缸數（cyl）為橫軸；以每加侖英里數（hwy）為縱軸，繪製散布圖如下。</p>
 <div class="sourceCode" id="cb13"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb13-1"><a href="資料視覺化.html#cb13-1" tabindex="-1"></a><span class="fu">ggplot</span>(mpg, <span class="fu">aes</span>(cyl, hwy))<span class="sc">+</span></span>
 <span id="cb13-2"><a href="資料視覺化.html#cb13-2" tabindex="-1"></a>  <span class="fu">geom_point</span>()</span></code></pre></div>
-<p><img src="series_files/figure-html/geom-point-eg7-1.png" width="70%" style="display: block; margin: auto;" /></p>
+<p><img src="Transport-Analysis-R_files/figure-html/geom-point-eg7-1.png" width="70%" style="display: block; margin: auto;" /></p>
 <p>由於汽缸數與每加侖英里數在該資料中皆為正整數，導致有許多資料是重疊的，不易觀察。此時可以利用<code>geom_jitter()</code>加入亂數，使資料跳動至鄰近的座標點上，得以較明確觀察資料間的散布情形，且不影響原資料的分布。<code>geom_jitter()</code>函式的撰寫架構如下。</p>
 <div class="sourceCode" id="cb14"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb14-1"><a href="資料視覺化.html#cb14-1" tabindex="-1"></a><span class="fu">geom_jitter</span>(<span class="at">width=</span>, <span class="at">height=</span>)</span></code></pre></div>
 <p>其中，<code>width=</code>引數表示橫軸變動的幅度，如<code>width=0.1</code>，表示針對橫軸向左與右隨機變動 10% 以內。<code>height=</code>引數則表示橫軸變動的幅度。</p>
@@ -1062,7 +1062,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <div class="sourceCode" id="cb17"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb17-1"><a href="資料視覺化.html#cb17-1" tabindex="-1"></a><span class="co"># 繪製具有跳點的散布圖</span></span>
 <span id="cb17-2"><a href="資料視覺化.html#cb17-2" tabindex="-1"></a><span class="fu">ggplot</span>(mpg, <span class="fu">aes</span>(cyl, hwy))<span class="sc">+</span></span>
 <span id="cb17-3"><a href="資料視覺化.html#cb17-3" tabindex="-1"></a>  <span class="fu">geom_jitter</span>(<span class="at">width=</span><span class="fl">0.2</span>, <span class="at">height=</span><span class="fl">0.2</span>)</span></code></pre></div>
-<p><img src="series_files/figure-html/geom-jitter-eg-1.png" width="70%" style="display: block; margin: auto;" /></p>
+<p><img src="Transport-Analysis-R_files/figure-html/geom-jitter-eg-1.png" width="70%" style="display: block; margin: auto;" /></p>
 <p>由出圖結果可知，使用<code>geom_jitter()</code>可使資料更容易辨識，惟須注意的是，<code>width=</code>與<code>height=</code>引數對於圖表的視覺化程度有相當大的影響，若數值設定的愈大，資料連續性的情況就會越明顯，但可能過度偏離實際情況。因此針對不同資料，此二引數的調整需多次嘗試，尋找最佳可視化且不影響原始資料分布的繪圖方式。此外，由於<code>geom_jitter()</code>的跳動是隨機的，若欲每次輸出的結果是相同的，可設定隨機亂數（<a href="https://r-coder.com/set-seed-r/"><code>set.seed()</code></a>）在每次繪圖前執行之，以確保使用相同的隨機種子。</p>
 </div>
 <div id="折線圖" class="section level3 hasAnchor" number="3.1.2">
@@ -1155,7 +1155,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <span id="cb19-4"><a href="資料視覺化.html#cb19-4" tabindex="-1"></a></span>
 <span id="cb19-5"><a href="資料視覺化.html#cb19-5" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data=</span>airquality_new, <span class="fu">aes</span>(<span class="at">x=</span>Date, <span class="at">y=</span>Temp))<span class="sc">+</span></span>
 <span id="cb19-6"><a href="資料視覺化.html#cb19-6" tabindex="-1"></a>  <span class="fu">geom_line</span>(<span class="at">group=</span><span class="dv">1</span>, <span class="at">color=</span><span class="st">&quot;red&quot;</span>)</span></code></pre></div>
-<p><img src="series_files/figure-html/geom-line-eg1-1.png" width="70%" style="display: block; margin: auto;" /></p>
+<p><img src="Transport-Analysis-R_files/figure-html/geom-line-eg1-1.png" width="70%" style="display: block; margin: auto;" /></p>
 <p>圖中的橫軸為日期資料，而若欲修正時間軸的日期顯示方式，請參考<a href="資料視覺化.html#座標軸尺度">此</a>。</p>
 <p style="color:#003D79;font-size:18px;line-height:2">
 <strong>⌾ 多線折線圖</strong>
@@ -1164,7 +1164,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <p>再次以<code>airquality</code>（空氣品質）資料為例，若希望根據月份繪製不同折線，並給定不同顏色，此時<code>group=</code>引數即須設定為「Month」，並置於<A href="#ggplot-aes"><code>aes()</code></A>函式中，表示須根據不同類別而使設定有所更動者。由於不同折線將賦予不同顏色，故<code>color=</code>引數必須置於<A href="#ggplot-aes"><code>aes()</code></A>函式內。最後，若折線的粗細為一固定值，則必須將<code>linewidth=</code>引數置於<A href="#ggplot-aes"><code>aes()</code></A>函式外。根據上述繪圖邏輯，程式碼撰寫如下。</p>
 <div class="sourceCode" id="cb20"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb20-1"><a href="資料視覺化.html#cb20-1" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data=</span>airquality, <span class="fu">aes</span>(<span class="at">x=</span>Day, <span class="at">y=</span>Temp))<span class="sc">+</span></span>
 <span id="cb20-2"><a href="資料視覺化.html#cb20-2" tabindex="-1"></a>  <span class="fu">geom_line</span>(<span class="fu">aes</span>(<span class="at">group=</span>Month, <span class="at">color=</span><span class="fu">as.factor</span>(Month)), <span class="at">linewidth=</span><span class="dv">1</span>)</span></code></pre></div>
-<p><img src="series_files/figure-html/geom-line-eg2-1.png" width="70%" style="display: block; margin: auto;" /></p>
+<p><img src="Transport-Analysis-R_files/figure-html/geom-line-eg2-1.png" width="70%" style="display: block; margin: auto;" /></p>
 <p>請注意以上程式碼中，由於需依據月份分類繪圖，故將 Month 轉換為文字或因子形式。</p>
 <p>若欲修正顏色漸層，請參考<a href="資料視覺化.html#顏色漸層">此</a>。</p>
 <p style="color:#003D79;font-size:18px;line-height:2">
@@ -1174,7 +1174,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <div class="sourceCode" id="cb21"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb21-1"><a href="資料視覺化.html#cb21-1" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data=</span>airquality, <span class="fu">aes</span>(<span class="at">x=</span>Day, <span class="at">y=</span>Temp))<span class="sc">+</span></span>
 <span id="cb21-2"><a href="資料視覺化.html#cb21-2" tabindex="-1"></a>  <span class="fu">geom_line</span>(<span class="fu">aes</span>(<span class="at">group=</span>Month, <span class="at">color=</span><span class="fu">as.factor</span>(Month)), <span class="at">linewidth=</span><span class="dv">1</span>)<span class="sc">+</span></span>
 <span id="cb21-3"><a href="資料視覺化.html#cb21-3" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="fu">aes</span>(<span class="at">group=</span>Month, <span class="at">color=</span><span class="fu">as.factor</span>(Month), <span class="at">shape=</span><span class="fu">as.factor</span>(Month)), <span class="at">size=</span><span class="dv">2</span>)</span></code></pre></div>
-<p><img src="series_files/figure-html/geom-line-eg3-1.png" width="70%" style="display: block; margin: auto;" /></p>
+<p><img src="Transport-Analysis-R_files/figure-html/geom-line-eg3-1.png" width="70%" style="display: block; margin: auto;" /></p>
 </div>
 <div id="長條圖" class="section level3 hasAnchor" number="3.1.3">
 <h3><span class="header-section-number">3.1.3</span> 長條圖<a href="資料視覺化.html#長條圖" class="anchor-section" aria-label="Anchor link to header"></a></h3>
@@ -1296,7 +1296,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <p><code>geom_bar()</code>函式在預設情況下，<code>stat=</code>引數為<code>count</code>，故可直接輸入欲統計的變數（通常是類別變數），該函式會自動計算各類別的資料筆數，並依此繪製長條圖。以下以<code>mpg</code>資料為例，設定橫軸為汽車廠牌（manufacturer）的類別變數，在預設情況下，會自動統計該欄位的個數，程式碼撰寫如下。</p>
 <div class="sourceCode" id="cb23"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb23-1"><a href="資料視覺化.html#cb23-1" tabindex="-1"></a><span class="fu">ggplot</span>(mpg, <span class="fu">aes</span>(<span class="at">x=</span>manufacturer))<span class="sc">+</span></span>
 <span id="cb23-2"><a href="資料視覺化.html#cb23-2" tabindex="-1"></a>  <span class="fu">geom_bar</span>()</span></code></pre></div>
-<p><img src="series_files/figure-html/geom-bar-eg1-1.png" width="70%" style="display: block; margin: auto;" /></p>
+<p><img src="Transport-Analysis-R_files/figure-html/geom-bar-eg1-1.png" width="70%" style="display: block; margin: auto;" /></p>
 <p style="color:#003D79;font-size:18px;line-height:2">
 <strong>⌾ 基本統計圖（既有統計資料）</strong>
 </p>
@@ -1308,13 +1308,13 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <span id="cb24-5"><a href="資料視覺化.html#cb24-5" tabindex="-1"></a><span class="co"># 繪製長條圖</span></span>
 <span id="cb24-6"><a href="資料視覺化.html#cb24-6" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data=</span>mpg_sum, <span class="fu">aes</span>(<span class="at">x=</span>manufacturer, <span class="at">y=</span>Count))<span class="sc">+</span></span>
 <span id="cb24-7"><a href="資料視覺化.html#cb24-7" tabindex="-1"></a>  <span class="fu">geom_bar</span>(<span class="at">stat=</span><span class="st">&quot;identity&quot;</span>)</span></code></pre></div>
-<p><img src="series_files/figure-html/geom-bar-eg2-1.png" width="70%" style="display: block; margin: auto;" /></p>
+<p><img src="Transport-Analysis-R_files/figure-html/geom-bar-eg2-1.png" width="70%" style="display: block; margin: auto;" /></p>
 <p>若欲更換橫軸類別變數的順序，請參考<a href="#調整座標軸名稱順序">此</a>。</p>
 <p>此外，<code>geom_col()</code>則提供更直接的方式繪製此類型的長條圖，無須額外設定引數。以上述<code>mpg_sum</code>資料為例，程式碼撰寫如下。</p>
 <div class="sourceCode" id="cb25"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb25-1"><a href="資料視覺化.html#cb25-1" tabindex="-1"></a><span class="co"># 繪製長條圖</span></span>
 <span id="cb25-2"><a href="資料視覺化.html#cb25-2" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data=</span>mpg_sum, <span class="fu">aes</span>(<span class="at">x=</span>manufacturer, <span class="at">y=</span>Count))<span class="sc">+</span></span>
 <span id="cb25-3"><a href="資料視覺化.html#cb25-3" tabindex="-1"></a>  <span class="fu">geom_col</span>()</span></code></pre></div>
-<p><img src="series_files/figure-html/geom-bar-eg3-1.png" width="70%" style="display: block; margin: auto;" /></p>
+<p><img src="Transport-Analysis-R_files/figure-html/geom-bar-eg3-1.png" width="70%" style="display: block; margin: auto;" /></p>
 <p>資料的形式也可能更加複雜，而根據不同的原始資料，可能需要先利用第二章的<a href="資料清洗與處理.html#資料清洗與處理">資料處理套件</a>將原始資料彙整為具有統計量的資訊，再依此進一步繪製長條圖。舉例而言，使用<a href="index.html#安裝套件"><code>TWspdata</code>套件</a>中的<code>taiwan_school</code>為例，若欲統計臺北市各行政區不同類型學校的數量，則必須先針對原始資料的學校名稱欄位（name）建立標籤，給定各學校不同的層級（以下範例中分為五類：國小、國中、高中、大學、其他），並擷取地址欄位（address）中的行政區資訊。最後再依據行政區與學校層級，透過<a href="資料清洗與處理.html#資料分群與統計"><code>group_by() %&gt;% summarise()</code></a>函式計算各群組內的總數量。</p>
 <p>以下程式碼先行建立以臺北市各行政區為橫軸，各行政區學校數量為縱軸的長條圖。</p>
 <H2 id="tp-school">
@@ -1337,7 +1337,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <span id="cb26-16"><a href="資料視覺化.html#cb26-16" tabindex="-1"></a><span class="co"># 繪製長條圖</span></span>
 <span id="cb26-17"><a href="資料視覺化.html#cb26-17" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data=</span>tp_school_sum1, <span class="fu">aes</span>(<span class="at">x=</span>District, <span class="at">y=</span>Count))<span class="sc">+</span></span>
 <span id="cb26-18"><a href="資料視覺化.html#cb26-18" tabindex="-1"></a>  <span class="fu">geom_col</span>()</span></code></pre></div>
-<p><img src="series_files/figure-html/geom-bar-eg4-1.png" width="70%" style="display: block; margin: auto;" /></p>
+<p><img src="Transport-Analysis-R_files/figure-html/geom-bar-eg4-1.png" width="70%" style="display: block; margin: auto;" /></p>
 <p>關於程式碼中的重要函式彙整如下，請回顧前二章的相關函式：</p>
 <ul>
 <li><a href="資料清洗與處理.html#條件判斷"><code>case_when()</code></a>：給定符合條件的情況特定指令<br />
@@ -1362,7 +1362,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <span id="cb27-5"><a href="資料視覺化.html#cb27-5" tabindex="-1"></a><span class="co"># 繪製長條圖</span></span>
 <span id="cb27-6"><a href="資料視覺化.html#cb27-6" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data=</span>tp_school_sum2, <span class="fu">aes</span>(<span class="at">x=</span>District, <span class="at">y=</span>Count))<span class="sc">+</span></span>
 <span id="cb27-7"><a href="資料視覺化.html#cb27-7" tabindex="-1"></a>  <span class="fu">geom_col</span>(<span class="fu">aes</span>(<span class="at">fill=</span>TYPE))</span></code></pre></div>
-<p><img src="series_files/figure-html/geom-bar-eg5-1.png" width="70%" style="display: block; margin: auto;" /></p>
+<p><img src="Transport-Analysis-R_files/figure-html/geom-bar-eg5-1.png" width="70%" style="display: block; margin: auto;" /></p>
 <p style="color:#003D79;font-size:18px;line-height:2">
 <strong>⌾ 子類別疊加長條圖–調整圖例順序</strong>
 </p>
@@ -1373,7 +1373,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <span id="cb28-4"><a href="資料視覺化.html#cb28-4" tabindex="-1"></a><span class="co"># 繪製長條圖</span></span>
 <span id="cb28-5"><a href="資料視覺化.html#cb28-5" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data=</span>tp_school_sum2, <span class="fu">aes</span>(<span class="at">x=</span>District, <span class="at">y=</span>Count))<span class="sc">+</span></span>
 <span id="cb28-6"><a href="資料視覺化.html#cb28-6" tabindex="-1"></a>  <span class="fu">geom_col</span>(<span class="fu">aes</span>(<span class="at">fill=</span>TYPE))</span></code></pre></div>
-<p><img src="series_files/figure-html/geom-bar-eg6-1.png" width="70%" style="display: block; margin: auto;" /></p>
+<p><img src="Transport-Analysis-R_files/figure-html/geom-bar-eg6-1.png" width="70%" style="display: block; margin: auto;" /></p>
 <p>若欲將上圖中的「國小」置於圖表最下方，「其他」置於最上方，則僅需在<code>factor()</code>函式中將<code>levels=</code>引數倒序排列即可。</p>
 <p style="color:#003D79;font-size:18px;line-height:2">
 <strong>⌾ 子類別並排長條圖</strong>
@@ -1381,7 +1381,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <p>在預設情況下若有多個類別繪製長條圖，係將其垂直疊加，然若希望將所有子類別的長條圖以並排方式呈現，則需另在<code>geom_col()</code>函式中設定<code>position="dodge"</code>。再次以前述<code>tp_school_sum2</code>的資料為例，程式碼撰寫如下。</p>
 <div class="sourceCode" id="cb29"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb29-1"><a href="資料視覺化.html#cb29-1" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data=</span>tp_school_sum2, <span class="fu">aes</span>(<span class="at">x=</span>District, <span class="at">y=</span>Count))<span class="sc">+</span></span>
 <span id="cb29-2"><a href="資料視覺化.html#cb29-2" tabindex="-1"></a>  <span class="fu">geom_col</span>(<span class="at">position=</span><span class="st">&quot;dodge&quot;</span>, <span class="fu">aes</span>(<span class="at">fill=</span>TYPE))</span></code></pre></div>
-<p><img src="series_files/figure-html/geom-bar-eg7-1.png" width="70%" style="display: block; margin: auto;" /></p>
+<p><img src="Transport-Analysis-R_files/figure-html/geom-bar-eg7-1.png" width="70%" style="display: block; margin: auto;" /></p>
 <p style="color:#003D79;font-size:18px;line-height:2">
 <strong>⌾ 加入文字或標籤</strong>
 </p>
@@ -1389,7 +1389,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <div class="sourceCode" id="cb30"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb30-1"><a href="資料視覺化.html#cb30-1" tabindex="-1"></a><span class="fu">ggplot</span>()<span class="sc">+</span></span>
 <span id="cb30-2"><a href="資料視覺化.html#cb30-2" tabindex="-1"></a>  <span class="fu">geom_col</span>(<span class="at">data=</span>mpg_sum, <span class="fu">aes</span>(<span class="at">x=</span>manufacturer, <span class="at">y=</span>Count))<span class="sc">+</span></span>
 <span id="cb30-3"><a href="資料視覺化.html#cb30-3" tabindex="-1"></a>  <span class="fu">geom_text</span>(<span class="at">data=</span>mpg_sum, <span class="fu">aes</span>(<span class="at">x=</span>manufacturer, <span class="at">y=</span>Count<span class="sc">+</span><span class="dv">1</span>, <span class="at">label=</span>Count), <span class="at">color=</span><span class="st">&quot;blue&quot;</span>)</span></code></pre></div>
-<p><img src="series_files/figure-html/geom-bar-eg8-1.png" width="70%" style="display: block; margin: auto;" /></p>
+<p><img src="Transport-Analysis-R_files/figure-html/geom-bar-eg8-1.png" width="70%" style="display: block; margin: auto;" /></p>
 <p>若欲在子類別疊加長條圖中，各類別的區塊標註文字，需特別注意文字標註的縱軸位置，其必須依據不同群組累積加總統計數量，尚能正確表達位置。而分群累積加總，請參考<a href="資料清洗與處理.html#資料分群與統計">資料分群與統計</a>一節中的「<strong>分群新增資料屬性（<code>mutate()</code>）</strong>」之內容，而標記的縱軸位置計算方式詳如圖<a href="資料視覺化.html#fig:geom-bar-cumsum-fig">3.7</a>之示意圖所示。此外在標註時須注意原始資料的排序，務必利用<a href="資料清洗與處理.html#資料排序"><code>arrange()</code></a>函式針對特定類別先行<strong>倒序排列（<code>desc()</code>）</strong>。</p>
 <div class="figure" style="text-align: center"><span style="display:block;" id="fig:geom-bar-cumsum-fig"></span>
 <img src="figure/bar_cumsum.png" alt="子類別疊加長條圖 標註文字方法" width="60%" />
@@ -1413,7 +1413,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <span id="cb31-13"><a href="資料視覺化.html#cb31-13" tabindex="-1"></a><span class="fu">ggplot</span>()<span class="sc">+</span></span>
 <span id="cb31-14"><a href="資料視覺化.html#cb31-14" tabindex="-1"></a>  <span class="fu">geom_col</span>(<span class="at">data=</span>tp_school_sum2, <span class="fu">aes</span>(<span class="at">x=</span>District, <span class="at">y=</span>Count, <span class="at">fill=</span>TYPE))<span class="sc">+</span></span>
 <span id="cb31-15"><a href="資料視覺化.html#cb31-15" tabindex="-1"></a>  <span class="fu">geom_text</span>(<span class="at">data=</span>tp_school_sum2_cum, <span class="fu">aes</span>(<span class="at">x=</span>District, <span class="at">y=</span>lab_y, <span class="at">label=</span>Count))</span></code></pre></div>
-<p><img src="series_files/figure-html/geom-bar-eg9-1.png" width="70%" style="display: block; margin: auto;" /></p>
+<p><img src="Transport-Analysis-R_files/figure-html/geom-bar-eg9-1.png" width="70%" style="display: block; margin: auto;" /></p>
 </div>
 <div id="直方圖" class="section level3 hasAnchor" number="3.1.4">
 <h3><span class="header-section-number">3.1.4</span> 直方圖<a href="資料視覺化.html#直方圖" class="anchor-section" aria-label="Anchor link to header"></a></h3>
@@ -1545,14 +1545,14 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <p>以<code>airquality</code>資料為例，依據溫度繪製直方圖，程式碼撰寫如下。</p>
 <div class="sourceCode" id="cb33"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb33-1"><a href="資料視覺化.html#cb33-1" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data=</span>airquality, <span class="fu">aes</span>(<span class="at">x=</span>Temp))<span class="sc">+</span></span>
 <span id="cb33-2"><a href="資料視覺化.html#cb33-2" tabindex="-1"></a>  <span class="fu">geom_histogram</span>(<span class="at">binwidth=</span><span class="dv">5</span>)</span></code></pre></div>
-<p><img src="series_files/figure-html/geom-histogram-eg1-1.png" width="70%" style="display: block; margin: auto;" /></p>
+<p><img src="Transport-Analysis-R_files/figure-html/geom-histogram-eg1-1.png" width="70%" style="display: block; margin: auto;" /></p>
 <p>出圖結果中，每一個長條的寬度即為橫軸的 5 單位（<code>binwidth=5</code>）。</p>
 <p style="color:#003D79;font-size:18px;line-height:2">
 <strong>⌾ 基礎直方圖（設定分群總數）</strong>
 </p>
 <div class="sourceCode" id="cb34"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb34-1"><a href="資料視覺化.html#cb34-1" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data=</span>airquality, <span class="fu">aes</span>(<span class="at">x=</span>Temp))<span class="sc">+</span></span>
 <span id="cb34-2"><a href="資料視覺化.html#cb34-2" tabindex="-1"></a>  <span class="fu">geom_histogram</span>(<span class="at">bins=</span><span class="dv">10</span>, <span class="at">color=</span><span class="st">&quot;red&quot;</span>, <span class="at">linewidth=</span><span class="dv">1</span>, <span class="at">fill=</span><span class="st">&quot;pink&quot;</span>, <span class="at">alpha=</span><span class="fl">0.5</span>)</span></code></pre></div>
-<p><img src="series_files/figure-html/geom-histogram-eg2-1.png" width="70%" style="display: block; margin: auto;" /></p>
+<p><img src="Transport-Analysis-R_files/figure-html/geom-histogram-eg2-1.png" width="70%" style="display: block; margin: auto;" /></p>
 <p>出圖結果中，圖表的長條總數為 10 個（<code>bins=10</code>）。</p>
 <p>由上述兩範例可知，分群的總數與分群寬度之設定會影響肉眼觀察，挑選合適的值是資料視覺化的關鍵，以避免透過圖表誤導閱聽者。</p>
 <p style="color:#003D79;font-size:18px;line-height:2">
@@ -1562,13 +1562,13 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <div class="sourceCode" id="cb35"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb35-1"><a href="資料視覺化.html#cb35-1" tabindex="-1"></a>airquality58<span class="ot">=</span><span class="fu">filter</span>(airquality, Month <span class="sc">%in%</span> <span class="fu">c</span>(<span class="dv">5</span>,<span class="dv">8</span>))</span>
 <span id="cb35-2"><a href="資料視覺化.html#cb35-2" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data=</span>airquality58, <span class="fu">aes</span>(<span class="at">x=</span>Temp))<span class="sc">+</span></span>
 <span id="cb35-3"><a href="資料視覺化.html#cb35-3" tabindex="-1"></a>  <span class="fu">geom_histogram</span>(<span class="fu">aes</span>(<span class="at">fill=</span><span class="fu">as.factor</span>(Month), <span class="at">group=</span><span class="fu">as.factor</span>(Month)), <span class="at">bins=</span><span class="dv">10</span>, <span class="at">color=</span><span class="st">&quot;grey&quot;</span>, <span class="at">alpha=</span><span class="fl">0.3</span>, <span class="at">position=</span><span class="st">&quot;identity&quot;</span>)</span></code></pre></div>
-<p><img src="series_files/figure-html/geom-histogram-eg3-1.png" width="70%" style="display: block; margin: auto;" /></p>
+<p><img src="Transport-Analysis-R_files/figure-html/geom-histogram-eg3-1.png" width="70%" style="display: block; margin: auto;" /></p>
 <p>請注意以上程式碼中，由於需依據月份分類繪圖，故將 Month 轉換為文字或<a href="r-語言基礎語法.html#因子factor">因子</a>形式。</p>
 <p>重疊時縱然使用透明度以增加可識別性，然而可能還是不夠清楚，此時可以將各類別的直方圖分別繪製，並上下交錯排列，以增加視覺的辨識性。如上相同案例，修正為上下倒置的直方圖，程式碼撰寫如下。</p>
 <div class="sourceCode" id="cb36"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb36-1"><a href="資料視覺化.html#cb36-1" tabindex="-1"></a><span class="fu">ggplot</span>()<span class="sc">+</span></span>
 <span id="cb36-2"><a href="資料視覺化.html#cb36-2" tabindex="-1"></a>  <span class="fu">geom_histogram</span>(<span class="at">data=</span><span class="fu">filter</span>(airquality, Month<span class="sc">==</span><span class="dv">5</span>), <span class="fu">aes</span>(<span class="at">x=</span>Temp, <span class="at">y=</span><span class="fu">after_stat</span>(count)), <span class="at">bins=</span><span class="dv">10</span>, <span class="at">color=</span><span class="st">&quot;grey&quot;</span>, <span class="at">fill=</span><span class="st">&quot;pink&quot;</span>)<span class="sc">+</span></span>
 <span id="cb36-3"><a href="資料視覺化.html#cb36-3" tabindex="-1"></a>  <span class="fu">geom_histogram</span>(<span class="at">data=</span><span class="fu">filter</span>(airquality, Month<span class="sc">==</span><span class="dv">8</span>), <span class="fu">aes</span>(<span class="at">x=</span>Temp, <span class="at">y=</span><span class="sc">-</span><span class="fu">after_stat</span>(count)), <span class="at">bins=</span><span class="dv">10</span>, <span class="at">color=</span><span class="st">&quot;grey&quot;</span>, <span class="at">fill=</span><span class="st">&quot;powderblue&quot;</span>)</span></code></pre></div>
-<p><img src="series_files/figure-html/geom-histogram-eg4-1.png" width="70%" style="display: block; margin: auto;" /></p>
+<p><img src="Transport-Analysis-R_files/figure-html/geom-histogram-eg4-1.png" width="70%" style="display: block; margin: auto;" /></p>
 <p>請注意在此由於兩個直方圖分開繪製，故建議應<A href='#ggplot-data'>個別在<code>geom_XX()</code>函式中設定資料與座標軸</A>。另外程式碼中的<code>after_stat(count)</code>表示計算分群後的資料筆數，在該函式前方設定負號「-」，即可將計算結果倒置。</p>
 </div>
 <div id="密度圖" class="section level3 hasAnchor" number="3.1.5">
@@ -1668,14 +1668,14 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <p>以<code>airquality</code>資料為例，繪製溫度的密度圖，程式碼撰寫如下。</p>
 <div class="sourceCode" id="cb38"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb38-1"><a href="資料視覺化.html#cb38-1" tabindex="-1"></a><span class="fu">ggplot</span>(airquality, <span class="fu">aes</span>(<span class="at">x=</span>Temp))<span class="sc">+</span></span>
 <span id="cb38-2"><a href="資料視覺化.html#cb38-2" tabindex="-1"></a>  <span class="fu">geom_density</span>(<span class="at">color=</span><span class="st">&quot;#004B97&quot;</span>, <span class="at">fill=</span><span class="st">&quot;#D2E9FF&quot;</span>, <span class="at">alpha=</span><span class="fl">0.5</span>)</span></code></pre></div>
-<p><img src="series_files/figure-html/geom-density-eg1-1.png" width="70%" style="display: block; margin: auto;" /></p>
+<p><img src="Transport-Analysis-R_files/figure-html/geom-density-eg1-1.png" width="70%" style="display: block; margin: auto;" /></p>
 <p style="color:#003D79;font-size:18px;line-height:2">
 <strong>⌾ 多類別密度圖</strong>
 </p>
 <p>多類別的密度圖可以觀察不同子類別的分布趨勢，以瞭解資料的集中性。相較於直方圖而言，密度圖在多類別的繪製上能夠更清楚表達，不會因過度重疊而難以辨識。建立多類別的密度圖時，若欲使用曲線顏色、曲線下面積填色等表達不同類別，則應將該引數置於<A href="#ggplot-aes"><code>aes()</code></A>函式內。</p>
 <div class="sourceCode" id="cb39"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb39-1"><a href="資料視覺化.html#cb39-1" tabindex="-1"></a><span class="fu">ggplot</span>(airquality, <span class="fu">aes</span>(<span class="at">x=</span>Temp))<span class="sc">+</span></span>
 <span id="cb39-2"><a href="資料視覺化.html#cb39-2" tabindex="-1"></a>  <span class="fu">geom_density</span>(<span class="fu">aes</span>(<span class="at">color=</span><span class="fu">as.factor</span>(Month), <span class="at">fill=</span><span class="fu">as.factor</span>(Month), <span class="at">group=</span><span class="fu">as.factor</span>(Month)), <span class="at">alpha=</span><span class="fl">0.4</span>)</span></code></pre></div>
-<p><img src="series_files/figure-html/geom-density-eg2-1.png" width="70%" style="display: block; margin: auto;" /></p>
+<p><img src="Transport-Analysis-R_files/figure-html/geom-density-eg2-1.png" width="70%" style="display: block; margin: auto;" /></p>
 </div>
 <div id="圓餅圖" class="section level3 hasAnchor" number="3.1.6">
 <h3><span class="header-section-number">3.1.6</span> 圓餅圖<a href="資料視覺化.html#圓餅圖" class="anchor-section" aria-label="Anchor link to header"></a></h3>
@@ -1754,7 +1754,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <span id="cb41-12"><a href="資料視覺化.html#cb41-12" tabindex="-1"></a>  <span class="fu">coord_polar</span>(<span class="st">&quot;y&quot;</span>, <span class="at">direction=</span><span class="dv">1</span>)</span></code></pre></div>
 <pre><code>## Coordinate system already present. Adding new coordinate system, which will
 ## replace the existing one.</code></pre>
-<p><img src="series_files/figure-html/geom-pie-eg1-1.png" width="70%" style="display: block; margin: auto;" /></p>
+<p><img src="Transport-Analysis-R_files/figure-html/geom-pie-eg1-1.png" width="70%" style="display: block; margin: auto;" /></p>
 <div class="sourceCode" id="cb43"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb43-1"><a href="資料視覺化.html#cb43-1" tabindex="-1"></a>tp_school_sum3<span class="sc">$</span>ymax<span class="ot">=</span><span class="fu">cumsum</span>(tp_school_sum3<span class="sc">$</span>Count_per)</span>
 <span id="cb43-2"><a href="資料視覺化.html#cb43-2" tabindex="-1"></a>tp_school_sum3<span class="sc">$</span>ymin<span class="ot">=</span><span class="fu">c</span>(<span class="dv">0</span>, <span class="fu">head</span>(tp_school_sum3<span class="sc">$</span>ymax, <span class="at">n=</span><span class="sc">-</span><span class="dv">1</span>))</span></code></pre></div>
 <p>以上程式碼中，由於希望圖表能夠依據不同學校層級填色（<code>fill=</code>），故必須在<code>geom_col()</code>函式中將該引數放置於<A href="#ggplot-aes"><code>aes()</code></A>函式內。另外須注意的是，以上出圖結果是順時針排列，由圖例中的最底部（國中）順時針排列至最上方（大學）。</p>
@@ -1768,7 +1768,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <span id="cb44-4"><a href="資料視覺化.html#cb44-4" tabindex="-1"></a>  <span class="fu">coord_polar</span>(<span class="st">&quot;y&quot;</span>, <span class="at">start=</span>pi<span class="sc">/</span><span class="dv">2</span>, <span class="at">direction=</span><span class="sc">-</span><span class="dv">1</span>)</span></code></pre></div>
 <pre><code>## Coordinate system already present. Adding new coordinate system, which will
 ## replace the existing one.</code></pre>
-<p><img src="series_files/figure-html/geom-pie-eg2-1.png" width="70%" style="display: block; margin: auto;" /></p>
+<p><img src="Transport-Analysis-R_files/figure-html/geom-pie-eg2-1.png" width="70%" style="display: block; margin: auto;" /></p>
 <p>請特別注意，以上出圖結果是逆時針排列，由圖例中的最底部（國中）逆時針排列至最上方（大學）。</p>
 <p style="color:#003D79;font-size:18px;line-height:2">
 <strong>⌾ 基礎圓餅圖–修正圖例順序</strong>
@@ -1785,7 +1785,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <span id="cb46-9"><a href="資料視覺化.html#cb46-9" tabindex="-1"></a>  <span class="fu">coord_polar</span>(<span class="st">&quot;y&quot;</span>, <span class="at">direction=</span><span class="sc">-</span><span class="dv">1</span>)</span></code></pre></div>
 <pre><code>## Coordinate system already present. Adding new coordinate system, which will
 ## replace the existing one.</code></pre>
-<p><img src="series_files/figure-html/geom-pie-eg3-1.png" width="70%" style="display: block; margin: auto;" /></p>
+<p><img src="Transport-Analysis-R_files/figure-html/geom-pie-eg3-1.png" width="70%" style="display: block; margin: auto;" /></p>
 <p>另特別注意，以上出圖結果是逆時針排列（<code>direction=-1</code>），由圖例中的最底部（其他）逆時針排列至最上方（國小）。</p>
 <p>而有時候我們希望圖表的順序須依據比例的大小排列，此時必須再計算完各類別的比例後，再透過<a href="r-語言基礎語法.html#因子factor"><code>factor()</code></a>函式控制類別的順序，再次以<code>tp_school_sum3</code>統計資料為例，程式碼撰寫如下。</p>
 <div class="sourceCode" id="cb48"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb48-1"><a href="資料視覺化.html#cb48-1" tabindex="-1"></a><span class="co"># 先依據比例大小排序</span></span>
@@ -1800,7 +1800,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <span id="cb48-10"><a href="資料視覺化.html#cb48-10" tabindex="-1"></a>  <span class="fu">coord_polar</span>(<span class="st">&quot;y&quot;</span>)</span></code></pre></div>
 <pre><code>## Coordinate system already present. Adding new coordinate system, which will
 ## replace the existing one.</code></pre>
-<p><img src="series_files/figure-html/geom-pie-eg4-1.png" width="70%" style="display: block; margin: auto;" /></p>
+<p><img src="Transport-Analysis-R_files/figure-html/geom-pie-eg4-1.png" width="70%" style="display: block; margin: auto;" /></p>
 <p style="color:#003D79;font-size:18px;line-height:2">
 <strong>⌾ 加入文字或標籤</strong>
 </p>
@@ -1823,7 +1823,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <span id="cb50-16"><a href="資料視覺化.html#cb50-16" tabindex="-1"></a>  <span class="fu">coord_polar</span>(<span class="st">&quot;y&quot;</span>)</span></code></pre></div>
 <pre><code>## Coordinate system already present. Adding new coordinate system, which will
 ## replace the existing one.</code></pre>
-<p><img src="series_files/figure-html/geom-pie-eg5-1.png" width="70%" style="display: block; margin: auto;" /></p>
+<p><img src="Transport-Analysis-R_files/figure-html/geom-pie-eg5-1.png" width="70%" style="display: block; margin: auto;" /></p>
 </div>
 <div id="棒棒糖圖" class="section level3 hasAnchor" number="3.1.7">
 <h3><span class="header-section-number">3.1.7</span> 棒棒糖圖<a href="資料視覺化.html#棒棒糖圖" class="anchor-section" aria-label="Anchor link to header"></a></h3>
@@ -1855,7 +1855,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <span id="cb53-5"><a href="資料視覺化.html#cb53-5" tabindex="-1"></a><span class="fu">ggplot</span>()<span class="sc">+</span></span>
 <span id="cb53-6"><a href="資料視覺化.html#cb53-6" tabindex="-1"></a>  <span class="fu">geom_segment</span>(<span class="at">data=</span>mtcars_temp, <span class="fu">aes</span>(<span class="at">x=</span><span class="dv">0</span>, <span class="at">y=</span>Car, <span class="at">xend=</span>mpg, <span class="at">yend=</span>Car))<span class="sc">+</span></span>
 <span id="cb53-7"><a href="資料視覺化.html#cb53-7" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="at">data=</span>mtcars_temp, <span class="fu">aes</span>(<span class="at">x=</span>mpg, <span class="at">y=</span>Car))</span></code></pre></div>
-<p><img src="series_files/figure-html/geom-lollipop-eg1-1.png" width="70%" style="display: block; margin: auto;" /></p>
+<p><img src="Transport-Analysis-R_files/figure-html/geom-lollipop-eg1-1.png" width="70%" style="display: block; margin: auto;" /></p>
 <p style="color:#003D79;font-size:18px;line-height:2">
 <strong>⌾ 圖表依數值大小排序</strong>
 </p>
@@ -1866,7 +1866,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <span id="cb54-4"><a href="資料視覺化.html#cb54-4" tabindex="-1"></a><span class="fu">ggplot</span>()<span class="sc">+</span></span>
 <span id="cb54-5"><a href="資料視覺化.html#cb54-5" tabindex="-1"></a>  <span class="fu">geom_segment</span>(<span class="at">data=</span>mtcars_temp, <span class="fu">aes</span>(<span class="at">x=</span><span class="dv">0</span>, <span class="at">y=</span>Car, <span class="at">xend=</span>mpg, <span class="at">yend=</span>Car))<span class="sc">+</span></span>
 <span id="cb54-6"><a href="資料視覺化.html#cb54-6" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="at">data=</span>mtcars_temp, <span class="fu">aes</span>(<span class="at">x=</span>mpg, <span class="at">y=</span>Car))</span></code></pre></div>
-<p><img src="series_files/figure-html/geom-lollipop-eg2-1.png" width="70%" style="display: block; margin: auto;" /></p>
+<p><img src="Transport-Analysis-R_files/figure-html/geom-lollipop-eg2-1.png" width="70%" style="display: block; margin: auto;" /></p>
 </div>
 <div id="盒狀圖" class="section level3 hasAnchor" number="3.1.8">
 <h3><span class="header-section-number">3.1.8</span> 盒狀圖<a href="資料視覺化.html#盒狀圖" class="anchor-section" aria-label="Anchor link to header"></a></h3>
@@ -1973,7 +1973,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <p>在單一變量盒狀圖中，須設定縱軸或橫軸為特定連續資料，其一即可，以表示盒狀圖的呈現方式。以<code>airquality</code>資料為例，繪製溫度（Temp）的盒狀圖，程式碼撰寫如下。</p>
 <div class="sourceCode" id="cb56"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb56-1"><a href="資料視覺化.html#cb56-1" tabindex="-1"></a><span class="fu">ggplot</span>(airquality, <span class="fu">aes</span>(<span class="at">y=</span>Temp))<span class="sc">+</span></span>
 <span id="cb56-2"><a href="資料視覺化.html#cb56-2" tabindex="-1"></a>  <span class="fu">geom_boxplot</span>(<span class="at">fill=</span><span class="st">&quot;#ECF5FF&quot;</span>, <span class="at">color=</span><span class="st">&quot;#004B97&quot;</span>)</span></code></pre></div>
-<p><img src="series_files/figure-html/geom-box-eg1-1.png" width="70%" style="display: block; margin: auto;" /></p>
+<p><img src="Transport-Analysis-R_files/figure-html/geom-box-eg1-1.png" width="70%" style="display: block; margin: auto;" /></p>
 <p>上圖中的橫軸並不具有任何意義，可透過<a href="資料視覺化.html#細節樣式設定">細節樣式設定</a>去除之。</p>
 <p style="color:#003D79;font-size:18px;line-height:2">
 <strong>⌾ 雙變量盒狀圖</strong>
@@ -1981,14 +1981,14 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <p>除針對單一變量盒狀圖外，有時我們會希望同時呈現不同類別的盒狀圖，以同時比較資料分布的差異。再次以<code>airquality</code>資料為例，若欲瞭解不同月份的溫度分布情形，除可透過前述所提及的直方圖、密度圖外，亦可透過盒狀圖呈現之。其中必須注意的是，在多類別變量的盒狀圖中，須同時設定橫軸與縱軸，其中一軸為類別資料（即分群的變數），另一則為連續型資料，並另在<code>geom_boxplot()</code>函式中設定<code>group=</code>引數，以確保資料會依據特定類別分群。以<code>airquality</code>資料為例，若欲將不同月份的溫度盒狀圖繪製在同一張圖表上，程式碼撰寫如下。</p>
 <div class="sourceCode" id="cb57"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb57-1"><a href="資料視覺化.html#cb57-1" tabindex="-1"></a><span class="fu">ggplot</span>(airquality, <span class="fu">aes</span>(<span class="at">x=</span>Month, <span class="at">y=</span>Temp))<span class="sc">+</span></span>
 <span id="cb57-2"><a href="資料視覺化.html#cb57-2" tabindex="-1"></a>  <span class="fu">geom_boxplot</span>(<span class="fu">aes</span>(<span class="at">group=</span>Month))</span></code></pre></div>
-<p><img src="series_files/figure-html/geom-box-eg2-1.png" width="70%" style="display: block; margin: auto;" /></p>
+<p><img src="Transport-Analysis-R_files/figure-html/geom-box-eg2-1.png" width="70%" style="display: block; margin: auto;" /></p>
 <p style="color:#003D79;font-size:18px;line-height:2">
 <strong>⌾ 多變量盒狀圖</strong>
 </p>
 <p>雙變量可以同時呈現不同類別間的資料分布，而若希望多增加一個子類別，使圖表呈現的資訊更加豐富，可以考慮透過填色（<code>fill=</code>）增加資料欄位。以<code>mpg</code>資料為例，若欲瞭解不同汽車類型的每加侖英里數分布情形，並依據不同年度分類繪製，程式碼撰寫如下。其中新增填色（<code>fill=</code>）引數為「年度（year）」。</p>
 <div class="sourceCode" id="cb58"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb58-1"><a href="資料視覺化.html#cb58-1" tabindex="-1"></a><span class="fu">ggplot</span>(mpg, <span class="fu">aes</span>(<span class="at">x=</span>class, <span class="at">y=</span>hwy))<span class="sc">+</span></span>
 <span id="cb58-2"><a href="資料視覺化.html#cb58-2" tabindex="-1"></a>  <span class="fu">geom_boxplot</span>(<span class="fu">aes</span>(<span class="at">fill=</span><span class="fu">as.character</span>(year)), <span class="at">outlier.shape=</span><span class="st">&quot;X&quot;</span>)</span></code></pre></div>
-<p><img src="series_files/figure-html/geom-box-eg3-1.png" width="70%" style="display: block; margin: auto;" /></p>
+<p><img src="Transport-Analysis-R_files/figure-html/geom-box-eg3-1.png" width="70%" style="display: block; margin: auto;" /></p>
 <p style="color:#003D79;font-size:18px;line-height:2">
 <strong>⌾ 盒狀圖與散布圖疊合</strong>
 </p>
@@ -1996,7 +1996,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <div class="sourceCode" id="cb59"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb59-1"><a href="資料視覺化.html#cb59-1" tabindex="-1"></a><span class="fu">ggplot</span>()<span class="sc">+</span></span>
 <span id="cb59-2"><a href="資料視覺化.html#cb59-2" tabindex="-1"></a>  <span class="fu">geom_boxplot</span>(<span class="at">data=</span>airquality, <span class="fu">aes</span>(<span class="at">x=</span>Month, <span class="at">y=</span>Temp, <span class="at">group=</span>Month), <span class="at">outlier.color=</span><span class="st">&quot;red&quot;</span>, <span class="at">outlier.shape=</span><span class="st">&quot;X&quot;</span>, <span class="at">outlier.size=</span><span class="dv">3</span>)<span class="sc">+</span></span>
 <span id="cb59-3"><a href="資料視覺化.html#cb59-3" tabindex="-1"></a>  <span class="fu">geom_jitter</span>(<span class="at">data=</span>airquality, <span class="fu">aes</span>(<span class="at">x=</span>Month, <span class="at">y=</span>Temp), <span class="at">width=</span><span class="fl">0.2</span>, <span class="at">alpha=</span><span class="fl">0.4</span>, <span class="at">color=</span><span class="st">&quot;#005AB5&quot;</span>)</span></code></pre></div>
-<p><img src="series_files/figure-html/geom-box-eg4-1.png" width="70%" style="display: block; margin: auto;" /></p>
+<p><img src="Transport-Analysis-R_files/figure-html/geom-box-eg4-1.png" width="70%" style="display: block; margin: auto;" /></p>
 </div>
 <div id="小提琴圖" class="section level3 hasAnchor" number="3.1.9">
 <h3><span class="header-section-number">3.1.9</span> 小提琴圖<a href="資料視覺化.html#小提琴圖" class="anchor-section" aria-label="Anchor link to header"></a></h3>
@@ -2117,25 +2117,25 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <p>繪製小提琴圖與繪製盒狀圖的邏輯相當，對於單一變量而言，僅需於橫軸或縱軸其一設定變量即可。舉例而言，若欲瞭解<code>airquality</code>資料的分布情形，程式碼撰寫如下。另需特別注意的是，在函式中<code>x=</code>與<code>y=</code>引數皆須設置，其中一個設定欲繪製的變量，另一者則直接空白。</p>
 <div class="sourceCode" id="cb61"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb61-1"><a href="資料視覺化.html#cb61-1" tabindex="-1"></a><span class="fu">ggplot</span>(airquality, <span class="fu">aes</span>(<span class="at">x=</span><span class="st">&quot;&quot;</span>, <span class="at">y=</span>Temp))<span class="sc">+</span></span>
 <span id="cb61-2"><a href="資料視覺化.html#cb61-2" tabindex="-1"></a>  <span class="fu">geom_violin</span>(<span class="at">color=</span><span class="st">&quot;red&quot;</span>, <span class="at">fill=</span><span class="st">&quot;pink&quot;</span>, <span class="at">alpha=</span><span class="fl">0.5</span>)</span></code></pre></div>
-<p><img src="series_files/figure-html/geom-violin-eg1-1.png" width="70%" style="display: block; margin: auto;" /></p>
+<p><img src="Transport-Analysis-R_files/figure-html/geom-violin-eg1-1.png" width="70%" style="display: block; margin: auto;" /></p>
 <p>而若希望兩端點能夠聚會於一點，不以全距呈現之，則應設定<code>trim=F</code>之引數，程式碼撰寫如下。</p>
 <div class="sourceCode" id="cb62"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb62-1"><a href="資料視覺化.html#cb62-1" tabindex="-1"></a><span class="fu">ggplot</span>(airquality, <span class="fu">aes</span>(<span class="at">x=</span><span class="st">&quot;&quot;</span>, <span class="at">y=</span>Temp))<span class="sc">+</span></span>
 <span id="cb62-2"><a href="資料視覺化.html#cb62-2" tabindex="-1"></a>  <span class="fu">geom_violin</span>(<span class="at">color=</span><span class="st">&quot;red&quot;</span>, <span class="at">fill=</span><span class="st">&quot;pink&quot;</span>, <span class="at">alpha=</span><span class="fl">0.5</span>, <span class="at">trim=</span>F)</span></code></pre></div>
-<p><img src="series_files/figure-html/geom-violin-eg2-1.png" width="70%" style="display: block; margin: auto;" /></p>
+<p><img src="Transport-Analysis-R_files/figure-html/geom-violin-eg2-1.png" width="70%" style="display: block; margin: auto;" /></p>
 <p style="color:#003D79;font-size:18px;line-height:2">
 <strong>⌾ 雙變量小提琴圖</strong>
 </p>
 <p>此外亦可建立雙變量的小提琴圖，亦即使用其他類別變數予以分類，以觀察不同類別間的連續變量分布差異。此時可以在<code>geom_violin()</code>函式中另外設定<code>group=</code>引數，用以分類不同的月份。再次以<code>airquality</code>資料為例，將月份作為分群變數（須設定<code>group=</code>引數），繪製各月份小提琴圖，程式碼撰寫如下。</p>
 <div class="sourceCode" id="cb63"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb63-1"><a href="資料視覺化.html#cb63-1" tabindex="-1"></a><span class="fu">ggplot</span>(airquality, <span class="fu">aes</span>(<span class="at">x=</span>Month, <span class="at">y=</span>Temp))<span class="sc">+</span></span>
 <span id="cb63-2"><a href="資料視覺化.html#cb63-2" tabindex="-1"></a>  <span class="fu">geom_violin</span>(<span class="fu">aes</span>(<span class="at">group=</span>Month))</span></code></pre></div>
-<p><img src="series_files/figure-html/geom-violin-eg3-1.png" width="70%" style="display: block; margin: auto;" /></p>
+<p><img src="Transport-Analysis-R_files/figure-html/geom-violin-eg3-1.png" width="70%" style="display: block; margin: auto;" /></p>
 <p style="color:#003D79;font-size:18px;line-height:2">
 <strong>⌾ 多變量小提琴圖</strong>
 </p>
 <p>若希望增加另一個類別變量，以呈現更豐富的圖表資訊，則可以透過不同的填色（<code>fill=</code>）表示之，程式碼撰寫如下。以<code>mpg</code>資料為例，若欲瞭解不同汽車類型的每加侖英里數分布情形，並依不同年度並列繪製，程式碼撰寫如下。其中新增填色（<code>fill=</code>）引數為「年度（year）」。</p>
 <div class="sourceCode" id="cb64"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb64-1"><a href="資料視覺化.html#cb64-1" tabindex="-1"></a><span class="fu">ggplot</span>(mpg, <span class="fu">aes</span>(<span class="at">x=</span>class, <span class="at">y=</span>hwy))<span class="sc">+</span></span>
 <span id="cb64-2"><a href="資料視覺化.html#cb64-2" tabindex="-1"></a>  <span class="fu">geom_violin</span>(<span class="fu">aes</span>(<span class="at">fill=</span><span class="fu">as.character</span>(year)))</span></code></pre></div>
-<p><img src="series_files/figure-html/geom-violin-eg4-1.png" width="70%" style="display: block; margin: auto;" /></p>
+<p><img src="Transport-Analysis-R_files/figure-html/geom-violin-eg4-1.png" width="70%" style="display: block; margin: auto;" /></p>
 <p style="color:#003D79;font-size:18px;line-height:2">
 <strong>⌾ 小提琴圖與散布圖疊合</strong>
 </p>
@@ -2143,7 +2143,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <div class="sourceCode" id="cb65"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb65-1"><a href="資料視覺化.html#cb65-1" tabindex="-1"></a><span class="fu">ggplot</span>()<span class="sc">+</span></span>
 <span id="cb65-2"><a href="資料視覺化.html#cb65-2" tabindex="-1"></a>  <span class="fu">geom_violin</span>(<span class="at">data=</span>airquality, <span class="fu">aes</span>(<span class="at">x=</span>Month, <span class="at">y=</span>Temp, <span class="at">group=</span>Month, <span class="at">fill=</span><span class="fu">as.factor</span>(Month)), <span class="at">alpha=</span><span class="fl">0.2</span>)<span class="sc">+</span></span>
 <span id="cb65-3"><a href="資料視覺化.html#cb65-3" tabindex="-1"></a>  <span class="fu">geom_jitter</span>(<span class="at">data=</span>airquality, <span class="fu">aes</span>(<span class="at">x=</span>Month, <span class="at">y=</span>Temp, <span class="at">group=</span>Month, <span class="at">color=</span><span class="fu">as.factor</span>(Month)), <span class="at">width=</span><span class="fl">0.2</span>)</span></code></pre></div>
-<p><img src="series_files/figure-html/geom-violin-eg5-1.png" width="70%" style="display: block; margin: auto;" /></p>
+<p><img src="Transport-Analysis-R_files/figure-html/geom-violin-eg5-1.png" width="70%" style="display: block; margin: auto;" /></p>
 <p style="color:#003D79;font-size:18px;line-height:2">
 <strong>⌾ 小提琴圖與盒狀圖疊合</strong>
 </p>
@@ -2151,7 +2151,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <div class="sourceCode" id="cb66"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb66-1"><a href="資料視覺化.html#cb66-1" tabindex="-1"></a><span class="fu">ggplot</span>()<span class="sc">+</span></span>
 <span id="cb66-2"><a href="資料視覺化.html#cb66-2" tabindex="-1"></a>  <span class="fu">geom_violin</span>(<span class="at">data=</span>airquality, <span class="fu">aes</span>(<span class="at">x=</span>Month, <span class="at">y=</span>Temp, <span class="at">group=</span>Month, <span class="at">fill=</span><span class="fu">as.factor</span>(Month)), <span class="at">alpha=</span><span class="fl">0.2</span>)<span class="sc">+</span></span>
 <span id="cb66-3"><a href="資料視覺化.html#cb66-3" tabindex="-1"></a>  <span class="fu">geom_boxplot</span>(<span class="at">data=</span>airquality, <span class="fu">aes</span>(<span class="at">x=</span>Month, <span class="at">y=</span>Temp, <span class="at">group=</span>Month, <span class="at">color=</span><span class="fu">as.factor</span>(Month)), <span class="at">width=</span><span class="fl">0.2</span>, <span class="at">outlier.shape=</span><span class="st">&quot;X&quot;</span>, <span class="at">outlier.size=</span><span class="dv">3</span>)</span></code></pre></div>
-<p><img src="series_files/figure-html/geom-violin-eg6-1.png" width="70%" style="display: block; margin: auto;" /></p>
+<p><img src="Transport-Analysis-R_files/figure-html/geom-violin-eg6-1.png" width="70%" style="display: block; margin: auto;" /></p>
 </div>
 <div id="氣泡圖" class="section level3 hasAnchor" number="3.1.10">
 <h3><span class="header-section-number">3.1.10</span> 氣泡圖<a href="資料視覺化.html#氣泡圖" class="anchor-section" aria-label="Anchor link to header"></a></h3>
@@ -2167,11 +2167,15 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <span id="cb67-9"><a href="資料視覺化.html#cb67-9" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="fu">aes</span>(<span class="at">size=</span>pop<span class="sc">/</span><span class="dv">100000</span>, <span class="at">fill=</span>continent), <span class="at">alpha=</span><span class="fl">0.5</span>, <span class="at">shape=</span><span class="dv">21</span>)<span class="sc">+</span></span>
 <span id="cb67-10"><a href="資料視覺化.html#cb67-10" tabindex="-1"></a>  <span class="fu">scale_size_continuous</span>(<span class="at">range=</span><span class="fu">c</span>(.<span class="dv">1</span>, <span class="dv">10</span>), <span class="at">breaks=</span><span class="fu">round</span>(classInt<span class="sc">::</span><span class="fu">classIntervals</span>(world<span class="sc">$</span>pop, <span class="at">n=</span><span class="dv">5</span>, <span class="at">style=</span><span class="st">&quot;fisher&quot;</span>)<span class="sc">$</span>brks, <span class="sc">-</span><span class="dv">5</span>)<span class="sc">/</span><span class="dv">100000</span>, <span class="at">name=</span><span class="st">&quot;Population (100K)&quot;</span>)<span class="sc">+</span></span>
 <span id="cb67-11"><a href="資料視覺化.html#cb67-11" tabindex="-1"></a>  <span class="fu">scale_fill_brewer</span>(<span class="at">palette=</span><span class="st">&quot;Set2&quot;</span>)</span></code></pre></div>
-<p><img src="series_files/figure-html/geom-bubble-eg-1.png" width="70%" style="display: block; margin: auto;" /></p>
+<p><img src="Transport-Analysis-R_files/figure-html/geom-bubble-eg-1.png" width="70%" style="display: block; margin: auto;" /></p>
 <p>程式碼中<a href="資料視覺化.html#大小尺度"><code>scale_size_continuous()</code></a>函式控制點子大小；<a href="資料視覺化.html#顏色漸層"><code>scale_fill_brewer()</code></a>函式則設計點子的填色。透過顏色、大小的設計調整，可使資料更視覺化，易於讀者觀察圖表，也可更客製化設計圖表樣式。所有關於圖表的設計請參考<a href="資料視覺化.html#尺度設定">尺度設定</a>章節。</p>
 </div>
 <div id="山脊圖" class="section level3 hasAnchor" number="3.1.11">
 <h3><span class="header-section-number">3.1.11</span> 山脊圖<a href="資料視覺化.html#山脊圖" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<div class="install">
+<p><strong>請下載<code>ggridges</code>套件！</strong><br />
+<strong><code>install.packages("ggridges")</code></strong></p>
+</div>
 <p>山脊圖（Ridgeline Plot）與密度圖非常相似，可表達許多不同類別的連續資料分布情形，而山脊圖可將不同類別的資料平行並列，以較容易觀察類別間的差異。繪製山脊圖可利用<code>ggridges</code>套件中的<code>geom_density_ridges()</code>與<code>stat_density_ridges()</code>函式，其撰寫架構如下。</p>
 <div class="sourceCode" id="cb68"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb68-1"><a href="資料視覺化.html#cb68-1" tabindex="-1"></a><span class="fu">geom_density_ridges</span>(<span class="at">group=</span>, <span class="at">color=</span>, <span class="at">linetype=</span>, <span class="at">size=</span>, <span class="at">fill=</span>, <span class="at">alpha=</span>, <span class="at">jittered_points=</span>)</span>
 <span id="cb68-2"><a href="資料視覺化.html#cb68-2" tabindex="-1"></a><span class="fu">stat_density_ridges</span>(<span class="at">group=</span>, <span class="at">color=</span>, <span class="at">linetype=</span>, <span class="at">size=</span>, <span class="at">fill=</span>, <span class="at">alpha=</span>, <span class="at">quantile_lines=</span>, <span class="at">quantiles=</span>)</span></code></pre></div>
@@ -2290,21 +2294,21 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <p>前文中提及多類別的密度圖，可藉以瞭解資料的集中性，然不同類別間往往因重疊而使圖表難以判讀。此時可利用山脊圖呈現多個類別間的密度分布關係，其橫軸通常是一個連續數值，縱軸則為密度。建立山脊圖時若欲利用曲線顏色、曲線下面積填色等表達不同類別，則應將相對應的引數置於<A href="#ggplot-aes"><code>aes()</code></A>函式內。以<code>airquality</code>資料為例，繪製山脊圖的程式碼撰寫如下。</p>
 <div class="sourceCode" id="cb69"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb69-1"><a href="資料視覺化.html#cb69-1" tabindex="-1"></a><span class="fu">ggplot</span>(airquality, <span class="fu">aes</span>(<span class="at">x=</span>Temp, <span class="at">y=</span><span class="fu">as.factor</span>(Month)))<span class="sc">+</span></span>
 <span id="cb69-2"><a href="資料視覺化.html#cb69-2" tabindex="-1"></a>  <span class="fu">geom_density_ridges</span>(<span class="fu">aes</span>(<span class="at">fill=</span><span class="fu">as.factor</span>(Month), <span class="at">group=</span><span class="fu">as.factor</span>(Month)))</span></code></pre></div>
-<p><img src="series_files/figure-html/geom-ridgeline-eg1-1.png" width="70%" style="display: block; margin: auto;" /></p>
+<p><img src="Transport-Analysis-R_files/figure-html/geom-ridgeline-eg1-1.png" width="70%" style="display: block; margin: auto;" /></p>
 <p style="color:#003D79;font-size:18px;line-height:2">
 <strong>⌾ 山脊圖加入跳點</strong>
 </p>
 <p>跳點可用以表示原始資料的分布情形，輔助圖表的判讀，如同<code>geom_jitter()</code>函式之功能。在<code>geom_density_ridges()</code>函式中可利用<code>jittered_points=</code>參數設定是否回傳跳點。</p>
 <div class="sourceCode" id="cb70"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb70-1"><a href="資料視覺化.html#cb70-1" tabindex="-1"></a><span class="fu">ggplot</span>(airquality, <span class="fu">aes</span>(<span class="at">x=</span>Temp, <span class="at">y=</span><span class="fu">as.factor</span>(Month)))<span class="sc">+</span></span>
 <span id="cb70-2"><a href="資料視覺化.html#cb70-2" tabindex="-1"></a>  <span class="fu">geom_density_ridges</span>(<span class="fu">aes</span>(<span class="at">fill=</span><span class="fu">as.factor</span>(Month), <span class="at">group=</span><span class="fu">as.factor</span>(Month)), <span class="at">jittered_points=</span>T)</span></code></pre></div>
-<p><img src="series_files/figure-html/geom-ridgeline-eg2-1.png" width="70%" style="display: block; margin: auto;" /></p>
+<p><img src="Transport-Analysis-R_files/figure-html/geom-ridgeline-eg2-1.png" width="70%" style="display: block; margin: auto;" /></p>
 <p style="color:#003D79;font-size:18px;line-height:2">
 <strong>⌾ 山脊圖加入分位數</strong>
 </p>
 <p>分位數在統計上亦能夠顯示資料分布的情形，最常見的如四分位數（<code>quantile=4</code>，預設）、十分位數（<code>quantile=10</code>），而其落處於正中間的線段即為中位數。若欲建立具有分位數的山脊圖，可利用<code>stat_density_ridges()</code>函式，並透過<code>quantile_lines=T</code>設定回傳分位數，而<code>quantiles=</code>引數則可進一步設定分位數。再次以<code>airquality</code>資料為例，程式碼撰寫如下。</p>
 <div class="sourceCode" id="cb71"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb71-1"><a href="資料視覺化.html#cb71-1" tabindex="-1"></a><span class="fu">ggplot</span>(airquality, <span class="fu">aes</span>(<span class="at">x=</span>Temp, <span class="at">y=</span><span class="fu">as.factor</span>(Month)))<span class="sc">+</span></span>
 <span id="cb71-2"><a href="資料視覺化.html#cb71-2" tabindex="-1"></a>  <span class="fu">stat_density_ridges</span>(<span class="fu">aes</span>(<span class="at">fill=</span><span class="fu">as.factor</span>(Month), <span class="at">group=</span><span class="fu">as.factor</span>(Month)), <span class="at">quantile_lines=</span>T, <span class="at">quantiles=</span><span class="dv">10</span>)</span></code></pre></div>
-<p><img src="series_files/figure-html/geom-ridgeline-eg3-1.png" width="70%" style="display: block; margin: auto;" /></p>
+<p><img src="Transport-Analysis-R_files/figure-html/geom-ridgeline-eg3-1.png" width="70%" style="display: block; margin: auto;" /></p>
 </div>
 <div id="熱力圖" class="section level3 hasAnchor" number="3.1.12">
 <h3><span class="header-section-number">3.1.12</span> 熱力圖<a href="資料視覺化.html#熱力圖" class="anchor-section" aria-label="Anchor link to header"></a></h3>
@@ -2392,12 +2396,12 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <p>二維資料可直接利用熱力圖表達，其中縱軸與橫軸為二維資料表達座標位置的資料，熱力圖的顏色則須依據數值大小填色（<code>fill=</code>）。以<code>airquality</code>資料為例，若希望建立每日的溫度熱力圖，此時可以將「月份（Month）」縱軸；「日期（Day）」為橫軸，而矩陣內各方框則利用溫度數值（Temp）填色。程式碼撰寫如下。</p>
 <div class="sourceCode" id="cb73"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb73-1"><a href="資料視覺化.html#cb73-1" tabindex="-1"></a><span class="fu">ggplot</span>(airquality, <span class="fu">aes</span>(<span class="at">x=</span>Day, <span class="at">y=</span>Month))<span class="sc">+</span></span>
 <span id="cb73-2"><a href="資料視覺化.html#cb73-2" tabindex="-1"></a>  <span class="fu">geom_tile</span>(<span class="fu">aes</span>(<span class="at">fill=</span>Temp))</span></code></pre></div>
-<p><img src="series_files/figure-html/geom-heatmap-eg1-1.png" width="70%" style="display: block; margin: auto;" /></p>
+<p><img src="Transport-Analysis-R_files/figure-html/geom-heatmap-eg1-1.png" width="70%" style="display: block; margin: auto;" /></p>
 <p>然由上圖可見，該顏色分布並不直覺，數值小的為深色，數值大的卻為淺色，但實際上人類的直覺感受理應相反，故可進一步透過<a href="資料視覺化.html#顏色漸層">顏色漸層之尺度設定</a>調整之。程式碼撰寫如下。</p>
 <div class="sourceCode" id="cb74"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb74-1"><a href="資料視覺化.html#cb74-1" tabindex="-1"></a><span class="fu">ggplot</span>(airquality, <span class="fu">aes</span>(<span class="at">x=</span>Day, <span class="at">y=</span>Month))<span class="sc">+</span></span>
 <span id="cb74-2"><a href="資料視覺化.html#cb74-2" tabindex="-1"></a>  <span class="fu">geom_tile</span>(<span class="fu">aes</span>(<span class="at">fill=</span>Temp))<span class="sc">+</span></span>
 <span id="cb74-3"><a href="資料視覺化.html#cb74-3" tabindex="-1"></a>  <span class="fu">scale_fill_distiller</span>(<span class="at">palette=</span><span class="st">&quot;YlOrRd&quot;</span>, <span class="at">direction=</span><span class="dv">1</span>)</span></code></pre></div>
-<p><img src="series_files/figure-html/geom-heatmap-eg2-1.png" width="70%" style="display: block; margin: auto;" /></p>
+<p><img src="Transport-Analysis-R_files/figure-html/geom-heatmap-eg2-1.png" width="70%" style="display: block; margin: auto;" /></p>
 <p style="color:#003D79;font-size:18px;line-height:2">
 <strong>⌾ 標準化熱力圖</strong>
 </p>
@@ -2449,13 +2453,13 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <span id="cb79-2"><a href="資料視覺化.html#cb79-2" tabindex="-1"></a><span class="fu">ggplot</span>(mtcars_scale, <span class="fu">aes</span>(<span class="at">x=</span>variable, <span class="at">y=</span>Cars))<span class="sc">+</span></span>
 <span id="cb79-3"><a href="資料視覺化.html#cb79-3" tabindex="-1"></a>  <span class="fu">geom_tile</span>(<span class="fu">aes</span>(<span class="at">fill=</span>value))<span class="sc">+</span></span>
 <span id="cb79-4"><a href="資料視覺化.html#cb79-4" tabindex="-1"></a>  <span class="fu">scale_fill_distiller</span>(<span class="at">palette=</span><span class="st">&quot;YlOrRd&quot;</span>, <span class="at">direction=</span><span class="dv">1</span>)</span></code></pre></div>
-<p><img src="series_files/figure-html/geom-heatmap-eg4-1.png" width="70%" style="display: block; margin: auto;" /></p>
+<p><img src="Transport-Analysis-R_files/figure-html/geom-heatmap-eg4-1.png" width="70%" style="display: block; margin: auto;" /></p>
 <p style="color:#003D79;font-size:18px;line-height:2">
 <strong>⌾ 變數關係熱力圖</strong>
 </p>
 <p>在 R 語言中的原生<code>base</code>套件亦提供<code>heatmap()</code>函式，其中可輸入欲繪製的資料（必須為<a href="r-語言基礎語法.html#矩陣matrix"><code>matrix</code></a>格式），而其回傳結果可用以表示各變數的相對大小關係，同時透過樹狀圖（Dendrogram）呈現各變數之間的相關性。以<code>mtcars</code>資料為例，將該資料先行透過<code>as.matrix()</code>函式轉換為矩陣資料，並將其置於<code>heatmap()</code>函式中，程式碼撰寫如下。</p>
 <div class="sourceCode" id="cb80"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb80-1"><a href="資料視覺化.html#cb80-1" tabindex="-1"></a><span class="fu">heatmap</span>(<span class="fu">as.matrix</span>(mtcars), <span class="at">scale=</span><span class="st">&quot;column&quot;</span>)</span></code></pre></div>
-<p><img src="series_files/figure-html/geom-heatmap-eg5-1.png" width="80%" style="display: block; margin: auto;" /></p>
+<p><img src="Transport-Analysis-R_files/figure-html/geom-heatmap-eg5-1.png" width="80%" style="display: block; margin: auto;" /></p>
 <p style="color:#003D79;font-size:18px;line-height:2">
 <strong>⌾ 相關係數熱力圖</strong>
 </p>
@@ -2506,10 +2510,14 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </table>
 <p>再次以<code>mtcars</code>資料為例，先藉由<code>cor()</code>函式計算各變數間相關係數的矩陣，並置於<code>corrplot()</code>函式中，程式碼撰寫如下。</p>
 <div class="sourceCode" id="cb82"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb82-1"><a href="資料視覺化.html#cb82-1" tabindex="-1"></a><span class="fu">corrplot</span>(<span class="fu">cor</span>(mtcars))</span></code></pre></div>
-<p><img src="series_files/figure-html/geom-corrplot-eg1-1.png" width="70%" style="display: block; margin: auto;" /></p>
+<p><img src="Transport-Analysis-R_files/figure-html/geom-corrplot-eg1-1.png" width="70%" style="display: block; margin: auto;" /></p>
 </div>
 <div id="矩形式樹狀圖" class="section level3 hasAnchor" number="3.1.13">
 <h3><span class="header-section-number">3.1.13</span> 矩形式樹狀圖<a href="資料視覺化.html#矩形式樹狀圖" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<div class="install">
+<p><strong>請下載<code>treemapify</code>套件！</strong><br />
+<strong><code>install.packages("treemapify")</code></strong></p>
+</div>
 <p>矩形式樹狀圖（Treemap）可用以視覺化呈現不同類別間的占比，亦可同時表現分類架構。在 R 語言中可另安裝<code>treemapify</code>套件繪製矩形式樹狀圖，該套件所提供的函式彙整如表<a href="資料視覺化.html#tab:geom-treemap-code1-tab">3.15</a>。另建議所有引數皆設定於<code>ggplot()</code>函式中，以便建立不同階層的樹狀圖，函式撰寫架構如下。</p>
 <div class="sourceCode" id="cb83"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb83-1"><a href="資料視覺化.html#cb83-1" tabindex="-1"></a><span class="fu">ggplot</span>(資料, <span class="fu">aes</span>(<span class="at">area=</span>, <span class="at">color=</span>, <span class="at">fill=</span>, <span class="at">linetype=</span>, <span class="at">alpha=</span>, <span class="at">subgroup=</span>, <span class="at">subgroup2=</span>, <span class="at">subgroup3=</span>))</span></code></pre></div>
 <p>以上函式中的引數設定彙整如表<a href="資料視覺化.html#tab:geom-treemap-code2-tab">3.14</a>。</p>
@@ -2703,7 +2711,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <span id="cb84-17"><a href="資料視覺化.html#cb84-17" tabindex="-1"></a><span class="co"># 繪製矩形式樹狀圖</span></span>
 <span id="cb84-18"><a href="資料視覺化.html#cb84-18" tabindex="-1"></a><span class="fu">ggplot</span>(tw_pop, <span class="fu">aes</span>(<span class="at">area=</span>people_total, <span class="at">fill=</span>District, <span class="at">subgroup=</span>District))<span class="sc">+</span></span>
 <span id="cb84-19"><a href="資料視覺化.html#cb84-19" tabindex="-1"></a>  <span class="fu">geom_treemap</span>()</span></code></pre></div>
-<p><img src="series_files/figure-html/geom-treemap-eg1-1.png" width="70%" style="display: block; margin: auto;" /></p>
+<p><img src="Transport-Analysis-R_files/figure-html/geom-treemap-eg1-1.png" width="70%" style="display: block; margin: auto;" /></p>
 <p style="color:#003D79;font-size:18px;line-height:2">
 <strong>⌾ 矩形式樹狀圖加上文字標記</strong>
 </p>
@@ -2711,13 +2719,13 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <div class="sourceCode" id="cb85"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb85-1"><a href="資料視覺化.html#cb85-1" tabindex="-1"></a><span class="fu">ggplot</span>(tw_pop, <span class="fu">aes</span>(<span class="at">area=</span>people_total, <span class="at">fill=</span>District, <span class="at">label=</span>COUNTYNAME, <span class="at">subgroup=</span>District))<span class="sc">+</span></span>
 <span id="cb85-2"><a href="資料視覺化.html#cb85-2" tabindex="-1"></a>  <span class="fu">geom_treemap</span>()<span class="sc">+</span></span>
 <span id="cb85-3"><a href="資料視覺化.html#cb85-3" tabindex="-1"></a>  <span class="fu">geom_treemap_text</span>(<span class="at">size=</span><span class="dv">15</span>, <span class="at">color=</span><span class="st">&quot;#3C3C3C&quot;</span>, <span class="at">alpha=</span><span class="fl">0.5</span>, <span class="at">fontface=</span><span class="st">&quot;bold&quot;</span>)</span></code></pre></div>
-<p><img src="series_files/figure-html/geom-treemap-eg2-fig-1.png" width="70%" style="display: block; margin: auto;" /></p>
+<p><img src="Transport-Analysis-R_files/figure-html/geom-treemap-eg2-fig-1.png" width="70%" style="display: block; margin: auto;" /></p>
 <p>此外，若欲一併標記各類別的名稱，如以上範例中「區域劃分」的類別名稱，程式碼撰寫如下。</p>
 <div class="sourceCode" id="cb86"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb86-1"><a href="資料視覺化.html#cb86-1" tabindex="-1"></a><span class="fu">ggplot</span>(tw_pop, <span class="fu">aes</span>(<span class="at">area=</span>people_total, <span class="at">fill=</span>District, <span class="at">label=</span>COUNTYNAME, <span class="at">subgroup=</span>District))<span class="sc">+</span></span>
 <span id="cb86-2"><a href="資料視覺化.html#cb86-2" tabindex="-1"></a>  <span class="fu">geom_treemap</span>()<span class="sc">+</span></span>
 <span id="cb86-3"><a href="資料視覺化.html#cb86-3" tabindex="-1"></a>  <span class="fu">geom_treemap_text</span>(<span class="at">size=</span><span class="dv">15</span>, <span class="at">color=</span><span class="st">&quot;#3C3C3C&quot;</span>, <span class="at">alpha=</span><span class="fl">0.5</span>, <span class="at">fontface=</span><span class="st">&quot;bold&quot;</span>)<span class="sc">+</span></span>
 <span id="cb86-4"><a href="資料視覺化.html#cb86-4" tabindex="-1"></a>  <span class="fu">geom_treemap_subgroup_text</span>(<span class="at">grow=</span>T, <span class="at">color=</span><span class="st">&quot;white&quot;</span>, <span class="at">alpha=</span><span class="fl">0.3</span>, <span class="at">fontface=</span><span class="st">&quot;bold&quot;</span>, <span class="at">place=</span><span class="st">&quot;center&quot;</span>)</span></code></pre></div>
-<p><img src="series_files/figure-html/geom-treemap-eg3-fig-1.png" width="70%" style="display: block; margin: auto;" /></p>
+<p><img src="Transport-Analysis-R_files/figure-html/geom-treemap-eg3-fig-1.png" width="70%" style="display: block; margin: auto;" /></p>
 <p>由於在樹狀圖中已透過文字標記顯示「區域劃分」，圖例的存在甚為冗贅，故可在<code>geom_treemap()</code>函式中設定<code>show.legend=F</code>引數消除之。</p>
 <p style="color:#003D79;font-size:18px;line-height:2">
 <strong>⌾ 矩形式樹狀圖加上子類別</strong>
@@ -2729,11 +2737,15 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <span id="cb87-4"><a href="資料視覺化.html#cb87-4" tabindex="-1"></a>  <span class="fu">geom_treemap_subgroup_text</span>(<span class="at">grow=</span>T, <span class="at">color=</span><span class="st">&quot;white&quot;</span>, <span class="at">alpha=</span><span class="fl">0.3</span>, <span class="at">fontface=</span><span class="st">&quot;bold&quot;</span>, <span class="at">place=</span><span class="st">&quot;center&quot;</span>)<span class="sc">+</span></span>
 <span id="cb87-5"><a href="資料視覺化.html#cb87-5" tabindex="-1"></a>  <span class="fu">geom_treemap_subgroup2_border</span>(<span class="at">color=</span><span class="st">&quot;#003D79&quot;</span>, <span class="at">linetype=</span><span class="st">&quot;dashed&quot;</span>, <span class="at">size=</span><span class="dv">2</span>, <span class="at">show.legend=</span>F)<span class="sc">+</span></span>
 <span id="cb87-6"><a href="資料視覺化.html#cb87-6" tabindex="-1"></a>  <span class="fu">geom_treemap_subgroup2_text</span>(<span class="at">size=</span><span class="dv">10</span>, <span class="at">color=</span><span class="st">&quot;#003D79&quot;</span>, <span class="at">alpha=</span><span class="fl">0.5</span>, <span class="at">fontface=</span><span class="st">&quot;bold&quot;</span>, <span class="at">place=</span><span class="st">&quot;bottomright&quot;</span>)</span></code></pre></div>
-<p><img src="series_files/figure-html/geom-treemap-eg4-fig-1.png" width="70%" style="display: block; margin: auto;" /></p>
+<p><img src="Transport-Analysis-R_files/figure-html/geom-treemap-eg4-fig-1.png" width="70%" style="display: block; margin: auto;" /></p>
 <p>由上述案例可發現，透過<code>treemapify</code>套件可相當有彈性地建立矩形式樹狀圖，然必須注意的是，同時繪製過多階層的樹狀圖可能會使圖表過於雜亂而影響視覺判讀，故在圖表設計上須考量其複雜程度。</p>
 </div>
 <div id="桑基圖" class="section level3 hasAnchor" number="3.1.14">
 <h3><span class="header-section-number">3.1.14</span> 桑基圖<a href="資料視覺化.html#桑基圖" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<div class="install">
+<p><strong>請下載<code>ggalluvial</code>套件！</strong><br />
+<strong><code>install.packages("ggalluvial")</code></strong></p>
+</div>
 <p>桑基圖（Sankey Diagram）可用以表達系統內各階層的流動，圖表係由節點與節線構成。節點用以表示狀態或屬性，其寬度可表示該狀態的占比；節線用以表示狀態之間轉移的流動，其線條粗細可表示流動量，而線條顏色則可表示所屬的類別。以圖<a href="資料視覺化.html#fig:geom-sankey-fig1">3.10</a>之示意圖為例，階層 1 含有四個狀態，故會包含 4 個節點，而階層 1 會透過節線流動至階層 2，並含有兩個狀態，其他則以此類推。</p>
 <div class="figure" style="text-align: center"><span style="display:block;" id="fig:geom-sankey-fig1"></span>
 <img src="figure/sankey_diagram.png" alt="桑基圖架構示意圖" width="60%" />
@@ -2813,14 +2825,14 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <div class="sourceCode" id="cb91"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb91-1"><a href="資料視覺化.html#cb91-1" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data=</span>hair_eye, <span class="fu">aes</span>(<span class="at">axis1=</span>Hair, <span class="at">axis2=</span>Eye, <span class="at">y=</span>Freq))<span class="sc">+</span></span>
 <span id="cb91-2"><a href="資料視覺化.html#cb91-2" tabindex="-1"></a>  <span class="fu">geom_alluvium</span>(<span class="fu">aes</span>(<span class="at">fill=</span>Sex))<span class="sc">+</span></span>
 <span id="cb91-3"><a href="資料視覺化.html#cb91-3" tabindex="-1"></a>  <span class="fu">geom_stratum</span>()</span></code></pre></div>
-<p><img src="series_files/figure-html/geom-sankey-eg1-1.png" width="70%" style="display: block; margin: auto;" /></p>
+<p><img src="Transport-Analysis-R_files/figure-html/geom-sankey-eg1-1.png" width="70%" style="display: block; margin: auto;" /></p>
 <p>以上出圖結果雖能呈現節點與節線，惟無法清楚瞭解各節點內容與階層名稱。桑基圖的橫軸理應設定階層名稱，且在節點上應標註文字，尚能清楚各狀態間的轉移，程式碼修正如下。</p>
 <div class="sourceCode" id="cb92"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb92-1"><a href="資料視覺化.html#cb92-1" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data=</span>hair_eye, <span class="fu">aes</span>(<span class="at">axis1=</span>Hair, <span class="at">axis2=</span>Eye, <span class="at">y=</span>Freq))<span class="sc">+</span></span>
 <span id="cb92-2"><a href="資料視覺化.html#cb92-2" tabindex="-1"></a>  <span class="fu">geom_alluvium</span>(<span class="fu">aes</span>(<span class="at">fill=</span>Sex))<span class="sc">+</span></span>
 <span id="cb92-3"><a href="資料視覺化.html#cb92-3" tabindex="-1"></a>  <span class="fu">geom_stratum</span>()<span class="sc">+</span></span>
 <span id="cb92-4"><a href="資料視覺化.html#cb92-4" tabindex="-1"></a>  <span class="fu">geom_text</span>(<span class="at">stat=</span><span class="st">&quot;stratum&quot;</span>, <span class="fu">aes</span>(<span class="at">label=</span><span class="fu">after_stat</span>(stratum)))<span class="sc">+</span></span>
 <span id="cb92-5"><a href="資料視覺化.html#cb92-5" tabindex="-1"></a>  <span class="fu">scale_x_discrete</span>(<span class="at">limits=</span><span class="fu">c</span>(<span class="st">&quot;Hair&quot;</span>,<span class="st">&quot;Eye&quot;</span>), <span class="at">expand=</span><span class="fu">c</span>(<span class="fl">0.2</span>, <span class="fl">0.05</span>))</span></code></pre></div>
-<p><img src="series_files/figure-html/geom-sankey-eg2-1.png" width="70%" style="display: block; margin: auto;" /></p>
+<p><img src="Transport-Analysis-R_files/figure-html/geom-sankey-eg2-1.png" width="70%" style="display: block; margin: auto;" /></p>
 <p>關於<code>geom_text()</code>函式在圖表上加註文字，請參考<a href="資料視覺化.html#標註文字與標籤">此</a>；透過<code>scale_x_discrete()</code>函式調整座標軸名稱，請參考<a href="#調整座標軸名稱順序">此</a>。</p>
 <p style="color:#003D79;font-size:18px;line-height:2">
 <strong>⌾ 彙整資料後繪製桑基圖</strong>
@@ -2859,16 +2871,16 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <span id="cb97-3"><a href="資料視覺化.html#cb97-3" tabindex="-1"></a>  <span class="fu">geom_stratum</span>(<span class="at">width=</span><span class="fl">0.2</span>)<span class="sc">+</span></span>
 <span id="cb97-4"><a href="資料視覺化.html#cb97-4" tabindex="-1"></a>  <span class="fu">geom_text</span>(<span class="at">stat=</span><span class="st">&quot;stratum&quot;</span>, <span class="fu">aes</span>(<span class="at">label=</span><span class="fu">after_stat</span>(stratum)))<span class="sc">+</span></span>
 <span id="cb97-5"><a href="資料視覺化.html#cb97-5" tabindex="-1"></a>  <span class="fu">scale_x_discrete</span>(<span class="at">limits=</span><span class="fu">c</span>(<span class="st">&quot;遷出&quot;</span>,<span class="st">&quot;遷入&quot;</span>), <span class="at">expand=</span><span class="fu">c</span>(<span class="fl">0.2</span>, <span class="fl">0.05</span>))</span></code></pre></div>
-<p><img src="series_files/figure-html/geom-sankey-eg4-1.png" width="70%" style="display: block; margin: auto;" /></p>
+<p><img src="Transport-Analysis-R_files/figure-html/geom-sankey-eg4-1.png" width="70%" style="display: block; margin: auto;" /></p>
 </div>
 <div id="雷達圖" class="section level3 hasAnchor" number="3.1.15">
 <h3><span class="header-section-number">3.1.15</span> 雷達圖<a href="資料視覺化.html#雷達圖" class="anchor-section" aria-label="Anchor link to header"></a></h3>
-<p>雷達圖（Radar Chart）可用於比較不同類別間的在各屬性上表現的狀況，並比較各類別間的相對優勢與劣勢。該圖通常是由多邊形或圓形所構成，其中心點代表最低數值，多邊形的頂點或圓形的邊界意謂各屬性的最大值。在 R 語言中可以透過<code>ggradar</code>與<code>fmsb</code>兩套件繪製雷達圖，其安裝方式如下。</p>
-<div class="sourceCode" id="cb98"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb98-1"><a href="資料視覺化.html#cb98-1" tabindex="-1"></a><span class="co"># 安裝ggradar</span></span>
-<span id="cb98-2"><a href="資料視覺化.html#cb98-2" tabindex="-1"></a>devtools<span class="sc">::</span><span class="fu">install_github</span>(<span class="st">&quot;ricardo-bion/ggradar&quot;</span>)</span>
-<span id="cb98-3"><a href="資料視覺化.html#cb98-3" tabindex="-1"></a></span>
-<span id="cb98-4"><a href="資料視覺化.html#cb98-4" tabindex="-1"></a><span class="co"># 安裝fmsb</span></span>
-<span id="cb98-5"><a href="資料視覺化.html#cb98-5" tabindex="-1"></a><span class="fu">install.packages</span>(<span class="st">&quot;fmsb&quot;</span>)</span></code></pre></div>
+<div class="install">
+<p><strong>請下載<code>ggradar</code>與<code>fmsb</code>套件！</strong><br />
+<strong><code>devtools::install_github("ricardo-bion/ggradar")</code></strong><br />
+<strong><code>install.packages("fmsb")</code></strong></p>
+</div>
+<p>雷達圖（Radar Chart）可用於比較不同類別間的在各屬性上表現的狀況，並比較各類別間的相對優勢與劣勢。該圖通常是由多邊形或圓形所構成，其中心點代表最低數值，多邊形的頂點或圓形的邊界意謂各屬性的最大值。在 R 語言中可以透過<code>ggradar</code>與<code>fmsb</code>兩套件繪製雷達圖。</p>
 <p>在<code>ggradar</code>套件中繪製雷達圖，僅須透過<code>ggradar()</code>函式即可建立之，該函式中的重要引數設定詳如表<a href="資料視覺化.html#tab:geom-radar-code-tab">3.17</a>，並請參見圖<a href="資料視覺化.html#fig:geom-radar-fig">3.12</a>之示意圖，而其他細節引數設定請透過<code>?ggradar</code>查看。</p>
 <table class="table table-striped table-hover" style="font-size: 14px; margin-left: auto; margin-right: auto;">
 <caption style="font-size: initial !important;">
@@ -2996,20 +3008,20 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li>所有的數值必須位於同一個區間（介於 0 與 1 之間，若非介於此區間會自動轉換）</li>
 </ul>
 <p>根據以上原則，以下以各科成績為例，建立學科分數雷達圖，程式碼撰寫如下。</p>
-<div class="sourceCode" id="cb99"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb99-1"><a href="資料視覺化.html#cb99-1" tabindex="-1"></a><span class="co"># 建議學科分數資料</span></span>
-<span id="cb99-2"><a href="資料視覺化.html#cb99-2" tabindex="-1"></a>StuScore1<span class="ot">=</span><span class="fu">data.frame</span>(<span class="at">Name=</span><span class="fu">c</span>(<span class="st">&quot;Joe&quot;</span>,<span class="st">&quot;Mary&quot;</span>,<span class="st">&quot;Robert&quot;</span>),</span>
-<span id="cb99-3"><a href="資料視覺化.html#cb99-3" tabindex="-1"></a>                     <span class="at">Math=</span><span class="fu">c</span>(<span class="dv">80</span>,<span class="dv">90</span>,<span class="dv">70</span>),</span>
-<span id="cb99-4"><a href="資料視覺化.html#cb99-4" tabindex="-1"></a>                     <span class="at">English=</span><span class="fu">c</span>(<span class="dv">45</span>,<span class="dv">90</span>,<span class="dv">65</span>),</span>
-<span id="cb99-5"><a href="資料視覺化.html#cb99-5" tabindex="-1"></a>                     <span class="at">Chemistry=</span><span class="fu">c</span>(<span class="dv">95</span>,<span class="dv">60</span>,<span class="dv">80</span>), </span>
-<span id="cb99-6"><a href="資料視覺化.html#cb99-6" tabindex="-1"></a>                     <span class="at">Biology=</span><span class="fu">c</span>(<span class="dv">60</span>,<span class="dv">85</span>,<span class="dv">50</span>),</span>
-<span id="cb99-7"><a href="資料視覺化.html#cb99-7" tabindex="-1"></a>                     <span class="at">Physics=</span><span class="fu">c</span>(<span class="dv">95</span>,<span class="dv">80</span>,<span class="dv">55</span>))</span>
-<span id="cb99-8"><a href="資料視覺化.html#cb99-8" tabindex="-1"></a></span>
-<span id="cb99-9"><a href="資料視覺化.html#cb99-9" tabindex="-1"></a><span class="co"># 轉換數值至0與1間</span></span>
-<span id="cb99-10"><a href="資料視覺化.html#cb99-10" tabindex="-1"></a>StuScore1<span class="ot">=</span><span class="fu">mutate_at</span>(StuScore1, <span class="dv">2</span><span class="sc">:</span><span class="dv">6</span>, <span class="cf">function</span>(x) x<span class="sc">/</span><span class="dv">100</span>)</span>
-<span id="cb99-11"><a href="資料視覺化.html#cb99-11" tabindex="-1"></a></span>
-<span id="cb99-12"><a href="資料視覺化.html#cb99-12" tabindex="-1"></a><span class="co"># 繪製雷達圖</span></span>
-<span id="cb99-13"><a href="資料視覺化.html#cb99-13" tabindex="-1"></a><span class="fu">ggradar</span>(StuScore1, <span class="at">legend.text.size=</span><span class="dv">10</span>, <span class="at">grid.label.size=</span><span class="dv">4</span>, <span class="at">axis.label.size=</span><span class="dv">5</span>, <span class="at">background.circle.transparency=</span><span class="dv">0</span>)</span></code></pre></div>
-<p><img src="series_files/figure-html/geom-radar-eg1-1.png" width="70%" style="display: block; margin: auto;" /></p>
+<div class="sourceCode" id="cb98"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb98-1"><a href="資料視覺化.html#cb98-1" tabindex="-1"></a><span class="co"># 建議學科分數資料</span></span>
+<span id="cb98-2"><a href="資料視覺化.html#cb98-2" tabindex="-1"></a>StuScore1<span class="ot">=</span><span class="fu">data.frame</span>(<span class="at">Name=</span><span class="fu">c</span>(<span class="st">&quot;Joe&quot;</span>,<span class="st">&quot;Mary&quot;</span>,<span class="st">&quot;Robert&quot;</span>),</span>
+<span id="cb98-3"><a href="資料視覺化.html#cb98-3" tabindex="-1"></a>                     <span class="at">Math=</span><span class="fu">c</span>(<span class="dv">80</span>,<span class="dv">90</span>,<span class="dv">70</span>),</span>
+<span id="cb98-4"><a href="資料視覺化.html#cb98-4" tabindex="-1"></a>                     <span class="at">English=</span><span class="fu">c</span>(<span class="dv">45</span>,<span class="dv">90</span>,<span class="dv">65</span>),</span>
+<span id="cb98-5"><a href="資料視覺化.html#cb98-5" tabindex="-1"></a>                     <span class="at">Chemistry=</span><span class="fu">c</span>(<span class="dv">95</span>,<span class="dv">60</span>,<span class="dv">80</span>), </span>
+<span id="cb98-6"><a href="資料視覺化.html#cb98-6" tabindex="-1"></a>                     <span class="at">Biology=</span><span class="fu">c</span>(<span class="dv">60</span>,<span class="dv">85</span>,<span class="dv">50</span>),</span>
+<span id="cb98-7"><a href="資料視覺化.html#cb98-7" tabindex="-1"></a>                     <span class="at">Physics=</span><span class="fu">c</span>(<span class="dv">95</span>,<span class="dv">80</span>,<span class="dv">55</span>))</span>
+<span id="cb98-8"><a href="資料視覺化.html#cb98-8" tabindex="-1"></a></span>
+<span id="cb98-9"><a href="資料視覺化.html#cb98-9" tabindex="-1"></a><span class="co"># 轉換數值至0與1間</span></span>
+<span id="cb98-10"><a href="資料視覺化.html#cb98-10" tabindex="-1"></a>StuScore1<span class="ot">=</span><span class="fu">mutate_at</span>(StuScore1, <span class="dv">2</span><span class="sc">:</span><span class="dv">6</span>, <span class="cf">function</span>(x) x<span class="sc">/</span><span class="dv">100</span>)</span>
+<span id="cb98-11"><a href="資料視覺化.html#cb98-11" tabindex="-1"></a></span>
+<span id="cb98-12"><a href="資料視覺化.html#cb98-12" tabindex="-1"></a><span class="co"># 繪製雷達圖</span></span>
+<span id="cb98-13"><a href="資料視覺化.html#cb98-13" tabindex="-1"></a><span class="fu">ggradar</span>(StuScore1, <span class="at">legend.text.size=</span><span class="dv">10</span>, <span class="at">grid.label.size=</span><span class="dv">4</span>, <span class="at">axis.label.size=</span><span class="dv">5</span>, <span class="at">background.circle.transparency=</span><span class="dv">0</span>)</span></code></pre></div>
+<p><img src="Transport-Analysis-R_files/figure-html/geom-radar-eg1-1.png" width="70%" style="display: block; margin: auto;" /></p>
 <p>請注意此一範例中，所有學生（Name）必須放置於資料的第一直行，而分數屬性則羅列於第二直行後，並確保分數的數值必須介於 0 與 1 間，故以上程式碼中透過<a href="資料清洗與處理.html#新增資料屬性"><code>mutate_at()</code></a>函式統一修正（除以 100）數值。</p>
 <p>除<code>ggradar</code>套件外，亦可透過<code>fmsb</code>套件中的<code>radarchart()</code>函式繪製雷達圖。該函式所需輸入的資料必須符合以下原則：</p>
 <ul>
@@ -3022,43 +3034,47 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li>所有的屬性由第三橫列開始記錄，並確保其屬同一層級</li>
 </ul>
 <p>此一函式有非常多的引數可供設定，提升視覺效果之呈現，惟在此無法逐一羅列，請參見<code>?radarchart</code>。以下範例中再次以學生分數資料為例，程式碼撰寫如下。</p>
-<div class="sourceCode" id="cb100"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb100-1"><a href="資料視覺化.html#cb100-1" tabindex="-1"></a><span class="co"># 先建立分數資料</span></span>
-<span id="cb100-2"><a href="資料視覺化.html#cb100-2" tabindex="-1"></a>StuScore2<span class="ot">=</span><span class="fu">data.frame</span>(<span class="at">Math=</span><span class="fu">c</span>(<span class="dv">80</span>,<span class="dv">90</span>,<span class="dv">70</span>),</span>
-<span id="cb100-3"><a href="資料視覺化.html#cb100-3" tabindex="-1"></a>                     <span class="at">English=</span><span class="fu">c</span>(<span class="dv">45</span>,<span class="dv">90</span>,<span class="dv">65</span>),</span>
-<span id="cb100-4"><a href="資料視覺化.html#cb100-4" tabindex="-1"></a>                     <span class="at">Chemistry=</span><span class="fu">c</span>(<span class="dv">95</span>,<span class="dv">60</span>,<span class="dv">80</span>), </span>
-<span id="cb100-5"><a href="資料視覺化.html#cb100-5" tabindex="-1"></a>                     <span class="at">Biology=</span><span class="fu">c</span>(<span class="dv">60</span>,<span class="dv">85</span>,<span class="dv">50</span>),</span>
-<span id="cb100-6"><a href="資料視覺化.html#cb100-6" tabindex="-1"></a>                     <span class="at">Physics=</span><span class="fu">c</span>(<span class="dv">95</span>,<span class="dv">80</span>,<span class="dv">55</span>))</span>
-<span id="cb100-7"><a href="資料視覺化.html#cb100-7" tabindex="-1"></a></span>
-<span id="cb100-8"><a href="資料視覺化.html#cb100-8" tabindex="-1"></a><span class="co"># 第一橫列補上最大值；第二橫列補上最小值</span></span>
-<span id="cb100-9"><a href="資料視覺化.html#cb100-9" tabindex="-1"></a>StuScore2<span class="ot">=</span><span class="fu">rbind</span>(<span class="dv">100</span>, <span class="dv">0</span>, StuScore2)</span>
-<span id="cb100-10"><a href="資料視覺化.html#cb100-10" tabindex="-1"></a></span>
-<span id="cb100-11"><a href="資料視覺化.html#cb100-11" tabindex="-1"></a><span class="co"># 繪製雷達圖</span></span>
-<span id="cb100-12"><a href="資料視覺化.html#cb100-12" tabindex="-1"></a><span class="fu">library</span>(fmsb)</span>
-<span id="cb100-13"><a href="資料視覺化.html#cb100-13" tabindex="-1"></a><span class="fu">radarchart</span>(StuScore2,</span>
-<span id="cb100-14"><a href="資料視覺化.html#cb100-14" tabindex="-1"></a>           <span class="at">cglty=</span><span class="st">&quot;dashed&quot;</span>,                          <span class="co"># 雷達圖線條樣式</span></span>
-<span id="cb100-15"><a href="資料視覺化.html#cb100-15" tabindex="-1"></a>           <span class="at">cglcol=</span><span class="st">&quot;#9D9D9D&quot;</span>,                        <span class="co"># 雷達圖線條顏色</span></span>
-<span id="cb100-16"><a href="資料視覺化.html#cb100-16" tabindex="-1"></a>           <span class="at">pcol=</span><span class="fu">c</span>(<span class="st">&quot;#46A3FF&quot;</span>,<span class="st">&quot;#00DB00&quot;</span>,<span class="st">&quot;#EA0000&quot;</span>),   <span class="co"># 各類別顏色</span></span>
-<span id="cb100-17"><a href="資料視覺化.html#cb100-17" tabindex="-1"></a>           <span class="at">plwd=</span><span class="dv">2</span>,                                  <span class="co"># 各類別線條寬度</span></span>
-<span id="cb100-18"><a href="資料視覺化.html#cb100-18" tabindex="-1"></a>           <span class="at">plty=</span><span class="dv">1</span>)                                  <span class="co"># 各類別線條樣式</span></span></code></pre></div>
-<p><img src="series_files/figure-html/geom-radar-eg2-1.png" width="70%" style="display: block; margin: auto;" /></p>
+<div class="sourceCode" id="cb99"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb99-1"><a href="資料視覺化.html#cb99-1" tabindex="-1"></a><span class="co"># 先建立分數資料</span></span>
+<span id="cb99-2"><a href="資料視覺化.html#cb99-2" tabindex="-1"></a>StuScore2<span class="ot">=</span><span class="fu">data.frame</span>(<span class="at">Math=</span><span class="fu">c</span>(<span class="dv">80</span>,<span class="dv">90</span>,<span class="dv">70</span>),</span>
+<span id="cb99-3"><a href="資料視覺化.html#cb99-3" tabindex="-1"></a>                     <span class="at">English=</span><span class="fu">c</span>(<span class="dv">45</span>,<span class="dv">90</span>,<span class="dv">65</span>),</span>
+<span id="cb99-4"><a href="資料視覺化.html#cb99-4" tabindex="-1"></a>                     <span class="at">Chemistry=</span><span class="fu">c</span>(<span class="dv">95</span>,<span class="dv">60</span>,<span class="dv">80</span>), </span>
+<span id="cb99-5"><a href="資料視覺化.html#cb99-5" tabindex="-1"></a>                     <span class="at">Biology=</span><span class="fu">c</span>(<span class="dv">60</span>,<span class="dv">85</span>,<span class="dv">50</span>),</span>
+<span id="cb99-6"><a href="資料視覺化.html#cb99-6" tabindex="-1"></a>                     <span class="at">Physics=</span><span class="fu">c</span>(<span class="dv">95</span>,<span class="dv">80</span>,<span class="dv">55</span>))</span>
+<span id="cb99-7"><a href="資料視覺化.html#cb99-7" tabindex="-1"></a></span>
+<span id="cb99-8"><a href="資料視覺化.html#cb99-8" tabindex="-1"></a><span class="co"># 第一橫列補上最大值；第二橫列補上最小值</span></span>
+<span id="cb99-9"><a href="資料視覺化.html#cb99-9" tabindex="-1"></a>StuScore2<span class="ot">=</span><span class="fu">rbind</span>(<span class="dv">100</span>, <span class="dv">0</span>, StuScore2)</span>
+<span id="cb99-10"><a href="資料視覺化.html#cb99-10" tabindex="-1"></a></span>
+<span id="cb99-11"><a href="資料視覺化.html#cb99-11" tabindex="-1"></a><span class="co"># 繪製雷達圖</span></span>
+<span id="cb99-12"><a href="資料視覺化.html#cb99-12" tabindex="-1"></a><span class="fu">library</span>(fmsb)</span>
+<span id="cb99-13"><a href="資料視覺化.html#cb99-13" tabindex="-1"></a><span class="fu">radarchart</span>(StuScore2,</span>
+<span id="cb99-14"><a href="資料視覺化.html#cb99-14" tabindex="-1"></a>           <span class="at">cglty=</span><span class="st">&quot;dashed&quot;</span>,                          <span class="co"># 雷達圖線條樣式</span></span>
+<span id="cb99-15"><a href="資料視覺化.html#cb99-15" tabindex="-1"></a>           <span class="at">cglcol=</span><span class="st">&quot;#9D9D9D&quot;</span>,                        <span class="co"># 雷達圖線條顏色</span></span>
+<span id="cb99-16"><a href="資料視覺化.html#cb99-16" tabindex="-1"></a>           <span class="at">pcol=</span><span class="fu">c</span>(<span class="st">&quot;#46A3FF&quot;</span>,<span class="st">&quot;#00DB00&quot;</span>,<span class="st">&quot;#EA0000&quot;</span>),   <span class="co"># 各類別顏色</span></span>
+<span id="cb99-17"><a href="資料視覺化.html#cb99-17" tabindex="-1"></a>           <span class="at">plwd=</span><span class="dv">2</span>,                                  <span class="co"># 各類別線條寬度</span></span>
+<span id="cb99-18"><a href="資料視覺化.html#cb99-18" tabindex="-1"></a>           <span class="at">plty=</span><span class="dv">1</span>)                                  <span class="co"># 各類別線條樣式</span></span></code></pre></div>
+<p><img src="Transport-Analysis-R_files/figure-html/geom-radar-eg2-1.png" width="70%" style="display: block; margin: auto;" /></p>
 <p style="color:#003D79;font-size:18px;line-height:2">
 <strong>⌾ 標準化雷達圖</strong>
 </p>
 <p>雷達圖會呈現不同類別間多個屬性的關係，惟各屬性的數值大小不一、量級不同、單位不一致，無法直接將原始數值做比較，故在<code>ggradar</code>套件中，通常會將數據標準化再繪製雷達圖。以<code>mtcars</code>資料為例，先將各屬性的數值標準化後再繪製雷達圖，程式碼撰寫如下。</p>
-<div class="sourceCode" id="cb101"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb101-1"><a href="資料視覺化.html#cb101-1" tabindex="-1"></a><span class="co"># 取前五筆資料繪製雷達圖</span></span>
-<span id="cb101-2"><a href="資料視覺化.html#cb101-2" tabindex="-1"></a>mtcars_part<span class="ot">=</span>mtcars[<span class="dv">1</span><span class="sc">:</span><span class="dv">5</span>,]</span>
-<span id="cb101-3"><a href="資料視覺化.html#cb101-3" tabindex="-1"></a>mtcars_part<span class="sc">$</span>Car<span class="ot">=</span><span class="fu">row.names</span>(mtcars_part)</span>
-<span id="cb101-4"><a href="資料視覺化.html#cb101-4" tabindex="-1"></a></span>
-<span id="cb101-5"><a href="資料視覺化.html#cb101-5" tabindex="-1"></a><span class="co"># 擷取需要的屬性繪製雷達圖，並將各屬性標準化</span></span>
-<span id="cb101-6"><a href="資料視覺化.html#cb101-6" tabindex="-1"></a>mtcars_part<span class="ot">=</span><span class="fu">select</span>(mtcars_part, Car, mpg, disp, hp, wt, qsec)<span class="sc">%&gt;%</span></span>
-<span id="cb101-7"><a href="資料視覺化.html#cb101-7" tabindex="-1"></a>  <span class="fu">mutate_at</span>(<span class="fu">vars</span>(<span class="sc">-</span>Car), scales<span class="sc">::</span>rescale)</span>
-<span id="cb101-8"><a href="資料視覺化.html#cb101-8" tabindex="-1"></a></span>
-<span id="cb101-9"><a href="資料視覺化.html#cb101-9" tabindex="-1"></a><span class="co"># 繪製雷達圖</span></span>
-<span id="cb101-10"><a href="資料視覺化.html#cb101-10" tabindex="-1"></a><span class="fu">ggradar</span>(mtcars_part, <span class="at">legend.text.size=</span><span class="dv">10</span>, <span class="at">grid.label.size=</span><span class="dv">4</span>, <span class="at">axis.label.size=</span><span class="dv">5</span>, <span class="at">background.circle.transparency=</span><span class="dv">0</span>)</span></code></pre></div>
-<p><img src="series_files/figure-html/geom-radar-eg3-1.png" width="70%" style="display: block; margin: auto;" /></p>
+<div class="sourceCode" id="cb100"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb100-1"><a href="資料視覺化.html#cb100-1" tabindex="-1"></a><span class="co"># 取前五筆資料繪製雷達圖</span></span>
+<span id="cb100-2"><a href="資料視覺化.html#cb100-2" tabindex="-1"></a>mtcars_part<span class="ot">=</span>mtcars[<span class="dv">1</span><span class="sc">:</span><span class="dv">5</span>,]</span>
+<span id="cb100-3"><a href="資料視覺化.html#cb100-3" tabindex="-1"></a>mtcars_part<span class="sc">$</span>Car<span class="ot">=</span><span class="fu">row.names</span>(mtcars_part)</span>
+<span id="cb100-4"><a href="資料視覺化.html#cb100-4" tabindex="-1"></a></span>
+<span id="cb100-5"><a href="資料視覺化.html#cb100-5" tabindex="-1"></a><span class="co"># 擷取需要的屬性繪製雷達圖，並將各屬性標準化</span></span>
+<span id="cb100-6"><a href="資料視覺化.html#cb100-6" tabindex="-1"></a>mtcars_part<span class="ot">=</span><span class="fu">select</span>(mtcars_part, Car, mpg, disp, hp, wt, qsec)<span class="sc">%&gt;%</span></span>
+<span id="cb100-7"><a href="資料視覺化.html#cb100-7" tabindex="-1"></a>  <span class="fu">mutate_at</span>(<span class="fu">vars</span>(<span class="sc">-</span>Car), scales<span class="sc">::</span>rescale)</span>
+<span id="cb100-8"><a href="資料視覺化.html#cb100-8" tabindex="-1"></a></span>
+<span id="cb100-9"><a href="資料視覺化.html#cb100-9" tabindex="-1"></a><span class="co"># 繪製雷達圖</span></span>
+<span id="cb100-10"><a href="資料視覺化.html#cb100-10" tabindex="-1"></a><span class="fu">ggradar</span>(mtcars_part, <span class="at">legend.text.size=</span><span class="dv">10</span>, <span class="at">grid.label.size=</span><span class="dv">4</span>, <span class="at">axis.label.size=</span><span class="dv">5</span>, <span class="at">background.circle.transparency=</span><span class="dv">0</span>)</span></code></pre></div>
+<p><img src="Transport-Analysis-R_files/figure-html/geom-radar-eg3-1.png" width="70%" style="display: block; margin: auto;" /></p>
 </div>
 <div id="三元圖" class="section level3 hasAnchor" number="3.1.16">
 <h3><span class="header-section-number">3.1.16</span> 三元圖<a href="資料視覺化.html#三元圖" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<div class="install">
+<p><strong>請下載<code>ggtern</code>套件！</strong><br />
+<strong><code>install.packages("ggtern")</code></strong></p>
+</div>
 <p>三元圖（Ternary Plot）用於表達三個類別之間的比例關係，圖中每一點所對應至座標軸的數值加總必為 100，如圖<a href="資料視覺化.html#fig:geom-ternary-fig">3.13</a>之示意圖所示。</p>
 <div class="figure" style="text-align: center"><span style="display:block;" id="fig:geom-ternary-fig"></span>
 <img src="figure/ggtern.png" alt="三元圖示意圖" width="45%" />
@@ -3067,37 +3083,37 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </p>
 </div>
 <p>在 R 語言中可以透過<code>ggtern</code>套件中的<code>ggtern()</code>函式建立三元圖，並利用<code>geom_point()</code>函式將點繪製其上，程式撰寫架構如下。</p>
-<div class="sourceCode" id="cb102"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb102-1"><a href="資料視覺化.html#cb102-1" tabindex="-1"></a><span class="fu">ggtern</span>(<span class="at">data=</span>資料, <span class="fu">aes</span>(<span class="at">x=</span>變數1, <span class="at">y=</span>變數2, <span class="at">z=</span>變數3))<span class="sc">+</span></span>
-<span id="cb102-2"><a href="資料視覺化.html#cb102-2" tabindex="-1"></a>  <span class="fu">geom_point</span>()</span></code></pre></div>
+<div class="sourceCode" id="cb101"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb101-1"><a href="資料視覺化.html#cb101-1" tabindex="-1"></a><span class="fu">ggtern</span>(<span class="at">data=</span>資料, <span class="fu">aes</span>(<span class="at">x=</span>變數1, <span class="at">y=</span>變數2, <span class="at">z=</span>變數3))<span class="sc">+</span></span>
+<span id="cb101-2"><a href="資料視覺化.html#cb101-2" tabindex="-1"></a>  <span class="fu">geom_point</span>()</span></code></pre></div>
 <p style="color:#003D79;font-size:18px;line-height:2">
 <strong>⌾ 基礎三元圖</strong>
 </p>
 <p>三元圖可以表達不同的三個類別之間的比例關係，以<span id="tw-vote">臺灣 2024 年總統選舉資料（tw_vote）</span>為例，有三個政黨推派候選人，故相當適合透過三元圖表達投票結果。以下程式碼中先行讀取全臺各鄉鎮的總統投票結果資料（tw_vote），其中記錄總票數（Votes_Total），以及各政黨的得票率，政黨含括 KMT（國民黨）、DPP（民進黨）、TPP（民眾黨）三者。</p>
-<div class="sourceCode" id="cb103"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb103-1"><a href="資料視覺化.html#cb103-1" tabindex="-1"></a><span class="co"># 讀取資料</span></span>
-<span id="cb103-2"><a href="資料視覺化.html#cb103-2" tabindex="-1"></a>tw_vote<span class="ot">=</span><span class="fu">read.csv</span>(<span class="st">&quot;https://raw.githubusercontent.com/ChiaJung-Yeh/Transport-Analysis/master/Data/tw_president_vote.csv&quot;</span>)</span>
-<span id="cb103-3"><a href="資料視覺化.html#cb103-3" tabindex="-1"></a></span>
-<span id="cb103-4"><a href="資料視覺化.html#cb103-4" tabindex="-1"></a><span class="co"># 篩選北部地區的資料</span></span>
-<span id="cb103-5"><a href="資料視覺化.html#cb103-5" tabindex="-1"></a>nor_vote<span class="ot">=</span><span class="fu">filter</span>(tw_vote, COUNTYNAME <span class="sc">%in%</span> <span class="fu">c</span>(<span class="st">&quot;臺北市&quot;</span>,<span class="st">&quot;新北市&quot;</span>,<span class="st">&quot;桃園市&quot;</span>,<span class="st">&quot;基隆市&quot;</span>,<span class="st">&quot;新竹市&quot;</span>,<span class="st">&quot;新竹縣&quot;</span>,<span class="st">&quot;宜蘭縣&quot;</span>))</span>
-<span id="cb103-6"><a href="資料視覺化.html#cb103-6" tabindex="-1"></a></span>
-<span id="cb103-7"><a href="資料視覺化.html#cb103-7" tabindex="-1"></a><span class="fu">ggtern</span>(<span class="at">data=</span>nor_vote, <span class="fu">aes</span>(<span class="at">x=</span>TPP, <span class="at">y=</span>DPP, <span class="at">z=</span>KMT))<span class="sc">+</span></span>
-<span id="cb103-8"><a href="資料視覺化.html#cb103-8" tabindex="-1"></a>  <span class="fu">geom_point</span>()</span></code></pre></div>
-<p><img src="series_files/figure-html/geom-ternary-eg1-1.png" width="70%" style="display: block; margin: auto;" /></p>
+<div class="sourceCode" id="cb102"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb102-1"><a href="資料視覺化.html#cb102-1" tabindex="-1"></a><span class="co"># 讀取資料</span></span>
+<span id="cb102-2"><a href="資料視覺化.html#cb102-2" tabindex="-1"></a>tw_vote<span class="ot">=</span><span class="fu">read.csv</span>(<span class="st">&quot;https://raw.githubusercontent.com/ChiaJung-Yeh/Transport-Analysis/master/Data/tw_president_vote.csv&quot;</span>)</span>
+<span id="cb102-3"><a href="資料視覺化.html#cb102-3" tabindex="-1"></a></span>
+<span id="cb102-4"><a href="資料視覺化.html#cb102-4" tabindex="-1"></a><span class="co"># 篩選北部地區的資料</span></span>
+<span id="cb102-5"><a href="資料視覺化.html#cb102-5" tabindex="-1"></a>nor_vote<span class="ot">=</span><span class="fu">filter</span>(tw_vote, COUNTYNAME <span class="sc">%in%</span> <span class="fu">c</span>(<span class="st">&quot;臺北市&quot;</span>,<span class="st">&quot;新北市&quot;</span>,<span class="st">&quot;桃園市&quot;</span>,<span class="st">&quot;基隆市&quot;</span>,<span class="st">&quot;新竹市&quot;</span>,<span class="st">&quot;新竹縣&quot;</span>,<span class="st">&quot;宜蘭縣&quot;</span>))</span>
+<span id="cb102-6"><a href="資料視覺化.html#cb102-6" tabindex="-1"></a></span>
+<span id="cb102-7"><a href="資料視覺化.html#cb102-7" tabindex="-1"></a><span class="fu">ggtern</span>(<span class="at">data=</span>nor_vote, <span class="fu">aes</span>(<span class="at">x=</span>TPP, <span class="at">y=</span>DPP, <span class="at">z=</span>KMT))<span class="sc">+</span></span>
+<span id="cb102-8"><a href="資料視覺化.html#cb102-8" tabindex="-1"></a>  <span class="fu">geom_point</span>()</span></code></pre></div>
+<p><img src="Transport-Analysis-R_files/figure-html/geom-ternary-eg1-1.png" width="70%" style="display: block; margin: auto;" /></p>
 <p style="color:#003D79;font-size:18px;line-height:2">
 <strong>⌾ 三元圖–以填色表示不同類別</strong>
 </p>
 <p>在三元圖的打點資料中，我們亦可將點利用大小表示量級，或利用顏色表示類別，其設定方式與<a href="資料視覺化.html#散布圖"><code>geom_point()</code></a>函式完全一致。以上述總統投票結果資料為例，針對不同縣市給予不同顏色，如是可進一步觀察各縣市的政治傾向。</p>
-<div class="sourceCode" id="cb104"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb104-1"><a href="資料視覺化.html#cb104-1" tabindex="-1"></a><span class="fu">ggtern</span>(<span class="at">data=</span>nor_vote, <span class="fu">aes</span>(<span class="at">x=</span>TPP, <span class="at">y=</span>DPP, <span class="at">z=</span>KMT))<span class="sc">+</span></span>
-<span id="cb104-2"><a href="資料視覺化.html#cb104-2" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="fu">aes</span>(<span class="at">color=</span>COUNTYNAME))</span></code></pre></div>
-<p><img src="series_files/figure-html/geom-ternary-eg2-1.png" width="70%" style="display: block; margin: auto;" /></p>
+<div class="sourceCode" id="cb103"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb103-1"><a href="資料視覺化.html#cb103-1" tabindex="-1"></a><span class="fu">ggtern</span>(<span class="at">data=</span>nor_vote, <span class="fu">aes</span>(<span class="at">x=</span>TPP, <span class="at">y=</span>DPP, <span class="at">z=</span>KMT))<span class="sc">+</span></span>
+<span id="cb103-2"><a href="資料視覺化.html#cb103-2" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="fu">aes</span>(<span class="at">color=</span>COUNTYNAME))</span></code></pre></div>
+<p><img src="Transport-Analysis-R_files/figure-html/geom-ternary-eg2-1.png" width="70%" style="display: block; margin: auto;" /></p>
 <p style="color:#003D79;font-size:18px;line-height:2">
 <strong>⌾ 三元圖設計細節調整</strong>
 </p>
 <p>除以上調整外，在<code>ggtern</code>套件中另外提供諸多函式可調整圖表的細節，如<code>tern_limits()</code>可用以設定座標軸的標記間隔，其中設定<code>breaks=</code>引數可調整之。以下程式碼中<code>breaks=seq(0.1,1,by=0.1)</code>表示由 0.1 始標記，並每 0.1 為間隔標至 1。另外該套件亦提供許多<a href="https://rdrr.io/cran/ggtern/man/ggtern_themes.html">主題設定的函式</a>，皆以<code>theme_</code>開頭，如以下程式碼中利用<code>theme_arrownormal()</code>函式在三角形的邊上加上箭頭，用以表示特定類別的傾向，有利於觀察與判讀。</p>
-<div class="sourceCode" id="cb105"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb105-1"><a href="資料視覺化.html#cb105-1" tabindex="-1"></a><span class="fu">ggtern</span>(<span class="at">data=</span>nor_vote, <span class="fu">aes</span>(<span class="at">x=</span>TPP, <span class="at">y=</span>DPP, <span class="at">z=</span>KMT))<span class="sc">+</span></span>
-<span id="cb105-2"><a href="資料視覺化.html#cb105-2" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="fu">aes</span>(<span class="at">color=</span>COUNTYNAME))<span class="sc">+</span></span>
-<span id="cb105-3"><a href="資料視覺化.html#cb105-3" tabindex="-1"></a>  <span class="fu">tern_limits</span>(<span class="at">breaks=</span><span class="fu">seq</span>(<span class="fl">0.1</span>,<span class="dv">1</span>,<span class="at">by=</span><span class="fl">0.1</span>))<span class="sc">+</span></span>
-<span id="cb105-4"><a href="資料視覺化.html#cb105-4" tabindex="-1"></a>  <span class="fu">theme_arrownormal</span>()</span></code></pre></div>
-<p><img src="series_files/figure-html/geom-ternary-eg3-1.png" width="70%" style="display: block; margin: auto;" /></p>
+<div class="sourceCode" id="cb104"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb104-1"><a href="資料視覺化.html#cb104-1" tabindex="-1"></a><span class="fu">ggtern</span>(<span class="at">data=</span>nor_vote, <span class="fu">aes</span>(<span class="at">x=</span>TPP, <span class="at">y=</span>DPP, <span class="at">z=</span>KMT))<span class="sc">+</span></span>
+<span id="cb104-2"><a href="資料視覺化.html#cb104-2" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="fu">aes</span>(<span class="at">color=</span>COUNTYNAME))<span class="sc">+</span></span>
+<span id="cb104-3"><a href="資料視覺化.html#cb104-3" tabindex="-1"></a>  <span class="fu">tern_limits</span>(<span class="at">breaks=</span><span class="fu">seq</span>(<span class="fl">0.1</span>,<span class="dv">1</span>,<span class="at">by=</span><span class="fl">0.1</span>))<span class="sc">+</span></span>
+<span id="cb104-4"><a href="資料視覺化.html#cb104-4" tabindex="-1"></a>  <span class="fu">theme_arrownormal</span>()</span></code></pre></div>
+<p><img src="Transport-Analysis-R_files/figure-html/geom-ternary-eg3-1.png" width="70%" style="display: block; margin: auto;" /></p>
 </div>
 <div id="直線曲線與線段" class="section level3 hasAnchor" number="3.1.17">
 <h3><span class="header-section-number">3.1.17</span> 直線、曲線與線段<a href="資料視覺化.html#直線曲線與線段" class="anchor-section" aria-label="Anchor link to header"></a></h3>
@@ -3179,7 +3195,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </table>
 <p>此外，以上所有函式皆可透過<code>color=</code>設定線條<A href='#geom-setting-color'>顏色</A>；<code>linetype=</code>設定<A href='#geom-setting-linetype'>線條樣式</A>；<code>linewidth=</code>設定線條粗細；<code>alpha=</code>設定透明度。</p>
 <p>對於<code>geom_segment()</code>與<code>geom_curve()</code>兩函式而言，其可透過<code>arrow=</code>引數設定箭頭，而箭頭的樣式則可進一步透過<code>arrow()</code>函式建立之，該函式撰寫架構如下，其引數設定如表<a href="資料視覺化.html#tab:geom-arrow-code-tab">3.19</a>所示。</p>
-<div class="sourceCode" id="cb106"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb106-1"><a href="資料視覺化.html#cb106-1" tabindex="-1"></a><span class="fu">arrow</span>(<span class="at">angle=</span>, <span class="at">length=</span>, <span class="at">ends=</span>, <span class="at">type=</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb105"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb105-1"><a href="資料視覺化.html#cb105-1" tabindex="-1"></a><span class="fu">arrow</span>(<span class="at">angle=</span>, <span class="at">length=</span>, <span class="at">ends=</span>, <span class="at">type=</span>)</span></code></pre></div>
 <table class="table table-striped table-hover" style="font-size: 14px; margin-left: auto; margin-right: auto;">
 <caption style="font-size: initial !important;">
 <span id="tab:geom-arrow-code-tab">表 3.19: </span><code>arrow()</code>函式引數設定
@@ -3248,52 +3264,52 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <strong>⌾ 建立直線、曲線與線段</strong>
 </p>
 <p>根據表<a href="資料視覺化.html#tab:geom-linecurve-code-tab">3.18</a>羅列之所有函式，建立不同樣式的直線、曲線與線段，程式碼撰寫如下。</p>
-<div class="sourceCode" id="cb107"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb107-1"><a href="資料視覺化.html#cb107-1" tabindex="-1"></a><span class="fu">ggplot</span>()<span class="sc">+</span></span>
-<span id="cb107-2"><a href="資料視覺化.html#cb107-2" tabindex="-1"></a>  <span class="co"># 藍色水平線</span></span>
-<span id="cb107-3"><a href="資料視覺化.html#cb107-3" tabindex="-1"></a>  <span class="fu">geom_hline</span>(<span class="at">yintercept=</span><span class="fu">c</span>(<span class="dv">1</span>,<span class="dv">2</span>,<span class="dv">3</span>), <span class="at">color=</span><span class="st">&quot;blue&quot;</span>)<span class="sc">+</span></span>
-<span id="cb107-4"><a href="資料視覺化.html#cb107-4" tabindex="-1"></a>  <span class="co"># 紅色垂直線</span></span>
-<span id="cb107-5"><a href="資料視覺化.html#cb107-5" tabindex="-1"></a>  <span class="fu">geom_vline</span>(<span class="at">xintercept=</span><span class="fu">c</span>(<span class="dv">1</span>,<span class="dv">2</span>,<span class="dv">3</span>), <span class="at">color=</span><span class="st">&quot;red&quot;</span>, <span class="at">linetype=</span><span class="st">&quot;dashed&quot;</span>, <span class="at">linewidth=</span><span class="dv">1</span>)<span class="sc">+</span></span>
-<span id="cb107-6"><a href="資料視覺化.html#cb107-6" tabindex="-1"></a>  <span class="co"># 紫色斜率為0，截距為1之直線</span></span>
-<span id="cb107-7"><a href="資料視覺化.html#cb107-7" tabindex="-1"></a>  <span class="fu">geom_abline</span>(<span class="at">slope=</span><span class="dv">1</span>, <span class="at">intercept=</span><span class="dv">0</span>, <span class="at">color=</span><span class="st">&quot;purple&quot;</span>)<span class="sc">+</span></span>
-<span id="cb107-8"><a href="資料視覺化.html#cb107-8" tabindex="-1"></a>  <span class="co"># 由(1.5,1.25)至(2.5,2.25)之曲線，曲率為0.5，箭頭為封閉式</span></span>
-<span id="cb107-9"><a href="資料視覺化.html#cb107-9" tabindex="-1"></a>  <span class="fu">geom_curve</span>(<span class="fu">aes</span>(<span class="at">x=</span><span class="fl">1.5</span>, <span class="at">y=</span><span class="fl">1.25</span>, <span class="at">xend=</span><span class="fl">2.5</span>, <span class="at">yend=</span><span class="fl">2.25</span>), <span class="at">curvature=</span><span class="fl">0.5</span>, <span class="at">color=</span><span class="st">&quot;#00AEAE&quot;</span>, <span class="at">arrow=</span><span class="fu">arrow</span>(<span class="at">type=</span><span class="st">&quot;closed&quot;</span>, <span class="at">length=</span><span class="fu">unit</span>(<span class="fl">0.5</span>, <span class="st">&quot;cm&quot;</span>)))<span class="sc">+</span></span>
-<span id="cb107-10"><a href="資料視覺化.html#cb107-10" tabindex="-1"></a>  <span class="co"># 由(1.5,1.75)至(2.5,2.75)之曲線，曲率為-0.5，無箭頭</span></span>
-<span id="cb107-11"><a href="資料視覺化.html#cb107-11" tabindex="-1"></a>  <span class="fu">geom_curve</span>(<span class="fu">aes</span>(<span class="at">x=</span><span class="fl">1.5</span>, <span class="at">y=</span><span class="fl">1.75</span>, <span class="at">xend=</span><span class="fl">2.5</span>, <span class="at">yend=</span><span class="fl">2.75</span>), <span class="at">curvature=</span><span class="sc">-</span><span class="fl">0.5</span>, <span class="at">color=</span><span class="st">&quot;#00BB00&quot;</span>)<span class="sc">+</span></span>
-<span id="cb107-12"><a href="資料視覺化.html#cb107-12" tabindex="-1"></a>  <span class="co"># 由(1,2)至(1.5,3)之線段，箭頭為開放式（預設）</span></span>
-<span id="cb107-13"><a href="資料視覺化.html#cb107-13" tabindex="-1"></a>  <span class="fu">geom_segment</span>(<span class="fu">aes</span>(<span class="at">x=</span><span class="dv">1</span>, <span class="at">y=</span><span class="dv">2</span>, <span class="at">xend=</span><span class="fl">1.5</span>, <span class="at">yend=</span><span class="dv">3</span>), <span class="at">arrow=</span><span class="fu">arrow</span>(<span class="at">type=</span><span class="st">&quot;open&quot;</span>, <span class="at">length=</span><span class="fu">unit</span>(<span class="fl">0.5</span>, <span class="st">&quot;cm&quot;</span>), <span class="at">angle=</span><span class="dv">20</span>))</span></code></pre></div>
-<p><img src="series_files/figure-html/geom-linecurve-eg1-1.png" width="70%" style="display: block; margin: auto;" /></p>
+<div class="sourceCode" id="cb106"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb106-1"><a href="資料視覺化.html#cb106-1" tabindex="-1"></a><span class="fu">ggplot</span>()<span class="sc">+</span></span>
+<span id="cb106-2"><a href="資料視覺化.html#cb106-2" tabindex="-1"></a>  <span class="co"># 藍色水平線</span></span>
+<span id="cb106-3"><a href="資料視覺化.html#cb106-3" tabindex="-1"></a>  <span class="fu">geom_hline</span>(<span class="at">yintercept=</span><span class="fu">c</span>(<span class="dv">1</span>,<span class="dv">2</span>,<span class="dv">3</span>), <span class="at">color=</span><span class="st">&quot;blue&quot;</span>)<span class="sc">+</span></span>
+<span id="cb106-4"><a href="資料視覺化.html#cb106-4" tabindex="-1"></a>  <span class="co"># 紅色垂直線</span></span>
+<span id="cb106-5"><a href="資料視覺化.html#cb106-5" tabindex="-1"></a>  <span class="fu">geom_vline</span>(<span class="at">xintercept=</span><span class="fu">c</span>(<span class="dv">1</span>,<span class="dv">2</span>,<span class="dv">3</span>), <span class="at">color=</span><span class="st">&quot;red&quot;</span>, <span class="at">linetype=</span><span class="st">&quot;dashed&quot;</span>, <span class="at">linewidth=</span><span class="dv">1</span>)<span class="sc">+</span></span>
+<span id="cb106-6"><a href="資料視覺化.html#cb106-6" tabindex="-1"></a>  <span class="co"># 紫色斜率為0，截距為1之直線</span></span>
+<span id="cb106-7"><a href="資料視覺化.html#cb106-7" tabindex="-1"></a>  <span class="fu">geom_abline</span>(<span class="at">slope=</span><span class="dv">1</span>, <span class="at">intercept=</span><span class="dv">0</span>, <span class="at">color=</span><span class="st">&quot;purple&quot;</span>)<span class="sc">+</span></span>
+<span id="cb106-8"><a href="資料視覺化.html#cb106-8" tabindex="-1"></a>  <span class="co"># 由(1.5,1.25)至(2.5,2.25)之曲線，曲率為0.5，箭頭為封閉式</span></span>
+<span id="cb106-9"><a href="資料視覺化.html#cb106-9" tabindex="-1"></a>  <span class="fu">geom_curve</span>(<span class="fu">aes</span>(<span class="at">x=</span><span class="fl">1.5</span>, <span class="at">y=</span><span class="fl">1.25</span>, <span class="at">xend=</span><span class="fl">2.5</span>, <span class="at">yend=</span><span class="fl">2.25</span>), <span class="at">curvature=</span><span class="fl">0.5</span>, <span class="at">color=</span><span class="st">&quot;#00AEAE&quot;</span>, <span class="at">arrow=</span><span class="fu">arrow</span>(<span class="at">type=</span><span class="st">&quot;closed&quot;</span>, <span class="at">length=</span><span class="fu">unit</span>(<span class="fl">0.5</span>, <span class="st">&quot;cm&quot;</span>)))<span class="sc">+</span></span>
+<span id="cb106-10"><a href="資料視覺化.html#cb106-10" tabindex="-1"></a>  <span class="co"># 由(1.5,1.75)至(2.5,2.75)之曲線，曲率為-0.5，無箭頭</span></span>
+<span id="cb106-11"><a href="資料視覺化.html#cb106-11" tabindex="-1"></a>  <span class="fu">geom_curve</span>(<span class="fu">aes</span>(<span class="at">x=</span><span class="fl">1.5</span>, <span class="at">y=</span><span class="fl">1.75</span>, <span class="at">xend=</span><span class="fl">2.5</span>, <span class="at">yend=</span><span class="fl">2.75</span>), <span class="at">curvature=</span><span class="sc">-</span><span class="fl">0.5</span>, <span class="at">color=</span><span class="st">&quot;#00BB00&quot;</span>)<span class="sc">+</span></span>
+<span id="cb106-12"><a href="資料視覺化.html#cb106-12" tabindex="-1"></a>  <span class="co"># 由(1,2)至(1.5,3)之線段，箭頭為開放式（預設）</span></span>
+<span id="cb106-13"><a href="資料視覺化.html#cb106-13" tabindex="-1"></a>  <span class="fu">geom_segment</span>(<span class="fu">aes</span>(<span class="at">x=</span><span class="dv">1</span>, <span class="at">y=</span><span class="dv">2</span>, <span class="at">xend=</span><span class="fl">1.5</span>, <span class="at">yend=</span><span class="dv">3</span>), <span class="at">arrow=</span><span class="fu">arrow</span>(<span class="at">type=</span><span class="st">&quot;open&quot;</span>, <span class="at">length=</span><span class="fu">unit</span>(<span class="fl">0.5</span>, <span class="st">&quot;cm&quot;</span>), <span class="at">angle=</span><span class="dv">20</span>))</span></code></pre></div>
+<p><img src="Transport-Analysis-R_files/figure-html/geom-linecurve-eg1-1.png" width="70%" style="display: block; margin: auto;" /></p>
 <p style="color:#003D79;font-size:18px;line-height:2">
 <strong>⌾ 輔助線功能</strong>
 </p>
 <p>在圖表中有時會利用額外的直線、曲線或線段表達資料的分界與特殊的標示。以下範例在直方圖上另標註水平線，並加上文字說明以標註額外訊息，程式碼撰寫如下。</p>
-<div class="sourceCode" id="cb108"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb108-1"><a href="資料視覺化.html#cb108-1" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data=</span>airquality, <span class="fu">aes</span>(<span class="at">x=</span>Temp))<span class="sc">+</span></span>
-<span id="cb108-2"><a href="資料視覺化.html#cb108-2" tabindex="-1"></a>  <span class="fu">geom_histogram</span>(<span class="at">bins=</span><span class="dv">10</span>)<span class="sc">+</span></span>
-<span id="cb108-3"><a href="資料視覺化.html#cb108-3" tabindex="-1"></a>  <span class="fu">geom_hline</span>(<span class="at">yintercept=</span><span class="dv">20</span>, <span class="at">color=</span><span class="st">&quot;red&quot;</span>, <span class="at">linetype=</span><span class="st">&quot;dashed&quot;</span>)<span class="sc">+</span></span>
-<span id="cb108-4"><a href="資料視覺化.html#cb108-4" tabindex="-1"></a>  <span class="fu">geom_text</span>(<span class="fu">aes</span>(<span class="at">x=</span><span class="dv">50</span>, <span class="at">y=</span><span class="dv">22</span>, <span class="at">label=</span><span class="st">&quot;門檻值&quot;</span>), <span class="at">color=</span><span class="st">&quot;red&quot;</span>)</span></code></pre></div>
-<p><img src="series_files/figure-html/geom-linecurve-eg2-1.png" width="70%" style="display: block; margin: auto;" /></p>
+<div class="sourceCode" id="cb107"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb107-1"><a href="資料視覺化.html#cb107-1" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data=</span>airquality, <span class="fu">aes</span>(<span class="at">x=</span>Temp))<span class="sc">+</span></span>
+<span id="cb107-2"><a href="資料視覺化.html#cb107-2" tabindex="-1"></a>  <span class="fu">geom_histogram</span>(<span class="at">bins=</span><span class="dv">10</span>)<span class="sc">+</span></span>
+<span id="cb107-3"><a href="資料視覺化.html#cb107-3" tabindex="-1"></a>  <span class="fu">geom_hline</span>(<span class="at">yintercept=</span><span class="dv">20</span>, <span class="at">color=</span><span class="st">&quot;red&quot;</span>, <span class="at">linetype=</span><span class="st">&quot;dashed&quot;</span>)<span class="sc">+</span></span>
+<span id="cb107-4"><a href="資料視覺化.html#cb107-4" tabindex="-1"></a>  <span class="fu">geom_text</span>(<span class="fu">aes</span>(<span class="at">x=</span><span class="dv">50</span>, <span class="at">y=</span><span class="dv">22</span>, <span class="at">label=</span><span class="st">&quot;門檻值&quot;</span>), <span class="at">color=</span><span class="st">&quot;red&quot;</span>)</span></code></pre></div>
+<p><img src="Transport-Analysis-R_files/figure-html/geom-linecurve-eg2-1.png" width="70%" style="display: block; margin: auto;" /></p>
 <p style="color:#003D79;font-size:18px;line-height:2">
 <strong>⌾ 曲線繪製流動與方向</strong>
 </p>
 <p>曲線亦可用以表示點之間的流動，其中箭頭可表示流動方向；線條粗細表示流動量。再次以<A href='#scmig'>社會遷入與遷出資料</A>為例，若欲在圖中標記各直轄市的位置以及臺中市「社會遷出」的概況，程式碼撰寫如下。</p>
-<div class="sourceCode" id="cb109"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb109-1"><a href="資料視覺化.html#cb109-1" tabindex="-1"></a><span class="co"># 讀取資料</span></span>
-<span id="cb109-2"><a href="資料視覺化.html#cb109-2" tabindex="-1"></a>scmig<span class="ot">=</span><span class="fu">read.csv</span>(<span class="st">&quot;https://raw.githubusercontent.com/ChiaJung-Yeh/Transport-Analysis/master/Data/social_migration.csv&quot;</span>)</span>
-<span id="cb109-3"><a href="資料視覺化.html#cb109-3" tabindex="-1"></a></span>
-<span id="cb109-4"><a href="資料視覺化.html#cb109-4" tabindex="-1"></a><span class="co"># 將資料修正為長資料</span></span>
-<span id="cb109-5"><a href="資料視覺化.html#cb109-5" tabindex="-1"></a>scmig<span class="ot">=</span><span class="fu">melt</span>(scmig, <span class="at">id.vars=</span><span class="st">&quot;X&quot;</span>, <span class="at">measure.vars=</span><span class="dv">2</span><span class="sc">:</span><span class="dv">7</span>, <span class="at">variable.name=</span><span class="st">&quot;To&quot;</span>, <span class="at">value.name=</span><span class="st">&quot;Migration&quot;</span>)<span class="sc">%&gt;%</span></span>
-<span id="cb109-6"><a href="資料視覺化.html#cb109-6" tabindex="-1"></a>  <span class="fu">rename</span>(<span class="at">From=</span>X)<span class="sc">%&gt;%</span></span>
-<span id="cb109-7"><a href="資料視覺化.html#cb109-7" tabindex="-1"></a>  <span class="fu">filter</span>(<span class="sc">!</span><span class="fu">is.na</span>(Migration))</span>
-<span id="cb109-8"><a href="資料視覺化.html#cb109-8" tabindex="-1"></a></span>
-<span id="cb109-9"><a href="資料視覺化.html#cb109-9" tabindex="-1"></a><span class="co"># 各縣市經緯度資料</span></span>
-<span id="cb109-10"><a href="資料視覺化.html#cb109-10" tabindex="-1"></a>county_location<span class="ot">=</span><span class="fu">data.frame</span>(<span class="at">COUNTYNAME=</span><span class="fu">c</span>(<span class="st">&quot;臺北市&quot;</span>,<span class="st">&quot;新北市&quot;</span>,<span class="st">&quot;臺中市&quot;</span>,<span class="st">&quot;臺南市&quot;</span>,<span class="st">&quot;高雄市&quot;</span>,<span class="st">&quot;桃園市&quot;</span>),</span>
-<span id="cb109-11"><a href="資料視覺化.html#cb109-11" tabindex="-1"></a>                           <span class="at">X=</span><span class="fu">c</span>(<span class="fl">121.553</span>, <span class="fl">121.595</span>, <span class="fl">120.892</span>, <span class="fl">120.325</span>, <span class="fl">120.614</span>, <span class="fl">121.258</span>),</span>
-<span id="cb109-12"><a href="資料視覺化.html#cb109-12" tabindex="-1"></a>                           <span class="at">Y=</span><span class="fu">c</span>(<span class="fl">25.083</span>, <span class="fl">24.987</span>, <span class="fl">24.238</span>, <span class="fl">23.151</span>, <span class="fl">22.993</span>, <span class="fl">24.903</span>))</span>
-<span id="cb109-13"><a href="資料視覺化.html#cb109-13" tabindex="-1"></a></span>
-<span id="cb109-14"><a href="資料視覺化.html#cb109-14" tabindex="-1"></a><span class="co"># 貼附經緯度資料</span></span>
-<span id="cb109-15"><a href="資料視覺化.html#cb109-15" tabindex="-1"></a>scmig<span class="ot">=</span><span class="fu">left_join</span>(scmig, county_location, <span class="at">by=</span><span class="fu">c</span>(<span class="st">&quot;From&quot;</span><span class="ot">=</span><span class="st">&quot;COUNTYNAME&quot;</span>))<span class="sc">%&gt;%</span></span>
-<span id="cb109-16"><a href="資料視覺化.html#cb109-16" tabindex="-1"></a>  <span class="fu">rename</span>(<span class="at">From_X=</span>X, <span class="at">From_Y=</span>Y)<span class="sc">%&gt;%</span></span>
-<span id="cb109-17"><a href="資料視覺化.html#cb109-17" tabindex="-1"></a>  <span class="fu">left_join</span>(county_location, <span class="at">by=</span><span class="fu">c</span>(<span class="st">&quot;To&quot;</span><span class="ot">=</span><span class="st">&quot;COUNTYNAME&quot;</span>))<span class="sc">%&gt;%</span></span>
-<span id="cb109-18"><a href="資料視覺化.html#cb109-18" tabindex="-1"></a>  <span class="fu">rename</span>(<span class="at">To_X=</span>X, <span class="at">To_Y=</span>Y)<span class="sc">%&gt;%</span></span>
-<span id="cb109-19"><a href="資料視覺化.html#cb109-19" tabindex="-1"></a>  <span class="fu">filter</span>(From<span class="sc">==</span><span class="st">&quot;臺中市&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb108"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb108-1"><a href="資料視覺化.html#cb108-1" tabindex="-1"></a><span class="co"># 讀取資料</span></span>
+<span id="cb108-2"><a href="資料視覺化.html#cb108-2" tabindex="-1"></a>scmig<span class="ot">=</span><span class="fu">read.csv</span>(<span class="st">&quot;https://raw.githubusercontent.com/ChiaJung-Yeh/Transport-Analysis/master/Data/social_migration.csv&quot;</span>)</span>
+<span id="cb108-3"><a href="資料視覺化.html#cb108-3" tabindex="-1"></a></span>
+<span id="cb108-4"><a href="資料視覺化.html#cb108-4" tabindex="-1"></a><span class="co"># 將資料修正為長資料</span></span>
+<span id="cb108-5"><a href="資料視覺化.html#cb108-5" tabindex="-1"></a>scmig<span class="ot">=</span><span class="fu">melt</span>(scmig, <span class="at">id.vars=</span><span class="st">&quot;X&quot;</span>, <span class="at">measure.vars=</span><span class="dv">2</span><span class="sc">:</span><span class="dv">7</span>, <span class="at">variable.name=</span><span class="st">&quot;To&quot;</span>, <span class="at">value.name=</span><span class="st">&quot;Migration&quot;</span>)<span class="sc">%&gt;%</span></span>
+<span id="cb108-6"><a href="資料視覺化.html#cb108-6" tabindex="-1"></a>  <span class="fu">rename</span>(<span class="at">From=</span>X)<span class="sc">%&gt;%</span></span>
+<span id="cb108-7"><a href="資料視覺化.html#cb108-7" tabindex="-1"></a>  <span class="fu">filter</span>(<span class="sc">!</span><span class="fu">is.na</span>(Migration))</span>
+<span id="cb108-8"><a href="資料視覺化.html#cb108-8" tabindex="-1"></a></span>
+<span id="cb108-9"><a href="資料視覺化.html#cb108-9" tabindex="-1"></a><span class="co"># 各縣市經緯度資料</span></span>
+<span id="cb108-10"><a href="資料視覺化.html#cb108-10" tabindex="-1"></a>county_location<span class="ot">=</span><span class="fu">data.frame</span>(<span class="at">COUNTYNAME=</span><span class="fu">c</span>(<span class="st">&quot;臺北市&quot;</span>,<span class="st">&quot;新北市&quot;</span>,<span class="st">&quot;臺中市&quot;</span>,<span class="st">&quot;臺南市&quot;</span>,<span class="st">&quot;高雄市&quot;</span>,<span class="st">&quot;桃園市&quot;</span>),</span>
+<span id="cb108-11"><a href="資料視覺化.html#cb108-11" tabindex="-1"></a>                           <span class="at">X=</span><span class="fu">c</span>(<span class="fl">121.553</span>, <span class="fl">121.595</span>, <span class="fl">120.892</span>, <span class="fl">120.325</span>, <span class="fl">120.614</span>, <span class="fl">121.258</span>),</span>
+<span id="cb108-12"><a href="資料視覺化.html#cb108-12" tabindex="-1"></a>                           <span class="at">Y=</span><span class="fu">c</span>(<span class="fl">25.083</span>, <span class="fl">24.987</span>, <span class="fl">24.238</span>, <span class="fl">23.151</span>, <span class="fl">22.993</span>, <span class="fl">24.903</span>))</span>
+<span id="cb108-13"><a href="資料視覺化.html#cb108-13" tabindex="-1"></a></span>
+<span id="cb108-14"><a href="資料視覺化.html#cb108-14" tabindex="-1"></a><span class="co"># 貼附經緯度資料</span></span>
+<span id="cb108-15"><a href="資料視覺化.html#cb108-15" tabindex="-1"></a>scmig<span class="ot">=</span><span class="fu">left_join</span>(scmig, county_location, <span class="at">by=</span><span class="fu">c</span>(<span class="st">&quot;From&quot;</span><span class="ot">=</span><span class="st">&quot;COUNTYNAME&quot;</span>))<span class="sc">%&gt;%</span></span>
+<span id="cb108-16"><a href="資料視覺化.html#cb108-16" tabindex="-1"></a>  <span class="fu">rename</span>(<span class="at">From_X=</span>X, <span class="at">From_Y=</span>Y)<span class="sc">%&gt;%</span></span>
+<span id="cb108-17"><a href="資料視覺化.html#cb108-17" tabindex="-1"></a>  <span class="fu">left_join</span>(county_location, <span class="at">by=</span><span class="fu">c</span>(<span class="st">&quot;To&quot;</span><span class="ot">=</span><span class="st">&quot;COUNTYNAME&quot;</span>))<span class="sc">%&gt;%</span></span>
+<span id="cb108-18"><a href="資料視覺化.html#cb108-18" tabindex="-1"></a>  <span class="fu">rename</span>(<span class="at">To_X=</span>X, <span class="at">To_Y=</span>Y)<span class="sc">%&gt;%</span></span>
+<span id="cb108-19"><a href="資料視覺化.html#cb108-19" tabindex="-1"></a>  <span class="fu">filter</span>(From<span class="sc">==</span><span class="st">&quot;臺中市&quot;</span>)</span></code></pre></div>
 <p>以上程式碼中首先透過<a href="r-語言基礎語法.html#csv-與-txt-檔"><code>read.csv()</code></a>函式讀取社會遷移資料，由於該資料為一矩陣，記錄各直轄市間的流動情形，故在此須先將社會遷移的原始資料轉換為長資料，以便後續處理資料與繪圖。<code>county_location</code>資料為各縣市的名稱與經度（X）、緯度（Y）資料，記錄各直轄市的中心點位置，隨後將該資料與<code>scmig</code>資料貼附後，並篩選遷出城市，亦即出發點（From）為臺中市的資料，即可進一步繪製臺中市的社會遷出分布圖。關於以上程式碼中各函式的功能參見如下：</p>
 <ul>
 <li><a href="資料清洗與處理.html#資料型態轉換"><code>melt()</code></a>:將社會遷移的資料轉換為長資料<br />
@@ -3303,13 +3319,13 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li><a href="資料清洗與處理.html#連接資料"><code>left_join()</code></a>:將社會遷移的資料貼附經緯度屬性，以便後續繪圖</li>
 </ul>
 <p>最後繪製圖表如下，其中利用<code>geom_curve()</code>函式標記臺中市到達其他直轄市的社會遷出，並透過線條粗細表示移動人口的量。此外透<a href="資料視覺化.html#散布圖"><code>geom_point()</code></a>函式標記各直轄市位置，且利用<a href="資料視覺化.html#標註文字與標籤"><code>geom_text()</code></a>函式標註直轄市名稱。</p>
-<div class="sourceCode" id="cb110"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb110-1"><a href="資料視覺化.html#cb110-1" tabindex="-1"></a><span class="fu">ggplot</span>()<span class="sc">+</span></span>
-<span id="cb110-2"><a href="資料視覺化.html#cb110-2" tabindex="-1"></a>  <span class="fu">geom_curve</span>(<span class="at">data=</span>scmig, <span class="fu">aes</span>(<span class="at">x=</span>From_X, <span class="at">y=</span>From_Y, <span class="at">xend=</span>To_X, <span class="at">yend=</span>To_Y, <span class="at">linewidth=</span>Migration),</span>
-<span id="cb110-3"><a href="資料視覺化.html#cb110-3" tabindex="-1"></a>             <span class="at">color=</span><span class="st">&quot;#7B7B7B&quot;</span>, <span class="at">curvature=</span><span class="fl">0.2</span>,</span>
-<span id="cb110-4"><a href="資料視覺化.html#cb110-4" tabindex="-1"></a>             <span class="at">arrow=</span><span class="fu">arrow</span>(<span class="at">type=</span><span class="st">&quot;closed&quot;</span>, <span class="at">length=</span><span class="fu">unit</span>(<span class="fl">0.3</span>, <span class="st">&quot;cm&quot;</span>)))<span class="sc">+</span></span>
-<span id="cb110-5"><a href="資料視覺化.html#cb110-5" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="at">data=</span>county_location, <span class="fu">aes</span>(<span class="at">x=</span>X, <span class="at">y=</span>Y, <span class="at">color=</span>COUNTYNAME), <span class="at">size=</span><span class="dv">5</span>, <span class="at">show.legend=</span>F)<span class="sc">+</span></span>
-<span id="cb110-6"><a href="資料視覺化.html#cb110-6" tabindex="-1"></a>  <span class="fu">geom_text</span>(<span class="at">data=</span>county_location, <span class="fu">aes</span>(<span class="at">x=</span>X, <span class="at">y=</span>Y, <span class="at">label=</span>COUNTYNAME), <span class="at">size=</span><span class="dv">5</span>)</span></code></pre></div>
-<p><img src="series_files/figure-html/geom-linecurve-eg4-1.png" width="70%" style="display: block; margin: auto;" /></p>
+<div class="sourceCode" id="cb109"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb109-1"><a href="資料視覺化.html#cb109-1" tabindex="-1"></a><span class="fu">ggplot</span>()<span class="sc">+</span></span>
+<span id="cb109-2"><a href="資料視覺化.html#cb109-2" tabindex="-1"></a>  <span class="fu">geom_curve</span>(<span class="at">data=</span>scmig, <span class="fu">aes</span>(<span class="at">x=</span>From_X, <span class="at">y=</span>From_Y, <span class="at">xend=</span>To_X, <span class="at">yend=</span>To_Y, <span class="at">linewidth=</span>Migration),</span>
+<span id="cb109-3"><a href="資料視覺化.html#cb109-3" tabindex="-1"></a>             <span class="at">color=</span><span class="st">&quot;#7B7B7B&quot;</span>, <span class="at">curvature=</span><span class="fl">0.2</span>,</span>
+<span id="cb109-4"><a href="資料視覺化.html#cb109-4" tabindex="-1"></a>             <span class="at">arrow=</span><span class="fu">arrow</span>(<span class="at">type=</span><span class="st">&quot;closed&quot;</span>, <span class="at">length=</span><span class="fu">unit</span>(<span class="fl">0.3</span>, <span class="st">&quot;cm&quot;</span>)))<span class="sc">+</span></span>
+<span id="cb109-5"><a href="資料視覺化.html#cb109-5" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="at">data=</span>county_location, <span class="fu">aes</span>(<span class="at">x=</span>X, <span class="at">y=</span>Y, <span class="at">color=</span>COUNTYNAME), <span class="at">size=</span><span class="dv">5</span>, <span class="at">show.legend=</span>F)<span class="sc">+</span></span>
+<span id="cb109-6"><a href="資料視覺化.html#cb109-6" tabindex="-1"></a>  <span class="fu">geom_text</span>(<span class="at">data=</span>county_location, <span class="fu">aes</span>(<span class="at">x=</span>X, <span class="at">y=</span>Y, <span class="at">label=</span>COUNTYNAME), <span class="at">size=</span><span class="dv">5</span>)</span></code></pre></div>
+<p><img src="Transport-Analysis-R_files/figure-html/geom-linecurve-eg4-1.png" width="70%" style="display: block; margin: auto;" /></p>
 <p>由以上繪圖結果可知，臺中市大部分的人口係移動至新北市，其次為桃園市、臺北市。</p>
 </div>
 </div>
@@ -3377,7 +3393,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <code>ggtext</code>
 </td>
 <td style="text-align:left;vertical-align:middle;">
-<a href="資料視覺化.html#html-文字ggtext套件"><code>geom_richtext()</code></a>
+<a href="#html-文字ggtext套件"><code>geom_richtext()</code></a>
 </td>
 <td style="text-align:left;vertical-align:middle;">
 標註 html 文字
@@ -3385,7 +3401,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </tr>
 <tr>
 <td style="text-align:left;vertical-align:middle;">
-<a href="資料視覺化.html#html-文字ggtext套件"><code>geom_textbox()</code></a>
+<a href="#html-文字ggtext套件"><code>geom_textbox()</code></a>
 </td>
 <td style="text-align:left;vertical-align:middle;">
 標註 html 標籤
@@ -3408,13 +3424,13 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <h3><span class="header-section-number">3.2.1</span> 標註文字與標籤<a href="資料視覺化.html#標註文字與標籤" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <p>「標註文字」係指在圖片上加入純文字，而「標註標籤」則是指加入具有背景、邊框的文字，範例如圖<a href="資料視覺化.html#fig:geom-text-eg0">3.14</a>所示所示。在<code>ggplot2</code>套件中，標註文字可利用<code>geom_text()</code>函式；標註標籤可利用<code>geom_label()</code>函式，兩函式的撰寫架構如下。</p>
 <div class="figure" style="text-align: center"><span style="display:block;" id="fig:geom-text-eg0"></span>
-<img src="series_files/figure-html/geom-text-eg0-1.png" alt="標註文字與標籤圖示" width="70%" />
+<img src="Transport-Analysis-R_files/figure-html/geom-text-eg0-1.png" alt="標註文字與標籤圖示" width="70%" />
 <p class="caption">
 圖 3.14: 標註文字與標籤圖示
 </p>
 </div>
-<div class="sourceCode" id="cb111"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb111-1"><a href="資料視覺化.html#cb111-1" tabindex="-1"></a><span class="fu">geom_text</span>(<span class="fu">aes</span>(<span class="at">x=</span>, <span class="at">y=</span>, <span class="at">label=</span>), <span class="at">color=</span>, <span class="at">size=</span>, <span class="at">alpha=</span>, <span class="at">angle=</span>, <span class="at">family=</span>, <span class="at">fontface=</span>, <span class="at">hjust=</span>, <span class="at">vjust=</span>)</span>
-<span id="cb111-2"><a href="資料視覺化.html#cb111-2" tabindex="-1"></a><span class="fu">geom_label</span>(<span class="fu">aes</span>(<span class="at">x=</span>, <span class="at">y=</span>, <span class="at">label=</span>), <span class="at">color=</span>, <span class="at">fill=</span>, <span class="at">size=</span>, <span class="at">alpha=</span>, <span class="at">family=</span>, <span class="at">fontface=</span>, <span class="at">hjust=</span>, <span class="at">vjust=</span>, <span class="at">label.r=</span>, <span class="at">label.size=</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb110"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb110-1"><a href="資料視覺化.html#cb110-1" tabindex="-1"></a><span class="fu">geom_text</span>(<span class="fu">aes</span>(<span class="at">x=</span>, <span class="at">y=</span>, <span class="at">label=</span>), <span class="at">color=</span>, <span class="at">size=</span>, <span class="at">alpha=</span>, <span class="at">angle=</span>, <span class="at">family=</span>, <span class="at">fontface=</span>, <span class="at">hjust=</span>, <span class="at">vjust=</span>)</span>
+<span id="cb110-2"><a href="資料視覺化.html#cb110-2" tabindex="-1"></a><span class="fu">geom_label</span>(<span class="fu">aes</span>(<span class="at">x=</span>, <span class="at">y=</span>, <span class="at">label=</span>), <span class="at">color=</span>, <span class="at">fill=</span>, <span class="at">size=</span>, <span class="at">alpha=</span>, <span class="at">family=</span>, <span class="at">fontface=</span>, <span class="at">hjust=</span>, <span class="at">vjust=</span>, <span class="at">label.r=</span>, <span class="at">label.size=</span>)</span></code></pre></div>
 <p><code>geom_text()</code>與<code>geom_label()</code>函式中的各引數設定請參考表<a href="資料視覺化.html#tab:tab-geom-text">3.21</a>。</p>
 <table class="table table-striped table-hover" style="font-size: 14px; margin-left: auto; margin-right: auto;">
 <caption style="font-size: initial !important;">
@@ -3715,26 +3731,26 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </tbody>
 </table>
 <p>以下範例展示設定字體與字型的方法，再次以 <A href='#tw-vote'>2024 年總統大選</A>資料為例，並萃取新竹縣的資料，繪製各鄉鎮的政黨得票率比例長條圖，最後在長條上標註得票比例之標籤（<code>geom_label()</code>）及行政區名稱之文字（<code>geom_text()</code>），程式碼撰寫如下。</p>
-<div class="sourceCode" id="cb112"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb112-1"><a href="資料視覺化.html#cb112-1" tabindex="-1"></a><span class="co"># 先在系統中設定字體</span></span>
-<span id="cb112-2"><a href="資料視覺化.html#cb112-2" tabindex="-1"></a><span class="fu">windowsFonts</span>(<span class="at">biaukai=</span><span class="fu">windowsFont</span>(<span class="st">&quot;標楷體&quot;</span>))</span>
-<span id="cb112-3"><a href="資料視覺化.html#cb112-3" tabindex="-1"></a><span class="fu">windowsFonts</span>(<span class="at">TNR=</span><span class="fu">windowsFont</span>(<span class="st">&quot;Times New Roman&quot;</span>))</span>
-<span id="cb112-4"><a href="資料視覺化.html#cb112-4" tabindex="-1"></a></span>
-<span id="cb112-5"><a href="資料視覺化.html#cb112-5" tabindex="-1"></a><span class="co"># 讀取投總統大選資料並篩選出新竹市資料(計算邏輯請參考長條圖中「加入文字或標籤」的範例)</span></span>
-<span id="cb112-6"><a href="資料視覺化.html#cb112-6" tabindex="-1"></a>hs_vote<span class="ot">=</span><span class="fu">read.csv</span>(<span class="st">&quot;https://raw.githubusercontent.com/ChiaJung-Yeh/Transport-Analysis/master/Data/tw_president_vote.csv&quot;</span>)<span class="sc">%&gt;%</span></span>
-<span id="cb112-7"><a href="資料視覺化.html#cb112-7" tabindex="-1"></a>  <span class="fu">filter</span>(COUNTYNAME<span class="sc">==</span><span class="st">&quot;新竹縣&quot;</span>)<span class="sc">%&gt;%</span></span>
-<span id="cb112-8"><a href="資料視覺化.html#cb112-8" tabindex="-1"></a>  <span class="fu">melt</span>(<span class="at">id.vars=</span><span class="st">&quot;TOWNNAME&quot;</span>, <span class="at">measure.vars=</span><span class="fu">c</span>(<span class="st">&quot;TPP&quot;</span>,<span class="st">&quot;DPP&quot;</span>,<span class="st">&quot;KMT&quot;</span>), <span class="at">variable.name=</span><span class="st">&quot;Party&quot;</span>, <span class="at">value.name=</span><span class="st">&quot;Rate&quot;</span>)</span>
-<span id="cb112-9"><a href="資料視覺化.html#cb112-9" tabindex="-1"></a>hs_vote<span class="sc">$</span>Party<span class="ot">=</span><span class="fu">factor</span>(hs_vote<span class="sc">$</span>Party, <span class="at">levels=</span><span class="fu">c</span>(<span class="st">&quot;TPP&quot;</span>,<span class="st">&quot;DPP&quot;</span>,<span class="st">&quot;KMT&quot;</span>))</span>
-<span id="cb112-10"><a href="資料視覺化.html#cb112-10" tabindex="-1"></a>hs_vote<span class="ot">=</span><span class="fu">group_by</span>(hs_vote, TOWNNAME)<span class="sc">%&gt;%</span></span>
-<span id="cb112-11"><a href="資料視覺化.html#cb112-11" tabindex="-1"></a>  <span class="fu">arrange</span>(TOWNNAME, <span class="fu">desc</span>(Party))<span class="sc">%&gt;%</span></span>
-<span id="cb112-12"><a href="資料視覺化.html#cb112-12" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">Rate_cum=</span><span class="fu">cumsum</span>(Rate))</span>
-<span id="cb112-13"><a href="資料視覺化.html#cb112-13" tabindex="-1"></a>hs_vote<span class="sc">$</span>lab_y<span class="ot">=</span>hs_vote<span class="sc">$</span>Rate_cum<span class="sc">-</span>hs_vote<span class="sc">$</span>Rate<span class="sc">/</span><span class="dv">2</span></span>
-<span id="cb112-14"><a href="資料視覺化.html#cb112-14" tabindex="-1"></a>  </span>
-<span id="cb112-15"><a href="資料視覺化.html#cb112-15" tabindex="-1"></a><span class="co"># 繪製圖表時設定family、fontface、hjust、nudge_y引數</span></span>
-<span id="cb112-16"><a href="資料視覺化.html#cb112-16" tabindex="-1"></a><span class="fu">ggplot</span>()<span class="sc">+</span></span>
-<span id="cb112-17"><a href="資料視覺化.html#cb112-17" tabindex="-1"></a>  <span class="fu">geom_col</span>(<span class="at">data=</span>hs_vote, <span class="fu">aes</span>(<span class="at">x=</span>TOWNNAME, <span class="at">y=</span>Rate, <span class="at">fill=</span>Party), <span class="at">width=</span><span class="fl">0.5</span>)<span class="sc">+</span></span>
-<span id="cb112-18"><a href="資料視覺化.html#cb112-18" tabindex="-1"></a>  <span class="fu">geom_label</span>(<span class="at">data=</span>hs_vote, <span class="fu">aes</span>(<span class="at">x=</span>TOWNNAME, <span class="at">y=</span>lab_y, <span class="at">label=</span><span class="fu">paste0</span>(<span class="fu">round</span>(Rate<span class="sc">*</span><span class="dv">100</span>, <span class="dv">1</span>), <span class="st">&quot;%&quot;</span>)), <span class="at">size=</span><span class="dv">3</span>, <span class="at">family=</span><span class="st">&quot;TNR&quot;</span>, <span class="at">nudge_y=</span><span class="sc">-</span><span class="fl">0.05</span>, <span class="at">color=</span><span class="st">&quot;white&quot;</span>, <span class="at">fill=</span><span class="st">&quot;#7B7B7B&quot;</span>)<span class="sc">+</span></span>
-<span id="cb112-19"><a href="資料視覺化.html#cb112-19" tabindex="-1"></a>  <span class="fu">geom_text</span>(<span class="at">data=</span>hs_vote, <span class="fu">aes</span>(<span class="at">x=</span>TOWNNAME, <span class="at">y=</span><span class="dv">1</span>, <span class="at">label=</span>TOWNNAME), <span class="at">size=</span><span class="dv">3</span>, <span class="at">family=</span><span class="st">&quot;biaukai&quot;</span>, <span class="at">angle=</span><span class="dv">45</span>, <span class="at">hjust=</span><span class="dv">1</span>)</span></code></pre></div>
-<p><img src="series_files/figure-html/geom-text-eg2-1.png" width="80%" style="display: block; margin: auto;" /></p>
+<div class="sourceCode" id="cb111"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb111-1"><a href="資料視覺化.html#cb111-1" tabindex="-1"></a><span class="co"># 先在系統中設定字體</span></span>
+<span id="cb111-2"><a href="資料視覺化.html#cb111-2" tabindex="-1"></a><span class="fu">windowsFonts</span>(<span class="at">biaukai=</span><span class="fu">windowsFont</span>(<span class="st">&quot;標楷體&quot;</span>))</span>
+<span id="cb111-3"><a href="資料視覺化.html#cb111-3" tabindex="-1"></a><span class="fu">windowsFonts</span>(<span class="at">TNR=</span><span class="fu">windowsFont</span>(<span class="st">&quot;Times New Roman&quot;</span>))</span>
+<span id="cb111-4"><a href="資料視覺化.html#cb111-4" tabindex="-1"></a></span>
+<span id="cb111-5"><a href="資料視覺化.html#cb111-5" tabindex="-1"></a><span class="co"># 讀取投總統大選資料並篩選出新竹市資料(計算邏輯請參考長條圖中「加入文字或標籤」的範例)</span></span>
+<span id="cb111-6"><a href="資料視覺化.html#cb111-6" tabindex="-1"></a>hs_vote<span class="ot">=</span><span class="fu">read.csv</span>(<span class="st">&quot;https://raw.githubusercontent.com/ChiaJung-Yeh/Transport-Analysis/master/Data/tw_president_vote.csv&quot;</span>)<span class="sc">%&gt;%</span></span>
+<span id="cb111-7"><a href="資料視覺化.html#cb111-7" tabindex="-1"></a>  <span class="fu">filter</span>(COUNTYNAME<span class="sc">==</span><span class="st">&quot;新竹縣&quot;</span>)<span class="sc">%&gt;%</span></span>
+<span id="cb111-8"><a href="資料視覺化.html#cb111-8" tabindex="-1"></a>  <span class="fu">melt</span>(<span class="at">id.vars=</span><span class="st">&quot;TOWNNAME&quot;</span>, <span class="at">measure.vars=</span><span class="fu">c</span>(<span class="st">&quot;TPP&quot;</span>,<span class="st">&quot;DPP&quot;</span>,<span class="st">&quot;KMT&quot;</span>), <span class="at">variable.name=</span><span class="st">&quot;Party&quot;</span>, <span class="at">value.name=</span><span class="st">&quot;Rate&quot;</span>)</span>
+<span id="cb111-9"><a href="資料視覺化.html#cb111-9" tabindex="-1"></a>hs_vote<span class="sc">$</span>Party<span class="ot">=</span><span class="fu">factor</span>(hs_vote<span class="sc">$</span>Party, <span class="at">levels=</span><span class="fu">c</span>(<span class="st">&quot;TPP&quot;</span>,<span class="st">&quot;DPP&quot;</span>,<span class="st">&quot;KMT&quot;</span>))</span>
+<span id="cb111-10"><a href="資料視覺化.html#cb111-10" tabindex="-1"></a>hs_vote<span class="ot">=</span><span class="fu">group_by</span>(hs_vote, TOWNNAME)<span class="sc">%&gt;%</span></span>
+<span id="cb111-11"><a href="資料視覺化.html#cb111-11" tabindex="-1"></a>  <span class="fu">arrange</span>(TOWNNAME, <span class="fu">desc</span>(Party))<span class="sc">%&gt;%</span></span>
+<span id="cb111-12"><a href="資料視覺化.html#cb111-12" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">Rate_cum=</span><span class="fu">cumsum</span>(Rate))</span>
+<span id="cb111-13"><a href="資料視覺化.html#cb111-13" tabindex="-1"></a>hs_vote<span class="sc">$</span>lab_y<span class="ot">=</span>hs_vote<span class="sc">$</span>Rate_cum<span class="sc">-</span>hs_vote<span class="sc">$</span>Rate<span class="sc">/</span><span class="dv">2</span></span>
+<span id="cb111-14"><a href="資料視覺化.html#cb111-14" tabindex="-1"></a>  </span>
+<span id="cb111-15"><a href="資料視覺化.html#cb111-15" tabindex="-1"></a><span class="co"># 繪製圖表時設定family、fontface、hjust、nudge_y引數</span></span>
+<span id="cb111-16"><a href="資料視覺化.html#cb111-16" tabindex="-1"></a><span class="fu">ggplot</span>()<span class="sc">+</span></span>
+<span id="cb111-17"><a href="資料視覺化.html#cb111-17" tabindex="-1"></a>  <span class="fu">geom_col</span>(<span class="at">data=</span>hs_vote, <span class="fu">aes</span>(<span class="at">x=</span>TOWNNAME, <span class="at">y=</span>Rate, <span class="at">fill=</span>Party), <span class="at">width=</span><span class="fl">0.5</span>)<span class="sc">+</span></span>
+<span id="cb111-18"><a href="資料視覺化.html#cb111-18" tabindex="-1"></a>  <span class="fu">geom_label</span>(<span class="at">data=</span>hs_vote, <span class="fu">aes</span>(<span class="at">x=</span>TOWNNAME, <span class="at">y=</span>lab_y, <span class="at">label=</span><span class="fu">paste0</span>(<span class="fu">round</span>(Rate<span class="sc">*</span><span class="dv">100</span>, <span class="dv">1</span>), <span class="st">&quot;%&quot;</span>)), <span class="at">size=</span><span class="dv">3</span>, <span class="at">family=</span><span class="st">&quot;TNR&quot;</span>, <span class="at">nudge_y=</span><span class="sc">-</span><span class="fl">0.05</span>, <span class="at">color=</span><span class="st">&quot;white&quot;</span>, <span class="at">fill=</span><span class="st">&quot;#7B7B7B&quot;</span>)<span class="sc">+</span></span>
+<span id="cb111-19"><a href="資料視覺化.html#cb111-19" tabindex="-1"></a>  <span class="fu">geom_text</span>(<span class="at">data=</span>hs_vote, <span class="fu">aes</span>(<span class="at">x=</span>TOWNNAME, <span class="at">y=</span><span class="dv">1</span>, <span class="at">label=</span>TOWNNAME), <span class="at">size=</span><span class="dv">3</span>, <span class="at">family=</span><span class="st">&quot;biaukai&quot;</span>, <span class="at">angle=</span><span class="dv">45</span>, <span class="at">hjust=</span><span class="dv">1</span>)</span></code></pre></div>
+<p><img src="Transport-Analysis-R_files/figure-html/geom-text-eg2-1.png" width="80%" style="display: block; margin: auto;" /></p>
 <p>關於資料處理的過程請參考<a href="資料視覺化.html#長條圖">長條圖</a>中「加入文字或標籤」的範例，而在繪圖函式中，利用以下引數設定字體與樣式：</p>
 <ul>
 <li><a href="資料視覺化.html#文字字體與字型"><code>family=</code></a>:設定文字的字體，百分比數值使用 Times New Roman；鄉鎮市區名稱則用標楷體<br />
@@ -3754,17 +3770,17 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <ul>
 <li><u><strong>標註文字與標籤</strong></u>：<a href="資料視覺化.html#標註文字與標籤"><code>geom_text()</code></a>、<a href="資料視覺化.html#標註文字與標籤"><code>geom_label()</code></a><br />
 </li>
-<li><u><strong>標註 html 文字與標籤</strong></u>：<a href="資料視覺化.html#html-文字ggtext套件"><code>geom_richtext()</code></a>、<a href="資料視覺化.html#html-文字ggtext套件"><code>geom_textbox()</code></a><br />
+<li><u><strong>標註 html 文字與標籤</strong></u>：<a href="#html-文字ggtext套件"><code>geom_richtext()</code></a>、<a href="#html-文字ggtext套件"><code>geom_textbox()</code></a><br />
 </li>
 <li><u><strong>設定圖表主題</strong></u>：<a href="資料視覺化.html#細節樣式設定"><code>element_text()</code></a>、<a href="資料視覺化.html#細節樣式設定"><code>element_markdown()</code></a><br />
 </li>
 </ul>
 </div>
 <p>在 Windows 系統中，若欲設定字體，可利用以下函式設定之：</p>
-<div class="sourceCode" id="cb113"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb113-1"><a href="資料視覺化.html#cb113-1" tabindex="-1"></a><span class="fu">windowsFonts</span>(變數名稱<span class="ot">=</span><span class="fu">windowsFont</span>(<span class="st">&quot;字體名稱&quot;</span>))</span></code></pre></div>
+<div class="sourceCode" id="cb112"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb112-1"><a href="資料視覺化.html#cb112-1" tabindex="-1"></a><span class="fu">windowsFonts</span>(變數名稱<span class="ot">=</span><span class="fu">windowsFont</span>(<span class="st">&quot;字體名稱&quot;</span>))</span></code></pre></div>
 <p>設定完成後即可透過<code>family="變數名稱"</code>之引數設定圖片中的文字字體。而字型的設定可以透過<code>fontface=</code>設定之（惟主題樣式設定中的<a href="資料視覺化.html#細節樣式設定"><code>element_text()</code></a>是<code>face=</code>引數），包含原形（<code>plain</code>，預設）、粗體（<code>bold</code>）、斜體（<code>italic</code>）與粗斜體（<code>bold.italic</code>）。圖<a href="資料視覺化.html#fig:font-family-type">3.15</a>列舉數個字體與字型。</p>
 <div class="figure" style="text-align: center"><span style="display:block;" id="fig:font-family-type"></span>
-<img src="series_files/figure-html/font-family-type-1.png" alt="調整文字字體與字型" width="75%" />
+<img src="Transport-Analysis-R_files/figure-html/font-family-type-1.png" alt="調整文字字體與字型" width="75%" />
 <p class="caption">
 圖 3.15: 調整文字字體與字型
 </p>
@@ -3778,7 +3794,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <ul>
 <li><u><strong>標註文字與標籤</strong></u>：<a href="資料視覺化.html#標註文字與標籤"><code>geom_text()</code></a>、<a href="資料視覺化.html#標註文字與標籤"><code>geom_label()</code></a><br />
 </li>
-<li><u><strong>標註 html 文字與標籤</strong></u>：<a href="資料視覺化.html#html-文字ggtext套件"><code>geom_richtext()</code></a>、<a href="資料視覺化.html#html-文字ggtext套件"><code>geom_textbox()</code></a><br />
+<li><u><strong>標註 html 文字與標籤</strong></u>：<a href="#html-文字ggtext套件"><code>geom_richtext()</code></a>、<a href="#html-文字ggtext套件"><code>geom_textbox()</code></a><br />
 </li>
 <li><u><strong>設定圖表主題</strong></u>：<a href="資料視覺化.html#細節樣式設定"><code>element_text()</code></a>、<a href="資料視覺化.html#細節樣式設定"><code>element_markdown()</code></a><br />
 </li>
@@ -3839,7 +3855,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </tbody>
 </table>
 <div class="figure" style="text-align: center"><span style="display:block;" id="fig:font-angle-just"></span>
-<img src="series_files/figure-html/font-angle-just-1.png" alt="調整文字角度與對齊" width="100%" />
+<img src="Transport-Analysis-R_files/figure-html/font-angle-just-1.png" alt="調整文字角度與對齊" width="100%" />
 <p class="caption">
 圖 3.16: 調整文字角度與對齊
 </p>
@@ -3852,7 +3868,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <ul>
 <li><u><strong>標註文字與標籤</strong></u>：<a href="資料視覺化.html#標註文字與標籤"><code>geom_text()</code></a>、<a href="資料視覺化.html#標註文字與標籤"><code>geom_label()</code></a><br />
 </li>
-<li><u><strong>標註 html 文字與標籤</strong></u>：<a href="資料視覺化.html#html-文字ggtext套件"><code>geom_richtext()</code></a>、<a href="資料視覺化.html#html-文字ggtext套件"><code>geom_textbox()</code></a><br />
+<li><u><strong>標註 html 文字與標籤</strong></u>：<a href="#html-文字ggtext套件"><code>geom_richtext()</code></a>、<a href="#html-文字ggtext套件"><code>geom_textbox()</code></a><br />
 </li>
 <li><u><strong>設定圖表主題</strong></u>：<a href="資料視覺化.html#細節樣式設定"><code>element_text()</code></a>、<a href="資料視覺化.html#細節樣式設定"><code>element_markdown()</code></a><br />
 </li>
@@ -3860,7 +3876,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </div>
 <p>文字位移是指將所有文字或標籤往特定方向移動，如此可統一修正文字的位置。在繪圖的時候若希望永遠標註在各點的同一側，則適合利用<code>nudge_x</code>與<code>nudge_y</code>修正之。<code>nudge_x</code>是沿著橫軸往右（+）或往左（-）移動；<code>nudge_y</code>是沿著縱軸往上（+）或往下（-）移動，詳請參見圖<a href="資料視覺化.html#fig:font-nudge">3.17</a>。</p>
 <div class="figure" style="text-align: center"><span style="display:block;" id="fig:font-nudge"></span>
-<img src="series_files/figure-html/font-nudge-1.png" alt="文字位移" width="100%" />
+<img src="Transport-Analysis-R_files/figure-html/font-nudge-1.png" alt="文字位移" width="100%" />
 <p class="caption">
 圖 3.17: 文字位移
 </p>
@@ -3868,6 +3884,10 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </div>
 <div id="文字避免重疊" class="section level3 hasAnchor" number="3.2.5">
 <h3><span class="header-section-number">3.2.5</span> 文字避免重疊<a href="資料視覺化.html#文字避免重疊" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<div class="install">
+<p><strong>請下載<code>ggrepel</code>套件！</strong><br />
+<strong><code>install.packages("ggrepel")</code></strong></p>
+</div>
 <p>在<code>ggplot2</code>套件中，若有許多文字標註，很容易產生重疊的情形，此時可以安裝<code>ggrepel</code>套件，利用該套件中的<code>geom_text_repel()</code>與<code>geom_label_repel()</code>函式修正之，兩函式的設定引數與<code>geom_text()</code>及<code>geom_label()</code>函式大部分皆相同，惟能自動化調整文字或標籤的位置以避免重疊。關於此二函式額外的重要引數設定彙整如表<a href="資料視覺化.html#tab:ggrepel-code-tab">3.23</a>。</p>
 <table class="table table-striped table-hover" style="font-size: 14px; margin-left: auto; margin-right: auto;">
 <caption style="font-size: initial !important;">
@@ -3937,35 +3957,39 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <strong>⌾ 修正重疊文字</strong>
 </p>
 <p>以<code>swiss</code>資料為例，該資料記錄西元 1888 年 47 個省份的生育率（Fertility）與社經變數，包括農業人口比例（Agriculture）、小學畢業人口比例（Education）、基督教人口比例（Catholic）等。以下程式碼繪製生育率與農業人口比例之間的關係，並單純使用<code>geom_text()</code>函式標記省份名稱。</p>
-<div class="sourceCode" id="cb114"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb114-1"><a href="資料視覺化.html#cb114-1" tabindex="-1"></a>swiss_temp<span class="ot">=</span>swiss</span>
-<span id="cb114-2"><a href="資料視覺化.html#cb114-2" tabindex="-1"></a>swiss_temp<span class="sc">$</span>Province<span class="ot">=</span><span class="fu">row.names</span>(swiss_temp)</span>
-<span id="cb114-3"><a href="資料視覺化.html#cb114-3" tabindex="-1"></a><span class="fu">ggplot</span>()<span class="sc">+</span></span>
-<span id="cb114-4"><a href="資料視覺化.html#cb114-4" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="at">data=</span>swiss_temp, <span class="fu">aes</span>(<span class="at">x=</span>Fertility, <span class="at">y=</span>Agriculture))<span class="sc">+</span></span>
-<span id="cb114-5"><a href="資料視覺化.html#cb114-5" tabindex="-1"></a>  <span class="fu">geom_text</span>(<span class="at">data=</span>swiss_temp, <span class="fu">aes</span>(<span class="at">x=</span>Fertility, <span class="at">y=</span>Agriculture, <span class="at">label=</span>Province))</span></code></pre></div>
-<p><img src="series_files/figure-html/ggrepel-eg1-1.png" width="80%" style="display: block; margin: auto;" /></p>
+<div class="sourceCode" id="cb113"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb113-1"><a href="資料視覺化.html#cb113-1" tabindex="-1"></a>swiss_temp<span class="ot">=</span>swiss</span>
+<span id="cb113-2"><a href="資料視覺化.html#cb113-2" tabindex="-1"></a>swiss_temp<span class="sc">$</span>Province<span class="ot">=</span><span class="fu">row.names</span>(swiss_temp)</span>
+<span id="cb113-3"><a href="資料視覺化.html#cb113-3" tabindex="-1"></a><span class="fu">ggplot</span>()<span class="sc">+</span></span>
+<span id="cb113-4"><a href="資料視覺化.html#cb113-4" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="at">data=</span>swiss_temp, <span class="fu">aes</span>(<span class="at">x=</span>Fertility, <span class="at">y=</span>Agriculture))<span class="sc">+</span></span>
+<span id="cb113-5"><a href="資料視覺化.html#cb113-5" tabindex="-1"></a>  <span class="fu">geom_text</span>(<span class="at">data=</span>swiss_temp, <span class="fu">aes</span>(<span class="at">x=</span>Fertility, <span class="at">y=</span>Agriculture, <span class="at">label=</span>Province))</span></code></pre></div>
+<p><img src="Transport-Analysis-R_files/figure-html/ggrepel-eg1-1.png" width="80%" style="display: block; margin: auto;" /></p>
 <p>由出圖結果可知，標記的名稱有許多重疊之處，造成判讀不易，故以下進一步透過<code>geom_text_repel()</code>函式修正之，程式碼撰寫如下。</p>
+<div class="sourceCode" id="cb114"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb114-1"><a href="資料視覺化.html#cb114-1" tabindex="-1"></a><span class="fu">ggplot</span>()<span class="sc">+</span></span>
+<span id="cb114-2"><a href="資料視覺化.html#cb114-2" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="at">data=</span>swiss_temp, <span class="fu">aes</span>(<span class="at">x=</span>Fertility, <span class="at">y=</span>Agriculture))<span class="sc">+</span></span>
+<span id="cb114-3"><a href="資料視覺化.html#cb114-3" tabindex="-1"></a>  <span class="fu">geom_text_repel</span>(<span class="at">data=</span>swiss_temp, <span class="fu">aes</span>(<span class="at">x=</span>Fertility, <span class="at">y=</span>Agriculture, <span class="at">label=</span>Province))</span></code></pre></div>
+<p><img src="Transport-Analysis-R_files/figure-html/ggrepel-eg2-1.png" width="80%" style="display: block; margin: auto;" /></p>
+<p>利用<code>geom_label_repel()</code>函式標註不重疊的標籤，程式碼撰寫如下。</p>
 <div class="sourceCode" id="cb115"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb115-1"><a href="資料視覺化.html#cb115-1" tabindex="-1"></a><span class="fu">ggplot</span>()<span class="sc">+</span></span>
 <span id="cb115-2"><a href="資料視覺化.html#cb115-2" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="at">data=</span>swiss_temp, <span class="fu">aes</span>(<span class="at">x=</span>Fertility, <span class="at">y=</span>Agriculture))<span class="sc">+</span></span>
-<span id="cb115-3"><a href="資料視覺化.html#cb115-3" tabindex="-1"></a>  <span class="fu">geom_text_repel</span>(<span class="at">data=</span>swiss_temp, <span class="fu">aes</span>(<span class="at">x=</span>Fertility, <span class="at">y=</span>Agriculture, <span class="at">label=</span>Province))</span></code></pre></div>
-<p><img src="series_files/figure-html/ggrepel-eg2-1.png" width="80%" style="display: block; margin: auto;" /></p>
-<p>利用<code>geom_label_repel()</code>函式標註不重疊的標籤，程式碼撰寫如下。</p>
-<div class="sourceCode" id="cb116"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb116-1"><a href="資料視覺化.html#cb116-1" tabindex="-1"></a><span class="fu">ggplot</span>()<span class="sc">+</span></span>
-<span id="cb116-2"><a href="資料視覺化.html#cb116-2" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="at">data=</span>swiss_temp, <span class="fu">aes</span>(<span class="at">x=</span>Fertility, <span class="at">y=</span>Agriculture))<span class="sc">+</span></span>
-<span id="cb116-3"><a href="資料視覺化.html#cb116-3" tabindex="-1"></a>  <span class="fu">geom_label_repel</span>(<span class="at">data=</span>swiss_temp, <span class="fu">aes</span>(<span class="at">x=</span>Fertility, <span class="at">y=</span>Agriculture, <span class="at">label=</span>Province))</span></code></pre></div>
-<p><img src="series_files/figure-html/ggrepel-eg3-1.png" width="80%" style="display: block; margin: auto;" /></p>
+<span id="cb115-3"><a href="資料視覺化.html#cb115-3" tabindex="-1"></a>  <span class="fu">geom_label_repel</span>(<span class="at">data=</span>swiss_temp, <span class="fu">aes</span>(<span class="at">x=</span>Fertility, <span class="at">y=</span>Agriculture, <span class="at">label=</span>Province))</span></code></pre></div>
+<p><img src="Transport-Analysis-R_files/figure-html/ggrepel-eg3-1.png" width="80%" style="display: block; margin: auto;" /></p>
 <p style="color:#003D79;font-size:18px;line-height:2">
 <strong>⌾ 新增指示線與箭頭</strong>
 </p>
 <p>透過<code>min.segment.length=unit(0, "cm")</code>強制新增指示線，並透過<code>arrow()</code>函式設定箭頭樣式，程式碼撰寫如下。</p>
-<div class="sourceCode" id="cb117"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb117-1"><a href="資料視覺化.html#cb117-1" tabindex="-1"></a><span class="fu">ggplot</span>()<span class="sc">+</span></span>
-<span id="cb117-2"><a href="資料視覺化.html#cb117-2" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="at">data=</span>swiss_temp, <span class="fu">aes</span>(<span class="at">x=</span>Fertility, <span class="at">y=</span>Agriculture))<span class="sc">+</span></span>
-<span id="cb117-3"><a href="資料視覺化.html#cb117-3" tabindex="-1"></a>  <span class="fu">geom_text_repel</span>(<span class="at">data=</span>swiss_temp, <span class="fu">aes</span>(<span class="at">x=</span>Fertility, <span class="at">y=</span>Agriculture, <span class="at">label=</span>Province),</span>
-<span id="cb117-4"><a href="資料視覺化.html#cb117-4" tabindex="-1"></a>                  <span class="at">min.segment.length=</span><span class="fu">unit</span>(<span class="dv">0</span>, <span class="st">&quot;cm&quot;</span>), <span class="at">arrow=</span><span class="fu">arrow</span>(<span class="at">length=</span><span class="fu">unit</span>(<span class="fl">0.1</span>, <span class="st">&quot;cm&quot;</span>), <span class="at">type=</span><span class="st">&quot;closed&quot;</span>))</span></code></pre></div>
-<p><img src="series_files/figure-html/ggrepel-eg4-1.png" width="80%" style="display: block; margin: auto;" /></p>
+<div class="sourceCode" id="cb116"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb116-1"><a href="資料視覺化.html#cb116-1" tabindex="-1"></a><span class="fu">ggplot</span>()<span class="sc">+</span></span>
+<span id="cb116-2"><a href="資料視覺化.html#cb116-2" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="at">data=</span>swiss_temp, <span class="fu">aes</span>(<span class="at">x=</span>Fertility, <span class="at">y=</span>Agriculture))<span class="sc">+</span></span>
+<span id="cb116-3"><a href="資料視覺化.html#cb116-3" tabindex="-1"></a>  <span class="fu">geom_text_repel</span>(<span class="at">data=</span>swiss_temp, <span class="fu">aes</span>(<span class="at">x=</span>Fertility, <span class="at">y=</span>Agriculture, <span class="at">label=</span>Province),</span>
+<span id="cb116-4"><a href="資料視覺化.html#cb116-4" tabindex="-1"></a>                  <span class="at">min.segment.length=</span><span class="fu">unit</span>(<span class="dv">0</span>, <span class="st">&quot;cm&quot;</span>), <span class="at">arrow=</span><span class="fu">arrow</span>(<span class="at">length=</span><span class="fu">unit</span>(<span class="fl">0.1</span>, <span class="st">&quot;cm&quot;</span>), <span class="at">type=</span><span class="st">&quot;closed&quot;</span>))</span></code></pre></div>
+<p><img src="Transport-Analysis-R_files/figure-html/ggrepel-eg4-1.png" width="80%" style="display: block; margin: auto;" /></p>
 </div>
-<div id="html-文字ggtext套件" class="section level3 hasAnchor" number="3.2.6">
-<h3><span class="header-section-number">3.2.6</span> HTML 文字（<code>ggtext</code>套件）<a href="資料視覺化.html#html-文字ggtext套件" class="anchor-section" aria-label="Anchor link to header"></a></h3>
-<p><code>geom_text()</code>與<code>geom_label()</code>函式皆存在其限制，無法在同一函式中設定多個不同的樣式。舉例而言，若設定文字字體為標楷體，則無論中文或英文皆會以標楷體呈現，然而有時候會希望英文使用 Times New Roman 字體，此時即無法單純藉<code>geom_text()</code>與<code>geom_label()</code>函式設定之。<code>ggtext</code>套件中的<code>geom_richtext()</code>與<code>geom_textbox()</code>兩函式可更彈性地提供透過 HTML 語法設定文字樣式，此外亦可利用<code>&lt;span style=''&gt;&lt;/span&gt;</code>之 HTML 標籤增加文字樣式的豐富度。常用的 HTML 文字樣式設定彙整如表<a href="資料視覺化.html#tab:tab-html-font">3.24</a>），部分 HTML 標籤在本套件仍無法使用（如<code>&lt;u&gt;&lt;/u&gt;</code>表示底線，但未支援之）。</p>
+<div id="html-文字" class="section level3 hasAnchor" number="3.2.6">
+<h3><span class="header-section-number">3.2.6</span> HTML 文字<a href="資料視覺化.html#html-文字" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<div class="install">
+<p><strong>請下載<code>ggtext</code>套件！</strong><br />
+<strong><code>install.packages("ggtext")</code></strong></p>
+</div>
+<p><code>geom_text()</code>與<code>geom_label()</code>函式皆存在其限制，無法在同一函式中設定多個不同的樣式。舉例而言，若設定文字字體為標楷體，則無論中文或英文皆會以標楷體呈現，然而有時候會希望英文使用 Times New Roman 字體，此時即無法單純藉<code>geom_text()</code>與<code>geom_label()</code>函式設定之。<code>ggtext</code>套件中的<code>geom_richtext()</code>與<code>geom_textbox()</code>兩函式可更彈性地提供透過 HTML 語法設定文字樣式，此外亦可利用<code>&lt;span style=''&gt;&lt;/span&gt;</code>之 HTML 標籤增加文字樣式的豐富度。常用的 HTML 文字樣式設定彙整如表<a href="資料視覺化.html#tab:tab-html-font">3.24</a>，部分 HTML 標籤在本套件仍無法使用（如<code>&lt;u&gt;&lt;/u&gt;</code>表示底線，但未支援之）。</p>
 <table>
 <caption>
 <span id="tab:tab-html-font">表 3.24: </span>HTML 文字標籤設定
@@ -4024,7 +4048,7 @@ HTML 語法
 </tbody>
 </table>
 <p>HTML 標籤中<code>style</code>參數可直接以分號（<code>;</code>）分隔多重設定樣式，例如同時設定文字大小和顏色，則標籤寫法如下：</p>
-<div class="sourceCode" id="cb118"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb118-1"><a href="資料視覺化.html#cb118-1" tabindex="-1"></a><span class="sc">&lt;</span>span style<span class="ot">=</span><span class="st">&#39;font-size:18mm;color:red&#39;</span><span class="sc">&gt;</span>欲呈現的文字<span class="sc">&lt;</span><span class="er">/</span>span<span class="sc">&gt;</span></span></code></pre></div>
+<div class="sourceCode" id="cb117"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb117-1"><a href="資料視覺化.html#cb117-1" tabindex="-1"></a><span class="sc">&lt;</span>span style<span class="ot">=</span><span class="st">&#39;font-size:18mm;color:red&#39;</span><span class="sc">&gt;</span>欲呈現的文字<span class="sc">&lt;</span><span class="er">/</span>span<span class="sc">&gt;</span></span></code></pre></div>
 <p><code>geom_richtext()</code>與<code>geom_textbox()</code>兩函式內所有參數分別與<code>geom_text()</code>與<code>geom_label()</code>幾乎一致，請參考表<a href="資料視覺化.html#tab:tab-geom-text">3.21</a>。在函式中的設定為基底樣式，而若在 HTML 標籤中有另外設定字體樣式，則會優先採用 HTML 標籤之設定。<code>geom_richtext()</code>與<code>geom_textbox()</code>兩者的設定結果幾乎一致，惟部分參數之特殊設定彙整如表<a href="資料視覺化.html#tab:geom-rich-setting">3.25</a>。</p>
 <table class="table table-striped table-hover" style="font-size: 14px; margin-left: auto; margin-right: auto;">
 <caption style="font-size: initial !important;">
@@ -4032,17 +4056,17 @@ HTML 語法
 </caption>
 <thead>
 <tr>
-<th style="text-align:left;">
+<th style="text-align:left;font-weight: bold;color: white !important;background-color: #8E8E8E !important;">
 引數
 </th>
-<th style="text-align:left;">
+<th style="text-align:left;font-weight: bold;color: white !important;background-color: #8E8E8E !important;">
 設定說明
 </th>
-<th style="text-align:center;">
-<code>geom_richtext()</code>
+<th style="text-align:center;font-weight: bold;color: white !important;background-color: #8E8E8E !important;">
+geom_richtext()
 </th>
-<th style="text-align:center;">
-<code>geom_textbox()</code>
+<th style="text-align:center;font-weight: bold;color: white !important;background-color: #8E8E8E !important;">
+geom_textbox()
 </th>
 </tr>
 </thead>
@@ -4052,7 +4076,7 @@ HTML 語法
 <code>color=</code>
 </td>
 <td style="text-align:left;">
-設定文字和外圍方框的顏色，若要去除外框，可直接設定<code>color=NA</code>
+設定文字和外圍方框的顏色
 </td>
 <td style="text-align:center;">
 V
@@ -4105,26 +4129,27 @@ V
 </tr>
 </tbody>
 </table>
-<p>以下範例分別利用<code>geom_richtext()</code>與<code>geom_textbox()</code>函式建立圖表上的文字標籤。在<code>geom_richtext()</code>函式中，基底樣式為紅色字體與框線（<code>color="red"</code>），以淺黃色填色（<code>fill="#FFFFAA"</code>），並設定字體為標楷體。而<code>text1</code>內文中額外設定該字串的字體為「Consolas」，顏色為「#AE00AE」。只有在<code>text1</code>字串中的文字，會依據其 HTML 的標籤設定，除此之外將會使用函式中的基底樣式。<code>text2</code>的字串中則利用<code>&lt;b&gt;&lt;/b&gt;</code>標籤將自型設定為粗體，並調整字體大小為「20pt」。只有在<code>text2</code>內的字串會使用粗體字，其餘則亦使用基底樣式。在<code>geom_textbox()</code>函式中的設定與上述雷同，惟另添加引數<code>width=</code>用以設定整個標籤的長度，若文字並未填滿整個方框則會予以空白；新增<code>box.color=</code>引數設定外框的顏色；<code>box.size=</code>引數用以調整框線的粗度。程式碼中的<code>hjust=0</code>表示靠左對齊；<code>hjust= 1</code>表示靠右對齊，詳請參見表<a href="資料視覺化.html#tab:font-angle-just-tab">3.22</a>。</p>
-<div class="sourceCode" id="cb119"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb119-1"><a href="資料視覺化.html#cb119-1" tabindex="-1"></a><span class="fu">windowsFonts</span>(<span class="at">Consolas=</span><span class="fu">windowsFont</span>(<span class="st">&quot;Consolas&quot;</span>))</span>
-<span id="cb119-2"><a href="資料視覺化.html#cb119-2" tabindex="-1"></a><span class="fu">windowsFonts</span>(<span class="at">biaukai=</span><span class="fu">windowsFont</span>(<span class="st">&quot;標楷體&quot;</span>))</span>
-<span id="cb119-3"><a href="資料視覺化.html#cb119-3" tabindex="-1"></a></span>
-<span id="cb119-4"><a href="資料視覺化.html#cb119-4" tabindex="-1"></a><span class="co"># 設定文字顏色與字體</span></span>
-<span id="cb119-5"><a href="資料視覺化.html#cb119-5" tabindex="-1"></a>text1<span class="ot">=</span><span class="st">&quot;&lt;span style=&#39;color:#AE00AE;font-family:Consolas&#39;&gt;geom_richtext()&lt;/span&gt;&quot;</span></span>
-<span id="cb119-6"><a href="資料視覺化.html#cb119-6" tabindex="-1"></a></span>
-<span id="cb119-7"><a href="資料視覺化.html#cb119-7" tabindex="-1"></a><span class="co"># 設定粗體與文字大小</span></span>
-<span id="cb119-8"><a href="資料視覺化.html#cb119-8" tabindex="-1"></a>text2<span class="ot">=</span><span class="st">&quot;&lt;b&gt;&lt;span style=&#39;font-size:20pt&#39;&gt;函式&lt;/span&gt;&lt;/b&gt;&quot;</span></span>
-<span id="cb119-9"><a href="資料視覺化.html#cb119-9" tabindex="-1"></a></span>
-<span id="cb119-10"><a href="資料視覺化.html#cb119-10" tabindex="-1"></a><span class="co"># 設定文字顏色與字體</span></span>
-<span id="cb119-11"><a href="資料視覺化.html#cb119-11" tabindex="-1"></a>text3<span class="ot">=</span><span class="st">&quot;&lt;span style=&#39;color:#2894FF;font-family:Consolas&#39;&gt;geom_textbox()&lt;/span&gt;&quot;</span></span>
-<span id="cb119-12"><a href="資料視覺化.html#cb119-12" tabindex="-1"></a></span>
-<span id="cb119-13"><a href="資料視覺化.html#cb119-13" tabindex="-1"></a><span class="fu">ggplot</span>()<span class="sc">+</span></span>
-<span id="cb119-14"><a href="資料視覺化.html#cb119-14" tabindex="-1"></a>  <span class="fu">geom_richtext</span>(<span class="fu">aes</span>(<span class="at">x=</span><span class="sc">-</span><span class="dv">1</span>, <span class="at">y=</span><span class="dv">0</span>, <span class="at">label=</span><span class="fu">paste0</span>(text1, text2)), <span class="at">color=</span><span class="st">&quot;red&quot;</span>, <span class="at">fill=</span><span class="st">&quot;#FFFFAA&quot;</span>, <span class="at">hjust=</span><span class="dv">0</span>, <span class="at">family=</span><span class="st">&quot;biaukai&quot;</span>)<span class="sc">+</span></span>
-<span id="cb119-15"><a href="資料視覺化.html#cb119-15" tabindex="-1"></a>  <span class="fu">geom_textbox</span>(<span class="fu">aes</span>(<span class="at">x=</span><span class="dv">1</span>, <span class="at">y=</span><span class="dv">0</span>, <span class="at">label=</span><span class="fu">paste0</span>(text3, text2)), <span class="at">color=</span><span class="st">&quot;red&quot;</span>, <span class="at">hjust=</span><span class="dv">1</span>, <span class="at">width=</span><span class="fl">0.4</span>, <span class="at">box.color=</span><span class="st">&quot;green&quot;</span>, <span class="at">box.size=</span><span class="dv">1</span>, <span class="at">family=</span><span class="st">&quot;biaukai&quot;</span>)</span></code></pre></div>
-<p><img src="series_files/figure-html/tab-html-eg1-1.png" width="672" /></p>
+<p>以下範例分別利用<code>geom_richtext()</code>與<code>geom_textbox()</code>函式建立圖表上的文字標籤。在<code>geom_richtext()</code>函式中，基底樣式為紅色字體與框線（<code>color="red"</code>），以淺黃色填色（<code>fill="#FFFFAA"</code>），並設定字體為標楷體。而<code>text1</code>內文中額外設定該字串的字體為「Consolas」，顏色為「#AE00AE」。只有在<code>text1</code>字串中的文字，會依據其 HTML 的標籤設定，除此之外將會使用函式中的基底樣式。<code>text2</code>的字串中則利用<code>&lt;b&gt;&lt;/b&gt;</code>標籤將自型設定為粗體，並調整字體大小為「20pt」。只有在<code>text2</code>內的字串會使用粗體字，其餘則亦使用基底樣式。在<code>geom_textbox()</code>函式中的設定與上述雷同，惟另添加引數<code>width=</code>用以設定整個標籤的長度，若文字並未填滿整個方框則會予以空白；新增<code>box.color=</code>引數設定外框的顏色；<code>box.size=</code>引數用以調整框線的粗度。程式碼中的<code>hjust=0</code>表示靠左對齊；<code>hjust= 1</code>表示靠右對齊，請參見表<a href="資料視覺化.html#tab:font-angle-just-tab">3.22</a>。</p>
+<div class="sourceCode" id="cb118"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb118-1"><a href="資料視覺化.html#cb118-1" tabindex="-1"></a><span class="fu">windowsFonts</span>(<span class="at">Consolas=</span><span class="fu">windowsFont</span>(<span class="st">&quot;Consolas&quot;</span>))</span>
+<span id="cb118-2"><a href="資料視覺化.html#cb118-2" tabindex="-1"></a><span class="fu">windowsFonts</span>(<span class="at">biaukai=</span><span class="fu">windowsFont</span>(<span class="st">&quot;標楷體&quot;</span>))</span>
+<span id="cb118-3"><a href="資料視覺化.html#cb118-3" tabindex="-1"></a></span>
+<span id="cb118-4"><a href="資料視覺化.html#cb118-4" tabindex="-1"></a><span class="co"># 設定文字顏色與字體</span></span>
+<span id="cb118-5"><a href="資料視覺化.html#cb118-5" tabindex="-1"></a>text1<span class="ot">=</span><span class="st">&quot;&lt;span style=&#39;color:#AE00AE;font-family:Consolas&#39;&gt;geom_richtext()&lt;/span&gt;&quot;</span></span>
+<span id="cb118-6"><a href="資料視覺化.html#cb118-6" tabindex="-1"></a></span>
+<span id="cb118-7"><a href="資料視覺化.html#cb118-7" tabindex="-1"></a><span class="co"># 設定粗體與文字大小</span></span>
+<span id="cb118-8"><a href="資料視覺化.html#cb118-8" tabindex="-1"></a>text2<span class="ot">=</span><span class="st">&quot;&lt;b&gt;&lt;span style=&#39;font-size:20pt&#39;&gt;函式&lt;/span&gt;&lt;/b&gt;&quot;</span></span>
+<span id="cb118-9"><a href="資料視覺化.html#cb118-9" tabindex="-1"></a></span>
+<span id="cb118-10"><a href="資料視覺化.html#cb118-10" tabindex="-1"></a><span class="co"># 設定文字顏色與字體</span></span>
+<span id="cb118-11"><a href="資料視覺化.html#cb118-11" tabindex="-1"></a>text3<span class="ot">=</span><span class="st">&quot;&lt;span style=&#39;color:#2894FF;font-family:Consolas&#39;&gt;geom_textbox()&lt;/span&gt;&quot;</span></span>
+<span id="cb118-12"><a href="資料視覺化.html#cb118-12" tabindex="-1"></a></span>
+<span id="cb118-13"><a href="資料視覺化.html#cb118-13" tabindex="-1"></a><span class="fu">ggplot</span>()<span class="sc">+</span></span>
+<span id="cb118-14"><a href="資料視覺化.html#cb118-14" tabindex="-1"></a>  <span class="fu">geom_richtext</span>(<span class="fu">aes</span>(<span class="at">x=</span><span class="sc">-</span><span class="dv">1</span>, <span class="at">y=</span><span class="dv">0</span>, <span class="at">label=</span><span class="fu">paste0</span>(text1, text2)), <span class="at">color=</span><span class="st">&quot;red&quot;</span>, <span class="at">fill=</span><span class="st">&quot;#FFFFAA&quot;</span>, <span class="at">hjust=</span><span class="dv">0</span>, <span class="at">family=</span><span class="st">&quot;biaukai&quot;</span>)<span class="sc">+</span></span>
+<span id="cb118-15"><a href="資料視覺化.html#cb118-15" tabindex="-1"></a>  <span class="fu">geom_textbox</span>(<span class="fu">aes</span>(<span class="at">x=</span><span class="dv">1</span>, <span class="at">y=</span><span class="dv">0</span>, <span class="at">label=</span><span class="fu">paste0</span>(text3, text2)), <span class="at">color=</span><span class="st">&quot;red&quot;</span>, <span class="at">hjust=</span><span class="dv">1</span>, <span class="at">width=</span><span class="fl">0.4</span>, <span class="at">box.color=</span><span class="st">&quot;green&quot;</span>, <span class="at">box.size=</span><span class="dv">1</span>, <span class="at">family=</span><span class="st">&quot;biaukai&quot;</span>)</span></code></pre></div>
+<p><img src="Transport-Analysis-R_files/figure-html/tab-html-eg1-1.png" width="672" /></p>
 </div>
 <div id="標註插圖" class="section level3 hasAnchor" number="3.2.7">
 <h3><span class="header-section-number">3.2.7</span> 標註插圖<a href="資料視覺化.html#標註插圖" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>在繪圖時可能會希望以圖示取代常見的圖形（如預設的圓點），則可利用標註插圖的方式，將圖檔疊加在<code>ggplot</code>所生成的圖上。在 R 語言中可利用<code>ggimage</code>套件</p>
 </div>
 </div>
 <div id="繪圖設定" class="section level2 hasAnchor" number="3.3">
@@ -4234,7 +4259,7 @@ gitbook.start({
 "link": null,
 "text": null
 },
-"download": ["series.pdf"],
+"download": ["Transport-Analysis-R.pdf"],
 "search": {
 "engine": "fuse",
 "options": null
