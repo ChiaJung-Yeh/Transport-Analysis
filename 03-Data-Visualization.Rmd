@@ -1040,7 +1040,7 @@ ggplot(data=world, aes(x=lifeExp, y=gdpPercap))+
 
 ### 山脊圖
 :::install
-**請下載`ggridges`套件！**  
+**請安裝`ggridges`套件！**  
 **`install.packages("ggridges")`**
 :::
 
@@ -1201,7 +1201,7 @@ corrplot(cor(mtcars))
 
 ### 矩形式樹狀圖
 :::install
-**請下載`treemapify`套件！**  
+**請安裝`treemapify`套件！**  
 **`install.packages("treemapify")`**
 :::
 
@@ -1322,7 +1322,7 @@ ggplot(tw_pop, aes(area=people_total, fill=District, label=COUNTYNAME, subgroup=
 
 ### 桑基圖
 :::install
-**請下載`ggalluvial`套件！**  
+**請安裝`ggalluvial`套件！**  
 **`install.packages("ggalluvial")`**
 :::
 
@@ -1419,7 +1419,7 @@ ggplot(data=scmig, aes(axis1=From, axis2=To, y=Migration))+
 
 ### 雷達圖
 :::install
-**請下載`ggradar`與`fmsb`套件！**  
+**請安裝`ggradar`與`fmsb`套件！**  
 **`devtools::install_github("ricardo-bion/ggradar")`**  
 **`install.packages("fmsb")`**
 :::
@@ -1520,7 +1520,7 @@ ggradar(mtcars_part, legend.text.size=10, grid.label.size=4, axis.label.size=5, 
 
 ### 三元圖
 :::install
-**請下載`ggtern`套件！**  
+**請安裝`ggtern`套件！**  
 **`install.packages("ggtern")`**
 :::
 
@@ -1886,7 +1886,7 @@ plot_grid(plotlist=p_list, ncol=3)
 
 ### 文字避免重疊
 :::install
-**請下載`ggrepel`套件！**  
+**請安裝`ggrepel`套件！**  
 **`install.packages("ggrepel")`**
 :::
 
@@ -1945,7 +1945,7 @@ ggplot()+
 
 ### HTML 文字
 :::install
-**請下載`ggtext`套件！**  
+**請安裝`ggtext`套件！**  
 **`install.packages("ggtext")`**
 :::
 
@@ -1995,12 +1995,34 @@ ggplot()+
 
 
 ### 標註插圖
-在繪圖時可能會希望以圖示取代常見的圖形（如預設的圓點），則可利用標註插圖的方式，將圖檔疊加在`ggplot`所生成的圖上。在 R 語言中可利用`ggimage`套件
+:::install
+**請安裝`ggimage`套件！**  
+**`install.packages("ggimage")`**
+:::
 
+在繪圖時可能會希望以圖示取代常見的圖形（如預設的圓點或 R 語言<A href='#geom-setting-shape'>基本圖示</A>），則可利用標註插圖的方式，將圖檔疊加在`ggplot`所生成的圖上。在 R 語言中可利用`ggimage`套件附加圖片，該函式撰寫架構如下。函式中`image=`引數可以使用本機的圖片連結，亦可使用網路圖片連結。  
 
+```{r geom-image-code, echo=T, eval=F}
+geom_image(image=, size=)
+```
+
+以網路連結圖片為範例，以下程式碼先建立`nycu_logo`之資料，其中儲存圖片所在連結。
+
+```{r geom-image-eg, echo=T, eval=T}
+# 建立圖片連結之data frame
+nycu_logo=data.frame(x=c("English","Mandarin"), y=c(1,1),
+                     link=c("https://www.nycu.edu.tw/userfiles/nycuch/images/20230915175559100.png",
+                            "https://www.nycu.edu.tw/userfiles/nycuch/images/20230915175431239.png"))
+
+# 利用geom_image繪圖
+ggplot(data=nycu_logo, aes(x=x, y=y))+
+  geom_image(aes(image=link), size=0.8)
+```
 
 
 ## 繪圖設定
+
+
 
 ### 圖例與座標軸設定
 

@@ -2173,7 +2173,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <div id="山脊圖" class="section level3 hasAnchor" number="3.1.11">
 <h3><span class="header-section-number">3.1.11</span> 山脊圖<a href="資料視覺化.html#山脊圖" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <div class="install">
-<p><strong>請下載<code>ggridges</code>套件！</strong><br />
+<p><strong>請安裝<code>ggridges</code>套件！</strong><br />
 <strong><code>install.packages("ggridges")</code></strong></p>
 </div>
 <p>山脊圖（Ridgeline Plot）與密度圖非常相似，可表達許多不同類別的連續資料分布情形，而山脊圖可將不同類別的資料平行並列，以較容易觀察類別間的差異。繪製山脊圖可利用<code>ggridges</code>套件中的<code>geom_density_ridges()</code>與<code>stat_density_ridges()</code>函式，其撰寫架構如下。</p>
@@ -2515,7 +2515,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <div id="矩形式樹狀圖" class="section level3 hasAnchor" number="3.1.13">
 <h3><span class="header-section-number">3.1.13</span> 矩形式樹狀圖<a href="資料視覺化.html#矩形式樹狀圖" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <div class="install">
-<p><strong>請下載<code>treemapify</code>套件！</strong><br />
+<p><strong>請安裝<code>treemapify</code>套件！</strong><br />
 <strong><code>install.packages("treemapify")</code></strong></p>
 </div>
 <p>矩形式樹狀圖（Treemap）可用以視覺化呈現不同類別間的占比，亦可同時表現分類架構。在 R 語言中可另安裝<code>treemapify</code>套件繪製矩形式樹狀圖，該套件所提供的函式彙整如表<a href="資料視覺化.html#tab:geom-treemap-code1-tab">3.15</a>。另建議所有引數皆設定於<code>ggplot()</code>函式中，以便建立不同階層的樹狀圖，函式撰寫架構如下。</p>
@@ -2743,7 +2743,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <div id="桑基圖" class="section level3 hasAnchor" number="3.1.14">
 <h3><span class="header-section-number">3.1.14</span> 桑基圖<a href="資料視覺化.html#桑基圖" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <div class="install">
-<p><strong>請下載<code>ggalluvial</code>套件！</strong><br />
+<p><strong>請安裝<code>ggalluvial</code>套件！</strong><br />
 <strong><code>install.packages("ggalluvial")</code></strong></p>
 </div>
 <p>桑基圖（Sankey Diagram）可用以表達系統內各階層的流動，圖表係由節點與節線構成。節點用以表示狀態或屬性，其寬度可表示該狀態的占比；節線用以表示狀態之間轉移的流動，其線條粗細可表示流動量，而線條顏色則可表示所屬的類別。以圖<a href="資料視覺化.html#fig:geom-sankey-fig1">3.10</a>之示意圖為例，階層 1 含有四個狀態，故會包含 4 個節點，而階層 1 會透過節線流動至階層 2，並含有兩個狀態，其他則以此類推。</p>
@@ -2876,7 +2876,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <div id="雷達圖" class="section level3 hasAnchor" number="3.1.15">
 <h3><span class="header-section-number">3.1.15</span> 雷達圖<a href="資料視覺化.html#雷達圖" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <div class="install">
-<p><strong>請下載<code>ggradar</code>與<code>fmsb</code>套件！</strong><br />
+<p><strong>請安裝<code>ggradar</code>與<code>fmsb</code>套件！</strong><br />
 <strong><code>devtools::install_github("ricardo-bion/ggradar")</code></strong><br />
 <strong><code>install.packages("fmsb")</code></strong></p>
 </div>
@@ -3072,7 +3072,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <div id="三元圖" class="section level3 hasAnchor" number="3.1.16">
 <h3><span class="header-section-number">3.1.16</span> 三元圖<a href="資料視覺化.html#三元圖" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <div class="install">
-<p><strong>請下載<code>ggtern</code>套件！</strong><br />
+<p><strong>請安裝<code>ggtern</code>套件！</strong><br />
 <strong><code>install.packages("ggtern")</code></strong></p>
 </div>
 <p>三元圖（Ternary Plot）用於表達三個類別之間的比例關係，圖中每一點所對應至座標軸的數值加總必為 100，如圖<a href="資料視覺化.html#fig:geom-ternary-fig">3.13</a>之示意圖所示。</p>
@@ -3885,7 +3885,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <div id="文字避免重疊" class="section level3 hasAnchor" number="3.2.5">
 <h3><span class="header-section-number">3.2.5</span> 文字避免重疊<a href="資料視覺化.html#文字避免重疊" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <div class="install">
-<p><strong>請下載<code>ggrepel</code>套件！</strong><br />
+<p><strong>請安裝<code>ggrepel</code>套件！</strong><br />
 <strong><code>install.packages("ggrepel")</code></strong></p>
 </div>
 <p>在<code>ggplot2</code>套件中，若有許多文字標註，很容易產生重疊的情形，此時可以安裝<code>ggrepel</code>套件，利用該套件中的<code>geom_text_repel()</code>與<code>geom_label_repel()</code>函式修正之，兩函式的設定引數與<code>geom_text()</code>及<code>geom_label()</code>函式大部分皆相同，惟能自動化調整文字或標籤的位置以避免重疊。關於此二函式額外的重要引數設定彙整如表<a href="資料視覺化.html#tab:ggrepel-code-tab">3.23</a>。</p>
@@ -3986,7 +3986,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <div id="html-文字" class="section level3 hasAnchor" number="3.2.6">
 <h3><span class="header-section-number">3.2.6</span> HTML 文字<a href="資料視覺化.html#html-文字" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <div class="install">
-<p><strong>請下載<code>ggtext</code>套件！</strong><br />
+<p><strong>請安裝<code>ggtext</code>套件！</strong><br />
 <strong><code>install.packages("ggtext")</code></strong></p>
 </div>
 <p><code>geom_text()</code>與<code>geom_label()</code>函式皆存在其限制，無法在同一函式中設定多個不同的樣式。舉例而言，若設定文字字體為標楷體，則無論中文或英文皆會以標楷體呈現，然而有時候會希望英文使用 Times New Roman 字體，此時即無法單純藉<code>geom_text()</code>與<code>geom_label()</code>函式設定之。<code>ggtext</code>套件中的<code>geom_richtext()</code>與<code>geom_textbox()</code>兩函式可更彈性地提供透過 HTML 語法設定文字樣式，此外亦可利用<code>&lt;span style=''&gt;&lt;/span&gt;</code>之 HTML 標籤增加文字樣式的豐富度。常用的 HTML 文字樣式設定彙整如表<a href="資料視覺化.html#tab:tab-html-font">3.24</a>，部分 HTML 標籤在本套件仍無法使用（如<code>&lt;u&gt;&lt;/u&gt;</code>表示底線，但未支援之）。</p>
@@ -4149,7 +4149,22 @@ V
 </div>
 <div id="標註插圖" class="section level3 hasAnchor" number="3.2.7">
 <h3><span class="header-section-number">3.2.7</span> 標註插圖<a href="資料視覺化.html#標註插圖" class="anchor-section" aria-label="Anchor link to header"></a></h3>
-<p>在繪圖時可能會希望以圖示取代常見的圖形（如預設的圓點），則可利用標註插圖的方式，將圖檔疊加在<code>ggplot</code>所生成的圖上。在 R 語言中可利用<code>ggimage</code>套件</p>
+<div class="install">
+<p><strong>請安裝<code>ggimage</code>套件！</strong><br />
+<strong><code>install.packages("ggimage")</code></strong></p>
+</div>
+<p>在繪圖時可能會希望以圖示取代常見的圖形（如預設的圓點或 R 語言<A href='#geom-setting-shape'>基本圖示</A>），則可利用標註插圖的方式，將圖檔疊加在<code>ggplot</code>所生成的圖上。在 R 語言中可利用<code>ggimage</code>套件附加圖片，該函式撰寫架構如下。函式中<code>image=</code>引數可以使用本機的圖片連結，亦可使用網路圖片連結。</p>
+<div class="sourceCode" id="cb119"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb119-1"><a href="資料視覺化.html#cb119-1" tabindex="-1"></a><span class="fu">geom_image</span>(<span class="at">image=</span>, <span class="at">size=</span>)</span></code></pre></div>
+<p>以網路連結圖片為範例，以下程式碼先建立<code>nycu_logo</code>之資料，其中儲存圖片所在連結。</p>
+<div class="sourceCode" id="cb120"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb120-1"><a href="資料視覺化.html#cb120-1" tabindex="-1"></a><span class="co"># 建立圖片連結之data frame</span></span>
+<span id="cb120-2"><a href="資料視覺化.html#cb120-2" tabindex="-1"></a>nycu_logo<span class="ot">=</span><span class="fu">data.frame</span>(<span class="at">x=</span><span class="fu">c</span>(<span class="st">&quot;English&quot;</span>,<span class="st">&quot;Mandarin&quot;</span>), <span class="at">y=</span><span class="fu">c</span>(<span class="dv">1</span>,<span class="dv">1</span>),</span>
+<span id="cb120-3"><a href="資料視覺化.html#cb120-3" tabindex="-1"></a>                     <span class="at">link=</span><span class="fu">c</span>(<span class="st">&quot;https://www.nycu.edu.tw/userfiles/nycuch/images/20230915175559100.png&quot;</span>,</span>
+<span id="cb120-4"><a href="資料視覺化.html#cb120-4" tabindex="-1"></a>                            <span class="st">&quot;https://www.nycu.edu.tw/userfiles/nycuch/images/20230915175431239.png&quot;</span>))</span>
+<span id="cb120-5"><a href="資料視覺化.html#cb120-5" tabindex="-1"></a></span>
+<span id="cb120-6"><a href="資料視覺化.html#cb120-6" tabindex="-1"></a><span class="co"># 利用geom_image繪圖</span></span>
+<span id="cb120-7"><a href="資料視覺化.html#cb120-7" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data=</span>nycu_logo, <span class="fu">aes</span>(<span class="at">x=</span>x, <span class="at">y=</span>y))<span class="sc">+</span></span>
+<span id="cb120-8"><a href="資料視覺化.html#cb120-8" tabindex="-1"></a>  <span class="fu">geom_image</span>(<span class="fu">aes</span>(<span class="at">image=</span>link), <span class="at">size=</span><span class="fl">0.8</span>)</span></code></pre></div>
+<p><img src="Transport-Analysis-R_files/figure-html/geom-image-eg-1.png" width="672" /></p>
 </div>
 </div>
 <div id="繪圖設定" class="section level2 hasAnchor" number="3.3">

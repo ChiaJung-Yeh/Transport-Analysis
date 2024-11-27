@@ -32,11 +32,10 @@ div.strong {
     background-repeat: no-repeat;
     border-radius: 10px;
     background-position: 15px center;
-    min-height: 0.5px;
     color: #004891;
     font-size: 15px;
     background-color: #ecf5ff;
     border: solid 2px #004B97;
     background-image: url("./figure/image/install.png");
-    background-size: 50px 50px;
+    background-size: 45px 45px;
   }
