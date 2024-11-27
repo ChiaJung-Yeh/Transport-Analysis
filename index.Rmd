@@ -1,5 +1,5 @@
 --- 
-title: "運輸資料分析角落：初學者園地"
+title: "R 語言資料分析：交通運輸"
 author: "Chia-Jung (Robert) Yeh  葉家榮\\\n [**PhD: Insitute of Transport and Logistics Studies, USYD**](https://www.sydney.edu.au/business/about/our-people/research-students/chia-jung-yeh-557.html)\\\nM.S.: Department of Transportation and Logistics Management, NYCU"
 date: "`r Sys.Date()`"
 site: bookdown::bookdown_site
@@ -11,9 +11,11 @@ bibliography: [book.bib, packages.bib]
 biblio-style: apalike
 link-citations: yes
 github-repo: ChiaJung-Yeh/Transport-Analysis
-description: "本書簡介R語言資料分析的基礎，含括基礎語法、dplyr套件與ggplot2套件的使用，深入淺出資料分析的步驟，最後透過交通運輸案例將所介紹的套件與函式應用於實務資料。"
+description: "本書簡介R語言資料分析的基礎，含括基礎語法、dplyr套件與ggplot2套件的使用，深入淺出資料分析的步驟，最後藉由交通運輸資料展示資料分析的範例。"
 google-site-verification: "i4Iib3GevuN2t_jtsNp0YabkQRXcrER03lw4OKVffco"
 ---
+
+<!--#description 本書介紹R語言資料分析的基礎及其在交通運輸的應用，透過資料分析和資料視覺化呈現，瞭解數據資料的整理。在大數據的時代，交通運輸的資料分析尤為重要，本書透過R軟體讓讀者更瞭解資料分析的策略。本書第一章介紹R語言基礎語法，瞭解R的資料架構，並介紹文字處理的技巧。第二章介紹R語言常用的資料分析套件，其中包括dplyr、data.table、tidyr等套件。第三章介紹視覺化的方法，瞭解ggplot2套件及其周邊套件的應用方式。第四章著重於交通運輸資料的彙整與分析。 -->
 
 ```{r setup1, include=FALSE}
 knitr::opts_chunk$set(echo = TRUE)
