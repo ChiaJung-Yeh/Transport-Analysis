@@ -20,8 +20,6 @@ client_secret=read.csv("./key.txt", header=F)[2,2]
 access_token=get_token(client_id, client_secret)
 ```
 
-<!--#description 本章透過運輸資料簡介資料分析的基礎，並藉由dplyr、data.table等套件處理數據，以瞭解交通運輸資料的實地應用。 -->
-
 # (PART\*) 運輸資料分析 {-}
 
 # **基本資料統計**
