@@ -1,35 +1,60 @@
 <!DOCTYPE html>
 <html lang="" xml:lang="">
 <head>
-<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<meta charset="utf-8">
-<meta http-equiv="X-UA-Compatible" content="IE=edge">
-<title>Chapter 4 基本資料統計 | R 語言資料分析：交通運輸</title>
-<meta name="description" content="本書介紹R語言資料分析的基礎及其在交通運輸的應用，透過資料分析和資料視覺化呈現，瞭解數據資料的整理。在大數據的時代，交通運輸的資料分析尤為重要，本書透過R軟體讓讀者更瞭解資料分析的策略。本書第一章介紹R語言基礎語法，瞭解R的資料架構，並介紹文字處理的技巧。第二章介紹R語言常用的資料分析套件，其中包括dplyr、data.table、tidyr等套件。第三章介紹視覺化的方法，瞭解ggplot2套件及其周邊套件的應用方式。第四章著重於交通運輸資料的彙整與分析。">
-<meta name="generator" content="bookdown 0.37 and GitBook 2.6.7">
-<meta property="og:title" content="Chapter 4 基本資料統計 | R 語言資料分析：交通運輸">
-<meta property="og:type" content="book">
-<meta property="og:description" content="本書介紹R語言資料分析的基礎及其在交通運輸的應用，透過資料分析和資料視覺化呈現，瞭解數據資料的整理。在大數據的時代，交通運輸的資料分析尤為重要，本書透過R軟體讓讀者更瞭解資料分析的策略。本書第一章介紹R語言基礎語法，瞭解R的資料架構，並介紹文字處理的技巧。第二章介紹R語言常用的資料分析套件，其中包括dplyr、data.table、tidyr等套件。第三章介紹視覺化的方法，瞭解ggplot2套件及其周邊套件的應用方式。第四章著重於交通運輸資料的彙整與分析。">
-<meta name="github-repo" content="ChiaJung-Yeh/Transport-Analysis">
-<meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Chapter 4 基本資料統計 | R 語言資料分析：交通運輸">
-<meta name="twitter:description" content="本書介紹R語言資料分析的基礎及其在交通運輸的應用，透過資料分析和資料視覺化呈現，瞭解數據資料的整理。在大數據的時代，交通運輸的資料分析尤為重要，本書透過R軟體讓讀者更瞭解資料分析的策略。本書第一章介紹R語言基礎語法，瞭解R的資料架構，並介紹文字處理的技巧。第二章介紹R語言常用的資料分析套件，其中包括dplyr、data.table、tidyr等套件。第三章介紹視覺化的方法，瞭解ggplot2套件及其周邊套件的應用方式。第四章著重於交通運輸資料的彙整與分析。">
-<meta name="author" content="Chia-Jung (Robert) Yeh 葉家榮 PhD: Insitute of Transport and Logistics Studies, USYD M.S.: Department of Transportation and Logistics Management, NYCU">
-<meta name="date" content="2024-11-28">
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<meta name="apple-mobile-web-app-capable" content="yes">
-<meta name="apple-mobile-web-app-status-bar-style" content="black">
-<link rel="prev" href="%E8%B3%87%E6%96%99%E8%A6%96%E8%A6%BA%E5%8C%96.html">
-<script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script><script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.6/dist/fuse.min.js"></script><link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet">
-<link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet">
-<link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet">
-<link href="libs/gitbook-2.6.7/css/plugin-highlight.css" rel="stylesheet">
-<link href="libs/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet">
-<link href="libs/gitbook-2.6.7/css/plugin-fontsettings.css" rel="stylesheet">
-<link href="libs/gitbook-2.6.7/css/plugin-clipboard.css" rel="stylesheet">
-<link href="libs/anchor-sections-1.1.0/anchor-sections.css" rel="stylesheet">
-<link href="libs/anchor-sections-1.1.0/anchor-sections-hash.css" rel="stylesheet">
-<script src="libs/anchor-sections-1.1.0/anchor-sections.js"></script><style type="text/css">
+
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <title>Chapter 4 基本資料統計 | R 語言資料分析：交通運輸</title>
+  <meta name="description" content="本章透過運輸資料簡介資料分析的基礎，並藉由dplyr、data.table等套件處理數據，以瞭解交通運輸資料的實地應用。" />
+  <meta name="generator" content="bookdown 0.37 and GitBook 2.6.7" />
+
+  <meta property="og:title" content="Chapter 4 基本資料統計 | R 語言資料分析：交通運輸" />
+  <meta property="og:type" content="book" />
+  
+  <meta property="og:description" content="本書介紹R語言資料分析的基礎及其在交通運輸的應用，透過資料分析和資料視覺化呈現，瞭解數據資料的整理。在大數據的時代，交通運輸的資料分析尤為重要，本書透過R軟體讓讀者更瞭解資料分析的策略。本書第一章介紹R語言基礎語法，瞭解R的資料架構，並介紹文字處理的技巧。第二章介紹R語言常用的資料分析套件，其中包括dplyr、data.table、tidyr等套件。第三章介紹視覺化的方法，瞭解ggplot2套件及其周邊套件的應用方式。第四章著重於交通運輸資料的彙整與分析。" />
+  <meta name="github-repo" content="ChiaJung-Yeh/Transport-Analysis" />
+
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="Chapter 4 基本資料統計 | R 語言資料分析：交通運輸" />
+  
+  <meta name="twitter:description" content="本書介紹R語言資料分析的基礎及其在交通運輸的應用，透過資料分析和資料視覺化呈現，瞭解數據資料的整理。在大數據的時代，交通運輸的資料分析尤為重要，本書透過R軟體讓讀者更瞭解資料分析的策略。本書第一章介紹R語言基礎語法，瞭解R的資料架構，並介紹文字處理的技巧。第二章介紹R語言常用的資料分析套件，其中包括dplyr、data.table、tidyr等套件。第三章介紹視覺化的方法，瞭解ggplot2套件及其周邊套件的應用方式。第四章著重於交通運輸資料的彙整與分析。" />
+  
+
+<meta name="author" content="Chia-Jung (Robert) Yeh 葉家榮 PhD: Insitute of Transport and Logistics Studies, USYD M.S.: Department of Transportation and Logistics Management, NYCU" />
+
+
+<meta name="date" content="2024-11-28" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+  
+  
+<link rel="prev" href="資料視覺化.html"/>
+
+<script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.6/dist/fuse.min.js"></script>
+<link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-highlight.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-fontsettings.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-clipboard.css" rel="stylesheet" />
+
+
+
+
+
+
+
+
+<link href="libs/anchor-sections-1.1.0/anchor-sections.css" rel="stylesheet" />
+<link href="libs/anchor-sections-1.1.0/anchor-sections-hash.css" rel="stylesheet" />
+<script src="libs/anchor-sections-1.1.0/anchor-sections.js"></script>
+
+
+<style type="text/css">
 pre > code.sourceCode { white-space: pre; position: relative; }
 pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
 pre > code.sourceCode > span:empty { height: 1.2em; }
@@ -93,16 +118,18 @@ code span.va { color: #19177c; } /* Variable */
 code span.vs { color: #4070a0; } /* VerbatimString */
 code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
 </style>
+
 <style type="text/css">
   
   div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
 </style>
-<link rel="stylesheet" href="lib/css/bootstrap.min.css" type="text/css">
-<link rel="stylesheet" href="lib/css/style.css" type="text/css">
-<link rel="stylesheet" href="lib/css/lesson.css" type="text/css">
-<link rel="stylesheet" href="stylebox.css" type="text/css">
-<meta name="description" content="本章透過運輸資料簡介資料分析的基礎，並藉由dplyr、data.table等套件處理數據，以瞭解交通運輸資料的實地應用。">
+
+<link rel="stylesheet" href="lib/css/bootstrap.min.css" type="text/css" />
+<link rel="stylesheet" href="lib/css/style.css" type="text/css" />
+<link rel="stylesheet" href="lib/css/lesson.css" type="text/css" />
+<link rel="stylesheet" href="stylebox.css" type="text/css" />
 </head>
+
 <body>
 
 
@@ -110,167 +137,143 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
   <div class="book without-animation with-summary font-size-2 font-family-1" data-basepath=".">
 
     <div class="book-summary">
-      <nav role="navigation"><ul class="summary">
+      <nav role="navigation">
+
+<ul class="summary">
 <li><a href="./">R 語言資料分析：交通運輸</a></li>
 
-<li class="divider">
-<li class="chapter" data-level="" data-path="index.html">
-<a href="index.html"><i class="fa fa-check"></i><strong>前言</strong></a>
+<li class="divider"></li>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i><strong>前言</strong></a>
 <ul>
-<li class="chapter" data-level="" data-path="index.html"><a href="index.html#%E7%B0%A1%E4%BB%8B%E8%88%87%E7%9B%AE%E9%8C%84"><i class="fa fa-check"></i>簡介與目錄</a></li>
-<li class="chapter" data-level="" data-path="index.html"><a href="index.html#%E8%B3%87%E6%96%99%E5%88%86%E6%9E%90%E5%BF%83%E6%B3%95"><i class="fa fa-check"></i>資料分析心法</a></li>
-<li class="chapter" data-level="" data-path="index.html"><a href="index.html#%E5%AE%89%E8%A3%9D%E5%A5%97%E4%BB%B6"><i class="fa fa-check"></i>安裝套件</a></li>
-<li class="chapter" data-level="" data-path="index.html"><a href="index.html#%E5%85%B6%E4%BB%96%E5%8F%83%E8%80%83%E8%B3%87%E6%96%99"><i class="fa fa-check"></i>其他參考資料</a></li>
-</ul>
-</li>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html#簡介與目錄"><i class="fa fa-check"></i>簡介與目錄</a></li>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html#資料分析心法"><i class="fa fa-check"></i>資料分析心法</a></li>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html#安裝套件"><i class="fa fa-check"></i>安裝套件</a></li>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html#其他參考資料"><i class="fa fa-check"></i>其他參考資料</a></li>
+</ul></li>
 <li class="part"><span><b>資料分析基礎</b></span></li>
-<li class="chapter" data-level="1" data-path="r-語言基礎語法.html">
-<a href="r-%E8%AA%9E%E8%A8%80%E5%9F%BA%E7%A4%8E%E8%AA%9E%E6%B3%95.html"><i class="fa fa-check"></i><b>1</b> <strong>R 語言基礎語法</strong></a>
+<li class="chapter" data-level="1" data-path="r-語言基礎語法.html"><a href="r-語言基礎語法.html"><i class="fa fa-check"></i><b>1</b> <strong>R 語言基礎語法</strong></a>
 <ul>
-<li class="chapter" data-level="1.1" data-path="r-語言基礎語法.html">
-<a href="r-%E8%AA%9E%E8%A8%80%E5%9F%BA%E7%A4%8E%E8%AA%9E%E6%B3%95.html#%E7%89%A9%E4%BB%B6object"><i class="fa fa-check"></i><b>1.1</b> 物件（Object）</a>
+<li class="chapter" data-level="1.1" data-path="r-語言基礎語法.html"><a href="r-語言基礎語法.html#物件object"><i class="fa fa-check"></i><b>1.1</b> 物件（Object）</a>
 <ul>
-<li class="chapter" data-level="1.1.1" data-path="r-語言基礎語法.html"><a href="r-%E8%AA%9E%E8%A8%80%E5%9F%BA%E7%A4%8E%E8%AA%9E%E6%B3%95.html#%E5%90%91%E9%87%8Fvector"><i class="fa fa-check"></i><b>1.1.1</b> 向量（Vector）</a></li>
-<li class="chapter" data-level="1.1.2" data-path="r-語言基礎語法.html"><a href="r-%E8%AA%9E%E8%A8%80%E5%9F%BA%E7%A4%8E%E8%AA%9E%E6%B3%95.html#%E5%9B%A0%E5%AD%90factor"><i class="fa fa-check"></i><b>1.1.2</b> 因子（Factor）</a></li>
-<li class="chapter" data-level="1.1.3" data-path="r-語言基礎語法.html"><a href="r-%E8%AA%9E%E8%A8%80%E5%9F%BA%E7%A4%8E%E8%AA%9E%E6%B3%95.html#%E7%9F%A9%E9%99%A3matrix"><i class="fa fa-check"></i><b>1.1.3</b> 矩陣（Matrix）</a></li>
-<li class="chapter" data-level="1.1.4" data-path="r-語言基礎語法.html"><a href="r-%E8%AA%9E%E8%A8%80%E5%9F%BA%E7%A4%8E%E8%AA%9E%E6%B3%95.html#%E8%B3%87%E6%96%99%E6%A1%86data-frame"><i class="fa fa-check"></i><b>1.1.4</b> 資料框（Data Frame）</a></li>
-<li class="chapter" data-level="1.1.5" data-path="r-語言基礎語法.html"><a href="r-%E8%AA%9E%E8%A8%80%E5%9F%BA%E7%A4%8E%E8%AA%9E%E6%B3%95.html#%E9%99%A3%E5%88%97list"><i class="fa fa-check"></i><b>1.1.5</b> 陣列（List）</a></li>
-<li class="chapter" data-level="1.1.6" data-path="r-語言基礎語法.html"><a href="r-%E8%AA%9E%E8%A8%80%E5%9F%BA%E7%A4%8E%E8%AA%9E%E6%B3%95.html#%E6%97%A5%E6%9C%9F%E8%88%87%E6%99%82%E9%96%93"><i class="fa fa-check"></i><b>1.1.6</b> 日期與時間</a></li>
-</ul>
-</li>
-<li class="chapter" data-level="1.2" data-path="r-語言基礎語法.html">
-<a href="r-%E8%AA%9E%E8%A8%80%E5%9F%BA%E7%A4%8E%E8%AA%9E%E6%B3%95.html#%E6%96%87%E5%AD%97%E8%99%95%E7%90%86"><i class="fa fa-check"></i><b>1.2</b> 文字處理</a>
+<li class="chapter" data-level="1.1.1" data-path="r-語言基礎語法.html"><a href="r-語言基礎語法.html#向量vector"><i class="fa fa-check"></i><b>1.1.1</b> 向量（Vector）</a></li>
+<li class="chapter" data-level="1.1.2" data-path="r-語言基礎語法.html"><a href="r-語言基礎語法.html#因子factor"><i class="fa fa-check"></i><b>1.1.2</b> 因子（Factor）</a></li>
+<li class="chapter" data-level="1.1.3" data-path="r-語言基礎語法.html"><a href="r-語言基礎語法.html#矩陣matrix"><i class="fa fa-check"></i><b>1.1.3</b> 矩陣（Matrix）</a></li>
+<li class="chapter" data-level="1.1.4" data-path="r-語言基礎語法.html"><a href="r-語言基礎語法.html#資料框data-frame"><i class="fa fa-check"></i><b>1.1.4</b> 資料框（Data Frame）</a></li>
+<li class="chapter" data-level="1.1.5" data-path="r-語言基礎語法.html"><a href="r-語言基礎語法.html#陣列list"><i class="fa fa-check"></i><b>1.1.5</b> 陣列（List）</a></li>
+<li class="chapter" data-level="1.1.6" data-path="r-語言基礎語法.html"><a href="r-語言基礎語法.html#日期與時間"><i class="fa fa-check"></i><b>1.1.6</b> 日期與時間</a></li>
+</ul></li>
+<li class="chapter" data-level="1.2" data-path="r-語言基礎語法.html"><a href="r-語言基礎語法.html#文字處理"><i class="fa fa-check"></i><b>1.2</b> 文字處理</a>
 <ul>
-<li class="chapter" data-level="1.2.1" data-path="r-語言基礎語法.html"><a href="r-%E8%AA%9E%E8%A8%80%E5%9F%BA%E7%A4%8E%E8%AA%9E%E6%B3%95.html#%E9%80%A3%E6%8E%A5%E5%AD%97%E4%B8%B2"><i class="fa fa-check"></i><b>1.2.1</b> 連接字串</a></li>
-<li class="chapter" data-level="1.2.2" data-path="r-語言基礎語法.html"><a href="r-%E8%AA%9E%E8%A8%80%E5%9F%BA%E7%A4%8E%E8%AA%9E%E6%B3%95.html#%E8%BD%89%E6%8F%9B%E5%A4%A7%E5%B0%8F%E5%AF%AB"><i class="fa fa-check"></i><b>1.2.2</b> 轉換大小寫</a></li>
-<li class="chapter" data-level="1.2.3" data-path="r-語言基礎語法.html"><a href="r-%E8%AA%9E%E8%A8%80%E5%9F%BA%E7%A4%8E%E8%AA%9E%E6%B3%95.html#%E6%93%B7%E5%8F%96%E8%88%87%E5%8F%96%E4%BB%A3%E5%AD%97%E5%85%83"><i class="fa fa-check"></i><b>1.2.3</b> 擷取與取代字元</a></li>
-<li class="chapter" data-level="1.2.4" data-path="r-語言基礎語法.html"><a href="r-%E8%AA%9E%E8%A8%80%E5%9F%BA%E7%A4%8E%E8%AA%9E%E6%B3%95.html#%E6%8B%86%E8%A7%A3%E5%AD%97%E4%B8%B2"><i class="fa fa-check"></i><b>1.2.4</b> 拆解字串</a></li>
-<li class="chapter" data-level="1.2.5" data-path="r-語言基礎語法.html"><a href="r-%E8%AA%9E%E8%A8%80%E5%9F%BA%E7%A4%8E%E8%AA%9E%E6%B3%95.html#%E8%A8%88%E7%AE%97%E5%AD%97%E5%85%83%E6%95%B8"><i class="fa fa-check"></i><b>1.2.5</b> 計算字元數</a></li>
-<li class="chapter" data-level="1.2.6" data-path="r-語言基礎語法.html"><a href="r-%E8%AA%9E%E8%A8%80%E5%9F%BA%E7%A4%8E%E8%AA%9E%E6%B3%95.html#%E6%90%9C%E5%B0%8B%E5%AD%97%E5%85%83"><i class="fa fa-check"></i><b>1.2.6</b> 搜尋字元</a></li>
-<li class="chapter" data-level="1.2.7" data-path="r-語言基礎語法.html"><a href="r-%E8%AA%9E%E8%A8%80%E5%9F%BA%E7%A4%8E%E8%AA%9E%E6%B3%95.html#%E6%96%87%E5%AD%97%E5%A1%AB%E8%A3%9C"><i class="fa fa-check"></i><b>1.2.7</b> 文字填補</a></li>
-<li class="chapter" data-level="1.2.8" data-path="r-語言基礎語法.html"><a href="r-%E8%AA%9E%E8%A8%80%E5%9F%BA%E7%A4%8E%E8%AA%9E%E6%B3%95.html#%E6%96%87%E5%AD%97%E6%8E%92%E5%BA%8F"><i class="fa fa-check"></i><b>1.2.8</b> 文字排序</a></li>
-<li class="chapter" data-level="1.2.9" data-path="r-語言基礎語法.html"><a href="r-%E8%AA%9E%E8%A8%80%E5%9F%BA%E7%A4%8E%E8%AA%9E%E6%B3%95.html#%E6%AD%A3%E8%A6%8F%E8%A1%A8%E7%A4%BA%E5%BC%8F"><i class="fa fa-check"></i><b>1.2.9</b> 正規表示式</a></li>
-</ul>
-</li>
-<li class="chapter" data-level="1.3" data-path="r-語言基礎語法.html">
-<a href="r-%E8%AA%9E%E8%A8%80%E5%9F%BA%E7%A4%8E%E8%AA%9E%E6%B3%95.html#%E6%8E%A7%E5%88%B6%E6%B5%81%E7%A8%8B"><i class="fa fa-check"></i><b>1.3</b> 控制流程</a>
+<li class="chapter" data-level="1.2.1" data-path="r-語言基礎語法.html"><a href="r-語言基礎語法.html#連接字串"><i class="fa fa-check"></i><b>1.2.1</b> 連接字串</a></li>
+<li class="chapter" data-level="1.2.2" data-path="r-語言基礎語法.html"><a href="r-語言基礎語法.html#轉換大小寫"><i class="fa fa-check"></i><b>1.2.2</b> 轉換大小寫</a></li>
+<li class="chapter" data-level="1.2.3" data-path="r-語言基礎語法.html"><a href="r-語言基礎語法.html#擷取與取代字元"><i class="fa fa-check"></i><b>1.2.3</b> 擷取與取代字元</a></li>
+<li class="chapter" data-level="1.2.4" data-path="r-語言基礎語法.html"><a href="r-語言基礎語法.html#拆解字串"><i class="fa fa-check"></i><b>1.2.4</b> 拆解字串</a></li>
+<li class="chapter" data-level="1.2.5" data-path="r-語言基礎語法.html"><a href="r-語言基礎語法.html#計算字元數"><i class="fa fa-check"></i><b>1.2.5</b> 計算字元數</a></li>
+<li class="chapter" data-level="1.2.6" data-path="r-語言基礎語法.html"><a href="r-語言基礎語法.html#搜尋字元"><i class="fa fa-check"></i><b>1.2.6</b> 搜尋字元</a></li>
+<li class="chapter" data-level="1.2.7" data-path="r-語言基礎語法.html"><a href="r-語言基礎語法.html#文字填補"><i class="fa fa-check"></i><b>1.2.7</b> 文字填補</a></li>
+<li class="chapter" data-level="1.2.8" data-path="r-語言基礎語法.html"><a href="r-語言基礎語法.html#文字排序"><i class="fa fa-check"></i><b>1.2.8</b> 文字排序</a></li>
+<li class="chapter" data-level="1.2.9" data-path="r-語言基礎語法.html"><a href="r-語言基礎語法.html#正規表示式"><i class="fa fa-check"></i><b>1.2.9</b> 正規表示式</a></li>
+</ul></li>
+<li class="chapter" data-level="1.3" data-path="r-語言基礎語法.html"><a href="r-語言基礎語法.html#控制流程"><i class="fa fa-check"></i><b>1.3</b> 控制流程</a>
 <ul>
-<li class="chapter" data-level="1.3.1" data-path="r-語言基礎語法.html"><a href="r-%E8%AA%9E%E8%A8%80%E5%9F%BA%E7%A4%8E%E8%AA%9E%E6%B3%95.html#%E9%82%8F%E8%BC%AF%E5%88%A4%E6%96%B7"><i class="fa fa-check"></i><b>1.3.1</b> 邏輯判斷</a></li>
-<li class="chapter" data-level="1.3.2" data-path="r-語言基礎語法.html"><a href="r-%E8%AA%9E%E8%A8%80%E5%9F%BA%E7%A4%8E%E8%AA%9E%E6%B3%95.html#for%E8%BF%B4%E5%9C%88"><i class="fa fa-check"></i><b>1.3.2</b> <code>for()</code>迴圈</a></li>
-<li class="chapter" data-level="1.3.3" data-path="r-語言基礎語法.html"><a href="r-%E8%AA%9E%E8%A8%80%E5%9F%BA%E7%A4%8E%E8%AA%9E%E6%B3%95.html#while%E8%BF%B4%E5%9C%88"><i class="fa fa-check"></i><b>1.3.3</b> <code>while()</code>迴圈</a></li>
-<li class="chapter" data-level="1.3.4" data-path="r-語言基礎語法.html"><a href="r-%E8%AA%9E%E8%A8%80%E5%9F%BA%E7%A4%8E%E8%AA%9E%E6%B3%95.html#%E5%BB%BA%E7%AB%8B%E8%87%AA%E5%AE%9A%E7%BE%A9%E5%87%BD%E5%BC%8F"><i class="fa fa-check"></i><b>1.3.4</b> 建立自定義函式</a></li>
-<li class="chapter" data-level="1.3.5" data-path="r-語言基礎語法.html"><a href="r-%E8%AA%9E%E8%A8%80%E5%9F%BA%E7%A4%8E%E8%AA%9E%E6%B3%95.html#%E9%8C%AF%E8%AA%A4%E8%99%95%E7%90%86"><i class="fa fa-check"></i><b>1.3.5</b> 錯誤處理</a></li>
-<li class="chapter" data-level="1.3.6" data-path="r-語言基礎語法.html"><a href="r-%E8%AA%9E%E8%A8%80%E5%9F%BA%E7%A4%8E%E8%AA%9E%E6%B3%95.html#apply%E5%87%BD%E5%BC%8F%E5%AE%B6%E6%97%8F"><i class="fa fa-check"></i><b>1.3.6</b> <code>apply</code>函式家族</a></li>
-</ul>
-</li>
-<li class="chapter" data-level="1.4" data-path="r-語言基礎語法.html">
-<a href="r-%E8%AA%9E%E8%A8%80%E5%9F%BA%E7%A4%8E%E8%AA%9E%E6%B3%95.html#%E8%B3%87%E6%96%99%E8%AE%80%E5%8F%96%E8%88%87%E5%8C%AF%E5%87%BA"><i class="fa fa-check"></i><b>1.4</b> 資料讀取與匯出</a>
+<li class="chapter" data-level="1.3.1" data-path="r-語言基礎語法.html"><a href="r-語言基礎語法.html#邏輯判斷"><i class="fa fa-check"></i><b>1.3.1</b> 邏輯判斷</a></li>
+<li class="chapter" data-level="1.3.2" data-path="r-語言基礎語法.html"><a href="r-語言基礎語法.html#for迴圈"><i class="fa fa-check"></i><b>1.3.2</b> <code>for()</code>迴圈</a></li>
+<li class="chapter" data-level="1.3.3" data-path="r-語言基礎語法.html"><a href="r-語言基礎語法.html#while迴圈"><i class="fa fa-check"></i><b>1.3.3</b> <code>while()</code>迴圈</a></li>
+<li class="chapter" data-level="1.3.4" data-path="r-語言基礎語法.html"><a href="r-語言基礎語法.html#建立自定義函式"><i class="fa fa-check"></i><b>1.3.4</b> 建立自定義函式</a></li>
+<li class="chapter" data-level="1.3.5" data-path="r-語言基礎語法.html"><a href="r-語言基礎語法.html#錯誤處理"><i class="fa fa-check"></i><b>1.3.5</b> 錯誤處理</a></li>
+<li class="chapter" data-level="1.3.6" data-path="r-語言基礎語法.html"><a href="r-語言基礎語法.html#apply函式家族"><i class="fa fa-check"></i><b>1.3.6</b> <code>apply</code>函式家族</a></li>
+</ul></li>
+<li class="chapter" data-level="1.4" data-path="r-語言基礎語法.html"><a href="r-語言基礎語法.html#資料讀取與匯出"><i class="fa fa-check"></i><b>1.4</b> 資料讀取與匯出</a>
 <ul>
-<li class="chapter" data-level="1.4.1" data-path="r-語言基礎語法.html"><a href="r-%E8%AA%9E%E8%A8%80%E5%9F%BA%E7%A4%8E%E8%AA%9E%E6%B3%95.html#csv-%E8%88%87-txt-%E6%AA%94"><i class="fa fa-check"></i><b>1.4.1</b> CSV 與 TXT 檔</a></li>
-<li class="chapter" data-level="1.4.2" data-path="r-語言基礎語法.html"><a href="r-%E8%AA%9E%E8%A8%80%E5%9F%BA%E7%A4%8E%E8%AA%9E%E6%B3%95.html#json-%E6%AA%94"><i class="fa fa-check"></i><b>1.4.2</b> JSON 檔</a></li>
-<li class="chapter" data-level="1.4.3" data-path="r-語言基礎語法.html"><a href="r-%E8%AA%9E%E8%A8%80%E5%9F%BA%E7%A4%8E%E8%AA%9E%E6%B3%95.html#xml-%E6%AA%94%E6%A1%88"><i class="fa fa-check"></i><b>1.4.3</b> XML 檔案</a></li>
-<li class="chapter" data-level="1.4.4" data-path="r-語言基礎語法.html"><a href="r-%E8%AA%9E%E8%A8%80%E5%9F%BA%E7%A4%8E%E8%AA%9E%E6%B3%95.html#%E8%B3%87%E6%96%99%E4%BE%86%E6%BA%90"><i class="fa fa-check"></i><b>1.4.4</b> 資料來源</a></li>
-</ul>
-</li>
-</ul>
-</li>
-<li class="chapter" data-level="2" data-path="資料清洗與處理.html">
-<a href="%E8%B3%87%E6%96%99%E6%B8%85%E6%B4%97%E8%88%87%E8%99%95%E7%90%86.html"><i class="fa fa-check"></i><b>2</b> <strong>資料清洗與處理</strong></a>
+<li class="chapter" data-level="1.4.1" data-path="r-語言基礎語法.html"><a href="r-語言基礎語法.html#csv-與-txt-檔"><i class="fa fa-check"></i><b>1.4.1</b> CSV 與 TXT 檔</a></li>
+<li class="chapter" data-level="1.4.2" data-path="r-語言基礎語法.html"><a href="r-語言基礎語法.html#json-檔"><i class="fa fa-check"></i><b>1.4.2</b> JSON 檔</a></li>
+<li class="chapter" data-level="1.4.3" data-path="r-語言基礎語法.html"><a href="r-語言基礎語法.html#xml-檔案"><i class="fa fa-check"></i><b>1.4.3</b> XML 檔案</a></li>
+<li class="chapter" data-level="1.4.4" data-path="r-語言基礎語法.html"><a href="r-語言基礎語法.html#資料來源"><i class="fa fa-check"></i><b>1.4.4</b> 資料來源</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="2" data-path="資料清洗與處理.html"><a href="資料清洗與處理.html"><i class="fa fa-check"></i><b>2</b> <strong>資料清洗與處理</strong></a>
 <ul>
-<li class="chapter" data-level="2.1" data-path="資料清洗與處理.html"><a href="%E8%B3%87%E6%96%99%E6%B8%85%E6%B4%97%E8%88%87%E8%99%95%E7%90%86.html#data.frame-%E8%88%87-data.table"><i class="fa fa-check"></i><b>2.1</b> data.frame 與 data.table</a></li>
-<li class="chapter" data-level="2.2" data-path="資料清洗與處理.html"><a href="%E8%B3%87%E6%96%99%E6%B8%85%E6%B4%97%E8%88%87%E8%99%95%E7%90%86.html#%E5%90%88%E4%BD%B5%E8%B3%87%E6%96%99"><i class="fa fa-check"></i><b>2.2</b> 合併資料</a></li>
-<li class="chapter" data-level="2.3" data-path="資料清洗與處理.html"><a href="%E8%B3%87%E6%96%99%E6%B8%85%E6%B4%97%E8%88%87%E8%99%95%E7%90%86.html#%E9%81%B8%E5%8F%96%E8%B3%87%E6%96%99%E6%AC%84%E4%BD%8D"><i class="fa fa-check"></i><b>2.3</b> 選取資料欄位</a></li>
-<li class="chapter" data-level="2.4" data-path="資料清洗與處理.html"><a href="%E8%B3%87%E6%96%99%E6%B8%85%E6%B4%97%E8%88%87%E8%99%95%E7%90%86.html#%E4%BE%9D%E6%A2%9D%E4%BB%B6%E7%AF%A9%E9%81%B8%E8%B3%87%E6%96%99"><i class="fa fa-check"></i><b>2.4</b> 依條件篩選資料</a></li>
-<li class="chapter" data-level="2.5" data-path="資料清洗與處理.html"><a href="%E8%B3%87%E6%96%99%E6%B8%85%E6%B4%97%E8%88%87%E8%99%95%E7%90%86.html#%E6%96%B0%E5%A2%9E%E8%B3%87%E6%96%99%E5%B1%AC%E6%80%A7"><i class="fa fa-check"></i><b>2.5</b> 新增資料屬性</a></li>
-<li class="chapter" data-level="2.6" data-path="資料清洗與處理.html"><a href="%E8%B3%87%E6%96%99%E6%B8%85%E6%B4%97%E8%88%87%E8%99%95%E7%90%86.html#%E6%A2%9D%E4%BB%B6%E5%88%A4%E6%96%B7"><i class="fa fa-check"></i><b>2.6</b> 條件判斷</a></li>
-<li class="chapter" data-level="2.7" data-path="資料清洗與處理.html"><a href="%E8%B3%87%E6%96%99%E6%B8%85%E6%B4%97%E8%88%87%E8%99%95%E7%90%86.html#%E8%B3%87%E6%96%99%E6%8E%92%E5%BA%8F"><i class="fa fa-check"></i><b>2.7</b> 資料排序</a></li>
-<li class="chapter" data-level="2.8" data-path="資料清洗與處理.html"><a href="%E8%B3%87%E6%96%99%E6%B8%85%E6%B4%97%E8%88%87%E8%99%95%E7%90%86.html#%E8%B3%87%E6%96%99%E5%88%86%E7%BE%A4%E8%88%87%E7%B5%B1%E8%A8%88"><i class="fa fa-check"></i><b>2.8</b> 資料分群與統計</a></li>
-<li class="chapter" data-level="2.9" data-path="資料清洗與處理.html"><a href="%E8%B3%87%E6%96%99%E6%B8%85%E6%B4%97%E8%88%87%E8%99%95%E7%90%86.html#%E9%80%A3%E6%8E%A5%E8%B3%87%E6%96%99"><i class="fa fa-check"></i><b>2.9</b> 連接資料</a></li>
-<li class="chapter" data-level="2.10" data-path="資料清洗與處理.html"><a href="%E8%B3%87%E6%96%99%E6%B8%85%E6%B4%97%E8%88%87%E8%99%95%E7%90%86.html#%E9%87%8D%E6%96%B0%E5%91%BD%E5%90%8D%E6%AC%84%E4%BD%8D"><i class="fa fa-check"></i><b>2.10</b> 重新命名欄位</a></li>
-<li class="chapter" data-level="2.11" data-path="資料清洗與處理.html"><a href="%E8%B3%87%E6%96%99%E6%B8%85%E6%B4%97%E8%88%87%E8%99%95%E7%90%86.html#%E5%8E%BB%E9%99%A4%E9%87%8D%E8%A4%87%E8%B3%87%E6%96%99"><i class="fa fa-check"></i><b>2.11</b> 去除重複資料</a></li>
-<li class="chapter" data-level="2.12" data-path="資料清洗與處理.html"><a href="%E8%B3%87%E6%96%99%E6%B8%85%E6%B4%97%E8%88%87%E8%99%95%E7%90%86.html#%E8%B3%87%E6%96%99%E9%9B%86%E5%90%88"><i class="fa fa-check"></i><b>2.12</b> 資料集合</a></li>
-<li class="chapter" data-level="2.13" data-path="資料清洗與處理.html"><a href="%E8%B3%87%E6%96%99%E6%B8%85%E6%B4%97%E8%88%87%E8%99%95%E7%90%86.html#%E8%B3%87%E6%96%99%E5%9E%8B%E6%85%8B%E8%BD%89%E6%8F%9B"><i class="fa fa-check"></i><b>2.13</b> 資料型態轉換</a></li>
-<li class="chapter" data-level="2.14" data-path="資料清洗與處理.html"><a href="%E8%B3%87%E6%96%99%E6%B8%85%E6%B4%97%E8%88%87%E8%99%95%E7%90%86.html#%E6%8B%86%E5%88%86%E6%AC%84%E4%BD%8D"><i class="fa fa-check"></i><b>2.14</b> 拆分欄位</a></li>
-<li class="chapter" data-level="2.15" data-path="資料清洗與處理.html"><a href="%E8%B3%87%E6%96%99%E6%B8%85%E6%B4%97%E8%88%87%E8%99%95%E7%90%86.html#%E5%A1%AB%E8%A3%9C%E8%B3%87%E6%96%99"><i class="fa fa-check"></i><b>2.15</b> 填補資料</a></li>
-<li class="chapter" data-level="" data-path="資料清洗與處理.html"><a href="%E8%B3%87%E6%96%99%E6%B8%85%E6%B4%97%E8%88%87%E8%99%95%E7%90%86.html#%E6%89%80%E6%9C%89%E5%87%BD%E5%BC%8F%E5%BD%99%E6%95%B4"><i class="fa fa-check"></i><strong>所有函式彙整</strong></a></li>
-</ul>
-</li>
-<li class="chapter" data-level="3" data-path="資料視覺化.html">
-<a href="%E8%B3%87%E6%96%99%E8%A6%96%E8%A6%BA%E5%8C%96.html"><i class="fa fa-check"></i><b>3</b> <strong>資料視覺化</strong></a>
+<li class="chapter" data-level="2.1" data-path="資料清洗與處理.html"><a href="資料清洗與處理.html#data.frame-與-data.table"><i class="fa fa-check"></i><b>2.1</b> data.frame 與 data.table</a></li>
+<li class="chapter" data-level="2.2" data-path="資料清洗與處理.html"><a href="資料清洗與處理.html#合併資料"><i class="fa fa-check"></i><b>2.2</b> 合併資料</a></li>
+<li class="chapter" data-level="2.3" data-path="資料清洗與處理.html"><a href="資料清洗與處理.html#選取資料欄位"><i class="fa fa-check"></i><b>2.3</b> 選取資料欄位</a></li>
+<li class="chapter" data-level="2.4" data-path="資料清洗與處理.html"><a href="資料清洗與處理.html#依條件篩選資料"><i class="fa fa-check"></i><b>2.4</b> 依條件篩選資料</a></li>
+<li class="chapter" data-level="2.5" data-path="資料清洗與處理.html"><a href="資料清洗與處理.html#新增資料屬性"><i class="fa fa-check"></i><b>2.5</b> 新增資料屬性</a></li>
+<li class="chapter" data-level="2.6" data-path="資料清洗與處理.html"><a href="資料清洗與處理.html#條件判斷"><i class="fa fa-check"></i><b>2.6</b> 條件判斷</a></li>
+<li class="chapter" data-level="2.7" data-path="資料清洗與處理.html"><a href="資料清洗與處理.html#資料排序"><i class="fa fa-check"></i><b>2.7</b> 資料排序</a></li>
+<li class="chapter" data-level="2.8" data-path="資料清洗與處理.html"><a href="資料清洗與處理.html#資料分群與統計"><i class="fa fa-check"></i><b>2.8</b> 資料分群與統計</a></li>
+<li class="chapter" data-level="2.9" data-path="資料清洗與處理.html"><a href="資料清洗與處理.html#連接資料"><i class="fa fa-check"></i><b>2.9</b> 連接資料</a></li>
+<li class="chapter" data-level="2.10" data-path="資料清洗與處理.html"><a href="資料清洗與處理.html#重新命名欄位"><i class="fa fa-check"></i><b>2.10</b> 重新命名欄位</a></li>
+<li class="chapter" data-level="2.11" data-path="資料清洗與處理.html"><a href="資料清洗與處理.html#去除重複資料"><i class="fa fa-check"></i><b>2.11</b> 去除重複資料</a></li>
+<li class="chapter" data-level="2.12" data-path="資料清洗與處理.html"><a href="資料清洗與處理.html#資料集合"><i class="fa fa-check"></i><b>2.12</b> 資料集合</a></li>
+<li class="chapter" data-level="2.13" data-path="資料清洗與處理.html"><a href="資料清洗與處理.html#資料型態轉換"><i class="fa fa-check"></i><b>2.13</b> 資料型態轉換</a></li>
+<li class="chapter" data-level="2.14" data-path="資料清洗與處理.html"><a href="資料清洗與處理.html#拆分欄位"><i class="fa fa-check"></i><b>2.14</b> 拆分欄位</a></li>
+<li class="chapter" data-level="2.15" data-path="資料清洗與處理.html"><a href="資料清洗與處理.html#填補資料"><i class="fa fa-check"></i><b>2.15</b> 填補資料</a></li>
+<li class="chapter" data-level="" data-path="資料清洗與處理.html"><a href="資料清洗與處理.html#所有函式彙整"><i class="fa fa-check"></i><strong>所有函式彙整</strong></a></li>
+</ul></li>
+<li class="chapter" data-level="3" data-path="資料視覺化.html"><a href="資料視覺化.html"><i class="fa fa-check"></i><b>3</b> <strong>資料視覺化</strong></a>
 <ul>
-<li class="chapter" data-level="3.1" data-path="資料視覺化.html">
-<a href="%E8%B3%87%E6%96%99%E8%A6%96%E8%A6%BA%E5%8C%96.html#%E5%9C%96%E8%A1%A8%E9%A1%9E%E5%9E%8B"><i class="fa fa-check"></i><b>3.1</b> 圖表類型</a>
+<li class="chapter" data-level="3.1" data-path="資料視覺化.html"><a href="資料視覺化.html#圖表類型"><i class="fa fa-check"></i><b>3.1</b> 圖表類型</a>
 <ul>
-<li class="chapter" data-level="" data-path="資料視覺化.html"><a href="%E8%B3%87%E6%96%99%E8%A6%96%E8%A6%BA%E5%8C%96.html#%E5%9C%96%E8%A1%A8%E9%A1%9E%E5%9E%8B%E5%BD%99%E6%95%B4"><i class="fa fa-check"></i><strong>圖表類型彙整</strong></a></li>
-<li class="chapter" data-level="" data-path="資料視覺化.html"><a href="%E8%B3%87%E6%96%99%E8%A6%96%E8%A6%BA%E5%8C%96.html#%E5%88%9D%E5%A7%8B%E5%8C%96"><i class="fa fa-check"></i><strong>初始化</strong></a></li>
-<li class="chapter" data-level="" data-path="資料視覺化.html"><a href="%E8%B3%87%E6%96%99%E8%A6%96%E8%A6%BA%E5%8C%96.html#%E5%9C%96%E7%A4%BA%E8%A8%AD%E5%AE%9A"><i class="fa fa-check"></i><strong>圖示設定</strong></a></li>
-<li class="chapter" data-level="3.1.1" data-path="資料視覺化.html"><a href="%E8%B3%87%E6%96%99%E8%A6%96%E8%A6%BA%E5%8C%96.html#%E6%95%A3%E5%B8%83%E5%9C%96"><i class="fa fa-check"></i><b>3.1.1</b> 散布圖</a></li>
-<li class="chapter" data-level="3.1.2" data-path="資料視覺化.html"><a href="%E8%B3%87%E6%96%99%E8%A6%96%E8%A6%BA%E5%8C%96.html#%E6%8A%98%E7%B7%9A%E5%9C%96"><i class="fa fa-check"></i><b>3.1.2</b> 折線圖</a></li>
-<li class="chapter" data-level="3.1.3" data-path="資料視覺化.html"><a href="%E8%B3%87%E6%96%99%E8%A6%96%E8%A6%BA%E5%8C%96.html#%E9%95%B7%E6%A2%9D%E5%9C%96"><i class="fa fa-check"></i><b>3.1.3</b> 長條圖</a></li>
-<li class="chapter" data-level="3.1.4" data-path="資料視覺化.html"><a href="%E8%B3%87%E6%96%99%E8%A6%96%E8%A6%BA%E5%8C%96.html#%E7%9B%B4%E6%96%B9%E5%9C%96"><i class="fa fa-check"></i><b>3.1.4</b> 直方圖</a></li>
-<li class="chapter" data-level="3.1.5" data-path="資料視覺化.html"><a href="%E8%B3%87%E6%96%99%E8%A6%96%E8%A6%BA%E5%8C%96.html#%E5%AF%86%E5%BA%A6%E5%9C%96"><i class="fa fa-check"></i><b>3.1.5</b> 密度圖</a></li>
-<li class="chapter" data-level="3.1.6" data-path="資料視覺化.html"><a href="%E8%B3%87%E6%96%99%E8%A6%96%E8%A6%BA%E5%8C%96.html#%E5%9C%93%E9%A4%85%E5%9C%96"><i class="fa fa-check"></i><b>3.1.6</b> 圓餅圖</a></li>
-<li class="chapter" data-level="3.1.7" data-path="資料視覺化.html"><a href="%E8%B3%87%E6%96%99%E8%A6%96%E8%A6%BA%E5%8C%96.html#%E6%A3%92%E6%A3%92%E7%B3%96%E5%9C%96"><i class="fa fa-check"></i><b>3.1.7</b> 棒棒糖圖</a></li>
-<li class="chapter" data-level="3.1.8" data-path="資料視覺化.html"><a href="%E8%B3%87%E6%96%99%E8%A6%96%E8%A6%BA%E5%8C%96.html#%E7%9B%92%E7%8B%80%E5%9C%96"><i class="fa fa-check"></i><b>3.1.8</b> 盒狀圖</a></li>
-<li class="chapter" data-level="3.1.9" data-path="資料視覺化.html"><a href="%E8%B3%87%E6%96%99%E8%A6%96%E8%A6%BA%E5%8C%96.html#%E5%B0%8F%E6%8F%90%E7%90%B4%E5%9C%96"><i class="fa fa-check"></i><b>3.1.9</b> 小提琴圖</a></li>
-<li class="chapter" data-level="3.1.10" data-path="資料視覺化.html"><a href="%E8%B3%87%E6%96%99%E8%A6%96%E8%A6%BA%E5%8C%96.html#%E6%B0%A3%E6%B3%A1%E5%9C%96"><i class="fa fa-check"></i><b>3.1.10</b> 氣泡圖</a></li>
-<li class="chapter" data-level="3.1.11" data-path="資料視覺化.html"><a href="%E8%B3%87%E6%96%99%E8%A6%96%E8%A6%BA%E5%8C%96.html#%E5%B1%B1%E8%84%8A%E5%9C%96"><i class="fa fa-check"></i><b>3.1.11</b> 山脊圖</a></li>
-<li class="chapter" data-level="3.1.12" data-path="資料視覺化.html"><a href="%E8%B3%87%E6%96%99%E8%A6%96%E8%A6%BA%E5%8C%96.html#%E7%86%B1%E5%8A%9B%E5%9C%96"><i class="fa fa-check"></i><b>3.1.12</b> 熱力圖</a></li>
-<li class="chapter" data-level="3.1.13" data-path="資料視覺化.html"><a href="%E8%B3%87%E6%96%99%E8%A6%96%E8%A6%BA%E5%8C%96.html#%E7%9F%A9%E5%BD%A2%E5%BC%8F%E6%A8%B9%E7%8B%80%E5%9C%96"><i class="fa fa-check"></i><b>3.1.13</b> 矩形式樹狀圖</a></li>
-<li class="chapter" data-level="3.1.14" data-path="資料視覺化.html"><a href="%E8%B3%87%E6%96%99%E8%A6%96%E8%A6%BA%E5%8C%96.html#%E6%A1%91%E5%9F%BA%E5%9C%96"><i class="fa fa-check"></i><b>3.1.14</b> 桑基圖</a></li>
-<li class="chapter" data-level="3.1.15" data-path="資料視覺化.html"><a href="%E8%B3%87%E6%96%99%E8%A6%96%E8%A6%BA%E5%8C%96.html#%E9%9B%B7%E9%81%94%E5%9C%96"><i class="fa fa-check"></i><b>3.1.15</b> 雷達圖</a></li>
-<li class="chapter" data-level="3.1.16" data-path="資料視覺化.html"><a href="%E8%B3%87%E6%96%99%E8%A6%96%E8%A6%BA%E5%8C%96.html#%E4%B8%89%E5%85%83%E5%9C%96"><i class="fa fa-check"></i><b>3.1.16</b> 三元圖</a></li>
-<li class="chapter" data-level="3.1.17" data-path="資料視覺化.html"><a href="%E8%B3%87%E6%96%99%E8%A6%96%E8%A6%BA%E5%8C%96.html#%E7%9B%B4%E7%B7%9A%E6%9B%B2%E7%B7%9A%E8%88%87%E7%B7%9A%E6%AE%B5"><i class="fa fa-check"></i><b>3.1.17</b> 直線、曲線與線段</a></li>
-</ul>
-</li>
-<li class="chapter" data-level="3.2" data-path="資料視覺化.html">
-<a href="%E8%B3%87%E6%96%99%E8%A6%96%E8%A6%BA%E5%8C%96.html#%E5%9C%96%E8%A1%A8%E6%96%87%E5%AD%97%E8%88%87%E6%8F%92%E5%9C%96"><i class="fa fa-check"></i><b>3.2</b> 圖表文字與插圖</a>
+<li class="chapter" data-level="" data-path="資料視覺化.html"><a href="資料視覺化.html#圖表類型彙整"><i class="fa fa-check"></i><strong>圖表類型彙整</strong></a></li>
+<li class="chapter" data-level="" data-path="資料視覺化.html"><a href="資料視覺化.html#初始化"><i class="fa fa-check"></i><strong>初始化</strong></a></li>
+<li class="chapter" data-level="" data-path="資料視覺化.html"><a href="資料視覺化.html#圖示設定"><i class="fa fa-check"></i><strong>圖示設定</strong></a></li>
+<li class="chapter" data-level="3.1.1" data-path="資料視覺化.html"><a href="資料視覺化.html#散布圖"><i class="fa fa-check"></i><b>3.1.1</b> 散布圖</a></li>
+<li class="chapter" data-level="3.1.2" data-path="資料視覺化.html"><a href="資料視覺化.html#折線圖"><i class="fa fa-check"></i><b>3.1.2</b> 折線圖</a></li>
+<li class="chapter" data-level="3.1.3" data-path="資料視覺化.html"><a href="資料視覺化.html#長條圖"><i class="fa fa-check"></i><b>3.1.3</b> 長條圖</a></li>
+<li class="chapter" data-level="3.1.4" data-path="資料視覺化.html"><a href="資料視覺化.html#直方圖"><i class="fa fa-check"></i><b>3.1.4</b> 直方圖</a></li>
+<li class="chapter" data-level="3.1.5" data-path="資料視覺化.html"><a href="資料視覺化.html#密度圖"><i class="fa fa-check"></i><b>3.1.5</b> 密度圖</a></li>
+<li class="chapter" data-level="3.1.6" data-path="資料視覺化.html"><a href="資料視覺化.html#圓餅圖"><i class="fa fa-check"></i><b>3.1.6</b> 圓餅圖</a></li>
+<li class="chapter" data-level="3.1.7" data-path="資料視覺化.html"><a href="資料視覺化.html#棒棒糖圖"><i class="fa fa-check"></i><b>3.1.7</b> 棒棒糖圖</a></li>
+<li class="chapter" data-level="3.1.8" data-path="資料視覺化.html"><a href="資料視覺化.html#盒狀圖"><i class="fa fa-check"></i><b>3.1.8</b> 盒狀圖</a></li>
+<li class="chapter" data-level="3.1.9" data-path="資料視覺化.html"><a href="資料視覺化.html#小提琴圖"><i class="fa fa-check"></i><b>3.1.9</b> 小提琴圖</a></li>
+<li class="chapter" data-level="3.1.10" data-path="資料視覺化.html"><a href="資料視覺化.html#氣泡圖"><i class="fa fa-check"></i><b>3.1.10</b> 氣泡圖</a></li>
+<li class="chapter" data-level="3.1.11" data-path="資料視覺化.html"><a href="資料視覺化.html#山脊圖"><i class="fa fa-check"></i><b>3.1.11</b> 山脊圖</a></li>
+<li class="chapter" data-level="3.1.12" data-path="資料視覺化.html"><a href="資料視覺化.html#熱力圖"><i class="fa fa-check"></i><b>3.1.12</b> 熱力圖</a></li>
+<li class="chapter" data-level="3.1.13" data-path="資料視覺化.html"><a href="資料視覺化.html#矩形式樹狀圖"><i class="fa fa-check"></i><b>3.1.13</b> 矩形式樹狀圖</a></li>
+<li class="chapter" data-level="3.1.14" data-path="資料視覺化.html"><a href="資料視覺化.html#桑基圖"><i class="fa fa-check"></i><b>3.1.14</b> 桑基圖</a></li>
+<li class="chapter" data-level="3.1.15" data-path="資料視覺化.html"><a href="資料視覺化.html#雷達圖"><i class="fa fa-check"></i><b>3.1.15</b> 雷達圖</a></li>
+<li class="chapter" data-level="3.1.16" data-path="資料視覺化.html"><a href="資料視覺化.html#三元圖"><i class="fa fa-check"></i><b>3.1.16</b> 三元圖</a></li>
+<li class="chapter" data-level="3.1.17" data-path="資料視覺化.html"><a href="資料視覺化.html#直線曲線與線段"><i class="fa fa-check"></i><b>3.1.17</b> 直線、曲線與線段</a></li>
+</ul></li>
+<li class="chapter" data-level="3.2" data-path="資料視覺化.html"><a href="資料視覺化.html#圖表文字與插圖"><i class="fa fa-check"></i><b>3.2</b> 圖表文字與插圖</a>
 <ul>
-<li class="chapter" data-level="3.2.1" data-path="資料視覺化.html"><a href="%E8%B3%87%E6%96%99%E8%A6%96%E8%A6%BA%E5%8C%96.html#%E6%A8%99%E8%A8%BB%E6%96%87%E5%AD%97%E8%88%87%E6%A8%99%E7%B1%A4"><i class="fa fa-check"></i><b>3.2.1</b> 標註文字與標籤</a></li>
-<li class="chapter" data-level="3.2.2" data-path="資料視覺化.html"><a href="%E8%B3%87%E6%96%99%E8%A6%96%E8%A6%BA%E5%8C%96.html#%E6%96%87%E5%AD%97%E5%AD%97%E9%AB%94%E8%88%87%E5%AD%97%E5%9E%8B"><i class="fa fa-check"></i><b>3.2.2</b> 文字字體與字型</a></li>
-<li class="chapter" data-level="3.2.3" data-path="資料視覺化.html"><a href="%E8%B3%87%E6%96%99%E8%A6%96%E8%A6%BA%E5%8C%96.html#%E6%96%87%E5%AD%97%E8%A7%92%E5%BA%A6%E8%88%87%E5%B0%8D%E9%BD%8A"><i class="fa fa-check"></i><b>3.2.3</b> 文字角度與對齊</a></li>
-<li class="chapter" data-level="3.2.4" data-path="資料視覺化.html"><a href="%E8%B3%87%E6%96%99%E8%A6%96%E8%A6%BA%E5%8C%96.html#%E6%96%87%E5%AD%97%E4%BD%8D%E7%A7%BB"><i class="fa fa-check"></i><b>3.2.4</b> 文字位移</a></li>
-<li class="chapter" data-level="3.2.5" data-path="資料視覺化.html"><a href="%E8%B3%87%E6%96%99%E8%A6%96%E8%A6%BA%E5%8C%96.html#%E6%96%87%E5%AD%97%E9%81%BF%E5%85%8D%E9%87%8D%E7%96%8A"><i class="fa fa-check"></i><b>3.2.5</b> 文字避免重疊</a></li>
-<li class="chapter" data-level="3.2.6" data-path="資料視覺化.html"><a href="%E8%B3%87%E6%96%99%E8%A6%96%E8%A6%BA%E5%8C%96.html#html-%E6%96%87%E5%AD%97"><i class="fa fa-check"></i><b>3.2.6</b> HTML 文字</a></li>
-<li class="chapter" data-level="3.2.7" data-path="資料視覺化.html"><a href="%E8%B3%87%E6%96%99%E8%A6%96%E8%A6%BA%E5%8C%96.html#%E6%A8%99%E8%A8%BB%E6%8F%92%E5%9C%96"><i class="fa fa-check"></i><b>3.2.7</b> 標註插圖</a></li>
-</ul>
-</li>
-<li class="chapter" data-level="3.3" data-path="資料視覺化.html">
-<a href="%E8%B3%87%E6%96%99%E8%A6%96%E8%A6%BA%E5%8C%96.html#%E7%B9%AA%E5%9C%96%E8%A8%AD%E5%AE%9A"><i class="fa fa-check"></i><b>3.3</b> 繪圖設定</a>
+<li class="chapter" data-level="3.2.1" data-path="資料視覺化.html"><a href="資料視覺化.html#標註文字與標籤"><i class="fa fa-check"></i><b>3.2.1</b> 標註文字與標籤</a></li>
+<li class="chapter" data-level="3.2.2" data-path="資料視覺化.html"><a href="資料視覺化.html#文字字體與字型"><i class="fa fa-check"></i><b>3.2.2</b> 文字字體與字型</a></li>
+<li class="chapter" data-level="3.2.3" data-path="資料視覺化.html"><a href="資料視覺化.html#文字角度與對齊"><i class="fa fa-check"></i><b>3.2.3</b> 文字角度與對齊</a></li>
+<li class="chapter" data-level="3.2.4" data-path="資料視覺化.html"><a href="資料視覺化.html#文字位移"><i class="fa fa-check"></i><b>3.2.4</b> 文字位移</a></li>
+<li class="chapter" data-level="3.2.5" data-path="資料視覺化.html"><a href="資料視覺化.html#文字避免重疊"><i class="fa fa-check"></i><b>3.2.5</b> 文字避免重疊</a></li>
+<li class="chapter" data-level="3.2.6" data-path="資料視覺化.html"><a href="資料視覺化.html#html-文字"><i class="fa fa-check"></i><b>3.2.6</b> HTML 文字</a></li>
+<li class="chapter" data-level="3.2.7" data-path="資料視覺化.html"><a href="資料視覺化.html#標註插圖"><i class="fa fa-check"></i><b>3.2.7</b> 標註插圖</a></li>
+</ul></li>
+<li class="chapter" data-level="3.3" data-path="資料視覺化.html"><a href="資料視覺化.html#繪圖設定"><i class="fa fa-check"></i><b>3.3</b> 繪圖設定</a>
 <ul>
-<li class="chapter" data-level="3.3.1" data-path="資料視覺化.html"><a href="%E8%B3%87%E6%96%99%E8%A6%96%E8%A6%BA%E5%8C%96.html#%E5%9C%96%E4%BE%8B%E8%88%87%E5%BA%A7%E6%A8%99%E8%BB%B8%E8%A8%AD%E5%AE%9A"><i class="fa fa-check"></i><b>3.3.1</b> 圖例與座標軸設定</a></li>
-<li class="chapter" data-level="3.3.2" data-path="資料視覺化.html"><a href="%E8%B3%87%E6%96%99%E8%A6%96%E8%A6%BA%E5%8C%96.html#%E5%B0%BA%E5%BA%A6%E8%A8%AD%E5%AE%9A"><i class="fa fa-check"></i><b>3.3.2</b> 尺度設定</a></li>
-<li class="chapter" data-level="3.3.3" data-path="資料視覺化.html"><a href="%E8%B3%87%E6%96%99%E8%A6%96%E8%A6%BA%E5%8C%96.html#%E4%B8%BB%E9%A1%8C%E8%A8%AD%E5%AE%9A"><i class="fa fa-check"></i><b>3.3.3</b> 主題設定</a></li>
-</ul>
-</li>
-<li class="chapter" data-level="3.4" data-path="資料視覺化.html">
-<a href="%E8%B3%87%E6%96%99%E8%A6%96%E8%A6%BA%E5%8C%96.html#%E5%85%B6%E4%BB%96%E6%87%89%E7%94%A8"><i class="fa fa-check"></i><b>3.4</b> 其他應用</a>
+<li class="chapter" data-level="3.3.1" data-path="資料視覺化.html"><a href="資料視覺化.html#圖例與座標軸設定"><i class="fa fa-check"></i><b>3.3.1</b> 圖例與座標軸設定</a></li>
+<li class="chapter" data-level="3.3.2" data-path="資料視覺化.html"><a href="資料視覺化.html#尺度設定"><i class="fa fa-check"></i><b>3.3.2</b> 尺度設定</a></li>
+<li class="chapter" data-level="3.3.3" data-path="資料視覺化.html"><a href="資料視覺化.html#主題設定"><i class="fa fa-check"></i><b>3.3.3</b> 主題設定</a></li>
+</ul></li>
+<li class="chapter" data-level="3.4" data-path="資料視覺化.html"><a href="資料視覺化.html#其他應用"><i class="fa fa-check"></i><b>3.4</b> 其他應用</a>
 <ul>
-<li class="chapter" data-level="3.4.1" data-path="資料視覺化.html"><a href="%E8%B3%87%E6%96%99%E8%A6%96%E8%A6%BA%E5%8C%96.html#%E5%90%88%E4%BD%B5%E5%A4%9A%E5%9C%96"><i class="fa fa-check"></i><b>3.4.1</b> 合併多圖</a></li>
-<li class="chapter" data-level="3.4.2" data-path="資料視覺化.html"><a href="%E8%B3%87%E6%96%99%E8%A6%96%E8%A6%BA%E5%8C%96.html#gif-%E7%B9%AA%E8%A3%BD"><i class="fa fa-check"></i><b>3.4.2</b> GIF 繪製</a></li>
-</ul>
-</li>
-</ul>
-</li>
+<li class="chapter" data-level="3.4.1" data-path="資料視覺化.html"><a href="資料視覺化.html#合併多圖"><i class="fa fa-check"></i><b>3.4.1</b> 合併多圖</a></li>
+<li class="chapter" data-level="3.4.2" data-path="資料視覺化.html"><a href="資料視覺化.html#gif-繪製"><i class="fa fa-check"></i><b>3.4.2</b> GIF 繪製</a></li>
+</ul></li>
+</ul></li>
 <li class="part"><span><b>運輸資料分析</b></span></li>
-<li class="chapter" data-level="4" data-path="基本資料統計.html">
-<a href="%E5%9F%BA%E6%9C%AC%E8%B3%87%E6%96%99%E7%B5%B1%E8%A8%88.html"><i class="fa fa-check"></i><b>4</b> <strong>基本資料統計</strong></a>
+<li class="chapter" data-level="4" data-path="基本資料統計.html"><a href="基本資料統計.html"><i class="fa fa-check"></i><b>4</b> <strong>基本資料統計</strong></a>
 <ul>
-<li class="chapter" data-level="4.1" data-path="基本資料統計.html">
-<a href="%E5%9F%BA%E6%9C%AC%E8%B3%87%E6%96%99%E7%B5%B1%E8%A8%88.html#%E5%85%AC%E8%BB%8A%E8%B3%87%E6%96%99%E7%B5%B1%E8%A8%88%E5%88%86%E6%9E%90"><i class="fa fa-check"></i><b>4.1</b> 公車資料統計分析</a>
+<li class="chapter" data-level="4.1" data-path="基本資料統計.html"><a href="基本資料統計.html#公車資料統計分析"><i class="fa fa-check"></i><b>4.1</b> 公車資料統計分析</a>
 <ul>
-<li class="chapter" data-level="4.1.1" data-path="基本資料統計.html"><a href="%E5%9F%BA%E6%9C%AC%E8%B3%87%E6%96%99%E7%B5%B1%E8%A8%88.html#%E8%B7%AF%E7%B7%9A%E7%B5%B1%E8%A8%88%E5%88%86%E6%9E%90"><i class="fa fa-check"></i><b>4.1.1</b> 路線統計分析</a></li>
-<li class="chapter" data-level="4.1.2" data-path="基本資料統計.html"><a href="%E5%9F%BA%E6%9C%AC%E8%B3%87%E6%96%99%E7%B5%B1%E8%A8%88.html#%E7%AB%99%E7%89%8C%E7%B5%B1%E8%A8%88%E5%88%86%E6%9E%90"><i class="fa fa-check"></i><b>4.1.2</b> 站牌統計分析</a></li>
-<li class="chapter" data-level="4.1.3" data-path="基本資料統計.html"><a href="%E5%9F%BA%E6%9C%AC%E8%B3%87%E6%96%99%E7%B5%B1%E8%A8%88.html#%E7%AB%99%E9%96%93%E8%A1%8C%E9%A7%9B%E8%B7%9D%E9%9B%A2%E8%A8%88%E7%AE%97"><i class="fa fa-check"></i><b>4.1.3</b> 站間行駛距離計算</a></li>
-</ul>
-</li>
-</ul>
-</li>
-<li class="divider">
+<li class="chapter" data-level="4.1.1" data-path="基本資料統計.html"><a href="基本資料統計.html#路線統計分析"><i class="fa fa-check"></i><b>4.1.1</b> 路線統計分析</a></li>
+<li class="chapter" data-level="4.1.2" data-path="基本資料統計.html"><a href="基本資料統計.html#站牌統計分析"><i class="fa fa-check"></i><b>4.1.2</b> 站牌統計分析</a></li>
+<li class="chapter" data-level="4.1.3" data-path="基本資料統計.html"><a href="基本資料統計.html#站間行駛距離計算"><i class="fa fa-check"></i><b>4.1.3</b> 站間行駛距離計算</a></li>
+</ul></li>
+</ul></li>
+<li class="divider"></li>
 <li><a href="https://www.sydney.edu.au/business/about/our-people/research-students/chia-jung-yeh-557.html" target="blank">葉家榮 Chia-Jung Yeh</a></li>
 
-</ul></nav>
-</div>
+</ul>
+
+      </nav>
+    </div>
 
     <div class="book-body">
       <div class="body-inner">
@@ -283,56 +286,53 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
         <div class="page-wrapper" tabindex="-1" role="main">
           <div class="page-inner">
 
-            <section class="normal" id="section-"><div id="基本資料統計" class="section level1 hasAnchor" number="4">
-<h1>
-<span class="header-section-number">Chapter 4</span> <strong>基本資料統計</strong><a href="%E5%9F%BA%E6%9C%AC%E8%B3%87%E6%96%99%E7%B5%B1%E8%A8%88.html#%E5%9F%BA%E6%9C%AC%E8%B3%87%E6%96%99%E7%B5%B1%E8%A8%88" class="anchor-section" aria-label="Anchor link to header"></a>
-</h1>
+            <section class="normal" id="section-">
+<div id="基本資料統計" class="section level1 hasAnchor" number="4">
+<h1><span class="header-section-number">Chapter 4</span> <strong>基本資料統計</strong><a href="基本資料統計.html#基本資料統計" class="anchor-section" aria-label="Anchor link to header"></a></h1>
 <p>透過<code>dplyr</code>套件統計運輸資料是數據分析的第一步，可瞭解運輸供給與需求的概況，並可將大數據轉換為可理解且有意涵的資訊。</p>
 <div id="公車資料統計分析" class="section level2 hasAnchor" number="4.1">
-<h2>
-<span class="header-section-number">4.1</span> 公車資料統計分析<a href="%E5%9F%BA%E6%9C%AC%E8%B3%87%E6%96%99%E7%B5%B1%E8%A8%88.html#%E5%85%AC%E8%BB%8A%E8%B3%87%E6%96%99%E7%B5%B1%E8%A8%88%E5%88%86%E6%9E%90" class="anchor-section" aria-label="Anchor link to header"></a>
-</h2>
+<h2><span class="header-section-number">4.1</span> 公車資料統計分析<a href="基本資料統計.html#公車資料統計分析" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <p>請先利用 TDX 套件介接公車資料（以新竹市為例）：</p>
-<div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1-1"><a href="%E5%9F%BA%E6%9C%AC%E8%B3%87%E6%96%99%E7%B5%B1%E8%A8%88.html#cb1-1" tabindex="-1"></a><span class="co"># 公車路線</span></span>
-<span id="cb1-2"><a href="%E5%9F%BA%E6%9C%AC%E8%B3%87%E6%96%99%E7%B5%B1%E8%A8%88.html#cb1-2" tabindex="-1"></a>bus_route<span class="ot">=</span><span class="fu">Bus_Route</span>(access_token, <span class="st">"Hsinchu"</span>)</span>
-<span id="cb1-3"><a href="%E5%9F%BA%E6%9C%AC%E8%B3%87%E6%96%99%E7%B5%B1%E8%A8%88.html#cb1-3" tabindex="-1"></a></span>
-<span id="cb1-4"><a href="%E5%9F%BA%E6%9C%AC%E8%B3%87%E6%96%99%E7%B5%B1%E8%A8%88.html#cb1-4" tabindex="-1"></a><span class="co"># 公車站牌</span></span>
-<span id="cb1-5"><a href="%E5%9F%BA%E6%9C%AC%E8%B3%87%E6%96%99%E7%B5%B1%E8%A8%88.html#cb1-5" tabindex="-1"></a>bus_stop<span class="ot">=</span><span class="fu">Bus_StopOfRoute</span>(access_token, <span class="st">"Hsinchu"</span>)</span>
-<span id="cb1-6"><a href="%E5%9F%BA%E6%9C%AC%E8%B3%87%E6%96%99%E7%B5%B1%E8%A8%88.html#cb1-6" tabindex="-1"></a></span>
-<span id="cb1-7"><a href="%E5%9F%BA%E6%9C%AC%E8%B3%87%E6%96%99%E7%B5%B1%E8%A8%88.html#cb1-7" tabindex="-1"></a><span class="co"># 公車站間距離</span></span>
-<span id="cb1-8"><a href="%E5%9F%BA%E6%9C%AC%E8%B3%87%E6%96%99%E7%B5%B1%E8%A8%88.html#cb1-8" tabindex="-1"></a>bus_distance<span class="ot">=</span><span class="fu">Bus_Distance</span>(access_token, <span class="st">"Hsinchu"</span>, bus_route<span class="sc">$</span>RouteID)</span></code></pre></div>
+<div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1-1"><a href="基本資料統計.html#cb1-1" tabindex="-1"></a><span class="co"># 公車路線</span></span>
+<span id="cb1-2"><a href="基本資料統計.html#cb1-2" tabindex="-1"></a>bus_route<span class="ot">=</span><span class="fu">Bus_Route</span>(access_token, <span class="st">&quot;Hsinchu&quot;</span>)</span>
+<span id="cb1-3"><a href="基本資料統計.html#cb1-3" tabindex="-1"></a></span>
+<span id="cb1-4"><a href="基本資料統計.html#cb1-4" tabindex="-1"></a><span class="co"># 公車站牌</span></span>
+<span id="cb1-5"><a href="基本資料統計.html#cb1-5" tabindex="-1"></a>bus_stop<span class="ot">=</span><span class="fu">Bus_StopOfRoute</span>(access_token, <span class="st">&quot;Hsinchu&quot;</span>)</span>
+<span id="cb1-6"><a href="基本資料統計.html#cb1-6" tabindex="-1"></a></span>
+<span id="cb1-7"><a href="基本資料統計.html#cb1-7" tabindex="-1"></a><span class="co"># 公車站間距離</span></span>
+<span id="cb1-8"><a href="基本資料統計.html#cb1-8" tabindex="-1"></a>bus_distance<span class="ot">=</span><span class="fu">Bus_Distance</span>(access_token, <span class="st">&quot;Hsinchu&quot;</span>, bus_route<span class="sc">$</span>RouteID)</span></code></pre></div>
 <p>以下藉由各議題展示分析架構與程式碼，針對每一問題先瞭解運輸資料的特性，而後再依據分析邏輯撰寫程式碼。</p>
 <div id="路線統計分析" class="section level3 hasAnchor" number="4.1.1">
-<h3>
-<span class="header-section-number">4.1.1</span> 路線統計分析<a href="%E5%9F%BA%E6%9C%AC%E8%B3%87%E6%96%99%E7%B5%B1%E8%A8%88.html#%E8%B7%AF%E7%B7%9A%E7%B5%B1%E8%A8%88%E5%88%86%E6%9E%90" class="anchor-section" aria-label="Anchor link to header"></a>
-</h3>
+<h3><span class="header-section-number">4.1.1</span> 路線統計分析<a href="基本資料統計.html#路線統計分析" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <p>公車路線的代碼有兩種，其一為 RouteUID，另一為 SubRouteUID。前者是主路線代碼，後者是子路線代碼，亦即將主路線再依據不同行駛路線（如：延駛、繞駛等）或方向（去程、返程）細部分類不同路線。</p>
-<br><div style="background-color:#6C6C6C;color:white;">
+<br></br>
+<div style="background-color:#6C6C6C;color:white;">
 <p><span style="font-size:17pt"><strong>   § 統計所有主路線數</strong></span></p>
 </div>
 <p>先初步觀察<code>bus_route</code>資料可以發現，當中有許多重複的主路線，故不可直接透過資料的列數（row）來判斷主路線數，必須先去除重複的代碼。<code>unique()</code>函式可用以去除一向量中重複的元素，故執行後所回傳的向量僅會是唯一值。若欲計算一向量的總個數，可透過<code>length()</code>回傳長度。程式碼撰寫如下。</p>
-<div class="sourceCode" id="cb2"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb2-1"><a href="%E5%9F%BA%E6%9C%AC%E8%B3%87%E6%96%99%E7%B5%B1%E8%A8%88.html#cb2-1" tabindex="-1"></a>bus_routeuid_all<span class="ot">=</span><span class="fu">unique</span>(bus_route<span class="sc">$</span>RouteUID)</span>
-<span id="cb2-2"><a href="%E5%9F%BA%E6%9C%AC%E8%B3%87%E6%96%99%E7%B5%B1%E8%A8%88.html#cb2-2" tabindex="-1"></a><span class="fu">length</span>(bus_routeuid_all)</span></code></pre></div>
+<div class="sourceCode" id="cb2"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb2-1"><a href="基本資料統計.html#cb2-1" tabindex="-1"></a>bus_routeuid_all<span class="ot">=</span><span class="fu">unique</span>(bus_route<span class="sc">$</span>RouteUID)</span>
+<span id="cb2-2"><a href="基本資料統計.html#cb2-2" tabindex="-1"></a><span class="fu">length</span>(bus_routeuid_all)</span></code></pre></div>
 <pre><code>## [1] 26</code></pre>
 <p>試著統計此資料的總子路線數，檢查是否與<code>bus_route</code>總資料筆數相同？</p>
-<div class="sourceCode" id="cb4"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb4-1"><a href="%E5%9F%BA%E6%9C%AC%E8%B3%87%E6%96%99%E7%B5%B1%E8%A8%88.html#cb4-1" tabindex="-1"></a>bus_subrouteuid_all<span class="ot">=</span><span class="fu">unique</span>(bus_route<span class="sc">$</span>SubRouteUID)</span>
-<span id="cb4-2"><a href="%E5%9F%BA%E6%9C%AC%E8%B3%87%E6%96%99%E7%B5%B1%E8%A8%88.html#cb4-2" tabindex="-1"></a></span>
-<span id="cb4-3"><a href="%E5%9F%BA%E6%9C%AC%E8%B3%87%E6%96%99%E7%B5%B1%E8%A8%88.html#cb4-3" tabindex="-1"></a><span class="co"># 總子路線數</span></span>
-<span id="cb4-4"><a href="%E5%9F%BA%E6%9C%AC%E8%B3%87%E6%96%99%E7%B5%B1%E8%A8%88.html#cb4-4" tabindex="-1"></a><span class="fu">length</span>(bus_subrouteuid_all)</span></code></pre></div>
+<div class="sourceCode" id="cb4"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb4-1"><a href="基本資料統計.html#cb4-1" tabindex="-1"></a>bus_subrouteuid_all<span class="ot">=</span><span class="fu">unique</span>(bus_route<span class="sc">$</span>SubRouteUID)</span>
+<span id="cb4-2"><a href="基本資料統計.html#cb4-2" tabindex="-1"></a></span>
+<span id="cb4-3"><a href="基本資料統計.html#cb4-3" tabindex="-1"></a><span class="co"># 總子路線數</span></span>
+<span id="cb4-4"><a href="基本資料統計.html#cb4-4" tabindex="-1"></a><span class="fu">length</span>(bus_subrouteuid_all)</span></code></pre></div>
 <pre><code>## [1] 54</code></pre>
-<div class="sourceCode" id="cb6"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb6-1"><a href="%E5%9F%BA%E6%9C%AC%E8%B3%87%E6%96%99%E7%B5%B1%E8%A8%88.html#cb6-1" tabindex="-1"></a><span class="co"># 檢查是否與資料總筆數相同</span></span>
-<span id="cb6-2"><a href="%E5%9F%BA%E6%9C%AC%E8%B3%87%E6%96%99%E7%B5%B1%E8%A8%88.html#cb6-2" tabindex="-1"></a><span class="fu">length</span>(bus_subrouteuid_all)<span class="sc">==</span><span class="fu">nrow</span>(bus_route)</span></code></pre></div>
+<div class="sourceCode" id="cb6"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb6-1"><a href="基本資料統計.html#cb6-1" tabindex="-1"></a><span class="co"># 檢查是否與資料總筆數相同</span></span>
+<span id="cb6-2"><a href="基本資料統計.html#cb6-2" tabindex="-1"></a><span class="fu">length</span>(bus_subrouteuid_all)<span class="sc">==</span><span class="fu">nrow</span>(bus_route)</span></code></pre></div>
 <pre><code>## [1] TRUE</code></pre>
 <p>由以上結果得知，總子路線數會等於總資料筆數！</p>
-<br><div style="background-color:#6C6C6C;color:white;">
+<br></br>
+<div style="background-color:#6C6C6C;color:white;">
 <p><span style="font-size:17pt"><strong>   § 統計各主路線擁有的子路線數</strong></span></p>
 </div>
 <p>由於我們知道一個主路線可能含括多個子路線，若欲統計各主路線擁有的子路線數，可利用<code>group_by() %&gt;% summarise()</code>達成此一目的，程式碼撰寫如下。首先根據 RouteUID 與 RouteName 分組，再統計相同主路線的總資料筆數（<code>n()</code>）。</p>
-<div class="sourceCode" id="cb8"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb8-1"><a href="%E5%9F%BA%E6%9C%AC%E8%B3%87%E6%96%99%E7%B5%B1%E8%A8%88.html#cb8-1" tabindex="-1"></a>bus_route_sum<span class="ot">=</span><span class="fu">group_by</span>(bus_route, RouteUID, RouteName)<span class="sc">%&gt;%</span></span>
-<span id="cb8-2"><a href="%E5%9F%BA%E6%9C%AC%E8%B3%87%E6%96%99%E7%B5%B1%E8%A8%88.html#cb8-2" tabindex="-1"></a>  <span class="fu">summarise</span>(<span class="at">NumSubRoute=</span><span class="fu">n</span>())</span>
-<span id="cb8-3"><a href="%E5%9F%BA%E6%9C%AC%E8%B3%87%E6%96%99%E7%B5%B1%E8%A8%88.html#cb8-3" tabindex="-1"></a></span>
-<span id="cb8-4"><a href="%E5%9F%BA%E6%9C%AC%E8%B3%87%E6%96%99%E7%B5%B1%E8%A8%88.html#cb8-4" tabindex="-1"></a><span class="co"># 查看前六筆結果</span></span>
-<span id="cb8-5"><a href="%E5%9F%BA%E6%9C%AC%E8%B3%87%E6%96%99%E7%B5%B1%E8%A8%88.html#cb8-5" tabindex="-1"></a><span class="fu">head</span>(bus_route_sum)</span></code></pre></div>
+<div class="sourceCode" id="cb8"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb8-1"><a href="基本資料統計.html#cb8-1" tabindex="-1"></a>bus_route_sum<span class="ot">=</span><span class="fu">group_by</span>(bus_route, RouteUID, RouteName)<span class="sc">%&gt;%</span></span>
+<span id="cb8-2"><a href="基本資料統計.html#cb8-2" tabindex="-1"></a>  <span class="fu">summarise</span>(<span class="at">NumSubRoute=</span><span class="fu">n</span>())</span>
+<span id="cb8-3"><a href="基本資料統計.html#cb8-3" tabindex="-1"></a></span>
+<span id="cb8-4"><a href="基本資料統計.html#cb8-4" tabindex="-1"></a><span class="co"># 查看前六筆結果</span></span>
+<span id="cb8-5"><a href="基本資料統計.html#cb8-5" tabindex="-1"></a><span class="fu">head</span>(bus_route_sum)</span></code></pre></div>
 <pre><code>## # A tibble: 6 × 3
 ## # Groups:   RouteUID [6]
 ##   RouteUID RouteName NumSubRoute
@@ -344,15 +344,16 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 ## 5 HSZ0100  10                  2
 ## 6 HSZ0110  11                  2</code></pre>
 <p>由統計結果可知，RouteUID 為 HSZ0007（路線名為 <a href="https://internetpedia.fandom.com/zh/wiki/%E6%96%B0%E7%AB%B9%E5%B8%82%E5%85%AC%E8%BB%8A81%E8%B7%AF?variant=zh-hant&amp;file=%E6%96%B0%E7%AB%B9%E5%B8%82%E5%85%AC%E8%BB%8A81%E8%B7%AF%E8%B7%AF%E7%B7%9A%E5%9C%962020.png">81</a>）者，其子路線數為 2 條，查看原始<code>bus_route</code>資料，可發現其含括子路線 HSZ000701 與 HSZ000702；又 HSZ0008（路線名為 <a href="https://internetpedia.fandom.com/zh/wiki/%E6%96%B0%E7%AB%B9%E5%B8%82%E5%85%AC%E8%BB%8A83%E8%B7%AF?file=%E6%96%B0%E7%AB%B9%E5%B8%82%E5%85%AC%E8%BB%8A83%E8%B7%AF%28%E5%90%AB%E5%8D%80%E9%96%93%E8%BB%8A%29%E8%B7%AF%E7%B7%9A%E5%9C%96.png">83</a>）的子路線數共計 4 條，其中包含 HSZ000801、HSZ000802、HSZ0008A1、HSZ0008A2。細部觀察原始資料，可發現 HSZ0007 兩條子路線的 Direction 一個為 0；另一為 1，表示方向不同，子路線即不同。而 HSZ0008 除了因方向不同而有不同子路線外，子路線代碼含括「A1」與「A2」者為延駛或繞駛，亦會使子路線不同。上述皆為 TDX 針對公車路線編碼的標準規範。最後 HSZ0010（路線名為 <a href="https://internetpedia.fandom.com/zh/wiki/%E6%96%B0%E7%AB%B9%E5%B8%82%E5%85%AC%E8%BB%8A1%E8%B7%AF?variant=zh-hant&amp;file=%E6%96%B0%E7%AB%B9%E5%B8%82%E5%85%AC%E8%BB%8A1%E8%B7%AF%E8%B7%AF%E7%B7%9A%E5%9C%96.png">藍線1區</a>）僅一條子路線，乃因該路線為環狀線（注意：藍線1區公車係由火車站至竹中站後立即折返，故屬於環狀線）。</p>
-<br><div style="background-color:#6C6C6C;color:white;">
+<br></br>
+<div style="background-color:#6C6C6C;color:white;">
 <p><span style="font-size:17pt"><strong>   § 羅列各主路線含括的子路線</strong></span></p>
 </div>
 <p>前一案例藉由<code>group_by() %&gt;% summarise()</code>計算總數，事實上此一函式的功能繁多，可透過改變<code>summarise()</code>函式內的操作，以達成目的。如欲整理各主路線含括的子路線代碼與名稱，應將 RouteUID 與 RouteName 作為分群的變項，並在<code>summarise()</code>函式中將所有同一分群者，將其子路線代碼以<code>paste()</code>函式相連。其中<code>paste()</code>函式內，須設定<code>collapse=</code>參數，以表達使用特定的符號或字元串接。依上述流程，程式碼撰寫如下。</p>
-<div class="sourceCode" id="cb10"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb10-1"><a href="%E5%9F%BA%E6%9C%AC%E8%B3%87%E6%96%99%E7%B5%B1%E8%A8%88.html#cb10-1" tabindex="-1"></a>bus_route_list<span class="ot">=</span><span class="fu">group_by</span>(bus_route, RouteUID, RouteName)<span class="sc">%&gt;%</span></span>
-<span id="cb10-2"><a href="%E5%9F%BA%E6%9C%AC%E8%B3%87%E6%96%99%E7%B5%B1%E8%A8%88.html#cb10-2" tabindex="-1"></a>  <span class="fu">summarise</span>(<span class="at">AllSubRoute=</span><span class="fu">paste</span>(SubRouteUID, <span class="at">collapse=</span><span class="st">", "</span>))</span>
-<span id="cb10-3"><a href="%E5%9F%BA%E6%9C%AC%E8%B3%87%E6%96%99%E7%B5%B1%E8%A8%88.html#cb10-3" tabindex="-1"></a></span>
-<span id="cb10-4"><a href="%E5%9F%BA%E6%9C%AC%E8%B3%87%E6%96%99%E7%B5%B1%E8%A8%88.html#cb10-4" tabindex="-1"></a><span class="co"># 查看前六筆結果</span></span>
-<span id="cb10-5"><a href="%E5%9F%BA%E6%9C%AC%E8%B3%87%E6%96%99%E7%B5%B1%E8%A8%88.html#cb10-5" tabindex="-1"></a><span class="fu">head</span>(bus_route_list)</span></code></pre></div>
+<div class="sourceCode" id="cb10"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb10-1"><a href="基本資料統計.html#cb10-1" tabindex="-1"></a>bus_route_list<span class="ot">=</span><span class="fu">group_by</span>(bus_route, RouteUID, RouteName)<span class="sc">%&gt;%</span></span>
+<span id="cb10-2"><a href="基本資料統計.html#cb10-2" tabindex="-1"></a>  <span class="fu">summarise</span>(<span class="at">AllSubRoute=</span><span class="fu">paste</span>(SubRouteUID, <span class="at">collapse=</span><span class="st">&quot;, &quot;</span>))</span>
+<span id="cb10-3"><a href="基本資料統計.html#cb10-3" tabindex="-1"></a></span>
+<span id="cb10-4"><a href="基本資料統計.html#cb10-4" tabindex="-1"></a><span class="co"># 查看前六筆結果</span></span>
+<span id="cb10-5"><a href="基本資料統計.html#cb10-5" tabindex="-1"></a><span class="fu">head</span>(bus_route_list)</span></code></pre></div>
 <pre><code>## # A tibble: 6 × 3
 ## # Groups:   RouteUID [6]
 ##   RouteUID RouteName AllSubRoute                               
@@ -363,15 +364,16 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 ## 4 HSZ0020  2         HSZ002001, HSZ002002, HSZ0020A1, HSZ0020A2
 ## 5 HSZ0100  10        HSZ010001, HSZ010002                      
 ## 6 HSZ0110  11        HSZ0110A1, HSZ0110A2</code></pre>
-<br><div style="background-color:#6C6C6C;color:white;">
+<br></br>
+<div style="background-color:#6C6C6C;color:white;">
 <p><span style="font-size:17pt"><strong>   § 尋找公車支線</strong></span></p>
 </div>
 <p>在前述的案例中，我們發現有些公車主路線會有多條子路線，除了因為跟方向有關外，其次則是屬於支線之故，形成繞駛或延駛情形。進一步觀察可以發現，新竹市公車的支線中，其名稱會包含「支」一字。若欲擷取所有支線資料，可藉由<code>grepl()</code>函式先尋找該字元是否存在 SubRouteName 的欄位中，所回傳的邏輯判斷值可用以進一步篩選原始資料。程式碼撰寫如下。</p>
-<div class="sourceCode" id="cb12"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb12-1"><a href="%E5%9F%BA%E6%9C%AC%E8%B3%87%E6%96%99%E7%B5%B1%E8%A8%88.html#cb12-1" tabindex="-1"></a><span class="co"># 利用grepl查看SubRouteName中是否含有「支」字</span></span>
-<span id="cb12-2"><a href="%E5%9F%BA%E6%9C%AC%E8%B3%87%E6%96%99%E7%B5%B1%E8%A8%88.html#cb12-2" tabindex="-1"></a>sub_TF<span class="ot">=</span><span class="fu">grepl</span>(<span class="st">"支"</span>, bus_route<span class="sc">$</span>SubRouteName)</span>
-<span id="cb12-3"><a href="%E5%9F%BA%E6%9C%AC%E8%B3%87%E6%96%99%E7%B5%B1%E8%A8%88.html#cb12-3" tabindex="-1"></a></span>
-<span id="cb12-4"><a href="%E5%9F%BA%E6%9C%AC%E8%B3%87%E6%96%99%E7%B5%B1%E8%A8%88.html#cb12-4" tabindex="-1"></a><span class="co"># 透過sub_TF的邏輯判斷回傳所需資料</span></span>
-<span id="cb12-5"><a href="%E5%9F%BA%E6%9C%AC%E8%B3%87%E6%96%99%E7%B5%B1%E8%A8%88.html#cb12-5" tabindex="-1"></a>bus_route[sub_TF, <span class="fu">c</span>(<span class="st">"RouteName"</span>, <span class="st">"SubRouteUID"</span>, <span class="st">"SubRouteName"</span>)]</span></code></pre></div>
+<div class="sourceCode" id="cb12"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb12-1"><a href="基本資料統計.html#cb12-1" tabindex="-1"></a><span class="co"># 利用grepl查看SubRouteName中是否含有「支」字</span></span>
+<span id="cb12-2"><a href="基本資料統計.html#cb12-2" tabindex="-1"></a>sub_TF<span class="ot">=</span><span class="fu">grepl</span>(<span class="st">&quot;支&quot;</span>, bus_route<span class="sc">$</span>SubRouteName)</span>
+<span id="cb12-3"><a href="基本資料統計.html#cb12-3" tabindex="-1"></a></span>
+<span id="cb12-4"><a href="基本資料統計.html#cb12-4" tabindex="-1"></a><span class="co"># 透過sub_TF的邏輯判斷回傳所需資料</span></span>
+<span id="cb12-5"><a href="基本資料統計.html#cb12-5" tabindex="-1"></a>bus_route[sub_TF, <span class="fu">c</span>(<span class="st">&quot;RouteName&quot;</span>, <span class="st">&quot;SubRouteUID&quot;</span>, <span class="st">&quot;SubRouteName&quot;</span>)]</span></code></pre></div>
 <pre><code>##    RouteName SubRouteUID SubRouteName
 ## 5         83   HSZ0008A1        83支A
 ## 6         83   HSZ0008A2        83支A
@@ -381,27 +383,26 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 ## 33        23   HSZ0230A1        23支A
 ## 34        23   HSZ0230A2        23支A
 ## 41        52   HSZ0520A1        52支A</code></pre>
-<div class="sourceCode" id="cb14"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb14-1"><a href="%E5%9F%BA%E6%9C%AC%E8%B3%87%E6%96%99%E7%B5%B1%E8%A8%88.html#cb14-1" tabindex="-1"></a><span class="co">#---可直接簡化為：---#</span></span>
-<span id="cb14-2"><a href="%E5%9F%BA%E6%9C%AC%E8%B3%87%E6%96%99%E7%B5%B1%E8%A8%88.html#cb14-2" tabindex="-1"></a><span class="co"># bus_route[grepl("支", bus_route$SubRouteName), c("RouteName", "SubRouteUID", "SubRouteName")]</span></span></code></pre></div>
+<div class="sourceCode" id="cb14"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb14-1"><a href="基本資料統計.html#cb14-1" tabindex="-1"></a><span class="co">#---可直接簡化為：---#</span></span>
+<span id="cb14-2"><a href="基本資料統計.html#cb14-2" tabindex="-1"></a><span class="co"># bus_route[grepl(&quot;支&quot;, bus_route$SubRouteName), c(&quot;RouteName&quot;, &quot;SubRouteUID&quot;, &quot;SubRouteName&quot;)]</span></span></code></pre></div>
 <p>以上的中括號（<code>[ , ]</code>）內，逗點前表示擷取的橫列（row），逗點後則為擷取的直欄（column），可直接輸入欲回傳的欄列數值或名稱，抑或使用邏輯值（T, F），惟須注意使用邏輯值時，向量長度必須相同！</p>
 <p>此外亦可透過<code>filter()</code>函式達成相同結果，程式碼撰寫如下。</p>
-<div class="sourceCode" id="cb15"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb15-1"><a href="%E5%9F%BA%E6%9C%AC%E8%B3%87%E6%96%99%E7%B5%B1%E8%A8%88.html#cb15-1" tabindex="-1"></a><span class="fu">filter</span>(bus_route, <span class="fu">grepl</span>(<span class="st">"支"</span>, SubRouteName))<span class="sc">%&gt;%</span></span>
-<span id="cb15-2"><a href="%E5%9F%BA%E6%9C%AC%E8%B3%87%E6%96%99%E7%B5%B1%E8%A8%88.html#cb15-2" tabindex="-1"></a>  <span class="fu">select</span>(RouteName, SubRouteUID, SubRouteName)</span></code></pre></div>
+<div class="sourceCode" id="cb15"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb15-1"><a href="基本資料統計.html#cb15-1" tabindex="-1"></a><span class="fu">filter</span>(bus_route, <span class="fu">grepl</span>(<span class="st">&quot;支&quot;</span>, SubRouteName))<span class="sc">%&gt;%</span></span>
+<span id="cb15-2"><a href="基本資料統計.html#cb15-2" tabindex="-1"></a>  <span class="fu">select</span>(RouteName, SubRouteUID, SubRouteName)</span></code></pre></div>
 </div>
 <div id="站牌統計分析" class="section level3 hasAnchor" number="4.1.2">
-<h3>
-<span class="header-section-number">4.1.2</span> 站牌統計分析<a href="%E5%9F%BA%E6%9C%AC%E8%B3%87%E6%96%99%E7%B5%B1%E8%A8%88.html#%E7%AB%99%E7%89%8C%E7%B5%B1%E8%A8%88%E5%88%86%E6%9E%90" class="anchor-section" aria-label="Anchor link to header"></a>
-</h3>
+<h3><span class="header-section-number">4.1.2</span> 站牌統計分析<a href="基本資料統計.html#站牌統計分析" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <p>公車站牌資料中係記錄每一子路線（SubRouteUID）的所有站牌資訊，含括路線名稱、方向、站牌代碼、名稱、站序、經緯度等資訊。</p>
-<br><div style="background-color:#6C6C6C;color:white;">
+<br></br>
+<div style="background-color:#6C6C6C;color:white;">
 <p><span style="font-size:17pt"><strong>   § 統計各子路線總站牌數</strong></span></p>
 </div>
 <p>如前述統計各主路線中子路線數量的方法，可利用<code>group_by() %&gt;% summarise()</code>函式達成目的，程式碼撰寫如下。</p>
-<div class="sourceCode" id="cb16"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb16-1"><a href="%E5%9F%BA%E6%9C%AC%E8%B3%87%E6%96%99%E7%B5%B1%E8%A8%88.html#cb16-1" tabindex="-1"></a>bus_stop_sum<span class="ot">=</span><span class="fu">group_by</span>(bus_stop, SubRouteUID, SubRouteName, Direction)<span class="sc">%&gt;%</span></span>
-<span id="cb16-2"><a href="%E5%9F%BA%E6%9C%AC%E8%B3%87%E6%96%99%E7%B5%B1%E8%A8%88.html#cb16-2" tabindex="-1"></a>  <span class="fu">summarise</span>(<span class="at">StopNum=</span><span class="fu">n</span>())</span>
-<span id="cb16-3"><a href="%E5%9F%BA%E6%9C%AC%E8%B3%87%E6%96%99%E7%B5%B1%E8%A8%88.html#cb16-3" tabindex="-1"></a></span>
-<span id="cb16-4"><a href="%E5%9F%BA%E6%9C%AC%E8%B3%87%E6%96%99%E7%B5%B1%E8%A8%88.html#cb16-4" tabindex="-1"></a><span class="co"># 查看前六筆結果</span></span>
-<span id="cb16-5"><a href="%E5%9F%BA%E6%9C%AC%E8%B3%87%E6%96%99%E7%B5%B1%E8%A8%88.html#cb16-5" tabindex="-1"></a><span class="fu">head</span>(bus_stop_sum)</span></code></pre></div>
+<div class="sourceCode" id="cb16"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb16-1"><a href="基本資料統計.html#cb16-1" tabindex="-1"></a>bus_stop_sum<span class="ot">=</span><span class="fu">group_by</span>(bus_stop, SubRouteUID, SubRouteName, Direction)<span class="sc">%&gt;%</span></span>
+<span id="cb16-2"><a href="基本資料統計.html#cb16-2" tabindex="-1"></a>  <span class="fu">summarise</span>(<span class="at">StopNum=</span><span class="fu">n</span>())</span>
+<span id="cb16-3"><a href="基本資料統計.html#cb16-3" tabindex="-1"></a></span>
+<span id="cb16-4"><a href="基本資料統計.html#cb16-4" tabindex="-1"></a><span class="co"># 查看前六筆結果</span></span>
+<span id="cb16-5"><a href="基本資料統計.html#cb16-5" tabindex="-1"></a><span class="fu">head</span>(bus_stop_sum)</span></code></pre></div>
 <pre><code>## # A tibble: 6 × 4
 ## # Groups:   SubRouteUID, SubRouteName [6]
 ##   SubRouteUID SubRouteName Direction StopNum
@@ -413,44 +414,45 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 ## 5 HSZ0008A1   83支A                0      11
 ## 6 HSZ0008A2   83支A                1      10</code></pre>
 <p>由以上回傳結果可發現，新竹市 81 公車共有兩條子路線（HSZ000701、HSZ000702），方向分為去程（Direction:0）與返程（Direction:1），而去程站牌數共計 21 個，而返程的站牌數則為 20 個。</p>
-<br><div style="background-color:#6C6C6C;color:white;">
+<br></br>
+<div style="background-color:#6C6C6C;color:white;">
 <p><span style="font-size:17pt"><strong>   § 整理同一站名的所有路線</strong></span></p>
 </div>
 <p>分析流程彙整如下：</p>
 <ul>
-<li>Step 1: 從站牌中，先挑出站點名稱（StopName）、子路線名稱（SubRouteName）兩資訊。<br>
+<li>Step 1: 從站牌中，先挑出站點名稱（StopName）、子路線名稱（SubRouteName）兩資訊。<br />
 </li>
-<li>Step 2: 此時，可能會有重複的資料，乃因同一子路線，不同方向的情況下，會存在相同站名（但在此我們不考慮方向性，只單純考慮子路線的名稱）。故必須先行透過<code>distinct()</code>函式將重複的資料予以去除。<br>
+<li>Step 2: 此時，可能會有重複的資料，乃因同一子路線，不同方向的情況下，會存在相同站名（但在此我們不考慮方向性，只單純考慮子路線的名稱）。故必須先行透過<code>distinct()</code>函式將重複的資料予以去除。<br />
 </li>
-<li>Step 3: 最後依據站點名稱（StopName）分群，統計各站點擁有的子路線名稱（SubRouteName），及其數量（使用<code>group_by() %&gt;% summarise()</code>函式）。<br>
+<li>Step 3: 最後依據站點名稱（StopName）分群，統計各站點擁有的子路線名稱（SubRouteName），及其數量（使用<code>group_by() %&gt;% summarise()</code>函式）。<br />
 </li>
 <li>Step 4: 將整理完成的資料依據總子路線數降冪排列（使用<code>arrange()</code>函式）。</li>
 </ul>
 <p>依上述流程，程式碼撰寫如下。</p>
-<div class="sourceCode" id="cb18"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb18-1"><a href="%E5%9F%BA%E6%9C%AC%E8%B3%87%E6%96%99%E7%B5%B1%E8%A8%88.html#cb18-1" tabindex="-1"></a><span class="co"># Step 1</span></span>
-<span id="cb18-2"><a href="%E5%9F%BA%E6%9C%AC%E8%B3%87%E6%96%99%E7%B5%B1%E8%A8%88.html#cb18-2" tabindex="-1"></a>bus_stop_route<span class="ot">=</span><span class="fu">select</span>(bus_stop, SubRouteName, StopName)</span>
-<span id="cb18-3"><a href="%E5%9F%BA%E6%9C%AC%E8%B3%87%E6%96%99%E7%B5%B1%E8%A8%88.html#cb18-3" tabindex="-1"></a></span>
-<span id="cb18-4"><a href="%E5%9F%BA%E6%9C%AC%E8%B3%87%E6%96%99%E7%B5%B1%E8%A8%88.html#cb18-4" tabindex="-1"></a><span class="co"># Step 2</span></span>
-<span id="cb18-5"><a href="%E5%9F%BA%E6%9C%AC%E8%B3%87%E6%96%99%E7%B5%B1%E8%A8%88.html#cb18-5" tabindex="-1"></a>bus_stop_route<span class="ot">=</span><span class="fu">distinct</span>(bus_stop_route)</span>
-<span id="cb18-6"><a href="%E5%9F%BA%E6%9C%AC%E8%B3%87%E6%96%99%E7%B5%B1%E8%A8%88.html#cb18-6" tabindex="-1"></a></span>
-<span id="cb18-7"><a href="%E5%9F%BA%E6%9C%AC%E8%B3%87%E6%96%99%E7%B5%B1%E8%A8%88.html#cb18-7" tabindex="-1"></a><span class="co"># Step 3</span></span>
-<span id="cb18-8"><a href="%E5%9F%BA%E6%9C%AC%E8%B3%87%E6%96%99%E7%B5%B1%E8%A8%88.html#cb18-8" tabindex="-1"></a>bus_stop_route<span class="ot">=</span><span class="fu">group_by</span>(bus_stop_route, StopName)<span class="sc">%&gt;%</span></span>
-<span id="cb18-9"><a href="%E5%9F%BA%E6%9C%AC%E8%B3%87%E6%96%99%E7%B5%B1%E8%A8%88.html#cb18-9" tabindex="-1"></a>  <span class="fu">summarise</span>(<span class="at">NumSubRoute=</span><span class="fu">n</span>(),</span>
-<span id="cb18-10"><a href="%E5%9F%BA%E6%9C%AC%E8%B3%87%E6%96%99%E7%B5%B1%E8%A8%88.html#cb18-10" tabindex="-1"></a>            <span class="at">AllSubRoute=</span><span class="fu">paste</span>(SubRouteName, <span class="at">collapse=</span><span class="st">", "</span>))</span>
-<span id="cb18-11"><a href="%E5%9F%BA%E6%9C%AC%E8%B3%87%E6%96%99%E7%B5%B1%E8%A8%88.html#cb18-11" tabindex="-1"></a></span>
-<span id="cb18-12"><a href="%E5%9F%BA%E6%9C%AC%E8%B3%87%E6%96%99%E7%B5%B1%E8%A8%88.html#cb18-12" tabindex="-1"></a><span class="co"># Step 4</span></span>
-<span id="cb18-13"><a href="%E5%9F%BA%E6%9C%AC%E8%B3%87%E6%96%99%E7%B5%B1%E8%A8%88.html#cb18-13" tabindex="-1"></a>bus_stop_route<span class="ot">=</span><span class="fu">arrange</span>(bus_stop_route, <span class="fu">desc</span>(NumSubRoute))</span>
-<span id="cb18-14"><a href="%E5%9F%BA%E6%9C%AC%E8%B3%87%E6%96%99%E7%B5%B1%E8%A8%88.html#cb18-14" tabindex="-1"></a></span>
-<span id="cb18-15"><a href="%E5%9F%BA%E6%9C%AC%E8%B3%87%E6%96%99%E7%B5%B1%E8%A8%88.html#cb18-15" tabindex="-1"></a><span class="co">#---可直接簡化為：---#</span></span>
-<span id="cb18-16"><a href="%E5%9F%BA%E6%9C%AC%E8%B3%87%E6%96%99%E7%B5%B1%E8%A8%88.html#cb18-16" tabindex="-1"></a><span class="co"># bus_stop_route=select(bus_stop, SubRouteName, StopName)%&gt;%</span></span>
-<span id="cb18-17"><a href="%E5%9F%BA%E6%9C%AC%E8%B3%87%E6%96%99%E7%B5%B1%E8%A8%88.html#cb18-17" tabindex="-1"></a><span class="co">#   distinct()%&gt;%</span></span>
-<span id="cb18-18"><a href="%E5%9F%BA%E6%9C%AC%E8%B3%87%E6%96%99%E7%B5%B1%E8%A8%88.html#cb18-18" tabindex="-1"></a><span class="co">#   group_by(StopName)%&gt;%</span></span>
-<span id="cb18-19"><a href="%E5%9F%BA%E6%9C%AC%E8%B3%87%E6%96%99%E7%B5%B1%E8%A8%88.html#cb18-19" tabindex="-1"></a><span class="co">#   summarise(NumSubRoute=n(),</span></span>
-<span id="cb18-20"><a href="%E5%9F%BA%E6%9C%AC%E8%B3%87%E6%96%99%E7%B5%B1%E8%A8%88.html#cb18-20" tabindex="-1"></a><span class="co">#             AllSubRoute=paste(SubRouteName, collapse=", "))%&gt;%</span></span>
-<span id="cb18-21"><a href="%E5%9F%BA%E6%9C%AC%E8%B3%87%E6%96%99%E7%B5%B1%E8%A8%88.html#cb18-21" tabindex="-1"></a><span class="co">#   arrange(desc(NumSubRoute))</span></span>
-<span id="cb18-22"><a href="%E5%9F%BA%E6%9C%AC%E8%B3%87%E6%96%99%E7%B5%B1%E8%A8%88.html#cb18-22" tabindex="-1"></a></span>
-<span id="cb18-23"><a href="%E5%9F%BA%E6%9C%AC%E8%B3%87%E6%96%99%E7%B5%B1%E8%A8%88.html#cb18-23" tabindex="-1"></a><span class="co"># 查看前六筆資料</span></span>
-<span id="cb18-24"><a href="%E5%9F%BA%E6%9C%AC%E8%B3%87%E6%96%99%E7%B5%B1%E8%A8%88.html#cb18-24" tabindex="-1"></a><span class="fu">head</span>(bus_stop_route)</span></code></pre></div>
+<div class="sourceCode" id="cb18"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb18-1"><a href="基本資料統計.html#cb18-1" tabindex="-1"></a><span class="co"># Step 1</span></span>
+<span id="cb18-2"><a href="基本資料統計.html#cb18-2" tabindex="-1"></a>bus_stop_route<span class="ot">=</span><span class="fu">select</span>(bus_stop, SubRouteName, StopName)</span>
+<span id="cb18-3"><a href="基本資料統計.html#cb18-3" tabindex="-1"></a></span>
+<span id="cb18-4"><a href="基本資料統計.html#cb18-4" tabindex="-1"></a><span class="co"># Step 2</span></span>
+<span id="cb18-5"><a href="基本資料統計.html#cb18-5" tabindex="-1"></a>bus_stop_route<span class="ot">=</span><span class="fu">distinct</span>(bus_stop_route)</span>
+<span id="cb18-6"><a href="基本資料統計.html#cb18-6" tabindex="-1"></a></span>
+<span id="cb18-7"><a href="基本資料統計.html#cb18-7" tabindex="-1"></a><span class="co"># Step 3</span></span>
+<span id="cb18-8"><a href="基本資料統計.html#cb18-8" tabindex="-1"></a>bus_stop_route<span class="ot">=</span><span class="fu">group_by</span>(bus_stop_route, StopName)<span class="sc">%&gt;%</span></span>
+<span id="cb18-9"><a href="基本資料統計.html#cb18-9" tabindex="-1"></a>  <span class="fu">summarise</span>(<span class="at">NumSubRoute=</span><span class="fu">n</span>(),</span>
+<span id="cb18-10"><a href="基本資料統計.html#cb18-10" tabindex="-1"></a>            <span class="at">AllSubRoute=</span><span class="fu">paste</span>(SubRouteName, <span class="at">collapse=</span><span class="st">&quot;, &quot;</span>))</span>
+<span id="cb18-11"><a href="基本資料統計.html#cb18-11" tabindex="-1"></a></span>
+<span id="cb18-12"><a href="基本資料統計.html#cb18-12" tabindex="-1"></a><span class="co"># Step 4</span></span>
+<span id="cb18-13"><a href="基本資料統計.html#cb18-13" tabindex="-1"></a>bus_stop_route<span class="ot">=</span><span class="fu">arrange</span>(bus_stop_route, <span class="fu">desc</span>(NumSubRoute))</span>
+<span id="cb18-14"><a href="基本資料統計.html#cb18-14" tabindex="-1"></a></span>
+<span id="cb18-15"><a href="基本資料統計.html#cb18-15" tabindex="-1"></a><span class="co">#---可直接簡化為：---#</span></span>
+<span id="cb18-16"><a href="基本資料統計.html#cb18-16" tabindex="-1"></a><span class="co"># bus_stop_route=select(bus_stop, SubRouteName, StopName)%&gt;%</span></span>
+<span id="cb18-17"><a href="基本資料統計.html#cb18-17" tabindex="-1"></a><span class="co">#   distinct()%&gt;%</span></span>
+<span id="cb18-18"><a href="基本資料統計.html#cb18-18" tabindex="-1"></a><span class="co">#   group_by(StopName)%&gt;%</span></span>
+<span id="cb18-19"><a href="基本資料統計.html#cb18-19" tabindex="-1"></a><span class="co">#   summarise(NumSubRoute=n(),</span></span>
+<span id="cb18-20"><a href="基本資料統計.html#cb18-20" tabindex="-1"></a><span class="co">#             AllSubRoute=paste(SubRouteName, collapse=&quot;, &quot;))%&gt;%</span></span>
+<span id="cb18-21"><a href="基本資料統計.html#cb18-21" tabindex="-1"></a><span class="co">#   arrange(desc(NumSubRoute))</span></span>
+<span id="cb18-22"><a href="基本資料統計.html#cb18-22" tabindex="-1"></a></span>
+<span id="cb18-23"><a href="基本資料統計.html#cb18-23" tabindex="-1"></a><span class="co"># 查看前六筆資料</span></span>
+<span id="cb18-24"><a href="基本資料統計.html#cb18-24" tabindex="-1"></a><span class="fu">head</span>(bus_stop_route)</span></code></pre></div>
 <pre><code>## # A tibble: 6 × 3
 ##   StopName NumSubRoute AllSubRoute                                              
 ##   &lt;chr&gt;          &lt;int&gt; &lt;chr&gt;                                                    
@@ -461,28 +463,29 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 ## 5 文教新村           9 藍線1區, 2, 2支A, 182, 31, 52, 52支A, 世博3號, 藍線      
 ## 6 西門市場           8 10, 11A, 11甲, 20, 20支A, 23支A, 50A, 51A</code></pre>
 <p>其中 Step 4 的<code>arrange()</code>函式內，設定<code>desc(...)</code>以表示依據指定變數降冪排列，否則預設為升冪排列。</p>
-<br><div style="background-color:#6C6C6C;color:white;">
+<br></br>
+<div style="background-color:#6C6C6C;color:white;">
 <p><span style="font-size:17pt"><strong>   § 尋找公車環狀線</strong></span></p>
 </div>
 <p>前文中提及，新竹市公車有些屬於環狀路線，亦即公車的起始站與終點站相同。在公車站牌資料中，可以先萃取各子路線的第一個站點（站序為 1 者）與最後一個站點（同一路線站序為最大者），並檢查起訖站點是否相同。分析邏輯彙整如下：</p>
 <ul>
-<li>Step 1: 先利用<code>select()</code>函式萃取需要的欄位名稱。<br>
+<li>Step 1: 先利用<code>select()</code>函式萃取需要的欄位名稱。<br />
 </li>
-<li>Step 2: 將公車站牌依據 SubRouteUID 與 SubRouteName 分群，並利用<code>slice()</code>函式分離出最小站序與最大站序者。<br>
+<li>Step 2: 將公車站牌依據 SubRouteUID 與 SubRouteName 分群，並利用<code>slice()</code>函式分離出最小站序與最大站序者。<br />
 </li>
 <li>Step 3: 經過 Step 2 後所得資料僅剩各路線站序為 1 與最大者，在此我們希望兩者能夠並列，以方便比較（使用<code>dcast()</code>函式可將長資料轉換為寬資料）。</li>
 <li>Step 4: 最後篩選站序為 1 與站序最大之站名為相同者。</li>
 </ul>
-<div class="sourceCode" id="cb20"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb20-1"><a href="%E5%9F%BA%E6%9C%AC%E8%B3%87%E6%96%99%E7%B5%B1%E8%A8%88.html#cb20-1" tabindex="-1"></a><span class="co"># Step 1</span></span>
-<span id="cb20-2"><a href="%E5%9F%BA%E6%9C%AC%E8%B3%87%E6%96%99%E7%B5%B1%E8%A8%88.html#cb20-2" tabindex="-1"></a>bus_route_circle<span class="ot">=</span><span class="fu">select</span>(bus_stop, SubRouteUID, SubRouteName, StopSequence, StopName)</span>
-<span id="cb20-3"><a href="%E5%9F%BA%E6%9C%AC%E8%B3%87%E6%96%99%E7%B5%B1%E8%A8%88.html#cb20-3" tabindex="-1"></a></span>
-<span id="cb20-4"><a href="%E5%9F%BA%E6%9C%AC%E8%B3%87%E6%96%99%E7%B5%B1%E8%A8%88.html#cb20-4" tabindex="-1"></a><span class="co"># Step 2</span></span>
-<span id="cb20-5"><a href="%E5%9F%BA%E6%9C%AC%E8%B3%87%E6%96%99%E7%B5%B1%E8%A8%88.html#cb20-5" tabindex="-1"></a>bus_route_circle<span class="ot">=</span><span class="fu">group_by</span>(bus_route_circle, SubRouteUID, SubRouteName)<span class="sc">%&gt;%</span></span>
-<span id="cb20-6"><a href="%E5%9F%BA%E6%9C%AC%E8%B3%87%E6%96%99%E7%B5%B1%E8%A8%88.html#cb20-6" tabindex="-1"></a>  <span class="fu">slice</span>(<span class="fu">which.min</span>(StopSequence),</span>
-<span id="cb20-7"><a href="%E5%9F%BA%E6%9C%AC%E8%B3%87%E6%96%99%E7%B5%B1%E8%A8%88.html#cb20-7" tabindex="-1"></a>        <span class="fu">which.max</span>(StopSequence))</span>
-<span id="cb20-8"><a href="%E5%9F%BA%E6%9C%AC%E8%B3%87%E6%96%99%E7%B5%B1%E8%A8%88.html#cb20-8" tabindex="-1"></a></span>
-<span id="cb20-9"><a href="%E5%9F%BA%E6%9C%AC%E8%B3%87%E6%96%99%E7%B5%B1%E8%A8%88.html#cb20-9" tabindex="-1"></a><span class="co"># 初步查看前六筆資料</span></span>
-<span id="cb20-10"><a href="%E5%9F%BA%E6%9C%AC%E8%B3%87%E6%96%99%E7%B5%B1%E8%A8%88.html#cb20-10" tabindex="-1"></a><span class="fu">head</span>(bus_route_circle)</span></code></pre></div>
+<div class="sourceCode" id="cb20"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb20-1"><a href="基本資料統計.html#cb20-1" tabindex="-1"></a><span class="co"># Step 1</span></span>
+<span id="cb20-2"><a href="基本資料統計.html#cb20-2" tabindex="-1"></a>bus_route_circle<span class="ot">=</span><span class="fu">select</span>(bus_stop, SubRouteUID, SubRouteName, StopSequence, StopName)</span>
+<span id="cb20-3"><a href="基本資料統計.html#cb20-3" tabindex="-1"></a></span>
+<span id="cb20-4"><a href="基本資料統計.html#cb20-4" tabindex="-1"></a><span class="co"># Step 2</span></span>
+<span id="cb20-5"><a href="基本資料統計.html#cb20-5" tabindex="-1"></a>bus_route_circle<span class="ot">=</span><span class="fu">group_by</span>(bus_route_circle, SubRouteUID, SubRouteName)<span class="sc">%&gt;%</span></span>
+<span id="cb20-6"><a href="基本資料統計.html#cb20-6" tabindex="-1"></a>  <span class="fu">slice</span>(<span class="fu">which.min</span>(StopSequence),</span>
+<span id="cb20-7"><a href="基本資料統計.html#cb20-7" tabindex="-1"></a>        <span class="fu">which.max</span>(StopSequence))</span>
+<span id="cb20-8"><a href="基本資料統計.html#cb20-8" tabindex="-1"></a></span>
+<span id="cb20-9"><a href="基本資料統計.html#cb20-9" tabindex="-1"></a><span class="co"># 初步查看前六筆資料</span></span>
+<span id="cb20-10"><a href="基本資料統計.html#cb20-10" tabindex="-1"></a><span class="fu">head</span>(bus_route_circle)</span></code></pre></div>
 <pre><code>## # A tibble: 6 × 4
 ## # Groups:   SubRouteUID, SubRouteName [3]
 ##   SubRouteUID SubRouteName StopSequence StopName
@@ -494,35 +497,35 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 ## 5 HSZ000801   83                      1 成德路  
 ## 6 HSZ000801   83                     18 北校門</code></pre>
 <p>截至 Step 2，可以發現資料中僅剩餘第一站序與最後一站序，其餘皆已刪除，然而接下來我們希望能夠將同一子路線不同站序並排，尚能進一步做分析。首先我們必須針對每一筆資料給定起始站或終點站的標籤，由於起始站的站序必然是 1，故在此我們可以利用簡單的<code>ifelse()</code>函式判斷站序為 1 者為起始站，反之則為終點站，如是即可得到起訖（Stop_O、Stop_D）的標籤。<code>ifelse()</code>函式的參數設定如下：</p>
-<div class="sourceCode" id="cb22"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb22-1"><a href="%E5%9F%BA%E6%9C%AC%E8%B3%87%E6%96%99%E7%B5%B1%E8%A8%88.html#cb22-1" tabindex="-1"></a><span class="fu">ifelse</span>(條件, TRUE時執行程序, FALSE時執行程序)</span></code></pre></div>
-<p>目前為止，資料型態屬於「長資料（long data）」，亦即資料橫列數比較長的情況。然而我們希望的是將同一路線不同站序展開並排，屬「寬資料（wide data）」，亦即欄位數比較多的情況，此時應利用<code>data.table</code>套件中的<code>dcast()</code>函式達成此一目的。<code>dcast()</code>函式的參數設定如下，如圖<a href="%E5%9F%BA%E6%9C%AC%E8%B3%87%E6%96%99%E7%B5%B1%E8%A8%88.html#fig:bus-stop-dcast-fig">4.1</a>之示意圖所示。</p>
-<div class="sourceCode" id="cb23"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb23-1"><a href="%E5%9F%BA%E6%9C%AC%E8%B3%87%E6%96%99%E7%B5%B1%E8%A8%88.html#cb23-1" tabindex="-1"></a><span class="fu">dcast</span>(資料, 保留欄位<span class="sc">+</span>保留欄位<span class="sc">+</span>... <span class="sc">~</span> 參照欄位, <span class="at">value.var=</span><span class="st">"展開欄位"</span>)</span></code></pre></div>
-<div class="figure" style="text-align: center">
-<span style="display:block;" id="fig:bus-stop-dcast-fig"></span>
-<img src="figure/dcast.png" alt="`dcast()`函式用法" width="80%"><p class="caption">
+<div class="sourceCode" id="cb22"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb22-1"><a href="基本資料統計.html#cb22-1" tabindex="-1"></a><span class="fu">ifelse</span>(條件, TRUE時執行程序, FALSE時執行程序)</span></code></pre></div>
+<p>目前為止，資料型態屬於「長資料（long data）」，亦即資料橫列數比較長的情況。然而我們希望的是將同一路線不同站序展開並排，屬「寬資料（wide data）」，亦即欄位數比較多的情況，此時應利用<code>data.table</code>套件中的<code>dcast()</code>函式達成此一目的。<code>dcast()</code>函式的參數設定如下，如圖<a href="基本資料統計.html#fig:bus-stop-dcast-fig">4.1</a>之示意圖所示。</p>
+<div class="sourceCode" id="cb23"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb23-1"><a href="基本資料統計.html#cb23-1" tabindex="-1"></a><span class="fu">dcast</span>(資料, 保留欄位<span class="sc">+</span>保留欄位<span class="sc">+</span>... <span class="sc">~</span> 參照欄位, <span class="at">value.var=</span><span class="st">&quot;展開欄位&quot;</span>)</span></code></pre></div>
+<div class="figure" style="text-align: center"><span style="display:block;" id="fig:bus-stop-dcast-fig"></span>
+<img src="figure/dcast.png" alt="`dcast()`函式用法" width="80%" />
+<p class="caption">
 圖 4.1: <code>dcast()</code>函式用法
 </p>
 </div>
 <p>經過處理成為寬資料後，即可針對起訖相同站名者利用<code>filter()</code>函式予以保留。<code>filter()</code>函式之參數設定如下：</p>
-<div class="sourceCode" id="cb24"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb24-1"><a href="%E5%9F%BA%E6%9C%AC%E8%B3%87%E6%96%99%E7%B5%B1%E8%A8%88.html#cb24-1" tabindex="-1"></a><span class="fu">filter</span>(資料, 條件1, 條件2, ...)</span></code></pre></div>
-<div class="sourceCode" id="cb25"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb25-1"><a href="%E5%9F%BA%E6%9C%AC%E8%B3%87%E6%96%99%E7%B5%B1%E8%A8%88.html#cb25-1" tabindex="-1"></a><span class="co"># Step 3</span></span>
-<span id="cb25-2"><a href="%E5%9F%BA%E6%9C%AC%E8%B3%87%E6%96%99%E7%B5%B1%E8%A8%88.html#cb25-2" tabindex="-1"></a>bus_route_circle<span class="ot">=</span><span class="fu">mutate</span>(bus_route_circle, <span class="at">StopType=</span><span class="fu">ifelse</span>(StopSequence<span class="sc">==</span><span class="dv">1</span>, <span class="st">"Stop_O"</span>, <span class="st">"Stop_D"</span>))</span>
-<span id="cb25-3"><a href="%E5%9F%BA%E6%9C%AC%E8%B3%87%E6%96%99%E7%B5%B1%E8%A8%88.html#cb25-3" tabindex="-1"></a>bus_route_circle<span class="ot">=</span><span class="fu">dcast</span>(bus_route_circle, SubRouteUID<span class="sc">+</span>SubRouteName <span class="sc">~</span> StopType, <span class="at">value.var=</span><span class="st">"StopName"</span>)</span>
-<span id="cb25-4"><a href="%E5%9F%BA%E6%9C%AC%E8%B3%87%E6%96%99%E7%B5%B1%E8%A8%88.html#cb25-4" tabindex="-1"></a></span>
-<span id="cb25-5"><a href="%E5%9F%BA%E6%9C%AC%E8%B3%87%E6%96%99%E7%B5%B1%E8%A8%88.html#cb25-5" tabindex="-1"></a><span class="co"># Step 4</span></span>
-<span id="cb25-6"><a href="%E5%9F%BA%E6%9C%AC%E8%B3%87%E6%96%99%E7%B5%B1%E8%A8%88.html#cb25-6" tabindex="-1"></a>bus_route_circle<span class="ot">=</span><span class="fu">filter</span>(bus_route_circle, Stop_O<span class="sc">==</span>Stop_D)</span>
-<span id="cb25-7"><a href="%E5%9F%BA%E6%9C%AC%E8%B3%87%E6%96%99%E7%B5%B1%E8%A8%88.html#cb25-7" tabindex="-1"></a></span>
-<span id="cb25-8"><a href="%E5%9F%BA%E6%9C%AC%E8%B3%87%E6%96%99%E7%B5%B1%E8%A8%88.html#cb25-8" tabindex="-1"></a><span class="co">#---可直接簡化為：---#</span></span>
-<span id="cb25-9"><a href="%E5%9F%BA%E6%9C%AC%E8%B3%87%E6%96%99%E7%B5%B1%E8%A8%88.html#cb25-9" tabindex="-1"></a><span class="co"># bus_route_circle=select(bus_stop, SubRouteUID, SubRouteName, StopSequence, StopName)%&gt;%</span></span>
-<span id="cb25-10"><a href="%E5%9F%BA%E6%9C%AC%E8%B3%87%E6%96%99%E7%B5%B1%E8%A8%88.html#cb25-10" tabindex="-1"></a><span class="co">#   group_by(SubRouteUID, SubRouteName)%&gt;%</span></span>
-<span id="cb25-11"><a href="%E5%9F%BA%E6%9C%AC%E8%B3%87%E6%96%99%E7%B5%B1%E8%A8%88.html#cb25-11" tabindex="-1"></a><span class="co">#   slice(which.min(StopSequence),</span></span>
-<span id="cb25-12"><a href="%E5%9F%BA%E6%9C%AC%E8%B3%87%E6%96%99%E7%B5%B1%E8%A8%88.html#cb25-12" tabindex="-1"></a><span class="co">#         which.max(StopSequence))%&gt;%</span></span>
-<span id="cb25-13"><a href="%E5%9F%BA%E6%9C%AC%E8%B3%87%E6%96%99%E7%B5%B1%E8%A8%88.html#cb25-13" tabindex="-1"></a><span class="co">#   mutate(StopType=ifelse(StopSequence==1, "Stop_O", "Stop_D"))%&gt;%</span></span>
-<span id="cb25-14"><a href="%E5%9F%BA%E6%9C%AC%E8%B3%87%E6%96%99%E7%B5%B1%E8%A8%88.html#cb25-14" tabindex="-1"></a><span class="co">#   dcast(SubRouteUID+SubRouteName ~ StopType, value.var="StopName")%&gt;%</span></span>
-<span id="cb25-15"><a href="%E5%9F%BA%E6%9C%AC%E8%B3%87%E6%96%99%E7%B5%B1%E8%A8%88.html#cb25-15" tabindex="-1"></a><span class="co">#   filter(Stop_O==Stop_D)</span></span>
-<span id="cb25-16"><a href="%E5%9F%BA%E6%9C%AC%E8%B3%87%E6%96%99%E7%B5%B1%E8%A8%88.html#cb25-16" tabindex="-1"></a></span>
-<span id="cb25-17"><a href="%E5%9F%BA%E6%9C%AC%E8%B3%87%E6%96%99%E7%B5%B1%E8%A8%88.html#cb25-17" tabindex="-1"></a><span class="co"># 查看所有環狀線資料</span></span>
-<span id="cb25-18"><a href="%E5%9F%BA%E6%9C%AC%E8%B3%87%E6%96%99%E7%B5%B1%E8%A8%88.html#cb25-18" tabindex="-1"></a>bus_route_circle</span></code></pre></div>
+<div class="sourceCode" id="cb24"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb24-1"><a href="基本資料統計.html#cb24-1" tabindex="-1"></a><span class="fu">filter</span>(資料, 條件1, 條件2, ...)</span></code></pre></div>
+<div class="sourceCode" id="cb25"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb25-1"><a href="基本資料統計.html#cb25-1" tabindex="-1"></a><span class="co"># Step 3</span></span>
+<span id="cb25-2"><a href="基本資料統計.html#cb25-2" tabindex="-1"></a>bus_route_circle<span class="ot">=</span><span class="fu">mutate</span>(bus_route_circle, <span class="at">StopType=</span><span class="fu">ifelse</span>(StopSequence<span class="sc">==</span><span class="dv">1</span>, <span class="st">&quot;Stop_O&quot;</span>, <span class="st">&quot;Stop_D&quot;</span>))</span>
+<span id="cb25-3"><a href="基本資料統計.html#cb25-3" tabindex="-1"></a>bus_route_circle<span class="ot">=</span><span class="fu">dcast</span>(bus_route_circle, SubRouteUID<span class="sc">+</span>SubRouteName <span class="sc">~</span> StopType, <span class="at">value.var=</span><span class="st">&quot;StopName&quot;</span>)</span>
+<span id="cb25-4"><a href="基本資料統計.html#cb25-4" tabindex="-1"></a></span>
+<span id="cb25-5"><a href="基本資料統計.html#cb25-5" tabindex="-1"></a><span class="co"># Step 4</span></span>
+<span id="cb25-6"><a href="基本資料統計.html#cb25-6" tabindex="-1"></a>bus_route_circle<span class="ot">=</span><span class="fu">filter</span>(bus_route_circle, Stop_O<span class="sc">==</span>Stop_D)</span>
+<span id="cb25-7"><a href="基本資料統計.html#cb25-7" tabindex="-1"></a></span>
+<span id="cb25-8"><a href="基本資料統計.html#cb25-8" tabindex="-1"></a><span class="co">#---可直接簡化為：---#</span></span>
+<span id="cb25-9"><a href="基本資料統計.html#cb25-9" tabindex="-1"></a><span class="co"># bus_route_circle=select(bus_stop, SubRouteUID, SubRouteName, StopSequence, StopName)%&gt;%</span></span>
+<span id="cb25-10"><a href="基本資料統計.html#cb25-10" tabindex="-1"></a><span class="co">#   group_by(SubRouteUID, SubRouteName)%&gt;%</span></span>
+<span id="cb25-11"><a href="基本資料統計.html#cb25-11" tabindex="-1"></a><span class="co">#   slice(which.min(StopSequence),</span></span>
+<span id="cb25-12"><a href="基本資料統計.html#cb25-12" tabindex="-1"></a><span class="co">#         which.max(StopSequence))%&gt;%</span></span>
+<span id="cb25-13"><a href="基本資料統計.html#cb25-13" tabindex="-1"></a><span class="co">#   mutate(StopType=ifelse(StopSequence==1, &quot;Stop_O&quot;, &quot;Stop_D&quot;))%&gt;%</span></span>
+<span id="cb25-14"><a href="基本資料統計.html#cb25-14" tabindex="-1"></a><span class="co">#   dcast(SubRouteUID+SubRouteName ~ StopType, value.var=&quot;StopName&quot;)%&gt;%</span></span>
+<span id="cb25-15"><a href="基本資料統計.html#cb25-15" tabindex="-1"></a><span class="co">#   filter(Stop_O==Stop_D)</span></span>
+<span id="cb25-16"><a href="基本資料統計.html#cb25-16" tabindex="-1"></a></span>
+<span id="cb25-17"><a href="基本資料統計.html#cb25-17" tabindex="-1"></a><span class="co"># 查看所有環狀線資料</span></span>
+<span id="cb25-18"><a href="基本資料統計.html#cb25-18" tabindex="-1"></a>bus_route_circle</span></code></pre></div>
 <pre><code>##   SubRouteUID SubRouteName         Stop_D         Stop_O
 ## 1   HSZ001001      藍線1區         火車站         火車站
 ## 2   HSZ027001           27         火車站         火車站
@@ -536,56 +539,55 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <p>由以上回傳資料可知，新竹市公車共計 9 條路線屬於環狀路線。</p>
 </div>
 <div id="站間行駛距離計算" class="section level3 hasAnchor" number="4.1.3">
-<h3>
-<span class="header-section-number">4.1.3</span> 站間行駛距離計算<a href="%E5%9F%BA%E6%9C%AC%E8%B3%87%E6%96%99%E7%B5%B1%E8%A8%88.html#%E7%AB%99%E9%96%93%E8%A1%8C%E9%A7%9B%E8%B7%9D%E9%9B%A2%E8%A8%88%E7%AE%97" class="anchor-section" aria-label="Anchor link to header"></a>
-</h3>
+<h3><span class="header-section-number">4.1.3</span> 站間行駛距離計算<a href="基本資料統計.html#站間行駛距離計算" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <p>公車站間距離資料中係記錄每一子路線（SubRouteUID）相鄰站點間的路線距離，其中 FromStopID 為起點站代碼，ToStopID 為迄點站代碼，StopSequence 為「迄點站」的站序，Distance 即為兩相鄰站點間距離。</p>
-<br><div style="background-color:#6C6C6C;color:white;">
+<br></br>
+<div style="background-color:#6C6C6C;color:white;">
 <p><span style="font-size:17pt"><strong>   § 計算任意起迄站間距離</strong></span></p>
 </div>
 <p>公車站間距離資料係記錄兩相鄰站點距離，而非「任意兩站點間」的距離，故必須經過資料處理尚能透過原始資料計算任意起迄站間距離。在給定的一組站點序號，首先必須回傳所有該起迄區間的資料，例如若要尋找新竹市區 81 公車去程（SubRouteUID: HSZ000701）的「陽明交大光復南門」（StopID: 303819）至「科技生活館」（StopID: 303823）站點，我們必須先知道兩站點的序號，並擷取所有介於這兩序號間的公車站點距離資料，最後將 Distance 欄位相加總後即為該區間的行駛距離。</p>
-<p>在公車站間距離之原始資料中，請務必注意，StopSequence 為 1 時，路線距離為 0（原始資料記錄為 NA）；StopSequence 為 2 時，路線距離係第 1 站至第 2 站的距離，其他則以此類推。因此若欲計算第 3 站至第 6 站間的距離，必須先行回傳公車站間距離資料中站序為 4 至 6 的資料，如圖<a href="%E5%9F%BA%E6%9C%AC%E8%B3%87%E6%96%99%E7%B5%B1%E8%A8%88.html#fig:bus-distance-fig">4.2</a>之示意圖所示。據上述案例，由第 3 站出發，必須由站序為 4 者始擷取資料，故後續得知起點站序後，務必加 1 以在原始資料中擷取正確區間。</p>
-<div class="figure" style="text-align: center">
-<span style="display:block;" id="fig:bus-distance-fig"></span>
-<img src="figure/bus_distance.png" alt="公車站間距離資料計算示意圖" width="80%"><p class="caption">
+<p>在公車站間距離之原始資料中，請務必注意，StopSequence 為 1 時，路線距離為 0（原始資料記錄為 NA）；StopSequence 為 2 時，路線距離係第 1 站至第 2 站的距離，其他則以此類推。因此若欲計算第 3 站至第 6 站間的距離，必須先行回傳公車站間距離資料中站序為 4 至 6 的資料，如圖<a href="基本資料統計.html#fig:bus-distance-fig">4.2</a>之示意圖所示。據上述案例，由第 3 站出發，必須由站序為 4 者始擷取資料，故後續得知起點站序後，務必加 1 以在原始資料中擷取正確區間。</p>
+<div class="figure" style="text-align: center"><span style="display:block;" id="fig:bus-distance-fig"></span>
+<img src="figure/bus_distance.png" alt="公車站間距離資料計算示意圖" width="80%" />
+<p class="caption">
 圖 4.2: 公車站間距離資料計算示意圖
 </p>
 </div>
 <p>回到尋找新竹市區 81 公車去程的「陽明交大光復南門」至「科技生活館」站點之範例，程式碼撰寫如下：</p>
-<div class="sourceCode" id="cb27"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb27-1"><a href="%E5%9F%BA%E6%9C%AC%E8%B3%87%E6%96%99%E7%B5%B1%E8%A8%88.html#cb27-1" tabindex="-1"></a><span class="co"># 先依據路線名稱與站名，尋找起迄站點的站序</span></span>
-<span id="cb27-2"><a href="%E5%9F%BA%E6%9C%AC%E8%B3%87%E6%96%99%E7%B5%B1%E8%A8%88.html#cb27-2" tabindex="-1"></a>sqid_o<span class="ot">=</span><span class="fu">filter</span>(bus_stop, SubRouteName<span class="sc">==</span><span class="st">"81"</span>, Direction<span class="sc">==</span><span class="dv">0</span>, StopName<span class="sc">==</span><span class="st">"陽明交大光復南門"</span>)<span class="sc">$</span>StopSequence</span>
-<span id="cb27-3"><a href="%E5%9F%BA%E6%9C%AC%E8%B3%87%E6%96%99%E7%B5%B1%E8%A8%88.html#cb27-3" tabindex="-1"></a>sqid_d<span class="ot">=</span><span class="fu">filter</span>(bus_stop, SubRouteName<span class="sc">==</span><span class="st">"81"</span>, Direction<span class="sc">==</span><span class="dv">0</span>, StopName<span class="sc">==</span><span class="st">"科技生活館"</span>)<span class="sc">$</span>StopSequence</span>
-<span id="cb27-4"><a href="%E5%9F%BA%E6%9C%AC%E8%B3%87%E6%96%99%E7%B5%B1%E8%A8%88.html#cb27-4" tabindex="-1"></a></span>
-<span id="cb27-5"><a href="%E5%9F%BA%E6%9C%AC%E8%B3%87%E6%96%99%E7%B5%B1%E8%A8%88.html#cb27-5" tabindex="-1"></a><span class="co"># 查看起迄站序</span></span>
-<span id="cb27-6"><a href="%E5%9F%BA%E6%9C%AC%E8%B3%87%E6%96%99%E7%B5%B1%E8%A8%88.html#cb27-6" tabindex="-1"></a><span class="fu">print</span>(<span class="fu">c</span>(sqid_o, sqid_d))</span></code></pre></div>
+<div class="sourceCode" id="cb27"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb27-1"><a href="基本資料統計.html#cb27-1" tabindex="-1"></a><span class="co"># 先依據路線名稱與站名，尋找起迄站點的站序</span></span>
+<span id="cb27-2"><a href="基本資料統計.html#cb27-2" tabindex="-1"></a>sqid_o<span class="ot">=</span><span class="fu">filter</span>(bus_stop, SubRouteName<span class="sc">==</span><span class="st">&quot;81&quot;</span>, Direction<span class="sc">==</span><span class="dv">0</span>, StopName<span class="sc">==</span><span class="st">&quot;陽明交大光復南門&quot;</span>)<span class="sc">$</span>StopSequence</span>
+<span id="cb27-3"><a href="基本資料統計.html#cb27-3" tabindex="-1"></a>sqid_d<span class="ot">=</span><span class="fu">filter</span>(bus_stop, SubRouteName<span class="sc">==</span><span class="st">&quot;81&quot;</span>, Direction<span class="sc">==</span><span class="dv">0</span>, StopName<span class="sc">==</span><span class="st">&quot;科技生活館&quot;</span>)<span class="sc">$</span>StopSequence</span>
+<span id="cb27-4"><a href="基本資料統計.html#cb27-4" tabindex="-1"></a></span>
+<span id="cb27-5"><a href="基本資料統計.html#cb27-5" tabindex="-1"></a><span class="co"># 查看起迄站序</span></span>
+<span id="cb27-6"><a href="基本資料統計.html#cb27-6" tabindex="-1"></a><span class="fu">print</span>(<span class="fu">c</span>(sqid_o, sqid_d))</span></code></pre></div>
 <pre><code>## [1] 11 15</code></pre>
 <p>得知站序後，回傳原始資料中該路線且站序介於 sqid_o+1 與 sqid_d 之間者。</p>
-<div class="sourceCode" id="cb29"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb29-1"><a href="%E5%9F%BA%E6%9C%AC%E8%B3%87%E6%96%99%E7%B5%B1%E8%A8%88.html#cb29-1" tabindex="-1"></a><span class="co"># 擷取公車站間距離資料中sqid_o+1至sqid_d的資料</span></span>
-<span id="cb29-2"><a href="%E5%9F%BA%E6%9C%AC%E8%B3%87%E6%96%99%E7%B5%B1%E8%A8%88.html#cb29-2" tabindex="-1"></a>temp<span class="ot">=</span><span class="fu">filter</span>(bus_distance, SubRouteName<span class="sc">==</span><span class="st">"81"</span>, Direction<span class="sc">==</span><span class="dv">0</span>, Sequence<span class="sc">&gt;=</span>sqid_o<span class="sc">+</span><span class="dv">1</span>, Sequence<span class="sc">&lt;=</span>sqid_d)</span>
-<span id="cb29-3"><a href="%E5%9F%BA%E6%9C%AC%E8%B3%87%E6%96%99%E7%B5%B1%E8%A8%88.html#cb29-3" tabindex="-1"></a></span>
-<span id="cb29-4"><a href="%E5%9F%BA%E6%9C%AC%E8%B3%87%E6%96%99%E7%B5%B1%E8%A8%88.html#cb29-4" tabindex="-1"></a><span class="co"># 將Distance欄位予以加總</span></span>
-<span id="cb29-5"><a href="%E5%9F%BA%E6%9C%AC%E8%B3%87%E6%96%99%E7%B5%B1%E8%A8%88.html#cb29-5" tabindex="-1"></a><span class="fu">sum</span>(temp<span class="sc">$</span>Distance)</span></code></pre></div>
+<div class="sourceCode" id="cb29"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb29-1"><a href="基本資料統計.html#cb29-1" tabindex="-1"></a><span class="co"># 擷取公車站間距離資料中sqid_o+1至sqid_d的資料</span></span>
+<span id="cb29-2"><a href="基本資料統計.html#cb29-2" tabindex="-1"></a>temp<span class="ot">=</span><span class="fu">filter</span>(bus_distance, SubRouteName<span class="sc">==</span><span class="st">&quot;81&quot;</span>, Direction<span class="sc">==</span><span class="dv">0</span>, Sequence<span class="sc">&gt;=</span>sqid_o<span class="sc">+</span><span class="dv">1</span>, Sequence<span class="sc">&lt;=</span>sqid_d)</span>
+<span id="cb29-3"><a href="基本資料統計.html#cb29-3" tabindex="-1"></a></span>
+<span id="cb29-4"><a href="基本資料統計.html#cb29-4" tabindex="-1"></a><span class="co"># 將Distance欄位予以加總</span></span>
+<span id="cb29-5"><a href="基本資料統計.html#cb29-5" tabindex="-1"></a><span class="fu">sum</span>(temp<span class="sc">$</span>Distance)</span></code></pre></div>
 <pre><code>## [1] 1346.73</code></pre>
 <p>由上述分析結果得知，81 公車「陽明交大光復南門」至「科技生活館」的路線距離即為 1346.73 公尺。</p>
 <p>此外，我們可以將上述的流程打包成一個函式以方便後續查詢，程式碼撰寫如下。</p>
-<div class="sourceCode" id="cb31"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb31-1"><a href="%E5%9F%BA%E6%9C%AC%E8%B3%87%E6%96%99%E7%B5%B1%E8%A8%88.html#cb31-1" tabindex="-1"></a><span class="co"># 建立函式</span></span>
-<span id="cb31-2"><a href="%E5%9F%BA%E6%9C%AC%E8%B3%87%E6%96%99%E7%B5%B1%E8%A8%88.html#cb31-2" tabindex="-1"></a><span class="co"># 需含括四個參數：子路線名稱（route）、方向（dir）、起點站名（stop_o）、迄點站名（stop_d）</span></span>
-<span id="cb31-3"><a href="%E5%9F%BA%E6%9C%AC%E8%B3%87%E6%96%99%E7%B5%B1%E8%A8%88.html#cb31-3" tabindex="-1"></a>Bus_OD_Dist<span class="ot">=</span><span class="cf">function</span>(route, dir, stop_o, stop_d){</span>
-<span id="cb31-4"><a href="%E5%9F%BA%E6%9C%AC%E8%B3%87%E6%96%99%E7%B5%B1%E8%A8%88.html#cb31-4" tabindex="-1"></a>  sqid_o<span class="ot">=</span><span class="fu">filter</span>(bus_stop, SubRouteName<span class="sc">==</span>route, Direction<span class="sc">==</span>dir, StopName<span class="sc">==</span>stop_o)<span class="sc">$</span>StopSequence</span>
-<span id="cb31-5"><a href="%E5%9F%BA%E6%9C%AC%E8%B3%87%E6%96%99%E7%B5%B1%E8%A8%88.html#cb31-5" tabindex="-1"></a>  sqid_d<span class="ot">=</span><span class="fu">filter</span>(bus_stop, SubRouteName<span class="sc">==</span>route, Direction<span class="sc">==</span>dir, StopName<span class="sc">==</span>stop_d)<span class="sc">$</span>StopSequence</span>
-<span id="cb31-6"><a href="%E5%9F%BA%E6%9C%AC%E8%B3%87%E6%96%99%E7%B5%B1%E8%A8%88.html#cb31-6" tabindex="-1"></a>  </span>
-<span id="cb31-7"><a href="%E5%9F%BA%E6%9C%AC%E8%B3%87%E6%96%99%E7%B5%B1%E8%A8%88.html#cb31-7" tabindex="-1"></a>  temp<span class="ot">=</span><span class="fu">filter</span>(bus_distance, SubRouteName<span class="sc">==</span>route, Direction<span class="sc">==</span>dir, Sequence<span class="sc">&gt;=</span>sqid_o<span class="sc">+</span><span class="dv">1</span>, Sequence<span class="sc">&lt;=</span>sqid_d)</span>
-<span id="cb31-8"><a href="%E5%9F%BA%E6%9C%AC%E8%B3%87%E6%96%99%E7%B5%B1%E8%A8%88.html#cb31-8" tabindex="-1"></a>  </span>
-<span id="cb31-9"><a href="%E5%9F%BA%E6%9C%AC%E8%B3%87%E6%96%99%E7%B5%B1%E8%A8%88.html#cb31-9" tabindex="-1"></a>  <span class="co"># 原始資料中少部分資料為NA，為方便概算，在此忽略NA值 (此為資料品質問題！)</span></span>
-<span id="cb31-10"><a href="%E5%9F%BA%E6%9C%AC%E8%B3%87%E6%96%99%E7%B5%B1%E8%A8%88.html#cb31-10" tabindex="-1"></a>  dist<span class="ot">=</span><span class="fu">sum</span>(temp<span class="sc">$</span>Distance, <span class="at">na.rm=</span>T)</span>
-<span id="cb31-11"><a href="%E5%9F%BA%E6%9C%AC%E8%B3%87%E6%96%99%E7%B5%B1%E8%A8%88.html#cb31-11" tabindex="-1"></a>  <span class="fu">return</span>(dist)</span>
-<span id="cb31-12"><a href="%E5%9F%BA%E6%9C%AC%E8%B3%87%E6%96%99%E7%B5%B1%E8%A8%88.html#cb31-12" tabindex="-1"></a>}</span>
-<span id="cb31-13"><a href="%E5%9F%BA%E6%9C%AC%E8%B3%87%E6%96%99%E7%B5%B1%E8%A8%88.html#cb31-13" tabindex="-1"></a></span>
-<span id="cb31-14"><a href="%E5%9F%BA%E6%9C%AC%E8%B3%87%E6%96%99%E7%B5%B1%E8%A8%88.html#cb31-14" tabindex="-1"></a><span class="co"># 使用函式 (範例1)</span></span>
-<span id="cb31-15"><a href="%E5%9F%BA%E6%9C%AC%E8%B3%87%E6%96%99%E7%B5%B1%E8%A8%88.html#cb31-15" tabindex="-1"></a><span class="fu">Bus_OD_Dist</span>(<span class="at">route=</span><span class="st">"81"</span>, <span class="at">dir=</span><span class="dv">0</span>, <span class="at">stop_o=</span><span class="st">"陽明交大光復南門"</span>, <span class="at">stop_d=</span><span class="st">"科技生活館"</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb31"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb31-1"><a href="基本資料統計.html#cb31-1" tabindex="-1"></a><span class="co"># 建立函式</span></span>
+<span id="cb31-2"><a href="基本資料統計.html#cb31-2" tabindex="-1"></a><span class="co"># 需含括四個參數：子路線名稱（route）、方向（dir）、起點站名（stop_o）、迄點站名（stop_d）</span></span>
+<span id="cb31-3"><a href="基本資料統計.html#cb31-3" tabindex="-1"></a>Bus_OD_Dist<span class="ot">=</span><span class="cf">function</span>(route, dir, stop_o, stop_d){</span>
+<span id="cb31-4"><a href="基本資料統計.html#cb31-4" tabindex="-1"></a>  sqid_o<span class="ot">=</span><span class="fu">filter</span>(bus_stop, SubRouteName<span class="sc">==</span>route, Direction<span class="sc">==</span>dir, StopName<span class="sc">==</span>stop_o)<span class="sc">$</span>StopSequence</span>
+<span id="cb31-5"><a href="基本資料統計.html#cb31-5" tabindex="-1"></a>  sqid_d<span class="ot">=</span><span class="fu">filter</span>(bus_stop, SubRouteName<span class="sc">==</span>route, Direction<span class="sc">==</span>dir, StopName<span class="sc">==</span>stop_d)<span class="sc">$</span>StopSequence</span>
+<span id="cb31-6"><a href="基本資料統計.html#cb31-6" tabindex="-1"></a>  </span>
+<span id="cb31-7"><a href="基本資料統計.html#cb31-7" tabindex="-1"></a>  temp<span class="ot">=</span><span class="fu">filter</span>(bus_distance, SubRouteName<span class="sc">==</span>route, Direction<span class="sc">==</span>dir, Sequence<span class="sc">&gt;=</span>sqid_o<span class="sc">+</span><span class="dv">1</span>, Sequence<span class="sc">&lt;=</span>sqid_d)</span>
+<span id="cb31-8"><a href="基本資料統計.html#cb31-8" tabindex="-1"></a>  </span>
+<span id="cb31-9"><a href="基本資料統計.html#cb31-9" tabindex="-1"></a>  <span class="co"># 原始資料中少部分資料為NA，為方便概算，在此忽略NA值 (此為資料品質問題！)</span></span>
+<span id="cb31-10"><a href="基本資料統計.html#cb31-10" tabindex="-1"></a>  dist<span class="ot">=</span><span class="fu">sum</span>(temp<span class="sc">$</span>Distance, <span class="at">na.rm=</span>T)</span>
+<span id="cb31-11"><a href="基本資料統計.html#cb31-11" tabindex="-1"></a>  <span class="fu">return</span>(dist)</span>
+<span id="cb31-12"><a href="基本資料統計.html#cb31-12" tabindex="-1"></a>}</span>
+<span id="cb31-13"><a href="基本資料統計.html#cb31-13" tabindex="-1"></a></span>
+<span id="cb31-14"><a href="基本資料統計.html#cb31-14" tabindex="-1"></a><span class="co"># 使用函式 (範例1)</span></span>
+<span id="cb31-15"><a href="基本資料統計.html#cb31-15" tabindex="-1"></a><span class="fu">Bus_OD_Dist</span>(<span class="at">route=</span><span class="st">&quot;81&quot;</span>, <span class="at">dir=</span><span class="dv">0</span>, <span class="at">stop_o=</span><span class="st">&quot;陽明交大光復南門&quot;</span>, <span class="at">stop_d=</span><span class="st">&quot;科技生活館&quot;</span>)</span></code></pre></div>
 <pre><code>## [1] 1346.73</code></pre>
-<div class="sourceCode" id="cb33"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb33-1"><a href="%E5%9F%BA%E6%9C%AC%E8%B3%87%E6%96%99%E7%B5%B1%E8%A8%88.html#cb33-1" tabindex="-1"></a><span class="co"># 使用函式 (範例2)</span></span>
-<span id="cb33-2"><a href="%E5%9F%BA%E6%9C%AC%E8%B3%87%E6%96%99%E7%B5%B1%E8%A8%88.html#cb33-2" tabindex="-1"></a><span class="fu">Bus_OD_Dist</span>(<span class="at">route=</span><span class="st">"2"</span>, <span class="at">dir=</span><span class="dv">0</span>, <span class="at">stop_o=</span><span class="st">"清華大學"</span>, <span class="at">stop_d=</span><span class="st">"交大光復校區"</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb33"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb33-1"><a href="基本資料統計.html#cb33-1" tabindex="-1"></a><span class="co"># 使用函式 (範例2)</span></span>
+<span id="cb33-2"><a href="基本資料統計.html#cb33-2" tabindex="-1"></a><span class="fu">Bus_OD_Dist</span>(<span class="at">route=</span><span class="st">&quot;2&quot;</span>, <span class="at">dir=</span><span class="dv">0</span>, <span class="at">stop_o=</span><span class="st">&quot;清華大學&quot;</span>, <span class="at">stop_d=</span><span class="st">&quot;交大光復校區&quot;</span>)</span></code></pre></div>
 <pre><code>## [1] 1842.72</code></pre>
 <p>透過上述範例得知，新竹市 81 公車由「清華大學」至「交大光復校區」，路線行駛距離為 1842.72 公尺。</p>
 
@@ -593,14 +595,23 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </div>
 </div>
             </section>
-</div>
+
+          </div>
         </div>
       </div>
-<a href="%E8%B3%87%E6%96%99%E8%A6%96%E8%A6%BA%E5%8C%96.html" class="navigation navigation-prev navigation-unique" aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="資料視覺化.html" class="navigation navigation-prev navigation-unique" aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
 
     </div>
   </div>
-<script src="libs/gitbook-2.6.7/js/app.min.js"></script><script src="libs/gitbook-2.6.7/js/clipboard.min.js"></script><script src="libs/gitbook-2.6.7/js/plugin-search.js"></script><script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script><script src="libs/gitbook-2.6.7/js/plugin-fontsettings.js"></script><script src="libs/gitbook-2.6.7/js/plugin-bookdown.js"></script><script src="libs/gitbook-2.6.7/js/jquery.highlight.js"></script><script src="libs/gitbook-2.6.7/js/plugin-clipboard.js"></script><script>
+<script src="libs/gitbook-2.6.7/js/app.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/clipboard.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-fontsettings.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-bookdown.js"></script>
+<script src="libs/gitbook-2.6.7/js/jquery.highlight.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-clipboard.js"></script>
+<script>
 gitbook.require(["gitbook"], function(gitbook) {
 gitbook.start({
 "sharing": {
@@ -642,5 +653,7 @@ gitbook.start({
 });
 });
 </script>
+
 </body>
+
 </html>
