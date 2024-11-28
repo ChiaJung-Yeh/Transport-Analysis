@@ -1687,7 +1687,7 @@ ggplot()+
 
 ```{r tab-textfig-plot, echo=F, eval=T}
 textfig=data.frame(pack=c(rep("`ggplot2`", 2), rep("`ggrepel`", 2), rep("`ggtext`", 2), rep("`ggimage`", 1)),
-                   func=c("[`geom_text()`](#標註文字與標籤)","[`geom_label()`](#標註文字與標籤)","[`geom_text_repel()`](#文字避免重疊)`","[`geom_label_repel()`](#文字避免重疊)","[`geom_richtext()`](#html-文字ggtext套件)","[`geom_textbox()`](#html-文字ggtext套件)","[`geom_image()`](#標註插圖)"),
+                   func=c("[`geom_text()`](#標註文字與標籤)","[`geom_label()`](#標註文字與標籤)","[`geom_text_repel()`](#文字避免重疊)`","[`geom_label_repel()`](#文字避免重疊)","[`geom_richtext()`](#html-文字)","[`geom_textbox()`](#html-文字)","[`geom_image()`](#標註插圖)"),
                    feature=c("標註文字","標註標籤","標註文字（不重疊）","標註標籤（不重疊）","標註 html 文字","標註 html 標籤","標註插圖"))
 
 kable(textfig, booktabs=T, escape=F, caption="圖表文字與插圖函式", col.names=c("套件","函式","功能"))%>%
@@ -1787,7 +1787,7 @@ ggplot()+
 任何有關文字設定的套件通常皆可透過本小節所述方式設定**字體與字型**，包含以下函式：
 
 * <u>**標註文字與標籤**</u>：[`geom_text()`](#標註文字與標籤)、[`geom_label()`](#標註文字與標籤)  
-* <u>**標註 html 文字與標籤**</u>：[`geom_richtext()`](#html-文字ggtext套件)、[`geom_textbox()`](#html-文字ggtext套件)  
+* <u>**標註 html 文字與標籤**</u>：[`geom_richtext()`](#html-文字)、[`geom_textbox()`](#html-文字)  
 * <u>**設定圖表主題**</u>：[`element_text()`](#細節樣式設定)、[`element_markdown()`](#細節樣式設定)  
 :::
 
@@ -1822,7 +1822,7 @@ ggplot(data=temp, aes(x=family, y=fontface))+
 任何有關文字設定的套件通常皆可透過本小節所述方式設定**角度與對齊**，包含以下函式：
 
 * <u>**標註文字與標籤**</u>：[`geom_text()`](#標註文字與標籤)、[`geom_label()`](#標註文字與標籤)  
-* <u>**標註 html 文字與標籤**</u>：[`geom_richtext()`](#html-文字ggtext套件)、[`geom_textbox()`](#html-文字ggtext套件)  
+* <u>**標註 html 文字與標籤**</u>：[`geom_richtext()`](#html-文字)、[`geom_textbox()`](#html-文字)  
 * <u>**設定圖表主題**</u>：[`element_text()`](#細節樣式設定)、[`element_markdown()`](#細節樣式設定)  
 :::
 
@@ -1860,7 +1860,7 @@ ggplot(data=temp)+
 任何有關文字設定的套件通常皆可透過本小節所述方式設定**文字位移**，包含以下函式：
 
 * <u>**標註文字與標籤**</u>：[`geom_text()`](#標註文字與標籤)、[`geom_label()`](#標註文字與標籤)  
-* <u>**標註 html 文字與標籤**</u>：[`geom_richtext()`](#html-文字ggtext套件)、[`geom_textbox()`](#html-文字ggtext套件)  
+* <u>**標註 html 文字與標籤**</u>：[`geom_richtext()`](#html-文字)、[`geom_textbox()`](#html-文字)  
 * <u>**設定圖表主題**</u>：[`element_text()`](#細節樣式設定)、[`element_markdown()`](#細節樣式設定)  
 :::
 
